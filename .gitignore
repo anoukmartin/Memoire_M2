@@ -12,6 +12,12 @@
 *.xls
 *.xlsx
 
+# Production files
+*.html
+*.pdf
+*.doc
+*.odt
+
 # User-specific files
 .Ruserdata
 
