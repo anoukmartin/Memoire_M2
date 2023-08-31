@@ -6,6 +6,12 @@
 .RData
 .RDataTmp
 
+# Data files 
+.sas7bdat
+.csv
+.xlsx
+.xls
+
 # User-specific files
 .Ruserdata
 
