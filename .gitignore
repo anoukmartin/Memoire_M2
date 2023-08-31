@@ -7,10 +7,10 @@
 .RDataTmp
 
 # Data files 
-.sas7bdat
-.csv
-.xlsx
-.xls
+*.csv
+*.sas7bdat
+*.xls
+*.xlsx
 
 # User-specific files
 .Ruserdata
