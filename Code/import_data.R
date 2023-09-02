@@ -23,7 +23,7 @@ save_object("BDF/MENAGE.sas7bdat", bucket, region = "",
 #### Tables info indiv ####
 
 ## Table des ménages 
-menages <- read_sas(data_file = "Data/BDF/SAS/MENAGE.sas7bdat")
+menages <- read_sas(data_file = "Data_input/sas/menages.sas7bdat")
 names(menages) <- str_to_upper(names(menages))
 
 ## Table des individus
