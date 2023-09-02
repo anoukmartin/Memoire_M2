@@ -7,19 +7,18 @@ names(indiv)
 indiv$IDENT_IND
 
 # On définit qui sont considéré comme des enfants 
-
 indiv$ENFRP # Variable enfant au sens du recensement
 indiv$ENFANT # Variable au sens du TCM (budget commun en plus)
 tbl_cross(indiv, ENFANT, ENFRP) # On regarde si elles se recoupent 
 temp <- indiv %>%
   filter(ENFANT == "2" & ENFRP == "1")
-# Donc on a trois individus assez agés qui sont considéré comme enfant au sens 
+# Donc on a trois individus assez agés qui sont considérés comme enfant au sens 
 # du RP mais pas du TCM
 rm(temp)
 
 # On va définir une limite d'âge 
 enfants <- indiv %>%
-  filter(AG <= 25)  %>% # on peut changer en le seuil, 25 ans me parait bien seuil d'ouverture du RSA 
+  filter(AG <= 25)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   filter(ENFANT == "1") # puis on ne prend que ceux qui sont considérés comme enfant au sens du TCM (idem recensement car on virer les individus agés)
 
 # Ensuite on va regarder avec qui vivent ces enfants
@@ -31,13 +30,17 @@ enfants <- enfants %>%
     PER1E != "1" & MER1E != "1" ~ "aucun des deux"))
 tbl_summary(enfants, 
             include = n_NPARENTS)
+# Aucun enfants ne vit avec aucun de ses parents,
+# enfnant vivant avec uniquement leur mère surreprésenté, parce que famille 
+# mono sont plus souvent des mères isolées que des pères, + sur-échantillon 
+# dans l'enquète BDF
 
-# On récupère l'id individuel du père et/ou de la mère
+# On récupère l'id individuel du père, de la mère et de l'enfant
 tbl_summary(enfants, 
             include = c("NOI", "MER2E", "PER2E"), 
             type = list(everything() ~ "categorical"))
 # Comme les identifiants individuels peuvent avoir 1 ou plusieurs chiffres, on ajoute des "0"
-
+# On utilise cette fonction pour faire ces identifiants individuels
 var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
   data$tempIndiv <- data[, IdentIndiv] %>% as.vector()
   data$tempMenage <- data[, IdentMenage] %>% as.vector()
