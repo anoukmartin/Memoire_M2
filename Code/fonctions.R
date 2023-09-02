@@ -1,5 +1,5 @@
 
-#' Title
+#' Créé un identifiant individuel 
 #'
 #' @param data un tableau de données
 #' @param IdentIndiv la variable d'identification individuelle au sein du ménage
@@ -10,6 +10,7 @@
 #' @export
 #'
 #' @examples
+#' 
 #' 
 var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
   data$tempIndiv <- NA
@@ -25,4 +26,19 @@ var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
   data$tempMenage <- NULL
   return(data)
   
+}
+
+rec_COUPLE <- function(data, NewVar = FALSE) {
+  data <- data %>%
+    mutate(temp = fct_recode(COUPLE, 
+      "Oui, avec une personne qui vit dans le logement" = "1", 
+      "Oui, avec une personne qui ne vit pas dans le logement" = "2", 
+      "Non" = "3"))
+  if(isFALSE(NewVar)){
+    data$COUPLE <- data$temp 
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+    }
+  return(data)
 }
