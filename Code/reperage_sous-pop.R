@@ -50,7 +50,7 @@ enfants <- enfants %>%
 # On crée une table pour les parents de ces enfants et on regarde si ils sont en couple
 parents <- indiv %>%
   var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN" , NewVarName = "n_IdentParent") %>%
-  select(n_IdentParent, COUPLE)
+  select(n_IdentParent, COUPLE, SEXE)
 parents %>%
   select(COUPLE) %>%
   rec_COUPLE() %>%
@@ -59,9 +59,9 @@ parents %>%
 
 # On joint la table des parents sur les identifiants des pères et des mères 
 enfants2 <- enfants %>%
-  left_join(parents %>% rec_COUPLE(NewVar = "n_CouplePere") %>% select(-COUPLE),
+  left_join(parents %>% rec_COUPLE(NewVar = "n_CouplePere") %>% select(-COUPLE, -SEXE),
             by = c("n_IdentPere" = "n_IdentParent")) %>%
-  left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE),
+  left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE, -SEXE),
             by = c("n_IdentMere" = "n_IdentParent"))
 enfants <- enfants2
 rm(enfants2)
@@ -80,7 +80,19 @@ names(enfDH)
 # On va cherche l'identifiant de leurs parents 
 temp <- enfantHD %>%
   select(starts_with("HODLN"), c("IDENT_MEN", "n_IdentIndiv")) %>%
-  pivot_
+  pivot_longer(cols = starts_with("HODLN")) %>%
+  filter(value == "1") %>%
+  mutate(name = str_remove(name, "HODLN")) %>%
+  select(-value) %>% 
+  var_IDENTIFIANT(IdentIndiv = "name", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentParent") %>%
+  left_join(parents)
+
+  pivot_wider(id_cols = n_IdentIndiv, 
+              values_from = name, 
+              names_from = c("parent1", "parent2"))
+
+
+  
 
 
 
