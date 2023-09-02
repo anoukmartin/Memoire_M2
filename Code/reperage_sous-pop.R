@@ -41,21 +41,48 @@ tbl_summary(enfants,
             type = list(everything() ~ "categorical"))
 # Comme les identifiants individuels peuvent avoir 1 ou plusieurs chiffres, on ajoute des "0"
 # On utilise cette fonction pour faire ces identifiants individuels
-test <- enfants %>%
-  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
-
-test$n_IdentIndiv
-enfants$NOI
-filter()
-  
 enfants <- enfants %>%
-  mutate(n_NOI = if_else)
-  mutate(n_IDENTENFANT = paste0(IDENT_MEN, NOI))
+  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv") %>%
+  var_IDENTIFIANT(IdentIndiv = "PER2E", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentPere") %>%
+  var_IDENTIFIANT(IdentIndiv = "MER2E", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentMere")
+
+
+# On crée une table pour les parents de ces enfants et on regarde si ils sont en couple
+parents <- indiv %>%
+  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN" , NewVarName = "n_IdentParent") %>%
+  select(n_IdentParent, COUPLE)
+parents %>%
+  select(COUPLE) %>%
+  rec_COUPLE() %>%
+  tbl_summary()
+  
+
+# On joint la table des parents sur les identifiants des pères et des mères 
+enfants2 <- enfants %>%
+  left_join(parents %>% rec_COUPLE(NewVar = "n_CouplePere") %>% select(-COUPLE),
+            by = c("n_IdentPere" = "n_IdentParent")) %>%
+  left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE),
+            by = c("n_IdentMere" = "n_IdentParent"))
+enfants <- enfants2
+rm(enfants2)
+enfants %>%
+  select(n_NPARENTS, n_CouplePere, n_CoupleMere) %>%
+  tbl_summary(by = "n_NPARENTS")
+
+# On ajoute la situation des enfants hors domicile 
+# Un seuil d'âge
+enfantHD <- enfHD %>%
+  mutate(AG = 2017 - HODAN) %>% # Calcul de l'age au 31 décembre
+  filter(AG <= 25) %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
+  var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
+names(enfDH)
+
+# On va cherche l'identifiant de leurs parents 
+temp <- enfantHD %>%
+  select(starts_with("HODLN"), c("IDENT_MEN", "n_IdentIndiv")) %>%
+  pivot_
 
 
 
-# Pour ceux qui ne vivent qu'avec un parent, on récupère le NOI du parent
-monop <- enfants %>%
-  filter(n_NPARENTS %in% c("père", "mère")) %>%
-  select(IDENT_IND, IDENT_MEN, n_NPARENTS, PER1E, PER2E, MER1E, MER2E) 
-# On crée l'ID du père et de la mère 
+
+
