@@ -75,7 +75,7 @@ enfantHD <- enfHD %>%
   mutate(AG = 2017 - HODAN) %>% # Calcul de l'age au 31 décembre
   filter(AG <= 25) %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
-names(enfDH)
+names(enfHD)
 
 # On va cherche l'identifiant de leurs parents 
 temp <- enfantHD %>%
@@ -85,13 +85,44 @@ temp <- enfantHD %>%
   mutate(name = str_remove(name, "HODLN")) %>%
   select(-value) %>% 
   var_IDENTIFIANT(IdentIndiv = "name", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentParent") %>%
-  left_join(parents)
-
+  left_join(parents) %>%
+  mutate(SEXE = fct_recode(SEXE, 
+                           "pere" = "1", 
+                           "mere" = "2")) %>%
   pivot_wider(id_cols = n_IdentIndiv, 
-              values_from = name, 
-              names_from = c("parent1", "parent2"))
+              values_from = n_IdentParent,
+              names_from = SEXE) %>%
+  rename(n_IdentPere = pere, 
+         n_IdentMere = mere) %>%
+  filter(!(n_IdentIndiv %in% c("0486201", "0486202"))) %>% # On vire le cas de deux enfants qui ont deux pères à voir ce qu'on fait des familles homoparentales
+  mutate(n_IdentPere = as.character(n_IdentPere), 
+         n_IdentMere = as.character(n_IdentMere)) %>%
+  mutate(n_IdentPere = if_else(n_IdentPere == "NULL", NA, n_IdentPere), 
+         n_IdentMere = if_else(n_IdentMere == "NULL", NA, n_IdentMere)) %>%
+  left_join(parents %>% rec_COUPLE(NewVar = "n_CouplePere") %>% select(-COUPLE, -SEXE),
+            by = c("n_IdentPere" = "n_IdentParent")) %>%
+  left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE, -SEXE),
+            by = c("n_IdentMere" = "n_IdentParent")) %>%
+  mutate(n_ParentsCohab = if_else(
+    str_sub(n_IdentMere, 1, 5) == str_sub(n_IdentPere, 1, 5), "Oui", "Non", missing = "Non"))
 
+enfantHD <- enfantHD %>%
+  left_join(temp)
 
+enfantHD %>%
+  select(n_ParentsCohab, n_CouplePere, n_CoupleMere) %>%
+  tbl_summary(by = "n_ParentsCohab")
+
+tab <- enfantHD %>%
+  filter(is.na(n_ParentsCohab)) 
+
+temp %>%
+  dplyr::group_by(n_IdentIndiv, SEXE) %>%
+  dplyr::summarise(n = dplyr::n(), .groups = "drop") %>%
+  dplyr::filter(n > 1L)
+
+unique(temp$pere)
+str(temp$n_IdentPere)
   
 
 

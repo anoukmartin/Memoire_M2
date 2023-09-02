@@ -42,3 +42,4 @@ rec_COUPLE <- function(data, NewVar = FALSE) {
     }
   return(data)
 }
+
