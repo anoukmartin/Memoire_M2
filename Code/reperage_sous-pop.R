@@ -41,24 +41,6 @@ tbl_summary(enfants,
             type = list(everything() ~ "categorical"))
 # Comme les identifiants individuels peuvent avoir 1 ou plusieurs chiffres, on ajoute des "0"
 # On utilise cette fonction pour faire ces identifiants individuels
-var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
-  data$tempIndiv <- NA
-  data[, "tempIndiv"] <- data[, IdentIndiv] 
-  data$tempMenage <- NA
-  data[, "tempMenage"] <- data[, IdentMenage]
-  data <- data %>%
-    mutate(tempVar = case_when(
-      str_length(tempIndiv) == 1 ~ paste0(tempMenage, "0", tempIndiv), 
-      str_length(tempIndiv) == 2 ~ paste0(tempMenage, tempIndiv))) 
-  names(data)[names(data) == "tempVar"] <- NewVarName
-  return(data)
-}
-class(data$tempIndiv)
-data$BS
-str_length(as.character(data$tempIndiv))
-str_length(data$tempIndiv)
-
-data <- enfants
 test <- enfants %>%
   var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
 
