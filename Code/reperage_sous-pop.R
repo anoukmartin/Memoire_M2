@@ -42,8 +42,10 @@ tbl_summary(enfants,
 # Comme les identifiants individuels peuvent avoir 1 ou plusieurs chiffres, on ajoute des "0"
 # On utilise cette fonction pour faire ces identifiants individuels
 var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
-  data$tempIndiv <- data[, IdentIndiv] %>% as.vector()
-  data$tempMenage <- data[, IdentMenage] %>% as.vector()
+  data$tempIndiv <- NA
+  data[, "tempIndiv"] <- data[, IdentIndiv] 
+  data$tempMenage <- NA
+  data[, "tempMenage"] <- data[, IdentMenage]
   data <- data %>%
     mutate(tempVar = case_when(
       str_length(tempIndiv) == 1 ~ paste0(tempMenage, "0", tempIndiv), 
