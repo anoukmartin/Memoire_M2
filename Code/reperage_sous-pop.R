@@ -65,30 +65,38 @@ enfants2 <- enfants %>%
             by = c("n_IdentMere" = "n_IdentParent"))
 enfants <- enfants2
 rm(enfants2)
+
 enfants %>%
   select(n_NPARENTS, n_CouplePere, n_CoupleMere) %>%
-  tbl_summary(by = "n_NPARENTS")
+  tbl_summary(by = "n_NPARENTS") 
+  
 
-# On ajoute la situation des enfants hors domicile 
+
+
+
+# On ajoute la situation des enfants hors domicile ###################################""
 # Un seuil d'âge
 enfantHD <- enfHD %>%
   mutate(AG = 2017 - HODAN) %>% # Calcul de l'age au 31 décembre
   filter(AG <= 25) %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
-names(enfHD)
+names(enfantHD)
 
-# On va cherche l'identifiant de leurs parents 
+# On va cherche des infos sur leurs parents 
 temp <- enfantHD %>%
+  # On fait une ligne par parent d'enfant hors domicile auquel on donne un identifiant
   select(starts_with("HODLN"), c("IDENT_MEN", "n_IdentIndiv")) %>%
   pivot_longer(cols = starts_with("HODLN")) %>%
   filter(value == "1") %>%
   mutate(name = str_remove(name, "HODLN")) %>%
   select(-value) %>% 
   var_IDENTIFIANT(IdentIndiv = "name", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentParent") %>%
+  # On récupère les infos sur les parents
   left_join(parents) %>%
   mutate(SEXE = fct_recode(SEXE, 
                            "pere" = "1", 
                            "mere" = "2")) %>%
+  # On repasse sur un format une ligne par enfant avec l'info sur leurs parents
   pivot_wider(id_cols = n_IdentIndiv, 
               values_from = n_IdentParent,
               names_from = SEXE) %>%
@@ -104,7 +112,15 @@ temp <- enfantHD %>%
   left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE, -SEXE),
             by = c("n_IdentMere" = "n_IdentParent")) %>%
   mutate(n_ParentsCohab = if_else(
-    str_sub(n_IdentMere, 1, 5) == str_sub(n_IdentPere, 1, 5), "Oui", "Non", missing = "Non"))
+    str_sub(n_IdentMere, 1, 5) == str_sub(n_IdentPere, 1, 5), "Oui", "Non", missing = "Non")) %>%
+  # On récupère des infos sur ou vivent les enfants 
+  left_join(enfantHD %>% select(n_IdentIndiv, HODCO)) %>%
+  mutate(n_NPARENTS = case_when(
+    HODCO == "3" & !is.na(n_IdentPere) ~ "Enfant résidant chez sa mère", 
+    HODCO == "3" & !is.na(n_IdentMere) ~ "Enfant résidant chez son père", 
+    HODCO != "3" ~ "Enfant résidant hors domicile(s) des parents"))
+
+names(enfantHD)
 
 enfantHD <- enfantHD %>%
   left_join(temp)
@@ -113,18 +129,60 @@ enfantHD %>%
   select(n_ParentsCohab, n_CouplePere, n_CoupleMere) %>%
   tbl_summary(by = "n_ParentsCohab")
 
-tab <- enfantHD %>%
-  filter(is.na(n_ParentsCohab)) 
 
-temp %>%
-  dplyr::group_by(n_IdentIndiv, SEXE) %>%
-  dplyr::summarise(n = dplyr::n(), .groups = "drop") %>%
-  dplyr::filter(n > 1L)
 
-unique(temp$pere)
-str(temp$n_IdentPere)
+names(enfants)
+names(enfantHD)
+enfantTous <- bind_rows(
+  enfants %>% 
+    select(starts_with("n_")) %>% 
+    mutate(n_statutResid = "Enfant du ménage (au sens du TCM)"), 
+  enfantHD %>% 
+    select(starts_with("n_")) %>% 
+    mutate(n_statutResid = "Enfant résidant hors domicile"))
+names(enfantTous)
+
+enfantTous <- enfantTous %>%
+  mutate(n_ResidParents = case_when(
+    n_statutResid == "Enfant résidant hors domicile" ~ n_NPARENTS,
+    n_NPARENTS == "la mère uniquement" ~ "Enfant résidant chez sa mère", 
+    n_NPARENTS == "le père uniquement" ~ "Enfant résidant chez son père", 
+    n_NPARENTS == "les deux" ~ "Enfant résidant chez ses deux parents")) %>%
+  mutate(n_ParentsCohab = case_when(
+    n_statutResid == "Enfant résidant hors domicile" ~ n_ParentsCohab, 
+    n_NPARENTS == "la mère uniquement" ~ "Non", 
+    n_NPARENTS == "le père uniquement" ~ "Non", 
+    n_NPARENTS == "les deux" ~ "Oui")) %>%
+  mutate(n_ParentsCohab2 = case_when(
+    n_ParentsCohab == "Oui" ~ "Parents cohabitants", 
+    n_ParentsCohab == "Non" ~ "Parents non-cohabitants")) 
   
+names(enfantTous)
 
+
+
+enfantTous %>%
+  filter(n_ResidParents != "Enfant résidant hors domicile(s) des parents") %>%
+  select(n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
+  tbl_summary(by = n_ResidParents, missing = "ifany") %>%
+  add_overall(last = TRUE)
+
+
+enfantTous %>%
+  select(n_ParentsCohab2, n_ResidParents) %>%
+  tbl_cross()
+enfantTous %>%
+  select(n_ParentsCohab2, n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
+  tbl_strata2(
+    strata = n_ResidParents,
+    .tbl_fun =
+      ~ .x %>%
+      tbl_summary(by = n_statutResid) %>%
+      add_n(),
+    .header = "**{strata}**, N = {n}"
+  )
+
+enfant
 
 
 
