@@ -31,9 +31,9 @@ enfants <- enfants %>%
 tbl_summary(enfants, 
             include = n_NPARENTS)
 # Aucun enfants ne vit avec aucun de ses parents,
-# enfnant vivant avec uniquement leur mère surreprésenté, parce que famille 
+# enfant vivant avec uniquement leur mère sur représentés, parce que familles 
 # mono sont plus souvent des mères isolées que des pères, + sur-échantillon 
-# dans l'enquète BDF
+# dans l’enquête BDF
 
 # On récupère l'id individuel du père, de la mère et de l'enfant
 tbl_summary(enfants, 
@@ -155,32 +155,42 @@ enfantTous <- enfantTous %>%
     n_NPARENTS == "les deux" ~ "Oui")) %>%
   mutate(n_ParentsCohab2 = case_when(
     n_ParentsCohab == "Oui" ~ "Parents cohabitants", 
-    n_ParentsCohab == "Non" ~ "Parents non-cohabitants")) 
+    n_ParentsCohab == "Non" ~ "Parents non-cohabitants")) %>%
+  # On labelise les colones 
+  mutate(n_ResidParents = labelled(n_ResidParents, label = "Enfant résidant avec"), 
+         n_NPARENTS = labelled(n_ResidParents, label = "Enfant résidant avec"), 
+         n_statutResid = labelled(n_statutResid, label = "Statut résidentiel dans l'enquête"), 
+         n_ParentsCohab = labelled(n_ParentsCohab, label = "Cohabitation des parents"), 
+         n_ParentsCohab2 = labelled(n_ParentsCohab, label = "Cohabitation des parents"), 
+         n_CoupleMere = labelled(n_CoupleMere, label = "Mère en couple"), 
+         n_CouplePere = labelled(n_CouplePere, label = "Père en couple"))
   
 names(enfantTous)
 
 
 
-enfantTous %>%
-  filter(n_ResidParents != "Enfant résidant hors domicile(s) des parents") %>%
+tableaux <- NULL
+names(enfantTous)
+
+  
+
+tab1 <- enfantTous %>%
+  filter(n_ParentsCohab2 == "Parents cohabitants") %>%
   select(n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
-  tbl_summary(by = n_ResidParents, missing = "ifany") %>%
-  add_overall(last = TRUE)
+  tbl_summary(by = n_ResidParents, 
+              label = list(
+                
+              ))%>%
+  add_overall(last = T)
+tab1
 
 
-enfantTous %>%
-  select(n_ParentsCohab2, n_ResidParents) %>%
-  tbl_cross()
-enfantTous %>%
-  select(n_ParentsCohab2, n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
-  tbl_strata2(
-    strata = n_ResidParents,
-    .tbl_fun =
-      ~ .x %>%
-      tbl_summary(by = n_statutResid) %>%
-      add_n(),
-    .header = "**{strata}**, N = {n}"
-  )
+          enfantTous %>%
+            filter(n_ParentsCohab2 == "Parents non-cohabitants") %>%
+            select(n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
+            tbl_summary(by = n_ResidParents)))
+
+tableaux$StructureFam_viaEnfants <- 
 
 enfant
 
