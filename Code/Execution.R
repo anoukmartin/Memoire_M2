@@ -11,3 +11,5 @@ for (script in listScript) {
   print(paste0("Execution du script : ", script))
   source(file.path(codePath, script))
 }
+
+

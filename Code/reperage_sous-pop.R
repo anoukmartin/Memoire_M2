@@ -161,39 +161,40 @@ enfantTous <- enfantTous %>%
          n_NPARENTS = labelled(n_ResidParents, label = "Enfant résidant avec"), 
          n_statutResid = labelled(n_statutResid, label = "Statut résidentiel dans l'enquête"), 
          n_ParentsCohab = labelled(n_ParentsCohab, label = "Cohabitation des parents"), 
-         n_ParentsCohab2 = labelled(n_ParentsCohab, label = "Cohabitation des parents"), 
+         n_ParentsCohab2 = labelled(n_ParentsCohab2, label = "Cohabitation des parents"), 
          n_CoupleMere = labelled(n_CoupleMere, label = "Mère en couple"), 
          n_CouplePere = labelled(n_CouplePere, label = "Père en couple"))
   
-names(enfantTous)
 
-
-
-tableaux <- NULL
 names(enfantTous)
 
   
 
+# DES TABLEAUX
+# tableau qui résume la situation des enfants : 
+# On distingue selon que leurs parents cohabitent ou non : 
 tab1 <- enfantTous %>%
-  filter(n_ParentsCohab2 == "Parents cohabitants") %>%
+  filter(n_ParentsCohab2 == unique(enfantTous$n_ParentsCohab2)[1]) %>%
   select(n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
-  tbl_summary(by = n_ResidParents, 
-              label = list(
-                
-              ))%>%
+  tbl_summary(by = n_ResidParents) %>%
   add_overall(last = T)
-tab1
 
+tab2 <- enfantTous %>%
+  filter(n_ParentsCohab2 == unique(enfantTous$n_ParentsCohab2)[2]) %>%
+  select(n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
+  tbl_summary(by = n_ResidParents) %>%
+  add_overall(last = T)
 
-          enfantTous %>%
-            filter(n_ParentsCohab2 == "Parents non-cohabitants") %>%
-            select(n_ResidParents, n_CouplePere, n_CoupleMere, n_statutResid) %>%
-            tbl_summary(by = n_ResidParents)))
+tab <- tbl_merge(tbls = list(tab1, tab2), 
+                 tab_spanner = unique(enfantTous$n_ParentsCohab2)[1:2]) 
 
-tableaux$StructureFam_viaEnfants <- 
+tab1 <- NULL
+tab1$des <- "Situations familiales des enfants"
+tab1$champ <- paste0("Enfants (au sens du TCM) d'individus appartenant à des ", infosBDF$champ)
+tab1$n <- dim(enfantTous)[1]
+tab1$tableau <- tab
 
-enfant
-
-
+save(tab1, file = "Resultats/tab1_situationsFamEnfants")
+rm(tab, tab1, tab2)
 
 
