@@ -4,7 +4,7 @@ codePath <- "Code"
 
 # Table des scripts qu'on veut exécuter dans l'ordre : 
 listScript <- list.files(codePath) 
-listScript <- listScript[1:3]
+listScript <- listScript[1:4]
 listScript
 
 for (script in listScript) {
