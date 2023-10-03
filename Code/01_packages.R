@@ -19,6 +19,7 @@ theme_gtsum$`tbl_svysummary-fn:addnl-fn-to-run` = bold_labels
 theme_gtsum$`tbl_regression-fn:addnl-fn-to-run` = bold_labels
 check_gtsummary_theme(theme_gtsum)
 set_gtsummary_theme(theme_gtsum)
+rm(theme_gtsum)
 
 library(gt)
 
