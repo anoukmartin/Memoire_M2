@@ -12,4 +12,4 @@ for (script in listScript) {
   source(file.path(codePath, script))
 }
 
-
+rm(script, listScript, codePath)
