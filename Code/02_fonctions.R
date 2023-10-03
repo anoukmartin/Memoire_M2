@@ -27,6 +27,15 @@ var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
   return(data)
 }
 
+#' Recodage de la variable couple
+#'
+#' @param data 
+#' @param NewVar 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 rec_COUPLE <- function(data, NewVar = FALSE) {
   data <- data %>%
     mutate(temp = case_when(
@@ -42,3 +51,30 @@ rec_COUPLE <- function(data, NewVar = FALSE) {
   return(data)
 }
 
+
+#' Enregistrer un tableau de données avec toutes les infos nécessaires 
+#'
+#' @param tableau 
+#' @param label 
+#' @param description 
+#' @param champ 
+#' @param n 
+#' @param ponderation 
+#' @param resPath 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+saveTableau <- function(tableau, label, description, champ, n, ponderation, resPath = "Resultats"){
+  if(!dir.exists(resPath)) {dir.create(resPath)}
+  tab <- NULL
+  tab$label <- label
+  tab$descrption <- description
+  tab$tableau <- tableau
+  tab$champ <- champ
+  tab$n <- n
+  tab$ponderation <- ponderation
+  save(tab, 
+       file = paste0(resPath, "/tab_", label, ".rds"))
+}
