@@ -25,15 +25,14 @@ var_IDENTIFIANT <- function(data, IdentIndiv, IdentMenage, NewVarName){
   data$tempIndiv <- NULL
   data$tempMenage <- NULL
   return(data)
-  
 }
 
 rec_COUPLE <- function(data, NewVar = FALSE) {
   data <- data %>%
-    mutate(temp = fct_recode(COUPLE, 
-      "Oui, avec une personne qui vit dans le logement" = "1", 
-      "Oui, avec une personne qui ne vit pas dans le logement" = "2", 
-      "Non" = "3"))
+    mutate(temp = case_when(
+      COUPLE == "1" ~ "Oui, avec une personne qui vit dans le logement", 
+      COUPLE == "2" ~ "Oui, avec une personne qui ne vit pas dans le logement", 
+      COUPLE == "3" ~ "Non"))
   if(isFALSE(NewVar)){
     data$COUPLE <- data$temp 
     data$temp <- NULL
