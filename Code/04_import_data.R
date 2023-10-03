@@ -4,7 +4,7 @@
 ############################### Import #########################################
 ################################################################################
 
-# Creation du fichier de données 
+# Création du fichier de données 
 dir.create("Data_input")
 bucket <- "anoukmartin"
 objects <- get_bucket(bucket, region = "")
