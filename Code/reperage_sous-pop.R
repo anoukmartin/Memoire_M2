@@ -293,15 +293,6 @@ enfantTous %>%
   select(n_configFamEnfants, n_statutResid) %>%
   tbl_summary(by = n_statutResid)
 
-## 3.3. Identifications des configurations familiales ##########################
-
-# Donc garce à ce tableau, on peut identifier les configuration familiales
-load("Resultats/tab_situationsFamEnfants.rds")
-tab$tableau
-
-
-  
-
 
 
 # 4. Ménages concernés par ces situations ######################################
