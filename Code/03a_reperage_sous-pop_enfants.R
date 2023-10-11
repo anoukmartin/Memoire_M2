@@ -160,8 +160,7 @@ enfantHD %>%
 # 3. Tous les enfants ##########################################################
 ################################################################################-
 
-## 3.1. Un seul tableau ########################################################
-
+## 3.1. Jointure ###############################################################
 # On combine les deux tableaux de données 
 enfantTous <- bind_rows(
   enfants %>% 
@@ -172,7 +171,8 @@ enfantTous <- bind_rows(
     mutate(n_statutResid = "Enfant résidant hors domicile"))
 names(enfantTous)
 
-# On harmonise certaines variables
+
+## 3.2. Harmonisation des variables ############################################
 enfantTous <- enfantTous %>%
   # Avec qui réside l'enfant 
   mutate(n_ResidParents = case_when(
@@ -188,10 +188,13 @@ enfantTous <- enfantTous %>%
     n_NPARENTS == "les deux" ~ "Oui")) %>%
   mutate(n_ParentsCohab2 = case_when(
     n_ParentsCohab == "Oui" ~ "Parents cohabitants", 
-    n_ParentsCohab == "Non" ~ "Parents non-cohabitants")) %>%
-  # On crée aussi un recodage qui simplifie la situation conjugale des parents
-    # On ne va considérer que les cas ou un nouveau couple cohabite
-    # On néglige les deux cas ou les parents cohabitent mais ne se déclarent pas en couple 
+    n_ParentsCohab == "Non" ~ "Parents non-cohabitants"))
+
+## 3.3. De nouvelles variables #################################################
+# On crée aussi un recodage qui simplifie la situation conjugale des parents
+  # On ne va considérer que les cas ou un nouveau couple cohabite
+  # On néglige les deux cas ou les parents cohabitent mais ne se déclarent pas en couple 
+enfantTous <- enfantTous %>%
   mutate(
     n_situationMere = case_when(
       n_ParentsCohab == "Oui" ~ "En couple avec l'autre parent", 
@@ -201,6 +204,35 @@ enfantTous <- enfantTous %>%
       n_ParentsCohab == "Oui" ~ "En couple avec l'autre parent", 
       n_ParentsCohab == "Non" & n_CouplePere ==  "Oui, avec une personne qui vit dans le logement" ~ "En couple avec une autre personne", 
       n_ParentsCohab == "Non" & n_CouplePere !=  "Oui, avec une personne qui vit dans le logement" ~ "Célibataire ou en couple non-cohabitant")) %>%
+  # Configuration familiale principale : configuration familiale du ménage ou l'enfant réside
+  mutate(
+    n_configFamEnfantsP = case_when(
+      n_ResidParents == "Enfant résidant chez ses deux parents" ~ "Configuration traditionelle", 
+      (n_ResidParents == "Enfant résidant chez sa mère" & is.na(n_situationMere)) 
+      | (n_ResidParents == "Enfant résidant chez son père" & is.na(n_situationPere)) ~ "Configuration monoparentale ou recomposée", 
+      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationMere == "En couple avec une autre personne") 
+      | (n_ResidParents == "Enfant résidant chez son père" & n_situationPere == "En couple avec une autre personne") ~ "Configuration recomposée",
+      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationMere == "Célibataire ou en couple non-cohabitant") 
+      | (n_ResidParents == "Enfant résidant chez son père" & n_situationPere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale",
+      n_ResidParents == "Enfant résidant hors domicile(s) des parents" ~ "Non cohabitant avec ses parents")) %>%
+  # Configuration familiale secondaire : configuration familiale du ménage ou réside l'autre parent
+  mutate(
+    n_configFamEnfantsS = case_when(
+      n_ResidParents == "Enfant résidant chez ses deux parents" ~ "Pas de configuration secondaire", 
+      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "En couple avec une autre personne") 
+      | (n_ResidParents == "Enfant résidant chez son père" & n_situationMere == "En couple avec une autre personne") ~ "Configuration recomposée",
+      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "Célibataire ou en couple non-cohabitant") 
+      | (n_ResidParents == "Enfant résidant chez son père" & n_situationMere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale", 
+      n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
+        (n_situationPere == "En couple avec l'autre parent" | n_situationMere == "En couple avec l'autre parent") ~ "Configuration traditionelle", 
+      n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
+        ((n_situationPere == "Célibataire ou en couple non-cohabitant" & n_situationMere == "Célibataire ou en couple non-cohabitant")
+         |(n_situationPere == "Célibataire ou en couple non-cohabitant" & is.na(n_situationMere))
+         |(n_situationMere == "Célibataire ou en couple non-cohabitant" & is.na(n_situationPere))) ~ "Configuration monoparentale", 
+      n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
+        ((n_situationPere == "En couple avec une autre personne" & n_situationMere == "En couple avec une autre personne")
+         |(n_situationPere == "En couple avec une autre personne" & is.na(n_situationMere))
+         |(n_situationMere == "En couple avec une autre personne" & is.na(n_situationPere))) ~ "Configuration recomposée")) %>%
   # On labellise les colonnes 
   mutate(n_ResidParents = labelled(n_ResidParents, label = "Enfant résidant avec"), 
          n_NPARENTS = labelled(n_ResidParents, label = "Enfant résidant avec"), 
@@ -212,13 +244,24 @@ enfantTous <- enfantTous %>%
          n_situationMere = labelled(n_situationMere, 
                                     label = "Situation conjugale de la mère"), 
          n_situationPere = labelled(n_situationPere, 
-                                    label = "Situation conjugale du père"))
-  
+                                    label = "Situation conjugale du père"), 
+         n_configFamEnfantsP = labelled(n_configFamEnfantsP, 
+                                        label = "Configuration familiale principale"), 
+         n_configFamEnfantsS = labelled(n_configFamEnfantsS, 
+                                        label = "Configuration familiale secondaire"))
+
 
 names(enfantTous)
 
+# On enregistre ce tableau de données
+saveData(enfantTous, label = "enfantsTous")
+
+
+################################################################################-
+# 4. Des tableaux croisés ######################################################
+################################################################################-
   
-## 3.2. Tableau qui résume la situation des enfants ############################
+## 4.1. Tableau qui résume la situation des enfants ############################
 
 # On distingue selon que leurs parents cohabitent ou non : 
 
@@ -250,7 +293,7 @@ saveTableau(tableau = tab,
 
 rm(tab, tab1, tab2) # un peu de ménage 
 
-## 3.3. Tableau qui résume la situation des enfants (simplifié) ############################
+## 4.2. Tableau qui résume la situation des enfants (simplifié) ################
 
 # On distingue selon que leurs parents cohabitent ou non : 
 
@@ -278,24 +321,47 @@ tab
 rm(tab)
 
 
-enfantTous <- enfantTous %>%
-  mutate(
-    n_configFamEnfants = case_when(
-      n_ResidParents == "Enfant résidant chez ses deux parents" ~ "Configuration traditionelle", 
-      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationMere == "En couple avec une autre personne") 
-      | (n_ResidParents == "Enfant résidant chez son père" & n_situationPere == "En couple avec une autre personne") ~ "Configuration recomposée",
-      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationMere == "Célibataire ou en couple non-cohabitant") 
-      | (n_ResidParents == "Enfant résidant chez son père" & n_situationPere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale", 
-      n_ResidParents == "Enfant résidant hors domicile(s) des parents" ~ "Non cohabitant avec ses parents"))
+## 4.3. Tableau des configuration familiales primaires #########################
 
+### a) construction du tableau ####
 
-enfantTous %>%
-  select(n_configFamEnfants, n_statutResid) %>%
-  tbl_summary(by = n_statutResid)
+tab <- enfantTous %>%
+  select(n_configFamEnfantsP, n_statutResid) %>%
+  tbl_summary(by = n_statutResid) %>%
+  bold_labels() %>%
+  add_overall(last = T)
+tab # voir le tableau
 
+### b) enregistrement du tableau ####
+saveTableau(tableau = tab,
+            label = "configPFamEnfants",
+            description = "Configuration familiale principale des enfants",
+            champ = paste0("Enfants (au sens du TCM) d'individus appartenant à des ", infosBDF$champ), 
+            n = dim(enfantTous)[1], 
+            ponderation = F)
 
+rm(tab) # un peu de ménage
 
-# 4. Ménages concernés par ces situations ######################################
+## 4.4. Tableau des configuration familiales secondaires #######################
+
+### a) construction du tableau ####
+
+tab <- enfantTous %>%
+  select(n_configFamEnfantsS, n_statutResid) %>%
+  tbl_summary(by = n_statutResid) %>%
+  bold_labels() %>%
+  add_overall(last = T)
+tab # voir le tableau
+
+### b) enregistrement du tableau ####
+saveTableau(tableau = tab,
+            label = "configSFamEnfants",
+            description = "Configuration familiale secondaire des enfants",
+            champ = paste0("Enfants (au sens du TCM) d'individus appartenant à des ", infosBDF$champ), 
+            n = dim(enfantTous)[1], 
+            ponderation = F)
+
+rm(tab) # un peu de ménage
 
 
 

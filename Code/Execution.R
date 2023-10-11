@@ -1,15 +1,22 @@
 
-# Chemin des scripts R 
-codePath <- "Code"
 
 # Table des scripts qu'on veut exécuter dans l'ordre : 
-listScript <- list.files(codePath) 
-listScript <- listScript[1:4]
+listScript <- list.files("Code") 
 listScript
+rm(listScript)
 
-for (script in listScript) {
-  print(paste0("Execution du script : ", script))
-  source(file.path(codePath, script), verbose = T)
-}
+# Au démarrage #################################################################
+# On exécute les scripts commençant par 01
+execute(part = "01")
 
-rm(script, listScript, codePath)
+# Réimporter les données brutes ################################################
+# On exécute les scripts commençant par 02
+execute(part = "02")
+
+# Repérages sous populations ###################################################
+## Situations familiales des enfants ####
+# On exécute les scripts commençant par 03
+execute(part = "03")
+
+
+
