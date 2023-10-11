@@ -9,6 +9,7 @@
 *.sas7bdat
 *.xls
 *.xlsx
+*.Rds
 # Production files
 *.html
 *.pdf

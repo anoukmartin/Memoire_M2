@@ -27,3 +27,9 @@ library(gt)
 library(ggplot2)
 theme_get()
 theme_set(theme_minimal())
+
+# Packages Rmd 
+library(rmarkdown)
+library(knitr)
+# On met cette fonction en français
+combine_words <- combine_words(words, and = " et ", oxford_comma = FALSE)
