@@ -9,17 +9,6 @@
 ################################################################################-
 
 
-execute <- function(part, path = "Code"){
-  listScript <- list.files(path) 
-  to_execute <- listScript[str_sub(listScript, 0, 2) == part]
-  to_execute
-  for (script in to_execute) {
-    print(paste0("Execution du script : ", script))
-    source(file.path(path, script), verbose = T)
-  }
-}
-
-
 #' Enregistrer un tableau de données avec toutes les infos nécessaires 
 #'
 #' @param tableau 
