@@ -139,5 +139,21 @@ rec_COUPLE <- function(data, NewVar = FALSE) {
   return(data)
 }
 
+rec_TYPMEN5 <- function(data, NewVar = FALSE) {
+  data <- data %>%
+    mutate(temp = case_when(
+      TYPMEN5 == "1" ~ "Personne seule", 
+      TYPMEN5 == "2" ~ "Famille monoparentale", 
+      TYPMEN5 == "3" ~ "Couple sans enfant", 
+      TYPMEN5 == "4" ~ "Couple avec au moins un enfant",
+      TYPMEN5 == "5" ~ "Autre type de ménage (ménage complexe)"))
+  if(isFALSE(NewVar)){
+    data$TYPMEN5 <- data$temp 
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
 
 
