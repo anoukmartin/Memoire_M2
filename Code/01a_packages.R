@@ -1,8 +1,11 @@
 library(haven)
+library(labelled)
+
 library(git2r)
 library(stringr)
 library(aws.s3)
 
+library(questionr)
 library(dplyr)
 library(forcats)
 library(tidyr)
@@ -17,6 +20,7 @@ theme_gtsum$`pkgwide-str:theme_name` = "Compact_custom"
 theme_gtsum$`tbl_summary-fn:addnl-fn-to-run` = bold_labels
 theme_gtsum$`tbl_svysummary-fn:addnl-fn-to-run` = bold_labels
 theme_gtsum$`tbl_regression-fn:addnl-fn-to-run` = bold_labels
+theme_gtsum$`tbl_summary-str:continuous_stat` = c("{mean}", "{p25} - {p75}", "{min} - {max}")
 check_gtsummary_theme(theme_gtsum)
 set_gtsummary_theme(theme_gtsum)
 rm(theme_gtsum)
