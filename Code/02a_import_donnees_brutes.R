@@ -5,6 +5,7 @@
 ################################################################################-
 
 
+
 ################################################################################-
 # Import depuis le stockage SSP Cloud ##########################################
 ################################################################################-
@@ -22,6 +23,12 @@ save_object("BDF/ENFANTHORSDOM.sas7bdat", bucket, region = "",
             file = "Data_input/sas/enfantHD.sas7bdat")
 save_object("BDF/MENAGE.sas7bdat", bucket, region = "", 
             file = "Data_input/sas/menages.sas7bdat")
+save_object("BDF/DEPMEN.sas7bdat", bucket, region = "", 
+            file = "Data_input/sas/depenses_menages.sas7bdat")
+save_object("BDF/DEPINDIV.sas7bdat", bucket, region = "", 
+            file = "Data_input/sas/depenses_individus.sas7bdat")
+save_object("BDF/C05.sas7bdat", bucket, region = "", 
+            file = "Data_input/sas/consommation.sas7bdat")
 
 
 ################################################################################-
@@ -48,6 +55,22 @@ saveData(enfHD, "enfHD")
 
 ## Tables infos budgets  #######################################################
 
+### Table dépenses du ménage ####
+DepMenages <- read_sas(data_file = "Data_input/sas/depenses_menages.sas7bdat")
+names(DepMenages) <- str_to_upper(names(DepMenages))
+saveData(DepMenages, "DepMenages")
+
+### Table dépenses des individus ####
+DepIndiv <- read_sas(data_file = "Data_input/sas/depenses_individus.sas7bdat")
+names(DepIndiv) <- str_to_upper(names(DepIndiv))
+saveData(DepIndiv, "DepIndiv")
+
+### Table des dépenses de consommatuon ####
+conso <- read_sas(data_file = "Data_input/sas/consommation.sas7bdat")
+names(conso) <- str_to_upper(names(conso))
+saveData(conso, "conso")
+
+
 rm(objects)
 
 ################################################################################-
@@ -61,4 +84,5 @@ infosBDF$vague <- 2017
 saveData(infosBDF, label = "infosBDF")
 
 # du ménage ###################################################################
-rm(enfHD, indiv, menages, infosBDF, bucket)
+rm(enfHD, indiv, menages, DepIndiv, DepMenages, conso, infosBDF, bucket)
+
