@@ -5,10 +5,13 @@ library(git2r)
 library(stringr)
 library(aws.s3)
 
-library(questionr)
 library(dplyr)
 library(forcats)
 library(tidyr)
+
+library(questionr)
+library(survey)
+library(srvyr)
 
 # Mise en forme des tableaux
 library(gtsummary)
@@ -37,3 +40,5 @@ library(rmarkdown)
 library(knitr)
 # On met cette fonction en français
 combine_words <- combine_words(words, and = " et ", oxford_comma = FALSE)
+
+library(flextable)
