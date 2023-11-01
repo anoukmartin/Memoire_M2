@@ -23,7 +23,7 @@
 #' @export
 #'
 #' @examples
-saveTableau <- function(tableau, label, description, champ, n, ponderation, resPath = "Resultats"){
+saveTableau <- function(tableau, type, label, description, champ, n, ponderation, resPath = "Resultats"){
   if(!dir.exists(resPath)) {dir.create(resPath)}
   tab <- NULL
   tab$label <- label
@@ -33,7 +33,7 @@ saveTableau <- function(tableau, label, description, champ, n, ponderation, resP
   tab$n <- n
   tab$ponderation <- ponderation
   save(tab, 
-       file = paste0(resPath, "/tab_", label, ".Rds"))
+       file = paste0(resPath, "/", type, "_", label, ".Rds"))
 }
 
 saveData <- function(data, label, dataPath = "Data_output"){
