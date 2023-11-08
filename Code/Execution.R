@@ -26,7 +26,6 @@ execute(part = "01")
 execute(part = "02")
 
 # Repérages sous populations ###################################################
-## Situations familiales des enfants ####
 # On exécute les scripts commençant par 03
 execute(part = "03")
 
