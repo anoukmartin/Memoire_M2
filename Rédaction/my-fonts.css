@@ -1,0 +1,15 @@
+@import 'https://fonts.googleapis.com/css?family=Alegreya';
+
+
+body {
+  font-family: 'Alegreya'
+}
+blockquote {
+  font-family: 'Alegreya'
+}
+code {
+  font-family: Consolas, Courier, "Courier New", 'STKaiti', 'KaiTi', 'SimKai', monospace;
+}
+pre, code {
+  font-size: .95em;
+}

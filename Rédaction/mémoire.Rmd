@@ -1,0 +1,200 @@
+---
+title: Elever les enfants de l'autre.
+subtitle: Le genre des arrangements économiques dans les familles recomposées.
+author: 
+  - name: Anouk Martin
+    edu: 
+degree: Master de sciences sociales, parcours "Quantifier en sciences sociales"
+institute: Ecole Normale Superieure
+faculty: Département de sciences sociales 
+department: Sciences sociales, ENS-PSL
+location: Paris, France
+date:
+  - year: 2024
+    month: Mai
+sign_page: false
+dedication: A dedication line or two goes here.
+abstract: This is the abstract.
+preface: A preface to the thesis.
+acknowledge: Put the ackknowledgements here.
+committee:
+  - name: Sybille Gollac
+    prefix: 
+    position: Chargée de recherche au CNRS, CRESPA-CSU
+paged-footnotes: true
+lot: true
+lot-title: "Liste des tableaux"
+lot-unlisted: true
+lof: true
+lof-title: "Liste des figures"
+lof-unlisted: true
+toc-title: Sommaire
+output:
+  pagedown::thesis_paged:
+    css:
+      - memoire.css
+    template: memoire.html
+    toc: true
+    number_sections: yes
+    pandoc_args: --mathjax
+    self_contained: no
+bibliography: packages.bib
+link-citations: yes
+# uncomment this line to produce HTML and PDF in RStudio:
+#knit: pagedown::chrome_print
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      fig.align = 'center')
+```
+
+# Introduction {.unnumbered .page-break-before}
+
+## Grandes questions
+
+-   La mise au travail reproductif des femmes
+-   La contribution du système sociofiscal à l'ordre du genre
+-   régimes familiaux et transformation du capitalisme
+
+# Les présupposés du système socio-fiscal {.chapter .page-break-before}
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+## Les conjoints contribuent *proportionnellement* à leurs revenus aux *charges du ménage*
+
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+
+
+
+## Les parents isolés remis en couple ne sont plus en situation de monoparentalité
+
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+## Les configurations familiales traditionnelle et recomposées sont assimilables
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+## Les formes entre droit civil, droit fiscal et droits sociaux
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+blabkabka
+
+blablablabla
+
+
+
+
+blablblablablabla
+
+blablablablabalbalk
+
+balbalbalbala
+
+
+# Les niveau de vie dans les familles recomposées {.chapter .page-break-before}
+
+## Des budgets moins partagés dans les familles recomposées
+
+## Des pensions alimentaires de la part des ex-conjoints plus faibles et moins souvent versées
+
+## Les limites des échelles d'équivalence : des niveaux de vie trop disparates dans les familles recomposées ?
+
+# Des inégalités de contribution entre hommes et femmes {.chapter .page-break-before}
+
+## Les inégalités de revenus entre conjoints
+
+## Une faible contribution aux dépenses réalisées pour les enfants de l'autre modulée par les revenus et la position sociale des conjoints
+
+## Les belles-mères, plus impliquées que les beau-père dans le travail domestique et éducatif
+
+## Les pères, plus ou moins impliqués que les belles mères ?
+
+# Des inégalités renforcées par le système socio-fiscal {.chapter .page-break-before}
+
+# Annexes {.unnumbered .page-break-before}
