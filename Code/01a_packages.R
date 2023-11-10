@@ -29,6 +29,7 @@ set_gtsummary_theme(theme_gtsum)
 rm(theme_gtsum)
 
 library(gt)
+library(flextable)
 
 # Mise en forme graphiques
 library(ggplot2)
@@ -40,5 +41,8 @@ library(rmarkdown)
 library(knitr)
 # On met cette fonction en français
 combine_words <- combine_words(words, and = " et ", oxford_comma = FALSE)
+library(pagedown)
 
-library(flextable)
+
+
+
