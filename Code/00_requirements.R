@@ -9,5 +9,6 @@ packagesList <- c("haven",
                    "knitr", 
                   "survey", 
                   "srvyr", 
-                  "flextable")
+                  "flextable", 
+                  "pagedown")
 install.packages(packagesList)
