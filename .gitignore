@@ -15,6 +15,10 @@
 *.pdf
 *.doc
 *.odt
+# images 
+*.png
+*.jpeg
+*.svg
 # User-specific files
 .Ruserdata
 # Example code in package build process
