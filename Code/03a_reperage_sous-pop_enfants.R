@@ -244,6 +244,31 @@ enfantTous <- enfantTous %>%
         ((n_situationPere == "En couple avec une autre personne" & n_situationMere == "En couple avec une autre personne")
          |(n_situationPere == "En couple avec une autre personne" & is.na(n_situationMere))
          |(n_situationMere == "En couple avec une autre personne" & is.na(n_situationPere))) ~ "Configuration recomposée")) %>%
+  mutate(
+    n_configFamEnfantsSSexe = case_when(
+      (n_ResidParents == "Enfant résidant chez ses deux parents") ~ "Pas de configuration secondaire", 
+      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "En couple avec une autre personne") ~ "Configuration recomposée paternelle",
+      (n_ResidParents == "Enfant résidant chez son père" & n_situationMere == "En couple avec une autre personne") ~ "Configuration recomposée maternelle",
+      (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "Célibataire ou en couple non-cohabitant")  ~ "Configuration monoparentale paternelle", 
+      (n_ResidParents == "Enfant résidant chez son père" & n_situationMere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale maternelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
+        (n_situationPere == "En couple avec l'autre parent" | n_situationMere == "En couple avec l'autre parent")) ~ "Configuration traditionelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
+       & n_situationPere == "Célibataire ou en couple non-cohabitant" 
+       & n_situationMere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale maternelle et paternelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
+       & n_situationPere == "Célibataire ou en couple non-cohabitant" & is.na(n_situationMere)) ~ "Configuration monoparentale paternelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents"  
+       & n_situationMere == "Célibataire ou en couple non-cohabitant" & is.na(n_situationPere)) ~ "Configuration monoparentale maternelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
+       & n_situationPere == "En couple avec une autre personne" 
+       & n_situationMere == "En couple avec une autre personne") ~ "Configuration recomposée maternelle et paternelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
+       & n_situationPere == "En couple avec une autre personne" 
+       & is.na(n_situationMere)) ~ "Configuration recomposée paternelle", 
+      (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
+       & n_situationMere == "En couple avec une autre personne" 
+       & is.na(n_situationPere)) ~ "Configuration recomposée maternelle")) %>%
   # On labellise les colonnes 
   mutate(n_ResidParents = labelled(n_ResidParents, label = "Enfant résidant avec"), 
          n_NPARENTS = labelled(n_ResidParents, label = "Enfant résidant avec"), 
@@ -258,10 +283,12 @@ enfantTous <- enfantTous %>%
                                     label = "Situation conjugale du père"), 
          n_configFamEnfantsP = labelled(n_configFamEnfantsP, 
                                         label = "Configuration familiale principale"), 
-         n_configFamEnfantsP = labelled(n_configFamEnfantsP, 
-                                        label = "Configuration familiale principale paternelle ou maternelle"),
+         n_configFamEnfantsPSexe = labelled(n_configFamEnfantsPSexe, 
+                                            label = "Configuration familiale principale paternelle ou maternelle"),
          n_configFamEnfantsS = labelled(n_configFamEnfantsS, 
-                                        label = "Configuration familiale secondaire"))
+                                        label = "Configuration familiale secondaire"), 
+         n_configFamEnfantsSSexe = labelled(n_configFamEnfantsSSexe, 
+                                        label = "Configuration familiale secondaire paternelle ou maternelle"))
 
 
 names(enfantTous)
