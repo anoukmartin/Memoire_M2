@@ -3,12 +3,14 @@
 #########################  REPERAGE SOUS-POP  ##################################
 ################################################################################- 
 
-# On adopte une approche par les enfants, parce que c'est ce qui est usuel dans 
-# dans la quantification du nombre de familles recomposées, dans cette partie on 
-# identifie les situations des parents 
+# On adopte une approche par les enfants, parce que c'est ce qui est usuel dans
+# dans la quantification du nombre de familles recomposées, dans cette partie on
+# identifie les situations des parents
 
 # # On charge les données
-# allData <- loadData(data = "all")
+# indiv <- readRDS("Data_output/indiv.Rds")
+# enfantsTous <- readRDS("Data_output/enfantsTous.Rds")
+# 
 # 
 # # Données sur les enfants
 # enfantsTous <- allData$enfantsTous
