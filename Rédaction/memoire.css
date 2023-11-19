@@ -5,7 +5,7 @@
 /* page size */
 @page {
   size: A4;
-  margin: 1in,  1in,  1in, 1.5in;
+  margin: 0.6in;
 } /* var(--pagedjs-width) doesn't work in browser when printing */
 
 /* store some string variables */
@@ -206,7 +206,7 @@ p.abstract {
 }
 body {
   font-family: "Alegreya";
-  font-size: 11pt;
+  font-size: 10pt;
   line-height: 200%;
 }
 TOC {
