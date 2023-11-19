@@ -1,0 +1,31 @@
+---
+title: "Présentation du mémoire (Séance 1)"
+output:
+  word_document: default
+  html_document: default
+---
+### 1.	Le nom de la personne qui vous encadre {-}
+
+Sibylle Gollac, CRESPPA
+
+### 2.	Le sujet ou la question de départ ou une esquisse de problématique : {-}
+
+La réflexion à l'origine de ce mémoire part du constat que, pour les administrations sociales et fiscales, mais aussi dans un certains nombre d'enquêtes de la statistique publique, les membres d'un même ménage, foyer ou logement, parce qu'ils ont des postes de dépenses communs, parce qu'ils sont mariés ou pacsés, parce qu'ils ont des liens de parenté, ou encore parce qu'ils habitent ensemble sont réputés avoir un niveau de vie identique. Le mode de calcul du niveau de vie, procédant à l'agrégation des revenus du groupe avant leur division par le nombre d'unités de consommation, constitue la base à partir de laquelle sont déterminés de nombreux droits sociaux et avantages fiscaux. C'est cette hypothèse sous-tendant la conjugalisation et la familialisation du système socio-fiscal français que ce travail propose de discuter. A cet égard, les recompositions familiales se révèlent éclairantes : bien que la configuration de ces familles puisse être similaire à celle des familles traditionnelles, les liens légaux les unissant varient. En ce sens, ce mémoire se concentre sur les arrangements économiques déployés dans ces contextes, explorant les inégalités de revenus, la répartition du travail ménager et parental et les disparités de consommation entre les conjoints et entre les ménages. Plus généralement, ce mémoire s'inscrit dans une réflexion sur la contribution de l'État social à la stabilisation de l'ordre du genre conjugal, en particulier pour les individus dont le niveau de vie est étroitement tributaire des aides sociales.
+
+### 3.	Les données et la population étudiée {-}
+
+Ce travail s'appuie sur l'exploitation de l'enquête "Budget des familles" de l'INSEE datant de 2017. La population étudiée regroupe l'ensemble des ménages comptant au moins un membre déclarant la présence d'au moins un enfant (selon le TCM), que ce dernier réside dans le même logement ou non. Certains traitements s'appliquent exclusivement aux enfants, d'autres exclusivement aux adultes, et d'autres encore à l'échelle du ménage dans son ensemble. Nous distinguons ces ménages en fonction de leur configuration familiale. Notre analyse se concentre principalement sur les variables de consommation attribuables aux enfants, ainsi que sur les dépenses individuelles engagées par les conjoints, les variables de revenus (notamment ceux du travail, les pensions alimentaires et les revenus de transferts), et les variables décrivant la participation aux tâches domestiques.
+
+
+### 4.	Ce que vous allez faire concrètement la semaine prochaine pour avancer votre mémoire {-} 
+
+Deux chantier la semaine prochaine : 
+
+- J'ai déjà effectué des régressions portant sur les montants alloués à deux catégories de dépenses budgétaires liées aux enfants, à savoir les frais scolaires et les dépenses vestimentaires, en fonction du niveau de vie, du nombre d'enfants, et de la structure familiale. Je cherche à enrichir ces analyses en incluant dans la régression les ménages qui présentent une situation de monoparentalité ou de recomposition familiale "temporaire" (impliquant des enfants résidant chez l'autre parent).
+
+- Je prévois également de réaliser une régression concernant le montant/la part des pensions alimentaires perçues, en prenant en compte la configuration familiale tout en contrôlant les revenus du ménage et sa composition. Je pense également regarder cela sur les variables de "dons" de la part des ex-conjoints.
+
+### 5.	L’éventuel problème du moment {-}
+
+RAS 
+
