@@ -11,7 +11,9 @@
 enfantsTous <- readRDS("Data_output/enfantsTous.Rds") 
 menages <- readRDS("Data_output/menages.Rds")
 
-# On ne garde que les enfants vivant au domicile 
+
+
+# Les enfants du ménage ######################################################## 
 enfantsD <- enfantsTous %>%
   filter(n_statutResid == "Enfant du ménage (au sens du TCM)") %>%
   mutate(n_IdentMenage = str_sub(n_IdentIndiv, 1, 5)) %>%
@@ -197,8 +199,7 @@ rm(config, configSynthese)
 
 
 
-################################################################################-
-## enfants hors domiciles ##
+# Les enfants hors domicile ####################################################
 
 enfantsHD <- enfantsTous %>%
   filter(n_statutResid == "Enfant résidant hors domicile" & 
@@ -228,6 +229,11 @@ configSynthese <- enfantsHD %>%
   ungroup()
 freq(configSynthese$mods)
 
+NBenfantsHD <- enfantsHD %>% 
+  select(n_IdentMenage) %>%
+  group_by(n_IdentMenage) %>%
+  summarise(n_NEnfantsHD = n())
+ 
 compte <- configSynthese %>%
   group_by(n_IdentMenage) %>%
   summarise(n_config = n(), 
@@ -371,7 +377,8 @@ configSynthese %>%
 
 famillesTemp <- menages %>%
   right_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
-  left_join(configSynthese,  by = c("IDENT_MEN" = "n_IdentMenage"))
+  left_join(configSynthese,  by = c("IDENT_MEN" = "n_IdentMenage")) %>%
+  left_join(NBenfantsHD, by = c("IDENT_MEN" = "n_IdentMenage"))
 
 saveData(famillesTemp, label = "famillesTemporaires")
 
@@ -396,13 +403,55 @@ famillesToutes <- menages %>%
                              "n_configFamTemp", 
                              "n_enfantNewUnionHD", 
                              "n_configTemp", 
-                             "n_genreFamTemp")])
+                             "n_genreFamTemp", 
+                             "n_NEnfantsHD")])
 
 
+famillesToutes %>%
+  select(all_of(c("n_configFamTemp",
+                  "n_enfantNewUnionHD", 
+                  "n_configTemp", 
+                  "n_genreFamTemp", 
+                  "n_config", 
+                  "n_configFam", 
+                  "n_enfantNewUnion",
+                  "n_genreFam"))) %>%
+  tbl_cross(n_genreFam, n_genreFamTemp)
+
+
+famillesToutes <- famillesToutes %>%
+  mutate(
+    n_configSynth = case_when(
+      n_configTemp == "Monoparentale" & is.na(n_config) ~ "Temporairement monoparentale", 
+      n_configTemp == "Recomposée" & (is.na(n_config) | n_config == "Traditionelle") ~ "Temporairement recomposée", 
+      n_configTemp == "Traditionelle" & is.na(n_config) ~ "Temporairement traditionelle", 
+      TRUE ~ n_config)) 
+
+
+famillesToutes %>%
+  select(all_of(c("n_configSynth"))) %>%
+  tbl_summary()
+
+famillesToutes <- famillesToutes %>% 
+  mutate(
+    n_configFamSynth = case_when(
+      is.na(n_configTemp) ~ n_configFam, 
+      !is.na(n_configTemp) ~ str_replace_all(n_configFamTemp, "Configuration", "Configuration temporairement")))
+
+famillesToutes %>%
+  select(all_of(c("n_configFamSynth"))) %>%
+  tbl_summary()
+
+nbenfants <- famillesToutes[, c("NENFANTS", "n_NEnfantsHD")] %>%
+  as.matrix()
+nbenfants <- rowSums(nbenfants, na.rm = T)
+
+famillesToutes$n_NEnfantsTous <- nbenfants 
+rm(nbenfants)
 saveData(famillesToutes, label = "famillesToutes")
 
 
-rm(config, configSynthese, menages, enfantsD, enfantsHD, enfantsTous, famillesTemp, familles, famillesTous)
+rm(config, configSynthese, menages, enfantsD, enfantsHD, NBenfantsHD, enfantsTous, famillesTemp, familles, famillesToutes)
 
 
 

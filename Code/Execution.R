@@ -8,7 +8,7 @@ rm(listScript)
 # Exectuion 
 execute <- function(part, path = "Code"){
   listScript <- list.files(path) 
-  to_execute <- listScript[str_sub(listScript, 0, 2) == part]
+  to_execute <- listScript[str_split(listScript, "_", simplify = T)[, 1] == part]
   to_execute
   for (script in to_execute) {
     print(paste0("Execution du script : ", script))
@@ -29,7 +29,8 @@ execute(part = "02")
 
 # Repérages sous populations ###################################################
 # On exécute les scripts commençant par 03
-execute(part = "03")
+execute(part = "03a")
+execute(part = "03c")
 
 
 

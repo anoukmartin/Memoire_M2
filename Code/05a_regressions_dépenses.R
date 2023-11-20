@@ -4,20 +4,25 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-familles <- readRDS("Data_output/familles.Rds")
+familles <- readRDS("Data_output/famillesToutes.Rds")
 dic_fam<- look_for(familles)
 
 # Recodages sur familles 
 familles <- familles |> 
   mutate(
-    n_config = n_config |> 
-      factor(levels = unique(familles$n_config)) |> 
+    n_configSynth = n_configSynth |> 
+      factor(levels = unique(familles$n_configSynth)) |> 
       fct_infreq(),
     n_configFam = n_configFam |> 
       factor(levels = unique(familles$n_configFam)) |> 
+      fct_infreq(), 
+    n_configFamTemp = n_configFamTemp |> 
+      factor(levels = unique(familles$n_configFamTemp)) |> 
       fct_infreq())
-var_label(familles$n_config) <- "Configuration familiale" 
+var_label(familles$n_configSynth) <- "Configuration familiale" 
 var_label(familles$n_configFam) <- "Configuration familiale"
+var_label(familles$n_configFamTemp) <- "Configuration familiale temporaire"
+var_label(familles$n_configFamSynth) <- "Configuration familiale"
 
 conso <- readRDS("Data_output/conso.Rds")
 dic_conso <- look_for(conso)
@@ -42,10 +47,14 @@ data <- familles |>
   as_survey_design(weights = PONDMEN) |> 
   mutate(
     NIVIE = labelled(NIVIE/1000, 
-                     label = "Niveau de vie du ménage (en miliers d'euros)"))
-
+                     label = "Niveau de vie du ménage (en miliers d'euros)"), 
+    n_DepEnsPart = labelled(n_DepEns/REVTOT, 
+                              label = "Part des dépenses d'enseignement des les revenus totaux du ménage")) %>%
+  mutate(REVTOT = labelled(REVTOT/1000, 
+                            label = "Revenus totaux du ménage (en miliers d'euros)"))
+names(familles)
 ## Régression pondérée #########################################################
-reg <- svyglm(n_DepEns ~ NIVIE + COEFFUC + n_config,
+reg <- svyglm(n_DepEnsPart ~ REVTOT + NENFANTS + n_configSynth,
               design = data)
 tblreg1 <- tbl_regression(reg, intercept = F) |>
   add_glance_source_note() |>
@@ -72,20 +81,27 @@ depVetmMen <- conso |>
 
 sum <-apply(depVetmMen[, -1],1,sum,na.rm=TRUE)
 familles <- bind_cols(familles, n_DepVetement = sum)
-var_label(familles$n_DepVetement) <-  "Dépenses d'habillement pour enfants"
+var_label(familles$n_DepVetement) <-  "Montant des dépenses d'habillement pour enfants"
 var_label(familles$n_DepVetement)
 rm(depVetmMen, sum)
+
 
 ## Construction base de donnée sur laquelle on va travailler ################### 
 names(familles)
 data <- familles |>
-  as_survey_design(weights = PONDMEN) |> 
   mutate(
+    n_DepVetementParEnf = labelled(n_DepVetement/n_NEnfantsTous, 
+                                   label = "Montant des dépenses d'habillement pour enfants (moyenne par enfant)"), 
+    n_DepVetementPart = labelled((n_DepVetement/REVTOT)*100, 
+                            label = "Part des dépenses d'habillement pour enfants des les revenus totaux du ménage"), 
     NIVIE = labelled(NIVIE/1000, 
-                     label = "Niveau de vie du ménage (en miliers d'euros)"))
+                     label = "Niveau de vie du ménage (en miliers d'euros)"), 
+    REVTOT = labelled(REVTOT/1000, 
+                      label = "Revenus totaux du ménage (en miliers d'euros)")) %>%
+  as_survey_design(weights = PONDMEN)
 
 ## Régression pondérée #########################################################
-reg <- svyglm(n_DepVetement ~ NIVIE + COEFFUC + n_config,
+reg <- svyglm(n_DepVetementParEnf ~ REVTOT + COEFFUC + n_configSynth,
               design = data)
 tblreg2 <- tbl_regression(reg, intercept = F) |>
   add_glance_source_note() |>
