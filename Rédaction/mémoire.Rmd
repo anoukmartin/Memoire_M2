@@ -32,6 +32,7 @@ toc-title: Sommaire
 output:
   pagedown::thesis_paged:
     css:
+      - my-fonts.css
       - memoire.css
     template: memoire.html
     toc: true
