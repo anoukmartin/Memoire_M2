@@ -8,7 +8,7 @@ rm(listScript)
 # Exectuion 
 execute <- function(part, path = "Code"){
   listScript <- list.files(path) 
-  to_execute <- listScript[str_split(listScript, "_", simplify = T)[, 1] == part]
+  to_execute <- listScript[str_starts(str_split(listScript, "_", simplify = T)[, 1], part)]
   to_execute
   for (script in to_execute) {
     print(paste0("Execution du script : ", script))
