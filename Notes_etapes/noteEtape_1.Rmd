@@ -1,0 +1,32 @@
+---
+title: "Note d'étape 1"
+subtitle: "Mémoire de master 2 - QESS"
+author: "Anouk MARTIN"
+date: "`r format(Sys.time(), '%d/%m/%Y')`"
+output:
+  pagedown::html_paged:
+    toc: false
+    number_sections: false
+    css: 
+      notes.css
+    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
+    self_contained: false
+lot: false # insert a list of tables
+lof: false # insert a list of figures
+paged-footnotes: true
+# uncomment this line to produce HTML and PDF in RStudio:
+# knit: pagedown::chrome_print
+---
+
+
+# Recodages 
+
+
+
+# Premiers traitements : les dépenses de consommation affectables aux enfants 
+
+```{r}
+source("././Code/05a_regressions_dépenses.R")
+```
+
+
