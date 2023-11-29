@@ -86,6 +86,7 @@ enfants %>%
   select(n_NPARENTS, n_CouplePere, n_CoupleMere) %>%
   tbl_summary(by = "n_NPARENTS") 
   
+saveData(enfants, label = "enfantsDuMenage")
 
 ################################################################################-
 # 2. Les enfants hors-domicile #################################################
@@ -102,7 +103,7 @@ enfHD <- readRDS("Data_output/enfHD.Rds")
 # Donc comme pour les enfants appartenant aux ménages enquêtés, on applique une 
 # limite d'âge.
 enfantHD <- enfHD %>%
-  mutate(AG = 2017 - HODAN) %>% # Calcul de l'age au 31 décembre
+  mutate(AG = infosBDF$vague - HODAN) %>% # Calcul de l'age au 31 décembre
   filter(AG <= 25) %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
 names(enfantHD)
@@ -154,6 +155,8 @@ rm(temp)
 enfantHD %>%
   select(n_ParentsCohab, n_CouplePere, n_CoupleMere) %>%
   tbl_summary(by = "n_ParentsCohab")
+
+saveData(enfantHD, "enfantsHorsDom")
 
 
 ################################################################################-
