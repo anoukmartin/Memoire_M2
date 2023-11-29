@@ -43,18 +43,23 @@ rm(depScolMen, sum)
 
 ## Construction base de donnée sur laquelle on va travailler ###################
 names(familles)
+familles$n_NEnfantsTous
 data <- familles |>
-  as_survey_design(weights = PONDMEN) |> 
+  mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) %>% # On centre la variable de pondération
+  as_survey_design(weights = PONDFAM) |> 
   mutate(
     NIVIE = labelled(NIVIE/1000, 
                      label = "Niveau de vie du ménage (en miliers d'euros)"), 
     n_DepEnsPart = labelled(n_DepEns/REVTOT, 
-                              label = "Part des dépenses d'enseignement des les revenus totaux du ménage")) %>%
-  mutate(REVTOT = labelled(REVTOT/1000, 
+                              label = "Part des dépenses d'enseignement des les revenus totaux du ménage"), 
+    n_DepEnsEnfant = labelled(n_DepEns/n_NEnfantsTous, 
+                              label = "Montant moyen des dépenses d'enseignement par enfant"), 
+    REVTOT = labelled(REVTOT/1000, 
                             label = "Revenus totaux du ménage (en miliers d'euros)"))
 names(familles)
+
 ## Régression pondérée #########################################################
-reg <- svyglm(n_DepEnsPart ~ REVTOT + NENFANTS + n_configSynth,
+reg <- svyglm(n_DepEns ~ NIVIE + n_NEnfantsTous + n_configSynth,
               design = data)
 tblreg1 <- tbl_regression(reg, intercept = F) |>
   add_glance_source_note() |>
@@ -94,15 +99,18 @@ data <- familles |>
                                    label = "Montant des dépenses d'habillement pour enfants (moyenne par enfant)"), 
     n_DepVetementPart = labelled((n_DepVetement/REVTOT)*100, 
                             label = "Part des dépenses d'habillement pour enfants des les revenus totaux du ménage"), 
-    NIVIE = labelled(NIVIE/1000, 
-                     label = "Niveau de vie du ménage (en miliers d'euros)"), 
-    REVTOT = labelled(REVTOT/1000, 
-                      label = "Revenus totaux du ménage (en miliers d'euros)")) %>%
-  as_survey_design(weights = PONDMEN)
+    NIVIE = labelled(NIVIE/100, 
+                     label = "Niveau de vie du ménage (en centaines d'euros)"), 
+    REVTOT = labelled(REVTOT/100, 
+                      label = "Revenus totaux du ménage (en centaines d'euros)")) |>
+  mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) |>  # On centre la variable de pondération
+  as_survey_design(weights = PONDFAM) 
 
 ## Régression pondérée #########################################################
-reg <- svyglm(n_DepVetementParEnf ~ REVTOT + COEFFUC + n_configSynth,
+
+reg <- svyglm(n_DepVetementParEnf ~ NIVIE + n_NEnfantsTous + n_configSynth,
               design = data)
+
 tblreg2 <- tbl_regression(reg, intercept = F) |>
   add_glance_source_note() |>
   add_global_p(keep = TRUE) 
