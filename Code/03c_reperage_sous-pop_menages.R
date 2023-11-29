@@ -425,8 +425,12 @@ famillesToutes <- famillesToutes %>%
       n_configTemp == "Monoparentale" & is.na(n_config) ~ "Temporairement monoparentale", 
       n_configTemp == "Recomposée" & (is.na(n_config) | n_config == "Traditionelle") ~ "Temporairement recomposée", 
       n_configTemp == "Traditionelle" & is.na(n_config) ~ "Temporairement traditionelle", 
-      TRUE ~ n_config)) 
-
+      TRUE ~ n_config), 
+    n_genreFamSynth = case_when(
+      !is.na(n_config) ~ n_genreFam, 
+      is.na(n_config) ~ n_genreFamTemp)) %>%
+  mutate(n_genreFamSynth = labelled(n_genreFamSynth, 
+                                    label = "Sexe des parents"))
 
 famillesToutes %>%
   select(all_of(c("n_configSynth"))) %>%
@@ -442,16 +446,55 @@ famillesToutes %>%
   select(all_of(c("n_configFamSynth"))) %>%
   tbl_summary()
 
+famillesToutes %>%
+  select(all_of(c("n_genreFamSynth"))) %>%
+  tbl_summary()
+
 nbenfants <- famillesToutes[, c("NENFANTS", "n_NEnfantsHD")] %>%
   as.matrix()
 nbenfants <- rowSums(nbenfants, na.rm = T)
 
-famillesToutes$n_NEnfantsTous <- nbenfants 
+
+famillesToutes$n_NEnfantsTous <- nbenfants
+famillesToutes <- famillesToutes %>%
+  mutate(n_NEnfantsTous = labelled(n_NEnfantsTous, 
+                                   label = "Nombre total d'enfants du ménage ou vivant hors domicile"))
 rm(nbenfants)
+
+
+### Ages moyens des enfants ########################################
+# ages des enfants du ménage 
+enfantsD <- readRDS("Data_output/enfantsDuMenage.Rds") %>%
+  select(IDENT_MEN, n_IdentIndiv, AG) 
+agesEnfMen <- enfantsD %>% 
+  group_by(IDENT_MEN) %>%
+  reframe(n_ageMoyEnfMen = mean(AG))
+
+# age moyen des enfant HD
+enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
+  select(IDENT_MEN, n_IdentIndiv, AG) 
+agesEnfHD <- enfantsHD %>%
+  group_by(IDENT_MEN) %>%
+  reframe(n_ageMoyEnfHD = mean(AG))
+
+# age moyens de tous les enfants 
+agesEnfants <- bind_rows(enfantsD, enfantsHD) %>%
+  group_by(IDENT_MEN) %>%
+  reframe(n_ageMoyEnfTous = mean(AG))
+
+# on ajoute ces variables aux données des familles 
+famillesToutes <- famillesToutes %>%
+  left_join(agesEnfMen) %>%
+  left_join(agesEnfHD) %>%
+  left_join(agesEnfants)
+
+
 saveData(famillesToutes, label = "famillesToutes")
 
 
-rm(config, configSynthese, menages, enfantsD, enfantsHD, NBenfantsHD, enfantsTous, famillesTemp, familles, famillesToutes)
+rm(config, configSynthese, menages, enfantsD, enfantsHD, 
+   agesEnfMen, agesEnfants, agesEnfHD,
+   NBenfantsHD, enfantsTous, famillesTemp, familles, famillesToutes)
 
 
 
