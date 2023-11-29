@@ -17,6 +17,8 @@
 *.odt
 # but not the html template 
 !Rédaction/memoire.html
+# pagedown production files 
+*.js
 
 # images 
 *.png
