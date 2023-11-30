@@ -5,21 +5,45 @@ author: "Anouk MARTIN"
 date: "`r format(Sys.time(), '%d/%m/%Y')`"
 output:
   pagedown::html_paged:
+    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
     toc: false
     number_sections: false
     css: 
       notes.css
-    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
     self_contained: false
 lot: false # insert a list of tables
 lof: false # insert a list of figures
 paged-footnotes: true
 # uncomment this line to produce HTML and PDF in RStudio:
 # knit: pagedown::chrome_print
+editor_options: 
+  chunk_output_type: console
 ---
 
+# Description de la population d'enquête 
 
-# Recodages 
+## Les enfants
+
+```{r}
+infosBDF <- readRDS("Data_output/infosBDF.Rds")
+enfantsTous <- readRDS("Data_output/enfantsTous.Rds")
+
+dicEnfantsTous <- look_for(enfantsTous)
+tab <- enfantsTous %>%
+  as_survey_design()
+  tbl_summary(by = n_statutResid)
+
+tab
+```
+
+
+
+
+
+
+
+
+
 
 
 
