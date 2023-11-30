@@ -60,125 +60,34 @@ knitr::opts_chunk$set(echo = FALSE,
 
 # Les présupposés du système socio-fiscal {.chapter .page-break-before}
 
-blabkabka
-
-blablablabla
-
-
-
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
+## Le niveau de vie dans les familles est homogène
 
 ## Les conjoints contribuent *proportionnellement* à leurs revenus aux *charges du ménage*
 
-
-blabkabka
-
-blablablabla
-
-
-
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
-
-blabkabka
-
-blablablabla
-
-
-
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
-
-blabkabka
-
-blablablabla
-
-
-
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
-
-
-
-
 ## Les parents isolés remis en couple ne sont plus en situation de monoparentalité
-
-
-blabkabka
-
-blablablabla
-
-
-
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
 
 ## Les configurations familiales traditionnelle et recomposées sont assimilables
 
-blabkabka
-
-blablablabla
-
-
-
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
-
 ## Les formes entre droit civil, droit fiscal et droits sociaux
 
-blabkabka
-
-blablablabla
 
 
 
+################### PLAN 1 #####################################################
 
-blablblablablabla
+# Budgets
 
-blablablablabalbalk
+# Travail domestique 
 
-balbalbalbala
-
-blabkabka
-
-blablablabla
+# Aides sociales et fiscalitées
 
 
 
-
-blablblablablabla
-
-blablablablabalbalk
-
-balbalbalbala
-
+################### PLAN 2 #####################################################
 
 # Les niveau de vie dans les familles recomposées {.chapter .page-break-before}
+
+## la question du niveau vie, au centre du système socio-fiscal
 
 ## Des budgets moins partagés dans les familles recomposées
 
