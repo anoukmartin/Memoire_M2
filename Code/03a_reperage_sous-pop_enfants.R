@@ -100,6 +100,8 @@ saveData(enfants, label = "enfantsDuMenage")
 ## 2.1. Les enfants : moins de 25 ans ##########################################
 
 enfHD <- readRDS("Data_output/enfHD.Rds")
+infosBDF <- readRDS("Data_output/infosBDF.Rds")
+
 # Donc comme pour les enfants appartenant aux ménages enquêtés, on applique une 
 # limite d'âge.
 enfantHD <- enfHD %>%
@@ -163,11 +165,15 @@ saveData(enfantHD, "enfantsHorsDom")
 # 3. Tous les enfants ##########################################################
 ################################################################################-
 
+
 ## 3.1. Jointure ###############################################################
 # On combine les deux tableaux de données 
+names(indiv)
+
+
 enfantTous <- bind_rows(
   enfants %>% 
-    select(starts_with("n_")) %>% 
+    select(IDENT_MEN,  starts_with("n_")) %>% 
     mutate(n_statutResid = "Enfant du ménage (au sens du TCM)"), 
   enfantHD %>% 
     select(starts_with("n_")) %>% 
@@ -300,7 +306,7 @@ names(enfantTous)
 saveData(enfantTous, label = "enfantsTous")
 
 # Un peu de ménage
-rm(enfantHD, enfants, enfantTous, enfHD, indiv, parents)
+rm(enfantHD, enfants, enfantTous, enfHD, indiv, parents, infosBDF)
 
 
 
