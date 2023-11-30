@@ -19,9 +19,9 @@ execute <- function(part, path = "Code"){
 
 # Au démarrage #################################################################
 # On exécute les scripts commençant par 00 et 01
-source(file = "Code/00_requirements.R")
-source(file = "Code/01a_packages.R")
-source(file = "Code/01b_fonctions.R")
+source(file = "requirements.R")
+source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
+source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 
 # Réimporter les données brutes ################################################
 # On exécute les scripts commençant par 02
