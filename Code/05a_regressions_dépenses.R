@@ -92,7 +92,7 @@ rm(depVetmMen, sum)
 
 
 ## Construction base de donnée sur laquelle on va travailler ################### 
-names(familles)
+dicFam <- look_for(familles)
 data <- familles |>
   mutate(
     n_DepVetementParEnf = labelled(n_DepVetement/n_NEnfantsTous, 
@@ -102,13 +102,15 @@ data <- familles |>
     NIVIE = labelled(NIVIE/100, 
                      label = "Niveau de vie du ménage (en centaines d'euros)"), 
     REVTOT = labelled(REVTOT/100, 
-                      label = "Revenus totaux du ménage (en centaines d'euros)")) |>
+                      label = "Revenus totaux du ménage (en centaines d'euros)"), 
+    REVDISP = labelled(REVDISP/100, 
+                      label = "Revenu disponible du ménage (en centaines d'euros)"))|>
   mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) |>  # On centre la variable de pondération
-  as_survey_design(weights = PONDFAM) 
+  as_survey_design(weights = PONDFAM, ids = c(IDENT_MEN)) 
 
 ## Régression pondérée #########################################################
 
-reg <- svyglm(n_DepVetementParEnf ~ NIVIE + n_NEnfantsTous + n_configSynth,
+reg <- svyglm(n_DepVetementParEnf ~ REVDISP + n_NEnfantsTous + n_ageMoyEnfTous + CSMEN + DIP14PR + n_configSynth,
               design = data)
 
 tblreg2 <- tbl_regression(reg, intercept = F) |>
