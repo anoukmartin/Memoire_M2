@@ -1,0 +1,73 @@
+---
+title: "L'optimisation fiscale ordinaire. Le genre des arrangements familiaux avec le système socio-fiscal."
+subtitle: "Projet de thèse"
+author: "Anouk MARTIN"
+date: "`r format(Sys.time(), '%d/%m/%Y')`"
+output:
+  pagedown::html_paged:
+    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
+    toc: false
+    number_sections: false
+    css: 
+      notes.css
+    self_contained: false
+lot: false # insert a list of tables
+lof: false # insert a list of figures
+paged-footnotes: true
+# uncomment this line to produce HTML and PDF in RStudio:
+# knit: pagedown::chrome_print
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+
+En 2019, la réforme du prélèvement à la source de l'impôt sur le revenu a instauré un partage par défaut de la charge fiscale entre conjoints. Depuis, un taux dit *personnalisé* est calculé pour chaque foyer fiscal, et ce taux est appliqué de manière égale aux salaires des deux conjoints, établissant ainsi le partage proportionnel de la charge fiscale comme norme dans les couples.
+
+individualisation de l'AAH?
+
+rapidement positionnement dans les quelques références bibliographiques centrales
+
+-   Spire sur l'appropriation des règles fiscales par les classes dominantes +
+
+-   Dubois sur les controles caf
+
+-   Bessière sur les arrangements
+
+-   Bessière et Gollac sur le genre des arrangements avec la fiscalité de l'héritage
+
+sociologie du rapport aux institutions, de l'tat, sociologie de la famille et du genre.
+
+# Axe 1 : De la fraude fiscale à l'optimisation ordinaire : étudier les arrangements fiscaux au delà des classes dominantes
+
+A la fois dépasser le discours sur ce ne sont que les classes supérieures qui ont recours à de l'optimisation fiscale
+
+-\> suppose de ne pas regader que le fisc, mais aussi tout ce qui est prestations sociales.
+
+Dépasser le discours sur les pauvres qui frauderaient + ou qui "feraient des enfants pour les allocs"
+
+# Axe 2 : Ajustement et désajustements du système fiscal et du système social
+
+un système qui fonctionne ensemble, il y a des incohérences, qu'ils faut justement analyser parce qu'elles produisent des effets qui sont justement à étudier
+
+# Axe 3 : Rapports aux institutions et appropriations des règles socio-fiscales
+
+Technicité mais aussi sens commun fiscal
+
+distance ou proximité // droit
+
+# Axe 4 : Déclarations aux institutions et formalisation des relations familiales 
+
+faire sociologie de la déclaration
+
+comment est produit un consensus sur ce qu'est la relation, et donc sur la manière dont celle-ci doit être ou non déclarée comme telle aux institutions suséptibles
+
+# Axe 5 : Partage de la charge fiscale et appropriations des prestations sociales
+
+# Méthodologie envisagée : 
+
+## Volet quantitatif 
+
+## Volet qualitatif
+
+## Calendrier
