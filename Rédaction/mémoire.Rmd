@@ -65,6 +65,7 @@ knitr::opts_chunk$set(echo = FALSE,
 ## Les conjoints contribuent *proportionnellement* à leurs revenus aux *charges du ménage*
 
 ## Les parents isolés remis en couple ne sont plus en situation de monoparentalité
+-> idée que ça n'a rien d'évident, que historiquement ça s'explique, mais on auraoit tout à fait pu considérer l'inverse. arbitraire.
 
 ## Les configurations familiales traditionnelle et recomposées sont assimilables
 
