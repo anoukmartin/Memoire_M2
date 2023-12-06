@@ -41,7 +41,7 @@ theme_gtsum$`tbl_regression-fn:addnl-fn-to-run` = bold_labels
 theme_gtsum$`tbl_summary-str:continuous_stat` = c("{mean}", 
                                                   "{p25} - {p75}", 
                                                   "{min} - {max}")
-theme_gtsum$`tbl_summary-str:categorical_stat` = "{p} ({n})"
+theme_gtsum$`tbl_summary-str:categorical_stat` = "{p}% ({n})"
 
 # theme_gtsum$`tbl_svysummary-str:continuous_stat` = c("{mean}", 
 #                                                     "{p25} - {p75}", 
