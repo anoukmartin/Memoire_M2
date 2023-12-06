@@ -18,39 +18,85 @@ paged-footnotes: true
 # knit: pagedown::chrome_print
 editor_options: 
   chunk_output_type: console
+bibliography: references.bib
 ---
 
-# Description de la population d'enquête 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r, include = FALSE}
+source("Code/01a_packages.R")
+source("Code/01b_fonctions.R")
+```
+
+## De la composition familiale à la configuration
+
+La construction de typologie des formes familiales est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968]. Ces types familiaux considèrent un groupe d'individus apparentés dont la taille et la forme détermine la catégorie d'appartenance. Ainsi, la famille nucléaire de Le Play ou la famille conjugale de Durkheim se différencient des d'autres formes par la réduction du groupe familial aux seuls parents et leurs enfants.
+
+Les grandes enquêtes de la statistique publique proposent elles aussi des catégories qui distingues les ménages selon leur composition. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, a partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage, est généralement codé en cinq catégories :
+
+```{r TYPMEN5, tab.cap = "Catégories de ménages dans l'enquête BDF", tab.id = "TYPMEN5"}
+library(kableExtra)
+menages <- readRDS("Data_output/menages.Rds")
+dicMenage <- look_for(menages)
+infosBDF <- readRDS("Data_output/infosBDF.Rds")
+
+# Tableau TYPMEN TCM
+tab <- menages %>%
+  select(TYPMEN5) %>%
+  rec_TYPMEN5() 
+tab <- tab %>% 
+  mutate(TYPMEN5 = TYPMEN5 %>%
+            factor(levels = unique(tab$TYPMEN5)) |> 
+            fct_infreq()) %>%
+  tbl_summary(label = list(TYPMEN5 ~ "Type de ménage (TCM)")) %>%
+  as_flex_table() %>%
+  add_footer_lines(c(
+    paste0("Source : ", infosBDF$nom, ", ", infosBDF$vague), 
+    paste0("Champ : ", infosBDF$champ, ", N = ", dim(menages)[1])))  %>%
+  set_table_properties(width = 1, layout = "autofit")
+tab                  
+```
+
+Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. La majorité d'entre elles ne permettent pas de distinguer les distinguer parce qu'elles n'interrogent que la composition du ménage et non les relations qui unissent les individus qui y appartiennent (Guy, 1993). S'intéresser aux pratiques économiques des individus qui y appartiennent permettra justement de questionner cette assimilation.
+
+-\> approche processuelle plus que plus que statique
+
+Cependant, ces tentatives se heurtent toujours à la relative fluidité des formes familiales : les différentes configurations familiales ne sont en effet pas des types différents de familles, mais des périodes successives des biographies individuelles et familiales
+
+-\> configuration plus que composition
+
+Ainsi, nous proposons d'adopter une approche de la diversité des situations familiales qui tiennent compte non seulement de la composition familiale, mais aussi des liens qui unissent les différents individus du groupe familial. Il s'agit donc de construire de
+
+## La situation des enfants : le point de départ des construction de catégorie
+
+# Beaux-enfants, beaux-parents, remises en couples et familles recomposées
+
+approche par les enfants, usuel dans la stat publique
 
 ## Les enfants
 
-```{r}
-infosBDF <- readRDS("Data_output/infosBDF.Rds")
-enfantsTous <- readRDS("Data_output/enfantsTous.Rds")
-
-dicEnfantsTous <- look_for(enfantsTous)
-tab <- enfantsTous %>%
-  as_survey_design()
-  tbl_summary(by = n_statutResid)
-
-tab
-```
-
-
-
-
-
-
-
-
-
-
-
-
-# Premiers traitements : les dépenses de consommation affectables aux enfants 
+### Les enfants du ménage
 
 ```{r}
-source("././Code/05a_regressions_dépenses.R")
+
+# infosBDF <- readRDS("Data_output/infosBDF.Rds")
+# enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds")
+# 
+# names(enfantsMenage)
+# dicEnfantsMenage <- look_for(enfantsMenage)
+# names(enfantsTous)
+# tab <- enfantsTous %>%
+#   tbl_summary(by = n_statutResid)
+# 
+# tab
 ```
 
+# Premiers traitements : les dépenses de consommation affectables aux enfants
 
+```{r}
+# source("././Code/05a_regressions_dépenses.R")
+```
+
+# Bibliographie
