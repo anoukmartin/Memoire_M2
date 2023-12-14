@@ -1,6 +1,6 @@
 ---
-title: "Note d'étape 1 : repérer les familles recomposées "
-subtitle: "Mémoire de master 2 - QESS"
+title: "Saisir les remises en couple, repérer les familles recomposées"
+subtitle: "Note d'étape n°1, Mémoire de master 2 - QESS"
 author: "Anouk MARTIN"
 date: "`r format(Sys.time(), '%d/%m/%Y')`"
 output:
@@ -19,6 +19,7 @@ paged-footnotes: true
 editor_options: 
   chunk_output_type: console
 bibliography: references.bib
+csl: revue-francaise-de-sociologie.csl
 ---
 
 ```{r setup, include = FALSE}
@@ -28,23 +29,24 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```{r, include = FALSE}
 source("Code/01a_packages.R")
 source("Code/01b_fonctions.R")
+infosBDF <- readRDS("Data_output/infosBDF.Rds")
 ```
 
-La construction de typologie familiales selon la taille et la structure des relations entre individus apparenté et résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [Godelier , @laslett1983]. Pour ces auteurs, décrire les formes que prennent la famille permet de décrie l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, elles tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées[^1]. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui prendrait mieux que d'autre la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
+La construction de typologie familiales selon la taille et la structure des relations entre individus apparenté et résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [@laslett1983] + godelier. Pour ces auteurs, décrire les formes que prennent la famille permet de décrie l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, elles tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées[^1]. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui prendrait mieux que d'autre la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
 
 [^1]: C'est d'ailleurs pour cette raison, que l'on préférera parler de familles nucléaires plutôt que de familles traditionnelles pour désigner un couple vivant avec les enfants issus de cette union.
 
-## De la composition familiale à la configuration
+# De la composition familiale à la configuration
 
-### Familles nucléaires et recomposées en ménage statistique
+## Familles nucléaires et recomposées en ménage statistique
 
-Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. Avant 1990, la majorité des enquêtes statistiques ne permettent tout simplement pas de les distinguer [ref Desplanques]. Aujourd'hui, si elles sont identifiables, elle ne sont pas a priori distinguées des familles nucléaires. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, a partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage est généralement codé en cinq catégories héritières de la typologie de @laslett1983 : "Personne seule", "Couple sans enfant", "Couple avec au moins un enfant", "Famille monoparentale", et "Autre type de ménage (ménage complexe)", comme c'est le cas dans l'enquête Budget de Famille (2017).
+Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. Avant 1990, la majorité des enquêtes statistiques ne permettent tout simplement pas de les distinguer [ref Desplanques]. Aujourd'hui, si elles sont identifiables, elle ne sont pas a priori distinguées des familles nucléaires. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, a partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage est généralement codé en cinq catégories héritières de la typologie de @laslett1983 : "Personne seule", "Couple sans enfant", "Couple avec au moins un enfant", "Famille monoparentale", et "Autre type de ménage (ménage complexe)", comme c'est le cas dans l'enquête `r infosBDF$nom` (2017).
 
 ```{r TYPMEN5, tab.cap = "Catégories de ménages dans l'enquête BDF", tab.id = "TYPMEN5"}
 
 menages <- readRDS("Data_output/menages.Rds")
 dicMenage <- look_for(menages)
-infosBDF <- readRDS("Data_output/infosBDF.Rds")
+
 
 # Tableau TYPMEN TCM
 tab <- menages %>%
@@ -55,27 +57,29 @@ tab <- tab %>%
             factor(levels = unique(tab$TYPMEN5)) |> 
             fct_infreq()) %>%
   tbl_summary(label = list(TYPMEN5 ~ "Type de ménage (TCM)")) %>%
-  as_flex_table() %>%
-  add_footer_lines(c(
-    paste0("Source : ", infosBDF$nom, ", ", infosBDF$vague), 
-    paste0("Champ : ", infosBDF$champ, ", N = ", dim(menages)[1])))  %>%
-  set_table_properties(width = 1, layout = "autofit")
+  add_stat_label() %>%
+  as_gt() %>%
+  gt_theme_custom() %>%
+  add_gtsource_note(N = dim(menages)[1], 
+                    lecture = "27% des ménages enquétés en 2017 sont des couples avec au moins un enfant") %>%
+  tab_caption(caption = "Types de ménages selon le TCM")
+    
 tab 
 ```
 
 Cette approche, qui s'intéresse seulement à la composition des ménages et non au liens entre individus ne permet pas de distinguer les familles recomposées des familles nucléaires, elle assimile toutes les couples avec enfants indépendants des liens juridiques, économiques ou affectifs qui unissent ces individus. Cette démarche s'inscrit dans la théorie économique du ménage, qui suppose, qu'il soit composé ou non de plusieurs individus, que le comportement économique du ménage est assimilable à celui d'un individu unique [@donni2011].En conséquence, les revenus individuels sont considérés comme communs et les dépenses également partagées [@bessière2016]. Dès lors, seule la composition du ménage importe, pour pouvoir appliquer des échelles d'équivalences et rendre ainsi comparables des ménages composés différemment.
 
-### Distinguer sociologiquement les familles recomposées et les familles nucléaires
+## Distinguer sociologiquement les familles recomposées et les familles nucléaires
 
 Cette approche a pour avantage de ne pas présupposer des liens affectifs et économiques différents les familles nucléaires et les familles recomposées, puisque la parenté quotidienne peut ne pas coïncider avec la parenté légale [@weber2013]. Pour autant, en suivant Rémi Lenoir [-@lenoir2003], nous considérons que la famille, en tant que groupe d'individus apparenté par des relations de filiations et/ou d'alliance, ne préexiste pas aux institutions qui objectivent ces relations. Ainsi le droit civil ne les organise pas de la même manière les relations de parenté et les relations entre beaux-parents et beaux-enfants. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d'un de leurs parents, y compris en cas de mariage ou de PACS [@damon2012]. Il n'y a ni obligation d'entretien, comme c'est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l'héritage comme c'est le cas pour les apparenté.e.s au premier et au second degré [@fulchiron1993]. De ce fait, ni l'économie domestique quotidienne, ni les successions dans les familles recomposées ne peuvent être parfaitement assimilées à celles se déployant dans les familles nucléaires. Les travaux d'Agnès Martial montrent que les cas dans lesquels la logique d'égalité entre tous les enfants des conjoints, quelle que soit leur filiation, préside au moment d'héritage sont rares [@martial1999]. Ainsi, les recompositions familiales ne remettent généralement pas en cause les logiques de lignées fondées sur la filiation établie légalement. L'identification symbolique et affective des enfants aux lignées beau-parentales est elle aussi rare, quand bien mêmes ceux qui y appartiennent font souvent partie de la « famille de référence » [@véron2007]. Les unions civiles (mariages et PACS) se font aussi davantage sous le régime de la séparation de biens lorsqu'une autre union civile a précédé, et lorsque des enfants nés d'une autre union existent [@frémeaux2013]. On peut y voir des arrangements conjugaux visant à protéger mutuellement les intérêts patrimoniaux du nouveau conjoint et des enfants. Ainsi, les relations économiques entre beaux-parents et beaux enfants semblent généralement suivre des logiques différentes de celles entre parents et enfants, et justifient donc un traitement sociologique spécifique des arrangements économiques dans les familles recomposées.
 
-Pourtant, ce n'est généralement pas sous cet angle que la sociologie s'est intéressée aux familles recomposées : A partir des années 1990, sociologues et psychologues s\'emparent du sujet des « nouvelles formes familiales » et y voient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017]. Ces travaux s\'inscrivent dans ce que Céline Bessière et Sibylle Gollac ont nommé « le grand récit de la famille moderne » déjà porté par @durkheim1975 et dont François de Singly, Ulrich Boeck et Anthony Giddens seront les grands continuateurs. Pourtant ces familles -- monoparentales comme recomposées -- ne sont pas radicalement nouvelles. Jusqu\'à la seconde guerre mondiale, elles étaient d\'avantage liées au décès d\'un des conjoints -- du fait de la mortalité élevé des femmes notamment en couche et des hommes lors des périodes de guerre -- qu\'a une séparation [@flandrin1984]. Leur relative nouveauté tient moins à l\'existence de beau-parent, qu\'a l\'existence, en même temps, des deux parents. En d\'autres termes, en théorie, la recomposition se fait moins selon un *modèle de substitution* qu\'un *modèle de pérennité* [@clément2005]. Ainsi, Le cas des familles recomposée nécessite de considérer la pluralité des logements dans lesquels les recompositions se déploient pour sortir de la logique procédant par réduction à la résidence principale.
+Pourtant, ce n'est généralement pas sous cet angle que la sociologie s'est intéressée aux familles recomposées : A partir des années 1990, sociologues et psychologues s'emparent du sujet des « nouvelles formes familiales » et y voient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017]. Ces travaux s'inscrivent dans ce que Céline Bessière et Sibylle Gollac ont nommé « le grand récit de la famille moderne » déjà porté par @durkheim1975 et dont François de Singly, Ulrich Boeck et Anthony Giddens seront les grands continuateurs. Pourtant ces familles -- monoparentales comme recomposées -- ne sont pas radicalement nouvelles. Jusqu'à la seconde guerre mondiale, elles étaient d'avantage liées au décès d'un des conjoints -- du fait de la mortalité élevé des femmes notamment en couche et des hommes lors des périodes de guerre -- qu'a une séparation [@flandrin1984]. Leur relative nouveauté tient moins à l'existence de beau-parent, qu'a l'existence, en même temps, des deux parents. En d'autres termes, en théorie, la recomposition se fait moins selon un *modèle de substitution* qu'un *modèle de pérennité* [@clément2005]. Ainsi, Le cas des familles recomposée nécessite de considérer la pluralité des logements dans lesquels les recompositions se déploient pour sortir de la logique procédant par réduction à la résidence principale.
 
 Si l'on reprend donc le tryptique entre familles monoparentales, familles nucléaires et familles recomposées hérité de la sociologie de la famille des années 2000, c'est bien moins parce que ces catégories serait mieux adaptées à la société actuelle que parce que nous considérons ces familles comme un cas sociologique au sens de @passeron2020 pour observer la continuation de l'ordre du genre après la séparation conjugale. S'intéresser aux familles recomposées implique donc d'une part de sortir d'une analyse à l'échelle du ménage pour s'intéresser à ce qui se passe, d'un point de vue matériel, en son sein et à l'extérieur. D'autre part, cela suppose aussi de sortir d'une logique d'analyse par la composition du ménage pour s'intéresser aux relations économiques, légales et administratives qui unissent les individus qui le composent.
 
-### Etudier les liens familiaux en sociologie quantitative
+## Etudier les liens familiaux en sociologie quantitative
 
-Si les grandes enquêtes de l'INSEE ne proposent généralement pas de variables permettant de distinguer les familles nucléaires des familles recomposées, le Tronc Commun des enquêtes Menages (TCM) a permis de récolter systématiquement des données sur les liens entre les individus d'un même ménage. Dans l\'enquête Budget des Familles (2017), pour chaque individu, est renseigné les liens etretenus avec chaque autre individus.
+Si les grandes enquêtes de l'INSEE ne proposent généralement pas de variables permettant de distinguer les familles nucléaires des familles recomposées, le Tronc Commun des enquêtes Ménages (TCM) a permis de récolter systématiquement des informations sur les liens entre les individus d'un même ménage. Dans l'enquête `r infosBDF$nom` (2017), pour chaque individu, est renseigné les liens entretenus avec chaque autre individus.
 
 ![Codage de la variable renseignant les liens entre individus](images/Variable_LIENXX.PNG){.figure}
 
@@ -83,17 +87,90 @@ A priori, les liens entre beau-parent et beaux-enfants sont renseignées (modali
 
 ![Questions à l'origine de la variable codant les liens entre individus](images/Question_LIENXX.PNG)
 
-Une fois encore, l'absence modalité cette modalité de réponse témoigne de l'impensé que constitue ce type de relations dans la statistique publique.
+Une fois encore, l'absence modalité cette modalité de réponse témoigne de l'impensé que constitue ce type de relations dans la statistique publique. Pour autant, à partir des seuls liens d'alliance et de filiation renseignés (liens parentaux et conjugaux), il est possible de reconstruire ces relations, et donc d'identifier les ménages dans lesquels un couple vit avec au moins un enfant qui n'est pas issu de leur union.
 
-# TRSH
+Par ailleurs, il ne suffit pas de s'intéresser aux liens entre les individus appartenant à un même ménage ou même a un unique logement, puisque la famille peut déborder ce cadre [@toulemon2011; @bonvalet2003]. L'enquête `r infosBDF$nom`, donne justement un certains nombre d'informations sur les parents des individus, y compris lorsqu'ils ne vivent pas avec eux.
 
-La focalisation sur l\'unité du ménage, fondée sur le logement, ne permet de saisir l\'existence d\'un parent hors ménage.
+```{r, fig.cap= "Situations des parents"}
+indiv <- readRDS("Data_output/indiv.Rds")
+indiv %>%
+  select(PER1E, MER1E) %>%
+  mutate(
+    PER1E = case_when(
+      PER1E == "1" ~ "Oui, il vit ici", 
+      PER1E == "2" ~ "Non, il vit ailleurs", 
+      PER1E == "3" ~ "Non, il est décédé", 
+      PER1E == "4" ~ "Père inconnu"), 
+    MER1E = case_when(
+      MER1E == "1" ~ "Oui, elle vit ici", 
+      MER1E == "2" ~ "Non, elle vit ailleurs", 
+      MER1E == "3" ~ "Non, elle est décédée", 
+      MER1E == "4" ~ "Mère inconnue")
+  ) %>%
+  tbl_summary() %>%
+  add_stat_label() %>%
+  as_gt() %>%
+  gt_theme_custom() %>%
+  add_gtsource_note(N = dim(indiv)[1], 
+                    lecture = "23% des individus enquétés en 2017 déclarent vivrent avec leur père") %>%
+  tab_caption(caption = md("Présence des parents dans le logement"))
+
+```
+
+En croisant donc les deux variables ci dessus, nous pouvons identifier les familles monoparentales en distinguant les cas ou l'autre parent réside ailleurs des cas ou celui-ci est décédé ou inconnu. L'enquête `r infosBDF$nom` fournit également des informations sur les enfants vivants hors du domicile de leurs parents grâce à une table de données spécifiques à ces individus.
+
+```{r}
+
+enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds")
+enfantsHD %>%
+  select(HODCO) %>%
+  mutate(HODCO = case_when(
+    HODCO == "1" ~ "Dans son propre logement", 
+    HODCO == "2" ~ "En logement collectif (cité universitaire, foyer, internat,...)", 
+    HODCO == "3" ~ "Chez son père ou sa mère", 
+    HODCO == "4" ~ "Logé ailleurs")) %>%
+  tbl_summary() %>%
+  add_stat_label %>%
+  as_gt() %>%
+  gt_theme_custom() %>%
+  add_gtsource_note(champ = paste0("enfants résidants hors du domicile des individus vivants en ", infosBDF$champ),
+                    N = dim(enfantsHD)[1], 
+                    lecture = "48% des enfants viviant hors du domicile d'un parent enquété en 2017 résidaient alors chez l'autre parent.") %>%
+  tab_caption("Lieu de vie des enfants vivant hors domicile du parent enquété")
+  
+  
+```
+
+On peut ainsi identifier les parents n'ayant pas la garde principale de leur enfant résiant chez l'autre parent.
+
+# La situation des enfants : le point de départ des constructions de catégories
+
+Introduction sur l'Enfant qui fait famille [ref de singly, enfant qui fait famille] et les pratiques usuelles dans la statistique publique =\> approche pare les enfant. Ce que ça véhicule comme manière de voir la famille, et pourquoi est ce que nous ce qui nous intéresse c'est moins la situtaion des enfants que celles des parents. On reprend cette démarche pour des question de comparabilité (trouver des références); On regarde ce qui se passe pour les enfants, non pas pour regarder quelles sont leurs conditions de vies à eux, mais pour comprendre quelles logiques sont à l'oeuvre entre conjoints
+
+## Qu'est ce qu'un enfant ? 
+
+Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position des rapports entre générations familiales. D'un point de vue de la statistique publique, il existe deux conventions de comptage des enfants :
+
+> **Définition dans le recensement :** "*Est compté comme enfant d'une famille toute personne vivant au sein du même ménage que son (ses) parent(s) avec le(s)quel(s) elle forme une famille, si elle est célibataire et n'a pas de conjoint ou d'enfant vivant dans le ménage. Aucune limite d\'âge n\'est fixée pour être enfant.*"
+
+> **Définition dans les enquêtes ménages (TCM)** : Un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*".
+
+# Bibliographie
+
+::: {#refs}
+:::
+
+------------------------------------------------------------------------
+
+# TRASH
+
+La focalisation sur l'unité du ménage, fondée sur le logement, ne permet de saisir l'existence d'un parent hors ménage.
 
 Ainisi, si l'on cherche
 
-La monoparentalité a fait l\'objet d\'une gestion sociale particulière de manière précoce. Sa construction comme un problème public doit être réinscrite dans l\'encadrement auparavant séparé de trois catégories de populations : les filles-mères, les veuves et les veufs. Les filles-mères, lorsqu\'elles ne sont pas forcées à l\'abandon, bénéficient d\'un secours économique conditionné à une étroite surveillance. Leur mariage, d\'autant plus si l\'enfant bénéfice d\'une reconnaissance dite « de complaisance » par leur mari, conditionne leur réintégration sociale et parfois le retour de leur enfant placé[[7]](#_ftn7). Parallèlement, les veuves ayant à charge des enfants, qu\'on distingue des filles-mères par la respectabilité que leur confère le mariage, bénéficient d\'abord de droits dérivés de ceux de leurs maris décédés puis de pensions et d\'abattement fiscaux. Le remariage des veuves vient supprimer leur droit à cette protection. Les veufs avec enfants à charge sont eux exclus de ces dispositifs car considérés comme aptes au travail[[8]](#_ftn8).
+La monoparentalité a fait l'objet d'une gestion sociale particulière de manière précoce. Sa construction comme un problème public doit être réinscrite dans l'encadrement auparavant séparé de trois catégories de populations : les filles-mères, les veuves et les veufs. Les filles-mères, lorsqu'elles ne sont pas forcées à l'abandon, bénéficient d'un secours économique conditionné à une étroite surveillance. Leur mariage, d'autant plus si l'enfant bénéfice d'une reconnaissance dite « de complaisance » par leur mari, conditionne leur réintégration sociale et parfois le retour de leur enfant placé[[7]](#_ftn7). Parallèlement, les veuves ayant à charge des enfants, qu'on distingue des filles-mères par la respectabilité que leur confère le mariage, bénéficient d'abord de droits dérivés de ceux de leurs maris décédés puis de pensions et d'abattement fiscaux. Le remariage des veuves vient supprimer leur droit à cette protection. Les veufs avec enfants à charge sont eux exclus de ces dispositifs car considérés comme aptes au travail[[8]](#_ftn8).
 
-Réhistoriciser la configuration familiale recomposée invite, on le voit, à se pencher sur l\'histoire des familles monoparentales. Non seulement pour les comparer, mais surtout parce qu\'elles ne sont pas des types différents de familles mais des périodes successives des biographies individuelles et familiales. Bien sûr toutes les familles nucléaires ne deviennent pas monoparentales puis recomposées, ces chances diffèrent selon le sexe, le niveau de diplôme, de revenus et les charges d\'enfant des conjoints. En particulier les chances de se remettre en couple après une séparation est plus important pour les hommes que pour les femmes, y compris lorsque ceux-ci ont des enfants à charge[[11]](#_ftn11). Les femmes se remettent aussi d\'autant moins en couple que leurs revenus sont élevés[[12]](#_ftn12). La durée même de ces différences périodes semblent également être déterminante. Les travaux existants suggèrent que les liens qui unissent beaux-parents et beaux enfants sont extrêmement liés à la fois à l\'âge de ceux-ci lors de recomposition et la durée de la cohabitation[[13]](#_ftn13). Refaire l\'histoire de ces formes familiales permet aussi de ne pas réifier les catégories aujourd\'hui utilisées pour les décrire. Historiquement, la gestion monoparentalité et de la remise en couple n\'a pas été identique selon le sexe, le statut marital et la classe sociale.
+Réhistoriciser la configuration familiale recomposée invite, on le voit, à se pencher sur l'histoire des familles monoparentales. Non seulement pour les comparer, mais surtout parce qu'elles ne sont pas des types différents de familles mais des périodes successives des biographies individuelles et familiales. Bien sûr toutes les familles nucléaires ne deviennent pas monoparentales puis recomposées, ces chances diffèrent selon le sexe, le niveau de diplôme, de revenus et les charges d'enfant des conjoints. En particulier les chances de se remettre en couple après une séparation est plus important pour les hommes que pour les femmes, y compris lorsque ceux-ci ont des enfants à charge[[11]](#_ftn11). Les femmes se remettent aussi d'autant moins en couple que leurs revenus sont élevés[[12]](#_ftn12). La durée même de ces différences périodes semblent également être déterminante. Les travaux existants suggèrent que les liens qui unissent beaux-parents et beaux enfants sont extrêmement liés à la fois à l'âge de ceux-ci lors de recomposition et la durée de la cohabitation[[13]](#_ftn13). Refaire l'histoire de ces formes familiales permet aussi de ne pas réifier les catégories aujourd'hui utilisées pour les décrire. Historiquement, la gestion monoparentalité et de la remise en couple n'a pas été identique selon le sexe, le statut marital et la classe sociale.
 
 [[1]](#_ftnref1)François de Singly, *Fortune et infortune de la femme mariée: sociologie de la vie conjugale*, Paris, France, Presses universitaires de France, 1987, 229 p.
 
@@ -101,29 +178,29 @@ François de Singly, « Le second mari », *Population*, 1983, vol. 38, n^o^
 
 [[2]](#_ftnref2) François de Singly, *Le soi, le couple et la famille*, Paris, France, Nathan, 2000, 255 p.
 
-François de Singly, *Libres ensemble: l\'individualisme dans la vie commune*, Paris, France, Nathan, 2000, 253 p.
+François de Singly, *Libres ensemble: l'individualisme dans la vie commune*, Paris, France, Nathan, 2000, 253 p.
 
 [[3]](#_ftnref3) Emile Durkheim, « La famille conjugale » dans *Émile Durkheim, Textes. 3. Fonctions sociales et institutions*, Paris, Les Éditions de Minuit, 1975, p. 35‑49.
 
 [[4]](#_ftnref4) Sylvie Cadolle, « Etre parent, être beau-parent: la recomposition de la famille ».
 
-[[5]](#_ftnref5) Sylvie Cadolle, « Séparation et recomposition familiale d\'après les livres pour enfants », *Revue des politiques sociales et familiales*, 2001, vol. 64, n^o^ 1, p. 19‑33.
+[[5]](#_ftnref5) Sylvie Cadolle, « Séparation et recomposition familiale d'après les livres pour enfants », *Revue des politiques sociales et familiales*, 2001, vol. 64, n^o^ 1, p. 19‑33.
 
-[[6]](#_ftnref6) Jean-Louis Flandrin, *Familles: parenté, maison, sexualité dans l\'ancienne société*, Paris, France, Éd. du Seuil, 1984, 285 p.
+[[6]](#_ftnref6) Jean-Louis Flandrin, *Familles: parenté, maison, sexualité dans l'ancienne société*, Paris, France, Éd. du Seuil, 1984, 285 p.
 
-[[7]](#_ftnref7) Antoine Rivière, « Mères sans mari. Filles-mères et abandons d\'enfants (Paris, 1870-1920) », *Genre & Histoire*, 1 février 2016, n^o^ 16.
+[[7]](#_ftnref7) Antoine Rivière, « Mères sans mari. Filles-mères et abandons d'enfants (Paris, 1870-1920) », *Genre & Histoire*, 1 février 2016, n^o^ 16.
 
-[[8]](#_ftnref8) Christel Chaineaud, « L\'amélioration de la protection sociale des veuves dans l\'entre-deux-guerres ou la veuve bénéficiaire directe des mesures législatives », *Revue d\'histoire de la protection sociale*, 2009, N° 2, n^o^ 1, p. 65‑76.
+[[8]](#_ftnref8) Christel Chaineaud, « L'amélioration de la protection sociale des veuves dans l'entre-deux-guerres ou la veuve bénéficiaire directe des mesures législatives », *Revue d'histoire de la protection sociale*, 2009, N° 2, n^o^ 1, p. 65‑76.
 
 [[9]](#_ftnref9)On reprend ici les deux modèles définit par Céline Clément et Catherine Bonvalet dans « Familles recomposées et ancrage résidentiel », *Espaces et societes*, 2005, n° 120-121, n^o^ 1, p. 79‑97.
 
 [[10]](#_ftnref10) *Ibid.*
 
-[[11]](#_ftnref11) Hicham Abbas et Bertrand Garbinti, « De la rupture conjugale à une éventuelle remise en couple : l\'évolution des niveaux de vie des familles monoparentales entre 2010 et 2015 » dans Institut national de la statistique et des études économiques (ed.), *France, portrait social*, Montrouge, 2019, p. 99‑114.
+[[11]](#_ftnref11) Hicham Abbas et Bertrand Garbinti, « De la rupture conjugale à une éventuelle remise en couple : l'évolution des niveaux de vie des familles monoparentales entre 2010 et 2015 » dans Institut national de la statistique et des études économiques (ed.), *France, portrait social*, Montrouge, 2019, p. 99‑114.
 
 [[12]](#_ftnref12) F. de Singly, « Le second mari », art cit.
 
-[[13]](#_ftnref13) Thierry Blöss et Irène Préfacier Théry, *Éducation familiale et beau-parenté: l\'empreinte des trajectoires biographiques*, Paris, France, 1996, 190 p.
+[[13]](#_ftnref13) Thierry Blöss et Irène Préfacier Théry, *Éducation familiale et beau-parenté: l'empreinte des trajectoires biographiques*, Paris, France, 1996, 190 p.
 
 Les CAF et le fisc, selon que le couple cohabite ou qu'il est uni légalement, ne font pas de différence dans la comptabilisation des enfants à charge entre les familles nucléaires et les familles recomposées : tous les enfants sont à charge des deux conjoints, quelle que soit leur filiation[[3]](#_ftn3).
 
@@ -149,10 +226,6 @@ Prendre en compte les liens : les variables de liens et leur limites
 Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. La majorité d'entre elles ne permettent pas de distinguer les distinguer parce qu'elles n'interrogent que la composition du ménage et non les relations qui unissent les individus qui y appartiennent (Guy, 1993). S'intéresser aux pratiques économiques des individus qui y appartiennent permettra justement de questionner cette assimilation.
 
 Cela s'explique sans doute par le fait que, contrairement aux familles monoparentales,
-
-## La situation des enfants : le point de départ des construction de catégorie
-
-Enfant qui fait famille [ref de saingly, enfant qui fait famille]
 
 # Beaux-enfants, beaux-parents, remises en couples et familles recomposées
 
@@ -181,5 +254,3 @@ approche par les enfants, usuel dans la stat publique
 ```{r}
 # source("././Code/05a_regressions_dépenses.R")
 ```
-
-# Bibliographie
