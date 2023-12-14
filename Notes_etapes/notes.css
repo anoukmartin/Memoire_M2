@@ -1,6 +1,14 @@
 /* This template was modified by Brent Thorne from the 'default-page.css, and default.css' file please see the wonderful work done by Yihui Xhe and Romain Lesaur on that package at https://github.com/rstudio/pagedown */
 
-@import 'https://fonts.googleapis.com/css?family=Alegreya';
+@font-face {
+    font-family: "Alegreya";
+    src: url(https://fonts.googleapis.com/css?family=Alegreya);
+}
+@font-face {
+    font-family: "Alegreya";
+    src: url("https://fonts.googleapis.com/css?family=Alegreya+SC");
+    font-variant: small-caps;
+}
 
 /* page size */
 @page {
@@ -206,6 +214,7 @@ p.abstract {
   line-height: 200%;
 }
 body {
+  font-family: Alegreya;
   font-size: 12pt;
   line-height: 120%;
   
@@ -230,7 +239,7 @@ h3 {
   font-style: italic;
 }
 .caption {
-  font-size: 9pt;
+  font-size: 11pt;
   line-height: normal;
   padding-left: 1cm;
   padding-right: 1cm;
@@ -257,7 +266,7 @@ code {
   position: relative;
 }
 p {
-  line-height: 110%;
+  line-height: 130%;
   text-indent: 10%;
   text-align: justify;
 }
