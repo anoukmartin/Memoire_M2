@@ -1,0 +1,7 @@
+
+# Images 
+*.PNG
+
+# Fichiers de production 
+*.js
+*tabwid.css
