@@ -55,6 +55,48 @@ rm(theme_gtsum)
 
 library(questionr)
 library(gt)
+library(gtExtras)
+gt_theme_custom <- function(gt_object) {
+  stopifnot(`'gt_object' must be a 'gt_tbl', have you accidentally passed raw data?` = "gt_tbl" %in% 
+              class(gt_object))
+  gt_object %>% 
+    opt_table_font(font = list(google_font("Alegreya"), 
+                               default_fonts()))}
+
+# Une fonction pour les tableaux "gt" 
+add_gtsource_note <- function(gt_object, 
+                              source = paste0(infosBDF$nom, 
+                                              ", ", 
+                                              infosBDF$vague), 
+                              champ = infosBDF$champ, 
+                              N, 
+                              lecture = NULL) {
+  
+  stopifnot(`'gt_object' must be a 'gt_tbl', have you accidentally passed raw data?` = "gt_tbl" %in% 
+              class(gt_object))
+  
+  if(!is_null(lecture)) {
+    lecture <- paste0("**Lecture** : ", lecture)
+  } else {
+    message("l'argument lecture est manquant")
+  }
+  if(!is_null(source)) {
+    source <- paste0("**Source** : ", source)
+  } else {
+    message("l'arguement source est manquant")
+  }
+  if(!is_null(champ)){
+    champ <- paste0("**Champ** : ", champ, " (N = ", N, ").")
+  } else {
+    message("les arguments champ et/ou N sont manquants")
+  }
+  
+  gt_object <- gt_object %>%
+    gt::tab_source_note(md(c(source, champ, lecture)))
+  return(gt_object)
+}
+
+
 library(flextable)
 
 # Mise en forme graphiques
