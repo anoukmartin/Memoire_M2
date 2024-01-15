@@ -22,7 +22,9 @@ editor_options:
 
 # Introduction
 
-En 2019, la réforme du prélèvement à la source de l'impôt sur le revenu a instauré un partage par défaut de la charge fiscale entre conjoints. Depuis, un taux dit *personnalisé* est calculé pour chaque foyer fiscal, et ce taux est appliqué de manière égale aux salaires des deux conjoints, établissant ainsi le partage proportionnel de la charge fiscale comme norme dans les couples.
+En 2019, la réforme du prélèvement à la source de l'impôt sur le revenu (IR) instaure un partage par défaut de la charge fiscale entre conjoint·e·s marié·e·s ou pacé·e·s. Un taux dit *personnalisé* est calculé pour chaque foyer fiscal et appliqué de manière identique aux salaires des deux conjoint·e·s. Il reste possible, pour les conjoint·e·s, de fixer librement un taux dit *individualisé*, c'est à dire propre à chacun·e. Ainsi, cette réforme établit le partage proportionnel de la charge fiscale comme norme dans les couples, et fait apparaitre tout autre arrangement comme Cette logique proportionnelle s'oppose, *a priori*, à la logique de l'imposition des revenus en France, qui depuis 1916 est un impôt progressif.
+
+En effet, si l'IR, par sa progressivité a un effet redistributif entre foyers fiscaux, il peut, selon les choix opérés dans un couple en matière de formalisation administrative des relations, de cohabitation, de déclaration des revenus et de partage de la charge fiscale, avoir des effets anti-redistributifs entre conjoint·e·s **(Carbonnier)**. Si le caractère effectif de cette redistributivité entre ménages de différents niveau de vie a été discuté **(Piketty, blabla)**, largement tributaire de la domestication des regles fiscales par les classes dominantes (Spire, les effets du système socio-fiscal sur la répartition des revenus au sein des ménages sont restés relativements peu abordés. Pourtant,
 
 individualisation de l'AAH?
 
@@ -56,7 +58,9 @@ Technicité mais aussi sens commun fiscal
 
 distance ou proximité // droit
 
-# Axe 4 : Déclarations aux institutions et formalisation des relations familiales 
+modalité par défaut
+
+# Axe 4 : Déclarations aux institutions et formalisation des relations familiales
 
 faire sociologie de la déclaration
 
@@ -64,9 +68,9 @@ comment est produit un consensus sur ce qu'est la relation, et donc sur la mani�
 
 # Axe 5 : Partage de la charge fiscale et appropriations des prestations sociales
 
-# Méthodologie envisagée : 
+# Méthodologie envisagée :
 
-## Volet quantitatif 
+## Volet quantitatif
 
 ## Volet qualitatif
 
