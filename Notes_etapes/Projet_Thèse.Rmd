@@ -22,9 +22,65 @@ editor_options:
 
 # Introduction
 
-En 2019, la réforme du prélèvement à la source de l'impôt sur le revenu (IR) instaure un partage par défaut de la charge fiscale entre conjoint·e·s marié·e·s ou pacé·e·s. Un taux dit *personnalisé* est calculé pour chaque foyer fiscal et appliqué de manière identique aux salaires des deux conjoint·e·s. Il reste possible, pour les conjoint·e·s, de fixer librement un taux dit *individualisé*, c'est à dire propre à chacun·e. Ainsi, cette réforme établit le partage proportionnel de la charge fiscale comme norme dans les couples, et fait apparaitre tout autre arrangement comme Cette logique proportionnelle s'oppose, *a priori*, à la logique de l'imposition des revenus en France, qui depuis 1916 est un impôt progressif.
+Le thème de la fraude sociale occupe une place, si ce n\'est centrale mais au moins récurrente, dans le débat public portant sur la sécurité sociale et plus généralement le financement de l\'Etat. Pourtant, les montants concernés restent sans commune mesure avec la fraude fiscale qui pèse largement plus dans le budget de l\'Etat[^1]. D\'un coté, les travaux de sociologie sur la fraude fiscale, ont envisagé celle-ci comme un illégalisme ideal-typique de la bourgeoisie (Sutherland, Edwin Hardin (1950). *White Collar Crime, LASCOUMES Pierre, Élites irrégulières. Délinquance en col blanc, Paris, Gallimard, 1997.*). Plus largement, ils montrent que les pratiques d\'optimisation et de fraude fiscale situées dans les classes sociales les plus riches, et concernent des montants plus importants (Spire, faibles et puissant face à l\'impot), à tel point qu\'elles remettent en cause la redistributivité de l\'impôt en France (Piketty, ???). A l\'inverse les travaux portant sur la fraude sociale s\'intéressent d\'avantage aux classes populaires et insistent sur les erreurs de déclaration commise face à un ensemble de règles complexes et sur l\'intensité des contrôles subis par les bénéficiaires dont les marges de manœuvres sont réduites (Dubois, controler les assistés).
 
-En effet, si l'IR, par sa progressivité a un effet redistributif entre foyers fiscaux, il peut, selon les choix opérés dans un couple en matière de formalisation administrative des relations, de cohabitation, de déclaration des revenus et de partage de la charge fiscale, avoir des effets anti-redistributifs entre conjoint·e·s **(Carbonnier)**. Si le caractère effectif de cette redistributivité entre ménages de différents niveau de vie a été discuté **(Piketty, blabla)**, largement tributaire de la domestication des regles fiscales par les classes dominantes (Spire, les effets du système socio-fiscal sur la répartition des revenus au sein des ménages sont restés relativements peu abordés. Pourtant,
+[^1]: Chiffres d\'Alter Eco, qui reprennent ceux de la cour des comptes
+
+Ces travaux invitent à rompre avec une vision positive du droit qui oppose optimisation et fraude, pour penser un « *continuum entre l\'optimisation tolérée par les textes et celle qui s\'exerce en violant les règles »* (Spire, domestication, P ? ) et à penser les processus de qualification sociale et judiciaire des pratiques d\'optimisation fiscale ou sociale, comme des processus différenciés selon les classes sociales (spire, illégalismes ou faibles et puissants ?). Que l\'on considère les polémique autour autour de l'usage des allocations de rentrée scolaire, au marronnier des pauvres qui feraient des enfants pour allocations ou plus réclament à l'indignation suscité par un youtubeur, Mertel B, se vantant de toucher près de 1 800 euros d\'aides sociales sans occuper d'emploi, c'est d'avantage le droit de décider de toucher ou non des préstations sociales et de faire usage de cet argent librement qui est condamné que la fraude - souvent inexistante - en elle même.
+
+S\'il est vrai que les montants concernés par ces pratiques sont sans commune mesure avec ceux concernés par la fraude fiscale et que les classes populaires font l\'objet d\'un encadrement resserré par les administrations sociales, il reste un domaine dans lequel le système socio-fiscal laisse, dans toutes les strates sociales, de marges de manœuvres : celui de la famille[^2]. En effet, suivant que les couples choisissent une union légale (mariage, pacs) ou non, qu'ils cohabitent ou non, ils n\'obtiendrons pas les mêmes avantages fiscaux et prestations sociales. Les conjoints séparés, divorcés ou simplement non-unis légalement peuvent aussi choisir lequel des deux déclare les parts fiscales que représentent les enfants communs, presque indépendamment de leur lieu de résidence, ouvrant ou fermant alors l'accès à des prestations sociales et des avantages fiscaux. Rien n'encadre précisément la répartition entre conjoints des prestations sociales, qui sont versées par défaut au conjoint possédant le compte CAF pour la famille. Enfin, la prise en charge des dépenses de fiscalité des revenus est, depuis la mise en place du prélèvement à la source, par défaut proportionnelle aux revenus des conjoints, mais la modification des taux de prélèvement reste entièrement possible.
+
+[^2]: C\'est d\'ailleurs un des leviers de la « domestication » de l\'impot par les classes dominantes étudié par Alexis Spire
+
+Ces marges de manoeuvre ne sont pas à analyser uniquement comme des incohérences entre règles ou comme inadaptation du système socio-fiscal à la réalité sociale des administrés. Ces réticences de l\'Etat social à légiférer sur ce qui se passe à l\'intérieur des familles caractérise ce que Rémi Lenoir (généalogie) a appelé un *familialisme d'Etat* par lequel l'Etat fait de la famille à la fois le support élémentaire des politiques publiques et une unité insécable et privée dans laquelle l'Etat n'a pas à s'immiscer. Ainsi considérer que la CNAF qui reconnait la cohabitation entre conjoints est incohérent avec le fisc qui ne reconnait que l\'union légale (mariage ou pacs) pour conjugaliser droits sociaux ou avantages fiscaux, c\'est oublier que cette conjugalisation de l\'impôt est un des motifs pour lequel les individus ont recours à une union légale (Rault, ???). Ainsi c'est dans ces espaces laissés au libre choix des conjoints que se déploient les pratiques d\'optimisation que l\'on peut étudier.
+
+Ainsi on préfèrera employer le terme d\'*arrangements*, tel que définit par Céline Bessière ( ????) avec le système socio-fiscal car débarrassé des connotations morales associés aux termes d\'optimisation ou de fraude.
+
+# TRASH 
+
+En 2019, la réforme du prélèvement à la source de l'impôt sur le revenu (IR) instaure un partage par défaut de la charge fiscale entre conjoint·e·s marié·e·s ou pacé·e·s. Un taux dit *personnalisé* est calculé pour chaque foyer fiscal et appliqué de manière identique aux salaires des deux conjoint·e·s. Il reste possible, pour les conjoint·e·s, de fixer librement un taux dit *individualisé*, c'est à dire propre à chacun·e. Ainsi, cette réforme établit le partage proportionnel de la charge fiscale comme norme dans les couples, et fait apparaître tout autre arrangement comme marginal. Cette logique proportionnelle s'oppose, *a priori*, à la logique de l'imposition des revenus en France, qui depuis 1916 est se fait via un impôt progressif.
+
+En effet, si l'IR, par sa progressivité a un effet redistributif entre foyers fiscaux, il peut, selon les choix opérés dans un couple en matière de formalisation administrative des relations, de cohabitation, de déclaration des revenus et de partage de la charge fiscale, avoir des effets anti-redistributifs entre conjoint·e·s **(Carbonnier)**. Si le caractère effectif de la redistributivité de l'ensemble du système socio-fiscal entre ménages de différents niveau de vie a été discuté **(Piketty, blabla)**, largement tributaire de la domestication des règles fiscales par les classes dominantes **(Spire,),** les effets du système socio-fiscal sur la répartition des revenus au sein des ménages sont restés relativement peu abordés. Ainsi, les effet distributifs du système socio-fiscal entre groupes sociaux de sexes restent relativement peu étudiés alors même que ceux ci informent largement le rapport qu'entretiennent les individus à l'Etat (Spire GJ) et la manière dont l'Etat façonne les rapports sociaux (blabla ??)
+
+blablabla l'Etat et les rapports sociaux de sexe.
+
+[Grande question : système socio-fiscal et rapport sociaux]{.underline}
+
+Pourtant, devant les mobilisation en faveur de la déconjugalisation de certaines prestation sociale, comme l'Allocation Adulte Handicapé
+
+Ceci s'explique pour partie par la domination du ménage comme unité statistique de référence dans les grandes enquêtes économiques de la statistique publique, qui rend difficile l'accèes à des données à l'échelle de l'individu, et a pour effet de creer une fiction d'égalité entre conjoint.e.s.
+
+Or si le système socio-fiscal encadre très fortement les individus appartenant aux classes sociales modestes, qui sont à la fois exlcus des processus de décisons déterminant la mise en place des règles socio-fiscales, **(Spire domestication de l'impôt)**, objets de contrôles privilégiés **(Dubois, ??)** et plus fortement condamnés pour leurs illéglismes **(Spire, gestion des illegalismes)**, dans l'ensemble de la société, l'encadrement des choix qui peuvent être opérés au sein des couples reste relativement faible.
+
+qui ne sont pas a envisager comme des incohérences entre les différentes instances du système socio-fiscal, mais comme plutot comme elements constitutifs sa familiarisation, que se déploient des arrangement conjugaux qu'il convient d'étudier pour discuter des effets du système sociaux fiscal sur les inégalités non seulement entre classes sociales mais aussi entre groupes sociaux de sexe.
+
+-\> rompre avec l'idée que ce sont des incohérences, idée que l'Etat n'a pas aller regarder ce qui se passe dans l'intimité conjugale donc on laisse faire les individus
+
+-\> ce sont précisément dans ces déajustements entre différentes regles que se déploient des arra,gement qui sont interessantes à étudier
+
+et que les arrangements avec celui-ci sont socialement plus fortement condamnés
+
+Or, le système sociofiscal laisse une place importante aux arrangements conjugaux en matière de déclaration
+
+S'interroger sur les effets distributifs du système socio-fiscal entre conjoints suppose de dépasser l'unité statistique du ménage et l'unité administrative du foyer fiscal ou du logement pour s'inetersser aux arrangement
+
+# Grandes questions :
+
+-   Etat et ordre du genre, de classe, de race, d'âge
+-   Effets distributifs du système socio-fiscal au sein des couples !
+
+# Envoyer un mail à Nicolas Duvoux,
+
+# un rdv, rappeller le calendrier.
+
+# conseils prohjet de thèse
+
+-   grande idée grande question, à la fois théorique et d'actualité
+-   grands enjeux, politiques, théoriques, d'actualité
+-   procéder par analyse, une question, et on décompose.
+-   problématique, objet pour traiter cette problématique, méthode.
+
+# 
 
 individualisation de l'AAH?
 
