@@ -21,19 +21,63 @@ bibliography: biblio_projet_these.bib
 csl: revue-francaise-de-sociologie.csl
 ---
 
-# Introduction
+# Projet de thèse
 
-Presque absente du débat politique au milieu des années 1980, la thématique de la fraude aux prestations sociales occupe désormais une place centrale dans le débat public portant sur la sécurité sociale et plus généralement sur le financement de l'État [@dubois2020]. Pourtant, les montants concernés restent sans commune mesure avec la fraude fiscale qui pèse largement plus dans le budget de l'État[^1]. Ainsi, d'un côté, les travaux de sociologie portant sur la fraude fiscale, ont envisagé celle-ci comme un illégalisme ideal-typique de la bourgeoisie [@sutherland1983; @lascoumes1997] et ont montré que les pratiques d'optimisation et de fraude fiscale sont situées dans les classes sociales les plus riches et concernent des montants plus importants [@spire2012]. De l'autre coté, les travaux portant sur la fraude aux prestations sociales s'intéressent d'avantage aux classes populaires et insistent sur les erreurs de déclaration commises face à un ensemble de règles complexes, les erreurs provenant des administrations elles-mêmes et sur l'intensité des contrôles subis par les bénéficiaires dont les marges de manœuvres sont réduites [@dubois2021].
+## Introduction
+
+Presque absente du débat politique au milieu des années 1980, la thématique de la fraude aux prestations sociales occupe désormais une place centrale dans le débat public portant sur la sécurité sociale et plus généralement sur le financement de l'État [@dubois2020]. Pourtant, les montants concernés parce cette "pauvre fraude" [@dubois2021, p.423] restent sans commune mesure avec la fraude fiscale qui pèse largement plus dans le budget de l'État[^1]. Ainsi, d'un côté, les travaux de sociologie portant sur la fraude fiscale, ont envisagé celle-ci comme un illégalisme ideal-typique de la bourgeoisie [@sutherland1983; @lascoumes1997] et ont montré que les pratiques d'optimisation et de fraude fiscale sont situées dans les classes sociales les plus riches et concernent des montants plus importants [@spire2012]. De l'autre coté, les travaux portant sur la fraude aux prestations sociales s'intéressent d'avantage aux classes populaires et insistent sur les erreurs de déclaration commises face à un ensemble de règles complexes, les erreurs provenant des administrations elles-mêmes et sur l'intensité des contrôles subis par les bénéficiaires dont les marges de manœuvres sont réduites [@dubois2021].
 
 [^1]: Chiffres d'Alter Eco, qui reprennent ceux de la cour des comptes
 
+Nous voudrions ici prendre pour objet d'étude l'ensemble de ces pratiques de fraude, d'optimisation ou d'erreur mise en oeuvre par les administrés. Cela suppose d'effectuer plusieurs mouvements. D'abord, comme ces travaux le proposent, il s'agira de penser la fraude et l'optimisation sur un *"continuum entre l'optimisation tolérée par les textes et celle qui s'exerce en violant les règles"* [@spire2011 p.5] et d'évacuer la distinction, rarement pertinente, entre fraude et erreur [@dubois2009]. Refuser ces oppositions permet de penser ensemble une diversité de pratiques en matière de formalisation administrative, de déclaration aux institutions et de répartition économique des dépenses fiscales et prestations sociales, que l'on propose de considéré comme des "arrangements familiaux" [@bessière2022] puisque les dispositifs fiscaux et les aides sociales sont largement conjugalisés et familialisés en France [@lenoir2003]. Il ne s'agit donc plus déterminer quelle pratique relève de l'optimisation, de la fraude, de l'erreur, mais de penser les processus de qualification sociale et judiciaire de ces pratiques, pensés comme des processus différenciés et traversés par des rapports sociaux de classe, de sexe et de race. Ce premier mouvement invite à un second : considérer que ces arrangements avec les règles de l'Etat social ne concerne ni seulement les plus riches, ni seulement les plus pauvres, mais relèvent de pratiques ordinaires, dont l'exemple le plus trivial est sans doute celui des couples se mariant "pour les impôts". Si les classes populaires entretient un rapport plus distant aux regles de calculs appliquée par l\'État social que les classes dominantes [@spire2018], elles ne subissent pas passivement leur application pour autant [@dubois2015], et sont, en particulier les femmes, largement socialisées prendre en charge le travail administratif qu'engendre la perception d'aides sociales [@siblot2006]. Cela ne signifie pas pour autant evacuer la question de la différenciation sociale de ces pratiques. Les classes populaires, en particulier les fractions les moins stables, sont d'avantages concernées par les prestations sociales que les classes aisées [mettre des chiffres]
+
+classes populaires qui sont plus concernés par les prestations sociales, chiffres sur le nombre de foyers imposable vs RSA, mais impôt sur le revenu ne concerne pas ... (mais ils doivent quand même déclarer). mais même quand pas imposable, déclaration, et souvent cela la non imposabilitée repose aussi sur la déclaration de charge de famille, A l'inverse les richoux qui sont imposables, qui ne toucent pas des prestations de solidarité, mais ils sont quand meme éligible aux allocation familiales.
+
+Ces arrangement familiaux [@bessière2022] ne peuvent alors être étudier qu'a condition de les avantages fiscaux et les prestations sociales ensemble, comme faisant partie de la même architecture de dispositifs : le système socio-fiscal français.
+
+refuser opposition fraude / optiisation / erreur
+
+rfuser opposition partqiues des riches / pratiques des pauvres
+
+opposition fiscal / social
+
+blabla, il faut penser le fisc et la caf ensemble, il faut penser les erreurs, les fraudes, les retards, et l'optimisation ensemble. Mais penser aussi les différences :
+
+Il ne s'agit plus de chercher à différencier ce qui relève de la fraude, de l'erreur ou bien de l'optimisation, mais d'étudier ensemble des pratiques qui relève d'arrangement
+
+*se déployant sur un « continuum entre l'optimisation tolérée par les textes et celle qui s'exerce en violant les règles » [@spire2011 p.5] et de penser les processus de qualification sociale et judiciaire de ces pratiques comme des processus différenciés et traversés par des rapports sociaux de classe, de sexe et de race. =\> pourrait aller ailleurs*].
+
+exemple le plus trivial : les couples qui se marient pour les impots.
+
+Etudier ces pratiques qui sont à l'interface entre l'État et la famille, mais en amont des administrations, avant que celle-ci ne puisse les saisir. Pertinence théorique pour voir ce que les catégories d'administration des populations font au catégories familiales ordinaires, mais difficulté méthodologique, parce qu'on ne s'interesse pas à quelque chose qu'on peut circonscrire de mannière instuuinelle, mais à ce qui se passe dans l'itimité familiale. donc terrain blablabl.
+
+Comment l'Etat façonne les rapports sociaux de sexe en encadrant les relations conjugales et familiales ? Et de manière différencié selon rapports sociaux de classe, race.
+
+## [Axe 1]{.underline}. Fraude, erreur ou optimisation : étudier les marges de manœuvres permises par la familialisation du système socio-fiscal
+
 Il est vrai que le système socio-fiscal français ni simple ni toujours très cohérent : suivant que les couples sont unis légalement (mariage, pacs) ou non, qu'ils cohabitent ou non, ils n'obtiennent pas les mêmes avantages fiscaux et prestations sociales. Les conjoints séparés, divorcés ou simplement non-unis légalement peuvent choisir lequel des deux déclare les parts fiscales que représentent les enfants communs. Les parents séparés bénéficient d'une demi-part fiscale supplémentaire, mais s'ils se remettent en couple et cohabitent, cette demi-part disparaît. Rien n'encadre précisément la répartition entre conjoints des prestations sociales, versées par défaut au conjoint possédant le compte CAF pour la famille. Enfin, la répartition de la charge fiscale de l'impôt sur le revenu est, depuis la mise en place du prélèvement à la source en 2019, par défaut proportionnelle aux revenus des conjoints, mais la modification des taux de prélèvement reste entièrement possible.
 
-Ces formes de décalages entre les règles de calcul des différentes administrations de l'État social ont souvent été analysées comme les effets d'un retard du droit civil de la famille par rapport aux évolutions sociales : augmentation de la part des couples en union libre (**? trouver une ref)**, banalisation des divorces et séparations [@chatain2020 ; @théry1993], apparition de nouvelles formes familiales [@théry1987] ou encore individualisation des patrimoines [@frémeaux2019]. Dans la sphère administrative, on analyse plutôt ces décalages comme des incohérences qui rendent le système socio-fiscal peut lisible pour les administrés [@coursdescomptes3023]. Tributaires d'une vision dukheimienne du droit comme cristallisation des transformations sociales [@durkheim1893], ces analyses occultent la force productrice du droit [@bourdieu1986]. Ainsi considérer que la CNAF qui reconnait la cohabitation entre conjoints n'est pas en cohérence avec le fisc qui ne reconnait que l'union légale (mariage ou pacs) pour conjugaliser droits sociaux ou avantages fiscaux, c'est oublier que cette conjugalisation de l'impôt fut un des arguments mobilisés par les associations de défense de droits des gays et lesbiennes pour la création du PACS et qu'elle reste un des motifs pour lequel les individus ont recours à une union légale [@rault2007]. De plus, l'État moderne libéral a construit une séparation stricte entre la sphère publique, espace dans lequel s'exerce la souveraineté de l'État, et la sphère privée, qui doit être protégée contre toute intrusion de l'État [@bereni2008]. Ainsi les réticences de l'État social à régler la totalité de ce qui se passe à l'intérieur des familles ne sont pas si étonnantes, elles caractérisent ce que Rémi @lenoir2003 a appelé un *familialisme d'État* par lequel l'État fait de la famille à la fois le support élémentaire des politiques sociales et une unité insécable relevant du privé dans laquelle l'État n'a pas à s'immiscer.
+Ces formes de décalages entre les règles de calcul des différentes administrations de l'État social ont souvent été analysées comme les effets d'un retard du droit civil de la famille par rapport aux évolutions sociales : augmentation de la part des couples en union libre (**? trouver une ref)**, banalisation des divorces et séparations [@chatain2020 ; @théry1993], apparition de nouvelles formes familiales [@théry1987] ou encore individualisation des patrimoines [@frémeaux2019]. Dans la sphère administrative, on analyse plutôt ces décalages comme des incohérences qui rendent le système socio-fiscal peut lisible pour les administrés [@coursdescomptes3023]. Tributaires d'une vision dukheimienne du droit comme cristallisation des transformations sociales [@durkheim1893], ces analyses occultent la force productrice du droit [@bourdieu1986]. Ainsi considérer que la CNAF qui reconnait la cohabitation entre conjoints n'est pas en cohérence avec le fisc qui ne reconnait que l'union légale (mariage ou pacs) pour conjugaliser droits sociaux ou avantages fiscaux, c'est oublier que cette conjugalisation de l'impôt fut un des arguments mobilisés par les associations de défense de droits des gays et lesbiennes pour la création du PACS et qu'elle reste un des motifs pour lequel les individus ont recours à une union légale [@rault2007]. L'État moderne libéral a construit une séparation stricte entre la sphère publique, espace dans lequel s'exerce la souveraineté de l'État, et la sphère privée, qui doit être protégée contre toute intrusion de l'État [@bereni2008]. Ainsi les réticences de l'État social à régler la totalité de ce qui se passe à l'intérieur des familles ne sont pas si étonnantes, elles caractérisent ce que Rémi @lenoir2003 a appelé un *familialisme d'État* par lequel l'État fait de la famille à la fois le support élémentaire des politiques sociales et une unité insécable relevant du privé dans laquelle l'État n'a pas à s'immiscer.
 
-Dès lors, ces décalages dans les règles de calculs des avantages fiscaux et prestations sociales sont moins intéressants à analyser comme des incohérences ou des inadaptations que comme les résultats d'un système socio-fiscal largement conjugalisé et familialisé, qui constituent autant d'espaces de marges de manœuvre pour les individus. Ainsi, il ne s'agit plus de chercher à différencier ce qui relève de la fraude, de l'erreur ou bien de l'optimisation, mais d'étudier un ensemble de pratiques se déployant sur un « *continuum entre l'optimisation tolérée par les textes et celle qui s'exerce en violant les règles »* [@spire2011 p.5] et de penser les processus de qualification sociale et judiciaire de ces pratiques comme des processus différenciés et traversés par des rapports sociaux de classe, de sexe et de race. On préférera parler d'*arrangements familiaux* avec le système socio-fiscal, tel qu'il a été définit par Céline Bessière [-@bessière2022]. En plus d'évacuer la connotation morale, ce terme permet d'éviter l'économicisme consistant à supposer que les pratiques étudiées sont des choix qui répondent à des calculs rationnels d'optimisation à l'échelle de la famille [@becker1998] qui viseraient avant tout à réduire le montant d'impôt payé (les *outputs*) et maximiser le montant de prestations sociales perçues (les *inputs*) comme peuvent le faire les travaux d'économie portant sur les incitations des allocations familiales à la fécondité [@gauthier1997] ou sur les incitations fiscales au travail des femmes [@carbonnier2021]. Cela ne signifie pas pour autant ignorer la logique de ces arrangements : Céline Bessière et Sibylle Gollac [-@bessière2020] ont bien montré que la réduction du montant de l\'impôt sur les successions est un des moteurs des arrangements économiques familiaux au moment de l'héritage. Si pratiques d'optimisation il y a, il faut alors se demander pour qui l'arrangement est optimisé. En fonctions de l'inégalité des revenus dans le couples, du partage des dépenses ou encore de la part des ressources mises en commun, les conjoints n'ont pas nécessairement les mêmes intérêts à ces arrangements. Plus que le terme de négociation, qui fait du résultats de celle-ci le fruit de capacités individuelles à imposer ses intérêts, le terme d'*arrangement* permet de "*penser la production plus ou moins formalisée d'un consensus entre des personnes apparentées qui ont éventuellement des intérêts contradictoires et sont prises localement dans des rapports de pouvoir, et plus généralement dans des rapports de domination qui les dépassent*" [@bessière2022, p. 49].
+Dès lors, ces décalages dans les règles de calculs des avantages fiscaux et prestations sociales sont moins intéressants à analyser comme des incohérences ou des inadaptations que comme les résultats d'un système socio-fiscal largement conjugalisé et familialisé, qui constituent autant d'espaces de marges de manœuvre pour les individus. On préférera donc parler d'*arrangements familiaux* avec le système socio-fiscal, tel qu'il a été définit par Céline Bessière [-@bessière2022]. En plus d'évacuer la connotation morale, ce terme permet d'éviter l'économicisme consistant à supposer que les pratiques étudiées sont des choix qui répondent à des calculs rationnels d'optimisation à l'échelle de la famille [@becker1998] qui viseraient avant tout à réduire le montant d'impôt payé (les *outputs*) et maximiser le montant de prestations sociales perçues (les *inputs*) comme peuvent le faire les travaux d'économie portant sur les incitations des allocations familiales à la fécondité [@gauthier1997] ou sur les incitations fiscales au travail des femmes [@carbonnier2021]. Cela ne signifie pas pour autant ignorer la logique de ces arrangements : Céline Bessière et Sibylle Gollac [-@bessière2020] ont bien montré que la réduction du montant de l'impôt sur les successions est un des moteurs des arrangements économiques familiaux au moment de l'héritage. Si pratiques d'optimisation il y a, il faut alors se demander pour qui l'arrangement est optimisé. En fonctions de l'inégalité des revenus dans le couples, du partage des dépenses ou encore de la part des ressources mises en commun, les conjoints n'ont pas nécessairement les mêmes intérêts à ces arrangements. Plus que le terme de négociation, qui fait du résultats de celle-ci le fruit de capacités individuelles à imposer ses intérêts, le terme d'*arrangement* permet de "*penser la production plus ou moins formalisée d'un consensus entre des personnes apparentées qui ont éventuellement des intérêts contradictoires et sont prises localement dans des rapports de pouvoir, et plus généralement dans des rapports de domination qui les dépassent*" [@bessière2022, p. 49].
 
-Il ne s'agit pas pour autant d'ignorer les logiques
+Ces arrangements économiques avec le système socio-fiscal peut être analysé sur deux plans :
+
+*[D'une part, l'État social demande en permanence aux couples de produire des consensus formalisables selon les termes des administrations. D'autre part, la faiblesse de l'encadrement par l'État de la répartition des revenus, de la participation aux dépenses ou de la mise en commun des ressources dans un couple autorise largement les arrangements sur le partage de l'argent]*
+
+## [Axe 2.]{.underline} Déclaration aux institutions et formalisation des relations familiales : des catégories familiales administratives aux catégories ordinaires
+
+Dans le système socio-fiscal français, les droits sociaux ou les avantages fiscaux sont rarement octroyés de manière automatique aux individus qui remplissent les conditions d'attribution. Lorsqu'ils ne doivent pas faire l'objet d'une demande spécifique, ils reposent *a minima* sur la déclaration d'un changement de situation économique ou familiale. Rien ne va pourtant de soi dans ces déclarations aux administrations puisqu'on estime à un tiers la part des foyers éligibles au RSA qui n'en ferait pas la demande [@hannafi2022]. Si la méconnaissance des règles fiscales explique une partie du non-recours à certains avantages [@spire2012], c'est loin d'être la seule explication pour les prestations sociales [@warin2014]. Les classes populaires, et en particulier les femmes y appartenant, sont plus que les autres, socialisées à la gestion du travail administratif qu'implique la perception de prestations sociales [@siblot2006] et qui fait partie intégrante du "travail de subsistance" [@laville2019]. C'est d'avantage le stigmate qui porte sur les "assistés" qui "profitent" du système, souvent intériorisé par les individus éligibles eux-mêmes [@paugam2009] qui peut expliquer que certains individus, refusant de "demander l'aumône" [@siblot2006], ne fasse pas les démarches nécessaires pour obtenir les prestations auxquelles ils ont *a priori* droit.
+
+De la même manière que faire une demande de prestation suppose de savoir que l'on est éligible et de considérer que l'on est légitime à percevoir cette prestation, on peut penser que déclarer un changement de situation à la CAF ou au fisc met en jeu la connaissance des effets de cette déclaration sur les droits sociaux et avantages fiscaux et la perception de la légitimité de ceux-ci : *à quelles conditions un transfert entre personnes apparentées ou une nouvelle relation conjugale est considéré comme devant faire l'objet d'une déclaration au fisc ou la CAF ?* C'est justement la production de ces réponses à l'intérieur des familles que l'on voudrait étudier en tant qu'arrangements. Ces déclaration mettent aussi en jeu des choix permis par le droit d'option : *Comment choisit-on l'allocataire principal à la CAF ou le parent déclarant les parts fiscales que représentent les enfants* ? L'État social semble, en permanence, demander aux couples de produire des consensus formalisables selon les termes des administrations. Etudier les arrangements ainsi produits suppose d'interroger le travail de traduction effectué par les individus pour traduire l'état de leurs relations dans le langage des institutions de l'État social, pour qu'il coïncide avec les catégories administratives. Cela suppose de questionner les modalités de production de ce consensus sur les relations et son caractère éventuellement conflictuel. L'État social effectue aussi un travail de normalisation des situations individuelles qui s'opère par un travail "d'inculcation des catégories d'État" [@dubois2015, p.15]. *Deux personnes ayants des rapports sexuels et partageant un appartement se considèrent-elles en couple car la CAF le fait ? Un beau-père ou une belle-mère considère il les enfants de son conjoint comme les siens si ceux-ci sont à sa charge fiscale ?* Il s'agira donc de prêter attention à la manière dont les catégories familiales des administrations informent, en retour, les catégories ordinaires de description des relations familiales et conjugales. Enfin, il sera particulièrement intéressant d'étudier les pratiques de mise en conformité des relations avec des catégories administratives, par exemple, par recours au mariage au pacs pour être considéré comme couple aux yeux du fisc. Il s'agit là d'autant de pratiques qui peuvent être sous-tendu par une logique économique. Ces pratiques, nécessairement tributaires de la capacité à "domestiquer" [@spire2011], les règles fiscales et sociales, ne peuvent être analyser que comme des pratiques situées socialement. Enfin ces pratiques ne produisent pas nécessairement des effets identiques sur tous les individus du foyer ou ménage concerné. PLus généralement, étudier ces arrangements familiaux lié aux enjeux de déclaration aux administrations sociales ou fiscales permettra d'analyser modalités selon lesquelles les catégories administratives façonnent les relations familiales.
+
+## [Axe 3.]{.underline} Partage de la charge fiscale et appropriation des prestations familiales : étudier le marquage de genre des revenus de transferts
+
+modalité par défaut : PAS ou allocataire principale
+
+## [Axe 4]{.underline}. Les effets distributifs des arrangements socio-fiscaux sur la répartition secondaire des revenus :
+
+S'il est sans doute vrai que ces pratiques sont moins diversifiées et que les montants concernés sont sans commune mesure la fraude ou l'optimisation fiscale pratiquée par les ultra-riches, l'intérêt d'étudier ces pratiques ne réside pas ici. En effet, le système socio-fiscal par la progressivité de l'impôt sur le revenu ou les conditions de ressources sur lesquelles sont basées l'attribution de prestations sociales ont, *a priori*, un effet redistributif entre ménages. Le caractère effectif de la redistributivité de l'ensemble du système socio-fiscal entre ménages de différents niveau de vie a été discuté, en particulier pour les 5% les plus riches [@piketty2013], s'expliquant largement par des pratiques de fraudes mais surtout d'optimisation des classes dominantes [@spire2012]. De même la familialisation de l'impôt a fait l'objet de critiques car celle-ci organise une redistribution envers les couples mariés et pacsés les plus aisés [@andré2019], allant jusqu'à proposer d'individualiser l'impôt sur les revenus [@piketty2003]. Moins nombreux sont les travaux portants sur les effets redistributifs du système socio-fiscal entre homme et femmes. Du fait de leur sur-représentation parmi les ménages modestes et les parents de familles monoparentales, les femmes semblent bénéficier un peu plus que les hommes du système de redistribution : celui-ci réduit de 35% le taux de pauvreté des femmes, contre 34% pour les hommes et de 50% l'intensité de la pauvreté des femmes, contre 48% pour les hommes [@cabannes2023]. Pourtant, les effets du système socio-fiscal sur la répartition secondaires des revenus entre groupes sociaux de sexe sont difficilement appréciables si l'on reste à l'échelle du ménage : le mode calcul du niveau vie à l'échelle du ménage, véritable "cache-sexe" des inégalités de genre [@bessière2016], uniformise nécéssairement le niveau de vie des hommes et femmes en couple. Pourtant, selon les choix opérés dans un couple en matière de formalisation administrative des relations, de cohabitation, de déclaration des revenus et de partage de la charge fiscale, l'impôt sur le revenu peut avoir des effets anti-redistributifs entre conjoint·e·s [@carbonnier2016]. En étudiant ces arrangements familiaux, à la fois dans le ménage, entre conjoints cohabitants, mais aussi au delà de celui-ci, entre ex-conjoints ne cohabitant plus, il sera ineteressant que questionner leur effets potentiels sur la redistributivité du système socio-fiscal, entre groupes sociaux de sexe et de classe. L'effet produit par l'ensemble des dispositifs de préstations sociales et d'avantages fiscaux sur les inégalités économiques informe en effet les perception qu'on les individus de ceux-ci, et partant le rapport à l'État qu'ils entretiennent [@spire2018]. Il s'agira donc d'interroger ces effets au prisme du rapport à l'Etat, et en particulier l'Etat social, qu'entretiennent les individus, selon leur classe et groupe social de sexe d'appartenance.
 
 # Bibliographie {.page-break-before}
 
@@ -50,11 +94,7 @@ S'il est vrai que les montants concernés par ces pratiques sont sans commune me
 
 [^2]: C'est d'ailleurs un des leviers de la « domestication » de l'impot par les classes dominantes étudié par Alexis Spire
 
-En effet, si l'IR, par sa progressivité a un effet redistributif entre foyers fiscaux, il peut, selon les choix opérés dans un couple en matière de formalisation administrative des relations, de cohabitation, de déclaration des revenus et de partage de la charge fiscale, avoir des effets anti-redistributifs entre conjoint·e·s **(Carbonnier)**. Si le caractère effectif de la redistributivité de l'ensemble du système socio-fiscal entre ménages de différents niveau de vie a été discuté **(Piketty, blabla)**, largement tributaire de la domestication des règles fiscales par les classes dominantes **(Spire,),** les effets du système socio-fiscal sur la répartition des revenus au sein des ménages sont restés relativement peu abordés. Ainsi, les effet distributifs du système socio-fiscal entre groupes sociaux de sexes restent relativement peu étudiés alors même que ceux ci informent largement le rapport qu'entretiennent les individus à l'Etat (Spire GJ) et la manière dont l'Etat façonne les rapports sociaux (blabla ??)
-
 En 2019, la réforme du prélèvement à la source de l'impôt sur le revenu (IR) instaure un partage par défaut de la charge fiscale entre conjoint·e·s marié·e·s ou pacé·e·s. Un taux dit *personnalisé* est calculé pour chaque foyer fiscal et appliqué de manière identique aux salaires des deux conjoint·e·s. Il reste possible, pour les conjoint·e·s, de fixer librement un taux dit *individualisé*, c'est à dire propre à chacun·e. Ainsi, cette réforme établit le partage proportionnel de la charge fiscale comme norme dans les couples, et fait apparaître tout autre arrangement comme marginal. Cette logique proportionnelle s'oppose, *a priori*, à la logique de l'imposition des revenus en France, qui depuis 1916 est se fait via un impôt progressif.
-
-En effet, si l'IR, par sa progressivité a un effet redistributif entre foyers fiscaux, il peut, selon les choix opérés dans un couple en matière de formalisation administrative des relations, de cohabitation, de déclaration des revenus et de partage de la charge fiscale, avoir des effets anti-redistributifs entre conjoint·e·s **(Carbonnier)**. Si le caractère effectif de la redistributivité de l'ensemble du système socio-fiscal entre ménages de différents niveau de vie a été discuté **(Piketty, blabla)**, largement tributaire de la domestication des règles fiscales par les classes dominantes **(Spire,),** les effets du système socio-fiscal sur la répartition des revenus au sein des ménages sont restés relativement peu abordés. Ainsi, les effet distributifs du système socio-fiscal entre groupes sociaux de sexes restent relativement peu étudiés alors même que ceux ci informent largement le rapport qu'entretiennent les individus à l'Etat (Spire GJ) et la manière dont l'Etat façonne les rapports sociaux (blabla ??)
 
 blablabla l'Etat et les rapports sociaux de sexe.
 
@@ -66,35 +106,26 @@ Ceci s'explique pour partie par la domination du ménage comme unité statistiqu
 
 Or si le système socio-fiscal encadre très fortement les individus appartenant aux classes sociales modestes, qui sont à la fois exlcus des processus de décisons déterminant la mise en place des règles socio-fiscales, **(Spire domestication de l'impôt)**, objets de contrôles privilégiés **(Dubois, ??)** et plus fortement condamnés pour leurs illéglismes **(Spire, gestion des illegalismes)**, dans l'ensemble de la société, l'encadrement des choix qui peuvent être opérés au sein des couples reste relativement faible.
 
-qui ne sont pas a envisager comme des incohérences entre les différentes instances du système socio-fiscal, mais comme plutot comme elements constitutifs sa familiarisation, que se déploient des arrangement conjugaux qu'il convient d'étudier pour discuter des effets du système sociaux fiscal sur les inégalités non seulement entre classes sociales mais aussi entre groupes sociaux de sexe.
-
--\> rompre avec l'idée que ce sont des incohérences, idée que l'Etat n'a pas aller regarder ce qui se passe dans l'intimité conjugale donc on laisse faire les individus
-
--\> ce sont précisément dans ces déajustements entre différentes regles que se déploient des arra,gement qui sont interessantes à étudier
+qui ne sont pas a envisager comme des incohérences entre les différentes
 
 et que les arrangements avec celui-ci sont socialement plus fortement condamnés
 
 Or, le système sociofiscal laisse une place importante aux arrangements conjugaux en matière de déclaration
-
-S'interroger sur les effets distributifs du système socio-fiscal entre conjoints suppose de dépasser l'unité statistique du ménage et l'unité administrative du foyer fiscal ou du logement pour s'inetersser aux arrangement
 
 # Grandes questions :
 
 -   Etat et ordre du genre, de classe, de race, d'âge
 -   Effets distributifs du système socio-fiscal au sein des couples !
 
-# Envoyer un mail à Nicolas Duvoux,
-
-# un rdv, rappeller le calendrier.
-
-# conseils prohjet de thèse
+# conseils projet de thèse
 
 -   grande idée grande question, à la fois théorique et d'actualité
--   grands enjeux, politiques, théoriques, d'actualité
--   procéder par analyse, une question, et on décompose.
--   problématique, objet pour traiter cette problématique, méthode.
 
-# 
+-   grands enjeux, politiques, théoriques, d'actualité
+
+-   procéder par analyse, une question, et on décompose.
+
+-   problématique, objet pour traiter cette problématique, méthode.
 
 individualisation de l'AAH?
 
@@ -102,13 +133,57 @@ rapidement positionnement dans les quelques références bibliographiques centra
 
 -   Spire sur l'appropriation des règles fiscales par les classes dominantes +
 
--   Dubois sur les controles caf
+-   Dubois sur les contrôles caf
 
 -   Bessière sur les arrangements
 
 -   Bessière et Gollac sur le genre des arrangements avec la fiscalité de l'héritage
 
 sociologie du rapport aux institutions, de l'tat, sociologie de la famille et du genre.
+
+donc comment est ce que les catégories administratives façonnent aussi les relations familiales.
+
+A l'inverse, les classes dominantes ont opéré une "domestication de l'impôt" qui leur permet tirer profit des règles de celui-ci [@spire2011].
+
+[@dubois2021 ; @cartier2008]
+
+-\> des droits certes, mais pas automatiques, donc il faut demander, se sentir légitime a demander une aide, idée qu'on se fait de la légitimité à percevoir certaines allocations
+
+-\> droit d'option, meme quand on choisit de déclarer une situation pour demander une aide ou que cela va nous en faire perdre une, alors, parfois on a le choix
+
+-\> donc comment est ce qu'on fait rentrer la réalité de la situation dans des catgéories administatives. du coup comment est ce que sont produit ces consensus au sein des familles ? quels confits ? le plus souvent on peut se dire qu'il ne se passe pas grand chose, mais en réalité sur certains droits sociaux.
+
+-\> inversement comment est ce que ces catgéories administatives informent les catgéories familiales et conjugales ordinaires : est ce qu'on se considère en couple si on est pas en couple aux yeux de la CAF ?
+
+-\> possibilité aussi de modifier la réalité pour la faire renter dans des catgéories administrauves : se marier pour les impots, etre en couple pour avoir plus d'APL... ou inversement attendre avant de cohabiter aprce qu'on perd des aides sociales si c'est le cas
+
+-\> donc comment est ce que les catgéories administatives faconnent aussi les relations familiales.
+
+-\> comment est ce que
+
+Pour autant, rien ne va de soit dans une telle déclaration. (cf non recours par exemple)
+
+On peut donc se demander comment est produit un consensus sur ce que sont l'état des relation familiales et donc sur la manière dont celle-ci doit être ou non déclarée comme telle aux institutions sucéptibles
+
+Technicité mais aussi sens commun fiscal
+
+distance ou proximité // droit
+
+comment les individus font renter leur situtation dans les catégories administatives ?
+
+faire sociologie de la déclaration
+
+classes populaire et Etat :
+
+Les fractions « intégrées » des classes populaires appartiennent au premier quand les « pauvres » -- 8 millions de personnes, soit 13,5 % de la population en 2012 -- dépendent désormais du second [D[uvoux]{.smallcaps}, 2012].
+
+ Lors d'une enquête dans un quartier pavillonnaire, nombre d'habitants originaires des classes populaires en petite ascension tenaient des propos accusateurs envers ceux qui « profitent » des aides sociales quand eux-mêmes mettaient en avant leur courage au travail et leur « mérite » [C[artier]{.smallcaps} *et al.*, 2008].
+
+Cette représentation des personnes situées en bas de l'échelle sociale comme « profitant » du système est pourtant en décalage avec le fait que beaucoup ne recourent pas à leurs droits. Près des deux tiers des allocataires potentiels du complément d'activité destiné aux travailleurs modestes (le « RSA activité ») ne le demandent pas [D[uvoux]{.smallcaps}, 2012, p. 12].
+
+Dans *La vie au guichet*, ouvrage sur les relations entre agents d'une Caisse d'allocations familiales et usagers, Vincent Dubois [2012a] témoigne explicitement de cette double ambition. Cet ouvrage insiste sur la domination qui s'exerce à l'encontre des classes populaires dans les interactions au guichet. C'est à travers elles que « s'opère en pratique l'inculcation des catégories d'État », qui, en outre, imposent parfois aux individus des statuts différents de la manière dont eux-mêmes se perçoivent (avec des phrases du type « Vous ne voulez pas l'admettre mais vous formez bien un couple », « Non, vous n'êtes pas considérée comme mère de famille ») [p. 18-19]. À la complexité administrative qui laisse les populations dépourvues du capital culturel suffisant désemparées, s'ajoutent des injonctions qui peuvent être des condamnations morales (« Il faudrait peut-être arrêter de changer de partenaire ! », « Et du travail, vous en cherchez vraiment ? »). Cependant, les allocataires ne subissent pas passivement ces impositions : *La vie au guichet* donne à voir des individus qui, même particulièrement démunis, échappent pour partie à la domination à travers le retrait, la contestation, la dérision et certaines formes de réappropriation de la relation avec les agents de la CAF.
+
+Se centrant sur les bénéficiaires du RMI, Nicolas Duvoux distingue pour sa part trois types d'allocataires en fonction de leur rapport à cette prestation sociale et à l'ensemble des significations qui en découlent : l'autonomie intériorisée, l'autonomie contrariée, le refus de la dépendance. Dans le premier cas (autonomie intériorisée), les allocataires adhèrent à la norme d'autonomie véhiculée par les travailleurs sociaux et considèrent le RMI comme transitoire. Dans le second cas (autonomie contrariée), les allocataires expriment leur difficulté à se conformer aux exigences en matière d'autonomie. Ils sont durablement installés dans l'assistance et ont établi une relation de confiance avec les personnes chargées de leur suivi. Leur discours, quant aux institutions en général, est cependant plus ambivalent : elles sont perçues tout à la fois comme consolantes et excluantes. Dans le troisième cas (refus de la dépendance), la norme d'autonomie est contestée et les contacts avec les agents institutionnels sont très ambivalents, marqués par des tentatives de retournement du stigmate [D[uvoux]{.smallcaps}, 2009]. Si l'on peut supposer que ces typologies [voir aussi P[augam]{.smallcaps}, 2005, 2009] renvoient pour partie à des strates différentes des classes populaires, l'équivalence n'est toutefois pas totale dans la mesure où la catégorie d'assistés qui les sous-tend regroupe des individus aux profils sociaux hétérogènes (une partie des assistés proviennent des classes moyennes voire supérieures).
 
 # Axe 1 : De la fraude fiscale à l'optimisation ordinaire : étudier les arrangements fiscaux au delà des classes dominantes
 
@@ -124,17 +199,7 @@ un système qui fonctionne ensemble, il y a des incohérences, qu'ils faut juste
 
 # Axe 3 : Rapports aux institutions et appropriations des règles socio-fiscales
 
-Technicité mais aussi sens commun fiscal
-
-distance ou proximité // droit
-
-modalité par défaut
-
 # Axe 4 : Déclarations aux institutions et formalisation des relations familiales
-
-faire sociologie de la déclaration
-
-comment est produit un consensus sur ce qu'est la relation, et donc sur la manière dont celle-ci doit être ou non déclarée comme telle aux institutions suséptibles
 
 # Axe 5 : Partage de la charge fiscale et appropriations des prestations sociales
 
