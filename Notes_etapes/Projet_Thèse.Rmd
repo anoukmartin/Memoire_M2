@@ -13,7 +13,7 @@ lot: false # insert a list of tables
 lof: false # insert a list of figures
 paged-footnotes: true
 # uncomment this line to produce HTML and PDF in RStudio:
-knit: pagedown::chrome_print
+# knit: pagedown::chrome_print
 editor_options: 
   chunk_output_type: console
 bibliography: biblio_projet_these.bib
