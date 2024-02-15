@@ -1,0 +1,19 @@
+---
+title: "Formation et parcours de recherche "
+author: "Anouk MARTIN"
+output: pdf_document
+fontsize: 12pt
+geometry: margin=0.7in
+header-includes:
+- \usepackage{pdfpages}
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \renewcommand{\headrulewidth}{0.7pt}
+- \fancyhead[C]{} 
+- \fancyhead[R]{Anouk MARTIN}
+- \fancyhead[L]{Formation et parcours de recherche}
+---
+
+\setlength{\parindent}{1.2cm}
+
+Après une CPGE lettres et sciences sociales (BL) et une année dans le parcours sciences sociales et politiques du CPES de PSL, j'ai intégré le département de sciences sociales de l'ENS par le biais du concours étudiant en 2019. J'y ai suivi une formation pluridisciplinaire et approfondie en sciences sociales. L'année blanche effectuée en première année m'a permis de me consacrer à la lecture approfondie d'ouvrages de sociologie et d’assister à des séminaires d'élèves (Séminaire Marx, en particulier) ou des enseignements d'autre discipline (en géographie et en histoire principalement)
