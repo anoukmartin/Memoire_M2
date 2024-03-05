@@ -1,0 +1,18 @@
+---
+author: Anouk MARTIN
+output: pdf_document
+lang: fr-FR
+header-includes:
+- \usepackage{pdfpages}
+
+---
+
+\includepdf[pages=1-]{Formulaire_demande_2024.pdf}
+
+\includepdf[pages=1-]{Projet_Thèse.pdf}
+
+\includepdf[pages=1-]{formation_parcours.pdf}
+
+\includepdf[pages=1-]{MartinAnouk_LettreDuvouxGollac.pdf}
+
+\includepdf[pages=1]{Annexe.pdf}
