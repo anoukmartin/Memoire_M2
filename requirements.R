@@ -11,5 +11,7 @@ packagesList <- c("haven",
                   "survey", 
                   "srvyr", 
                   "flextable", 
-                  "pagedown")
+                  "pagedown", 
+                 "ordinal", 
+                 "kableExtra")
 install.packages(packagesList)
