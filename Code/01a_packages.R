@@ -98,6 +98,37 @@ add_gtsource_note <- function(gt_object,
 
 
 library(flextable)
+library(kableExtra)
+# Une fonction pour les tableaux "gt" 
+add_kablesource_note <- function(kbl_object, 
+                              source = paste0(infosBDF$nom, 
+                                              ", ", 
+                                              infosBDF$vague), 
+                              champ = infosBDF$champ, 
+                              N, 
+                              lecture = NULL) {
+  
+  if(!is_null(lecture)) {
+    lecture <- paste0("Lecture : ", lecture)
+  } else {
+    message("l'argument lecture est manquant")
+  }
+  if(!is_null(source)) {
+    source <- paste0("Source : ", source)
+  } else {
+    message("l'arguement source est manquant")
+  }
+  if(!is_null(champ)){
+    champ <- paste0("Champ : ", champ, " (N = ", N, ").")
+  } else {
+    message("les arguments champ et/ou N sont manquants")
+  }
+  
+  kbl_object <- kbl_object %>%
+    kableExtra::add_footnote(c(source, champ, lecture), 
+                             notation = "none")
+  return(kbl_object)
+}
 
 # Mise en forme graphiques
 library(ggplot2)
