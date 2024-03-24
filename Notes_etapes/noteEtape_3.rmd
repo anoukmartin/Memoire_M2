@@ -1,0 +1,69 @@
+---
+title: ""
+output: beamer_presentation
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options(knitr.table.format = "latex")
+```
+
+```{r source, include = FALSE}
+# On exécute les scripts commençant par 00 et 01
+source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
+source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
+infosBDF <- readRDS("Data_output/infosBDF.Rds")
+```
+
+## Les arrangements économiques dans les familles recomposées
+
+Mémoire de M2 portant sur les budgets familiaux des parents isolés après remise en couple
+
+Sous la direction de Sibylle Gollac (CNRS, CSU-CRESPPA)
+
+A partir de l'enquête Budget de famille, 2017 (INSEE)
+
+## Questionnement : Effet de la configuration familiale sur le niveau de vie
+
+-   Configuration familiale : composition familiale (caractéristiques sociales des membres) + structure familliale (liens entre ces membres)
+
+Martin H., Périvier H., 2018, « Les échelles d’équivalence à l’épreuve des nouvelles configurations familiales », *Revue économique*, 69, 2, p. 303‑334.
+
+### Les limites du calcul du niveau de vie
+
+-   formule $\text{Niveau de vie} = \frac{\text{Revenu disponible du ménage}}{\text{Nombre d'unité de consommation}}$
+-   Echelle d'équivalences : approche seulement par la composition des ménages
+
+### Approche par le coût total, estimation par consommation proxy ou variables de situation économique subjective
+
+-   Débat entre approches objectives et subjectives
+-   Approches complémentaires pour discuter la manière dont est calculé le niveau de vie dans les familles recomposées.
+
+## Résultats
+
+Ici on ne présent qu'un résultat : celui obtenu sur l'aisance budgétaire ressentie. Les résultats sont proches sur l'estimation subjective du niveau de vie
+
+### Aisance budgétaire et configuration familiale
+
+```{r, results='asis'}
+load("Resultats/Reg_aisance.Rds")
+regaisance <- tab
+regaisance$tableau %>%
+  as_kable_extra(caption = "Regression sur l'aisance budgétaire ressentie") %>%
+  kable_styling(font_size = 7) %>%
+  add_kablesource_note(champ = regaisance$champ,
+                       lecture = "A niveau de vie égal, le fait d'être une mère célibataire plutôt que d'être en couple avec l'autre parent fait baisser la probabilité de se déclarer à l'aise financièrement de 0,48.", N = regaisance$n)
+  
+```
+
+## Résultats
+
+### Discussion
+
+-   A niveau de vie égal, le fait d’être célibataire plutôt qu'en couple avec l'autre parent fait baisser la probabilité de se déclarer à l'aise financièrement. L'effet est plus important pour les mère que pour les pères. [Résultats convergents]{.underline} avec la littérature existante sur l'estimation du niveau de vie dans les familles monoparentales.
+
+-   A niveau de vie égal, le fait d'avoir des enfants résidant hors du domicile fait baisser la probabilité de se déclarer à l'aise financièrement. [Remarque]{.underline} : il faudrait surement distinguer les enfants résidant chez l'autre parent de ceux résidant dans leur propre logement.
+
+-   A niveau de vie égal, le fait d'être en couple avec une autre personne plutôt qu'avec l'autre parent de ses enfants joue dans des sens opposés pour les hommes et les femmes. [Hypothèse]{.underline} : inégalités de niveau de vie dans le ménage et pratiques économiques différenciées entre beaux-pères et belles-mères.
