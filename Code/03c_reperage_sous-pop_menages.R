@@ -455,12 +455,32 @@ nbenfants <- famillesToutes[, c("NENFANTS", "n_NEnfantsHD")] %>%
 nbenfants <- rowSums(nbenfants, na.rm = T)
 
 
+
 famillesToutes$n_NEnfantsTous <- nbenfants
 famillesToutes <- famillesToutes %>%
   mutate(n_NEnfantsTous = labelled(n_NEnfantsTous, 
                                    label = "Nombre total d'enfants du ménage ou vivant hors domicile"))
 rm(nbenfants)
 
+names(famillesToutes)
+freq(famillesToutes$n_genreFam)
+famillesToutes <- famillesToutes %>%
+  mutate(n_ParentsMenage = case_when(
+    n_genreFam == "Les deux" ~ "Parents en couple", 
+    n_genreFam == "Femme" & n_config == "Monoparentale" ~ "Mère célibataire",
+    n_genreFam == "Homme" & n_config == "Monoparentale" ~ "Père célibataire",
+    n_genreFam == "Femme" & n_config == "Recomposée" ~ "Mère en couple",
+    n_genreFam == "Homme" & n_config == "Recomposée" ~ "Père en couple",
+    TRUE ~ "Sans enfants")) %>%
+  mutate(n_ParentsHorsDom = case_when(
+    n_genreFamTemp == "Les deux" ~ "Parents en couple", 
+    n_genreFamTemp == "Femme" & n_configTemp == "Monoparentale" ~ "Mère célibataire",
+    n_genreFamTemp == "Homme" & n_configTemp == "Monoparentale" ~ "Père célibataire",
+    n_genreFamTemp == "Femme" & n_configTemp == "Recomposée" ~ "Mère en couple",
+    n_genreFamTemp == "Homme" & n_configTemp == "Recomposée" ~ "Père en couple",
+    TRUE ~ "Sans enfants"))
+
+famillesTous <- famillesTous %>%
 
 ### Ages moyens des enfants ########################################
 # ages des enfants du ménage 
