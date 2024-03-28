@@ -1,5 +1,5 @@
 ---
-title: Elever les enfants de l'autre.
+title: "Elever les enfants de l'autre".
 subtitle: Le genre des arrangements économiques dans les familles recomposées.
 author: 
   - name: Anouk Martin
