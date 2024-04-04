@@ -38,18 +38,36 @@ save_object("BDF/C05.sas7bdat", bucket, region = "",
 ## Tables info individuelles ###################################################
 
 ### Table des ménages ####
+# Import 
 menages <- read_sas(data_file = "Data_input/sas/menages.sas7bdat")
+# Noms de variables en majuscule 
 names(menages) <- str_to_upper(names(menages))
+# On centre la variable de pondération 
+summary(menages$PONDMEN)
+menages$PONDMEN <- menages$PONDMEN/(mean(menages$PONDMEN))
+summary(menages$PONDMEN)
+# On enregistre ces données
 saveData(menages, "menages") 
 
 ### Table des individus ####
+# Idem
 indiv <- read_sas(data_file = "Data_input/sas/individu.sas7bdat")
 names(indiv) <- str_to_upper(names(indiv))
+# On centre la variable de pondération 
+# Comme tous les individus d'un ménage sont enquêté, ils ont tous une probabilité de 1 d'être enquêté, donc leur poids est le même que celui du ménage
+indiv <- left_join(indiv, menages[, c("IDENT_MEN", "PONDMEN")])
+summary(indiv$PONDMEN)
+indiv$PONDIND <- indiv$PONDMEN/(mean(indiv$PONDMEN))
+summary(indiv$PONDIND)
 saveData(indiv, "indiv")
 
 ### Table des enfants hors ménages ####
 enfHD <- read_sas(data_file = "Data_input/sas/enfantHD.sas7bdat")
 names(enfHD) <- str_to_upper(names(enfHD))
+enfHD <- left_join(enfHD, menages[, c("IDENT_MEN", "PONDMEN")])
+summary(enfHD$PONDMEN)
+enfHD$PONDIND <- enfHD$PONDMEN/(mean(enfHD$PONDMEN))
+summary(enfHD$PONDIND)
 saveData(enfHD, "enfHD")
 
 
