@@ -43,16 +43,28 @@ var_label(familles$n_NEnfantsHD) <- "Enfants vivants hors domicile"
 ## Construction base de donnée sur laquelle on va travailler ###################
 names(familles)
 familles$n_EnfantsHD
+
 data <- familles |>
   mutate(AISE = if_else(AISE %in% c("", "8", "9"), NA, AISE) %>%
            as.factor() %>%
-           fct_relevel("5", "4", "3", "2", "1"))
+           fct_relevel("5", "4", "3", "2", "1")) %>%
+  rec_TYPMEN5() %>%
+  mutate(config = case_when(
+    n_ParentsMenage != "Sans enfants" ~ n_ParentsMenage, 
+    TRUE ~ TYPMEN5))
+
+## Reordering data$config
+data$config <- data$config %>%
+  fct_relevel(
+    "Parents en couple", "Couple sans enfant", "Personne seule",
+    "Mère célibataire", "Père célibataire", "Mère en couple",
+    "Père en couple", "Autre type de ménage (ménage complexe)"
+  )
 
 data <- data %>%
   filter(!is.na(AISE) & !is.na(NIVIE) 
-         & !is.na(n_ParentsMenage)
-         & !is.na(n_EnfantsHD)) %>%
-  filter(n_ParentsMenage != "Sans enfants")
+         & !is.na(config)
+         & !is.na(n_EnfantsHD)) 
 
 data <- data %>%
   mutate(PONDFAM = PONDMEN/mean(data$PONDMEN)) # On centre la variable de pondération
@@ -63,14 +75,15 @@ library(ordinal)
 
 summary(data$NIVIE)
 plot(data$AISE, data$NIVIE)
-chisq.test(data$AISE, data$n_ParentsMenage)
+chisq.test(data$AISE, data$config)
 chisq.test(data$AISE, data$n_EnfantsHD)
 
-reg <- clm(AISE ~ NIVIE + n_ParentsMenage + n_EnfantsHD,
+names(data)
+reg <- clm(AISE ~ NIVIE + config +  ,
             data = data, 
            weights = PONDFAM)
 tblreg3 <- tbl_regression(reg, intercept = F, exponentiate = T, 
-                          label = list(n_ParentsMenage ~ "Parents des enfants du ménage", 
+                          label = list(config  ~ "Parents des enfants du ménage", 
                                         n_EnfantsHD ~ "Enfants vivants hors domicile"))
 tblreg3 
 

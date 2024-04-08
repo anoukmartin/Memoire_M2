@@ -32,8 +32,11 @@ temp <- indiv %>%
 rm(temp)
 # Donc limite d'âge 
 enfants <- indiv %>%
-  filter(AG <= 25)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
+  filter(AG <= 18)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   filter(ENFANT == "1") # puis on ne prend que ceux qui sont considérés comme enfant au sens du TCM (idem recensement car on virer les individus agés)
+
+summary(enfants$AGE)
+boxplot(enfants$AGE)
 
 # Ensuite on va regarder avec qui vivent ces enfants
 enfants <- enfants %>%
@@ -65,6 +68,7 @@ enfants <- enfants %>%
 parents <- indiv %>%
   var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN" , NewVarName = "n_IdentParent") %>%
   select(n_IdentParent, COUPLE, SEXE)
+
 # on regarde s'ils sont en couple
 parents %>%
   select(COUPLE) %>%
@@ -85,7 +89,11 @@ rm(enfants2)
 enfants %>%
   select(n_NPARENTS, n_CouplePere, n_CoupleMere) %>%
   tbl_summary(by = "n_NPARENTS") 
-  
+
+# On centre la variable de pondération 
+enfants$PONDIND <- enfants$PONDMEN/mean(enfants$PONDMEN)
+summary(enfants$PONDIND)
+
 saveData(enfants, label = "enfantsDuMenage")
 
 ################################################################################-
@@ -102,11 +110,12 @@ saveData(enfants, label = "enfantsDuMenage")
 enfHD <- readRDS("Data_output/enfHD.Rds")
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-# Donc comme pour les enfants appartenant aux ménages enquêtés, on applique une 
-# limite d'âge.
+# Pour les enfants hors domicile on prend les mêmes critères sauf résidence : 
+# - ne pas etre en couple cohabitant et ne pas avoir soi même d'enfant 
+names(enfHD)
 enfantHD <- enfHD %>%
   mutate(AG = infosBDF$vague - HODAN) %>% # Calcul de l'age au 31 décembre
-  filter(AG <= 25) %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
+  filter(HODENF == 0 & HODMAT != "1") %>%
   var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
 names(enfantHD)
 
@@ -169,7 +178,6 @@ saveData(enfantHD, "enfantsHorsDom")
 ## 3.1. Jointure ###############################################################
 # On combine les deux tableaux de données 
 names(indiv)
-
 
 enfantTous <- bind_rows(
   enfants %>% 

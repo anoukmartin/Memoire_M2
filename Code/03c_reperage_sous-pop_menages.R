@@ -12,7 +12,6 @@ enfantsTous <- readRDS("Data_output/enfantsTous.Rds")
 menages <- readRDS("Data_output/menages.Rds")
 
 
-
 # Les enfants du ménage ######################################################## 
 enfantsD <- enfantsTous %>%
   filter(n_statutResid == "Enfant du ménage (au sens du TCM)") %>%
@@ -190,8 +189,13 @@ configSynthese %>%
   tbl_summary(by = "n_config")
 
 familles <- menages %>%
-  right_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
+  left_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
   left_join(configSynthese,  by = c("IDENT_MEN" = "n_IdentMenage"))
+
+familles %>%
+  select(TYPMEN5, n_config) %>%
+  rec_TYPMEN5() %>%
+  tbl_summary(by = "TYPMEN5")
 
 saveData(familles, label = "familles")
 
@@ -246,9 +250,14 @@ configSynthese <- configSynthese %>%
               names_from = mods, values_fill = F) %>% 
   left_join(compte)
 
+
+
 rm(compte)
 freq(configSynthese$n_config)
 freq(configSynthese$names_config)
+
+
+
 
 # On crée deux variable : 
 ## - une de configuration familiale :
@@ -375,10 +384,27 @@ configSynthese %>%
   select(n_configTemp, n_genreFamTemp, n_enfantNewUnionHD) %>%
   tbl_summary(by = "n_configTemp")
 
+
+# Infos sur les enfants HD 
+
+sitEnfHD <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
+  reframe(.by = "IDENT_MEN", 
+          n_EnfantHDCharge = min(HODCHARG), 
+          n_EnfantHDAide = min(HODAID))
+
+tab <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
+  reframe(.by = "IDENT_MEN", 
+          n_NPARENTS = unique(n_NPARENTS)) %>%
+  mutate(value = "1") %>%
+  pivot_wider(id_cols = "IDENT_MEN", names_from = "n_NPARENTS", names_prefix = "n_", values_from = "value", values_fill = "0")
+
+sitEnfHD <- left_join(sitEnfHD, tab)
+
 famillesTemp <- menages %>%
-  right_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
+  left_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
   left_join(configSynthese,  by = c("IDENT_MEN" = "n_IdentMenage")) %>%
-  left_join(NBenfantsHD, by = c("IDENT_MEN" = "n_IdentMenage"))
+  left_join(NBenfantsHD, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
+  left_join(sitEnfHD, by = c("IDENT_MEN" = "IDENT_MEN"))
 
 saveData(famillesTemp, label = "famillesTemporaires")
 
@@ -387,7 +413,6 @@ menages$IDENT_MEN
 names(familles)
 names(famillesTemp)
 famillesToutes <- menages %>%
-  filter(IDENT_MEN %in% c(familles$IDENT_MEN, famillesTemp$IDENT_MEN)) %>%
   left_join(familles[, c("IDENT_MEN", 
                          "Configuration traditionelle", 
                          "Configuration recomposée maternelle", 
@@ -480,12 +505,13 @@ famillesToutes <- famillesToutes %>%
     n_genreFamTemp == "Homme" & n_configTemp == "Recomposée" ~ "Père en couple",
     TRUE ~ "Sans enfants"))
 
-famillesTous <- famillesTous %>%
+
 
 ### Ages moyens des enfants ########################################
 # ages des enfants du ménage 
 enfantsD <- readRDS("Data_output/enfantsDuMenage.Rds") %>%
   select(IDENT_MEN, n_IdentIndiv, AG) 
+
 agesEnfMen <- enfantsD %>% 
   group_by(IDENT_MEN) %>%
   reframe(n_ageMoyEnfMen = mean(AG))
@@ -513,7 +539,7 @@ saveData(famillesToutes, label = "famillesToutes")
 
 
 rm(config, configSynthese, menages, enfantsD, enfantsHD, 
-   agesEnfMen, agesEnfants, agesEnfHD,
+   agesEnfMen, agesEnfants, agesEnfHD, tab, sitEnfHD,
    NBenfantsHD, enfantsTous, famillesTemp, familles, famillesToutes)
 
 

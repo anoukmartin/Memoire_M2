@@ -61,5 +61,3 @@ saveTableau(tableau = tab,
 
 rm(tab) # un peu de ménage
 
-
-

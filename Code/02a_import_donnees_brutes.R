@@ -30,6 +30,12 @@ save_object("BDF/DEPINDIV.sas7bdat", bucket, region = "",
 save_object("BDF/C05.sas7bdat", bucket, region = "", 
             file = "Data_input/sas/consommation.sas7bdat")
 
+# Import de la doc 
+dir.create("Documentation")
+save_object("BDF/Dictionnaire.pdf", bucket, region = "", 
+            file = "Documentation/Dictionnaire.pdf")
+save_object("BDF/BDF 2016_ Questionnaire Visite1.pdf", bucket, region = "", 
+            file = "Documentation/Questionnaire.pdf")
 
 ################################################################################-
 # Import dans l'envrionnement de travail #######################################

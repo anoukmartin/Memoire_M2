@@ -18,6 +18,7 @@ bibliography: references_memoire.bib
 \makethesistitle
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
@@ -71,7 +72,7 @@ Construire le cas des familles recomposées : pourquoi c'est intéressant ?
 
 ## Les familles recomposées en ménage statistiques
 
-La construction de typologie familiales selon la composition des groupes et la structure des relations entre individus résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [@laslett1983] + godelier. Pour ces auteurs, décrire les formes que prennent la famille permet de décrie l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, elles tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées[^1]. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui prendrait mieux que d'autre la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
+La construction de typologie familiales selon la composition des groupes et la structure des relations entre individus résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [@laslett1983; @goldelier]. Pour ces auteurs, décrire les formes que prennent la famille permet d'analyser l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, elles tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées[^1]. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui prendrait mieux que d'autre la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
 
 [^1]: C'est d'ailleurs pour cette raison, que l'on préférera parler de familles nucléaires plutôt que de familles traditionnelles pour désigner un couple vivant avec les enfants issus de cette union.
 
@@ -79,7 +80,7 @@ La construction de typologie familiales selon la composition des groupes et la s
 
 #### Familles nucléaires et recomposées en ménage statistique
 
-Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. Avant 1990, la majorité des enquêtes statistiques ne permettent tout simplement pas de les distinguer [ref Desplanques]. Aujourd'hui, si elles sont identifiables, elle ne sont pas a priori distinguées des familles nucléaires. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, a partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage est généralement codé en cinq catégories héritières de la typologie de @laslett1983 : "Personne seule", "Couple sans enfant", "Couple avec au moins un enfant", "Famille monoparentale", et "Autre type de ménage (ménage complexe)", comme c'est le cas dans l'enquête `r infosBDF$nom` (2017).
+Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. Avant 1990, la majorité des enquêtes statistiques ne permettent tout simplement pas de les distinguer [@desplanques1993]. Aujourd'hui, si elles sont identifiables, elle ne sont pas *a priori* distinguées des familles nucléaires. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, a partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage est généralement codé en cinq catégories héritières de la typologie de @laslett1983 : "Personne seule", "Couple sans enfant", "Couple avec au moins un enfant", "Famille monoparentale", et "Autre type de ménage (ménage complexe)", comme c'est le cas dans l'enquête `r infosBDF$nom` (2017).
 
 ```{r TYPMEN5, tab.cap = "Catégories de ménages dans l'enquête BDF", tab.id = "TYPMEN5"}
 
@@ -120,9 +121,9 @@ tab %>%
                        lecture = "Parmis les ménages ordinaires résidant en France en 2017, 35% sont des personnes seules.")
 ```
 
-Cette approche, qui s'intéresse seulement à la composition des ménages et non au liens entre individus ne permet pas de distinguer les familles recomposées des familles nucléaires, elle assimile toutes les couples avec enfants indépendants des liens juridiques, économiques ou affectifs qui unissent ces individus. Cette démarche s'inscrit dans la théorie économique du ménage, qui suppose, qu'il soit composé ou non de plusieurs individus, que le comportement économique du ménage est assimilable à celui d'un individu unique [@donni2011].En conséquence, les revenus individuels sont considérés comme communs et les dépenses également partagées [@bessière2016]. Dès lors, seule la composition du ménage importe, pour pouvoir appliquer des échelles d'équivalences et rendre ainsi comparables des ménages composés différemment.
+Cette approche, qui s'intéresse seulement à la composition des ménages et non au liens entre individus ne permet pas de distinguer les familles recomposées des familles nucléaires, elle assimile toutes les couples avec enfants indépendants des liens juridiques, économiques ou affectifs qui unissent ces individus. Elle s'inscrit dans la théorie économique du ménage, qui suppose, qu'il soit composé ou non de plusieurs individus, que le comportement économique du ménage est assimilable à celui d'un individu unique [@donni2011]. En conséquence, les revenus individuels sont considérés comme communs et les dépenses également partagées [@bessière2016]. Dès lors, seule la composition du ménage importe, pour pouvoir appliquer des échelles d'équivalences et rendre ainsi comparables des ménages composés différemment.
 
-#### Distinguer sociologiquement les familles recomposées et les familles nucléaires
+#### Distinguer sociologiquement les familles recomposées et les familles nucléaires [ ca va en intro ça non ?]
 
 Cette approche a pour avantage de ne pas présupposer des liens affectifs et économiques différents les familles nucléaires et les familles recomposées, puisque la parenté quotidienne peut ne pas coïncider avec la parenté légale [@weber2013]. Pour autant, en suivant Rémi Lenoir [-@lenoir2003], nous considérons que la famille, en tant que groupe d'individus apparenté par des relations de filiations et/ou d'alliance, ne préexiste pas aux institutions qui objectivent ces relations. Ainsi le droit civil ne les organise pas de la même manière les relations de parenté et les relations entre beaux-parents et beaux-enfants. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d'un de leurs parents, y compris en cas de mariage ou de PACS [@damon2012]. Il n'y a ni obligation d'entretien, comme c'est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l'héritage comme c'est le cas pour les apparenté.e.s au premier et au second degré [@fulchiron1993]. De ce fait, ni l'économie domestique quotidienne, ni les successions dans les familles recomposées ne peuvent être parfaitement assimilées à celles se déployant dans les familles nucléaires. Les travaux d'Agnès Martial montrent que les cas dans lesquels la logique d'égalité entre tous les enfants des conjoints, quelle que soit leur filiation, préside au moment d'héritage sont rares [@martial1999]. Ainsi, les recompositions familiales ne remettent généralement pas en cause les logiques de lignées fondées sur la filiation établie légalement. L'identification symbolique et affective des enfants aux lignées beau-parentales est elle aussi rare, quand bien mêmes ceux qui y appartiennent font souvent partie de la « famille de référence » [@véron2007]. Les unions civiles (mariages et PACS) se font aussi davantage sous le régime de la séparation de biens lorsqu'une autre union civile a précédé, et lorsque des enfants nés d'une autre union existent [@frémeaux2013]. On peut y voir des arrangements conjugaux visant à protéger mutuellement les intérêts patrimoniaux du nouveau conjoint et des enfants. Ainsi, les relations économiques entre beaux-parents et beaux enfants semblent généralement suivre des logiques différentes de celles entre parents et enfants, et justifient donc un traitement sociologique spécifique des arrangements économiques dans les familles recomposées.
 
@@ -134,11 +135,29 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 
 Si les grandes enquêtes de l'INSEE ne proposent généralement pas de variables permettant de distinguer les familles nucléaires des familles recomposées, le Tronc Commun des enquêtes Ménages (TCM) a permis de récolter systématiquement des informations sur les liens entre les individus d'un même ménage. Dans l'enquête `r infosBDF$nom` (2017), pour chaque individu, est renseigné les liens entretenus avec chaque autre individus.
 
-VARIABLE LIEN
+```{r}
+dic <- readRDS("Documentation/Dictionnaire_individu.rds")
+
+var <- "LIEN01-20"
+label <- dic %>%
+  filter(Variable_nom == var) %>%
+  select(Variable_description) %>%
+  unique()
+dic %>%
+  filter(Variable_nom == var) %>%
+  select(Modalite_code, Modalite_label) %>%
+  rename(`Valeur` = Modalite_code, `Modalite` = Modalite_label)%>%
+  kbl(caption = paste0("Codage de la variable ", var, " : ", label)) %>%
+  kable_styling("condensed", font_size = 8) %>%
+  row_spec(0, bold = T) %>%
+  footnote(paste0("Source : Dictionnaire des codes de l'enquête ", infosBDF$nom, ", ", infosBDF$vague, ". "))
+
+  
+```
 
 A priori, les liens entre beau-parent et beaux-enfants sont renseignées (modalitées 31 et 32), c'est d'ailleurs ce que nous avons pensé - non sans éprouver le a joie - en consultant le dictionnaire des codes en juin dernier. Cependant, en y regardant de plus près ces deux modalités désignent en fait les relations avec la belle-famille, c'est-à-dire les parents du conjoint.
 
-QUESTION LIENS
+![Question à l'origine de la variable LIEN01-10](images/Question_LIENXX.PNG)
 
 Une fois encore, l'absence modalité cette modalité de réponse témoigne de l'impensé que constitue ce type de relations dans la statistique publique. Pour autant, à partir des seuls liens d'alliance et de filiation renseignés (liens parentaux et conjugaux), il est possible de reconstruire ces relations, et donc d'identifier les ménages dans lesquels un couple vit avec au moins un enfant qui n'est pas issu de leur union.
 
@@ -146,6 +165,7 @@ Par ailleurs, il ne suffit pas de s'intéresser aux liens entre les individus ap
 
 ```{r, fig.cap= "Situations des parents"}
 indiv <- readRDS("Data_output/indiv.Rds")
+
 dat <- indiv %>%
   select(PER1E, MER1E, IDENT_MEN, PONDIND) %>%
   mutate(
@@ -196,6 +216,7 @@ En croisant donc les deux variables ci dessus, nous pouvons identifier les famil
 ```{r}
 
 enfantsHD <- readRDS("Data_output/enfHD.Rds")
+
 dat <- enfantsHD %>%
   select(HODCO, IDENT_MEN, PONDIND) %>%
   mutate(HODCO = case_when(
@@ -243,13 +264,77 @@ Introduction sur l'Enfant qui fait famille [ref de singly, enfant qui fait famil
 
 #### Qu'est ce qu'un enfant ?
 
-Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position des rapports entre générations familiales. D'un point de vue de la statistique publique, il existe deux conventions de comptage des enfants :
+Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position des rapports entre générations familiales. D'un point de vue de la statistique publique, un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*". Aucune limite d'âge n'étant fixée, l'INSEE privilégie donc une définition de l'enfance comme position dans les rapports familiaux au sein du ménage.
 
-**Définition dans le recensement :** "*Est compté comme enfant d'une famille toute personne vivant au sein du même ménage que son (ses) parent(s) avec le(s)quel(s) elle forme une famille, si elle est célibataire et n'a pas de conjoint ou d'enfant vivant dans le ménage. Aucune limite d'âge n'est fixée pour être enfant.*"
+Dans l'enquête `r infosBDF$nom` on dénombre ainsi
 
-**Définition dans les enquêtes ménages (TCM)** : Un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*".
+```{r}
+
+enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds")
+
+
+
+```
 
 #### Des enfants à la famille
+
+```{r, include = FALSE}
+# Digramme de Venn
+
+famillesToutes <- readRDS("Data_output/famillesToutes.Rds")
+
+famillesToutes <- famillesToutes %>%
+  filter(if_any(starts_with("Configuration"), ~ (.x %% 2) == 0))
+
+famillesToutes <- famillesToutes %>%
+  mutate(PONDMEN = PONDMEN / mean(PONDMEN))
+
+datadiag <- list(
+  Traditionelle = famillesToutes[famillesToutes$`Configuration traditionelle` & 
+                          !is.na(famillesToutes$`Configuration traditionelle`) , "IDENT_MEN"] %>%
+    unlist() %>%
+    as.list(),
+  Recomposée = unique(c(famillesToutes[famillesToutes$`Configuration recomposée maternelle` & 
+                             !is.na(famillesToutes$`Configuration recomposée maternelle`), "IDENT_MEN"],
+            famillesToutes[famillesToutes$`Configuration recomposée paternelle` & 
+                             !is.na(famillesToutes$`Configuration recomposée paternelle`), "IDENT_MEN"])) %>%
+    unlist() %>%
+    as.list(),
+  Monoparentale = unique(c(famillesToutes[famillesToutes$`Configuration monoparentale maternelle` & 
+                                     !is.na(famillesToutes$`Configuration monoparentale maternelle`), "IDENT_MEN"],
+                    famillesToutes[famillesToutes$`Configuration monoparentale paternelle` & 
+                                     !is.na(famillesToutes$`Configuration monoparentale paternelle`), "IDENT_MEN"])) %>% 
+    unlist() %>%
+    as.list()
+)
+
+library(nVennR)
+
+p <- plotVenn(datadiag)
+regs <- listVennRegions(p) %>%
+  names() %>%
+  str_sub(1, 7) %>%
+  str_split(", ")
+
+for(i in 1:length(regs)){
+  reg <- as.numeric(regs[[i]])
+  ew <- NULL
+  ew[i]<- sum(famillesToutes[famillesToutes$IDENT_MEN %in% getVennRegion(p, as.numeric(reg)), "PONDMEN"])
+  pw <- NULL
+  pw[i] <- ew[i]/sum(famillesToutes[, "PONDMEN"]) 
+  pw[i] <- round(pw[i]*100, 1)
+  ew[i] <- round(ew[i], 1)
+  p <- setVennRegion(p, as.numeric(reg), 
+                     value = ew[i]) 
+}
+
+p <- plotVenn(nVennObj = p)
+showSVG(nVennObj = p, outFile = "illustrations/Vendiag.svg", borderWidth = 0, labelRegions = F, fontScale = 1.3)
+
+```
+
+\
+![](images/Vendiag-01.svg)
 
 #### de la famille aux parents
 
@@ -347,7 +432,7 @@ Le ménage n’est donc pas un « impensé » statistique, il a été continue
 
 ## Le calcul du niveau de vie à l'épreuve des configuration familiales recomposées
 
-> *Je ne sais pas si cette sous partie ira à la fin du I ou au début du II, et ça pourrait meme aller en fin du II ou en début du III. il s'agit de dire que le niveau de vie est mal estimé dans les familles recomposées, ce qui est pour plusieurs raisons et que cela à plusieurs conséquences. Donc probablement si ca reste ici c'est pour des raisons de type d'interrogation méthodologique (ici on est pls sur des questions de statistiques et de mesure*) et dans ce cas on le pose comme ressort problématique, avec un II qui cherche a fournir une explication et un III qui cherche à expliciter les conséquences. , mais ça peut aller au début du II parce que ce qui suit explique cela, ça peut aller à la fin du II parce que c'ets la conséquence de ce qu'on esxplique dans le II
+> *Je ne sais pas si cette sous partie ira à la fin du I ou au début du II, et ça pourrait mËme aller en fin du II ou en début du III. il s'agit de dire que le niveau de vie est mal estimé dans les familles recomposées, ce qui est pour plusieurs raisons et que cela à plusieurs conséquences. Donc probablement si ca reste ici c'est pour des raisons de type d'interrogation méthodologique (ici on est pls sur des questions de statistiques et de mesure*) et dans ce cas on le pose comme ressort problématique, avec un II qui cherche a fournir une explication et un III qui cherche à expliciter les conséquences. , mais ça peut aller au début du II parce que ce qui suit explique cela, ça peut aller à la fin du II parce que c'est la conséquence de ce qu'on explique dans le II
 
 #### Les inégalités de revenus secondaires
 
