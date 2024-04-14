@@ -32,7 +32,7 @@ temp <- indiv %>%
 rm(temp)
 # Donc limite d'âge 
 enfants <- indiv %>%
-  filter(AG <= 18)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
+  # filter(AG <= 16)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   filter(ENFANT == "1") # puis on ne prend que ceux qui sont considérés comme enfant au sens du TCM (idem recensement car on virer les individus agés)
 
 summary(enfants$AGE)

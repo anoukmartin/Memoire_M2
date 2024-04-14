@@ -45,6 +45,11 @@ rm(depScolMen, sum)
 names(familles)
 familles$n_NEnfantsTous
 data <- familles |>
+  mutate(n_configMenage =   fct_relevel(n_configMenage,
+    "Parents en couple", "Mère en couple", "Père en couple",
+    "Mère célibataire", "Père célibataire", "Couple sans enfant",
+    "Femme seule", "Homme seul", "Autre type de ménage (ménage complexe)"
+  )) |>
   mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) %>% # On centre la variable de pondération
   as_survey_design(weights = PONDFAM) |> 
   mutate(
@@ -55,11 +60,18 @@ data <- familles |>
     n_DepEnsEnfant = labelled(n_DepEns/n_NEnfantsTous, 
                               label = "Montant moyen des dépenses d'enseignement par enfant"), 
     REVTOT = labelled(REVTOT/1000, 
-                            label = "Revenus totaux du ménage (en miliers d'euros)"))
+                            label = "Revenus totaux du ménage (en miliers d'euros)")) %>%
+  mutate(
+    CSMEN6 = CSMEN6 %>% fct_relevel(
+    "Professions intermédiaires", "CPIS", "Employés", "Ouvriers",
+    "ACCE", "Agriculteurs"))
+
+iorder(data$n_configMenage)
 names(familles)
 
+iorder(data$CSMEN6)
 ## Régression pondérée #########################################################
-reg <- svyglm(n_DepEns ~ NIVIE + n_NEnfantsTous + n_configSynth,
+reg <- svyglm(n_DepEns ~ NIVIE + n_NEnfantsTous + n_configMenage,
               design = data)
 tblreg1 <- tbl_regression(reg, intercept = F) |>
   add_glance_source_note() |>

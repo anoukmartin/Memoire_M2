@@ -534,8 +534,50 @@ famillesToutes <- famillesToutes %>%
   left_join(agesEnfHD) %>%
   left_join(agesEnfants)
 
+freq(famillesToutes$TYPMEN5)
+famillesToutes$SEXEPR
+tab <- famillesToutes %>%
+  rec_TYPMEN5() %>%
+  mutate(n_configMenage = case_when(
+    n_ParentsMenage != "Sans enfants" ~ n_ParentsMenage, 
+    TYPMEN5 == "Personne seule" & SEXEPR == "1" ~ "Homme seul", 
+    TYPMEN5 == "Personne seule" & SEXEPR == "2" ~ "Femme seule",
+    TRUE ~ TYPMEN5))  %>%
+  mutate(n_configMenage = fct_relevel(
+    n_configMenage, 
+    "Femme seule", "Homme seul","Couple sans enfant", 
+    "Mère célibataire", "Père célibataire", 
+    "Mère en couple", "Père en couple", "Parents en couple",
+    "Autre type de ménage (ménage complexe)"
+  )) %>%
+  # mutate(fct_relevel(n_configMenage,
+  #   levels = c("Homme seul", "Femme seule", "Couple sans enfant", 
+  #              "Mère célibataire", "Père célibataire",
+  #              "Mère en couple", "Père en couple", "Parents en couple", 
+  #              "Autre type de ménage (ménage complexe)")
+  # )) %>%
+  select(n_configMenage) 
+famillesToutes$n_configMenage <- tab$n_configMenage
+famillesToutes <- as.data.frame(famillesToutes)
+freq(famillesToutes$n_configMenage)
+
+famillesToutes <- famillesToutes %>%
+  mutate(CSMEN6 = str_sub(CSMEN, 1, 1)) %>%
+  mutate(CSMEN6 = fct_recode(CSMEN6,
+    NULL = "",
+    NULL = "0",
+    "Agriculteurs" = "1",
+    "ACCE" = "2",
+    "CPIS" = "3",
+    "Professions intermédiaires" = "4",
+    "Employés" = "5",
+    "Ouvriers" = "6",
+    NULL = "H"
+  ))
+
 
 saveData(famillesToutes, label = "famillesToutes")
+
 
 
 rm(config, configSynthese, menages, enfantsD, enfantsHD, 

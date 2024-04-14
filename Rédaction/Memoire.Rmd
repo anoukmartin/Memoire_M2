@@ -68,9 +68,7 @@ Construire le cas des familles recomposées : pourquoi c'est intéressant ?
 | **3 - Conclusion (3 pages/10 000 signes)** Rappel de la question de départ, des données et des méthodes. Synthèse des principaux résultats. Retour réflexif sur l’apport et les limites du mémoire. Références bibliographiques                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-# Chapitre 1. Faire l'économie des familles recomposées
-
-## Les familles recomposées en ménage statistiques
+## Partie Méthodo dans l'introduction : Les familles recomposées en ménage statistiques
 
 La construction de typologie familiales selon la composition des groupes et la structure des relations entre individus résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [@laslett1983; @goldelier]. Pour ces auteurs, décrire les formes que prennent la famille permet d'analyser l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, elles tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées[^1]. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui prendrait mieux que d'autre la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
 
@@ -333,10 +331,15 @@ showSVG(nVennObj = p, outFile = "illustrations/Vendiag.svg", borderWidth = 0, la
 
 ```
 
-\
-![](images/Vendiag-01.svg)
-
 #### de la famille aux parents
+
+### Se remmetre en couple quand on a des enfants
+
+#### [provisioire] Situer socialement les remises en couple
+
+-   couple cohabitant ou non
+
+-   enfants hors domicile ou non
 
 ------------------------------------------------------------------------
 
@@ -351,6 +354,118 @@ showSVG(nVennObj = p, outFile = "illustrations/Vendiag.svg", borderWidth = 0, la
 =\> une fois qu'on a fait ça, on a pas gagner parce que le
 
 ------------------------------------------------------------------------
+
+# Chapitre 1. Le calcul du niveau de vie à l'épreuve des configuration familiales recomposées
+
+> *Je ne sais pas si cette sous partie ira à la fin du I ou au début du II, et ça pourrait mËme aller en fin du II ou en début du III. il s'agit de dire que le niveau de vie est mal estimé dans les familles recomposées, ce qui est pour plusieurs raisons et que cela à plusieurs conséquences. Donc probablement si ca reste ici c'est pour des raisons de type d'interrogation méthodologique (ici on est pls sur des questions de statistiques et de mesure*) et dans ce cas on le pose comme ressort problématique, avec un II qui cherche a fournir une explication et un III qui cherche à expliciter les conséquences. , mais ça peut aller au début du II parce que ce qui suit explique cela, ça peut aller à la fin du II parce que c'est la conséquence de ce qu'on explique dans le II
+
+## Le niveau de vie, un indicateur statistique central
+
+Qu'il s'agisse de comparer des pays, de quantifier des inégalités économiques entre individus ou encore d'analyser la consommation, le niveau de vie est un indicateur central en sciences sociales. Calculé comme le quotient du revenu disponible d'un ménage sur le nombre d'unités de consommation de celui-ci, il permet de rendre comparable des ménages composées différemment. Pour cela, il s'appuie sur des échelles d'équivalence, qui attribuent un coefficient à chaque personne supplémentaire en fonction de ses caractéristiques propre. Ce coefficient correspond ainsi à la proportion de revenu supplémentaire que le ménage doit gagner pour cet individu, afin de bénéficier du même niveau de vie qu’une personne seule.
+
+```{r}
+echellesEquivalences <- NULL
+```
+
+\*\* INSERER tableau des échelles d'équivalences \*\*
+
+Le calcul du niveau de vie est également au fondement des dispositifs de redistribution. Les administrations sociales et fiscales possèdent donc elles aussi leurs propres échelles d'équivalences, parfois spécifiques à chaque prestation.
+
+-   Plus les limites
+
+Des limites nombreuses, évolutions de la structure des budgets, donc économies d'échelles qui bougent aussi (exemple du logement)
+
+comparaisons internationales qui ne prennent pas en compte le niveau de démarchandisation (services publics, redistrib en "nature", ex dépenses de santé France vs USA)
+
+Les familles recomposées : la question des limites du ménage
+
+### Estimer les niveaux de vie
+
+------------------------------------------------------------------------
+
+\tiny
+
+Dans l'enquête BDF 2017, trois variables subjectives permettent d'approcher des estimations du niveau de vie dans les familles.
+
+------------------------------------------------------------------------
+
+\normalsize
+
+## Des structures de consommation proches des familles nucléaires
+
+```{r, include = FALSE}
+
+familles <- readRDS("Data_output/famillesToutes.Rds")
+conso <- readRDS("Data_output/conso.Rds")
+names(conso) 
+
+types_conso <- c(paste0("0", 1:9), 10:12) 
+
+
+conso2 <- lapply(types_conso, function(x){
+  tab <- conso %>%
+    select(starts_with(paste0("C", x)))
+  tab <- rowSums(tab, na.rm = TRUE)
+  consotot<- conso$CTOT %>% as.vector()
+  tab <- (tab/consotot)*100
+  return(tab)
+  }
+)
+
+conso2 <- conso2 %>%
+  bind_cols() %>%
+  as.data.frame()
+
+names(conso2) <- c("PRODUITS ALIMENTAIRES ET BOISSONS NON-ALCOOLISEES ", 
+                   "BOISSONS ALCOOLISEES, TABACS ET STUPEFIANTS ", 
+                   "ARTICLES D’HABILLEMENT ET CHAUSSURES", 
+                   "LOGEMENT, EAU, GAZ, ELECTRICITE ET AUTRES COMBUSTIBLES", 
+                   "MEUBLES, ARTICLES DE MENAGE ET ENTRETIEN COURANT DE LA MAISON", 
+                   "SANTE", 
+                   "TRANSPORTS", 
+                   "COMMUNICATIONS", 
+                   "LOISIRS ET CULTURE", 
+                   "ENSEIGNEMENT", 
+                   "RESTAURATION ET HÔTELS", 
+                   "BIENS ET SERVICES DIVERS") %>% 
+  str_to_sentence()
+
+ 
+
+conso2$`Consommation finale` <- conso$CTOT
+
+names(familles)
+data <- familles %>%
+  bind_cols(conso2) %>%
+  select("PONDMEN", "n_configMenage", all_of(names(conso2))) 
+
+```
+
+```{r}
+data %>%
+  as_survey_design(weights = "PONDMEN") %>%
+  select(-PONDMEN) %>%
+  tbl_svysummary(by = "n_configMenage", 
+                 statistic = list(all_continuous() ~"{mean}"), 
+                 type = list(everything() ~ "continuous"),
+                 missing = "no") %>%
+  add_overall(last = T) %>%
+  add_p()
+```
+
+## Un niveau de vie subjectif qui s'éloigne de l'indicateur dans les familles recomposées
+
+```{r}
+
+```
+
+#### Couple parental, parent célibataire ou nouvelle union, des effets différenciés sur le niveau de vie ressenti
+
+#### Les mères de familles recomposées estiment leur niveau vie plus faible
+
+#### Les pères de famille recomposées estiment leur niveau de vie plus élevé
+
+# Chapitre 2. Ce qu'on compte mal : Des inégalités de revenus, de dépenses et de consommation
 
 ## Les budgets des ménages, une difficile individualisation
 
@@ -430,39 +545,21 @@ Le ménage n’est donc pas un « impensé » statistique, il a été continue
 
 -   les arrangements avec la fiscalité
 
-## Le calcul du niveau de vie à l'épreuve des configuration familiales recomposées
-
-> *Je ne sais pas si cette sous partie ira à la fin du I ou au début du II, et ça pourrait mËme aller en fin du II ou en début du III. il s'agit de dire que le niveau de vie est mal estimé dans les familles recomposées, ce qui est pour plusieurs raisons et que cela à plusieurs conséquences. Donc probablement si ca reste ici c'est pour des raisons de type d'interrogation méthodologique (ici on est pls sur des questions de statistiques et de mesure*) et dans ce cas on le pose comme ressort problématique, avec un II qui cherche a fournir une explication et un III qui cherche à expliciter les conséquences. , mais ça peut aller au début du II parce que ce qui suit explique cela, ça peut aller à la fin du II parce que c'est la conséquence de ce qu'on explique dans le II
-
-#### Les inégalités de revenus secondaires
-
-#### Indicateur au fondement des dispositifs de redistribution
-
-### Les limites du calcul du niveau de vie
-
-### Un niveau de vie subjectif qui s'éloigne de l'indicateur dans les familles recomposées
-
-#### Couple parental, parent célibataire ou nouvelle union, des effets différenciés sur le niveau de vie ressenti
-
-#### Les mères de familles recomposées estiment leur niveau vie plus faible
-
-#### Les pères de famille recomposées estiment leur niveau de vie plus élevé
-
-# Chapitre 2.
-
 Idées que les pratiques des différents adultes sont différenciées
 
 keys : lignée vs maisonnée, travail
 
-### Se remmetre en couple quand on a des enfants
-
-#### [provisioire] Situer socialement les remises en couple
-
--   couple cohabitant ou non
-
--   enfants hors domicile ou non
-
 #### Les pratiques des parents dans les familles recomposées
+
+### Mais des dépenses spécifiques aux enfants qui différents
+
+```{r, eval = FALSE}
+
+familles <- readRDS("Data_output/famillesToutes.Rds") 
+conso <- readRDS("Data_output/conso.Rds") 
+names(conso)  
+types_conso <- list(   Scolaire = names(conso)[str_starts(names(conso), "C111|C112")],    Vetements = names(conso)[str_starts(names(conso), "C03123|C03213")],    Jouets = names(conso)[str_starts(names(conso), "C09311")],    Garde = names(conso)[str_starts(names(conso), "C124111|C056211")],   Alimentation = names(conso)[str_starts(names(conso), "C011941")],    Mobilier = names(conso)[str_starts(names(conso), "C051164")])  conso2 <- lapply(types_conso, function(x){   tab <- conso %>%     select(starts_with(paste0("C", x)))   tab <- rowSums(tab, na.rm = TRUE)   consotot<- conso$CTOT %>% as.vector()   tab <- (tab/consotot)*100   return(tab)   } )  conso2 <- conso2 %>%   bind_cols() %>%   as.data.frame()  names(conso2) <- c("PRODUITS ALIMENTAIRES ET BOISSONS NON-ALCOOLISEES ",                     "BOISSONS ALCOOLISEES, TABACS ET STUPEFIANTS ",                     "ARTICLES D’HABILLEMENT ET CHAUSSURES",                     "LOGEMENT, EAU, GAZ, ELECTRICITE ET AUTRES COMBUSTIBLES",                     "MEUBLES, ARTICLES DE MENAGE ET ENTRETIEN COURANT DE LA MAISON",                     "SANTE",                     "TRANSPORTS",                     "COMMUNICATIONS",                     "LOISIRS ET CULTURE",                     "ENSEIGNEMENT",                     "RESTAURATION ET HÔTELS",                     "BIENS ET SERVICES DIVERS") %>%    str_to_sentence()     conso2$`Consommation finale` <- conso$CTOT  names(familles) data <- familles %>%   bind_cols(conso2) %>%   select("PONDMEN", "n_config", all_of(names(conso2)))  data$n_configMenage <- data$n_configMenage %>%   fct_relevel(     "Couple sans enfant", "Femme seule", "Homme seul", "Mère célibataire",     "Père célibataire", "Mère en couple", "Père en couple", "Parents en couple",     "Autre type de ménage (ménage complexe)"   )  data %>%   as_survey_design(weights = "PONDMEN") %>%   select(-PONDMEN) %>%   tbl_svysummary(by = "n_config",                   statistic = list(all_continuous() ~"{mean}"),                   type = list(everything() ~ "continuous"),                  missing = "no") %>%   add_overall(last = T) %>%   add_p()                   
+```
 
 ### Des beaux-parents aux pratiques différenciées
 
@@ -474,7 +571,7 @@ Décrire socialement les beaux-parents
 
 ### Des ex-conjoint.e.s moins mobilisé.e.s
 
-# Chapitre 3. text
+# Chapitre 3. Ce qu'on ne compte pas : Travail domestique et autoproduction.
 
 \listoftables
 
