@@ -77,12 +77,14 @@ chisq.test(data$AISE, data$n_EnfantsHD)
 
 
 names(data)
-reg <- clm(AISE ~ NIVIE + n_configMenage + n_EnfantsHD + AGEPR + n_ageMoyEnfMen + CSMEN6,
+reg <- clm(AISE ~ NIVIE + n_configMenage + n_EnfantsHD + n_ageMoyEnfMen + AGEPR + CSMEN6,
            data = data, 
            weights = PONDFAM)
 tblreg3 <- tbl_regression(reg, intercept = F, exponentiate = T, 
                           label = list(n_configMenage  ~ "Configuration dans le ménage", 
-                                        n_EnfantsHD ~ "Enfants vivants hors domicile"))
+                                        n_EnfantsHD ~ "Enfants vivants hors domicile", 
+                                       n_ageMoyEnfMen ~ "Age moyen des enfants du ménage", 
+                                       CSMEN6 ~ "CSP de la PR"))
 tblreg3 
 
 ## Enregistrement des résultats ################################################

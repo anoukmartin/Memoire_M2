@@ -560,6 +560,8 @@ tab <- famillesToutes %>%
 famillesToutes$n_configMenage <- tab$n_configMenage
 famillesToutes <- as.data.frame(famillesToutes)
 freq(famillesToutes$n_configMenage)
+tab <- table(famillesToutes$TYPMEN5, famillesToutes$n_configFamSynth) %>%
+  as.matrix() %>% as.data.frame()
 
 famillesToutes <- famillesToutes %>%
   mutate(CSMEN6 = str_sub(CSMEN, 1, 1)) %>%
@@ -575,6 +577,7 @@ famillesToutes <- famillesToutes %>%
     NULL = "H"
   ))
 
+freq(famillesToutes$n_configMenage)
 
 saveData(famillesToutes, label = "famillesToutes")
 

@@ -33,7 +33,7 @@ saveTableau <- function(tableau, type, label, description, champ, n, ponderation
   tab$n <- n
   tab$ponderation <- ponderation
   save(tab, 
-       file = paste0(resPath, "/", type, "_", label, ".Rds"))
+       file = paste0(resPath, "/", type, "_", label, ".Rdata"))
 }
 
 saveData <- function(data, label, dataPath = "Data_output"){

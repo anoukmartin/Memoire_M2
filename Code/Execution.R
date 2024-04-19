@@ -18,7 +18,7 @@ execute <- function(part, path = "Code"){
 
 
 # Au démarrage #################################################################
-# On exécute les scripts commençant par 00 et 01
+# On exécute les scripts de setup commençant par 00 et 01
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 

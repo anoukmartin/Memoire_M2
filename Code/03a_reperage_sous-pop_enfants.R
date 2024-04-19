@@ -44,9 +44,16 @@ enfants <- enfants %>%
     PER1E == "1" & MER1E == "1" ~ "les deux",
     PER1E == "1" & MER1E != "1" ~ "le père uniquement",
     PER1E != "1" & MER1E == "1" ~ "la mère uniquement",
-    PER1E != "1" & MER1E != "1" ~ "aucun des deux"))
+    PER1E != "1" & MER1E != "1" ~ "aucun des deux")) %>%
+  mutate(n_AutreParent = case_when(
+    PER1E == "1" & MER1E == "2" ~ "autre parent vivant ailleurs",
+    PER1E == "1" & MER1E %in% c("3", "4") ~ "autre parent inconnu ou décédé",
+    MER1E == "1" & PER1E == "2" ~ "autre parent vivant ailleurs",
+    MER1E == "1" & PER1E %in% c("3", "4") ~ "autre parent inconnu ou décédé"))
+
 tbl_summary(enfants, 
-            include = n_NPARENTS)
+            include = c("n_NPARENTS", "n_AutreParent"))
+
 # Aucun enfants ne vit avec aucun de ses parents,
 # enfant vivant avec uniquement leur mère sur représentés, parce que familles 
 # mono sont plus souvent des mères isolées que des pères, + sur-échantillon 
@@ -89,6 +96,9 @@ rm(enfants2)
 enfants %>%
   select(n_NPARENTS, n_CouplePere, n_CoupleMere) %>%
   tbl_summary(by = "n_NPARENTS") 
+
+
+
 
 # On centre la variable de pondération 
 enfants$PONDIND <- enfants$PONDMEN/mean(enfants$PONDMEN)
@@ -181,10 +191,10 @@ names(indiv)
 
 enfantTous <- bind_rows(
   enfants %>% 
-    select(IDENT_MEN,  starts_with("n_")) %>% 
+    select(IDENT_MEN, PER1E, MER1E, starts_with("n_")) %>% 
     mutate(n_statutResid = "Enfant du ménage (au sens du TCM)"), 
   enfantHD %>% 
-    select(starts_with("n_")) %>% 
+    select(IDENT_MEN, starts_with("n_")) %>% 
     mutate(n_statutResid = "Enfant résidant hors domicile"))
 names(enfantTous)
 
@@ -206,6 +216,7 @@ enfantTous <- enfantTous %>%
   mutate(n_ParentsCohab2 = case_when(
     n_ParentsCohab == "Oui" ~ "Parents cohabitants", 
     n_ParentsCohab == "Non" ~ "Parents non-cohabitants"))
+
 
 ## 3.3. De nouvelles variables #################################################
 # On crée aussi un recodage qui simplifie la situation conjugale des parents
@@ -262,6 +273,15 @@ enfantTous <- enfantTous %>%
          |(n_situationPere == "En couple avec une autre personne" & is.na(n_situationMere))
          |(n_situationMere == "En couple avec une autre personne" & is.na(n_situationPere))) ~ "Configuration recomposée")) %>%
   mutate(
+    n_configFamEnfantsS = case_when(
+      !is.na(n_configFamEnfantsS) ~ n_configFamEnfantsS,
+      is.na(n_configFamEnfantsS) & n_ResidParents == "Enfant résidant chez son père" & MER1E %in% c("3", "4") ~ "Pas de configuration secondaire", 
+      is.na(n_configFamEnfantsS) & n_ResidParents == "Enfant résidant chez sa mère" & PER1E %in% c("3", "4") ~ "Pas de configuration secondaire", 
+      is.na(n_configFamEnfantsS) & n_ResidParents == "Enfant résidant chez son père" & MER1E == "2" ~ "Configuration inconnue", 
+      is.na(n_configFamEnfantsS) & n_ResidParents == "Enfant résidant chez sa mère" & PER1E == "2"  ~ "Configuration inconnue"
+    )
+  ) %>%
+  mutate(
     n_configFamEnfantsSSexe = case_when(
       (n_ResidParents == "Enfant résidant chez ses deux parents") ~ "Pas de configuration secondaire", 
       (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "En couple avec une autre personne") ~ "Configuration recomposée paternelle",
@@ -286,9 +306,20 @@ enfantTous <- enfantTous %>%
       (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
        & n_situationMere == "En couple avec une autre personne" 
        & is.na(n_situationPere)) ~ "Configuration recomposée maternelle")) %>%
+  mutate(n_configFamEnfantsSSexe = case_when(
+    !is.na(n_configFamEnfantsSSexe) ~ n_configFamEnfantsSSexe,
+    is.na(n_configFamEnfantsSSexe) & n_ResidParents == "Enfant résidant chez son père" & MER1E %in% c("3", "4") ~ "Pas de configuration secondaire", 
+    is.na(n_configFamEnfantsSSexe) & n_ResidParents == "Enfant résidant chez sa mère" & PER1E %in% c("3", "4") ~ "Pas de configuration secondaire", 
+    is.na(n_configFamEnfantsSSexe) & n_ResidParents == "Enfant résidant chez son père" & MER1E == "2" ~ "Configuration maternelle inconnue", 
+    is.na(n_configFamEnfantsSSexe) & n_ResidParents == "Enfant résidant chez sa mère" & PER1E == "2"  ~ "Configuration paternelle inconnue"
+  )
+)
+
   # On labellise les colonnes 
+enfantTous <- enfantTous %>%
   mutate(n_ResidParents = labelled(n_ResidParents, label = "Enfant résidant avec"), 
          n_NPARENTS = labelled(n_ResidParents, label = "Enfant résidant avec"), 
+         
          n_statutResid = labelled(n_statutResid, label = "Statut résidentiel dans l'enquête"), 
          n_ParentsCohab = labelled(n_ParentsCohab, label = "Cohabitation des parents"), 
          n_ParentsCohab2 = labelled(n_ParentsCohab2, label = "Cohabitation des parents"), 
@@ -312,6 +343,25 @@ names(enfantTous)
 
 # On enregistre ce tableau de données
 saveData(enfantTous, label = "enfantsTous")
+
+# On ajoute ces données sur celles des enfants du ménages et des enfants hors domicile 
+enfants <- readRDS("Data_output/enfantsDuMenage.Rds") 
+data <- enfantsTous[, !(names(enfantsTous) %in% names(enfants))]
+data$n_IdentIndiv <- enfantsTous$n_IdentIndiv
+enfants <- enfants %>%
+  left_join(data,
+            by = "n_IdentIndiv")
+names(enfants)
+saveRDS(enfants, "Data_output/enfantsDuMenage.Rds")
+
+enfantHD <- readRDS("Data_output/enfantsHorsDom.Rds")
+data <- enfantsTous[, !(names(enfantsTous) %in% names(enfantsHD))]
+data$n_IdentIndiv <- enfantsTous$n_IdentIndiv
+enfantHD <- enfantHD %>%
+  left_join(data,
+            by = "n_IdentIndiv")
+names(enfantHD)  
+saveRDS(enfantHD, "Data_output/enfantsHorsDom.Rds")
 
 # Un peu de ménage
 rm(enfantHD, enfants, enfantTous, enfHD, indiv, parents, infosBDF)

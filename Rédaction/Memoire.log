@@ -1,0 +1,1108 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.1)  19 APR 2024 14:05
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Memoire.tex
+(./Memoire.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-03-14>
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count188
+\c@chapter=\count189
+\c@section=\count190
+\c@subsection=\count191
+\c@subsubsection=\count192
+\c@paragraph=\count193
+\c@subparagraph=\count194
+\c@figure=\count195
+\c@table=\count196
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip50
+For additional information on amsmath, use the `?' option.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen141
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen142
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count197
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count198
+\leftroot@=\count199
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count266
+\DOTSCASE@=\count267
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen143
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count268
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count269
+\dotsspace@=\muskip16
+\c@parentequation=\count270
+\dspbrk@lvl=\count271
+\tag@help=\toks18
+\row@=\count272
+\column@=\count273
+\maxfields@=\count274
+\andhelp@=\toks19
+\eqnshift@=\dimen144
+\alignsep@=\dimen145
+\tagshift@=\dimen146
+\tagwidth@=\dimen147
+\totwidth@=\dimen148
+\lineht@=\dimen149
+\@envbody=\toks20
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2024/03/29 v3.1b Micro-typographical refinements (RS)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks24
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count275
+)
+\MT@toks=\toks25
+\MT@tempbox=\box53
+\MT@count=\count276
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1061.
+LaTeX Info: Redefining \leftprotrusion on input line 1062.
+\MT@prot@toks=\toks26
+LaTeX Info: Redefining \rightprotrusion on input line 1081.
+LaTeX Info: Redefining \textls on input line 1392.
+\MT@outer@kern=\dimen150
+LaTeX Info: Redefining \textmicrotypecontext on input line 2013.
+\MT@listname@count=\count277
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2024/03/29 v3.1b Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 902.
+LaTeX Info: Redefining \lslig on input line 902.
+\MT@outer@space=\skip53
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2024/03/29 v3.1b microtype main configuration file (RS)
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
+\LTleft=\skip54
+\LTright=\skip55
+\LTpre=\skip56
+\LTpost=\skip57
+\LTchunksize=\count278
+\LTcapwidth=\dimen151
+\LT@head=\box54
+\LT@firsthead=\box55
+\LT@foot=\box56
+\LT@lastfoot=\box57
+\LT@gbox=\box58
+\LT@cols=\count279
+\LT@rows=\count280
+\c@LT@tables=\count281
+\c@LT@chunks=\count282
+\LT@p@ftn=\toks27
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen152
+\lightrulewidth=\dimen153
+\cmidrulewidth=\dimen154
+\belowrulesep=\dimen155
+\belowbottomsep=\dimen156
+\aboverulesep=\dimen157
+\abovetopsep=\dimen158
+\cmidrulesep=\dimen159
+\cmidrulekern=\dimen160
+\defaultaddspace=\dimen161
+\@cmidla=\count283
+\@cmidlb=\count284
+\@aboverulesep=\dimen162
+\@belowrulesep=\dimen163
+\@thisruleclass=\count285
+\@lastruleclass=\count286
+\@thisrulewidth=\dimen164
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen165
+\ar@mcellbox=\box59
+\extrarowheight=\dimen166
+\NC@list=\toks28
+\extratabsurround=\skip58
+\backup@length=\skip59
+\ar@cellbox=\box60
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count287
+\calc@Bcount=\count288
+\calc@Adimen=\dimen167
+\calc@Bdimen=\dimen168
+\calc@Askip=\skip60
+\calc@Bskip=\skip61
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count289
+\calc@Cskip=\skip62
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box61
+\fn@width=\dimen169
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+)
+\Gin@req@height=\dimen170
+\Gin@req@width=\dimen171
+)
+\cslhangindent=\skip63
+\csllabelwidth=\skip64
+\cslentryspacingunit=\skip65
+(./thesisehess.sty
+Package: thesisehess 
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 112.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2024/03/29 v24.3 The Babel package
+\babel@savecnt=\count290
+\U@D=\dimen172
+\l@unhyphenated=\language8
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count291
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language5). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language5). Reported on input line 108.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel-french/french.ldf
+Language: french 2024-02-29 v3.5s French support from the babel system
+Package babel Info: Hyphen rules for 'acadian' set to \l@french
+(babel)             (\language7). Reported on input line 91.
+Package babel Info: Hyphen rules for 'canadien' set to \l@french
+(babel)             (\language7). Reported on input line 92.
+\FB@stdchar=\count292
+Package babel Info: Making : an active character on input line 420.
+Package babel Info: Making ; an active character on input line 421.
+Package babel Info: Making ! an active character on input line 422.
+Package babel Info: Making ? an active character on input line 423.
+\FBguill@level=\count293
+\FBold@everypar=\toks29
+\FB@Mht=\dimen173
+\mc@charclass=\count294
+\mc@charfam=\count295
+\mc@charslot=\count296
+\std@mcc=\count297
+\dec@mcc=\count298
+\FB@parskip=\dimen174
+\listindentFB=\dimen175
+\descindentFB=\dimen176
+\labelindentFB=\dimen177
+\labelwidthFB=\dimen178
+\leftmarginFB=\dimen179
+\parindentFFN=\dimen180
+\FBfnindent=\dimen181
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex
+Package babel Info: Importing font and identification data for french
+(babel)             from babel-fr.ini. Reported on input line 11.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/carlisle/scalefnt.sty) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count299
+\Gm@cntv=\count300
+\c@Gm@tempcnt=\count301
+\Gm@bindingoffset=\dimen182
+\Gm@wd@mp=\dimen183
+\Gm@odd@mp=\dimen184
+\Gm@even@mp=\dimen185
+\Gm@layoutwidth=\dimen186
+\Gm@layoutheight=\dimen187
+\Gm@layouthoffset=\dimen188
+\Gm@layoutvoffset=\dimen189
+\Gm@dimlist=\toks30
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/titling/titling.sty
+Package: titling 2009/09/04 v2.1d maketitle typesetting
+\thanksmarkwidth=\skip66
+\thanksmargin=\skip67
+\droptitle=\skip68
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
+\ttl@box=\box62
+\beforetitleunit=\skip69
+\aftertitleunit=\skip70
+\ttl@plus=\dimen190
+\ttl@minus=\dimen191
+\ttl@toksa=\toks31
+\titlewidth=\dimen192
+\titlewidthlast=\dimen193
+\titlewidthfirst=\dimen194
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip71
+\f@nch@O@elh=\skip72
+\f@nch@O@erh=\skip73
+\f@nch@O@olh=\skip74
+\f@nch@O@orh=\skip75
+\f@nch@O@elf=\skip76
+\f@nch@O@erf=\skip77
+\f@nch@O@olf=\skip78
+\f@nch@O@orf=\skip79
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks32
+\pgfutil@tempdima=\dimen195
+\pgfutil@tempdimb=\dimen196
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box63
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks33
+\pgfkeys@temptoks=\toks34
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks35
+))
+\pgf@x=\dimen197
+\pgf@y=\dimen198
+\pgf@xa=\dimen199
+\pgf@ya=\dimen256
+\pgf@xb=\dimen257
+\pgf@yb=\dimen258
+\pgf@xc=\dimen259
+\pgf@yc=\dimen260
+\pgf@xd=\dimen261
+\pgf@yd=\dimen262
+\w@pgf@writea=\write3
+\r@pgf@reada=\read3
+\c@pgf@counta=\count302
+\c@pgf@countb=\count303
+\c@pgf@countc=\count304
+\c@pgf@countd=\count305
+\t@pgf@toka=\toks36
+\t@pgf@tokb=\toks37
+\t@pgf@tokc=\toks38
+\pgf@sys@id@count=\count306
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count307
+\pgfsyssoftpath@bigbuffer@items=\count308
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen263
+\pgfmath@count=\count309
+\pgfmath@box=\box64
+\pgfmath@toks=\toks39
+\pgfmath@stack@operand=\toks40
+\pgfmath@stack@operation=\toks41
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count310
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen264
+\pgf@picmaxx=\dimen265
+\pgf@picminy=\dimen266
+\pgf@picmaxy=\dimen267
+\pgf@pathminx=\dimen268
+\pgf@pathmaxx=\dimen269
+\pgf@pathminy=\dimen270
+\pgf@pathmaxy=\dimen271
+\pgf@xx=\dimen272
+\pgf@xy=\dimen273
+\pgf@yx=\dimen274
+\pgf@yy=\dimen275
+\pgf@zx=\dimen276
+\pgf@zy=\dimen277
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen278
+\pgf@path@lasty=\dimen279
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen280
+\pgf@shorten@start@additional=\dimen281
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box65
+\pgf@hbox=\box66
+\pgf@layerbox@main=\box67
+\pgf@picture@serial@count=\count311
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen282
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen283
+\pgf@pt@y=\dimen284
+\pgf@pt@temp=\dimen285
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen286
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen287
+\pgf@sys@shading@range@num=\count312
+\pgf@shadingcount=\count313
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box68
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box69
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen288
+\pgf@nodesepend=\dimen289
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen290
+\pgffor@skip=\dimen291
+\pgffor@stack=\toks42
+\pgffor@toks=\toks43
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count314
+\pgfplotmarksize=\dimen292
+)
+\tikz@lastx=\dimen293
+\tikz@lasty=\dimen294
+\tikz@lastxsaved=\dimen295
+\tikz@lastysaved=\dimen296
+\tikz@lastmovetox=\dimen297
+\tikz@lastmovetoy=\dimen298
+\tikzleveldistance=\dimen299
+\tikzsiblingdistance=\dimen300
+\tikz@figbox=\box70
+\tikz@figbox@bg=\box71
+\tikz@tempbox=\box72
+\tikz@tempbox@bg=\box73
+\tikztreelevel=\count315
+\tikznumberofchildren=\count316
+\tikznumberofcurrentchild=\count317
+\tikz@fig@count=\count318
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count319
+\pgfmatrixcurrentcolumn=\count320
+\pgf@matrix@numberofcolumns=\count321
+)
+\tikz@expandcount=\count322
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen301
+\captionmargin=\dimen302
+\caption@leftmargin=\dimen303
+\caption@rightmargin=\dimen304
+\caption@width=\dimen305
+\caption@indent=\dimen306
+\caption@parindent=\dimen307
+\caption@hangindent=\dimen308
+Package caption Info: Standard document class detected.
+Package caption Info: french babel package is loaded.
+)
+\c@caption@flags=\count323
+\c@continuedfloat=\count324
+Package caption Info: longtable package is loaded.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-03-14 L3 programming layer (loader) 
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count325
+\l__pdf_internal_box=\box74
+))
+Package: l3keys2e 2024-03-14 LaTeX2e option processing using LaTeX3 keys
+)
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count326
+\l__lipsum_a_int=\count327
+\l__lipsum_b_int=\count328
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count329
+\c@Blindtext=\count330
+\c@blind@countparstart=\count331
+\blind@countxx=\count332
+\blindtext@numBlindtext=\count333
+\blind@countyy=\count334
+\c@blindlist=\count335
+\c@blindlistlevel=\count336
+\c@blindlist@level=\count337
+\blind@listitem=\count338
+\c@blind@listcount=\count339
+\c@blind@levelcount=\count340
+\blind@mathformula=\count341
+\blind@Mathformula=\count342
+\c@blind@randomcount=\count343
+\c@blind@randommax=\count344
+\c@blind@pangramcount=\count345
+\c@blind@pangrammax=\count346
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count347
+)
+\@linkdim=\dimen309
+\Hy@linkcounter=\count348
+\Hy@pagecounter=\count349
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count350
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4062.
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count351
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen310
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count352
+\Field@Width=\dimen311
+\Fld@charsize=\dimen312
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count353
+\c@Item=\count354
+\c@Hfootnote=\count355
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count356
+\c@bookmark@seq@number=\count357
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip80
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/svg/svg.sty
+Package: svg 2020/11/26 v2.02k (include SVG pictures)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2023/07/07 v3.41 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2023/07/07 v3.41 KOMA-Script package (file load hooks)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2023/07/07 v3.41 KOMA-Script package (using LaTeX hooks)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2023/07/07 v3.41 KOMA-Script package (logo)
+)))
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line 368.
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+)
+\c@svg@param@lastpage=\count358
+\svg@box=\box75
+\c@svg@param@currpage=\count359
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/transparent/transparent.sty
+Package: transparent 2022-10-27 v1.5 Transparency with color stacks
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
+Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color stack (HO)
+))
+\vspaceamount=\skip81
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip82
+\multirow@cntb=\count360
+\multirow@dima=\skip83
+\bigstrutjot=\dimen313
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen314
+\WF@size=\dimen315
+\c@WF@wrappedlines=\count361
+\WF@box=\box76
+\WF@everypar=\toks44
+Package: wrapfig 2003/01/31  v 3.6
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count362
+\float@exts=\toks45
+\float@box=\box77
+\@float@everytoks=\toks46
+\@floatcapt=\box78
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
+\everycr=\toks47
+\minrowclearance=\skip84
+\rownum=\count363
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box79
+\sift@deathcycles=\count364
+\@vwid@loff=\dimen316
+\@vwid@roff=\dimen317
+)
+\c@taburow=\count365
+\tabu@nbcols=\count366
+\tabu@cnt=\count367
+\tabu@Xcol=\count368
+\tabu@alloc=\count369
+\tabu@nested=\count370
+\tabu@target=\dimen318
+\tabu@spreadtarget=\dimen319
+\tabu@naturalX=\dimen320
+\tabucolX=\dimen321
+\tabu@Xsum=\dimen322
+\extrarowdepth=\dimen323
+\abovetabulinesep=\dimen324
+\belowtabulinesep=\dimen325
+\tabustrutrule=\dimen326
+\tabu@thebody=\toks48
+\tabu@footnotes=\toks49
+\tabu@box=\box80
+\tabu@arstrutbox=\box81
+\tabu@hleads=\box82
+\tabu@vleads=\box83
+\tabu@cellskip=\skip85
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box84
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
+Package: threeparttablex 2013/07/23 v0.3 by daleif
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+)
+\TPTL@width=\skip86
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box85
+\UL@hyphenbox=\box86
+\UL@skip=\skip87
+\UL@hook=\toks50
+\UL@height=\dimen327
+\UL@pe=\count371
+\UL@pixel=\dimen328
+\ULC@box=\box87
+Package: ulem 2019/11/18
+\ULdepth=\dimen329
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen330
+\c@nlinenum=\count372
+\TeXr@lab=\toks51
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
+\BKM@id=\count373
+)) (./Memoire.aux)
+\openout1 = `Memoire.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Info: Redefining \microtypecontext on input line 136.
+Package microtype Info: Applying patch `item' on input line 136.
+Package microtype Info: Applying patch `toc' on input line 136.
+Package microtype Info: Applying patch `eqnum' on input line 136.
+
+Package microtype Warning: Unable to apply patch `footnote' on input line 136.
+
+Package microtype Info: Applying patch `verbatim' on input line 136.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `basicmath'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 136.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+LaTeX Info: Redefining \degres on input line 136.
+LaTeX Info: Redefining \up on input line 136.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-35.63048pt
+* \headheight=14.61858pt
+* \headsep=19.8738pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=98.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: threeparttable package is loaded.
+Package caption Info: wrapfig package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring OFF on input line 136.
+<ehess.png, id=7, 1927.2pt x 2077.7625pt>
+File: ehess.png Graphic file (type png)
+<use ehess.png>
+Package pdftex.def Info: ehess.png  used on input line 140.
+(pdftex.def)             Requested size: 52.75555pt x 56.87708pt.
+<ens.png, id=9, 674.52pt x 255.95625pt>
+File: ens.png Graphic file (type png)
+<use ens.png>
+Package pdftex.def Info: ens.png  used on input line 140.
+(pdftex.def)             Requested size: 149.95929pt x 56.90419pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 140.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 140.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 140.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 140.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 140.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 140.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 140.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 140.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 140.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) [1
+
+
+
+
+{/home/onyxia/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <./ehess.png> <./ens.png>] [2
+
+] (./Memoire.toc [3])
+\tf@toc=\write4
+\openout4 = `Memoire.toc'.
+
+[4]
+Overfull \hbox (0.50014pt too wide) in alignment at lines 152--158
+ [] 
+ []
+
+
+Overfull \hbox (0.50014pt too wide) in alignment at lines 158--160
+ [] 
+ []
+
+
+Overfull \hbox (0.50014pt too wide) in alignment at lines 160--197
+ [] 
+ []
+
+[5
+
+] [6]
+Underfull \hbox (badness 1292) in paragraph at lines 203--203
+|\T1/lmr/bx/n/24.88 (+20) Chapitre 1. Sai-sir les re-mises en
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[7
+
+]
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/12'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 255.
+[8]
+<images/Question_LIENXX.PNG, id=193, 500.62032pt x 228.855pt>
+File: images/Question_LIENXX.PNG Graphic file (type png)
+<use images/Question_LIENXX.PNG>
+Package pdftex.def Info: images/Question_LIENXX.PNG  used on input line 333.
+(pdftex.def)             Requested size: 338.7826pt x 154.87204pt.
+[9]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10 <./images/Question_LIENXX.PNG>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[11]
+<Memoire_files/figure-latex/mosaic-1.pdf, id=214, 505.89pt x 252.945pt>
+File: Memoire_files/figure-latex/mosaic-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/mosaic-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-1.pdf  used on input line 474.
+(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
+[12 <./Memoire_files/figure-latex/mosaic-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[13] [14]
+Overfull \hbox (1097.40756pt too wide) in paragraph at lines 603--630
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 645--649
+[]\T1/lmr/m/n/12 (+20) regarder, comme pour les en-fants, les dé-penses in-di-vi-dua-li-sables
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 645--649
+\T1/lmr/m/n/12 (+20) hommes/femmes, no-tam-ment les ve-te-ments (+ il a de la lit-té-ra-ture
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[15
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[16] [17] [18
+
+] [19] [20
+
+] [21] [22] [23] [24
+
+] (./Memoire.lot)
+\tf@lot=\write5
+\openout5 = `Memoire.lot'.
+
+[25] [26
+
+] (./Memoire.lof)
+\tf@lof=\write6
+\openout6 = `Memoire.lof'.
+
+[27] [28
+
+] [29]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 953.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [30{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] (./Memoire.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-03-14>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 30650 strings out of 476003
+ 567452 string characters out of 5790748
+ 1956493 words of memory out of 5000000
+ 51878 multiletter control sequences out of 15000+600000
+ 631341 words of font info for 163 fonts, out of 8000000 for 9000
+ 36 hyphenation exceptions out of 8191
+ 109i,13n,107p,1488b,740s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
+
+</home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
+Output written on Memoire.pdf (30 pages, 465964 bytes).
+PDF statistics:
+ 593 PDF objects out of 1000 (max. 8388607)
+ 528 compressed objects within 6 object streams
+ 142 named destinations out of 1000 (max. 500000)
+ 41321 words of extra memory for PDF output out of 42996 (max. 10000000)
+

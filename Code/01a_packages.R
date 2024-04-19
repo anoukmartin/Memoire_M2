@@ -132,6 +132,7 @@ add_kablesource_note <- function(kbl_object,
 
 # Mise en forme graphiques
 library(ggplot2)
+library(ggmosaic)
 theme_get()
 theme_set(theme_minimal())
 
