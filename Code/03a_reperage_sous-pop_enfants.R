@@ -72,9 +72,19 @@ enfants <- enfants %>%
 
 ## 1.2. Les parents de ces enfants #############################################
 # On crée une table pour les parents de ces enfants 
+freq(indiv$CONJOINT)
+indiv$CONJOINT <- indiv$CONJOINT %>%
+  str_trim()%>%
+  as.numeric()
+
 parents <- indiv %>%
-  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN" , NewVarName = "n_IdentParent") %>%
-  select(n_IdentParent, COUPLE, SEXE)
+  var_IDENTIFIANT(IdentIndiv = "NOI", 
+                  IdentMenage = "IDENT_MEN" , 
+                  NewVarName = "n_IdentParent") %>%
+  var_IDENTIFIANT(NewVarName = "n_IdentConjoint", 
+                  IdentMenage = "IDENT_MEN", 
+                  IdentIndiv = "CONJOINT") %>%
+  select(n_IdentParent, COUPLE, SEXE, n_IdentConjoint)
 
 # on regarde s'ils sont en couple
 parents %>%
@@ -85,10 +95,17 @@ parents %>%
 ## 1.3. Situation conjugale des parents des enfants ###########################
 # On joint la table des parents sur les identifiants des pères et des mères 
 enfants2 <- enfants %>%
-  left_join(parents %>% rec_COUPLE(NewVar = "n_CouplePere") %>% select(-COUPLE, -SEXE),
+  left_join(parents %>% 
+              rec_COUPLE(NewVar = "n_CouplePere") %>% 
+              select(-COUPLE, -SEXE) %>%
+              rename(n_IdentConjointPere = n_IdentConjoint), 
             by = c("n_IdentPere" = "n_IdentParent")) %>%
-  left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE, -SEXE),
+  left_join(parents %>% 
+              rec_COUPLE(NewVar = "n_CoupleMere") %>% 
+              select(-COUPLE, -SEXE) %>%
+              rename(n_IdentConjointMere = n_IdentConjoint),
             by = c("n_IdentMere" = "n_IdentParent"))
+names(enfants2)
 enfants <- enfants2
 rm(enfants2)
 
@@ -98,6 +115,18 @@ enfants %>%
   tbl_summary(by = "n_NPARENTS") 
 
 
+# On regarde si ils vivent avec des beaux parents 
+enfants <- enfants %>%
+  mutate(n_ConjPere = case_when(
+    n_IdentConjointPere != n_IdentMere ~ "Beau-parent", 
+    !is.na(n_IdentConjointPere) & is.na(n_IdentMere) ~ "Beau-parent",
+    n_IdentConjointPere == n_IdentMere ~ "Parent",
+    is.na(n_IdentConjointPere) ~ NA_character_)) %>%
+  mutate(n_ConjMere = case_when(
+    n_IdentConjointMere != n_IdentPere ~ "Beau-parent", 
+    !is.na(n_IdentConjointMere) & is.na(n_IdentPere) ~ "Beau-parent", 
+    n_IdentConjointMere == n_IdentPere ~ "Parent", 
+    is.na(n_IdentConjointMere) ~ NA_character_))
 
 
 # On centre la variable de pondération 
