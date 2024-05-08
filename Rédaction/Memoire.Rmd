@@ -1,7 +1,7 @@
 ---
 title: ""
 output: 
-  pdf_document:
+  bookdown::pdf_document2:
     df_print: kable
     fig_width: 7
     fig_height: 6
@@ -26,34 +26,11 @@ knitr::opts_chunk$set(
   fig.width = 7,
   fig.asp = 0.8,
   fig.align="center",
-  out.width = "100%")
+  out.width = "100%", 
+  results = "asis")
+
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
-
-#theme_set(theme(base_family = "Times New Roman"))
-theme_memoire <- function(base_size = 14) {
-  theme_bw(base_size = base_size) %+replace%
-    theme(
-      # L'ensemble de la figure
-      plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,5,0), hjust = 0),
-      # Zone où se situe le graphique
-      panel.grid.minor = element_blank(),
-      panel.border = element_blank(),
-      # Les axes
-      axis.title = element_text(size = rel(0.85), face = "bold"),
-      axis.text = element_text(size = rel(0.70), face = "bold"),
-      axis.line = element_line(color = "black", arrow = arrow(length = unit(0.3, "lines"), type = "closed")),
-      # La légende
-      legend.title = element_text(size = rel(0.85), face = "bold"),
-      legend.text = element_text(size = rel(0.70), face = "bold"),
-      legend.key = element_rect(fill = "transparent", colour = NA),
-      legend.key.size = unit(1.5, "lines"),
-      legend.background = element_rect(fill = "transparent", colour = NA),
-      # Les étiquettes dans le cas d'un facetting
-      strip.background = element_rect(fill = "#17252D", color = "#17252D"),
-      strip.text = element_text(size = rel(0.85), face = "bold", color = "white", margin = margin(5,0,5,0))
-    )
-}
 
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
@@ -180,7 +157,7 @@ Cette approche, qui s'intéresse seulement à la composition des ménages et non
 
 Si les grandes enquêtes de l'INSEE ne proposent généralement pas de variables permettant de distinguer les familles nucléaires des familles recomposées, le Tronc Commun des enquêtes Ménages (TCM) permet de récolter systématiquement des informations sur les liens entre les individus d'un même ménage. Dans l'enquête `r infosBDF$nom` (2017), pour chaque individu, sont renseignés les liens entretenus avec chaque autre individu appartenant au même ménage.
 
-```{r}
+```{r LIENXX}
 dic <- readRDS("Documentation/Dictionnaire_individu.rds")  
 
 var <- "LIEN01-20" 
@@ -199,15 +176,11 @@ dic %>%
   footnote(paste0("Source : Dictionnaire des codes de l'enquête ", infosBDF$nom, ", ", infosBDF$vague, ". "))    
 ```
 
-A priori, les liens entre beaux-parents et beaux-enfants sont renseignées (modalités 31 et 32). Cependant, en y regardant de plus près ces deux modalités désignent en fait les relations avec la belle-famille, c'est-à-dire les parents du conjoint.
-
-![Question à l'origine de la variable LIEN01-10](images/Question_LIENXX.PNG){width="450"}
-
-Une fois encore, l'absence modalité cette modalité de réponse témoigne de l'impensé que constitue ce type de relations dans la statistique publique. A partir des seuls liens d'alliance et de filiation renseignés (liens parentaux et conjugaux), il est possible de reconstruire ces relations, mais c'est aussi le cas pour les grands-parents et petits-enfants ou pour les relations avec la belles-familles. Quoiqu'il en soi, il est donc possible d'identifier les ménages dans lesquels un couple vit avec au moins un enfant qui n'est pas issu de leur union.
+A priori, les liens entre beaux-parents et beaux-enfants sont renseignées (modalités 31 et 32). Cependant en cherchant les questions à l'origine du code de ces variables, on comprend que ces modalités correspondent en réalité des relations avec la belle-famille, c'est-à-dire les parents du conjoint. L'absence de cette modalité témoigne de l'impensé que constitue ce type de relations dans la statistique publique. A partir des seuls liens d'alliance et de filiation renseignés (liens parentaux et conjugaux), il est possible de reconstruire ces relations. Quoiqu'il en soi, il est donc possible d'identifier les ménages dans lesquels un couple vit avec au moins un enfant qui n'est pas issu de leur union.
 
 Par ailleurs, il ne suffit pas de s'intéresser aux liens entre les individus appartenant à un même ménage ou même à un unique logement, puisque la famille peut déborder ce cadre [@toulemon2011] ; @bonvalet2003]. L'enquête `r infosBDF$nom`, donne justement un certains nombre d'informations sur les parents des individus, y compris lorsqu'ils ne vivent pas avec eux.
 
-```{r, fig.cap= "Situations des parents"}
+```{r SIT-PARENTS, fig.cap= "Situations des parents"}
 
 indiv <- readRDS("Data_output/indiv.Rds")  
 dat <- indiv %>%   select(PER1E, MER1E, IDENT_MEN, PONDIND) %>%   
@@ -256,7 +229,7 @@ tab %>%
 
 En croisant donc les deux variables ci-dessus, nous pouvons les cas de familles monoparentales selon que l'autre parent réside ailleurs ou que celui-ci est décédé ou inconnu. L'enquête `r infosBDF$nom` fournit également des informations sur les enfants vivants hors du domicile de leurs parents grâce à une table de données spécifiques à ces individus.
 
-```{r}
+```{r ENFANTSHD}
 
 enfantsHD <- readRDS("Data_output/enfHD.Rds")  
 
@@ -306,7 +279,9 @@ On peut ainsi identifier les parents n'ayant pas la garde principale de leur enf
 
 ### De la situation familiale des enfants à celle des parents
 
-Lorsqu'il s'agit de quantifier l'isolement parental et les recompositions familiales, la statistique publique adopte souvent le point de vue des enfants : "Un enfant sur dix vit dans une famille recomposée" ou "En 2018, 4 millions d’enfants mineurs vivent avec un seul de leurs parents au domicile" titrent les dossiers de l'INSEE consacrés à ces questions [@algava2020; @lapinte2013; @toulemon]. Plutôt, c'est des approches assez récentes. Nuancer ça.
+Lorsqu'il s'agit de quantifier l'isolement parental et les recompositions familiales, la statistique publique adopte souvent le point de vue des enfants : "Un enfant sur dix vit dans une famille recomposée" ou "En 2018, 4 millions d’enfants mineurs vivent avec un seul de leurs parents au domicile" titrent les dossiers de l'INSEE consacrés à ces questions [@algava2020; @lapinte2013; @toulemon]. Plutôt, c'est des approches assez récentes.
+
+Nuancer ça.
 
 Deux problématiques :
 
@@ -316,7 +291,9 @@ Deux problématiques :
 
 Il s'agit là d'une conception de la famille conforme à celle proposée par la sociologie de la famille des années 2000, selon laquelle c'est "l'enfant qui fait la famille" [@singly2017, p. ??]. Cependant, la focalisation sur la situation de l'enfant pour décrire les situation de monoparentalité ou de recomposition familiale semble également charrier un certain misérabilisme. Ces titres ne sont pas sans rappeler ceux des travaux statistiques sur les "enfant pauvres", dont la production est souvent déterminée par des préoccupations politiques et sociales et qui, par l'intermédiaire de la figure de l'enfant, font appel au pathos [@stettinger2014]. En outre, écrire les statistiques du point de vue des enfants parait d'autant plus problématique que ceux-ci sont rarement interrogés et que leur situation est presque toujours déduite des déclarations de leurs parents. Dans le cadre de ce travail, si l'on s’intéresse aux enfants en tant qu'objet des arrangements économiques entre conjoints, c'est d'avantage les adultes de ces groupes familiaux que l'on étudie.
 
-PAS CLAIR. Ainsi, si nous adoptons également une démarche qui part des situations familiales des enfants pour décrire les groupes familiaux, c'est moins pour prétendre décrire leur conditions de vie que pour des questions de comparabilité avec les travaux existants sur le sujet.
+PAS CLAIR.
+
+Ainsi, si nous adoptons également une démarche qui part des situations familiales des enfants pour décrire les groupes familiaux, c'est moins pour prétendre décrire leur conditions de vie que pour des questions de comparabilité avec les travaux existants sur le sujet.
 
 #### [Qu'est ce qu'un enfant ?]
 
@@ -324,9 +301,9 @@ PAS CLAIR. Ainsi, si nous adoptons également une démarche qui part des situati
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds")
 ```
 
-Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position dans les rapports entre générations familiales. D'un point de vue de la statistique publique, un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*". Aucune limite d'âge n'étant fixée, l'INSEE privilégie donc une définition de l'enfance comme position dans les rapports familiaux au sein du ménage. Dans l'enquête `r infosBDF$nom` on dénombre ainsi `r nrow(enfantsMenage)` enfants au sens du TCM. Nous avons choisit de conserver cette définition.
+Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position dans les rapports entre générations familiales. D'un point de vue de la statistique publique, un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*". Aucune limite d'âge n'étant fixée, l'INSEE privilégie donc une définition de l'enfance comme position dans les rapports familiaux au sein du ménage. Dans l'enquête `r infosBDF$nom` on dénombre ainsi `r nrow(enfantsMenage)` enfants au sens du TCM. Pour être en mesure de comparer nos résultats avec ceux produit par la statistique publique, nous avons choisit de conserver cette définition. En pratique, cela signifie que certains des enfants en questions sont très âgés. En effet, l'âge maximum des enfants se situe donc à 75 ans, mais 75% d'entre-eux ont 17 ans ou moins \@ref(fig:statdesenfants). Il s'agit donc là de cas relativement rares.
 
-```{r mosaic, fig.cap= "Situation familiale des enfants",  fig.asp = 0.5}
+```{r mosaic-enfants, fig.cap= "Situation familiale des enfants",  fig.asp = 0.5}
 
 familles <- readRDS("Data_output/famillesToutes.Rds") %>%
   rec_TYPMEN5() %>%
@@ -390,7 +367,7 @@ g +
         axis.ticks.y=element_blank(), 
         # Supprimer les lignes de la grille du panneau
         panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),)
+        panel.grid.minor = element_blank())
 
 ```
 
@@ -404,7 +381,7 @@ enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds")
 
 Pour ce qui est des enfants résidant hors domicile d'un parent, qui sont hors champ de l'enquête mais apportent des informations sur les ménages enquêtés, des informations ont été récoltées sur les enfants qui apportent une aide économique à leur parent ou à qui le parent apporte une aide. Dans un soucis de cohérence, nous avons adopter une définition proche de celle des enfants du ménage. Sont ainsi considérés comme enfants vivant hors domicile, les enfants résidant ailleurs s'ils sont célibataires et sans enfants. Ils sont au nombre de `r nrow(enfantsHD)` dans l'enquête.
 
-A partir des situations familiales des enfants, il est ainsi possible de déterminer la configuration familiale des ménages. Pour autant, cela ne va pas de soi, une famille peut-être nucléaire du point de vue des enfants de l'union actuelle et recomposée du point de vu des enfants de l'union précédant. Dans un même ménage peuvent coexister une famille monoparentale et les grands parents du jeune enfant. Ainsi, choisit d'appliquer ces catégories uniquement aux "familles monoparentales" et "couple avec au moins un enfant" excluant ainsi les "ménages complexes", qui peuvent englober des configurations monoparentales et recomposées, mais ne s'y réduisent pas : 51,3% (soit 98 ménages) des ménages complexes comprennent ainsi une configuration monoparentale, mais seulement 5,5% (soit 11 ménages) comprennent une configuration recomposée. La perte d'information est donc faible et permet et de limiter fortement l'hétérogénéité des catégories ainsi proposées.
+A partir des situations familiales des enfants, il est ainsi possible de déterminer la configuration familiale des ménages. Pour autant, cela ne va pas de soi, une famille peut-être nucléaire du point de vue des enfants de l'union actuelle et recomposée du point de vu des enfants de l'union précédante. Dans un même ménage peuvent coexister une famille monoparentale et les grands parents du jeune enfant. Ainsi, choisit d'appliquer ces catégories uniquement aux "familles monoparentales" et "couple avec au moins un enfant" excluant ainsi les "ménages complexes", qui peuvent englober des configurations monoparentales et recomposées, mais ne s'y réduisent pas : 51,3% (soit 98 ménages) des ménages complexes comprennent ainsi une configuration monoparentale, mais seulement 5,5% (soit 11 ménages) comprennent une configuration recomposée. La perte d'information est donc faible et permet et de limiter fortement l'hétérogénéité des catégories ainsi proposées.
 
 ```{r, eval = FALSE}
 familles <- readRDS("Data_output/famillesToutes.Rds")
@@ -542,7 +519,7 @@ showSVG(nVennObj = p,
 
 [Digramme de Venn des configurations familiales] =\> une famille peut être nucléaire et recomposée le point de vu qu'on adopte
 
-```{r}
+```{r, eval = F}
 familles$TYPMEN5
 familles <- readRDS("Data_output/famillesToutes.Rds") %>%
   filter(TYPMEN5 != "5") %>%
@@ -582,11 +559,155 @@ ggplot(familles) +
 
 > ici on développera les recodages effectués sur les adultes qui composent les ménages en question : mère, père, belle-mère, beau-père
 
+```{r mosaic-adultes, fig.cap= "Situation familiale des adultes",  fig.asp = 0.5}
+
+familles <- readRDS("Data_output/famillesToutes.Rds") %>%
+  rec_TYPMEN5() %>%
+  filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale")) %>%
+  select(IDENT_MEN, n_config)
+
+dat <- readRDS("Data_output/parents.Rds") %>%
+  filter(ENFANT != "1") %>%
+  #filter(n_Parent | n_BeauParent) %>%
+  inner_join(familles, by = "IDENT_MEN") %>%
+  mutate(n_config = n_config %>%
+           as.factor() %>% fct_infreq(), 
+         n_EnfantsMen = n_EnfantsMen %>%
+           as.factor() %>% fct_infreq(), 
+         n_BeauxEnfantsMen = n_BeauxEnfantsMen %>%
+           factor(levels = c(T, F)), 
+         SEXE = SEXE %>%
+           as.factor())
+
+# Anomalies : il faudra regarder : 
+names(dat)
+
+dat$PONDIND <- dat$PONDMEN/mean(dat$PONDMEN)
+# Graph
+g <- ggplot(dat) +
+  geom_mosaic(
+    aes(
+      x = product(SEXE, n_BeauxEnfantsMen, n_config),
+      fill = SEXE,
+      alpha = n_BeauxEnfantsMen,
+      weight = PONDIND,
+      na.rm = TRUE), 
+    divider = c("vspine", "vspine", "hspine"), 
+    offset = 0) 
+b <- ggplot_build(g)
+tab <- b$data[[1]]
+tab$label <- round((tab$.wt/sum(tab$.wt))*100, 1) 
+tab$label <- paste0(tab$label, "%")
+tab$x_coord <- round(tab$xmin + (tab$xmax - tab$xmin)/2, 3)
+tab$y_coord <- round(tab$ymin + (tab$ymax - tab$ymin)/2, 3)
+tab <- tab[tab$label > 0.01, ]
+
+
+g +
+  geom_text(data = tab, 
+            aes(x = x_coord, y = y_coord, label = label), 
+            size = 3) + 
+  xlab("") + ylab("") + 
+  scale_fill_brewer(type = "qual", palette = 1,
+                    name = "Sexe",
+                    labels = c("Femme","Homme"))+
+  scale_alpha_manual(values =c(.5,.9),
+                      name = "Beau parent",
+                     labels = c("Oui", "Non")) +
+  guides(fill = guide_legend(order = 1),
+         alpha = guide_legend(order = 2)) +
+  theme_memoire() +
+  theme(legend.position = "left", 
+        axis.line = element_blank(),
+        axis.ticks.x=element_blank(), 
+        axis.text.y=element_blank(), 
+        axis.ticks.y=element_blank(), 
+        # Supprimer les lignes de la grille du panneau
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+```
+
 ## [Descriptions sociologique des individus qui composent ces familles]
 
 ### Se remmettre en couple quand on a des enfants [parents]
 
 > ici on détaille les caractéristiques sociales et familiales spécifiques des individus qui se remettent en couple + discussions avec la littérature existante sur le sujet
+
+```{r}
+indiv  <- readRDS("Data_output/parents.Rds")
+familles <- readRDS("Data_output/famillesToutes.Rds") %>%
+  rec_TYPMEN5() %>%
+  filter(!(TYPMEN5 %in% c("Autre type de ménage (ménage complexe)"))) %>%
+  select(IDENT_MEN, n_config)
+  
+names(indiv)
+freq(familles$TYPMEN5)
+revenus <- indiv %>%
+  select(starts_with("REV"), c("CHOMAGE", "RETRAITES", "SALAIRES")) %>%
+  rowSums(na.rm = T)
+indiv$n_REVENUS <- revenus
+summary(indiv$n_REVENUS)
+indiv$n_REVENUSmens <- indiv$n_REVENUS/12
+
+patrimoine <- indiv %>%
+  select(starts_with("PATF")) %>%
+  rowSums(na.rm = T)
+indiv$n_PATRIMOINE <- patrimoine
+summary(indiv$n_PATRIMOINE)
+
+dat <- indiv %>%
+  filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
+  filter(!is.na(n_RemisEnCoupleEnfantsTous)) %>%
+  # mutate(n_RemisEnCoupleEnfantsTous = if_else(n_RemisEnCoupleEnfantsTous, 1, 0))%>%
+  # mutate(n_RemisEnCoupleEnfantsTous <- n_RemisEnCoupleEnfantsTous %>%
+  #          as_factor() %>% fct_relevel("1", "0")) %>%
+  mutate(Enfants = case_when(
+    n_EnfantsMen & n_EnfantsHD ~ "Les deux", 
+    n_EnfantsMen ~ "Enfant(s) cohabitant(s)", 
+    n_EnfantsHD ~ "Enfant(s) non-cohabitant(s)"
+  )) %>%
+  rec_CSP6(Var = "CS24", NewVar = "CS8") %>% 
+  rec_DIP(Var = "DIP14", NewVar = "DIPL") %>% 
+  rec_AGE6(Var = "AG6") %>%
+  mutate(n_REVENUSmens = n_REVENUSmens/100, 
+         n_PATRIMOINE = n_PATRIMOINE/1000) %>%
+  as_survey_design(weights = PONDIND)
+
+
+dat_complet <- dat |> 
+  drop_na(n_RemisEnCoupleEnfantsTous,  Enfants, SEXE, AG6, CS8, n_REVENUSmens, DIPL,  n_PATRIMOINE, IPROPLOC, n_NEnfantsMen, n_AgeEnfantsMen)
+
+reg <-  
+  svyglm(design = dat_complet, 
+         formula = n_RemisEnCoupleEnfantsTous ~ Enfants + SEXE + AG6 + CS8 + n_REVENUSmens + DIPL + n_PATRIMOINE + IPROPLOC + n_NEnfantsMen + n_AgeEnfantsMen, 
+         family = quasibinomial, na.action = na.exclude)
+reg2 <- stepAIC(reg)
+
+
+reg2 %>% tbl_regression(exponentiate = T)
+
+
+regFemme <- dat %>%
+  svyglm(family = quasibinomial, 
+         subset = !is.na(n_RemisEnCoupleEnfantsTous) & SEXE == 2, 
+         formula = n_RemisEnCoupleEnfantsTous ~ Enfants + AG + CS8 + n_REVENUSmens)
+regFemme %>% tbl_regression(exponentiate = T)
+
+# install.packages("GGally")
+install.packages("broom")
+tab<- cbind(tidy(regHomme), tidy(regFemme))
+library(GGally)
+broom::tidy(regHomme)
+ggcoef_plot(regHomme)
+ggcoef_compare(c(regHomme, regFemme))
+
+reg %>%
+  tbl_regression()
+
+```
+
+
 
 ### [beaux-parents]
 
@@ -854,7 +975,7 @@ tab$tableau %>%
 
 ## Des revenus de transferts réduits pour les parents remis en couple
 
-## Des arrangements ficaux spécifiques
+## Des arrangements fiscaux spécifiques
 
 -   exploiter la variable nombre d'avis d'impositions
 
@@ -865,3 +986,24 @@ tab$tableau %>%
 \newpage
 
 # Bibliographie
+
+# Annexes
+
+## Statistiques descriptives des différentes sous-populations
+
+```{r statdesenfants, fig.cap="Age des enfants des ménages au 31 décembre 2017"}
+names(enfantsMenage)
+enfantsMenage %>%
+  as_survey_design(weigths = PONDIND) %>%
+  ggplot() +
+  aes(x = AG)  +
+  geom_boxplot() + 
+  geom_point(x = wtd.mean(enfantsMenage$AG,
+                          enfantsMenage$PONDIND), 
+             y = 0, shape = 18, size = 3) + 
+  scale_x_continuous(breaks = seq(0, 75, 5), 
+                     minor_breaks = 0:75, 
+                     name = "Age (en années)") +
+  scale_y_continuous(labels = NULL, breaks = NULL) +
+  theme_memoire(base_size = 14)
+```

@@ -1,25 +1,25 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.1)  19 APR 2024 14:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.8)  8 MAY 2024 09:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Memoire.tex
 (./Memoire.tex
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-03-14>
+L3 programming layer <2024-04-11>
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/bk12.clo
 File: bk12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count188
-\c@chapter=\count189
-\c@section=\count190
-\c@subsection=\count191
-\c@subsubsection=\count192
-\c@paragraph=\count193
-\c@subparagraph=\count194
-\c@figure=\count195
-\c@table=\count196
+\c@part=\count189
+\c@chapter=\count190
+\c@section=\count191
+\c@subsection=\count192
+\c@subsubsection=\count193
+\c@paragraph=\count194
+\c@subparagraph=\count195
+\c@figure=\count196
+\c@table=\count197
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
@@ -39,14 +39,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count197
+\inf@bad=\count198
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count198
-\leftroot@=\count199
+\uproot@=\count199
+\leftroot@=\count266
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count266
-\DOTSCASE@=\count267
+\classnum@=\count267
+\DOTSCASE@=\count268
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -59,20 +59,20 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count268
+\macc@depth=\count269
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count269
+\c@MaxMatrixCols=\count270
 \dotsspace@=\muskip16
-\c@parentequation=\count270
-\dspbrk@lvl=\count271
+\c@parentequation=\count271
+\dspbrk@lvl=\count272
 \tag@help=\toks18
-\row@=\count272
-\column@=\count273
-\maxfields@=\count274
+\row@=\count273
+\column@=\count274
+\maxfields@=\count275
 \andhelp@=\toks19
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
@@ -148,11 +148,11 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks24
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count275
+\etb@tempcnta=\count276
 )
 \MT@toks=\toks25
 \MT@tempbox=\box53
-\MT@count=\count276
+\MT@count=\count277
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1061.
 LaTeX Info: Redefining \leftprotrusion on input line 1062.
 \MT@prot@toks=\toks26
@@ -160,7 +160,7 @@ LaTeX Info: Redefining \rightprotrusion on input line 1081.
 LaTeX Info: Redefining \textls on input line 1392.
 \MT@outer@kern=\dimen150
 LaTeX Info: Redefining \textmicrotypecontext on input line 2013.
-\MT@listname@count=\count277
+\MT@listname@count=\count278
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2024/03/29 v3.1b Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 902.
@@ -185,7 +185,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
@@ -202,17 +202,17 @@ Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
 \LTright=\skip55
 \LTpre=\skip56
 \LTpost=\skip57
-\LTchunksize=\count278
+\LTchunksize=\count279
 \LTcapwidth=\dimen151
 \LT@head=\box54
 \LT@firsthead=\box55
 \LT@foot=\box56
 \LT@lastfoot=\box57
 \LT@gbox=\box58
-\LT@cols=\count279
-\LT@rows=\count280
-\c@LT@tables=\count281
-\c@LT@chunks=\count282
+\LT@cols=\count280
+\LT@rows=\count281
+\c@LT@tables=\count282
+\c@LT@chunks=\count283
 \LT@p@ftn=\toks27
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -226,12 +226,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen159
 \cmidrulekern=\dimen160
 \defaultaddspace=\dimen161
-\@cmidla=\count283
-\@cmidlb=\count284
+\@cmidla=\count284
+\@cmidlb=\count285
 \@aboverulesep=\dimen162
 \@belowrulesep=\dimen163
-\@thisruleclass=\count285
-\@lastruleclass=\count286
+\@thisruleclass=\count286
+\@lastruleclass=\count287
 \@thisrulewidth=\dimen164
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
@@ -244,15 +244,15 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \ar@cellbox=\box60
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count287
-\calc@Bcount=\count288
+\calc@Acount=\count288
+\calc@Bcount=\count289
 \calc@Adimen=\dimen167
 \calc@Bdimen=\dimen168
 \calc@Askip=\skip60
 \calc@Bskip=\skip61
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count289
+\calc@Ccount=\count290
 \calc@Cskip=\skip62
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
@@ -288,13 +288,13 @@ Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2024/03/29 v24.3 The Babel package
-\babel@savecnt=\count290
+Package: babel 2024/04/20 v24.4 The Babel package
+\babel@savecnt=\count291
 \U@D=\dimen172
 \l@unhyphenated=\language8
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count291
+\bbl@dirlevel=\count292
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
@@ -309,19 +309,19 @@ Package babel Info: Hyphen rules for 'acadian' set to \l@french
 (babel)             (\language7). Reported on input line 91.
 Package babel Info: Hyphen rules for 'canadien' set to \l@french
 (babel)             (\language7). Reported on input line 92.
-\FB@stdchar=\count292
+\FB@stdchar=\count293
 Package babel Info: Making : an active character on input line 420.
 Package babel Info: Making ; an active character on input line 421.
 Package babel Info: Making ! an active character on input line 422.
 Package babel Info: Making ? an active character on input line 423.
-\FBguill@level=\count293
+\FBguill@level=\count294
 \FBold@everypar=\toks29
 \FB@Mht=\dimen173
-\mc@charclass=\count294
-\mc@charfam=\count295
-\mc@charslot=\count296
-\std@mcc=\count297
-\dec@mcc=\count298
+\mc@charclass=\count295
+\mc@charfam=\count296
+\mc@charslot=\count297
+\std@mcc=\count298
+\dec@mcc=\count299
 \FB@parskip=\dimen174
 \listindentFB=\dimen175
 \descindentFB=\dimen176
@@ -341,9 +341,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count299
-\Gm@cntv=\count300
-\c@Gm@tempcnt=\count301
+\Gm@cnth=\count300
+\Gm@cntv=\count301
+\c@Gm@tempcnt=\count302
 \Gm@bindingoffset=\dimen182
 \Gm@wd@mp=\dimen183
 \Gm@odd@mp=\dimen184
@@ -370,7 +370,7 @@ Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \titlewidthlast=\dimen193
 \titlewidthfirst=\dimen194
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
 \f@nch@headwidth=\skip71
 \f@nch@O@elh=\skip72
 \f@nch@O@erh=\skip73
@@ -410,14 +410,14 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yd=\dimen262
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count302
-\c@pgf@countb=\count303
-\c@pgf@countc=\count304
-\c@pgf@countd=\count305
+\c@pgf@counta=\count303
+\c@pgf@countb=\count304
+\c@pgf@countc=\count305
+\c@pgf@countd=\count306
 \t@pgf@toka=\toks36
 \t@pgf@tokb=\toks37
 \t@pgf@tokc=\toks38
-\pgf@sys@id@count=\count306
+\pgf@sys@id@count=\count307
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -428,21 +428,21 @@ File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count307
-\pgfsyssoftpath@bigbuffer@items=\count308
+\pgfsyssoftpath@smallbuffer@items=\count308
+\pgfsyssoftpath@bigbuffer@items=\count309
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen263
-\pgfmath@count=\count309
+\pgfmath@count=\count310
 \pgfmath@box=\box64
 \pgfmath@toks=\toks39
 \pgfmath@stack@operand=\toks40
 \pgfmath@stack@operation=\toks41
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count310
+\c@pgfmathroundto@lastzeros=\count311
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen264
@@ -472,7 +472,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box65
 \pgf@hbox=\box66
 \pgf@layerbox@main=\box67
-\pgf@picture@serial@count=\count311
+\pgf@picture@serial@count=\count312
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen282
@@ -493,8 +493,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen287
-\pgf@sys@shading@range@num=\count312
-\pgf@shadingcount=\count313
+\pgf@sys@shading@range@num=\count313
+\pgf@shadingcount=\count314
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
@@ -529,7 +529,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count314
+\pgf@plot@mark@count=\count315
 \pgfplotmarksize=\dimen292
 )
 \tikz@lastx=\dimen293
@@ -544,17 +544,17 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box71
 \tikz@tempbox=\box72
 \tikz@tempbox@bg=\box73
-\tikztreelevel=\count315
-\tikznumberofchildren=\count316
-\tikznumberofcurrentchild=\count317
-\tikz@fig@count=\count318
+\tikztreelevel=\count316
+\tikznumberofchildren=\count317
+\tikznumberofcurrentchild=\count318
+\tikz@fig@count=\count319
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count319
-\pgfmatrixcurrentcolumn=\count320
-\pgf@matrix@numberofcolumns=\count321
+\pgfmatrixcurrentrow=\count320
+\pgfmatrixcurrentcolumn=\count321
+\pgf@matrix@numberofcolumns=\count322
 )
-\tikz@expandcount=\count322
+\tikz@expandcount=\count323
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
@@ -574,47 +574,47 @@ Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 Package caption Info: Standard document class detected.
 Package caption Info: french babel package is loaded.
 )
-\c@caption@flags=\count323
-\c@continuedfloat=\count324
+\c@caption@flags=\count324
+\c@continuedfloat=\count325
 Package caption Info: longtable package is loaded.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2024-03-14 L3 programming layer (loader) 
+Package: expl3 2024-04-11 L3 programming layer (loader) 
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count325
+File: l3backend-pdftex.def 2024-04-11 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count326
 \l__pdf_internal_box=\box74
 ))
 Package: l3keys2e 2024-03-14 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count326
-\l__lipsum_a_int=\count327
-\l__lipsum_b_int=\count328
+\g__lipsum_par_int=\count327
+\l__lipsum_a_int=\count328
+\l__lipsum_b_int=\count329
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\c@blindtext=\count329
-\c@Blindtext=\count330
-\c@blind@countparstart=\count331
-\blind@countxx=\count332
-\blindtext@numBlindtext=\count333
-\blind@countyy=\count334
-\c@blindlist=\count335
-\c@blindlistlevel=\count336
-\c@blindlist@level=\count337
-\blind@listitem=\count338
-\c@blind@listcount=\count339
-\c@blind@levelcount=\count340
-\blind@mathformula=\count341
-\blind@Mathformula=\count342
-\c@blind@randomcount=\count343
-\c@blind@randommax=\count344
-\c@blind@pangramcount=\count345
-\c@blind@pangrammax=\count346
+\c@blindtext=\count330
+\c@Blindtext=\count331
+\c@blind@countparstart=\count332
+\blind@countxx=\count333
+\blindtext@numBlindtext=\count334
+\blind@countyy=\count335
+\c@blindlist=\count336
+\c@blindlistlevel=\count337
+\c@blindlist@level=\count338
+\blind@listitem=\count339
+\c@blind@listcount=\count340
+\c@blind@levelcount=\count341
+\blind@mathformula=\count342
+\blind@Mathformula=\count343
+\c@blind@randomcount=\count344
+\c@blind@randommax=\count345
+\c@blind@pangramcount=\count346
+\c@blind@pangrammax=\count347
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -640,11 +640,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count347
+\c@section@level=\count348
 )
 \@linkdim=\dimen309
-\Hy@linkcounter=\count348
-\Hy@pagecounter=\count349
+\Hy@linkcounter=\count349
+\Hy@pagecounter=\count350
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -652,7 +652,7 @@ Now handling font encoding PD1 ...
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count350
+\Hy@SavedSpaceFactor=\count351
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -666,7 +666,7 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count351
+\c@Hy@tempcnt=\count352
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -678,7 +678,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count352
+\Fld@menulength=\count353
 \Field@Width=\dimen311
 \Fld@charsize=\dimen312
 Package hyperref Info: Hyper figures OFF on input line 6063.
@@ -692,9 +692,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count353
-\c@Item=\count354
-\c@Hfootnote=\count355
+\Hy@abspage=\count354
+\c@Item=\count355
+\c@Hfootnote=\count356
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -703,8 +703,8 @@ File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count356
-\c@bookmark@seq@number=\count357
+\Fld@listcount=\count357
+\c@bookmark@seq@number=\count358
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -732,9 +732,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 77.
 )
-\c@svg@param@lastpage=\count358
+\c@svg@param@lastpage=\count359
 \svg@box=\box75
-\c@svg@param@currpage=\count359
+\c@svg@param@currpage=\count360
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/transparent/transparent.sty
 Package: transparent 2022-10-27 v1.5 Transparency with color stacks
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
@@ -746,19 +746,19 @@ Package: setspace 2022/12/04 v6.7b set line spacing
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip82
-\multirow@cntb=\count360
+\multirow@cntb=\count361
 \multirow@dima=\skip83
 \bigstrutjot=\dimen313
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen314
 \WF@size=\dimen315
-\c@WF@wrappedlines=\count361
+\c@WF@wrappedlines=\count362
 \WF@box=\box76
 \WF@everypar=\toks44
 Package: wrapfig 2003/01/31  v 3.6
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count362
+\c@float@type=\count363
 \float@exts=\toks45
 \float@box=\box77
 \@float@everytoks=\toks46
@@ -767,7 +767,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
 \everycr=\toks47
 \minrowclearance=\skip84
-\rownum=\count363
+\rownum=\count364
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
@@ -781,16 +781,16 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box79
-\sift@deathcycles=\count364
+\sift@deathcycles=\count365
 \@vwid@loff=\dimen316
 \@vwid@roff=\dimen317
 )
-\c@taburow=\count365
-\tabu@nbcols=\count366
-\tabu@cnt=\count367
-\tabu@Xcol=\count368
-\tabu@alloc=\count369
-\tabu@nested=\count370
+\c@taburow=\count366
+\tabu@nbcols=\count367
+\tabu@cnt=\count368
+\tabu@Xcol=\count369
+\tabu@alloc=\count370
+\tabu@nested=\count371
 \tabu@target=\dimen318
 \tabu@spreadtarget=\dimen319
 \tabu@naturalX=\dimen320
@@ -822,7 +822,7 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 \UL@skip=\skip87
 \UL@hook=\toks50
 \UL@height=\dimen327
-\UL@pe=\count371
+\UL@pe=\count372
 \UL@pixel=\dimen328
 \ULC@box=\box87
 Package: ulem 2019/11/18
@@ -830,13 +830,13 @@ Package: ulem 2019/11/18
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen330
-\c@nlinenum=\count372
+\c@nlinenum=\count373
 \TeXr@lab=\toks51
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
-\BKM@id=\count373
+\BKM@id=\count374
 )) (./Memoire.aux)
 \openout1 = `Memoire.aux'.
 
@@ -927,45 +927,36 @@ Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring OFF on input line 136.
-<ehess.png, id=7, 1927.2pt x 2077.7625pt>
-File: ehess.png Graphic file (type png)
-<use ehess.png>
-Package pdftex.def Info: ehess.png  used on input line 140.
-(pdftex.def)             Requested size: 52.75555pt x 56.87708pt.
-<ens.png, id=9, 674.52pt x 255.95625pt>
-File: ens.png Graphic file (type png)
-<use ens.png>
-Package pdftex.def Info: ens.png  used on input line 140.
-(pdftex.def)             Requested size: 149.95929pt x 56.90419pt.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 140.
+(./Memoire.toc
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 140.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 140.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 4.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 140.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 4.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 140.
+(Font)              <12> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 140.
+(Font)              <8> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 140.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 140.
+(Font)              <6> on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 140.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -973,38 +964,53 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [1
 
 
-
-
-{/home/onyxia/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <./ehess.png> <./ens.png>] [2
-
-] (./Memoire.toc [3])
+{/home/onyxia/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}])
 \tf@toc=\write4
 \openout4 = `Memoire.toc'.
 
-[4]
-Overfull \hbox (0.50014pt too wide) in alignment at lines 152--158
+[2]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.142 \makethesistitle
+                       [1
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.146 \tableofcontents
+                       [2
+
+] (./Memoire.toc)
+\tf@toc=\write5
+\openout5 = `Memoire.toc'.
+
+[3] [4
+
+]
+Chapitre 1.
+
+Overfull \hbox (0.50014pt too wide) in alignment at lines 154--160
  [] 
  []
 
 
-Overfull \hbox (0.50014pt too wide) in alignment at lines 158--160
+Overfull \hbox (0.50014pt too wide) in alignment at lines 160--162
  [] 
  []
 
 
-Overfull \hbox (0.50014pt too wide) in alignment at lines 160--197
+Overfull \hbox (0.50014pt too wide) in alignment at lines 162--172
  [] 
  []
 
-[5
+[5] [6]
+Chapitre 2.
 
-] [6]
-Underfull \hbox (badness 1292) in paragraph at lines 203--203
+Underfull \hbox (badness 1292) in paragraph at lines 177--177
 |\T1/lmr/bx/n/24.88 (+20) Chapitre 1. Sai-sir les re-mises en
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [7
 
@@ -1013,96 +1019,133 @@ Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 255.
-[8]
-<images/Question_LIENXX.PNG, id=193, 500.62032pt x 228.855pt>
-File: images/Question_LIENXX.PNG Graphic file (type png)
-<use images/Question_LIENXX.PNG>
-Package pdftex.def Info: images/Question_LIENXX.PNG  used on input line 333.
-(pdftex.def)             Requested size: 338.7826pt x 154.87204pt.
-[9]
+(Font)              <5> on input line 198.
+[8] [9]
+Underfull \vbox (badness 7504) has occurred while \output is active []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[10 <./images/Question_LIENXX.PNG>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[11]
-<Memoire_files/figure-latex/mosaic-1.pdf, id=214, 505.89pt x 252.945pt>
-File: Memoire_files/figure-latex/mosaic-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/mosaic-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/mosaic-1.pdf  used on input line 474.
+[10] [11]
+<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=157, 505.89pt x 252.945pt>
+File: Memoire_files/figure-latex/mosaic-enfants-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/mosaic-enfants-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-enfants-1.pdf  used on input line 346.
 (pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
-[12 <./Memoire_files/figure-latex/mosaic-1.pdf>]
+[12 <./Memoire_files/figure-latex/mosaic-enfants-1.pdf>]
+<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=177, 505.89pt x 252.945pt>
+File: Memoire_files/figure-latex/mosaic-adultes-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/mosaic-adultes-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-adultes-1.pdf  used on input line 374.
+(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13] [14]
-Overfull \hbox (1097.40756pt too wide) in paragraph at lines 603--630
+[13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[14 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>] [15] [16
+
+]
+Chapitre 3.
+
+Overfull \hbox (1097.40756pt too wide) in paragraph at lines 451--478
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 645--649
+Underfull \hbox (badness 10000) in paragraph at lines 489--491
 []\T1/lmr/m/n/12 (+20) regarder, comme pour les en-fants, les dé-penses in-di-vi-dua-li-sables
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 645--649
+Underfull \hbox (badness 1360) in paragraph at lines 489--491
 \T1/lmr/m/n/12 (+20) hommes/femmes, no-tam-ment les ve-te-ments (+ il a de la lit-té-ra-ture
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[15
+[17] [18] [19] [20
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Chapitre 4.
+[21]
 
-[16] [17] [18
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-] [19] [20
+[22
 
-] [21] [22] [23] [24
+]
+Chapitre 5.
+[23]
+Underfull \vbox (badness 1584) has occurred while \output is active []
+
+[24] [25] [26
 
 ] (./Memoire.lot)
-\tf@lot=\write5
-\openout5 = `Memoire.lot'.
-
-[25] [26
-
-] (./Memoire.lof)
-\tf@lof=\write6
-\openout6 = `Memoire.lof'.
+\tf@lot=\write6
+\openout6 = `Memoire.lot'.
 
 [27] [28
 
-] [29]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 953.
+] (./Memoire.lof)
+\tf@lof=\write7
+\openout7 = `Memoire.lof'.
+
+[29] [30
+
+]
+Chapitre 6.
+[31] [32
+
+]
+Chapitre 7.
+
+Underfull \vbox (badness 1360) has occurred while \output is active []
+
+[33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[34]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[35]
+<Memoire_files/figure-latex/statdesenfants-1.pdf, id=363, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/statdesenfants-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/statdesenfants-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 771.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
+[36 <./Memoire_files/figure-latex/statdesenfants-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[37]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 823.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [30{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] (./Memoire.aux)
+) [38{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] (./Memoire.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-03-14>
+L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 30650 strings out of 476003
- 567452 string characters out of 5790748
- 1956493 words of memory out of 5000000
- 51878 multiletter control sequences out of 15000+600000
- 631341 words of font info for 163 fonts, out of 8000000 for 9000
+ 30669 strings out of 475949
+ 568286 string characters out of 5789544
+ 1956751 words of memory out of 5000000
+ 51934 multiletter control sequences out of 15000+600000
+ 631646 words of font info for 166 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 109i,13n,107p,1488b,740s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,13n,107p,1488b,763s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
-Output written on Memoire.pdf (30 pages, 465964 bytes).
+Output written on Memoire.pdf (40 pages, 314322 bytes).
 PDF statistics:
- 593 PDF objects out of 1000 (max. 8388607)
- 528 compressed objects within 6 object streams
- 142 named destinations out of 1000 (max. 500000)
- 41321 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 619 PDF objects out of 1000 (max. 8388607)
+ 546 compressed objects within 6 object streams
+ 154 named destinations out of 1000 (max. 500000)
+ 41324 words of extra memory for PDF output out of 42996 (max. 10000000)
 

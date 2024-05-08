@@ -156,4 +156,86 @@ rec_TYPMEN5 <- function(data, NewVar = FALSE) {
   return(data)
 }
 
+rec_CSP6 <- function(data, Var, NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = str_sub(temp, 1, 1)) %>%
+    mutate(temp = fct_recode(temp,
+                             NULL = "",
+                             NULL = "0",
+                             "Agriculteurs" = "1",
+                             "ACCE" = "2",
+                             "CPIS" = "3",
+                             "Professions intermédiaires" = "4",
+                             "Employés" = "5",
+                             "Ouvriers" = "6",
+                             "Retraités" = "7", 
+                             "Autres inactifs" = "8", 
+                             NULL = "H", 
+                             NULL = "h"
+    ))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
 
+
+rec_DIP <- function(data, Var, NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_recode(temp,
+      NULL = "",
+      "Bac+5 et plus" = "10",
+      "Bac+5 et plus" = "12",
+      "Bac+5 et plus" = "20",
+      "Bac+1 à Bac+3" = "30",
+      "Bac+1 à Bac+3" = "31",
+      "Bac+1 à Bac+3" = "33",
+      "Bac et équivalents" = "41",
+      "Bac et équivalents" = "42",
+      "Bac et équivalents" = "43",
+      "Bac et équivalents" = "44",
+      "CAP, BEP et équivalents" = "50",
+      "BEPC, Brevet ou en dessous" = "60",
+      "BEPC, Brevet ou en dessous" = "70",
+      "BEPC, Brevet ou en dessous" = "71"
+    ))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+
+rec_AG6 <- function(data, Var = "AG6", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_recode(temp,
+                             "de 0 à 14 ans" = "00",
+                             "de 15 à 29 ans" = "15",
+                             "de 30 à 39 ans" = "30",
+                             "de 40 à 49 ans" = "40",
+                             "de 50 à 59 ans" = "50",
+                             "60 ans et plus" = "60"
+                             ))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}

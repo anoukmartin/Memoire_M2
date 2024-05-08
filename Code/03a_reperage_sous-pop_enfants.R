@@ -127,7 +127,9 @@ enfants <- enfants %>%
     !is.na(n_IdentConjointMere) & is.na(n_IdentPere) ~ "Beau-parent", 
     n_IdentConjointMere == n_IdentPere ~ "Parent", 
     is.na(n_IdentConjointMere) ~ NA_character_))
-
+freq(enfants$n_ConjMere)
+freq(enfants$n_ConjPere)
+table(enfants$n_ConjMere, enfants$n_ConjPere, useNA = "ifany")
 
 # On centre la variable de pondération 
 enfants$PONDIND <- enfants$PONDMEN/mean(enfants$PONDMEN)
@@ -159,6 +161,7 @@ enfantHD <- enfHD %>%
 names(enfantHD)
 
 ## 2.2. Les parents de ces enfants ##############################################
+
 temp <- enfantHD %>%
   # On fait une ligne par parent d'enfant hors domicile auquel on donne un identifiant
   select(starts_with("HODLN"), c("IDENT_MEN", "n_IdentIndiv")) %>%
@@ -183,9 +186,15 @@ temp <- enfantHD %>%
          n_IdentMere = as.character(n_IdentMere)) %>%
   mutate(n_IdentPere = if_else(n_IdentPere == "NULL", NA, n_IdentPere), 
          n_IdentMere = if_else(n_IdentMere == "NULL", NA, n_IdentMere)) %>%
-  left_join(parents %>% rec_COUPLE(NewVar = "n_CouplePere") %>% select(-COUPLE, -SEXE),
+  left_join(parents %>% 
+              rec_COUPLE(NewVar = "n_CouplePere") %>% 
+              select(-COUPLE, -SEXE) %>%
+              rename(n_IdentConjointPere = n_IdentConjoint),
             by = c("n_IdentPere" = "n_IdentParent")) %>%
-  left_join(parents %>% rec_COUPLE(NewVar = "n_CoupleMere") %>% select(-COUPLE, -SEXE),
+  left_join(parents %>% 
+              rec_COUPLE(NewVar = "n_CoupleMere") %>% 
+              select(-COUPLE, -SEXE) %>%
+              rename(n_IdentConjointMere = n_IdentConjoint),
             by = c("n_IdentMere" = "n_IdentParent")) %>%
   mutate(n_ParentsCohab = if_else(
     str_sub(n_IdentMere, 1, 5) == str_sub(n_IdentPere, 1, 5), "Oui", "Non", missing = "Non")) %>%
@@ -205,6 +214,23 @@ rm(temp)
 enfantHD %>%
   select(n_ParentsCohab, n_CouplePere, n_CoupleMere) %>%
   tbl_summary(by = "n_ParentsCohab")
+
+## 2.4. ont des beaux-parents ##################################################
+# On regarde si ils vivent avec des beaux parents 
+enfantHD <- enfantHD %>%
+  mutate(n_ConjPere = case_when(
+    n_IdentConjointPere != n_IdentMere ~ "Beau-parent", 
+    !is.na(n_IdentConjointPere) & is.na(n_IdentMere) ~ "Beau-parent",
+    n_IdentConjointPere == n_IdentMere ~ "Parent",
+    is.na(n_IdentConjointPere) ~ NA_character_)) %>%
+  mutate(n_ConjMere = case_when(
+    n_IdentConjointMere != n_IdentPere ~ "Beau-parent", 
+    !is.na(n_IdentConjointMere) & is.na(n_IdentPere) ~ "Beau-parent", 
+    n_IdentConjointMere == n_IdentPere ~ "Parent", 
+    is.na(n_IdentConjointMere) ~ NA_character_))
+freq(enfantHD$n_ConjMere)
+freq(enfantHD$n_ConjPere)
+table(enfantHD$n_ConjMere, enfantHD$n_ConjPere, useNA = "ifany")
 
 saveData(enfantHD, "enfantsHorsDom")
 
@@ -375,8 +401,8 @@ saveData(enfantTous, label = "enfantsTous")
 
 # On ajoute ces données sur celles des enfants du ménages et des enfants hors domicile 
 enfants <- readRDS("Data_output/enfantsDuMenage.Rds") 
-data <- enfantsTous[, !(names(enfantsTous) %in% names(enfants))]
-data$n_IdentIndiv <- enfantsTous$n_IdentIndiv
+data <- enfantTous[, !(names(enfantTous) %in% names(enfants))]
+data$n_IdentIndiv <- enfantTous$n_IdentIndiv
 enfants <- enfants %>%
   left_join(data,
             by = "n_IdentIndiv")
@@ -384,8 +410,8 @@ names(enfants)
 saveRDS(enfants, "Data_output/enfantsDuMenage.Rds")
 
 enfantHD <- readRDS("Data_output/enfantsHorsDom.Rds")
-data <- enfantsTous[, !(names(enfantsTous) %in% names(enfantsHD))]
-data$n_IdentIndiv <- enfantsTous$n_IdentIndiv
+data <- enfantTous[, !(names(enfantTous) %in% names(enfantHD))]
+data$n_IdentIndiv <- enfantTous$n_IdentIndiv
 enfantHD <- enfantHD %>%
   left_join(data,
             by = "n_IdentIndiv")

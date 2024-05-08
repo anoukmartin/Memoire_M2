@@ -22,14 +22,15 @@ execute <- function(part, path = "Code"){
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 
+
 # Réimporter les données brutes ################################################
 # On exécute les scripts commençant par 02
-execute(part = "02a")
+execute(part = "02")
 
 # Repérages sous populations ###################################################
 # On exécute les scripts commençant par 03
 execute(part = "03a")
-
+execute(part = "03b")
 execute(part = "03c")
 
 

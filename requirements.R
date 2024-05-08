@@ -14,7 +14,8 @@ packagesList <- c("haven",
                   "pagedown", 
                  "ordinal", 
                  "kableExtra", 
-                 "ggmosaic")
+                 "ggmosaic", 
+                 "bookdown")
 install.packages(packagesList)
 
 remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer", "vqf/nVennR"))
