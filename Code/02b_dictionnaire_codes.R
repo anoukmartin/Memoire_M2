@@ -1,5 +1,5 @@
 
-library(tabulizer)
+library(tabulapdf)
 # Individus 
 # Variables 
 vars <- extract_text("Documentation/Dictionnaire.pdf", pages = 19:21)

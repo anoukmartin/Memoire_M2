@@ -12,6 +12,7 @@ combine_words <- function(words){
   return(str)
 }
 library(pagedown)
+library(bookdown)
 
 # from sas to R, vecteurs labelisés
 library(haven)
@@ -162,7 +163,9 @@ theme_memoire <- function(base_size = 14) {
 
 
 
-
+library(GGally)
+library(Cairo)
+library("wesanderson")
 
 
 

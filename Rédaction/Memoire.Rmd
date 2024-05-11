@@ -6,6 +6,7 @@ output:
     fig_width: 7
     fig_height: 6
     fig_caption: true
+    extra_dependencies: "subfig"
     includes: 
       in_header: header.tex
 fontsize: 12pt
@@ -27,7 +28,8 @@ knitr::opts_chunk$set(
   fig.asp = 0.8,
   fig.align="center",
   out.width = "100%", 
-  results = "asis")
+  results = "asis", 
+  fig.pos = 'H')
 
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
@@ -564,12 +566,25 @@ ggplot(familles) +
 familles <- readRDS("Data_output/famillesToutes.Rds") %>%
   rec_TYPMEN5() %>%
   filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale")) %>%
-  select(IDENT_MEN, n_config)
+  select(IDENT_MEN, n_config) %>%
+  filter(!is.na(n_config))
+
+enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds") 
 
 dat <- readRDS("Data_output/parents.Rds") %>%
-  filter(ENFANT != "1") %>%
+  filter(!(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv)) %>%
   #filter(n_Parent | n_BeauParent) %>%
   inner_join(familles, by = "IDENT_MEN") %>%
+  mutate(n_StatutParent = case_when(
+    n_EnfantsMen & n_BeauxEnfantsMen ~ "Beau-parent avec enfant", 
+    n_EnfantsMen & (!n_BeauxEnfantsMen | is.na(n_BeauxEnfantsMen)) ~ "Parent", 
+    (!n_EnfantsMen | is.na(n_EnfantsMen)) & n_BeauxEnfantsMen ~ "Beau-parent sans enfant",
+    TRUE ~ "Sans enfants")) %>%
+  mutate(n_StatutEnfants = case_when(
+    n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "précédante et actuelle", 
+    n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "précédante", 
+    n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "actuelle", 
+    TRUE ~ "Sans enfants")) %>%
   mutate(n_config = n_config %>%
            as.factor() %>% fct_infreq(), 
          n_EnfantsMen = n_EnfantsMen %>%
@@ -577,19 +592,18 @@ dat <- readRDS("Data_output/parents.Rds") %>%
          n_BeauxEnfantsMen = n_BeauxEnfantsMen %>%
            factor(levels = c(T, F)), 
          SEXE = SEXE %>%
-           as.factor())
-
-# Anomalies : il faudra regarder : 
-names(dat)
-
+           as.factor())%>%
+  mutate(n_StatutParent = as.factor(n_StatutParent) %>%
+           fct_relevel("Parent"))
+ 
 dat$PONDIND <- dat$PONDMEN/mean(dat$PONDMEN)
 # Graph
 g <- ggplot(dat) +
   geom_mosaic(
     aes(
-      x = product(SEXE, n_BeauxEnfantsMen, n_config),
-      fill = SEXE,
-      alpha = n_BeauxEnfantsMen,
+      x = product(SEXE, n_StatutEnfants, n_config),
+      alpha = SEXE,
+      fill= n_StatutEnfants,
       weight = PONDIND,
       na.rm = TRUE), 
     divider = c("vspine", "vspine", "hspine"), 
@@ -608,12 +622,11 @@ g +
             aes(x = x_coord, y = y_coord, label = label), 
             size = 3) + 
   xlab("") + ylab("") + 
-  scale_fill_brewer(type = "qual", palette = 1,
-                    name = "Sexe",
-                    labels = c("Femme","Homme"))+
+  scale_fill_manual(values = wes_palette("Chevalier1"),
+                    name = "Enfants issus de l'union") +
   scale_alpha_manual(values =c(.5,.9),
-                      name = "Beau parent",
-                     labels = c("Oui", "Non")) +
+                      name = "Sexe",
+                     labels = c("Homme", "Femme")) +
   guides(fill = guide_legend(order = 1),
          alpha = guide_legend(order = 2)) +
   theme_memoire() +
@@ -625,93 +638,103 @@ g +
         # Supprimer les lignes de la grille du panneau
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())
-
 ```
 
-## [Descriptions sociologique des individus qui composent ces familles]
+## Parents et beau-parents
 
-### Se remmettre en couple quand on a des enfants [parents]
+[Dans cette partie je ne suis pas sûre que c'est suffisant de comparer les moyennes des revenus et des patrimoines, compte tenu de la variance de ceux-ci, la moyenne est tirée vers le haut par les quelques très hauts revenus et patrimoines, pe faire des tranches ? ou carrémenet un paragraphe a part entière avec des anova ? ]
 
-> ici on détaille les caractéristiques sociales et familiales spécifiques des individus qui se remettent en couple + discussions avec la littérature existante sur le sujet
+### Se remmettre en couple quand on a des enfants
 
-```{r}
-indiv  <- readRDS("Data_output/parents.Rds")
-familles <- readRDS("Data_output/famillesToutes.Rds") %>%
-  rec_TYPMEN5() %>%
-  filter(!(TYPMEN5 %in% c("Autre type de ménage (ménage complexe)"))) %>%
-  select(IDENT_MEN, n_config)
-  
-names(indiv)
-freq(familles$TYPMEN5)
-revenus <- indiv %>%
-  select(starts_with("REV"), c("CHOMAGE", "RETRAITES", "SALAIRES")) %>%
-  rowSums(na.rm = T)
-indiv$n_REVENUS <- revenus
-summary(indiv$n_REVENUS)
-indiv$n_REVENUSmens <- indiv$n_REVENUS/12
+Les parents remis en couple présentent des caractéristiques sociales spécifiques par rapport à ceux en couple avec l'autre parent de leurs enfants et ceux célibataires. 
 
-patrimoine <- indiv %>%
-  select(starts_with("PATF")) %>%
-  rowSums(na.rm = T)
-indiv$n_PATRIMOINE <- patrimoine
-summary(indiv$n_PATRIMOINE)
-
-dat <- indiv %>%
-  filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
-  filter(!is.na(n_RemisEnCoupleEnfantsTous)) %>%
-  # mutate(n_RemisEnCoupleEnfantsTous = if_else(n_RemisEnCoupleEnfantsTous, 1, 0))%>%
-  # mutate(n_RemisEnCoupleEnfantsTous <- n_RemisEnCoupleEnfantsTous %>%
-  #          as_factor() %>% fct_relevel("1", "0")) %>%
-  mutate(Enfants = case_when(
-    n_EnfantsMen & n_EnfantsHD ~ "Les deux", 
-    n_EnfantsMen ~ "Enfant(s) cohabitant(s)", 
-    n_EnfantsHD ~ "Enfant(s) non-cohabitant(s)"
-  )) %>%
-  rec_CSP6(Var = "CS24", NewVar = "CS8") %>% 
-  rec_DIP(Var = "DIP14", NewVar = "DIPL") %>% 
-  rec_AGE6(Var = "AG6") %>%
-  mutate(n_REVENUSmens = n_REVENUSmens/100, 
-         n_PATRIMOINE = n_PATRIMOINE/1000) %>%
-  as_survey_design(weights = PONDIND)
-
-
-dat_complet <- dat |> 
-  drop_na(n_RemisEnCoupleEnfantsTous,  Enfants, SEXE, AG6, CS8, n_REVENUSmens, DIPL,  n_PATRIMOINE, IPROPLOC, n_NEnfantsMen, n_AgeEnfantsMen)
-
-reg <-  
-  svyglm(design = dat_complet, 
-         formula = n_RemisEnCoupleEnfantsTous ~ Enfants + SEXE + AG6 + CS8 + n_REVENUSmens + DIPL + n_PATRIMOINE + IPROPLOC + n_NEnfantsMen + n_AgeEnfantsMen, 
-         family = quasibinomial, na.action = na.exclude)
-reg2 <- stepAIC(reg)
-
-
-reg2 %>% tbl_regression(exponentiate = T)
-
-
-regFemme <- dat %>%
-  svyglm(family = quasibinomial, 
-         subset = !is.na(n_RemisEnCoupleEnfantsTous) & SEXE == 2, 
-         formula = n_RemisEnCoupleEnfantsTous ~ Enfants + AG + CS8 + n_REVENUSmens)
-regFemme %>% tbl_regression(exponentiate = T)
-
-# install.packages("GGally")
-install.packages("broom")
-tab<- cbind(tidy(regHomme), tidy(regFemme))
-library(GGally)
-broom::tidy(regHomme)
-ggcoef_plot(regHomme)
-ggcoef_compare(c(regHomme, regFemme))
-
-reg %>%
-  tbl_regression()
+```{r dataparents, results = "asis", include=F}
 
 ```
 
 
+```{r statdesparents, results = "asis"}
 
-### [beaux-parents]
 
-> caractéristiques sociales des beaux parents : belles mères et beaux pères, avec ou sans enfants d'une précédante union
+
+```
+
+Comme attendu, les parents de familles monoparentales ont plus souvent un unique enfant vivant avec eux que les parents de familles traditionnelles ou recomposées (56%, contre 40%) en moyenne.
+Comme dans les familles monoparentales, les parents de familles recomposées ont des enfants plus âgés que ceux de familles traditionnelles, à l'exception des pères qui ont des enfants en moyenne plus jeunes que dans les familles traditionnelles et 
+
+
+```{r statdesparents2, results = "asis"}
+
+load("Resultats/des_ParentsCaracteristiquesSociales.Rdata")
+tab$tableau %>% 
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Caractéristiques sociales des parents") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = 2)
+
+```
+
+
+Les parents de familles monoparentales et recomposées apparaissent moins diplômé.e.s que ce de familles traditionnelle : ils et elles sont moins souvent diplômé.e.s d'un bac+5 ou plus (9% contre 15%) et plus souvent diplômé.e.s du brevet des collèges ou sans diplôme (24% et 21% contre 17%). Ils et elles  appartiennent donc logiquement moins souvent cadres et professions intellectuelles supérieures que les autres(13% et 12% contre 18%). Ces parents ont également des revenus plus faibles que les parents en couple avec l'autre parent de leurs enfants (1536 et 1696 euros mensuel en moyenne contre 1980) et des patrimoines moins élevés (9 720 et 9 182 euros en moyenne contre 13 247 euros). Ils et elles sont en effets moins souvent propriétaires sans crédit de leur logement (12 et 13% contre 23% dans les familles traditionnelle). Ces caractéristiques socio-démographiques partagées entre les parents de familles monoparentales et celles de familles recomposées, relativement stables au cours de la trajectoire individuelle, confirment la continuité biographique entre période de monoparentalité et remise en couple. Cette continuité n'est cependant pas identique pour les hommes et les femmes. En effet, si les mères de familles monoparentales et recomposées se ressemble, les pères de familles monoparentales et recomposées semblent présenter des caractéristiques assez différentes. La ressemblance observée en moyenne est liée, pour partie à une écrasante sur-représentation des femmes dans les parents de familles monoparentales et recomposées [CHIFFRES]. En effet, les mères de familles recomposées ont des revenus assez proches des mères de familles monoparentales (1 430 euros mensuels contre 1 386). Il en va de même pour les patrimoines : les mères de familles recomposée possèdent en moyennes 8 444 euros contre 8 368 pour celles qui sont célibataires. Elle sont sous représentés chez les cadres et professions intellectuelles supérieures (11% contre 14% chez les mères de familles traditionnelles). Les mères de familles recomposées sont cependant un peu plus diplômées que les mères de familles monoparentales : si elles aussi rarement diplômes d'un bac+5 ou plus, elles sont plus nombreuses à être avoir un diplôme bac+1 à bac+3 (25% contre 22%) et moins nombreuses à être sans diplôme ou simplement le Brevet des collèges (22% contre 18%). En ce qui concerne les pères de familles recomposées ils se distinguent assez nettement des pères célibataires. Ceux-ci sont moins diplômés : 27% ont un diplôme du supérieur contre 35% des pères de familles monoparentales. Ils sont ainsi logiquement sur-représenté dans les professions les moins qualifiées : 48% sont ouvriers ou employés et seulement 15% sont cadre ou professions intellectuelle supérieure, contre 40% d'employés et ouvriers et 20% de cadres chez les pères célibataires. On observe des résultats similaires en matière de patrimoine et de revenus : les pères célibataires gagnent plus et possèdent plus que les pères de familles recomposées. Ainsi les pères célibataires sont 18% à être propriétaires du logement ou ils vivent, contre Cette différence tient en réalité aux caractéristiques très spécifiques des pères célibataires, au regard des mères célibataires, qui les rapprochent des pères de familles traditionnelles. Cas marginal chez les hommes, le fait d'élever seul ses enfants semble conditionner à la dispositions de ressources économiques, matérielles et culturelles importantes. [BIBLIO qui va dans ce sens]. On peut avancer plusieurs hypothèses liés aux bénéficies différenciés à la conjugalités des hommes et des femmes. Ainsi, si la continuité entre situation de monoparentalité et remise en couple apparaît assez nette pour les femmes, elles l'est beaucoup moins pour les hommes. Les hommes reformant des unions apparaissent très différents de ceux élevant leurs enfants seuls. En premier lieu, le niveau de diplôme, la profession, le revenu et le patrimoine peuvent influencer la probabilité de se remettre en couple d'avantage pour les hommes ayant des enfants à charge que pour les femmes dans cette situation. Dans ce cas, cela signifie que les hommes les plus doté culturellement et économiquement se remettrait moins en couple que ceux disposant de moins de ressources. Moins contraints sur le plan économique, les avantages matériels et financier à la conjugalité et à la cohabitation jouent peut-être relativement moins pour eux que ceux disposant de plus faibles ressources. L'autre explication tient au fait que la situation de monoparentalité ne précédé pas nécessairement la recomposition familiale. En effet, la remise en couple d'un parent d'ayant pas la garde de ses enfants pourrait favoriser l'obtention de la garde de ceux-ci. A notre connaissance, des travaux portant sur de telles décision de justice n'existent pas. Cependant, lorsqu'il s'agit de fixer la résidence principale des enfants lors d'une séparation, les juges aux affaires familiales mobilisent des critères différents pour évaluer cette possibilité chez les hommes et les femmes. Là ou un logement petit, des revenus faibles et la difficile articulation entre travail à plein temps et garde des enfants sont jugé problématique pour les pères, elles ne le sont pas pour les mères [@tirbunal des couples]. On peut donc penser que ces mêmes facteurs jouent si une demande de réexamen de la résidence des enfants est formulée après une remise en couple. Ainsi, l'accès à un logement plus grand, les économies d'échelles et la prise en charge du travail domestique voir parental par la nouvelle conjointe pourrait favoriser l'obtention de la résidence (alternée ou exclusive) par les pères n'ayant au paravent qu'un doit de visite. Ces mêmes facteur pourraient expliquer que les pères n'ayant pas demandé la résidence de leurs enfants lorsqu'il étaient célibataires formulent cette demande une fois remis en couple.
+
+### Beaux-pères et belles-mères
+
+Les beaux-parents ne ressemblent pas nécessairement aux parents des familles recomposées. Comme les parents de familles monoparentales sont le plus souvent des mères, les parents de familles recomposées sont le plus souvent des femmes. Ainsi les beaux-parents sont le plus souvent des hommes, d'autant plus s'ils n'ont pas d'enfants eux-même : 87,1% des beaux-parents n'ayant pas d'enfants sont des beaux-pères et 78,9% de ceux ayant des enfants sont des beaux pères.
+
+```{r histosexebeauxparents, fig.cap = "Appartenance aux groupe de sexe des parents et beaux parents", out.width= "70%", fig.asp=0.6}
+load("Resultats/barplot_BPSexe.Rdata")
+tab$tableau
+```
+
+Leur revenu est en moyenne plus élevé que celui des parents (2185 euros contre 1592 euros mensuel), même si l'écart est moindre lorsqu'ils et elles ont eux-même des enfants (1844 euros mensuels). Le constat est encore plus tranché pour le patrimoine : les beaux-parents sans enfants possèdent en moyenne 15 420 de patrimoine contre 9 472 pour les parents de familles recomposées. Le fait d'avoir des revenus et un niveau vie élevé augmente en effet la probabilité de mettre en couple [Référence]. Cependant, au vu des différences importantes entre les beaux-parents ayant des enfants et ceux n'en ayant pas, c'est plus probablement le fait de ne pas avoir d'enfants qui permet une carrière professionnelle ascendante et l'accumulation de patrimoine, ou le fait d'avoir une carrière professionnelle peut différer le fait avoir des enfants. Les beaux parents, qu'ils et elles aient ou non des enfants apparaissent en effet un peu plus diplômés que les parents (11% et respectivement 10% d'entre eux ont au moins bac+5 contre 8% des parents), et ils occupent ainsi logiquement plus souvent des positions de cadres (15% contre 11%). Cependant, les beaux-parents sans enfants sont aussi plus souvent diplômes professionnels inférieurs au bac (CAP, BEP et équivalents) : ils et elles sont 37% contre 28 et 22%. Les beaux-parents sont ainsi plus nombreux à être ouvriers que les parents (30% contre 17%). 
+
+```{r statdesbeauxparents, results = "asis"}
+
+load("Resultats/des_BeauxParentsCaracteristiquesSociales.Rdata")
+
+tab$tableau %>% 
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Caractéristiques sociales des parents") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n)
+
+```
+
+Cette différence est en partie liée à la sur-représentation des femmes chez les parents et à la sur-représentation des hommes chez les beau-parents puisque ces 
+derniers sont plus souvent ouvriers. Cela est très marqué chez les beaux-parents ayant des enfants puisque 11% des belles mères ayant des enfants sont ouvrières contre 40% des beaux pères ayant des enfants. Elle l'est en revanche beaucoup moins chez les beaux-parents sans enfants puisque 24% des belles-mères dans ce cas sont ouvrières contre 32% des beaux-pères. Parallèlement, les belles-mères sont plus souvent diplômées d'un bac+5 que les mères et que les beaux-pères, qu'elles aient elles-même des enfants ou non (15% à 16% contre 7% des mères et 7 à 9% des beau-pères)
+
+
+
+### Des couples moins inégalitaires ?
+
+Au vu des caractéristiques spécifiques que possèdent les mères, les pères, les belles-mères et les beaux-pères, on peut se demander si les unions secondaires sont plus ou moins égalitaires les premières unions. 
+
+```{r heatmapdiplome, fig.cap= "Homogamie de diplome", fig.asp = 0.6, fig.width=9, fig.height=0.3}
+
+load("Resultats/tileplot_homogamiedeuxgraphs.Rdata")
+tab$tableau
+
+```
+[ajouter note de lecture etc, éventuellement les marges ?]
+
+L'homogamie de diplôme apparaît plus faible dans unions formées secondairement au deux extrémités de la hiérarchie des diplômes. En effet, les hommes diplômes d'un bac+5 et plus impliqués dans de nouvelles unions ont 29% de chance d'être en couple avec une femme ayant ce même niveau de diplôme, contre 45% dans l'ensemble des couples. Ils également 48% à être diplômé du brevet ou sans diplôme à être en couple avec une femme ayant ce même niveau de diplôme contre 57% en moyenne. En haut de la hiérarchie sociale, elle apparaît également plus faible que pour les couples ayant des enfants, notamment pour les diplômés du supérieurs (bac + 1 et plus). Les hommes diplômés d'un bac+5 et plus impliqués dans des unions secondaires sont en effet plus nombreux à être en couple avec une femme moins diplômées qu'eux. En particulier, 22% sont en couple avec une femme ayant le baccalauréat ou un diplôme équivalent et 15% avec une femme ayant un diplôme professionnel inférieur au baccalauréat, contre 11% et 5% en moyenne et 10% et 3% pour les couples avec enfants. L'inverse est également vrai : les hommes en couple dans les familles recomposées sont également en couple avec des femmes plus diplômés qu'eux : c'est les cas de 23% des hommes diplômés d'un bac+1 à bac+3 qui sont en couple avec une femme diplômés d'un bac+ ou plus, contre 16% en moyenne et 17% dans les couples avec enfants. De même 18% des hommes de ces couples ont le brevet ou sont sans diplôme et sont en couple avec une femme ayant un niveau bac+1 à bac+3. 
+
+```{r heatmapCSP, fig.cap= "Homogamie de profession", fig.asp = 0.6, fig.width=9, fig.height=0.3}
+
+load("Resultats/tileplot_homogamieCSPtroisgraphs.Rdata")
+tab$tableau
+
+```
+[ajouter note de lecture etc, éventuellement les marges ?]
+
+Les couples formées par des unions secondaires dans le cadre des recompositions familiale apparaissent également singuliers du point de vue des l'appartenance des conjoints aux catégories socio-professionnelles. Les hommes cadres et professions intellectuelles supérieures apparaissent plus homogammes qu'en moyenne (43% sont avec une femme cadre contre 35% en moyenne).
+
 
 ### [parents non gardien]
 
@@ -726,6 +749,7 @@ enfants <- readRDS
 ### [enfants hors domicile]
 
 ## Décrire la position sociale des familles recomposées : une approche par les configurations
+
 
 Ici discussion sur les différentes manière de rendre de compte de la position sociale des ménages en question.
 
@@ -872,6 +896,29 @@ data %>%
 
 ```
 
+MAUTRES_SCO Montant des autres frais liés à la scolarité
+MAUTRES_SCO_D Montant définitif des autres frais liés à la scolarité
+MGARD1 Montant dépensé pour la crèche
+MGARD1_D Montant définitif dépensé pour la crèche
+MGARD2 Montant dépensé pour la garderie
+MGARD2_D Montant définitif dépensé pour la garderie
+MGARD3 Montant dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés
+MGARD3_D Montant définitif dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà
+déclarés
+MGARD4 Montant dépensé pour la nourrice ou l'assistante maternelle
+MGARD4_D Montant définitif dépensé pour la nourrice ou l'assistante maternelle
+MGARD5 Montant dépensé pour une autre personne rémunérée pour la garde d'enfants
+MGARD5_D Montant définitif dépensé pour une autre personne rémunérée pour la garde d'enfants
+MINSC Montant des frais d'inscription scolaire ou universitaire
+MINSC_D Montant définitif des frais d'inscription scolaire ou universitaire
+MPENS Montant des frais d'internat
+MPENS_D Montant définitif des frais d'internat
+MREPET Montant total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois
+MREPET_D Montant définitif total dépensé pour les cours particuliers, le soutien, etc. au cours des 2
+derniers mois
+
+
+
 ### [Inégalités dans les consommations individualisables masculines et féminines ?]
 
 -   regarder, comme pour les enfants, les dépenses individualisables hommes/femmes, notamment les vetements (+ il a de la littérature qui dit que c'est un bon proxy du niveau vie)
@@ -898,6 +945,16 @@ data %>%
 
 # Chapitre 3. [Même idée que le chapitre 2, version travail domestique et autoproduction]
 
+AIDEENFANT L'individu a aidé les enfants dans leurs devoirs pendant la semaine précédant l'entretien
+BRICOLAGE L'individu a fait du bricolage pendant la semaine précédant l'entretien
+CHANGEENFANT L'individu a changé les enfants, les a habillés ou leur a donné à manger pendant la semaine
+précédant l'entretien
+COURSES L'individu a fait des courses pendant la semaine précédant l'entretien
+CUISINEA L'individu a fait de la cuisine de tous les jours pendant la semaine précédant l'entretien
+CUISINEB L'individu a fait de la cuisine de réception pendant la semaine précédant l'entretien
+MENAGE L'individu a fait le ménage pendant la semaine précédant l'entretien
+REPASSAGE L'individu a fait du repassage pendant la semaine précédant l'entretien
+VAISSELLE L'individu a fait la vaisselle pendant la semaine précédant l'entretien
 ## Une charge de travail domestique a priori mieux répartie entre hommes et femmes
 
 ## [Les parents en font + que dans le familles nucléaires]

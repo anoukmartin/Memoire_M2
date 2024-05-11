@@ -97,52 +97,7 @@ saveTableau(tblreg3,
             n = reg$n)
             
 
-# 1.2. Régression vêtements et chaussures pour enfants #########################
-
-## calcul du montant de dépenses globale en lien avec la scolarité #############
-depVetmMen <- conso |> 
-  filter(IDENT_MEN %in% familles$IDENT_MEN) |> 
-  select(c("IDENT_MEN"), starts_with("C03123"), starts_with("C03213"))
-
-sum <-apply(depVetmMen[, -1],1,sum,na.rm=TRUE)
-familles <- bind_cols(familles, n_DepVetement = sum)
-var_label(familles$n_DepVetement) <-  "Montant des dépenses d'habillement pour enfants"
-var_label(familles$n_DepVetement)
-rm(depVetmMen, sum)
 
 
-## Construction base de donnée sur laquelle on va travailler ################### 
-dicFam <- look_for(familles)
-data <- familles |>
-  mutate(
-    n_DepVetementParEnf = labelled(n_DepVetement/n_NEnfantsTous, 
-                                   label = "Montant des dépenses d'habillement pour enfants (moyenne par enfant)"), 
-    n_DepVetementPart = labelled((n_DepVetement/REVTOT)*100, 
-                            label = "Part des dépenses d'habillement pour enfants des les revenus totaux du ménage"), 
-    NIVIE = labelled(NIVIE/100, 
-                     label = "Niveau de vie du ménage (en centaines d'euros)"), 
-    REVTOT = labelled(REVTOT/100, 
-                      label = "Revenus totaux du ménage (en centaines d'euros)"), 
-    REVDISP = labelled(REVDISP/100, 
-                      label = "Revenu disponible du ménage (en centaines d'euros)"))|>
-  mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) |>  # On centre la variable de pondération
-  as_survey_design(weights = PONDFAM, ids = c(IDENT_MEN)) 
 
-## Régression pondérée #########################################################
 
-reg <- svyglm(n_DepVetementParEnf ~ REVDISP + n_NEnfantsTous + n_ageMoyEnfTous + CSMEN + DIP14PR + n_configSynth,
-              design = data)
-
-tblreg2 <- tbl_regression(reg, intercept = F) |>
-  add_glance_source_note() |>
-  add_global_p(keep = TRUE) 
-tblreg2
-
-## Enregistrement des résultats ################################################
-saveTableau(tblreg2, 
-            type = "Reg",
-            label = "DepHabillement", 
-            description = "Regression sur les dépenses d'habillement pour enfants", 
-            champ = paste0(infosBDF$champ, " déclarant au moins un enfant à charge"), 
-            ponderation = TRUE, 
-            n = dim(familles)[1])

@@ -4,7 +4,7 @@
 
 # On adopte une approche par les enfants, parce que c'est ce qui est usuel dans 
 # dans la quantification du nombre de familles recomposées
-
+age_limite <- 25
 
 ################################################################################-
 # 1. Enfants enquêtés dans le ménage ###########################################
@@ -32,7 +32,7 @@ temp <- indiv %>%
 rm(temp)
 # Donc limite d'âge 
 enfants <- indiv %>%
-  # filter(AG <= 16)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
+  filter(AG < age_limite)  %>% # on peut changer en le seuil, 25 ans me paraît bien seuil d'ouverture du RSA 
   filter(ENFANT == "1") # puis on ne prend que ceux qui sont considérés comme enfant au sens du TCM (idem recensement car on virer les individus agés)
 
 summary(enfants$AGE)
@@ -157,6 +157,7 @@ names(enfHD)
 enfantHD <- enfHD %>%
   mutate(AG = infosBDF$vague - HODAN) %>% # Calcul de l'age au 31 décembre
   filter(HODENF == 0 & HODMAT != "1") %>%
+  filter(AG < age_limite) %>%
   var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
 names(enfantHD)
 

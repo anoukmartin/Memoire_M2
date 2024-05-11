@@ -46,16 +46,17 @@ list_parentremisencouple <-  c(
 indiv <- indiv %>%
   mutate(n_EnfantsMen = case_when(
     n_IdentIndiv %in% list_parents ~ TRUE, 
-    IDENT_MEN %in% unique(enfantsMenage$IDENT_MEN) & ENFANT != "1" ~ FALSE, 
+    IDENT_MEN %in% unique(enfantsMenage$IDENT_MEN) 
+    & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
     TRUE ~ NA)) %>%
   mutate(n_BeauxEnfantsMen = case_when(
     n_IdentIndiv %in% list_beauparents ~ TRUE, 
-    IDENT_MEN %in% unique(enfantsMenage$IDENT_MEN) & ENFANT != "1" ~ FALSE, 
+    IDENT_MEN %in% unique(enfantsMenage$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
     TRUE ~ NA)) %>%
   mutate(n_RemisEnCoupleEnfantsMen = case_when(
     n_IdentIndiv %in% list_parentremisencouple ~ TRUE, 
     IDENT_MEN %in% unique(enfantsMenage$IDENT_MEN) 
-    & ENFANT != "1" & n_EnfantsMen ~ FALSE, 
+    & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) & n_EnfantsMen ~ FALSE, 
     TRUE ~ NA))
 
 freq(indiv$n_EnfantsMen)
@@ -94,9 +95,32 @@ infos_enfantsMenage2 <- enfantsMenage %>%
             n_AgeBeauxEnfantsMen = mean(AG))
 infos_enfantsMenage <- bind_rows(infos_enfantsMenage, infos_enfantsMenage2)
 
-
 indiv <- left_join(indiv, infos_enfantsMenage, 
                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
+
+#infos enfants du couple 
+infos_enfantsMenage <- enfantsMenage %>%
+  filter(n_ConjMere == "Parent") %>%
+  pivot_longer(cols = c("n_IdentMere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsCouple = n(), 
+            n_AgeEnfantsCouple = mean(AG))
+infos_enfantsMenage2 <- enfantsMenage %>%
+  filter(n_ConjPere == "Parent") %>%
+  pivot_longer(cols = c("n_IdentPere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsCouple = n(), 
+            n_AgeEnfantsCouple = mean(AG))
+
+infos_enfantsMenage <- bind_rows(infos_enfantsMenage, infos_enfantsMenage2)
+
+indiv <- left_join(indiv, infos_enfantsMenage, 
+                   by = c("n_IdentIndiv" = "n_IdentParent"))
+
 
 
 
@@ -109,14 +133,13 @@ list_enfantsHD <- unique(c(enfantsHD$n_IdentMere,
 list_enfantsHD  <- list_enfantsHD[!is.na(list_enfantsHD)]
 
 list_beauxenfantsHD <- c(
-  enfantsHD[
+  c(enfantsHD[
     enfantsHD$n_ConjPere == "Beau-parent"
-    & !is.na(enfantsHD$n_ConjPere), ]$n_IdentConjointPere,
-  enfantsHD[
+    & !is.na(enfantsHD$n_ConjPere), ]$n_IdentConjointPere) %>% unique(),
+  c(enfantsHD[
     enfantsHD$n_ConjMere == "Beau-parent"
-    & !is.na(enfantsHD$n_ConjMere), ]$n_IdentConjointMere
-) %>%
-  unique()
+    & !is.na(enfantsHD$n_ConjMere), ]$n_IdentConjointMere) %>% unique()
+) 
 
 list_enfantsHDremisencouple <- c(
   enfantsHD[
@@ -132,16 +155,16 @@ list_enfantsHDremisencouple <- c(
 indiv <- indiv %>%
   mutate(n_EnfantsHD = case_when(
     n_IdentIndiv %in% list_enfantsHD ~ TRUE, 
-    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & ENFANT != "1" ~ FALSE, 
+    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
     TRUE ~ NA)) %>%
   mutate(n_BeauxEnfantsHD = case_when(
     n_IdentIndiv %in% list_beauxenfantsHD ~ TRUE, 
-    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & ENFANT != "1" ~ FALSE, 
+    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
     TRUE ~ NA)) %>%
   mutate(n_RemisEnCoupleEnfantsHD = case_when(
     n_IdentIndiv %in% list_enfantsHDremisencouple ~ TRUE, 
     IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) 
-    & ENFANT != "1" & n_EnfantsHD ~ FALSE, 
+    & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) & n_EnfantsHD ~ FALSE, 
     TRUE ~ NA))
 
 freq(indiv$n_EnfantsHD)
@@ -263,6 +286,23 @@ infos_enfants <- bind_rows(infos_enfantsMen, infos_enfantsHD, infos_enfantsMen2,
 
 indiv <- left_join(indiv, infos_enfants, 
                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
+
+
+# revenus 
+revenus <- indiv %>%
+  select(starts_with("REV"), c("CHOMAGE", "RETRAITES", "SALAIRES")) %>%
+  rowSums(na.rm = T)
+indiv$n_REVENUS <- revenus
+
+indiv$n_REVENUSmens <- indiv$n_REVENUS/12
+
+# Patrimoine
+patrimoine <- indiv %>%
+  select(starts_with("PATF")) %>%
+  rowSums(na.rm = T)
+indiv$n_PATRIMOINE <- patrimoine
+summary(indiv$n_PATRIMOINE)
   
 saveRDS(indiv, file = "Data_output/parents.Rds")
-rm(list_beauparents, list_parents, list_parentremisencouple, indiv, enfantsMenage)
+rm(list_beauparents, list_parents, list_parentremisencouple, indiv, enfantsMenage, data, enfantsHD, infos_enfants, infos_enfantsHD, infos_enfantsHD2, infos_enfantsMen, infos_enfantsMen2, infos_enfantsMenage, infos_enfantsMenage2, revenus, patrimoine)
+

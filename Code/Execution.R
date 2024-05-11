@@ -3,7 +3,7 @@
 # Table des scripts qu'on veut exécuter dans l'ordre : 
 listScript <- list.files("Code") 
 listScript
-rm(listScript)
+
 
 # Exectuion 
 execute <- function(part, path = "Code"){
@@ -25,7 +25,7 @@ source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 
 # Réimporter les données brutes ################################################
 # On exécute les scripts commençant par 02
-execute(part = "02")
+execute(part = "02a")
 
 # Repérages sous populations ###################################################
 # On exécute les scripts commençant par 03
@@ -35,3 +35,11 @@ execute(part = "03c")
 
 
 
+
+# Résultats statistiques #######################################################
+
+## Regressions #################################################################
+execute(part = "05b")
+
+## Statistiques descriptives ###################################################
+execute(part = "06a")

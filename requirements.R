@@ -2,6 +2,7 @@ packagesList <- c("haven",
                  "labelled", 
                  "git2r", 
                  "tidyverse", 
+                 "dplyr",
                  "questionr",
                  "gtsummary",
                  "gt",
@@ -15,7 +16,11 @@ packagesList <- c("haven",
                  "ordinal", 
                  "kableExtra", 
                  "ggmosaic", 
-                 "bookdown")
+                 "tabulapdf",
+                 "bookdown", 
+                 "GGally", 
+                 "Cairo", 
+                 "wesanderson")
 install.packages(packagesList)
 
-remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer", "vqf/nVennR"))
+#remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer", "vqf/nVennR"))
