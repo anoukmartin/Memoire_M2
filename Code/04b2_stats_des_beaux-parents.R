@@ -1,63 +1,29 @@
 
 indiv  <- readRDS("Data_output/parents.Rds")
 
-familles <- readRDS("Data_output/famillesToutes.Rds") 
-dep_men <- readRDS("Data_output/DepMenages.Rds")
+familles <- readRDS("Data_output/familles_parents.Rds") 
+familles$n_config <- familles$n_TYPMEN_new
 
+dep_men <- readRDS("Data_output/DepMenages.Rds")
+adultes$TYPMEN5
 adultes <- indiv %>%
-  #filter(ENFANT != "1" & AG >= 18& AG <70) %>%
-  #filter(n_BeauxEnfantsMen) %>%
+  filter(ADULTE) %>%
   left_join(familles %>% 
               select(IDENT_MEN, n_config, TYPMEN5)) %>%
   left_join(dep_men %>%
               select(IDENT_MEN, STALOG)) %>%
   filter(n_config == "Recomposée") %>%
-  filter(ENFANT != "1") %>%
-  rec_TYPMEN5() %>%
-  filter(TYPMEN5 != "Autre type de ménage (ménage complexe)") %>%
-  # mutate(n_config = case_when(
-  #   n_EnfantsMen & !n_RemisEnCoupleEnfantsMen & n_config == "Recomposée" ~ "Traditionelle", 
-  #   TRUE ~ n_config
-  # )) %>%
   rec_SEXE() %>%
+  rec_CSP12(Var = "CS42", "CS12") %>%
+  rec_DIP7(NewVar = "DIP7") %>%
   mutate(n_StatutEnfants = case_when(
     n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "précédante et actuelle", 
     n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "précédante", 
     n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "actuelle", 
     TRUE ~ "Sans enfants")) %>%
-  # mutate(typo = paste0(n_config, " ", SEXE)) %>%
-  # mutate(typo <- typo %>%  fct_relevel(
-  #   "Traditionelle Homme", "Traditionelle Femme", "Monoparentale Homme",
-  #   "Monoparentale Femme", "Recomposée Homme", "Recomposée Femme"
-  # )) %>%
-  rec_CSP6(Var = "CS24", NewVar = "CS6") %>% 
-  #mutate(CS6 = CS6 %>% fct_relevel("Professions intermédiaires")) %>%
-  rec_DIP(Var = "DIP14", NewVar = "DIPL") %>% 
-  rec_AG6(Var = "AG6") %>%
-  rec_STALOG() %>%
-  mutate(n_NEnfantsMen = case_when(
-    n_NEnfantsMen == 1 ~ "un", 
-    n_NEnfantsMen == 2 ~ "deux", 
-    n_NEnfantsMen == 3 ~ "trois",
-    n_NEnfantsMen > 3 ~ "plus de trois")) %>%
-  mutate(n_NEnfantsMen = n_NEnfantsMen %>%  fct_relevel(
-    "un", "deux", "trois", "plus de trois")) %>% 
-  mutate(n_NEnfantsHD = case_when(
-    is.na(n_NEnfantsHD) ~ "aucun",
-    n_NEnfantsHD == 1 ~ "un", 
-    n_NEnfantsHD == 2 ~ "deux", 
-    n_NEnfantsHD == 3 ~ "trois",
-    n_NEnfantsHD > 3 ~ "plus de trois")) %>%
-  mutate(n_NEnfantsHD = n_NEnfantsHD %>%  fct_relevel(
-    "aucun", "un", "deux", "trois", "plus de trois")) %>%
-  mutate(n_NEnfantsCouple = case_when(
-    is.na(n_NEnfantsCouple) ~ "aucun",
-    n_NEnfantsCouple == 1 ~ "un", 
-    n_NEnfantsCouple == 2 ~ "deux", 
-    n_NEnfantsCouple == 3 ~ "trois",
-    n_NEnfantsCouple > 3 ~ "plus de trois")) %>%
-  mutate(n_NEnfantsCouple = n_NEnfantsCouple %>%  fct_relevel(
-    "aucun", "un", "deux", "trois", "plus de trois")) 
+  rec_NENFANTS("n_NEnfantsMen") %>%
+  rec_NENFANTS("n_NBeauxEnfantsMen") %>%
+  rec_REVENUS(Var = "n_REVENUS")
   
 
 
@@ -91,7 +57,7 @@ dat <- adultes %>%
   # mutate(n_EnfantsMen = as.character(n_EnfantsMen)) %>%
   # mutate(n_BeauxEnfantsMen = as.character(n_BeauxEnfantsMen)) %>%
   as_survey_design(weights = PONDIND) %>%
-  select("AG", "DIPL", "CS6", "n_REVENUSmens", "n_PATRIMOINE", "SEXE", "LOGEMENT", "n_StatutParent", "n_StatutEnfants") %>%
+  select("AG", "DIP7", "CS12", "n_REVENUS", "n_PATRIMOINE", "SEXE", "LOGEMENT", "n_StatutParent", "n_StatutEnfants") %>%
   mutate(Ensemble = T, 
          Effectifs = T)
 

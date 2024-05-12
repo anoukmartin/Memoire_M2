@@ -302,6 +302,18 @@ patrimoine <- indiv %>%
   rowSums(na.rm = T)
 indiv$n_PATRIMOINE <- patrimoine
 summary(indiv$n_PATRIMOINE)
+
+
+# On définit les adultes #######################################################
+freq(indiv$ENFANT)
+indiv <- indiv %>%
+  mutate(NONENFANT = if_else(
+    !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv), TRUE, FALSE)) %>%
+  mutate(ADULTE = if_else(
+    ENFANT != "1" & AG > max(enfantsMenage$AG) & AG < 70, TRUE, FALSE))
+
+lprop(table(indiv$ENFANT, indiv$NONENFANT))
+lprop(table(indiv$ENFANT, indiv$ADULTE))
   
 saveRDS(indiv, file = "Data_output/parents.Rds")
 rm(list_beauparents, list_parents, list_parentremisencouple, indiv, enfantsMenage, data, enfantsHD, infos_enfants, infos_enfantsHD, infos_enfantsHD2, infos_enfantsMen, infos_enfantsMen2, infos_enfantsMenage, infos_enfantsMenage2, revenus, patrimoine)

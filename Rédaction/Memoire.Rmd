@@ -750,10 +750,31 @@ enfants <- readRDS
 
 ## Décrire la position sociale des familles recomposées : une approche par les configurations
 
+Si échelle du ménage ne permet de saisir que partiellement les faits sociaux de déployant à une échelle inter-individuelle (logement, enfants, couple) [@Bonvalet ; @Toulemont], c'est celle qui est utilisée dans les enquêtes de la statistique publique. Caractériser socialement les ménages, et non seulement les individus qui les composent permet ainsi d'étudier les caractéristiques des logements en fonction des ménages qui y vivent, la réussite scolaire des enfants en fonction des ménages auquel ils appartiennent ou encore de calculer un niveau vie commun à l'ensemble des membres. On a vu que, dans les familles recomposées plus que dans les autres, le logement appartient à l'un des conjoint, les enfants ne sont pas tous des enfants commun au couple et que les couples sont moins homogames du point de vu de : . Ainsi, résumer la position sociale du ménage à celle de la personne de référence, ne nous paraissait pas satisfaisant. La personne de référence est en effet le principal apporteur de ressource. A égalité de de ressources, la personne de référence est, par ordre de priorité l'actif puis le retraité puis l'autre inactif. A situation égale, la personne de référence est la plus âgée. Or, dans les familles recomposées, les beaux-parents, surtout lorsqu'ils n'ont pas eux-même d'enfants, ont en moyenne des revenus plus élevés que les parents. Ils sont donc mécaniquement plus souvent personne de référence que les parents [Chiffre + annexe]. Ainsi, la priorité serait ici non seulement donnée à l'homme, mais en particulier au beau-père sans enfants dans le ménage. Nous aurions aussi pu construire une PCS "Ménage" en suivant la nouvelle nomenclature mise en place en 2020. Codée par une opération de synthèse des catégories socioprofessionnelles (CSP) des deux membres du couple lorsqu'il existe, cette PCS « ménage » est chargée de mieux rendre compte de la position sociale du ménage. Cependant en cherchant à synthétiser dans une même échelle des positions sociales dans les rapports sociaux de classes et de genre parfois antagoniques, cette refonte ne change pas fondamentalement de perspective : le ménage reste une unité de base, presque assimilable à un individu. Selon les auteur-ice-s, la méthode proposée dans l'article permet justement, en combinant de multiples dimensions de la stratification sociale et en ne réduisant pas celles-ci à une échelle unique, "*le passage d’une analyse de la sphère de la production à l'étude de celle de la reproduction*" selon l'expression d'Alain Desrosières. Une des limites importante de cette méthode est qu'elle produit des résultats sensiblement différent en fonction des données utilisées, ce qui rend difficile toute comparaison avec d'autres enquêtes. L'application de la nomenclature PCS Ménage aurait justement eu l'avantage de la comparabilité. Cependant, l'introduction de la PCS ménage étant récente, il n'existe pas encore, à notre connaissance de travaux portant sur les familles recomposées faisant usage de cette nomenclature.
 
-Ici discussion sur les différentes manière de rendre de compte de la position sociale des ménages en question.
+### Une approche multidimentionelle et configurationelle
 
-> Peut-etre reproduire la méthode par ACM de Ichou et Cayouette-Remblière ?
+Chercher à caractériser socialement les familles recomposées suppose donc approche qui prend en compte les configurations conjugales de manière fine. C'est pourquoi nous avons choisit ici de reproduire la méthode proposée par Joannie Cayouette-Remblière et Mathieu Ichou [@Cayouette]. Selon elle et lui, "*Caractériser la position sociale d’un groupe d’individus, tel qu’une famille, un ménage ou une maisonnée, pose au moins trois problèmes : premièrement, celui des dimensions de la stratification sociale à privilégier ; deuxièmement, celui des frontières du groupe pertinent pour définir la position sociale ; troisièmement, celui du principe à retenir pour agréger les caractéristiques individuelles des membres de ce groupe.*" ([@Cayouette-Remblière et Ichou, 2019, p. 3]. La méthode proposée dans leur article procède à une analyse des correspondances multiples puis à une classification ascendante hiérarchique sur les axes interprétables comme structurants la stratification sociale. Elle offre une solution aux premiers et troisièmes problèmes. Dans le cadre qui est le notre, celui des recompositions familiales, le deuxième problème est loin d'être anecdotique : l'existence d'un ex-conjoint ou d'une ex-conjointe hors du ménage éventuellement débiteur ou débitrice d'une pension alimentaire et fréquentant éventuellement certains des enfants du ménages plus ou moins régulièrement pose de toute évidence la question de la pertinence des frontières du ménage tel que définit dans la statistique publique. Cependant, l'enquête `r infosBDF$nom` ne fournit pas de données permettant de positionner socialement les ex-conjoints et ex-conjointes des couples étudiés. Il n'est ainsi pas possible, dans ce cadre, de dépasser ce deuxième problème. 
+
+Une première catégorie de variables de stratification retenus caractérisent, à l'échelle du ménage, l'espace d'habitation de celui-ci : type de logement (maison ou appartement), statut d'occupation du logement (propriétaire sans crédit, propriétaire avec crédit ou locataire), aire urbaine de la commune d'habitation (en tranches d'habitants). Une autre catégorie de variables à l'échelle du ménage caractérisent la composition familiale, le rapport à l'emploi et le niveau de vie : type de ménage en fonction du statut conjugal (couple/célibataire) et de l'activité des membres (actifs en emploi/actif sans emploi ou inactif), le nombre d'enfants (un, deux, trois, ou quatre et plus), et le revenu par unité de consommation (en tranches euros mensuels). Ces variables à l'échelle du ménage ressemblent, à peu de choses près à celles employés par Joannie Cayouette-Remblère et Mathieu Ichou dans l'enquête Trajectoire et Origine dans leur article. Afin de saisir le rôle différencié des caractéristiques sociales des hommes et des femmes, les variables de stratification sociale retenues à l'échelle de l'individu sont, comme dans l'article, différenciées selon l'appartenance aux groupes sociaux de sexe. Dans le cas des couples de même sexe, très minoritaires dans l'enquête (n=76), l'un membre a été catégoriser au hasard avec les femmes (respectivement les hommes). La catégorie socio-professionnelle, recodée, comme dans l'article de Cayouette et Ichou à partir des catégories de l'INSEE, en s'inspirant des travaux de [@van Zanten, 2009 ; @Bouffartigue, 2001] sur les classes moyennes et superieures. En distinguant donc au sein des cadres et professions intellectuelles supérieures et des professions intermédiaires, les individus travaillant dans le public de ceux travaillant dans le privé. Au sein des classes populaires, nous avons distinguer les catégories qualifiées des catégories non-qualiées. Le niveau de diplôme est recodé en sept postes. A la différence, nous avons introduit une variable d'épargne (recodée en tranche), elle aussi différenciée entre hommes et femmes. Pour compenser l'introduction de la variable de revenu à échelle du ménage (niveau de vie) ce qui permet la prise en compte des personnes à charge dans le ménage, nous avons introduit une variable mesurant l'inégalité de revenus entre conjoint : la contribution du revenus des femmes dans les revenus totaux du ménage (recodé en tranches). Nous n'avons cependant pas pu intégrer des variables permettant de saisir la position dans les rapports sociaux de "race". En effet, disposant seulement de deux variables codant le lieu de naissance et la nationalité, on ne pouvait approcher le fait d'appartenir à la première génération l'immigration. Les tentatives réalisées polarisaient alors très fortement l'ACM entre les couples dont les deux membres sont nés à l'étranger et ceux nés en France. Cette variable à cependant été intégrée en tant que variable supplémentaire, au même titre que l'âge.
+socio-professionnelle. En comparaison du travail réalisé par Joannie Caouette Remblière et Mathieu Ichou, les variables ici choisies donnent donc plus de place à la mesure de l'homogamie et des inégalités économiques entre conjoints et moins aux positions dans les rapports sociaux de race, au trajectoires migratoires et à la nationalité. C'est un des autres avantages de cette méthode : elles permet d'adapter les dimensions de la stratification sociale privilégiées à l'objet étudié.
+
+### Des configurations familiales dans l'espace social
+
+Nous avons réalisé une analyse des correspondances multiples spécifique (@Leroux, clich 2010), technique statistique permettant de neutraliser l'effet de certaines modalités redondantes ou non-interprétables (valeurs manquantes, variable ne concernant qu'un sous-population). Nous avons choisit de conserver huit dimensions de celle-ci. L'usage du critère du coude (changement de signe de la dérivée des valeur propres) permettait de conserver un, cinq ou huit axes ou treize axes, mais c'est surtout le critère de l'interprétabilité sociologique (Le Roux Rouanet) qui nous a conduit à en retenir 8 plutôt que 5. En effet, l'axe 6 qui renvoie aux distinctions entre indépendants contenait, selon nous, une distinction importante qui n'était pas encore apparu dans les premiers axes. Ainsi, les 8 premiers axes permettent d'expliquer 25% de la variance totale du nuage du point
+
+L'**axe 1** de l'ACM, qui concentre 5,26% de la variance du nuage de points, renvoie au volume global de capital en distinguant les ménages disposant de ressources économiques et culturelles importantes et ceux plus démunis. Il oppose par exemple les hommes et femmes diplomé-e-s de doctorat, école d'ingénieur, grandes école et master, cadre, chef-fe d'entreprise, profession libérale, cadre du public ou de la culture, avec un niveau de vie supérieur à 2950 euros par mois, en couple avec deux actifs en emploi, aux individus sans diplômes (ou avec le CEP), aux femmes inactives, dont le niveau de vie compris entre 550 euros et 850 euros mensuels, célibataires sans emploi ou couples sans actifs en emploi.  L'**axe 2** concentre 4,2% de la variance. Il oppose les ménages inactifs disposant d'un patrimoine important aux ménages actifs disposant de faibles patrimoines. Il distingue donc d'un coté les ménages dans lesquels hommes et femmes sont retraités, propriétaire de leur logement et possèdent chacun de plus de 10 000 euros d'épargne aux ménages actifs, locataires de leur logement, ou hommes et femmes disposent de moins de 1000 euros d'épargne, et ou les hommes sont généralement ouvriers qualifiés. L'**axe 3** concentre 3,92% de la variance et opposent les ménages urbains, plus souvent célibataires, aux ménages ruraux, plus souvent formés par des couples. Parmi les modalités contribuant le plus a la construction de cet axe, on observe une opposition entre d'un coté, les communes rurales, le fait d'habiter dans une maison, et les communes de l'agglomération parisienne, le fait d'habiter dans un appartement et d'être locataire. Cette oppositions est redoublée par une opposition entre les couples peu diplômés et dont les hommes sont souvent ouvriers et les célibataires, en particulier les femmes, très diplômées, cadre  ou cheffes d'entreprises ou profession libérale. L'**axe 4** concentre 3,16% de la variance. Il oppose les ménages avec un niveau de vie élevé, constitués par des couples mono-actifs ayant plus de trois enfants et dont la femme est généralement inactive aux célibataires en emploi ayant eux aussi un niveau de vie plutôt élevé. L'**axe 5** concentre 2,31% de la variance du nuage de point. Il oppose d'un coté les "gens du public" aux "gens du privé" [@Singly]. Ainsi on trouve d'un coté les hommes et femmes occupant des professions intermédiaires de médiateurs ou médiatrices, diplômés d'une licence, d'un BTS, d'un DUT ou d'un diplôme de santé ou du social (niveau bac+2), dont les membres des couples ont des revenus proches. De l'autre coté, sont situés les diplômés de doctorat, d'école d'ingénieur ou de grande école, qui occupent des poste de cadre d'entreprise, professions libérale ou chef-fe d'entreprise et les diplômés de CAP ou BEP qui occupent des positions de d’ouvrier-e-s ou d'employé-es non-qualifié-es.  L'**axe 6**, qui concentre 2,14% de la variance oppose les petits indépendants avec un niveau très faible niveau de vie (sans revenus ou moins de 550 euros par mois), habitants dans des espaces ruraux, et dont la femme contribue d'avantage que l'homme aux revenus du couple celui-ci étant plus souvent inactif aux couples ou seul l'homme est actif, probablement chef d'entreprise (plus que cadre ou professions libéral) et disposant de très faibles niveau d'épargne. L'**axe 7** concentre 2,06% de la variance. Il oppose d'un coté les couples dans lesquels hypergames au couple hypogames. On distingue d'un coté les couples dans lesquels la contribution des femmes au revenus du ménage est supérieur à 50% voir 60%, elles sont généralement cadre du public ou ouvrière non qualifié, mais leur conjoint est souvent sans diplôme et sans économies. De l'autre, on observe les couples dans lesquels les hommes sont plus diplômés, les femmes inactives ou petites indépendante et contribuent à moins de 20% des revenus conjugaux. Enfin, l'**axe 8** qui concentre 1,99% de la variance opposent, montre une opposition au sein des groupes sociaux les plus diplômés mais ne possédant pas d'épargne, probablement assez jeunes. Il distingue d'une part les cadres du public et de la culture, diplômés de master, et d'autre part les cadres du privés, les professions libérales et les chefs d'entreprises, diplômés des écoles d'ingénieurs et grandes écoles. On observe ainsi des formes d'équivalence entre les dimensions de l'analyse réalisée ici et celles réalisées par Joannie Cayouette Remblière et Mathieu Ichou sur les données Panel de la DEPP et sur l'enquêtre Trajectoires et Origines de l'Insee
+
+
+A partir de ces huit axes nous avons réalisé une classification ascendante hiérarchique sur les coordonnées des individus. Dans le même esprit nous avons choisit 10 clusters. D'une part, au regard des saut d'inertie cela nous paraissait pertinent, d'autre part, il nous semblé que le découpage en 8 clusters, qui paraissait également pertinente du point de vu des sauts d'inertie reproduisait trop fortement un classification de PCS classique. En outre, puisque l'axe 2 de l'ACM oppose les ménages de retraités aux autres ménages, il nous a semblé qu'il fallait un nombre plus important de cluster pour obtenir des distinction relativement fines à l'intérieur des classes populaires, moyennes et supérieures.
+
+[PLOT DU DENDROGRAME avec les fréquence dans chaque groupe et leur nom]
+
+
+
+
+
+
 
 # Chapitre 2. [Des arrangements monétaires plus inégalitaires]
 
@@ -937,11 +958,13 @@ derniers mois
 
 ### [Budgets plus séparés]
 
+- sur les mariages et pacs
+
 -   exploiter rapidement la variable de séparation de budget dans un même logement, croiser avec les déciles de revenus pour voir si on observe des logiques similaires que pour le patrimoine
 
 -   exploiter les variables de dépenses de la table individu
 
--   régression : revenu du parent = meilleur prédicteur des consommations individualisable aux enfants que revenu du ménage
+-   régression : revenu du parent = meilleur prédicateur des consommations individualisable aux enfants que revenu du ménage
 
 # Chapitre 3. [Même idée que le chapitre 2, version travail domestique et autoproduction]
 
@@ -1042,14 +1065,16 @@ tab$tableau %>%
 
 \newpage
 
+
 # Bibliographie
 
-# Annexes
+<div id="refs"></div>
+
+# (APPENDIX) Annexes
 
 ## Statistiques descriptives des différentes sous-populations
 
 ```{r statdesenfants, fig.cap="Age des enfants des ménages au 31 décembre 2017"}
-names(enfantsMenage)
 enfantsMenage %>%
   as_survey_design(weigths = PONDIND) %>%
   ggplot() +
@@ -1064,3 +1089,14 @@ enfantsMenage %>%
   scale_y_continuous(labels = NULL, breaks = NULL) +
   theme_memoire(base_size = 14)
 ```
+
+## Analyse factorielle 
+
+### Contributions aux dimentions de l'ACM
+
+```{r tabcontrib, results='asis'}
+load("Resultats/tabs_contribmoda.Rdata")
+tab$tableau
+```
+
+### Classification acendante herarchique

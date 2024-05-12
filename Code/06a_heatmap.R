@@ -1,40 +1,38 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
-indiv <- readRDS("Data_output/parents.Rds") %>%
-  rec_DIP(Var = "DIP14", NewVar = "DIPL") %>%
-  rec_CSP6(Var = "CS24", NewVar = "CS6") %>%
-  rec_DIP14(Var = "DIP14") %>%
-  rec_AG6() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIPL, DIP14, n_REVENUS, n_PATRIMOINE, CS6, CS24, AG6) %>%
-  filter(!is.na(n_IdentConjoint))
-
-femmes <- indiv %>% 
-  filter(SEXE == "2") %>%
-  select(-n_IdentConjoint)
-
-hommes <- indiv %>% 
-  filter(SEXE == "1") %>%
-  select(-n_IdentIndiv)
-
-coupleshet <- full_join(hommes, femmes, 
-                        by = c("n_IdentConjoint" = "n_IdentIndiv"), 
-            suffix = c("_H", "_F")) %>% 
-  select(-IDENT_MEN_F) %>%
-  rename(IDENT_MEN = "IDENT_MEN_H")
-
-
-familles <- readRDS("Data_output/familles.Rds") %>%
-  select(IDENT_MEN, n_config, TYPMEN5, PONDMEN) %>%
-  rec_TYPMEN5() 
-
-
+coupleshet <- readRDS("Data_output/familles_parents.Rds") %>%
+  filter(hetero == "Hetero") %>%
+  mutate(DIP7_F = DIP7_F %>%
+    fct_recode(
+      NULL = "NULL",
+      "Doctorat, ingénieur, grande école" = "Diplôme universitaire du 3eme cycle, ingénieur, grande école",
+      "Master" = "Diplôme universitaire de 2eme cycle",
+      "Licence, BTS, DUT, diplôme santé social" = "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)"
+    ), 
+    DIP7_H = DIP7_H %>%
+      fct_recode(
+        NULL = "NULL",
+        "Doctorat, ingénieur, grande école" = "Diplôme universitaire du 3eme cycle, ingénieur, grande école",
+        "Master" = "Diplôme universitaire de 2eme cycle",
+        "Licence, BTS, DUT, diplôme santé social" = "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)"
+      ), 
+    CS12_F = CS12_F %>%
+      fct_recode(
+        NULL = "NULL"
+      ), 
+    CS12_H = CS12_H %>%
+      fct_recode(
+        NULL = "NULL"
+      ))
+    
+freq(coupleshet$DIP7_F) 
+#irec(coupleshet$CS12_F)
 
 # HEATMAP homogame de diplome ###############################################
-VAR <- "DIPL"
+VAR <- "DIP7"
 
 ## Tous les couples ######################################################### 
-couples <- coupleshet %>%
-  left_join(familles, by = "IDENT_MEN") 
+couples <- coupleshet
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)
@@ -81,13 +79,8 @@ gg
 
 
 ## Familles recomposées ########################################################
-souspop <- familles %>%
-  filter(TYPMEN5 == "Couple avec au moins un enfant") %>%
-  filter(n_config == "Recomposée")
-
 couples <- coupleshet %>%
-  left_join(familles, by = "IDENT_MEN") %>%
-  filter(IDENT_MEN %in% souspop$IDENT_MEN)
+  filter(n_TYPMEN_new == "Recomposée")
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)
@@ -125,12 +118,9 @@ gg
 
 
 ## Couples avec enfants  #######################################################
-souspop <- familles %>%
-  filter(TYPMEN5 == "Couple avec au moins un enfant")
 
 couples <- coupleshet %>%
-  left_join(familles, by = "IDENT_MEN") %>%
-  filter(IDENT_MEN %in% souspop$IDENT_MEN)
+  filter(TYPMEN5 == "Couple avec au moins un enfant")
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)
@@ -200,11 +190,10 @@ saveTableau(gg,
 
 
 # HEATMAP homogamie de CSP ######################################################
-VAR <- "CS6"
+VAR <- "CS12"
 
 ## Tous les couples ######################################################### 
-couples <- coupleshet %>%
-  left_join(familles, by = "IDENT_MEN") 
+couples <- coupleshet  
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)
@@ -251,13 +240,8 @@ gg
 
 
 ## Familles recomposées ########################################################
-souspop <- familles %>%
-  filter(TYPMEN5 == "Couple avec au moins un enfant") %>%
-  filter(n_config == "Recomposée")
-
 couples <- coupleshet %>%
-  left_join(familles, by = "IDENT_MEN") %>%
-  filter(IDENT_MEN %in% souspop$IDENT_MEN)
+  filter(n_TYPMEN_new == "Recomposée")
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)
@@ -295,12 +279,8 @@ gg
 
 
 ## Couples avec enfants  #######################################################
-souspop <- familles %>%
-  filter(TYPMEN5 == "Couple avec au moins un enfant")
-
 couples <- coupleshet %>%
-  left_join(familles, by = "IDENT_MEN") %>%
-  filter(IDENT_MEN %in% souspop$IDENT_MEN)
+  filter(TYPMEN5 == "Couple avec au moins un enfant")
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)

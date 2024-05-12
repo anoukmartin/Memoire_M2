@@ -156,12 +156,6 @@ rec_TYPMEN5 <- function(data, NewVar = FALSE) {
   return(data)
 }
 
-– Célibataire en emploi (19 %) 
-– Célibataire sans emploi (6 %) 
-– Couple sans actif en emploi (6 %)
-– Couple avec un seul actif en emploi44 (24 %) 
-– Couple avec deux actifs en emploi (46 %)
-
 rec_TYPMEN <- function(data, Var, NewVar = FALSE) {
   data$temp <- NULL
   data[, "temp"] <- data[, Var]
@@ -175,7 +169,8 @@ rec_TYPMEN <- function(data, Var, NewVar = FALSE) {
      "Couple avec un seul actif en emploi" = c("41", "31"),
      "Couple avec deux actifs en emploi" = c("42", "32"), 
      "Autre"= c("51", "52", "53")
-    ))
+    )%>%
+      fct_recode(NULL = "NULL"))
   if(isFALSE(NewVar)){
     data[, Var] <- data[, "temp"]
     data$temp <- NULL
@@ -228,8 +223,8 @@ rec_CSP12 <- function(data, Var, NewVar = FALSE) {
       temp,
       NULL = c("", "00", "ho", "20", "30", "40", "50", "60"),
      "Petit-e indépendant-e" = c("11", "12", "13", "21", "22"), 
-     "Cadres d'entreprise, professions libérales ou chef-fe d'entreprise" = c("23", "31", "37", "38"),
-     "Cadre du public ou de la culture" = c("33", "34", "35"),
+     "Cadre/chef-fe d'entreprise, profession libérale" = c("23", "31", "37", "38"),
+     "Cadre du public/culture" = c("33", "34", "35"),
      "Médiateur-ice" = c("42", "43", "44", "45", "46"),
      "Technicien-ne" = c("47", "48"),
      "Employé-e qualifié-e" = c("52", "53", "54"),
@@ -238,7 +233,8 @@ rec_CSP12 <- function(data, Var, NewVar = FALSE) {
      "Ouvrier-e non qualifié-e" = c("67", "68", "69"),
      "Retraité-e" = c("71", "72", "74", "75", "77", "78"),  
      "Autre inactif-ve" = c("81", "83", "84", "85", "86")
-    ))
+    ) %>%
+      fct_recode(NULL = "NULL"))
   if(isFALSE(NewVar)){
     data[, Var] <- data[, "temp"]
     data$temp <- NULL
@@ -305,13 +301,13 @@ rec_DIP7 <- function(data, Var = "DIP14", NewVar = FALSE) {
   data <- data %>%
     mutate(temp = fct_collapse(temp,
                              NULL = "",
-                             "Diplôme universitaire du 3eme cycle, ingénieur, grande école" = c("10", "12"),
-                             "Diplôme universitaire de 2eme cycle" = c("20"),
-                             "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)" = c("33", "31", "30"),
-                             "Baccalauréat" = c("44","43", "42", "41"),
+                             "Doctorat, ingénieur, grande école" = c("10", "12"),
+                             "Master, bac+6" = c("20"),
+                             "Licence, BTS, DUT, santé social " = c("33", "31", "30"),                       "Baccalauréat" = c("44","43", "42", "41"),
                              "CAP ou BEP" = c("50"),
                              "Brevet des collèges" = c("60"),
-                             "Sans diplôme ou CEP" = c("70", "71")))
+                             "Sans diplôme ou CEP" = c("70", "71")) %>%
+             fct_recode(NULL = "NULL"))
   if(isFALSE(NewVar)){
     data[, Var] <- data[, "temp"]
     data$temp <- NULL
@@ -397,6 +393,154 @@ rec_STALOG <- function(data, Var = "STALOG", NewVar = FALSE) {
   }
   return(data)
 }
+
+rec_REVENUS <- function(data, Var = "DIP14", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>% 
+    mutate(temp = cut(temp/12,
+                      breaks = c(-Inf, 0, 550, 850, 1250, 1750, 2250, 2950, Inf), 
+                 labels = c("Sans revenus", "Moins de 550", "Entre 550 et 850", 
+                            "Entre 850 et 1250", 
+                            "Entre 1250 et 1850", "Entre 1750 et 2250", 
+                            "Entre 2250 et 2950", "Plus de 2950")))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+rec_PATRIMOINE <- function(data, Var = "n_PATRIMOINE", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>% 
+    mutate(temp = cut(temp,
+                      breaks = c(-Inf, 0, 1000, 4000, 10000, Inf), 
+                      labels = c("Sans économies", "Moins de 1000", 
+                                 "Entre 1 000 et 4 000", 
+                                 "Entre 5 000 et 10 000", 
+                                 "Plus de 10 000")))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+rec_NENFANTS <- function(data, Var, NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>% 
+    mutate(temp = cut(temp,
+                      breaks = c(-0.5, 0.5, 1.5, 2.5, 3.5, Inf), 
+                      labels = c("Aucun", "Un", "Deux", 
+                                 "Trois", 
+                                 "Trois et plus")) %>%
+             fct_na_value_to_level(level = "Aucun"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+rec_PROP <- function(data, Var, NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>% 
+    mutate(temp = cut(temp,
+                      breaks = c(-Inf, 20, 40, 50, 60, Inf), 
+                      labels = c("Moins de 20%", "Entre 20 et 40%",
+                                 "Entre 40 et 50%", "Entre 50% et 60%", "Plus de 60%")))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+
+rec_TAU <- function(data, Var = "TAU", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = "",
+      "Commune rurale" = c("00"),
+      "Commune urbaine de moins de 20 000 habitants" = c("01", "02"),
+      "Commune urbaine de 20 000 à 200 000 habitants" = c("03", "04", "05", "06", "07"),
+      "Commune urbaine de plus de 200 000 habitants, hors agglomération parisienne " = c("08", "09"), 
+      "Commune de l'agglomération parisienne" = c("10")) %>%
+        fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+
+rec_TYPLOG <- function(data, Var = "TYPLOG", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = "",
+      "Maison" = c("1", "2"),
+      "Appartement" = c("3", "4", "5"),
+      "Autre logement" = c("6", "7")) %>%
+        fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+rec_NAIS7 <- function(data, Var = "NAIS7", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = "",
+      "France métropolitaine" = c("1"),
+      "DOM-TOM" = c("2"),
+      "UE" = c("3", "4"), 
+      "Afrique" = c("5", "6"), 
+      "Autre" = c("7"))%>%
+        fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
 
 ## Tableau croisé, khi2 et résidus #############################################
 
