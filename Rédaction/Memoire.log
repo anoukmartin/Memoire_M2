@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.9)  10 MAY 2024 20:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.9)  12 MAY 2024 15:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1042,13 +1042,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Underfull \vbox (badness 7504) has occurred while \output is active []
 
 [10] [11]
-<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=146, 505.89pt x 252.945pt>
+<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=149, 505.89pt x 252.945pt>
 File: Memoire_files/figure-latex/mosaic-enfants-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/mosaic-enfants-1.pdf>
 Package pdftex.def Info: Memoire_files/figure-latex/mosaic-enfants-1.pdf  used on input line 351.
 (pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
 [12 <./Memoire_files/figure-latex/mosaic-enfants-1.pdf>]
-<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=167, 505.89pt x 252.945pt>
+<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=170, 505.89pt x 252.945pt>
 File: Memoire_files/figure-latex/mosaic-adultes-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/mosaic-adultes-1.pdf>
 Package pdftex.def Info: Memoire_files/figure-latex/mosaic-adultes-1.pdf  used on input line 378.
@@ -1058,78 +1058,78 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [13]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 454.
+(Font)              <7> on input line 471.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[15]
+[14 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>] [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [16]
-<Memoire_files/figure-latex/histosexebeauxparents-1.pdf, id=203, 505.89pt x 404.51125pt>
+<Memoire_files/figure-latex/histosexebeauxparents-1.pdf, id=206, 505.89pt x 303.1325pt>
 File: Memoire_files/figure-latex/histosexebeauxparents-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/histosexebeauxparents-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/histosexebeauxparents-1.pdf  used on input line 465.
-(pdftex.def)             Requested size: 273.15337pt x 218.41429pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+Package pdftex.def Info: Memoire_files/figure-latex/histosexebeauxparents-1.pdf  used on input line 482.
+(pdftex.def)             Requested size: 318.67378pt x 190.95135pt.
 [17]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [18 <./Memoire_files/figure-latex/histosexebeauxparents-1.pdf>]
-<Memoire_files/figure-latex/heatmapdiplome-1.pdf, id=221, 650.43pt x 389.455pt>
+<Memoire_files/figure-latex/heatmapdiplome-1.pdf, id=224, 650.43pt x 389.455pt>
 File: Memoire_files/figure-latex/heatmapdiplome-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/heatmapdiplome-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/heatmapdiplome-1.pdf  used on input line 544.
+Package pdftex.def Info: Memoire_files/figure-latex/heatmapdiplome-1.pdf  used on input line 581.
 (pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3009) has occurred while \output is active []
 
 [19] [20 <./Memoire_files/figure-latex/heatmapdiplome-1.pdf>]
-<Memoire_files/figure-latex/heatmapCSP-1.pdf, id=240, 650.43pt x 389.455pt>
+<Memoire_files/figure-latex/heatmapCSP-1.pdf, id=243, 650.43pt x 389.455pt>
 File: Memoire_files/figure-latex/heatmapCSP-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/heatmapCSP-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/heatmapCSP-1.pdf  used on input line 557.
+Package pdftex.def Info: Memoire_files/figure-latex/heatmapCSP-1.pdf  used on input line 594.
 (pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[21 <./Memoire_files/figure-latex/heatmapCSP-1.pdf>] [22]
+[21 <./Memoire_files/figure-latex/heatmapCSP-1.pdf>]
+Underfull \vbox (badness 2698) has occurred while \output is active []
+
+[22] [23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[24] [25] [26] [27] [28
+
+]
 Chapitre 3.
 
-Overfull \hbox (1429.41061pt too wide) in paragraph at lines 609--636
+Overfull \hbox (1429.41061pt too wide) in paragraph at lines 669--696
  [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[23
-
-]
+[29]
 Underfull \vbox (badness 1789) has occurred while \output is active []
 
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 666--668
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 726--728
 []\T1/lmr/m/n/12 (+20) regarder, comme pour les en-fants, les dé-penses in-di-vi-dua-li-sables
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 666--668
+Underfull \hbox (badness 1360) in paragraph at lines 726--728
 \T1/lmr/m/n/12 (+20) hommes/femmes, no-tam-ment les ve-te-ments (+ il a de la lit-té-ra-ture
  []
 
-[25] [26]
+[31] [32]
 Chapitre 4.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[27
+[33
 
 ]
 
@@ -1139,77 +1139,70 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[28]
+[34]
 Chapitre 5.
-[29
+[35
 
 ]
 Underfull \vbox (badness 1584) has occurred while \output is active []
 
-[30] [31] [32
+[36] [37] [38
 
 ] (./Memoire.lot)
 \tf@lot=\write6
 \openout6 = `Memoire.lot'.
 
-[33] [34
+[39] [40
 
 ] (./Memoire.lof)
 \tf@lof=\write7
 \openout7 = `Memoire.lof'.
 
-[35] [36
+[41] [42
 
 ]
 Chapitre 6.
-[37] [38
-
-]
-Chapitre 7.
-
-Underfull \vbox (badness 1360) has occurred while \output is active []
-
-[39]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[41]
-<Memoire_files/figure-latex/statdesenfants-1.pdf, id=384, 505.89pt x 404.51125pt>
-File: Memoire_files/figure-latex/statdesenfants-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/statdesenfants-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 939.
-(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
-[42 <./Memoire_files/figure-latex/statdesenfants-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [43]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 991.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 946.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [44{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] (./Memoire.aux)
+) [44{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+Chapitre 7.
+<Memoire_files/figure-latex/statdesenfants-1.pdf, id=456, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/statdesenfants-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/statdesenfants-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 956.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[45
+
+]
+Overfull \vbox (15.6201pt too high) has occurred while \output is active []
+
+[46 <./Memoire_files/figure-latex/statdesenfants-1.pdf>] [47] [48] [49] [50] [51] [52] (./Memoire.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 30902 strings out of 475949
- 571404 string characters out of 5789544
- 1994751 words of memory out of 5000000
- 52164 multiletter control sequences out of 15000+600000
- 645630 words of font info for 186 fonts, out of 8000000 for 9000
+ 30961 strings out of 475949
+ 572139 string characters out of 5789544
+ 2014751 words of memory out of 5000000
+ 52185 multiletter control sequences out of 15000+600000
+ 650802 words of font info for 195 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  109i,14n,107p,6135b,806s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
-</home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
-Output written on Memoire.pdf (46 pages, 425468 bytes).
+</home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
+Output written on Memoire.pdf (54 pages, 471102 bytes).
 PDF statistics:
- 646 PDF objects out of 1000 (max. 8388607)
- 553 compressed objects within 6 object streams
- 123 named destinations out of 1000 (max. 500000)
- 49531 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 734 PDF objects out of 1000 (max. 8388607)
+ 630 compressed objects within 7 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 51619 words of extra memory for PDF output out of 61914 (max. 10000000)
 

@@ -91,8 +91,7 @@ d_acm <- d_acm %>%
 liste_moda <- getindexcat(as.data.frame(d_acm))
 liste_moda
 
-index_modasup <- which(str_ends(liste_moda, ".NA|.Autre") | 
-                       str_ends(liste_moda, "Autre logement")) # numéros d'index des modalités "vide"
+index_modasup <- which(str_ends(liste_moda, ".NA")) # numéros d'index des modalités "vide"
 index_modasup
 liste_moda[index_modasup]
 
@@ -129,16 +128,16 @@ d_cah <- acm_spe$ind$coord[, 1:8]
 md <- daisy(d_cah, metric = "euclidean") # matrice de distances
 
 arbre <- hclust(md, method = "ward.D2") # agrégation critère de ward
+
 dend <- as.dendrogram(arbre)
 
 library("RColorBrewer")
 
-nodePar <- list(lab.cex = 0.6, pch = c(NA, 19), 
-                cex = 0.7, col = brewer.pal(n = 10, name = "Set3")[typo])
+
 plot(dend, main = "Dendrogramme", 
      horiz = TRUE, leaflab = "none", 
-     xlim = c(70, 27))
-text(x, y, labels)
+     xlim = c(70, 28))
+#text(x, y, labels)
 
 
 inertie <- sort(arbre$height, decreasing = TRUE)
@@ -171,7 +170,7 @@ typo <- typo %>% as_factor() %>%
   
 
   
-# Taleau stats des dans les clusters 
+# Taleau stats des dans les clusters ----
 d_acm$typo <- typo
 
 d_acm <- d_acm %>%
@@ -185,7 +184,9 @@ tab <- joli_tableau(d_acm, by = "typo", vars_quali = names(d_acm), weigths = poi
 tab
 
 
-# coordonées des cluster sur les axes 
+# coordonées des cluster sur les axes ----
+
+
 d_cah <- as.data.frame(d_cah)
 d_cah$typo <- typo
 d_cah$pond <- poidsACMspe
@@ -195,24 +196,83 @@ tab <- d_cah %>%
   tbl_svysummary(by = typo, 
                  statistic = everything() ~ "{mean}") %>%
   add_p()
+tab
+# les pvalues sont significatives 
 
 tab2 <- tab$table_body  %>%
   filter(row_type == "level")%>%
   filter(variable != "pond") %>%
-  select(variable, starts_with("stat_"))
+  select(variable, starts_with("stat_")) 
 tab2
 tab2 <- t(tab2) %>%
   as.data.frame() 
 names(tab2) <- tab2[1, ]
 tab2 <- tab2[-1, ]
 tab2 <- tab2 %>%
+  mutate_all(.funs = function(x){str_replace_all(x, ",", ".")}) %>%
+  mutate_all(as.numeric) %>%
   rownames_to_column(var = "cluster") %>%
   mutate(cluster = str_replace(cluster, "stat_", "C"))
 
-ggplot(data = tab2) %>%
-  geom_point(aes(x = dim.1, label = cluster)
+
+tab2 <- tab2 %>%
+  pivot_longer(cols = starts_with("dim"))
+
+
+ggplot(tab2) +
+  aes(x = value) +
+  geom_point(y = 0)
+  
+xlim <- c(-1, 1.5)
+
+dim <- 1
+geom_clustdim <- function(dim){
+    #Dim 
+    geom_segment(aes(x = xlim[1], y = 10-dim, 
+                     xend = xlim[2], yend = 10-dim), col = "grey")+
+    geom_point(aes(x = tab2[[dim+1]], y = 10-dim), data = tab2) +
+    geom_text_repel(aes(x = tab2[[dim+1]], y = 10-dim, label = tab2[[1]]), 
+                    direction="x", vjust = -1, data = tab2)
+}
+tab2
+
+
+gg <- ggplot(tab2, aes() +
+  geom_
+
+
+
+dim <- 5
+for(dim in 1:8){
+  gg <- gg + 
+    annotate("segment", 
+             x = xlim[1], y = 10-dim, 
+             xend = xlim[2], yend = 10-dim, col = "grey") +
+    annotate("point", x = tab2[[dim+1]], y = 10-dim) +
+    annotate("text_repel", x = tab2[[dim+1]], y = 10-dim, label = tab2[[1]], 
+             direction="x", vjust = -1)
+}
+# geom_point(aes(x = dim.1, y = 10), data = tab2) +
+  # geom_text_repel(aes(x = dim.1, y = 10, label = cluster), 
+  #                 direction="x", vjust = -1, data = tab2) +
+  # # Dim 2
+  geom_segment(aes(x = xlim[1], y = 9, xend = xlim[1], yend = 9), col = "grey")
+  # geom_point(aes(x = dim.2, y = 9), data = tab2) +
+  # geom_text_repel(aes(x = dim.2, y = 9, label = cluster),
+  #                 direction="x", vjust = -1, data = tab2)+
+  # # Dim 3
+  # geom_segment(aes(x = xlim[1], y = 8, xend = xlim[1], yend = 8), col = "grey") +
+  # geom_point(aes(x = dim.3, y = 8), data = tab2) +
+  # geom_text_repel(aes(x = dim.3, y = 8, label = cluster),
+  #                 direction="x", vjust = -1, data = tab2) +
+  # # Dim 4
+  # geom_segment(aes(x = xlim[1], y = 7, xend = xlim[1], yend = 7), col = "grey")+
+  # geom_point(aes(x = dim.4, y = 7), data = tab2) +
+  # geom_text_repel(aes(x = dim.4, y = 7, label = cluster),
+  #                 direction="x", vjust = -1, data = tab2)
 
 summarise(by = typo)
+
 
 
 
