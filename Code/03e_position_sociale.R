@@ -216,65 +216,51 @@ tab2 <- tab2 %>%
 
 
 tab2 <- tab2 %>%
-  pivot_longer(cols = starts_with("dim"))
+  pivot_longer(cols = starts_with("dim")) %>%
+  mutate(name = str_replace(name, "dim.", "Dim "))
+tab2$cluster
+tab2_summary <- tab2 %>%
+  group_by(name) %>%
+  summarise(m = min(value), 
+            M = max(value))
 
+tab2_summary$mlabel <- c("Peu \ndoté-e-s", 
+                         "Faibles \npatrimoines", 
+                         "Rural/\ncouples", 
+                         "Célibataires \nen emploi", 
+                         "Privé", 
+                         "Petit-e-s \nindépendant-e-s", 
+                         "Couples \nhypogames",
+                         "Privé")
 
-ggplot(tab2) +
-  aes(x = value) +
-  geom_point(y = 0)
+tab2_summary$Mlabel <- c("Bien \ndoté-e-s", 
+                         "Patrimoine \nimportant",
+                         "Urbain/\ncélibataires", 
+                         "Couples \nmonoactifs aisés",
+                         "Public", 
+                         "Chef-fe \nd'entreprises", 
+                         "Couples \nhypergames",
+                         "Public")
+                         
+gg <- ggplot(tab2) + 
+  theme_void() +
+  aes(x = value, y = 1) +
+  geom_hline(yintercept = 1, col = "grey") +
+  annotate("point", x = 0, y = 1, shape = 3, col = "grey", size = 3) +
+  annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
+  geom_point() +
+  geom_text_repel(aes(label = cluster), 
+                  direction="x", vjust = -2) +
   
-xlim <- c(-1, 1.5)
+  facet_wrap(name ~., ncol = 1, scales="free") +
+  geom_label(data = tab2_summary, aes(x = m-(0.1*(M-m)), y = 1, label = mlabel), size = 3) +
+  geom_label(data = tab2_summary, aes(x = M+(0.1*(M-m)), y = 1, label = Mlabel), size = 3)
+  
 
-dim <- 1
-geom_clustdim <- function(dim){
-    #Dim 
-    geom_segment(aes(x = xlim[1], y = 10-dim, 
-                     xend = xlim[2], yend = 10-dim), col = "grey")+
-    geom_point(aes(x = tab2[[dim+1]], y = 10-dim), data = tab2) +
-    geom_text_repel(aes(x = tab2[[dim+1]], y = 10-dim, label = tab2[[1]]), 
-                    direction="x", vjust = -1, data = tab2)
-}
-tab2
-
-
-gg <- ggplot(tab2, aes() +
-  geom_
-
-
-
-dim <- 5
-for(dim in 1:8){
-  gg <- gg + 
-    annotate("segment", 
-             x = xlim[1], y = 10-dim, 
-             xend = xlim[2], yend = 10-dim, col = "grey") +
-    annotate("point", x = tab2[[dim+1]], y = 10-dim) +
-    annotate("text_repel", x = tab2[[dim+1]], y = 10-dim, label = tab2[[1]], 
-             direction="x", vjust = -1)
-}
-# geom_point(aes(x = dim.1, y = 10), data = tab2) +
-  # geom_text_repel(aes(x = dim.1, y = 10, label = cluster), 
-  #                 direction="x", vjust = -1, data = tab2) +
-  # # Dim 2
-  geom_segment(aes(x = xlim[1], y = 9, xend = xlim[1], yend = 9), col = "grey")
-  # geom_point(aes(x = dim.2, y = 9), data = tab2) +
-  # geom_text_repel(aes(x = dim.2, y = 9, label = cluster),
-  #                 direction="x", vjust = -1, data = tab2)+
-  # # Dim 3
-  # geom_segment(aes(x = xlim[1], y = 8, xend = xlim[1], yend = 8), col = "grey") +
-  # geom_point(aes(x = dim.3, y = 8), data = tab2) +
-  # geom_text_repel(aes(x = dim.3, y = 8, label = cluster),
-  #                 direction="x", vjust = -1, data = tab2) +
-  # # Dim 4
-  # geom_segment(aes(x = xlim[1], y = 7, xend = xlim[1], yend = 7), col = "grey")+
-  # geom_point(aes(x = dim.4, y = 7), data = tab2) +
-  # geom_text_repel(aes(x = dim.4, y = 7, label = cluster),
-  #                 direction="x", vjust = -1, data = tab2)
-
-summarise(by = typo)
-
-
-
+saveTableau(gg, type = "plot", label = "culsters_position", 
+            description = "positions des cluster sur les différentes dimentions de l'ACM",
+            pondération = T, 
+            champ)
 
  
 # Description statistique des axes ----
