@@ -20,10 +20,12 @@
 # pagedown production files 
 *.js
 
-# images 
+## images 
 *.png
 *.jpeg
 *.svg
+!Rédaction/*.png
+!Rédaction/*.pdf
 # User-specific files
 .Ruserdata
 # Example code in package build process
@@ -54,3 +56,5 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 Resultats
+#les log
+*.log
