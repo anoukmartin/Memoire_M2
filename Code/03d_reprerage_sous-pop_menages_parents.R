@@ -3,7 +3,7 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 
 indiv <- readRDS("Data_output/parents.Rds") %>%
-  filter(ADULTE) %>%
+  filter(NONENFANT) %>%
   rec_DIP(Var = "DIP14", NewVar = "DIPL") %>%
   rec_CSP6(Var = "CS24", NewVar = "CS6") %>%
   rec_CSP12(Var = "CS42", NewVar = "CS12") %>%
@@ -15,7 +15,7 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_REVENUS(Var = "n_REVENUS", "n_REVENUScut") %>%
   rec_PATRIMOINE(Var = "n_PATRIMOINE", "n_PATRIMOINEcut") %>%
   rec_NAIS7() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, n_REVENUScut, NAIS7, starts_with("n_"))
+  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, starts_with("n_"))
 
 freq(indiv$CS12)
 freq(indiv$DIP7)
@@ -141,7 +141,11 @@ freq(dup$TYPMEN5)
 
 #On vire les menages aucun membre n'est la personne de référence du ménage (ie principal apporteur de ressource, actif, agé)
 menagesHF <- menagesHF %>%
-  filter(n_IdentPRef == n_IdentIndiv1 | n_IdentPRef == n_IdentConjoint1)
+  filter(n_IdentPRef == n_IdentIndiv1 | n_IdentPRef == n_IdentConjoint1) 
+
+menagesHF <- menagesHF %>%
+  filter(AG_F > 25 & AG_F <= 65 | AG_H > 25 & AG_H <= 65) 
+
 
 dup <- menagesHF[menagesHF$IDENT_MEN %in% menagesHF$IDENT_MEN[duplicated(menagesHF$IDENT_MEN)], ]
 
@@ -155,8 +159,8 @@ freq(familles$NIVIEcut)
 # Les ménages de vieux et de très jeunes sont exclus
 miss <- familles %>%
   filter(!(IDENT_MEN %in% menagesHF$IDENT_MEN))
-
-freq(menagesHF$TYPMEN5)
+freq(miss$TYPMEN5)
+freq(miss$n_config) 
 
 # Recodages famills recomposées 
 menagesHF <- menagesHF %>%
@@ -175,6 +179,8 @@ freq(menagesHF$n_TYPMEN_new)
 
 # On peut comparer les deux recodages
 table(menagesHF$n_TYPMEN_new, menagesHF$n_config, useNA = "ifany")
+
+menagesHF$PONDMEN <- menagesHF$PONDMEN/mean(menagesHF$PONDMEN)
 
 saveRDS(menagesHF, file = "Data_output/familles_parents.Rds")
 

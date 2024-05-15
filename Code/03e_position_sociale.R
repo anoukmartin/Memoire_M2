@@ -1,19 +1,14 @@
-
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 familles <- readRDS("Data_output/familles_parents.Rds")
 
 
-library("FactoMineR")
-library("missMDA")
-library("explor")
-library(factoextra)
-library(tidyverse)
-library(data.table)
-library("janitor")
-library("GDAtools")
-library(cluster)
-library(ggrepel)
+
+# library(factoextra)
+# library(tidyverse)
+# library(data.table)
+# library("janitor")
+# library(ggrepel)
 
 
 
@@ -26,9 +21,12 @@ names(familles)
 freq(familles$hetero)
 familles <- familles %>%
   #filter(is.na(hetero) | hetero == "Hetero") %>%
-  mutate(n_RevenusContribF = case_when(
-    n_REVENUScut_F == "Sans revenus" & n_REVENUScut_F == "Sans revenus" ~ 50, 
-    TRUE ~ (n_REVENUS_F/(n_REVENUS_F+n_REVENUS_H))*100)) %>%
+  mutate(
+    n_RevenusContribF = case_when(
+      n_REVENUScut_F == "Sans revenus" & n_REVENUScut_F == "Sans revenus" ~ 50, 
+      n_REVENUScut_F == "Sans revenus" ~ 0, 
+      n_REVENUScut_H == "Sans revenus" ~ 100,
+      TRUE ~ (n_REVENUS_F/(n_REVENUS_F+n_REVENUS_H))*100)) %>%
   rec_PROP(Var = "n_RevenusContribF")
 
 summary(familles$n_RevenusContribF)
@@ -53,7 +51,9 @@ lapply(d_acm, freq)
 
 d_acm_sup <- familles %>%
   select(starts_with("NAIS7"), 
-         starts_with("AG6"))
+         starts_with("AG6"), 
+         n_TYPMEN_new) %>%
+  mutate(n_TYPMEN_new = n_TYPMEN_new %>% as.factor())
 
 
 # On met la variable de poids à l'echelle 
@@ -105,6 +105,8 @@ acm_spe <- speMCA(as.data.frame(d_acm),
 
 # plot.speMCA(acm_spe, type="v", axes=c(1,2), cex = 0.1)
 # plot.speMCA(acm_spe, type="v", axes=c(3,4))
+#install.packages("explor")
+#library(explor)
 #explor(acm_spe)
 
 # données sur les variables supplémentaires
@@ -113,8 +115,9 @@ acm_sup <- supvars(acm_spe, d_acm_sup)
 barplot(acm_spe$eig$rate[1:20])
 plot(acm_spe$eig$rate[1:20] %>% diff() %>% diff(), type = "b")
 abline(h = 0)
+acm_spe$eig$rate[1:20] %>% diff() %>% diff()
 
-sum(acm_spe$eig$rate[1:8])
+sum(acm_spe$eig$rate[1:7])
 # Variables illustratives pour l'ACM 
 
 # Pour avoir les données pour les variables suplémentaires
@@ -123,7 +126,7 @@ sum(acm_spe$eig$rate[1:8])
 
 
 # CAH ----
-d_cah <- acm_spe$ind$coord[, 1:8]
+d_cah <- acm_spe$ind$coord[, 1:7]
 
 md <- daisy(d_cah, metric = "euclidean") # matrice de distances
 
@@ -131,12 +134,10 @@ arbre <- hclust(md, method = "ward.D2") # agrégation critère de ward
 
 dend <- as.dendrogram(arbre)
 
-library("RColorBrewer")
-
 
 plot(dend, main = "Dendrogramme", 
      horiz = TRUE, leaflab = "none", 
-     xlim = c(70, 28))
+     xlim = c(70, 27.2))
 #text(x, y, labels)
 
 
@@ -148,53 +149,63 @@ plot(inertie[1:20] %>%
   diff() %>%
   diff(), type = "b")
 abline(h = 0)
+inertie[1:20] %>% 
+  diff() %>%
+  diff()
 
 # sauts d'inertie à 7
 typo <- cutree(arbre, 10)
 
 typo %>% freq
 
-# On intègre le résultat dans les données
-typo <- typo %>% as_factor() %>%
-  fct_recode(
-  "Classes populaires précarisées monoactifs [1]" = "1", 
-  "Classes populaires stabilisées rurale [2]" = "2", 
-  "Classes superieures urbaines [3]" = "3", 
-  "Classes moyennes à la retraite [4]" = "4", 
-  "Classes moyennes homogames [5]" = "5", 
-  "Classes populaires urbaines [6]" = "6", 
-  "Petits indépendants ruraux [7]" = "7", 
-  "Classes superieures à la retraités [8]" = "8", 
-  "Employé-e-s et ouvrier-e-s célibataires des villes moyennes [9]" = "9", 
-  "Classes superieures célibataires des grandes agglomérations [10]" = "10")
-  
+# # On intègre le résultat dans les données
+# typo <- typo %>% as_factor() %>%
+#   fct_recode(
+#   "Classes populaires précarisées monoactifs [C1]" = "1", 
+#   "Classes populaires stabilisées rurale [C2]" = "2", 
+#   "Classes superieures urbaines [C3]" = "3", 
+#   "Classes moyennes à la retraite [C4]" = "4", 
+#   "Classes moyennes homogames [C5]" = "5", 
+#   "Classes populaires urbaines [C6]" = "6", 
+#   "Petits indépendants ruraux [C7]" = "7", 
+#   "Classes superieures à la retraités [C8]" = "8", 
+#   "Employé-e-s et ouvrier-e-s célibataires des villes moyennes [C9]" = "9", 
+#   "Classes superieures célibataires des grandes agglomérations [C10]" = "10")
+#   
 
   
 # Taleau stats des dans les clusters ----
 d_acm$typo <- typo
 
-d_acm <- d_acm %>%
+d_acm2 <- d_acm %>%
   bind_cols(d_acm_sup) %>%
   mutate_if(is.factor,
             fct_na_level_to_value, 
             extra_levels = "NA")
 
-tab <- joli_tableau(d_acm, by = "typo", vars_quali = names(d_acm), weigths = poidsACMspe, 
-                    tableau_titre = "test", source = "blabla", champ = "blabla", lecture = "blabla")
+tab <- joli_tableau(d_acm2, by = "typo", vars_quali = names(d_acm2), weigths = poidsACMspe, 
+                    tableau_titre = "Structure des clusters (variables actives et supplémentaires)", source = "blabla", champ = "blabla", lecture = "blabla")
 tab
+
+saveTableau(tab, type = "tab", label = "culsters_composition", 
+            description = "composition sociale des clusters",
+            ponderation = T, 
+            n = "?",
+            champ = "Menages formés par des adultes (25-70 ans)")
+
 
 
 # coordonées des cluster sur les axes ----
 
-
 d_cah <- as.data.frame(d_cah)
 d_cah$typo <- typo
 d_cah$pond <- poidsACMspe
+summary(poidsACMspe)
 
 tab <- d_cah %>%
   as_survey_design(weights = pond) %>%
   tbl_svysummary(by = typo, 
-                 statistic = everything() ~ "{mean}") %>%
+                 statistic = all_continuous() ~ "{mean}") %>%
   add_p()
 tab
 # les pvalues sont significatives 
@@ -223,25 +234,27 @@ tab2_summary <- tab2 %>%
   group_by(name) %>%
   summarise(m = min(value), 
             M = max(value))
-
-tab2_summary$mlabel <- c("Peu \ndoté-e-s", 
+tab2_summary$eig <- round(acm_spe$eig$rate[1:7], 2) 
+tab2_summary <- tab2_summary %>%
+  mutate(dimLabel = paste0(name, " (", eig, "%)"))
+tab2 <- left_join(tab2, tab2_summary[, c(1,5)])
+tab2_summary
+tab2_summary$Mlabel <- c("Peu \ndoté-e-s", 
                          "Faibles \npatrimoines", 
                          "Rural/\ncouples", 
-                         "Célibataires \nen emploi", 
-                         "Privé", 
-                         "Petit-e-s \nindépendant-e-s", 
-                         "Couples \nhypogames",
-                         "Privé")
+                         "Célibataires\nsans enfants", 
+                         "Public", 
+                         "Inactifs", 
+                         "Hypergamie \n masculine")
 
-tab2_summary$Mlabel <- c("Bien \ndoté-e-s", 
+tab2_summary$mlabel <- c("Bien \ndoté-e-s", 
                          "Patrimoine \nimportant",
                          "Urbain/\ncélibataires", 
-                         "Couples \nmonoactifs aisés",
-                         "Public", 
-                         "Chef-fe \nd'entreprises", 
-                         "Couples \nhypergames",
-                         "Public")
-                         
+                         "Famille nombreuse\n monoactive",
+                         "Privé", 
+                         "Petit-e-s \nindépendant-e-s", 
+                         "Hypogamie \nmasculine")
+
 gg <- ggplot(tab2) + 
   theme_void() +
   aes(x = value, y = 1) +
@@ -250,17 +263,18 @@ gg <- ggplot(tab2) +
   annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
   geom_point() +
   geom_text_repel(aes(label = cluster), 
-                  direction="x", vjust = -2) +
-  
-  facet_wrap(name ~., ncol = 1, scales="free") +
-  geom_label(data = tab2_summary, aes(x = m-(0.1*(M-m)), y = 1, label = mlabel), size = 3) +
-  geom_label(data = tab2_summary, aes(x = M+(0.1*(M-m)), y = 1, label = Mlabel), size = 3)
-  
+                  direction="x", vjust = -2, 
+                  max.overlaps=10000) +
+  facet_wrap(dimLabel ~., ncol = 1, scales="free") +
+  geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
+  geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
+gg  
 
 saveTableau(gg, type = "plot", label = "culsters_position", 
             description = "positions des cluster sur les différentes dimentions de l'ACM",
-            pondération = T, 
-            champ)
+            ponderation = T, 
+            n = "?",
+            champ = "adultres (25-70 ans) vivant en ménage ordinaire")
 
  
 # Description statistique des axes ----
@@ -343,9 +357,9 @@ resultats_actives <- frequences %>%
 # Tableau des contrib #########################################################
 
 
-sum(variances$`% de variance`[1:8])
+sum(variances$`% de variance`[1:7])
 
-tabcontrib <- lapply(1:8, function(dim){
+tabcontrib <- lapply(1:7, function(dim){
   names(resultats_actives)
   # On selectionne les bonnes lignes et colones 
   tab <- resultats_actives %>%
@@ -396,7 +410,15 @@ tabcontrib <- lapply(1:8, function(dim){
 tabcontrib[[1]]
 saveTableau(tabcontrib, type = "tabs", 
             label = "contribmoda", 
-            description = "contributions aux 8 axes de l'ACM", 
+            description = "contributions aux 7 axes de l'ACM", 
             champ = "variables actives", 
             n = "ca dépend", ponderation = T)
 
+
+
+# on ajoute la typo sur les données familles 
+
+familles$n_FractionClasse <- typo
+freq(familles$n_FractionClasse)
+
+saveRDS(familles, "Data_output/familles_parents.Rds")

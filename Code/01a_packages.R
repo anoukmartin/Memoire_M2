@@ -29,6 +29,11 @@ library(stringr)
 library(survey)
 library(srvyr)
 
+# ACM 
+library("FactoMineR")
+library("GDAtools")
+library(cluster)
+
 # Mise en forme des tableaux
 library(gtsummary)
 theme_gtsummary_compact()
@@ -134,11 +139,15 @@ add_kablesource_note <- function(kbl_object,
 # Mise en forme graphiques
 library(ggplot2)
 library(ggmosaic)
+library("RColorBrewer")
+library(wesanderson)
+library(ggthemes)
 theme_get()
 theme_set(theme_minimal())
+
 #theme_set(theme(base_family = "Times New Roman"))
 theme_memoire <- function(base_size = 14) {
-  theme_bw(base_size = base_size) %+replace%
+  ggthemes::theme_tufte(base_size = base_size) %+replace%
     theme(
       # L'ensemble de la figure
       plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,5,0), hjust = 0),
@@ -165,7 +174,7 @@ theme_memoire <- function(base_size = 14) {
 
 library(GGally)
 library(Cairo)
-library("wesanderson")
+library(ggrepel)
 
 
 

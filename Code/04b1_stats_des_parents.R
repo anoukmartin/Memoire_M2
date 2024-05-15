@@ -74,7 +74,8 @@ tbl <- dat %>%
                      digits = everything() ~ 0,
                      statistic = list(all_categorical() ~ "{p}", 
                                       all_continuous2() ~ c("{mean}", "{sd}"), 
-                                      Effectifs ~ "{n_unweighted}")
+                                      Effectifs ~ "{n_unweighted}"), 
+                     missing = "no"
       ) %>%
       add_stat_label() %>%
       modify_header(all_stat_cols() ~ "{level}") %>%
@@ -88,7 +89,8 @@ tot <- dat %>%
                  digits = everything() ~ 0,
                  statistic = list(all_categorical() ~ "{p}", 
                                   all_continuous2() ~ c("{mean}", "{sd}"), 
-                                  Effectifs ~ "{n_unweighted}"), 
+                                  Effectifs ~ "{n_unweighted}"),
+                 missing = "no"
   ) %>%
   modify_header(all_stat_cols() ~ "{level}") %>%
   add_overall(last = F, col_label = "**Ens**")
@@ -110,7 +112,7 @@ tab
 saveTableau(tab, 
             type = "des", 
             label = "ParentsCaracteristiquesSociales",
-            description = "Tableau statitsiques descriptives des parents des enfants du ménage",
+            description = "Caractéristiques sociales des parents des enfants du ménage en fonction de la configuration familiale",
             champ = paste0("parents d'enfants vivants en ", infosBDF$champ), 
             ponderation = T,
             n = nrow(dat$variables))

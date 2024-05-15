@@ -310,7 +310,7 @@ indiv <- indiv %>%
   mutate(NONENFANT = if_else(
     !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv), TRUE, FALSE)) %>%
   mutate(ADULTE = if_else(
-    ENFANT != "1" & AG > max(enfantsMenage$AG) & AG < 70, TRUE, FALSE))
+    ENFANT != "1" & AG > max(enfantsMenage$AG) & AG < 65, TRUE, FALSE))
 
 lprop(table(indiv$ENFANT, indiv$NONENFANT))
 lprop(table(indiv$ENFANT, indiv$ADULTE))

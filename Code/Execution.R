@@ -33,13 +33,16 @@ execute(part = "03a")
 execute(part = "03b")
 execute(part = "03c")
 execute(part = "03d")
-
+execute(part = "03e")
 
 # Résultats statistiques #######################################################
 
-## Regressions #################################################################
-execute(part = "05b")
 
 ## Statistiques descriptives ###################################################
 execute(part = "04b")
 execute(part = "06a")
+
+## Regressions #################################################################
+execute(part = "05b")
+
+

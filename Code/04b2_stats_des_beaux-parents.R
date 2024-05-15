@@ -17,13 +17,15 @@ adultes <- indiv %>%
   rec_CSP12(Var = "CS42", "CS12") %>%
   rec_DIP7(NewVar = "DIP7") %>%
   mutate(n_StatutEnfants = case_when(
-    n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "précédante et actuelle", 
-    n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "précédante", 
-    n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "actuelle", 
+    n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "Précédante et actuelle", 
+    n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "Précédante", 
+    n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "Actuelle", 
     TRUE ~ "Sans enfants")) %>%
   rec_NENFANTS("n_NEnfantsMen") %>%
   rec_NENFANTS("n_NBeauxEnfantsMen") %>%
-  rec_REVENUS(Var = "n_REVENUS")
+  rec_REVENUS(Var = "n_REVENUS") %>%
+  rec_PATRIMOINE() %>%
+  rec_STALOG()
   
 
 
@@ -63,6 +65,7 @@ dat <- adultes %>%
 
 freq(dat$variables$n_StatutParent)
 freq(dat$variables$n_StatutEnfants)
+freq(dat$variables$LOGEMENT)
 
 var_label(dat$variables$AG) <- NULL
 
@@ -76,7 +79,8 @@ tbl <- dat %>%
                      digits = everything() ~ 0,
                      statistic = list(all_categorical() ~ "{p}", 
                                       all_continuous2() ~ c("{mean}", "{sd}"), 
-                                      Effectifs ~ "{n_unweighted}")
+                                      Effectifs ~ "{n_unweighted}"), 
+                     missing = "no"
       ) %>%
       add_stat_label() %>%
       modify_header(all_stat_cols() ~ "{level}") %>%
@@ -93,6 +97,7 @@ tot <- dat %>%
                  statistic = list(all_categorical() ~ "{p}", 
                                   all_continuous2() ~ c("{mean}", "{sd}"), 
                                   Effectifs ~ "{n_unweighted}"), 
+                 missing = "no"
   ) %>%
   modify_header(all_stat_cols() ~ "{level}") %>%
   add_overall(last = F, col_label = "**Ens**")
@@ -112,32 +117,32 @@ saveTableau(tab,
 
 
 # les test qui vont avec 
-library(sjstats)
-dat <- dat %>%
-  mutate(typo = paste0(n_StatutParent, " ", SEXE))
-dat$variables$PONDIND <- dat$allprob$PONDIND
-
-# Sur le revenu
-kwtest <- weighted_mannwhitney(n_REVENUSmens ~ n_StatutParent + PONDIND, 
-                               dat$variables)
-kwtest
-kwtest <- weighted_mannwhitney(n_REVENUSmens ~ SEXE + PONDIND, 
-                               dat$variables)
-kwtest
-kwtest <- weighted_mannwhitney(n_REVENUSmens ~ typo + PONDIND, 
-                               dat$variables)
-kwtest
-
-# Sur le patrimoine 
-kwtest <- weighted_mannwhitney(n_PATRIMOINE ~ n_StatutParent + PONDIND, 
-                               dat$variables)
-kwtest
-kwtest <- weighted_mannwhitney(n_PATRIMOINE ~ SEXE + PONDIND, 
-                               dat$variables)
-kwtest
-kwtest <- weighted_mannwhitney(n_PATRIMOINE ~ typo + PONDIND, 
-                               dat$variables)
-kwtest
+# library(sjstats)
+# dat <- dat %>%
+#   mutate(typo = paste0(n_StatutParent, " ", SEXE))
+ dat$variables$PONDIND <- dat$allprob$PONDIND
+# 
+# # Sur le revenu
+# kwtest <- weighted_mannwhitney(n_REVENUSmens ~ n_StatutParent + PONDIND, 
+#                                dat$variables)
+# kwtest
+# kwtest <- weighted_mannwhitney(n_REVENUSmens ~ SEXE + PONDIND, 
+#                                dat$variables)
+# kwtest
+# kwtest <- weighted_mannwhitney(n_REVENUSmens ~ typo + PONDIND, 
+#                                dat$variables)
+# kwtest
+# 
+# # Sur le patrimoine 
+# kwtest <- weighted_mannwhitney(n_PATRIMOINE ~ n_StatutParent + PONDIND, 
+#                                dat$variables)
+# kwtest
+# kwtest <- weighted_mannwhitney(n_PATRIMOINE ~ SEXE + PONDIND, 
+#                                dat$variables)
+# kwtest
+# kwtest <- weighted_mannwhitney(n_PATRIMOINE ~ typo + PONDIND, 
+#                                dat$variables)
+# kwtest
 
 
 ## Tableau sexe statut parent ####
@@ -152,14 +157,16 @@ tab
 library(GGally)
 
 
+dat$variables <- dat$variables %>%
+  mutate(n_StatutEnfants = n_StatutEnfants %>%as.factor()) 
+
 gg <- dat$variables %>%
-  mutate(n_StatutEnfants %>% as.factor()) %>%
   ggplot() +
   aes(x = n_StatutEnfants, fill = SEXE, weight = PONDIND) +
   geom_bar(position = "fill") +
   geom_text(aes(by = n_StatutEnfants), 
             stat = "prop", position = position_fill(.5)) +
-  xlab("") +
+  xlab("Enfants issus de l'union") +
   ylab("Proportion") +
   labs(fill = "") +
   scale_y_continuous(labels = scales::percent) + 

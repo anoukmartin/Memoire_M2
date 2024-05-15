@@ -678,6 +678,7 @@ joli_tableau <- function(data,
   
   tableau_beau <- tableau %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
+        format = "latex",
         caption = tableau_titre) %>%
     kable_styling(
       latex_options = c("hold_position", "scale_down", "repeat_header")) %>%
