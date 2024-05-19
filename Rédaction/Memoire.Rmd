@@ -9,14 +9,39 @@ output:
     extra_dependencies: "subfig"
     includes: 
       in_header: header.tex
+    pandoc_args: --lua-filter=multiple-bibliographies.lua
 fontsize: 12pt
 documentclass: book
 editor_options: 
   chunk_output_type: console
-bibliography: references_memoire.bib
+bibliography_software: packages.bib
+bibliography_normal: references_memoire.bib
+csl: revue-francaise-de-sociologie.csl
 ---
 
 \makethesistitle
+
+
+% Blankpage pour la page 2 :
+\thispagestyle{empty} 
+
+
+\chapter*{Remerciements}
+\markboth{Remerciements}{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+\blindtext
+
+
+\chapter*{Résumé et mots clés}
+\markboth{Résumé}{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+\blindtext
+\paragraph{Mots-clés} mot, mot, mot
+
+
+\tableofcontents
+\markboth{Table des matières}{Table des matières}
+\addcontentsline{toc}{chapter}{Table des matières}
 
 ```{r setup, include=FALSE}
 
@@ -38,15 +63,15 @@ source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 ```
 
-\setcounter{tocdepth}{4}
-
-\tableofcontents
 
 \newpage
 
 # Introduction
 
+
 ```{r, eval = FALSE}
+
+bien définir ce qu'on entend par configuration familiale/conjugale, approche configurationelle.
 
 Accroche rapide :
 
@@ -85,8 +110,7 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Consignes mémoire                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 +==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-| 1 – Introduction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| 1 – Introduction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | 1.1 - Construction de l’objet (10 pages / 30 000 signes) Revue de littérature française et/ou internationale Énoncé de la question de recherche et développement de la problématique. Annonce du plan et de la logique des différentes parties (« sous-questions »).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | 1.2 - Présentation des données (3 pages ou 20 pages suivant l’intensité du travail demandé) Choix des sources et modes de collecte de la base de données Base de données originale : Description de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Aspiration de données web : mode d’aspiration, origine et types de données collectées, apurement de la base… Utilisation de bases de données déjà construites, obtenues par l’intermédiaire du Centre Quételet ou d’autres fournisseurs : Détails de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Structure et contenu de la base de données utilisée Date de collecte des données et date de production de la base Population concernée, nombre d’individus Nature des variables utilisées Intérêts et limites des données pour la question de recherche |
@@ -98,13 +122,13 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 
 ------------------------------------------------------------------------
 
-# Chapitre 1. Saisir les remises en couple, repérer les familles recomposées
+# Chapitre 1. Saisir les remises en couple, repérer les familles recomposées. Faire (avec) le ménage.
 
 La construction de typologie familiales selon la composition des groupes domestiques et la structure des relations entre individus résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [@laslett1983; @goldelier]. Pour ces auteurs, décrire les formes que prennent la famille permet d'analyser l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, ces typologies tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui saisirait mieux que d'autres la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
 
 ## Les familles recomposées en ménage statistiques
 
-### De la composition familiale à la configuration
+### De la composition familiale à la configuration familiale
 
 Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. Avant 1990, la majorité des enquêtes statistiques ne permettent tout simplement pas de les distinguer [@desplanques1993]. Aujourd'hui, si elles sont identifiables, elle ne sont pas *a priori* distinguées des familles nucléaires. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, à partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage est généralement codé en cinq catégories héritières de la typologie de @laslett1983 : "Personne seule", "Couple sans enfant", "Couple avec au moins un enfant", "Famille monoparentale", et "Autre type de ménage (ménage complexe)", comme c'est le cas dans l'enquête `r infosBDF$nom` (2017).
 
@@ -271,7 +295,7 @@ tab %>%
                        lecture = "Parmis les enfants vivants hors domicile d'un de leur parent en 2017, 38% vivaient chez l'autre parent") 
 ```
 
-On peut ainsi identifier les parents n'ayant pas la garde principale de leur enfant résidant chez l'autre parent. C'est grâce à cet ensemble de variables que l'on peut distinguer les configuration familiales recomposées des configurations familiales traditionelles.
+On peut ainsi identifier les parents n'ayant pas la garde principale de leur enfant résidant chez l'autre parent. C'est grâce à cet ensemble de variables que l'on peut distinguer les structures familiales recomposées des structures familiales traditionnelles.
 
 ### De la situation familiale des enfants à celle des parents
 
@@ -285,7 +309,7 @@ Il s'agit là d'une conception de la famille conforme à celle proposée par la 
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds")
 ```
 
-Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position dans les rapports entre générations familiales. D'un point de vue de la statistique publique, un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*". Aucune limite d'âge n'étant fixée, l'INSEE privilégie donc une définition de l'enfance comme position dans les rapports familiaux au sein du ménage. Dans l'enquête `r infosBDF$nom` on dénombre ainsi `r nrow(enfantsMenage)` enfants au sens du TCM. Pour être en mesure de comparer nos résultats avec ceux produit par la statistique publique, nous aurions aimé choisir de conserver. En pratique, cela signifie que certains des enfants en questions sont très âgés. En effet, l'âge maximum des enfants se situe donc à 75 ans. En particulier, les enfants les plus agés apparaissaient presque systématiquement dans des ménages monoparentaux, c'est-à-dire composé d'un enfant en age adulte et de son parent particulièrement âgé. A l'inverse, lorsqu'on exclu ces cas, les ménages monoparentaux ont en moyenne des enfants plus jeunes que les autres ménages avec enfants. Conserver une définition de l'enfant sans critère d'âge conduisait ainsi a assimiler deux situations qui ne nous paraissent similaires : Un parent seul ayant à sa charge de jeunes enfants et un enfant ayant sa charge un parent âgé. Par ailleurs, si dans le cadre de l'étude des familles recomposées nous nous intéressants aux configurations familiales monoparentales, c'est en tant qu'elles précèdent, généralement, la remise en couple et la formation de familles recomposées. Ainsi, nous avons choisit d'établir un critère d'âge. Nous avons considérer comme enfant les enfants au sens du TCM âgés de moins de 25 ans. Loin d'être parfaitement arbitraire, ce seuil parait correspondre à un changement dans le mode d'administration des populations. L'âge constitue en effet, avec le sexe et la nationalité, une des grandes catégorie d’État [@rennes2019; @mauger2015]. Produit par les institutions [@chamboredon1973; @guillemard2005; @lenoir1979], la partition enfance, jeunesse, âge adulte, vieillesse rythme les biographies individuelles. Ainsi l'enfance et la jeunesse sont caractérisées par l'instauration d'une dépendance financière à l'égard des adultes [@dunezat2023]. L'âge de 25 ans constitue seuil à partir du quel les enfants ne peuvent plus être rattachés au foyer fiscal de leur(s) parent(s) et à l'ouverture de droit au Revenu de Solidarité Active (RSA) [@lima2008].
+Avant d'essayer d'identifier la situation familiale des enfants, il nous faut d'abord définir ce qu'on entend par "enfant". D'un point de vu sociologique, il n'est pas si aisé de circonscrire cette catégorie d'individus : "enfant" désigne tout aussi bien l'appartenance à une classe d'âge, un statut civil et pénal - celui de mineur -, et une position dans les rapports entre générations familiales. D'un point de vue de la statistique publique, un enfant est "*une personne célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage*". Aucune limite d'âge n'étant fixée, l'INSEE privilégie donc une définition de l'enfance comme position dans les rapports familiaux au sein du ménage. Dans l'enquête `r infosBDF$nom` on dénombre ainsi `r nrow(enfantsMenage)` enfants au sens du TCM. Pour être en mesure de comparer nos résultats avec ceux produit par la statistique publique, nous aurions aimé choisir de conserver. En pratique, cela signifie que certains des enfants en questions sont très âgés. En effet, l'âge maximum des enfants se situe donc à 75 ans. En particulier, les enfants les plus agés apparaissaient presque systématiquement dans des ménages monoparentaux, c'est-à-dire composé d'un enfant en age adulte et de son parent particulièrement âgé. A l'inverse, lorsqu'on exclu ces cas, les ménages monoparentaux ont en moyenne des enfants plus jeunes que les autres ménages avec enfants. Conserver une définition de l'enfant sans critère d'âge conduisait ainsi a assimiler deux situations qui ne nous paraissent similaires : Un parent seul ayant à sa charge de jeunes enfants et un enfant ayant sa charge un parent âgé. Par ailleurs, si dans le cadre de l'étude des familles recomposées nous nous intéressants aux structures familiales monoparentales, c'est en tant qu'elles précèdent, généralement, la remise en couple et la formation de familles recomposées. Ainsi, nous avons choisit d'établir un critère d'âge. Nous avons considérer comme enfant les enfants au sens du TCM âgés de moins de 25 ans. Loin d'être parfaitement arbitraire, ce seuil parait correspondre à un changement dans le mode d'administration des populations. L'âge constitue en effet, avec le sexe et la nationalité, une des grandes catégorie d’État [@rennes2019; @mauger2015]. Produit par les institutions [@chamboredon1973; @guillemard2005; @lenoir1979], la partition enfance, jeunesse, âge adulte, vieillesse rythme les biographies individuelles. Ainsi l'enfance et la jeunesse sont caractérisées par l'instauration d'une dépendance financière à l'égard des adultes [@dunezat2023]. L'âge de 25 ans constitue seuil à partir du quel les enfants ne peuvent plus être rattachés au foyer fiscal de leur(s) parent(s) et à l'ouverture de droit au Revenu de Solidarité Active (RSA) [@lima2008].
 
 ```{r mosaic-enfants, fig.cap= "Situation familiale des enfants",  fig.asp = 0.5}
 
@@ -333,7 +357,8 @@ tab <- tab[tab$label > 0.01, ]
 g +
   geom_text(data = tab, 
             aes(x = x_coord, y = y_coord, label = label), 
-            size = 3) + 
+            size = 3, 
+            family = "serif") + 
   xlab("") + ylab("") + 
   scale_fill_brewer(type = "qual", palette = 1, 
                     name = "Enfant résidant chez", 
@@ -427,7 +452,8 @@ tab <- tab[tab$label > 0.01, ]
 g +
   geom_text(data = tab, 
             aes(x = x_coord, y = y_coord, label = label), 
-            size = 3) + 
+            size = 3, 
+            family = "serif") + 
   xlab("") + ylab("") + 
   scale_fill_manual(values = brewer.pal(name = "Accent", n = 4),
                     name = "Enfants issus de l'union") +
@@ -498,7 +524,7 @@ ggduo(
 
 ```
 
-## Parents et beau-parents
+## Les unions secondaires : des mères et des beaux-pères
 
 Les beaux-parents et les parents ne ressemblent pas nécessairement dans les familles recomposées. Comme les parents de familles monoparentales sont le plus souvent des mères, les parents de familles recomposées sont le plus souvent des femmes. Dans les familles recomposées, ce sont le plus souvent elles qui ont des enfants issus d'une union précédentes. Elles sont aussi plus nombreuses que les hommes à avoir des enfants à la fois issus d'union précédente et actuelle (79,6% sont des femmes quand 20,4% sont des hommes). Ainsi les beaux-parents sont le plus souvent des hommes: 85,9% des beaux-parents n'ayant pas d'enfants sont des beaux-pères et 86,9% de ceux ayant des enfants issus de l'union actuelle sont des beau-pères de ceux ayant des enfants sont des beaux pères.
 
@@ -507,7 +533,7 @@ load("Resultats/barplot_BPSexe.Rdata")
 tab$tableau
 ```
 
-### Se remettre en couple quand on a des enfants
+### Se remettre en couple quand on a des enfants 
 
 Les parents remis en couple présentent des caractéristiques sociales spécifiques par rapport à ceux en couple avec l'autre parent de leurs enfants et ceux célibataires.
 
@@ -531,7 +557,7 @@ Les parents de familles monoparentales et recomposées apparaissent moins diplô
 
 ### Beaux-pères et belles-mères
 
-[IDEM ici j'ai changé les recodages donc, il va falloire changer les %] Comme on l'a vu, les beau-parents sont le plus souvent des beau-pères. Leur revenu est en moyenne plus élevé que celui des parents (2185 euros contre 1592 euros mensuel), même si l'écart est moindre lorsqu'ils et elles ont eux-même des enfants (1844 euros mensuels). Le constat est encore plus tranché pour le patrimoine : les beaux-parents sans enfants possèdent en moyenne 15 420 de patrimoine contre 9 472 pour les parents de familles recomposées. Le fait d'avoir des revenus et un niveau vie élevé augmente en effet la probabilité de mettre en couple [Référence]. Cependant, au vu des différences importantes entre les beaux-parents ayant des enfants et ceux n'en ayant pas, c'est plus probablement le fait de ne pas avoir d'enfants qui permet une carrière professionnelle ascendante et l'accumulation de patrimoine, ou le fait d'avoir une carrière professionnelle peut différer le fait avoir des enfants. Les beaux parents, qu'ils et elles aient ou non des enfants apparaissent en effet un peu plus diplômés que les parents (11% et respectivement 10% d'entre eux ont au moins bac+5 contre 8% des parents), et ils occupent ainsi logiquement plus souvent des positions de cadres (15% contre 11%). Cependant, les beaux-parents sans enfants sont aussi plus souvent diplômes professionnels inférieurs au bac (CAP, BEP et équivalents) : ils et elles sont 37% contre 28 et 22%. Les beaux-parents sont ainsi plus nombreux à être ouvriers que les parents (30% contre 17%).
+[IDEM ici j'ai changé les recodages donc, il va falloir changer les %] Comme on l'a vu, les beau-parents sont le plus souvent des beau-pères. Leur revenu est en moyenne plus élevé que celui des parents (2185 euros contre 1592 euros mensuel), même si l'écart est moindre lorsqu'ils et elles ont eux-même des enfants (1844 euros mensuels). Le constat est encore plus tranché pour le patrimoine : les beaux-parents sans enfants possèdent en moyenne 15 420 de patrimoine contre 9 472 pour les parents de familles recomposées. Le fait d'avoir des revenus et un niveau vie élevé augmente en effet la probabilité de mettre en couple [Référence]. Cependant, au vu des différences importantes entre les beaux-parents ayant des enfants et ceux n'en ayant pas, c'est plus probablement le fait de ne pas avoir d'enfants qui permet une carrière professionnelle ascendante et l'accumulation de patrimoine, ou le fait d'avoir une carrière professionnelle peut différer le fait avoir des enfants. Les beaux parents, qu'ils et elles aient ou non des enfants apparaissent en effet un peu plus diplômés que les parents (11% et respectivement 10% d'entre eux ont au moins bac+5 contre 8% des parents), et ils occupent ainsi logiquement plus souvent des positions de cadres (15% contre 11%). Cependant, les beaux-parents sans enfants sont aussi plus souvent diplômes professionnels inférieurs au bac (CAP, BEP et équivalents) : ils et elles sont 37% contre 28 et 22%. Les beaux-parents sont ainsi plus nombreux à être ouvriers que les parents (30% contre 17%).
 
 ```{r statdesbeauxparents, results = "asis"}
 
@@ -601,7 +627,7 @@ familles %>%
 
 [Peut-être que je devrais ajouter un paragraphe sur les inégalités de patrimoine et de revenu ici ? Mais je pense garder cela pour parler des arrangements économiques dans le chapitre 2]
 
-## Décrire la position sociale des familles recomposées : une approche par les configurations
+## Décrire la position sociale des familles recomposées : une approche par les configurations conjugales
 
 Si échelle du ménage ne permet de saisir que partiellement les faits sociaux de déployant à une échelle inter-individuelle (logement, enfants, couple) [@Bonvalet ; @Toulemont], c'est celle qui est utilisée dans les enquêtes de la statistique publique. Caractériser socialement les ménages, et non seulement les individus qui les composent permet ainsi d'étudier les caractéristiques des logements en fonction des ménages qui y vivent, la réussite scolaire des enfants en fonction des ménages auquel ils appartiennent ou encore de calculer un niveau vie commun à l'ensemble des membres. On a vu que, dans les familles recomposées plus que dans les autres, le logement appartient à l'un des conjoint, les enfants ne sont pas tous des enfants communs au couple et que les couples sont moins homogames du point de vu du diplôme, mais d'avantage du point de vue de la profession. Ainsi, résumer la position sociale du ménage à celle de la personne de référence, ne nous paraissait pas satisfaisant. La personne de référence est en effet le principal apporteur de ressource. A égalité de de ressources, la personne de référence est, par ordre de priorité l'actif puis le retraité puis l'autre inactif. A situation égale, la personne de référence est la plus âgée. Or, dans les familles recomposées, les beaux-parents, surtout lorsqu'ils n'ont pas eux-même d'enfants, ont en moyenne des revenus plus élevés que les parents. Ils sont donc mécaniquement plus souvent personne de référence que les parents [Chiffre + annexe]. Ainsi, la priorité serait ici non seulement donnée à l'homme, mais en particulier au beau-père sans enfants dans le ménage. Nous aurions aussi pu construire une PCS "Ménage" en suivant la nouvelle nomenclature mise en place en 2020. Codée par une opération de synthèse des catégories socioprofessionnelles (CSP) des deux membres du couple lorsqu'il existe, cette PCS « ménage » est chargée de mieux rendre compte de la position sociale du ménage. Cependant en cherchant à synthétiser dans une même échelle des positions sociales dans les rapports sociaux de classes et de genre parfois antagoniques, cette refonte ne change pas fondamentalement de perspective : le ménage reste une unité de base, presque assimilable à un individu. C'est pourquoi nous avons choisit ici de reproduire la méthode proposée par Joannie Cayouette-Remblière et Mathieu Ichou [@cayouette-remblière2019]. Selon les auteur-ice-s, la méthode proposée dans l'article permet justement, en combinant de multiples dimensions de la stratification sociale et en ne réduisant pas celles-ci à une échelle unique, "*le passage d’une analyse de la sphère de la production à l'étude de celle de la reproduction*" selon l'expression d'Alain Desrosières. Une des limites importante de cette méthode est qu'elle produit des résultats sensiblement différents en fonction des données utilisées, ce qui rend difficile toute comparaison avec d'autres enquêtes. L'application de la nomenclature PCS Ménage aurait justement eu l'avantage de la comparabilité. Cependant, l'introduction de la PCS ménage étant récente, il n'existe pas encore, à notre connaissance de travaux portant sur les familles recomposées faisant usage de cette nomenclature.
 
@@ -651,7 +677,8 @@ tab$tableau %>%
 
 ## Faire l'économie des ménages recomposées
 
-### Le ménage, de l'unité de compte et d'enquête à la catégorie statistique
+### Le ménage, de l'unité d'enquête à la catégorie statistique
+
 
 revoir le titre
 
@@ -659,147 +686,72 @@ revoir le titre
 
 ### Un "cache-sexe" des pratiques économiques
 
+
+Dans Angèle Jannot
+"Concernant la répartition et la consommation différenciées des biens et services au sein d'une famille, il existe encore peu d'études notamment parce que les grandes enquêtes statistiques en France permettent seulement d'interroger et de comparer la consommation relative de différents ménages et non les différences de consommation entre les individus (Roy, 2006). Pourtant, la consommation au sein des ménages est différentielle tant d'un point de vue quantitatif que qualitatif, notamment selon le genre et l'âge des membres de la famille (Delphy et Léonard, 1992)"
+
+"Lors des moments de comptabilité et de répartition concrète du patrimoine, que ce soit lors des ruptures d'union ou des héritages, les règles de calcul sont toujours défavorables à l'accumulation patrimoniale des femmes tout comme les stratégies familiales de reproduction mises en place en amont (Bessière et Gollac, 2020). Avant ces moments particuliers de comptabilité d'autres travaux soulignent, quant à eux, la plus forte mise en commun des ressources au sein des couples parentaux (Roy, 2006)."
+
+
 ### Les budgets des ménages, une difficile individualisation des dépenses et des consommations dans les enquêtes quantitatives
+
+Ainsi, dans l'enquête budget de familles les dépenses et les consommations ne sont pas individualisées. En d'autres termes, on ne sait pas l'argent de qui est dépensé au bénéficie de qui. Pourtant, pour étudier les inégalités économiques se déployant dans les familles, il est crucial de pouvoir étudier ce qui se passe à l'intérieur des ménages. Ainsi, nous avons chercher à individualiser certaines dépenses et consommations. 
+En ce qui concerne les enfants, il n'est bien sur pas possible de distinguer les consommations suivants les individus auxquelles elles bénéficient, cependant un certain nombre de poste de dépenses sont, dans la nomenclature des produits, spécifiques aux enfants. Il s'agit des dépenses de garde d'enfants, d'habillement, des frais scolaires, des jouets, de l'équipement spécifique et de l'alimentation spécifique. Dans l'enquête budgets de familles en 2011, ces dépenses représentaient 13,6% du budget des ménages avec au moins un enfant de moins de 16 ans [@Hotte]. Cependant, dans le fichier de production et de recherche (FPR) de 2017 sur lequel nous avons travaillé, les postes de dépenses ont été agrégés au niveau 5 de la nomenclature. Ainsi seuls les jouets, les frais scolaires et les dépenses d'habillements sont effectivement imputable à la présence d'enfants. Parmi celles-ci nous avons choisit de nous concentrer sur les dépenses d'habillement. En effet, les dépenses scolaires varient très fortement selon l'âge des enfants et sont partiellement déterminées par l'existence de tarif sociaux pour certains type de consommation comme les repas scolaires, l'étude, ou l'inscription dans certains établissement privés. Ainsi mais sont, réglementairement, déterminées par le niveau de vie du ménage de sorte que pour les enfants les plus jeunes à niveau de vie du ménage égal, ce poste de consommation est difficilement interprétable. Les dépenses en matière de jouets ne nous paraissaient pas non plus .../ Les dépenses en vêtements et chaussures nous ont en revanche paru être un bon indicateur pour mesurer la consommation des différentes membres du ménage. D'une part, les vêtements ont été considéré comme un bon proxy du niveau de vie individuel. En effet, selon l'hypothèse de Rothbarth, les vêtements d'adultes sont des biens individuels : ils ne sont peu substituables entre homme et femme et ne sont pas adaptés aux enfants. Selon cette hypothèse le niveau de vie est une fonction des dépenses de vêtements pour adultes. Au delà des 
+
+
+
+Le choix de L indicateur de la dépense en vêtements adulte est désigné sous le terme « d hypothèse identifiante de Rothbart ». En 1943, Rothbart établit une correspondance entre le niveau de vie des parents et celui des enfants. Pour résoudre le problème de Lindicateur du niveau de vie, il suffit alors de trouver des consommations représentant le bien-être des parents, et en particulier, des consommations individualisâmes correspondant à des consommations adultes. Cependant, ces consommations individuelles des parents ne doivent pas être affectées par des changements de mode de vie liés à l’arrivée de l’enfant. Les dépenses en vêtements adulte sont alors a priori considérées comme ne dépendant que du niveau de vie du ménage. Cette dépense a de plus été choisie comme étant la dépense la plus facilement individualisable dans les enquêtes effectuées sur les budgets des familles (en dehors de dépenses telles que le tabac ou l’alcool, qui sont par contre sensibles à un changement de modes de vie). Des estimations du coût de l’enfant sur les données françaises ont ainsi utilisé les dépenses en vêtements du dessus adultes
+
+
+
+Les dépenses individualisables de ensemble des familles avec enfant(s) de moins de 16 ans représentent en moyenne 6 005 euros en 2011, soit 13,6 % de leur budget. Elles sont en moyenne plus importantes pour les ménages propriétaires de leur logement (14,4 %) que chez les ménages locataires (12,1 %). Les postes les plus importants sont la garde d’enfants, qui dépasse la moitié des dépenses, puis l’habillement et les frais scolaires (graphique 1).
 
 ## [Des inégalités de consommations]
 
 ### Des structures de consommation proches des familles nucléaires
 
-```{r, include = FALSE}
 
-familles <- readRDS("Data_output/famillesToutes.Rds") 
+```{r, results = "asis"}
 
-conso <- readRDS("Data_output/conso.Rds")
-names(conso)   
-types_conso <- c(paste0("0", 1:9), 10:12)    
-conso2 <- lapply(types_conso,
-                 function(x){   
-                   tab <- conso %>%
-                     select(starts_with(paste0("C", x)))  
-                   tab <- rowSums(tab, na.rm = TRUE)   
-                   consotot<- conso$CTOT %>% as.vector()   
-                   tab <- (tab/consotot)*100   
-                   return(tab) } )  
-
-conso2 <- conso2 %>%   
-  bind_cols() %>%   
-  as.data.frame()  
-
-names(conso2) <- c("PRODUITS ALIMENTAIRES ET BOISSONS NON-ALCOOLISEES ",                     "BOISSONS ALCOOLISEES, TABACS ET STUPEFIANTS ",                     "ARTICLES D’HABILLEMENT ET CHAUSSURES",                     "LOGEMENT, EAU, GAZ, ELECTRICITE ET AUTRES COMBUSTIBLES",                     "MEUBLES, ARTICLES DE MENAGE ET ENTRETIEN COURANT DE LA MAISON",                     "SANTE",                     "TRANSPORTS",                     "COMMUNICATIONS",                     "LOISIRS ET CULTURE",                     "ENSEIGNEMENT",                     "RESTAURATION ET HÔTELS",                     "BIENS ET SERVICES DIVERS") %>%    str_to_sentence()     
-
-conso2$`Consommation finale` <- conso$CTOT  
-
-names(familles) 
-
-data <- familles %>%   
-  bind_cols(conso2) %>%   
-  select("PONDMEN", "n_configMenage", all_of(names(conso2)), 
-         "REVDISP", "COEFFUC", "NIVIE")
-
-```
-
-```{r}
-
-tab <- data %>%  
-  mutate(Effectifs = T) %>%
-  as_survey_design(weights = "PONDMEN") %>%  
-  select(-PONDMEN) %>%  
-  tbl_svysummary(by = "n_configMenage",                   
-                 statistic = list(all_continuous() ~"{mean}"),  
-                 type = list(everything() ~ "continuous"),        
-                 missing = "no") %>%   
-  add_overall(last = T)   
-  # add_p() %>%
-tab %>% 
-  as_kable_extra(caption = "Structure de consommation des ménages selon leur configuration", booktabs = TRUE)
+load("Resultats/tab_structure_budget.Rdata")
+tab$tableau %>% 
+  as_kable_extra(caption = "Structure de consommation des ménages selon leur structure", booktabs = TRUE) %>%
+  pack_rows(group_label = "Postes de dépenses", start_row = 1, end_row = 12)
 
 ```
 
 ### Mais des dépenses spécifiques aux enfants plus faibles en particulier chez les hauts revenus
 
+
+
+
 ```{r, eval = FALSE}
 
-familles <- readRDS("Data_output/famillesToutes.Rds") 
-conso <- readRDS("Data_output/conso.Rds") 
-names(conso)  
-types_conso <- list(   
-  Scolaire = names(conso)[str_starts(names(conso), "C111|C112")],    
-  Vetements = names(conso)[str_starts(names(conso), "C03123|C03213")],  
-  Jouets = names(conso)[str_starts(names(conso), "C09311")],    
-  Garde = names(conso)[str_starts(names(conso), "C124111|C056211")],   
-  Alimentation = names(conso)[str_starts(names(conso), "C011941")],    
-  Mobilier = names(conso)[str_starts(names(conso), "C051164")])  
 
-conso2 <- lapply(types_conso, function(x){   
-  tab <- conso %>%     
-    select(starts_with(paste0("C", x)))   
-  tab <- rowSums(tab, na.rm = TRUE)   
-  consotot<- conso$CTOT %>% as.vector()   
-  tab <- (tab/consotot)*100   
-  return(tab)   } ) 
-
-conso2 <- conso2 %>%   
-  bind_cols() %>%   
-  as.data.frame()  
-names(conso2) <- c(
-  "PRODUITS ALIMENTAIRES ET BOISSONS NON-ALCOOLISEES ",
-  "BOISSONS ALCOOLISEES, TABACS ET STUPEFIANTS ",
-  "ARTICLES D’HABILLEMENT ET CHAUSSURES",
-  "LOGEMENT, EAU, GAZ, ELECTRICITE ET AUTRES COMBUSTIBLES",
-  "MEUBLES, ARTICLES DE MENAGE ET ENTRETIEN COURANT DE LA MAISON",
-  "SANTE",                     
-  "TRANSPORTS",                    
-  "COMMUNICATIONS", 
-  "LOISIRS ET CULTURE",
-  "ENSEIGNEMENT",
-  "RESTAURATION ET HÔTELS", 
-  "BIENS ET SERVICES DIVERS") %>%  
-  str_to_sentence()     
-
-conso2$`Consommation finale` <- conso$CTOT  
-names(familles) 
-data <- familles %>%   
-  bind_cols(conso2) %>%   
-  select("PONDMEN", "n_config", all_of(names(conso2)))  
-
-data$n_configMenage <- data$n_configMenage %>%
-  fct_relevel(
-    "Couple sans enfant",
-    "Femme seule",
-    "Homme seul",
-    "Mère célibataire",
-    "Père célibataire",
-    "Mère en couple",
-    "Père en couple",
-    "Parents en couple",
-    "Autre type de ménage (ménage complexe)"
-  )
-
-data %>%  
-  as_survey_design(weights = "PONDMEN") %>%
-  select(-PONDMEN) %>%   tbl_svysummary(
-    by = "n_config",
-    statistic = list(all_continuous() ~ "{mean}"),
-    type = list(everything() ~ "continuous"),
-    missing = "no"
-  ) %>%
-  add_overall(last = T) %>%
-  add_p()    
 
 ```
 
-MAUTRES_SCO Montant des autres frais liés à la scolarité MAUTRES_SCO_D Montant définitif des autres frais liés à la scolarité MGARD1 Montant dépensé pour la crèche MGARD1_D Montant définitif dépensé pour la crèche MGARD2 Montant dépensé pour la garderie MGARD2_D Montant définitif dépensé pour la garderie MGARD3 Montant dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés MGARD3_D Montant définitif dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés MGARD4 Montant dépensé pour la nourrice ou l'assistante maternelle MGARD4_D Montant définitif dépensé pour la nourrice ou l'assistante maternelle MGARD5 Montant dépensé pour une autre personne rémunérée pour la garde d'enfants MGARD5_D Montant définitif dépensé pour une autre personne rémunérée pour la garde d'enfants MINSC Montant des frais d'inscription scolaire ou universitaire MINSC_D Montant définitif des frais d'inscription scolaire ou universitaire MPENS Montant des frais d'internat MPENS_D Montant définitif des frais d'internat MREPET Montant total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois MREPET_D Montant définitif total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois
-
 ### [Inégalités dans les consommations individualisables masculines et féminines ?]
 
--   regarder, comme pour les enfants, les dépenses individualisables hommes/femmes, notamment les vetements (+ il a de la littérature qui dit que c'est un bon proxy du niveau vie)
+
+
+-   regarder, comme pour les enfants, les dépenses individualisables hommes/femmes, notamment les vêtements (+ il a de la littérature qui dit que c'est un bon proxy du niveau vie)
+
 -   Croiser avec position sociale du ménage
 
 ## [Qui s'explique par des inégalités de revenus et des budgets séparés]
 
 ### [Inégalités de revenus entre conjoints, souvent en faveur des hommes, souvent des beaux-pères]
 
+```{r}
+familles <- readRDS(file = "Data_output/familles_parents.Rds")
+```
+
+
 -   Quantifier les inégalités de revenus dans les couples formés secondairement, comparer avec les couples sans enfants et ceux avec enfants issus de l'union
+
+
+
 
 ### [Contribution des ex-conjoints plus faible]
 
@@ -812,17 +764,95 @@ MAUTRES_SCO Montant des autres frais liés à la scolarité MAUTRES_SCO_D Montan
 
 -   exploiter rapidement la variable de séparation de budget dans un même logement, croiser avec les déciles de revenus pour voir si on observe des logiques similaires que pour le patrimoine
 
--   exploiter les variables de dépenses de la table individu
+-   exploiter les variables de dépenses de la table individu vs ménage : 
 
--   régression : revenu du parent = meilleur prédicateur des consommations individualisable aux enfants que revenu du ménage
+Niveau individu : 
+MAUTRES_SCO Montant des autres frais liés à la scolarité 
+MAUTRES_SCO_D Montant définitif des autres frais liés à la scolarité MGARD1 Montant dépensé pour la crèche 
+MGARD1_D Montant définitif dépensé pour la crèche MGARD2 Montant dépensé pour la garderie 
+MGARD2_D Montant définitif dépensé pour la garderie MGARD3 Montant dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés 
+MGARD3_D Montant définitif dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés 
+MGARD4 Montant dépensé pour la nourrice ou l'assistante maternelle 
+MGARD4_D Montant définitif dépensé pour la nourrice ou l'assistante maternelle 
+MGARD5 Montant dépensé pour une autre personne rémunérée pour la garde d'enfants 
+MGARD5_D Montant définitif dépensé pour une autre personne rémunérée pour la garde d'enfants 
+MINSC Montant des frais d'inscription scolaire ou universitaire 
+MINSC_D Montant définitif des frais d'inscription scolaire ou universitaire MPENS Montant des frais d'internat 
+MPENS_D Montant définitif des frais d'internat 
+MREPET Montant total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois 
+MREPET_D Montant définitif total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois
+
+
+
+Niveau ménage : 
+DEPPER2 Montant total à la charge du ménage pour la garde d'enfant
+DEPPER2_D Montant définitif total à la charge du ménage pour la garde d'enfant
+
+-   régression : revenu du parent = meilleur prédicteur des consommations individualisable aux enfants que revenu du ménage
 
 # Chapitre 3. [Même idée que le chapitre 2, version travail domestique et autoproduction]
 
-AIDEENFANT L'individu a aidé les enfants dans leurs devoirs pendant la semaine précédant l'entretien BRICOLAGE L'individu a fait du bricolage pendant la semaine précédant l'entretien CHANGEENFANT L'individu a changé les enfants, les a habillés ou leur a donné à manger pendant la semaine précédant l'entretien COURSES L'individu a fait des courses pendant la semaine précédant l'entretien CUISINEA L'individu a fait de la cuisine de tous les jours pendant la semaine précédant l'entretien CUISINEB L'individu a fait de la cuisine de réception pendant la semaine précédant l'entretien MENAGE L'individu a fait le ménage pendant la semaine précédant l'entretien REPASSAGE L'individu a fait du repassage pendant la semaine précédant l'entretien VAISSELLE L'individu a fait la vaisselle pendant la semaine précédant l'entretien \## Une charge de travail domestique a priori mieux répartie entre hommes et femmes
+
+Les arrangements économiques ne sont pas réductibles à ceux qui touchent. 
+Plus difficile à saisir dans les enquêtes de la statistique publique, il se déploient aussi
+
+Ainsi, si les beaux-parents contribuent visiblement moins à l'entretien des enfants de leur conjoint que ne le feraient des parents, 
+
+## Une charge de travail domestique a priori mieux répartie entre hommes et femmes
+
+```{r, results = "asis"}
+load("Resultats/tab_Wdom_typefam_sexe.Rdata")
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Travail domestique et parental en fonction de la configuration familiale et du sexe") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ)
+```
+
 
 ## [Les parents en font + que dans le familles nucléaires]
 
+```{r, results='asis'}
+
+load("Resultats/tab_Wdom_parents_beauxparents.Rdata")
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Travail domestique et parental du statut parental et de la configuration familiale") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ)
+
+
+```
+
+
+
 ## La mise au travail domestique des belles-mères
+
+```{r, results='asis'}
+
+load("Resultats/tab_Wdom_PBP_sexe.Rdata")
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Travail domestique et parental du statut parental et du sexe") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ)
+
+```
+
+
+- discussion tabet 
 
 ## Conclusion/transition : formes de continuité, d'un point de vue économique, entre monoparentalité et recompositions familiales
 
@@ -895,9 +925,99 @@ tab$tableau %>%
 
 ## Des revenus de transferts réduits pour les parents remis en couple
 
+
+```{r, fig.cap = "Composition du revenu disponible en fonction du type de ménage (en \\%)"}
+
+familles <- readRDS("Data_output/familles_parents.Rds")
+menages <- readRDS("Data_output/menages.Rds") %>%
+  select(IDENT_MEN, 
+         REVACT, # revenu d'activité
+         REVINDEP , SALAIRES , REV_ETRANGER, # décompo
+         REVSOC, # revenus sociaux
+         CHOMAGE, RETRAITES, PREST_PRECARITE_VIEIL, PREST_PRECARITE_HAND, 
+         PREST_PRECARITE_RSA, PPA, PREST_LOGEMENT, PREST_FAM_TOT, # décompo
+         REVPAT, # revenu du patrimoine
+         REV700, REV701, # transferts entre ménages
+         REV999, # Autres ressources 
+         IMPOTREV_M, TAXHAB_M, # Impots et taxes 
+         REVDISP, REVTOT) %>%
+  mutate(IMPOTREV_M = -IMPOTREV_M, 
+         TAXHAB_M  = -TAXHAB_M, 
+         IMPOTS_DIRECTS = IMPOTREV_M + TAXHAB_M, 
+         TRANSFERTS_INTERMENAGES = REV700 + REV701,
+         MINIMA_SOC = PREST_PRECARITE_VIEIL + PREST_PRECARITE_HAND + PREST_PRECARITE_RSA + PPA)
+
+names(menages)
+revenus_comp <- lapply(menages[, -1], function(x){
+  revdisp <- menages$REVDISP %>% as.vector()
+  part <- (x/revdisp)*100
+  return(part)
+})
+revenus_comp$IDENT_MEN <- menages$IDENT_MEN
+revenus_comp <- revenus_comp %>%
+  as.data.frame()
+
+revenus_comp <- revenus_comp %>%
+  filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
+  left_join(familles %>%
+              select(n_TYPMEN_new, PONDMEN, IDENT_MEN), 
+            by = "IDENT_MEN")
+
+
+revenus_comp2 <- revenus_comp %>%
+  pivot_longer(cols = names(menages)[-1])
+
+revenus_comp2 <- revenus_comp2 %>%
+  group_by(n_TYPMEN_new, name) %>%
+  summarise(value_mean = weighted.mean(x = value, w=PONDMEN, na.rm = T))
+
+#unique(revenus_comp2$name)
+
+liste <- c("IMPOTS_DIRECTS",
+           "SALAIRES", "REVINDEP", "CHOMAGE", "RETRAITES", 
+           "TRANSFERTS_INTERMENAGES",
+           "PREST_FAM_TOT", "PREST_LOGEMENT", "MINIMA_SOC")
+#liste
+library(GGally)
+revenus_comp2 %>%
+  filter(name %in% liste) %>%
+  mutate(name = name %>% 
+           fct_relevel(liste) %>% 
+           fct_rev()) %>%
+  ggplot(aes(x = n_TYPMEN_new, y = value_mean, fill = name)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(value_mean, 1)), 
+            position = position_stack(.5), 
+            size = 3, 
+            family = "serif") +
+  geom_hline(yintercept = 0) +
+  labs(x = "Type de ménage", 
+       y = "Fréquence") + 
+   scale_fill_manual(
+     values =  alpha(
+       rev(c("#49006a", 
+             "#084081", "#2b8cbe","#7bccc4", "#ccebc5",
+             "#feb24c",
+             "#fcbba1", "#fb6a4a", "#de2d26")), 
+        0.5), 
+     labels = rev(c("Impôts\ndirects", "Salaires", "Revenus d'activité\nindépendante", "Chômage", "Retraites", "Transferts \nentre ménages", 
+                "Prestations \nfamiliales", "Prestations \nlogement", 
+                "Minimas \nsociaux")),
+     name = "Type de revenu :") +
+  theme_memoire() + 
+  theme(axis.line.x = element_blank())
+
+```
+
+
+
+
 ## Des arrangements fiscaux spécifiques
 
 -   exploiter la variable nombre d'avis d'impositions
+
+
+
 
 \listoftables
 
@@ -907,10 +1027,20 @@ tab$tableau %>%
 
 # Bibliographie
 
-::: {#refs}
+## Littérature 
+
+
+\setlength{\itemindent}{-.5in}
+
+::: {#refs_normal}
 :::
 
-# (APPENDIX) Annexes
+## R Packages 
+
+<!-- ::: {#refs_software} -->
+<!-- ::: -->
+
+# Annexes
 
 ## Statistiques descriptives des différentes sous-populations
 
@@ -939,9 +1069,21 @@ load("Resultats/tabs_contribmoda.Rdata")
 tab$tableau
 ```
 
-### Classification acendante herarchique
+### Classification ascendante hiérarchique
 
 ```{r clustercomposition, results = "asis", fig.cap = "Composition sociale des clusters"}
 load("Resultats/tab_culsters_composition.Rdata")
 tab$tableau
 ```
+
+## Reproductibilité
+
+L'ensemble du code à l'origine de ce travail est disponible sur mon [dépôt gitHub personnel](https://github.com/anoukmartin). Le répertoire est privé, mais l'accès peut-être fournit sur demande.
+
+Les données de l'enquête utilisée sont disponibles sur Quetlet.
+
+
+```{r}
+knitr::write_bib(file = 'Rédaction/packages.bib')
+```
+

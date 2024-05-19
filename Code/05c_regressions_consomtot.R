@@ -4,7 +4,7 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-familles <- readRDS("Data_output/famillesToutes.Rds")
+familles <- readRDS("Data_output/familles_parents.Rds")
 dic_fam<- look_for(familles)
 
 # Recodages sur familles 
@@ -44,12 +44,18 @@ names(familles)
 
 conso <- readRDS("Data_output/conso.Rds")
 dic_conso <- look_for(conso)
-
+menages <- readRDS("Data_output/menages.Rds")
 data <- left_join(familles, conso[, c("IDENT_MEN", "CTOT")])
+data <- left_join(data, 
+                  menages %>%
+                    select(NIVIE, IDENT_MEN, 
+                           REVDISP, REVTOT))
 data <- data %>%
   mutate(REVTOT = REVTOT/100, 
          CTOT = CTOT/100, 
-         REVDISP = REVDISP/100) %>% 
+         REVDISP = REVDISP/100, 
+         NIVIE/100)
+
   filter(!is.na(CTOT) & !is.na(REVDISP) 
          & !is.na(n_ParentsMenage)
          & !is.na(n_EnfantsHD)) %>%
@@ -66,16 +72,14 @@ data <- data %>%
 
 summary(data$REVTOT)
 plot(data$CTOT, data$REVTOT)
-chisq.test(data$CTOT, data$n_ParentsMenage)
+chisq.test(data$CTOT, data$n_TYPMEN_sexe)
 chisq.test(data$CTOT, data$n_EnfantsHD)
 
-reg <- lm(CTOT ~ NIVIE + n_ParentsMenage + NIVIE*n_EnfantsHD,
+reg <- lm(CTOT ~ NIVIE + n_TYPMEN_sexe,
           data = data, 
           weights = PONDFAM)
 
-tblreg1 <- tbl_regression(reg, intercept = T, 
-                          label = list(n_ParentsMenage ~ "Parents des enfants du ménage", 
-                                       n_EnfantsHD ~ "Enfants vivants hors domicile"))
+tblreg1 <- tbl_regression(reg, intercept = T)
 tblreg1
 
 ## Enregistrement des résultats ################################################

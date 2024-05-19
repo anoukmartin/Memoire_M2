@@ -4,137 +4,206 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-familles <- readRDS("Data_output/famillesToutes.Rds")
-dic_fam<- look_for(familles)
 
-# Recodages sur familles 
-familles <- familles |> 
-  mutate(
-    n_configSynth = n_configSynth |> 
-      factor(levels = unique(familles$n_configSynth)) |> 
-      fct_infreq(),
-    n_configFam = n_configFam |> 
-      factor(levels = unique(familles$n_configFam)) |> 
-      fct_infreq(), 
-    n_configFamTemp = n_configFamTemp |> 
-      factor(levels = unique(familles$n_configFamTemp)) |> 
-      fct_infreq())
-var_label(familles$n_configSynth) <- "Configuration familiale" 
-var_label(familles$n_configFam) <- "Configuration familiale"
-var_label(familles$n_configFamTemp) <- "Configuration familiale temporaire"
-var_label(familles$n_configFamSynth) <- "Configuration familiale"
+familles <- readRDS("Data_output/familles_parents.Rds") 
+menages <- readRDS("Data_output/menages.Rds")
+summary(menages$NIVIE)
+conso <- readRDS("Data_output/conso.Rds") 
+names(conso)  
+types_conso <- list(   
+  Scolaire = names(conso)[str_starts(names(conso), "C111|C112")],    
+  Vetements_enfants = names(conso)[str_starts(names(conso), "C03123|C03213")],
+  Vetements_femme = names(conso)[str_starts(names(conso), "C03122|C03212")], 
+  Vetements_homme = names(conso)[str_starts(names(conso), "C03121|C03211")],
+  Jouets = names(conso)[str_starts(names(conso), "C09311")])  
 
-conso <- readRDS("Data_output/conso.Rds")
-dic_conso <- look_for(conso)
+types_conso
+conso2 <- lapply(types_conso, function(x){   
+  tab <- conso %>%     
+    select(starts_with(x))   
+  tab <- rowSums(tab, na.rm = TRUE)   
+  consotot<- conso$CTOT %>% as.vector() 
+  nenfants <- menages$NENFANTS %>% as.vector()
+  tab <- (tab)  
+  return(tab)   } ) 
 
-# 1.1. Régression sur le montant des dépenses d'enseignement ###################
+conso2 <- conso2 %>%   
+  bind_cols() %>%   
+  as.data.frame()  
+conso2$`Consommation finale` <- conso$CTOT  
+conso2$IDENT_MEN <- menages$IDENT_MEN
+conso2$NIVIE <- menages$NIVIE
+conso2$NENFANTS2 <- menages$NENFANTS
+conso2$REVDISP <- menages$REVDISP
+conso2$COEFUC <- menages$COEFFUC
+names(data)
+data$n_NEnfantsCouple_F
 
-## calcul du montant de dépenses globale en lien avec la scolarité #############
-depScolMen <- conso |> 
-  filter(IDENT_MEN %in% familles$IDENT_MEN) |> 
-  select(c("IDENT_MEN"), starts_with("C10")) |> 
-  select(-starts_with("C1015"))
+data <- familles %>%   
+  left_join(conso2, by = "IDENT_MEN") %>%
+  mutate(n_TYPMEN_new = droplevels(n_TYPMEN_new)) %>%
+  mutate(NIVIE = NIVIE/12000) %>%
+  mutate(n_REVENUS_F = n_REVENUS_F/12000) %>%
+  mutate(n_REVENUS_H = n_REVENUS_H/12000) %>%
+  mutate(REVDISP = REVDISP/12000) %>%
+  mutate(Vetements_enfants = Vetements_enfants/n_NEnfantsMenage13) %>%
+  mutate(n_TYPFAM = n_TYPMEN_new) %>%
+  mutate(n_TYPFAM = case_when(
+    n_TYPFAM == "Recomposée" & n_NEnfantsCouple_F >=1 ~ "Recomposée avec enfants communs", 
+    n_TYPFAM == "Recomposée" & is.na(n_NEnfantsCouple_F) ~ "Recomposée sans enfants communs", 
+    TRUE ~ n_TYPFAM
+  )) %>%
+  mutate(n_TYPFAM = n_TYPFAM %>%
+           as.factor() %>%
+           fct_relevel(c("Traditionelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe")))
 
-sum <-apply(depScolMen[, -1],1,sum,na.rm=TRUE)
-familles <- bind_cols(familles, n_DepEns = sum)
-var_label(familles$n_DepEns) <- "Dépenses d'enseignement"
-var_label(familles$n_DepEns)
-rm(depScolMen, sum)
+summary(data$Vetements_enfants)
+summary(data$Vetements_femme)
+summary(data$Vetements_homme)
+names(data)
+summary(data$PONDMEN)
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 
-## Construction base de donnée sur laquelle on va travailler ###################
-names(familles)
-familles$n_NEnfantsTous
-data <- familles |>
-  mutate(n_configMenage =   fct_relevel(n_configMenage,
-    "Parents en couple", "Mère en couple", "Père en couple",
-    "Mère célibataire", "Père célibataire", "Couple sans enfant",
-    "Femme seule", "Homme seul", "Autre type de ménage (ménage complexe)"
-  )) |>
-  mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) %>% # On centre la variable de pondération
-  as_survey_design(weights = PONDFAM) |> 
-  mutate(
-    NIVIE = labelled(NIVIE/1000, 
-                     label = "Niveau de vie du ménage (en miliers d'euros)"), 
-    n_DepEnsPart = labelled(n_DepEns/REVTOT, 
-                              label = "Part des dépenses d'enseignement des les revenus totaux du ménage"), 
-    n_DepEnsEnfant = labelled(n_DepEns/n_NEnfantsTous, 
-                              label = "Montant moyen des dépenses d'enseignement par enfant"), 
-    REVTOT = labelled(REVTOT/1000, 
-                            label = "Revenus totaux du ménage (en miliers d'euros)")) %>%
-  mutate(
-    CSMEN6 = CSMEN6 %>% fct_relevel(
-    "Professions intermédiaires", "CPIS", "Employés", "Ouvriers",
-    "ACCE", "Agriculteurs"))
 
-iorder(data$n_configMenage)
-names(familles)
+# data <- data %>%
+#   as_survey_design(weights = "PONDMEN")
 
-iorder(data$CSMEN6)
-## Régression pondérée #########################################################
-reg <- svyglm(n_DepEns ~ NIVIE + n_NEnfantsTous + n_configMenage,
-              design = data)
-tblreg1 <- tbl_regression(reg, intercept = F) |>
-  add_glance_source_note() |>
-  add_global_p(keep = TRUE)
+# data$n_configMenage <- data$n_configMenage %>%
+#   fct_relevel(
+#     "Couple sans enfant",
+#     "Femme seule",
+#     "Homme seul",
+#     "Mère célibataire",
+#     "Père célibataire",
+#     "Mère en couple",
+#     "Père en couple",
+#     "Parents en couple",
+#     "Autre type de ménage (ménage complexe)"
+#   )
+
+
+## Régression pondérée dépenses enfants ########################################
+
+data$n_AgeEnfantsMenage13
+data$n_REVENUS_F
+reg <- lm(
+  Vetements_enfants ~  NIVIE + n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPFAM + n_FractionClasse,
+  data = data, 
+  weights = data$PONDMEN, 
+  subset = !is.na(Vetements_enfants))
+
+reg <- step(reg)
+tblreg1 <- tbl_regression(reg2, intercept = T) |>
+  add_glance_source_note() 
+
 
 tblreg1 
 
-## Enregistrement des résultats ################################################
-saveTableau(tblreg1, 
-            type = "Reg",
-            label = "DepEnseignement", 
-            description = "Regression sur les dépenses d'enseignement du ménage", 
-            champ = paste0(infosBDF$champ, " déclarant au moins un enfant à charge"), 
-            ponderation = TRUE, 
-            n = dim(familles)[1])
-            
+# On ajout eles revenus des parents 
+reg_fam <- update(reg, ~ . + n_TYPFAM:n_REVENUS_F)
 
-# 1.2. Régression vêtements et chaussures pour enfants #########################
-
-## calcul du montant de dépenses globale en lien avec la scolarité #############
-depVetmMen <- conso |> 
-  filter(IDENT_MEN %in% familles$IDENT_MEN) |> 
-  select(c("IDENT_MEN"), starts_with("C03123"), starts_with("C03213"))
-
-sum <-apply(depVetmMen[, -1],1,sum,na.rm=TRUE)
-familles <- bind_cols(familles, n_DepVetement = sum)
-var_label(familles$n_DepVetement) <-  "Montant des dépenses d'habillement pour enfants"
-var_label(familles$n_DepVetement)
-rm(depVetmMen, sum)
-
-
-## Construction base de donnée sur laquelle on va travailler ################### 
-dicFam <- look_for(familles)
-data <- familles |>
-  mutate(
-    n_DepVetementParEnf = labelled(n_DepVetement/n_NEnfantsTous, 
-                                   label = "Montant des dépenses d'habillement pour enfants (moyenne par enfant)"), 
-    n_DepVetementPart = labelled((n_DepVetement/REVTOT)*100, 
-                            label = "Part des dépenses d'habillement pour enfants des les revenus totaux du ménage"), 
-    NIVIE = labelled(NIVIE/100, 
-                     label = "Niveau de vie du ménage (en centaines d'euros)"), 
-    REVTOT = labelled(REVTOT/100, 
-                      label = "Revenus totaux du ménage (en centaines d'euros)"), 
-    REVDISP = labelled(REVDISP/100, 
-                      label = "Revenu disponible du ménage (en centaines d'euros)"))|>
-  mutate(PONDFAM = PONDMEN/mean(familles$PONDMEN)) |>  # On centre la variable de pondération
-  as_survey_design(weights = PONDFAM, ids = c(IDENT_MEN)) 
-
-## Régression pondérée #########################################################
-
-reg <- svyglm(n_DepVetementParEnf ~ REVDISP + n_NEnfantsTous + n_ageMoyEnfTous + CSMEN + DIP14PR + n_configSynth,
-              design = data)
-
-tblreg2 <- tbl_regression(reg, intercept = F) |>
-  add_glance_source_note() |>
-  add_global_p(keep = TRUE) 
+reg_fam <- step(reg_fam)
+tblreg2 <- tbl_regression(reg_fam, intercept = T) |>
+  add_glance_source_note() 
 tblreg2
 
+# Regression habillement femme #################################################
+unique(data$DIP7_F)
+data$DIP7_F <- data$DIP7_F %>% fct_relevel("Baccalauréat")
+unique(data$CS12_F)
+data$CS12_F <- data$CS12_F %>% fct_relevel("Médiateur-ice")
+
+# Une premièe regresion simple sans interaction Revenus F avec structure familiale
+reg1 <- lm(
+  Vetements_femme ~  NIVIE + DIP7_F + CS12_F + n_TYPFAM,
+  data = data, 
+  weights = data$PONDMEN, 
+  subset = !is.na(n_IdentIndiv_F))
+
+reg1 <- step(reg1)
+
+tblreg1 <- tbl_regression(reg1, intercept = T) |>
+  add_glance_source_note() 
+
+
+tblreg1 
+
+
+
+# Idem mais avec interaction revenu F structure familiale 
+reg2 <- update(reg1, ~ . + n_REVENUS_F:n_TYPFAM)                       
+
+reg2 <- step(reg2)
+
+tblreg2 <- tbl_regression(reg2, intercept = T) |>
+  add_glance_source_note() 
+tblreg2
+
+# library(ggstats)
+
+# library(ggstats)
+
+ggcoef_compare(models = list("Simple" = reg1,  "Avec interaction" = reg2), 
+               conf.level = 0.90, 
+               intercept = F,
+               variable_labels = list(
+                 NIVIE = "Niveau de vie du ménage", 
+                 DIP7_F = "Diplôme", 
+                 CS12_F = "CSP", 
+                 n_TYPFAM = "Type de ménage", 
+                 n_REVENUS_F = "Revenus"),
+               type = "faceted") +
+  theme_tufte()
+
+
+
+# Regression habillement homme #################################################
+
+unique(data$DIP7_H)
+data$DIP7_H <- data$DIP7_H %>% fct_relevel("Baccalauréat")
+freq(data$CS12_H)
+data$CS12_H <- data$CS12_H %>% fct_relevel("Médiateur-ice")
+
+# Une premièe regresion simple sans interaction Revenus F avec structure familiale
+reg1 <- lm(
+  Vetements_homme ~  NIVIE + DIP7_H + CS12_H + n_TYPFAM,
+  data = data, 
+  weights = data$PONDMEN, 
+  subset = !is.na(n_IdentIndiv_H))
+
+reg1 <- step(reg1)
+
+tblreg1 <- tbl_regression(reg1, intercept = T) |>
+  add_glance_source_note() 
+
+
+tblreg1 
+
+
+# Idem mais avec interaction revenu F structure familiale 
+reg2 <- update(reg1, ~ . + n_REVENUS_H:n_TYPFAM)                       
+
+reg2 <- step(reg2)
+
+tblreg2 <- tbl_regression(reg2, intercept = T) |>
+  add_glance_source_note() 
+tblreg2
+
+# library(ggstats)
+
+ggcoef_compare(models = list("Simple" = reg1,  "Avec interaction" = reg2), 
+               conf.level = 0.90, 
+               type = "faceted")
+
+
+
+
 ## Enregistrement des résultats ################################################
-saveTableau(tblreg2, 
-            type = "Reg",
-            label = "DepHabillement", 
-            description = "Regression sur les dépenses d'habillement pour enfants", 
-            champ = paste0(infosBDF$champ, " déclarant au moins un enfant à charge"), 
+saveTableau(tblreg1, 
+            type = "reg",
+            label = "DepVetement", 
+            description = "Regression sur les dépenses de vetement pour enfant du ménage", 
+            champ = paste0(infosBDF$champ, " formés par au moins un adulte agé de 25 à 65 ans et déclarant au moins un enfant à charge"), 
             ponderation = TRUE, 
-            n = dim(familles)[1])
+            n = dim(reg$data)[1])
+            

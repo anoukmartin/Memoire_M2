@@ -418,7 +418,7 @@ saveTableau(tabcontrib, type = "tabs",
 
 # on ajoute la typo sur les données familles 
 
-familles$n_FractionClasse <- typo
+familles$n_FractionClasse <- typo %>% as.factor()
 freq(familles$n_FractionClasse)
 
 saveRDS(familles, "Data_output/familles_parents.Rds")
