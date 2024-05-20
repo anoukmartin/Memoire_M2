@@ -64,6 +64,7 @@ freq(parents$n_BeauxEnfantsHD)
 freq(parents$`Aide scolaire aux enfants`)
 
 
+
 #levels(tab$n_BeauxEnfantsMen) <- c("Parent fam rec", "Beau-Parent", "Parent fam trad")
 data <- parents %>%
   mutate(n_BeauxEnfantsMen = case_when(
@@ -90,6 +91,7 @@ tab <- tbl_strata(
                                     Effectifs ~ "{N_unweighted}"),
                    value = list(travail_domestique ~ "Oui")
                    ) %>%
+    add_p()%>%
     #add_difference() %>%
     #add_overall(last = T) %>%
     add_stat_label(label = list(all_dichotomous() ~ "(%)", 
@@ -97,7 +99,7 @@ tab <- tbl_strata(
     modify_header(all_stat_cols() ~ "**{level}**\n({style_percent(p)}%)"),
   .header = "**{strata}**\n({style_percent(p)}%)") 
 
-
+tab
 margev <- data %>%
   mutate(Effectifs = "1") %>%
   tbl_svysummary(include = c(travail_domestique, "Effectifs"),

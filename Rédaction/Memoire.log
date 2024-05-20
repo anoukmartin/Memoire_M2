@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.13)  19 MAY 2024 16:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.20)  20 MAY 2024 17:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -287,7 +287,7 @@ Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2024/04/20 v24.4 The Babel package
+Package: babel 2024/05/18 v24.5 The Babel package
 \babel@savecnt=\count291
 \U@D=\dimen172
 \l@unhyphenated=\language8
@@ -745,43 +745,67 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box76
 \@float@everytoks=\toks45
 \@floatcapt=\box77
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks46
+\verbatim@line=\toks47
+\verbatim@in@stream=\read4
+) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
 )
+\tcb@titlebox=\box78
+\tcb@upperbox=\box79
+\tcb@lowerbox=\box80
+\tcb@phantombox=\box81
+\c@tcbbreakpart=\count362
+\c@tcblayer=\count363
+\c@tcolorbox@number=\count364
+\l__tcobox_tmpa_box=\box82
+\l__tcobox_tmpa_dim=\dimen313
+\tcb@temp=\box83
+\tcb@temp=\box84
+\tcb@temp=\box85
+\tcb@temp=\box86
+)
+\c@tcb@cnt@encadre=\count365
 \vspaceamount=\skip80
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
-\c@KVtest=\count362
+\c@KVtest=\count366
 \sf@farskip=\skip81
-\sf@captopadj=\dimen313
+\sf@captopadj=\dimen314
 \sf@capskip=\skip82
 \sf@nearskip=\skip83
-\c@subfigure=\count363
-\c@subfigure@save=\count364
-\c@lofdepth=\count365
-\c@subtable=\count366
-\c@subtable@save=\count367
-\c@lotdepth=\count368
+\c@subfigure=\count367
+\c@subfigure@save=\count368
+\c@lofdepth=\count369
+\c@subtable=\count370
+\c@subtable@save=\count371
+\c@lotdepth=\count372
 \sf@top=\skip84
 \sf@bottom=\skip85
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip86
-\multirow@cntb=\count369
+\multirow@cntb=\count373
 \multirow@dima=\skip87
-\bigstrutjot=\dimen314
+\bigstrutjot=\dimen315
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen315
-\WF@size=\dimen316
-\c@WF@wrappedlines=\count370
-\WF@box=\box78
-\WF@everypar=\toks46
+\wrapoverhang=\dimen316
+\WF@size=\dimen317
+\c@WF@wrappedlines=\count374
+\WF@box=\box87
+\WF@everypar=\toks48
 Package: wrapfig 2003/01/31  v 3.6
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
-\everycr=\toks47
+\everycr=\toks49
 \minrowclearance=\skip88
-\rownum=\count371
+\rownum=\count375
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
@@ -794,64 +818,134 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box79
-\sift@deathcycles=\count372
-\@vwid@loff=\dimen317
-\@vwid@roff=\dimen318
+\@vwid@box=\box88
+\sift@deathcycles=\count376
+\@vwid@loff=\dimen318
+\@vwid@roff=\dimen319
 )
-\c@taburow=\count373
-\tabu@nbcols=\count374
-\tabu@cnt=\count375
-\tabu@Xcol=\count376
-\tabu@alloc=\count377
-\tabu@nested=\count378
-\tabu@target=\dimen319
-\tabu@spreadtarget=\dimen320
-\tabu@naturalX=\dimen321
-\tabucolX=\dimen322
-\tabu@Xsum=\dimen323
-\extrarowdepth=\dimen324
-\abovetabulinesep=\dimen325
-\belowtabulinesep=\dimen326
-\tabustrutrule=\dimen327
-\tabu@thebody=\toks48
-\tabu@footnotes=\toks49
-\tabu@box=\box80
-\tabu@arstrutbox=\box81
-\tabu@hleads=\box82
-\tabu@vleads=\box83
+\c@taburow=\count377
+\tabu@nbcols=\count378
+\tabu@cnt=\count379
+\tabu@Xcol=\count380
+\tabu@alloc=\count381
+\tabu@nested=\count382
+\tabu@target=\dimen320
+\tabu@spreadtarget=\dimen321
+\tabu@naturalX=\dimen322
+\tabucolX=\dimen323
+\tabu@Xsum=\dimen324
+\extrarowdepth=\dimen325
+\abovetabulinesep=\dimen326
+\belowtabulinesep=\dimen327
+\tabustrutrule=\dimen328
+\tabu@thebody=\toks50
+\tabu@footnotes=\toks51
+\tabu@box=\box89
+\tabu@arstrutbox=\box90
+\tabu@hleads=\box91
+\tabu@vleads=\box92
 \tabu@cellskip=\skip89
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box84
+\@tempboxb=\box93
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
 Package: threeparttablex 2013/07/23 v0.3 by daleif
-(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/environ/environ.sty
-Package: environ 2014/05/04 v0.3 A new way to define environments
-)
 \TPTL@width=\skip90
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box85
-\UL@hyphenbox=\box86
+\UL@box=\box94
+\UL@hyphenbox=\box95
 \UL@skip=\skip91
-\UL@hook=\toks50
-\UL@height=\dimen328
-\UL@pe=\count379
-\UL@pixel=\dimen329
-\ULC@box=\box87
+\UL@hook=\toks52
+\UL@height=\dimen329
+\UL@pe=\count383
+\UL@pixel=\dimen330
+\ULC@box=\box96
 Package: ulem 2019/11/18
-\ULdepth=\dimen330
+\ULdepth=\dimen331
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen331
-\c@nlinenum=\count380
-\TeXr@lab=\toks51
+\rotheadsize=\dimen332
+\c@nlinenum=\count384
+\TeXr@lab=\toks53
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
-\BKM@id=\count381
-)) (./Memoire.aux)
+\BKM@id=\count385
+)) (./Memoire.aux
+
+LaTeX Warning: Label `ref-algava2020' multiply defined.
+
+
+LaTeX Warning: Label `ref-bessiuxe8re2016' multiply defined.
+
+
+LaTeX Warning: Label `ref-bonvalet2003' multiply defined.
+
+
+LaTeX Warning: Label `ref-carbonnier2016' multiply defined.
+
+
+LaTeX Warning: Label `ref-cayouette-rembliuxe8re2019' multiply defined.
+
+
+LaTeX Warning: Label `ref-chiche2010' multiply defined.
+
+
+LaTeX Warning: Label `ref-delalande2010' multiply defined.
+
+
+LaTeX Warning: Label `ref-abbas2019' multiply defined.
+
+
+LaTeX Warning: Label `ref-desplanques1993' multiply defined.
+
+
+LaTeX Warning: Label `ref-desrosiuxe8res2000' multiply defined.
+
+
+LaTeX Warning: Label `ref-desrosiuxe8res2013' multiply defined.
+
+
+LaTeX Warning: Label `ref-donni2011' multiply defined.
+
+
+LaTeX Warning: Label `ref-durkheim1975' multiply defined.
+
+
+LaTeX Warning: Label `ref-lapinte2013' multiply defined.
+
+
+LaTeX Warning: Label `ref-laslett1983' multiply defined.
+
+
+LaTeX Warning: Label `ref-leplay1874' multiply defined.
+
+
+LaTeX Warning: Label `ref-martin2020' multiply defined.
+
+
+LaTeX Warning: Label `ref-martin-papineau2003' multiply defined.
+
+
+LaTeX Warning: Label `ref-parsons1968' multiply defined.
+
+
+LaTeX Warning: Label `ref-roux2010' multiply defined.
+
+
+LaTeX Warning: Label `ref-saint-pol2004' multiply defined.
+
+
+LaTeX Warning: Label `ref-singly2017' multiply defined.
+
+
+LaTeX Warning: Label `ref-stettinger2014' multiply defined.
+
+
+LaTeX Warning: Label `ref-toulemon2011' multiply defined.
+
+)
 \openout1 = `Memoire.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
@@ -990,14 +1084,17 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 
 
-{/home/onyxia/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <./ehess.png> <./ens.png>] [2] [3
+{/home/onyxia/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <./ehess.png> <./ens.png>] [2
 
-] [4
+] [3] [4
 
 ] [5] [6
 
-] (./Memoire.toc [7]
-Underfull \vbox (badness 4429) has occurred while \output is active []
+] (./Memoire.toc
+Underfull \vbox (badness 2401) has occurred while \output is active []
+
+[7]
+Underfull \vbox (badness 1354) has occurred while \output is active []
 
 [8])
 \tf@toc=\write4
@@ -1006,57 +1103,33 @@ Underfull \vbox (badness 4429) has occurred while \output is active []
 [9] [10
 
 ]
-Overfull \hbox (0.2709pt too wide) in alignment at lines 176--178
- [] 
- []
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 175.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[11]
+Overfull \vbox (41.9575pt too high) has occurred while \output is active []
 
-Overfull \hbox (0.2709pt too wide) in alignment at lines 178--180
- [] 
- []
-
-
-Overfull \hbox (7558.02469pt too wide) in paragraph at lines 181--215
+[12{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+Overfull \hbox (7558.2956pt too wide) in paragraph at lines 185--219
 \T1/lmr/m/n/12 (-20) ==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+ 
  []
 
+[13] [14
 
-Overfull \hbox (0.2709pt too wide) in alignment at lines 180--215
- [] 
- []
-
-[11] [12]
-Underfull \hbox (badness 1292) in paragraph at lines 221--221
+]
+Underfull \hbox (badness 1292) in paragraph at lines 225--225
 |\T1/lmr/bx/n/24.88 (+20) Chapitre 1. Sai-sir les re-mises en
  []
 
-[13
-
-]
+[15]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 269.
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[14]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[15]
+(Font)              <5> on input line 277.
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1066,6 +1139,9 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 
 [16]
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
 (fancyhdr)                \setlength{\headheight}{27.85004pt}.
@@ -1073,11 +1149,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [17]
-<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=252, 505.89pt x 252.945pt>
-File: Memoire_files/figure-latex/mosaic-enfants-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/mosaic-enfants-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/mosaic-enfants-1.pdf  used on input line 508.
-(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1085,14 +1156,8 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[18 <./Memoire_files/figure-latex/mosaic-enfants-1.pdf>]
-<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=270, 505.89pt x 252.945pt>
-File: Memoire_files/figure-latex/mosaic-adultes-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/mosaic-adultes-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/mosaic-adultes-1.pdf  used on input line 555.
-(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[18]
+Underfull \vbox (badness 2088) has occurred while \output is active []
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1102,6 +1167,12 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [19]
+<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=271, 505.89pt x 252.945pt>
+File: Memoire_files/figure-latex/mosaic-enfants-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/mosaic-enfants-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-enfants-1.pdf  used on input line 516.
+(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1111,17 +1182,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[20 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>]
-<Memoire_files/figure-latex/histosexeadultes-1.pdf, id=294, 505.89pt x 303.1325pt>
-File: Memoire_files/figure-latex/histosexeadultes-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/histosexeadultes-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/histosexeadultes-1.pdf  used on input line 600.
-(pdftex.def)             Requested size: 318.67378pt x 190.95135pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 687.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+[20]
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1129,9 +1190,12 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[21 <./Memoire_files/figure-latex/histosexeadultes-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+[21 <./Memoire_files/figure-latex/mosaic-enfants-1.pdf>]
+<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=294, 505.89pt x 252.945pt>
+File: Memoire_files/figure-latex/mosaic-adultes-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/mosaic-adultes-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-adultes-1.pdf  used on input line 563.
+(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1139,8 +1203,30 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[22]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[22 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>]
+Overfull \hbox (5.16064pt too wide) in paragraph at lines 611--611
+[]|\T1/lmr/bx/n/12 (-20) n_AgeEnfantsCoupleHD|  
+ []
+
+
+Overfull \hbox (9.54843pt too wide) in paragraph at lines 614--614
+[]|\T1/lmr/bx/n/12 (-20) n_NEnfantsUnionAntHD|  
+ []
+
+
+Overfull \hbox (21.84647pt too wide) in paragraph at lines 620--620
+[]|\T1/lmr/bx/n/12 (-20) n_AgeEnfantsUnionAntHD|  
+ []
+
+
+Overfull \hbox (9.54843pt too wide) in paragraph at lines 659--659
+[]|\T1/lmr/bx/n/12 (-20) n_NEnfantsUnionAntHD|  
+ []
+
+
+Overfull \hbox (21.84647pt too wide) in paragraph at lines 665--665
+[]|\T1/lmr/bx/n/12 (-20) n_AgeEnfantsUnionAntHD|  
+ []
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1150,6 +1236,8 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1158,15 +1246,24 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [24]
+<Memoire_files/figure-latex/histosexeadultes-1.pdf, id=322, 505.89pt x 303.1325pt>
+File: Memoire_files/figure-latex/histosexeadultes-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/histosexeadultes-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/histosexeadultes-1.pdf  used on input line 698.
+(pdftex.def)             Requested size: 318.67378pt x 190.95135pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 785.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Memoire_files/figure-latex/heatmapdiplome-1.pdf, id=322, 650.43pt x 389.455pt>
-File: Memoire_files/figure-latex/heatmapdiplome-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/heatmapdiplome-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/heatmapdiplome-1.pdf  used on input line 910.
-(pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
 
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[25 <./Memoire_files/figure-latex/histosexeadultes-1.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1176,32 +1273,17 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[25]
-Overfull \vbox (124.58617pt too high) has occurred while \output is active []
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[26 <./Memoire_files/figure-latex/heatmapdiplome-1.pdf>]
-<Memoire_files/figure-latex/heatmapCSP-1.pdf, id=341, 650.43pt x 389.455pt>
-File: Memoire_files/figure-latex/heatmapCSP-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/heatmapCSP-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/heatmapCSP-1.pdf  used on input line 935.
-(pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[27 <./Memoire_files/figure-latex/heatmapCSP-1.pdf>]
+[26]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[27]
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1210,7 +1292,16 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [28]
-Underfull \vbox (badness 6016) has occurred while \output is active []
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<Memoire_files/figure-latex/heatmapdiplome-1.pdf, id=351, 650.43pt x 389.455pt>
+File: Memoire_files/figure-latex/heatmapdiplome-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/heatmapdiplome-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/heatmapdiplome-1.pdf  used on input line 1008.
+(pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1220,6 +1311,8 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [29]
+Overfull \vbox (124.58617pt too high) has occurred while \output is active []
+
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1227,17 +1320,22 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[30]
+[30 <./Memoire_files/figure-latex/heatmapdiplome-1.pdf>]
+<Memoire_files/figure-latex/heatmapCSP-1.pdf, id=369, 650.43pt x 389.455pt>
+File: Memoire_files/figure-latex/heatmapCSP-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/heatmapCSP-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/heatmapCSP-1.pdf  used on input line 1033.
+(pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[31 <./Memoire_files/figure-latex/heatmapCSP-1.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[31]
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1246,7 +1344,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6016) has occurred while \output is active []
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1256,11 +1354,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [33]
-<Memoire_files/figure-latex/clusterposition-1.pdf, id=379, 505.89pt x 404.51125pt>
-File: Memoire_files/figure-latex/clusterposition-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/clusterposition-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/clusterposition-1.pdf  used on input line 1218.
-(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1268,7 +1361,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[34 <./Memoire_files/figure-latex/clusterposition-1.pdf>]
+[34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1279,8 +1372,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [35]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1289,9 +1380,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [36]
-Overfull \hbox (66.22127pt too wide) in paragraph at lines 1344--1368
- [][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1301,6 +1390,11 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [37]
+<Memoire_files/figure-latex/clusterposition-1.pdf, id=408, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/clusterposition-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/clusterposition-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/clusterposition-1.pdf  used on input line 1316.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1308,130 +1402,304 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[38
+[38 <./Memoire_files/figure-latex/clusterposition-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [39]
-Underfull \vbox (badness 4940) has occurred while \output is active []
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[39]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [40]
-Overfull \hbox (341.75455pt too wide) in paragraph at lines 1487--1517
+Overfull \hbox (66.22127pt too wide) in paragraph at lines 1442--1466
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1529--1533
-[]\T1/lmr/m/n/12 (+20) regarder, comme pour les en-fants, les dé-penses in-di-vi-dua-li-sables
- []
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
+[41]
 
-Underfull \hbox (badness 1360) in paragraph at lines 1529--1533
-\T1/lmr/m/n/12 (+20) hommes/femmes, no-tam-ment les vê-te-ments (+ il a de la lit-té-ra-ture
- []
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[41] [42] [43] [44
+[42
 
-]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1686.
-(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+] [43] [44] [45] [46]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \vbox (badness 4531) has occurred while \output is active []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[45] [46{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [47
 
-] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 1874--1887
-
+Underfull \hbox (badness 10000) in paragraph at lines 1773--1777
+[]\T1/lmr/m/n/12 (+20) regarder, comme pour les en-fants, les dé-penses in-di-vi-dua-li-sables
  []
 
-<Memoire_files/figure-latex/unnamed-chunk-13-1.pdf, id=457, 505.89pt x 404.51125pt>
-File: Memoire_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 1890.
-(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
-[49] [50 <./Memoire_files/figure-latex/unnamed-chunk-13-1.pdf>] (./Memoire.lot)
-\tf@lot=\write5
-\openout5 = `Memoire.lot'.
+
+Underfull \hbox (badness 1360) in paragraph at lines 1773--1777
+\T1/lmr/m/n/12 (+20) hommes/femmes, no-tam-ment les vê-te-ments (+ il a de la lit-té-ra-ture
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[47]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[48] [49] [50]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [51
 
-] [52
+] [52] [53
+
+] [54] [55] [56] [57]
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2272
+
+ []
+
+[58]
+<Memoire_files/figure-latex/unnamed-chunk-13-1.pdf, id=516, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 2275.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
+[59 <./Memoire_files/figure-latex/unnamed-chunk-13-1.pdf>] [60
+
+] (./Memoire.lot)
+\tf@lot=\write5
+\openout5 = `Memoire.lot'.
+
+[61] [62
 
 ] (./Memoire.lof)
 \tf@lof=\write6
 \openout6 = `Memoire.lof'.
 
-[53] [54
+[63] [64
 
 ]
 Underfull \vbox (badness 1838) has occurred while \output is active []
 
-[55]
+[65]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[56] [57] [58
+[66]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-algava2020}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2436 \bibitem[\citeproctext]{ref-algava2020}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2016}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2442 ...item[\citeproctext]{ref-bessiuxe8re2016}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bonvalet2003}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2448 \bibitem[\citeproctext]{ref-bonvalet2003}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-carbonnier2016}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2453 \bibitem[\citeproctext]{ref-carbonnier2016}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cayouette-rembliuxe8re2019}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2459 ...roctext]{ref-cayouette-rembliuxe8re2019}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-chiche2010}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2465 \bibitem[\citeproctext]{ref-chiche2010}
+                                              
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[67]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delalande2010}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2471 \bibitem[\citeproctext]{ref-delalande2010}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-abbas2019}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2476 \bibitem[\citeproctext]{ref-abbas2019}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desplanques1993}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2485 ...item[\citeproctext]{ref-desplanques1993}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2000}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2489 ...m[\citeproctext]{ref-desrosiuxe8res2000}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2493 ...m[\citeproctext]{ref-desrosiuxe8res2013}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-donni2011}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2499 \bibitem[\citeproctext]{ref-donni2011}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-durkheim1975}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2505 \bibitem[\citeproctext]{ref-durkheim1975}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lapinte2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2509 \bibitem[\citeproctext]{ref-lapinte2013}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-laslett1983}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2513 \bibitem[\citeproctext]{ref-laslett1983}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-leplay1874}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2518 \bibitem[\citeproctext]{ref-leplay1874}
+                                              
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[68]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martin2020}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2524 \bibitem[\citeproctext]{ref-martin2020}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martin-papineau2003}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2530 ...[\citeproctext]{ref-martin-papineau2003}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-parsons1968}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2537 \bibitem[\citeproctext]{ref-parsons1968}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roux2010}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2541 \bibitem[\citeproctext]{ref-roux2010}
+                                            
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-saint-pol2004}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2545 \bibitem[\citeproctext]{ref-saint-pol2004}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-singly2017}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2551 \bibitem[\citeproctext]{ref-singly2017}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-stettinger2014}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2555 \bibitem[\citeproctext]{ref-stettinger2014}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-toulemon2011}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2561 \bibitem[\citeproctext]{ref-toulemon2011}
+                                                 [69] [70
 
 ]
-Overfull \hbox (7.18471pt too wide) in paragraph at lines 2025--2025
+Overfull \hbox (7.18471pt too wide) in paragraph at lines 2574--2574
 |\T1/lmr/bx/n/17.28 (-20) Statistiques des-crip-tives des dif-fé-rentes sous-populations| 
  []
 
-<Memoire_files/figure-latex/statdesenfants-1.pdf, id=620, 505.89pt x 404.51125pt>
+<Memoire_files/figure-latex/statdesenfants-1.pdf, id=733, 505.89pt x 404.51125pt>
 File: Memoire_files/figure-latex/statdesenfants-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/statdesenfants-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 2029.
+Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 2578.
 (pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[59 <./Memoire_files/figure-latex/statdesenfants-1.pdf>] [60] [61] [62] [63] [64]
-Overfull \hbox (435.18532pt too wide) in alignment at lines 2405--2410
+[71 <./Memoire_files/figure-latex/statdesenfants-1.pdf>] [72] [73] [74] [75] [76]
+Overfull \hbox (435.18532pt too wide) in alignment at lines 2954--2959
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (435.18532pt too wide) in alignment at lines 2410--2415
+Overfull \hbox (435.18532pt too wide) in alignment at lines 2959--2964
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (435.18532pt too wide) in alignment at lines 2415--2417
+Overfull \hbox (435.18532pt too wide) in alignment at lines 2964--2966
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (435.18532pt too wide) in alignment at lines 2417--2424
+Overfull \hbox (435.18532pt too wide) in alignment at lines 2966--2973
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (435.18532pt too wide) in alignment at lines 2424--2581
+Overfull \hbox (435.18532pt too wide) in alignment at lines 2973--3130
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
-[65] [66] [67] [68] [69] [70] (./Memoire.aux)
+[77] [78] [79] [80] [81] [82] (./Memoire.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 31054 strings out of 475949
- 574172 string characters out of 5789543
- 2086751 words of memory out of 5000000
- 52228 multiletter control sequences out of 15000+600000
- 652420 words of font info for 208 fonts, out of 8000000 for 9000
+ 33173 strings out of 475949
+ 628652 string characters out of 5789543
+ 2087751 words of memory out of 5000000
+ 54263 multiletter control sequences out of 15000+600000
+ 658163 words of font info for 235 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 109i,18n,107p,1489b,771s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
-Output written on Memoire.pdf (70 pages, 684057 bytes).
+ 109i,18n,107p,2998b,771s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
+Output written on Memoire.pdf (82 pages, 750813 bytes).
 PDF statistics:
- 929 PDF objects out of 1000 (max. 8388607)
- 799 compressed objects within 8 object streams
- 171 named destinations out of 1000 (max. 500000)
- 53703 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1061 PDF objects out of 1200 (max. 8388607)
+ 914 compressed objects within 10 object streams
+ 198 named destinations out of 1000 (max. 500000)
+ 57815 words of extra memory for PDF output out of 61914 (max. 10000000)
 

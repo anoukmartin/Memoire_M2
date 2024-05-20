@@ -87,17 +87,27 @@ data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 data$n_AgeEnfantsMenage13
 data$n_REVENUS_F
 reg <- lm(
-  Vetements_enfants ~  NIVIE + n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPFAM + n_FractionClasse,
+  Vetements_enfants ~  n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
   data = data, 
   weights = data$PONDMEN, 
   subset = !is.na(Vetements_enfants))
 
 reg <- step(reg)
-tblreg1 <- tbl_regression(reg2, intercept = T) |>
+tblreg1 <- tbl_regression(reg, intercept = T) |>
   add_glance_source_note() 
 
 
 tblreg1 
+
+# On enregistre 
+saveTableau(tableau = tblreg1, 
+            typ = "reg", 
+            label = "DepVetementEnfants", 
+            description = "Regressions sur les dépenses de vetement par enfants", 
+            champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
+            n = tblreg1$table_styling$source_note, 
+            ponderation = T)
+
 
 # On ajout eles revenus des parents 
 reg_fam <- update(reg, ~ . + n_TYPFAM:n_REVENUS_F)

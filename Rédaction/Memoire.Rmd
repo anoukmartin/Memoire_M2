@@ -15,34 +15,34 @@ documentclass: book
 editor_options: 
   chunk_output_type: console
 bibliography_software: packages.bib
-bibliography_normal: references_memoire.bib
+bibliography: references_memoire.bib
 csl: revue-francaise-de-sociologie.csl
 ---
 
 \makethesistitle
 
+\thispagestyle{empty}
 
-% Blankpage pour la page 2 :
-\thispagestyle{empty} 
-
-
+```{=tex}
 \chapter*{Remerciements}
 \markboth{Remerciements}{Remerciements}
 \addcontentsline{toc}{chapter}{Remerciements}
 \blindtext
-
-
+```
+```{=tex}
 \chapter*{Résumé et mots clés}
 \markboth{Résumé}{Résumé}
 \addcontentsline{toc}{chapter}{Résumé}
 \blindtext
-\paragraph{Mots-clés} mot, mot, mot
+\paragraph{Mots-clés}
+```
+mot, mot, mot
 
-
+```{=tex}
 \tableofcontents
 \markboth{Table des matières}{Table des matières}
 \addcontentsline{toc}{chapter}{Table des matières}
-
+```
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(
@@ -63,11 +63,9 @@ source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 ```
 
-
 \newpage
 
 # Introduction
-
 
 ```{r, eval = FALSE}
 
@@ -107,28 +105,26 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 
 ```
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Consignes mémoire                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-+==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-| 1 – Introduction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 1.1 - Construction de l’objet (10 pages / 30 000 signes) Revue de littérature française et/ou internationale Énoncé de la question de recherche et développement de la problématique. Annonce du plan et de la logique des différentes parties (« sous-questions »).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 1.2 - Présentation des données (3 pages ou 20 pages suivant l’intensité du travail demandé) Choix des sources et modes de collecte de la base de données Base de données originale : Description de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Aspiration de données web : mode d’aspiration, origine et types de données collectées, apurement de la base… Utilisation de bases de données déjà construites, obtenues par l’intermédiaire du Centre Quételet ou d’autres fournisseurs : Détails de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Structure et contenu de la base de données utilisée Date de collecte des données et date de production de la base Population concernée, nombre d’individus Nature des variables utilisées Intérêts et limites des données pour la question de recherche |
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **2 - Développement** Suivant les chapitres annoncés dans l’introduction (minimum 2, rarement plus de 5). Dans chaque chapitre : - Quelle est la question traitée ? - Quelles sont les méthodes utilisées permettant d’y répondre ? - Résultats importants (ne pas commenter intégralement les tableaux) - Commentaires et analyse distanciée - Positionnement par rapport à la littérature sur le sujet (compléments, différences, etc). - Discussions sur les précautions à prendre sur l’utilisation des données, sur l’interprétation des méthodes et résultats. - Conclusions : quel est l’apport à la question initiale ? Transition vers chapitre suivant.                                                                                                                                                                                                                                                            |
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **3 - Conclusion (3 pages/10 000 signes)** Rappel de la question de départ, des données et des méthodes. Synthèse des principaux résultats. Retour réflexif sur l’apport et les limites du mémoire. Références bibliographiques                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```{=tex}
+\begin{encadre}{Enquête Budget de famille 2017}
+L’enquête Budget des familles qui présente plusieurs avantages. Elle fournit un descriptif de tous les habitants du ménage et pas seulement de ceux concernés par l’enquête. Pour chacun d’entre eux, les liens avec les autres membres du ménage sont renseignés. Elle permet donc d’identifier les ménages correspondant à des familles recomposées. Le module destiné aux enfants résidants hors domicile permet également d’identifier les familles recomposées ponctuellement par les visites des enfants. En d’autres termes, cette enquête permet de dépasser l’unité statistique du ménage à la fois en interne et en externe. La taille de l’échantillon de l’enquête Budget des familles (n = 29 000) permet également d’espérer obtenir des effectifs suffisant dans la catégorie de « famille recomposée ». En outre, le volet 2017 contient un sur-échantillon de 2000 familles monoparentales qui permettra d’augmenter la significativité des comparaisons. Les informations détaillées sur chacun des membres du ménage, ainsi que sur les enfants hors domicile permettront de caractériser sociologiquement très finement ces familles. Grâce aux informations détaillées sur chacun des membres présentes dans l’enquête Budgets des familles, il est possible de comparer les situations individuelles des conjoints, notamment en termes de volume et de structure de revenus. Ensuite, cette enquête recense les dépenses individuelles de tous les individus de plus de 14 ans appartenant au ménage enquêté, y compris les services non-rémunérés effectués au sein du ménage. Ceci permet à la fois de saisir ce qui est dépensé par chacun des membres et le travail domestique effectué par ceux-ci, en d’autres termes leurs contributions matérielles aux charges du ménage. Il est ainsi possible de comparer la manière dont les individus contribuent à la production domestique dans les familles recomposées, nucléaires ou monoparentales entre les différents types de familles recomposées (selon que la famille est recomposée par un homme, une femme ou les deux, selon que les conjoints ont des enfants communs ou non). Un intérêt particulier sera porté aux dépenses et services qui concernent les enfants afin de mieux comprendre les modalités de leur prise en charge selon le sexe des conjoints. L’économie domestique ne se borne pas non plus aux frontières du logement. Les variables concernant les dépenses effectuées pour les enfants hors domicile seront également exploitées. La délégation d’une partie du travail domestique ou parental par recours au marché sera également étudiée. Enfin les montants précis des allocations perçues, des pensions alimentaires reçues et des impôts dû permettra, par la comparaison avec les familles monoparentales et les familles nucléaires, de donner quelques premières pistes sur les conséquences économiques des recompositions familiales.
+\end{encadre}
+```
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Consignes mémoire \| ==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+ 1 – Introduction \| 1.1 - Construction de l’objet (10 pages / 30 000 signes) Revue de littérature française et/ou internationale Énoncé de la question de recherche et développement de la problématique. Annonce du plan et de la logique des différentes parties (« sous-questions »). \| \| 1.2 - Présentation des données (3 pages ou 20 pages suivant l’intensité du travail demandé) Choix des sources et modes de collecte de la base de données Base de données originale : Description de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Aspiration de données web : mode d’aspiration, origine et types de données collectées, apurement de la base… Utilisation de bases de données déjà construites, obtenues par l’intermédiaire du Centre Quételet ou d’autres fournisseurs : Détails de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Structure et contenu de la base de données utilisée Date de collecte des données et date de production de la base Population concernée, nombre d’individus Nature des variables utilisées Intérêts et limites des données pour la question de recherche \| \| **2 - Développement** Suivant les chapitres annoncés dans l’introduction (minimum 2, rarement plus de 5). Dans chaque chapitre : - Quelle est la question traitée ? - Quelles sont les méthodes utilisées permettant d’y répondre ? - Résultats importants (ne pas commenter intégralement les tableaux) - Commentaires et analyse distanciée - Positionnement par rapport à la littérature sur le sujet (compléments, différences, etc). - Discussions sur les précautions à prendre sur l’utilisation des données, sur l’interprétation des méthodes et résultats. - Conclusions : quel est l’apport à la question initiale ? Transition vers chapitre suivant. \| \| **3 - Conclusion (3 pages/10 000 signes)** Rappel de la question de départ, des données et des méthodes. Synthèse des principaux résultats. Retour réflexif sur l’apport et les limites du mémoire. Références bibliographiques \| |
 
 ------------------------------------------------------------------------
 
-# Chapitre 1. Saisir les remises en couple, repérer les familles recomposées. Faire (avec) le ménage.
+# Chapitre 1. Saisir les remises en couple, repérer les familles recomposées. Faire (avec) le ménage dans les données.
 
 La construction de typologie familiales selon la composition des groupes domestiques et la structure des relations entre individus résidant ensemble est un exercice classique en sociologie de la famille [@leplay1874; @durkheim1975; @parsons1968] et en anthropologie sociale [@laslett1983; @goldelier]. Pour ces auteurs, décrire les formes que prennent la famille permet d'analyser l'évolution des relations entre apparentés dans le temps, et plus généralement d'inférer des changements macro-sociologiques. Se faisant, ces typologies tendent à sur ou sous-estimer le caractère nouveau de certaines formes identifiées. Par ailleurs, comme toute typologie, elles échouent à prendre en compte la diversité des formes familiales ainsi que leur relative fluidité au cours de la vie d'un individu. Il ne s'agit donc pas ici, de proposer une nouvelle typologie des formes familiales, qui saisirait mieux que d'autres la réalité sociologique des familles ou les évolutions récentes de la société, mais simplement de proposer des catégories opérantes pour l'analyse des relations économiques au sein de la famille.
 
 ## Les familles recomposées en ménage statistiques
 
-### De la composition familiale à la configuration familiale
+citer Toulemont, les pères dans la stat et **Évolution des situations familiales à travers les recensements français de 1962 à 2009**
+
+### De la composition à la configuration familiale
 
 Alors que dans les années 1970, la monoparentalité est constituée en une catégorie statistique capable d'éclairer l'administration de cette population [@martin-papineau2003], les familles recomposées et les familles nucléaires continuent d'être assimilées dans la plupart des enquêtes statistiques. Avant 1990, la majorité des enquêtes statistiques ne permettent tout simplement pas de les distinguer [@desplanques1993]. Aujourd'hui, si elles sont identifiables, elle ne sont pas *a priori* distinguées des familles nucléaires. La mise en place du tronc commun des enquêtes ménages (TCM), module de questions commun à une grande partie des enquêtes ménages de l'INSEE, à partir de 1990 a participé à l'uniformisation des variables codant les catégories de ménages. Ainsi le type de ménage est généralement codé en cinq catégories héritières de la typologie de @laslett1983 : "Personne seule", "Couple sans enfant", "Couple avec au moins un enfant", "Famille monoparentale", et "Autre type de ménage (ménage complexe)", comme c'est le cas dans l'enquête `r infosBDF$nom` (2017).
 
@@ -476,6 +472,61 @@ g +
 
 A partir des variables ainsi produites sur les parents, nous avons pu identifier les personnes en couple. Pour classer les différents ménages en fonction de leur structure familiale, seuls les couples dont au moins un des deux membres était personne de référence du ménage ont été retenus. En reprenant la typologie de ménage de l'Insee (Personne seule sans enfant, personne seule avec enfant, couple sans enfants, couple avec enfants et ménages complexes) nous avons distingué, parmi les couples avec enfants, ceux dont au moins ceux dont au moins un des membres était beau-père ou belle-mère d'enfants vivants dans le ménage de ceux ou l'ensemble des enfants du ménage étaient issus de l'union conjugale actuelle. Les familles recomposées sont ainsi au nombre de 634 dans l'enquête. Elle représentent 4% des ménages formées par au moins un adulte âgé d'au moins 25 ans et de moins de 65 ans et 8,5% de ces ménages vivants avec un ou des enfants, contre 23,8% de familles monoparentales et 67,7% de familles traditionnelles.
 
+```{r}
+
+parents <- readRDS("Data_output/parents.Rds")
+familles <- readRDS("Data_output/familles_parents.Rds") %>%
+  filter(n_TYPMEN_new == "Recomposée")
+
+parents <- parents %>%
+  filter(n_IdentIndiv %in% familles$n_IdentConjoint_F 
+         | n_IdentIndiv %in% familles$n_IdentConjoint_H) %>%
+  left_join(familles %>% select(IDENT_MEN, n_TYPMEN_new, n_TYPMEN_sexe), 
+            by = "IDENT_MEN") 
+
+
+variables <- c("n_NEnfantsCouple", "n_AgeEnfantsCouple", 
+               "n_NEnfantsUnionAnt", "n_AgeEnfantsUnionAnt", 
+               "n_NEnfantsMen", "n_AgeEnfantsMen")
+
+variablesHD <- c("n_NEnfantsCoupleHD", "n_AgeEnfantsCoupleHD", 
+               "n_NEnfantsUnionAntHD", "n_AgeEnfantsUnionAntHD", 
+               "n_NEnfantsHD", "n_AgeEnfantsHD")
+
+parents <- parents %>%
+  rec_SEXE() %>%
+  rec_NENFANTS(Var = "n_NEnfantsMen") %>%
+  rec_NENFANTS(Var = "n_NEnfantsUnionAnt") %>%
+  rec_NENFANTS(Var = "n_NEnfantsCouple") %>%
+  rec_NENFANTS(Var = "n_NEnfantsHD") %>%
+  rec_NENFANTS(Var = "n_NEnfantsUnionAntHD") %>%
+  rec_NENFANTS(Var = "n_NEnfantsCoupleHD")
+parents$PONDIND <- parents$PONDIND/mean(parents$PONDIND)
+
+tab <- parents %>%
+  mutate(Effectifs = "1") %>%
+  as_survey_design(weights = PONDIND) %>%
+  tbl_svysummary(by = "SEXE", 
+                 include = c(variablesHD, "Effectifs"), 
+                 type = list(all_continuous2() ~ "continuous", 
+                             Effectifs = "dichotomous"),
+                 statistic = list(all_continuous() ~ "{mean} ans", 
+                                  all_categorical() ~ "{p}%", 
+                                  Effectifs = "{n_unweighted}"), 
+                 missing = "no") %>%
+  add_p()
+
+tab 
+
+tab$table_body$label[c(1, 8, 15)] <- c("Union actuelle", "Union(s) anterieure(s)", "Ensemble")
+tab$table_body$label[c(7, 14, 21)] <- "Age moyen"
+tab$table_styling$header$label[6] <- "**Enfant(s) issu(s) de**"
+tab
+
+
+
+```
+
 [Peut-être faire carrément une autre sous partie avec une description de la composition des ménages dans les cas de configuration recomposées ? age des enfants, couples de mêmes sexe ....]
 
 ```{r percent_fam, include = F}
@@ -521,6 +572,7 @@ ggduo(
   ylab = "Homme"
 )
 
+tab
 
 ```
 
@@ -533,7 +585,7 @@ load("Resultats/barplot_BPSexe.Rdata")
 tab$tableau
 ```
 
-### Se remettre en couple quand on a des enfants 
+### Se remettre en couple quand on a des enfants
 
 Les parents remis en couple présentent des caractéristiques sociales spécifiques par rapport à ceux en couple avec l'autre parent de leurs enfants et ceux célibataires.
 
@@ -677,53 +729,103 @@ tab$tableau %>%
 
 ## Faire l'économie des ménages recomposées
 
-### Le ménage, de l'unité d'enquête à la catégorie statistique
+La quantification suppose un travail de construction de catégories de pensée et de classification concrètes par lequel est circonscrit un phénomène, avant de pouvoir le quantifier [@desrosières2013]. Dans l'enquête budget de famille, qui fait figure de référence sur l'économie domestique, l'unité "ménage" occupe une place centrale : l'ensemble des consommations et une part importante des dépenses et des revenus sont récoltées à l'échelle du ménage. Support des techniques d’échantillonnage, unité de compte, catégorie d’analyse, le "ménage" reste plus généralement au cœur de la production de données dans la statistique publique. Il ne va pourtant pas de soi, ni dans la forme actuelle qu’il prend, ni dans son existence même. À la fin du XIXème et au début XXème siècle, les statistiques vont progressivement s'autonomiser des demandes ponctuelles des administrations pour se routiniser [@desrosières]. À cette occasion, le ménage apparaît comme l’instrument de l'uniformisation des récoltes statistiques. Il se diffuse dans les enquêtes, qui se font plus régulières.
 
+### De la catégorie administrative à la catégorie statistique : naissance du ménage comme unité budgétaire
 
-revoir le titre
+Au XIVe siècle, alors que les ancêtres des premiers recensements sont mis en place, des listes de « feux » sont constituées. En comptant les « feux », on compte les foyers, les logements, autour desquelles les groupes familiaux vivent. Ces inventaires servent à constituer une base permettant le prélèvement de l’impôt [@saint-pol2004]. En France, après la révolution, l’impôt est d’abord assis sur le logement et la propriété foncière (pour trois des « quatre vielles »), ce qui explique que le recensement compte les logements [@delalande2010]. Après la Première Guerre mondiale, la mise en place d’un impôt sur le revenu progressif en lieu et place de la proportionnalité de la contribution personnelle et mobilière impose de considérer la familialisation de celui-ci [@carbonnier2016]. Des lors les revenus du chef de famille sont imposés en fonction de la liste des individus considéré à sa charge. La genèse du ménage comme catégorie statistique est imbriquée dans celle du foyer fiscal comme catégorie administrative. Selon Olivier Martin, ces premières enquêtes constituent des techniques d’Etat : "*ces enquêtes ne sont pas liées à des préoccupations d’ordre scientifique : il ne s’agit pas d’établir des connaissances savantes sur les faits économiques, démographiques ou sociographiques. La visée est pragmatique*" [@martin2020, p.77].
 
-> socio-histoire du ménage comme unité stat -\> blabla habituel
+Pour autant, le ménage n’est pas qu’une simple traduction d’une catégorie administrative dans l’appareil statistique, il répond aussi aux préoccupations spécifiques au déploiement et au renforcement de celui-ci. Comme l'a montré Alain Desrosières [-@desrosières2000], au début du XXème siècle, au fur et à mesure que les enquêtes se font plus routinières et thématisées, on cherche à limiter les coûts de celles-ci. Les progrès mathématiques en probabilités favorisent le développement des techniques d’échantillonnages. Ces techniques permettent d’enquêter moins d’individus tout en conservant la représentativité de l’enquête. Ce sont les recensements qui vont servir de base de sondage de sorte que ce ne sont pas les individus mais les logements qui sont alors tirés au sort. Le logement apparaît aussi comme un lieu d’enquête commode pour les enquêteurs. Le ménage alors définit comme ensemble des habitants apparentés d'un logement est ainsi une unité d’enquête qui correspond à organisation matérielle de la production des données.
 
-### Un "cache-sexe" des pratiques économiques
+Avec le développement de l'appareil statistique d’État, la définition du ménage se précise. Après la seconde guerre mondiale le ménage est progressivement distingué de la famille : à partir de 1946, les liens entre le chef de ménage et les autres membres de celui-ci ne sont plus nécessairement des liens familiaux. Plus récemment, le ménage est partiellement distingué du logement. Depuis 2005, le Tronc commun des ménages permet de repérer des "*unités de vie*" au sein d'un même logement qui servent de base à la définition des frontières du ménage. Le ménage est alors l'ensemble des individus partageaint un logement et un budget. Le ménage est ainsi aujourd'hui avant tout une unité budgétaire.
 
+```{=tex}
+\begin{encadre}{Définition du ménage selon INSEE (2024)}
 
-Dans Angèle Jannot
-"Concernant la répartition et la consommation différenciées des biens et services au sein d'une famille, il existe encore peu d'études notamment parce que les grandes enquêtes statistiques en France permettent seulement d'interroger et de comparer la consommation relative de différents ménages et non les différences de consommation entre les individus (Roy, 2006). Pourtant, la consommation au sein des ménages est différentielle tant d'un point de vue quantitatif que qualitatif, notamment selon le genre et l'âge des membres de la famille (Delphy et Léonard, 1992)"
+Est considéré comme un \textbf{ménage} l'ensemble des personnes (apparentées ou non) qui partagent de manière habituelle un même logement (que celui-ci soit ou non leur résidence principale) et qui ont un budget en commun.
+
+La \textbf{résidence habituelle} est le logement dans lequel on a l'habitude de vivre.
+
+Font donc partie du même ménage des personnes qui ont un \textbf{budget commun}, c'est-à-dire :
+
+\begin{enumerate}
+
+\item{qui apportent des ressources servant à des dépenses faites pour la vie du ménage ;}
+
+\item{et/ou qui bénéficient simplement de ces dépenses.}
+
+\end{enumerate}
+
+\tcblower
+
+\textbf{Remarque} : 
+
+\begin{itemize}
+
+\item{Dans la définition du budget commun, on ne tient pas compte des dépenses faites pour le logement ;}
+
+\item{La participation occasionnelle à des dépenses communes ne suffit pas à former un budget commun ;}
+
+\item{Avoir plusieurs comptes en banque différents dans un ménage ne signifie pas faire budget à part.}
+
+\end{itemize}
+
+\end{encadre}
+```
+### Faire "budget commun", un cache-sexe des pratiques économiques
+
+On le voit, la définition de groupe faisant "budget commun" par l'INSEE comme l'ensemble des individus qui apportent ou bénéficient des ressources servant à effectuer des dépenses faites pour la vie du ménage reste assez vague. Il n'est pas aisé de déterminer précisément ce qui relève de "la vie du ménage", en particulier si l'on exclu les dépenses liées au logement, qui constitue le premier poste budgétaire des ménages (19% du montant des dépenses annuelles des ménages était consacré au logement en 2017) et mais aussi les dépenses occasionnelles sans définir ce que serait une dépense régulière. Ainsi le périmètre des dépenses inclues dans ce "budget commun" reste assez flou : qu'en est-il des dépenses et des consommations alimentaires ou de transports qui constituent également deux des quartes plus gros postes budgétaires ? Plus encore, cette définition ne dit rien du mode de partage des ressources, des dépenses et des consommations : il suffit pour un individu de participer ou de bénéficier pour être considérer comme faisant budget commun.
+
+Cela n'est pas l'objet de l'enquête budget de famille. Cette enquête, effectuée tous les cinq ans depuis 1979, elle est d'abord conçue pour répondre à des questions macroéconomiques de comptabilité nationale. En fournissant une estimation de consommation moyenne très détaillée de biens et de service, elle est à l'origine des pondérations de l'instrument de mesure de l'inflation : l'indice des prix à la consommation[^1]. Elle est également utilisée par les comptes nationaux pour le calcul des indices des prix catgéoriels et, en confrontant les données de l'enquête aux données agrées, pour rendre plus robuste la mesure de la consommation. Les utilisation de l'enquête dans une perspective microéconomique sont plus tardifs à l'INSEE. Le récent développement des modèle de micro-simulation à permis la simulation de l'effet des variation des taux d'impots directs sur la consommation des différentes catgéories de ménages (.
+
+[^1]: L'indice des prix à la consommation est calculé à partir d'un panier fixe de biens et service, dont le poids relatif est déterminé par sa part dans la dépense relative des ménages.
+
+Le développement plus récent de modèles de micro-simulation s’est aussi appuyé sur les enquêtes Budget de famille, par exemple pour simuler l’impact de variations des taux d’impôts indirects sur les différentes catégories de ménages.
+
+Dans Angèle Jannot "Concernant la répartition et la consommation différenciées des biens et services au sein d'une famille, il existe encore peu d'études notamment parce que les grandes enquêtes statistiques en France permettent seulement d'interroger et de comparer la consommation relative de différents ménages et non les différences de consommation entre les individus (Roy, 2006). Pourtant, la consommation au sein des ménages est différentielle tant d'un point de vue quantitatif que qualitatif, notamment selon le genre et l'âge des membres de la famille (Delphy et Léonard, 1992)"
 
 "Lors des moments de comptabilité et de répartition concrète du patrimoine, que ce soit lors des ruptures d'union ou des héritages, les règles de calcul sont toujours défavorables à l'accumulation patrimoniale des femmes tout comme les stratégies familiales de reproduction mises en place en amont (Bessière et Gollac, 2020). Avant ces moments particuliers de comptabilité d'autres travaux soulignent, quant à eux, la plus forte mise en commun des ressources au sein des couples parentaux (Roy, 2006)."
 
-
 ### Les budgets des ménages, une difficile individualisation des dépenses et des consommations dans les enquêtes quantitatives
 
-Ainsi, dans l'enquête budget de familles les dépenses et les consommations ne sont pas individualisées. En d'autres termes, on ne sait pas l'argent de qui est dépensé au bénéficie de qui. Pourtant, pour étudier les inégalités économiques se déployant dans les familles, il est crucial de pouvoir étudier ce qui se passe à l'intérieur des ménages. Ainsi, nous avons chercher à individualiser certaines dépenses et consommations. 
-En ce qui concerne les enfants, il n'est bien sur pas possible de distinguer les consommations suivants les individus auxquelles elles bénéficient, cependant un certain nombre de poste de dépenses sont, dans la nomenclature des produits, spécifiques aux enfants. Il s'agit des dépenses de garde d'enfants, d'habillement, des frais scolaires, des jouets, de l'équipement spécifique et de l'alimentation spécifique. Dans l'enquête budgets de familles en 2011, ces dépenses représentaient 13,6% du budget des ménages avec au moins un enfant de moins de 16 ans [@Hotte]. Cependant, dans le fichier de production et de recherche (FPR) de 2017 sur lequel nous avons travaillé, les postes de dépenses ont été agrégés au niveau 5 de la nomenclature. Ainsi seuls les jouets, les frais scolaires et les dépenses d'habillements sont effectivement imputable à la présence d'enfants. Parmi celles-ci nous avons choisit de nous concentrer sur les dépenses d'habillement. En effet, les dépenses scolaires varient très fortement selon l'âge des enfants et sont partiellement déterminées par l'existence de tarif sociaux pour certains type de consommation comme les repas scolaires, l'étude, ou l'inscription dans certains établissement privés. Ainsi mais sont, réglementairement, déterminées par le niveau de vie du ménage de sorte que pour les enfants les plus jeunes à niveau de vie du ménage égal, ce poste de consommation est difficilement interprétable. Les dépenses en matière de jouets ne nous paraissaient pas non plus .../ Les dépenses en vêtements et chaussures nous ont en revanche paru être un bon indicateur pour mesurer la consommation des différentes membres du ménage. D'une part, les vêtements ont été considéré comme un bon proxy du niveau de vie individuel. En effet, selon l'hypothèse de Rothbarth, les vêtements d'adultes sont des biens individuels : ils ne sont peu substituables entre homme et femme et ne sont pas adaptés aux enfants. Selon cette hypothèse le niveau de vie est une fonction des dépenses de vêtements pour adultes. Au delà des 
-
-
+Ainsi, dans l'enquête budget de familles les dépenses et les consommations ne sont pas individualisées. En d'autres termes, on ne sait pas l'argent de qui est dépensé au bénéficie de qui. Pourtant, pour étudier les inégalités économiques se déployant dans les familles, il est crucial de pouvoir étudier ce qui se passe à l'intérieur des ménages. Ainsi, nous avons chercher à individualiser certaines dépenses et consommations. En ce qui concerne les enfants, il n'est bien sur pas possible de distinguer les consommations suivants les individus auxquelles elles bénéficient, cependant un certain nombre de poste de dépenses sont, dans la nomenclature des produits, spécifiques aux enfants. Il s'agit des dépenses de garde d'enfants, d'habillement, des frais scolaires, des jouets, de l'équipement spécifique et de l'alimentation spécifique. Dans l'enquête budgets de familles en 2011, ces dépenses représentaient 13,6% du budget des ménages avec au moins un enfant de moins de 16 ans [@Hotte]. Cependant, dans le fichier de production et de recherche (FPR) de 2017 sur lequel nous avons travaillé, les postes de dépenses ont été agrégés au niveau 5 de la nomenclature. Ainsi seuls les jouets, les frais scolaires et les dépenses d'habillements sont effectivement imputable à la présence d'enfants. Parmi celles-ci nous avons choisit de nous concentrer sur les dépenses d'habillement. En effet, les dépenses scolaires varient très fortement selon l'âge des enfants et sont partiellement déterminées par l'existence de tarif sociaux pour certains type de consommation comme les repas scolaires, l'étude, ou l'inscription dans certains établissement privés. Ainsi mais sont, réglementairement, déterminées par le niveau de vie du ménage de sorte que pour les enfants les plus jeunes à niveau de vie du ménage égal, ce poste de consommation est difficilement interprétable. Les dépenses en matière de jouets ne nous paraissaient pas non plus .../ Les dépenses en vêtements et chaussures nous ont en revanche paru être un bon indicateur pour mesurer la consommation des différentes membres du ménage. D'une part, les vêtements ont été considéré comme un bon proxy du niveau de vie individuel. En effet, selon l'hypothèse de Rothbarth, les vêtements d'adultes sont des biens individuels : ils ne sont peu substituables entre homme et femme et ne sont pas adaptés aux enfants. Selon cette hypothèse le niveau de vie est une fonction des dépenses de vêtements pour adultes. Au delà des
 
 Le choix de L indicateur de la dépense en vêtements adulte est désigné sous le terme « d hypothèse identifiante de Rothbart ». En 1943, Rothbart établit une correspondance entre le niveau de vie des parents et celui des enfants. Pour résoudre le problème de Lindicateur du niveau de vie, il suffit alors de trouver des consommations représentant le bien-être des parents, et en particulier, des consommations individualisâmes correspondant à des consommations adultes. Cependant, ces consommations individuelles des parents ne doivent pas être affectées par des changements de mode de vie liés à l’arrivée de l’enfant. Les dépenses en vêtements adulte sont alors a priori considérées comme ne dépendant que du niveau de vie du ménage. Cette dépense a de plus été choisie comme étant la dépense la plus facilement individualisable dans les enquêtes effectuées sur les budgets des familles (en dehors de dépenses telles que le tabac ou l’alcool, qui sont par contre sensibles à un changement de modes de vie). Des estimations du coût de l’enfant sur les données françaises ont ainsi utilisé les dépenses en vêtements du dessus adultes
 
-
-
 Les dépenses individualisables de ensemble des familles avec enfant(s) de moins de 16 ans représentent en moyenne 6 005 euros en 2011, soit 13,6 % de leur budget. Elles sont en moyenne plus importantes pour les ménages propriétaires de leur logement (14,4 %) que chez les ménages locataires (12,1 %). Les postes les plus importants sont la garde d’enfants, qui dépasse la moitié des dépenses, puis l’habillement et les frais scolaires (graphique 1).
 
-## [Des inégalités de consommations]
+## Des pratiques économiques inégalitaires
 
 ### Des structures de consommation proches des familles nucléaires
 
-
-```{r, results = "asis"}
+```{r budget_structure, results = "asis"}
 
 load("Resultats/tab_structure_budget.Rdata")
 tab$tableau %>% 
-  as_kable_extra(caption = "Structure de consommation des ménages selon leur structure", booktabs = TRUE) %>%
-  pack_rows(group_label = "Postes de dépenses", start_row = 1, end_row = 12)
+  as_kable_extra(caption = "Structure de consommation des ménages selon leur structure", digits = 1, booktabs = T) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  pack_rows(group_label = "Postes de dépenses", start_row = 1, end_row = 12) %>%
+  add_kablesource_note(champ = tab$champ, 
+                       N = tab$n)
 
 ```
 
 ### Mais des dépenses spécifiques aux enfants plus faibles en particulier chez les hauts revenus
 
+```{r reg_depEnfants, results = "asis"}
 
+load("Resultats/reg_DepVetementEnfants.Rdata")
+tab$tableau %>% 
+  as_kable_extra(caption = "Regression sur la consommation de vetements et chaussures par enfant", digits = 1, booktabs = T) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  add_kablesource_note(champ = tab$champ, 
+                       N = tab$n)
 
+```
 
 ```{r, eval = FALSE}
 
@@ -732,8 +834,6 @@ tab$tableau %>%
 ```
 
 ### [Inégalités dans les consommations individualisables masculines et féminines ?]
-
-
 
 -   regarder, comme pour les enfants, les dépenses individualisables hommes/femmes, notamment les vêtements (+ il a de la littérature qui dit que c'est un bon proxy du niveau vie)
 
@@ -747,11 +847,7 @@ tab$tableau %>%
 familles <- readRDS(file = "Data_output/familles_parents.Rds")
 ```
 
-
 -   Quantifier les inégalités de revenus dans les couples formés secondairement, comparer avec les couples sans enfants et ceux avec enfants issus de l'union
-
-
-
 
 ### [Contribution des ex-conjoints plus faible]
 
@@ -764,41 +860,25 @@ familles <- readRDS(file = "Data_output/familles_parents.Rds")
 
 -   exploiter rapidement la variable de séparation de budget dans un même logement, croiser avec les déciles de revenus pour voir si on observe des logiques similaires que pour le patrimoine
 
--   exploiter les variables de dépenses de la table individu vs ménage : 
+-   exploiter les variables de dépenses de la table individu vs ménage :
 
-Niveau individu : 
-MAUTRES_SCO Montant des autres frais liés à la scolarité 
-MAUTRES_SCO_D Montant définitif des autres frais liés à la scolarité MGARD1 Montant dépensé pour la crèche 
-MGARD1_D Montant définitif dépensé pour la crèche MGARD2 Montant dépensé pour la garderie 
-MGARD2_D Montant définitif dépensé pour la garderie MGARD3 Montant dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés 
-MGARD3_D Montant définitif dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés 
-MGARD4 Montant dépensé pour la nourrice ou l'assistante maternelle 
-MGARD4_D Montant définitif dépensé pour la nourrice ou l'assistante maternelle 
-MGARD5 Montant dépensé pour une autre personne rémunérée pour la garde d'enfants 
-MGARD5_D Montant définitif dépensé pour une autre personne rémunérée pour la garde d'enfants 
-MINSC Montant des frais d'inscription scolaire ou universitaire 
-MINSC_D Montant définitif des frais d'inscription scolaire ou universitaire MPENS Montant des frais d'internat 
-MPENS_D Montant définitif des frais d'internat 
-MREPET Montant total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois 
-MREPET_D Montant définitif total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois
+Niveau individu : MAUTRES_SCO Montant des autres frais liés à la scolarité MAUTRES_SCO_D Montant définitif des autres frais liés à la scolarité MGARD1 Montant dépensé pour la crèche MGARD1_D Montant définitif dépensé pour la crèche MGARD2 Montant dépensé pour la garderie MGARD2_D Montant définitif dépensé pour la garderie MGARD3 Montant dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés MGARD3_D Montant définitif dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés MGARD4 Montant dépensé pour la nourrice ou l'assistante maternelle MGARD4_D Montant définitif dépensé pour la nourrice ou l'assistante maternelle MGARD5 Montant dépensé pour une autre personne rémunérée pour la garde d'enfants MGARD5_D Montant définitif dépensé pour une autre personne rémunérée pour la garde d'enfants MINSC Montant des frais d'inscription scolaire ou universitaire MINSC_D Montant définitif des frais d'inscription scolaire ou universitaire MPENS Montant des frais d'internat MPENS_D Montant définitif des frais d'internat MREPET Montant total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois MREPET_D Montant définitif total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois
 
-
-
-Niveau ménage : 
-DEPPER2 Montant total à la charge du ménage pour la garde d'enfant
-DEPPER2_D Montant définitif total à la charge du ménage pour la garde d'enfant
+Niveau ménage : DEPPER2 Montant total à la charge du ménage pour la garde d'enfant DEPPER2_D Montant définitif total à la charge du ménage pour la garde d'enfant
 
 -   régression : revenu du parent = meilleur prédicteur des consommations individualisable aux enfants que revenu du ménage
 
 # Chapitre 3. [Même idée que le chapitre 2, version travail domestique et autoproduction]
 
+Les arrangements économiques ne sont pas réductibles à ceux qui touchent. Plus difficile à saisir dans les enquêtes de la statistique publique, il se déploient aussi
 
-Les arrangements économiques ne sont pas réductibles à ceux qui touchent. 
-Plus difficile à saisir dans les enquêtes de la statistique publique, il se déploient aussi
+Ainsi, si les beaux-parents contribuent visiblement moins à l'entretien des enfants de leur conjoint que ne le feraient des parents,
 
-Ainsi, si les beaux-parents contribuent visiblement moins à l'entretien des enfants de leur conjoint que ne le feraient des parents, 
+## Ouvrir la boite noire du ménage : au commencement était le travail domestique
 
 ## Une charge de travail domestique a priori mieux répartie entre hommes et femmes
+
+Cadolle
 
 ```{r, results = "asis"}
 load("Resultats/tab_Wdom_typefam_sexe.Rdata")
@@ -812,7 +892,6 @@ tab$tableau %>%
   add_kablesource_note(N = tab$n, 
                        champ = tab$champ)
 ```
-
 
 ## [Les parents en font + que dans le familles nucléaires]
 
@@ -832,8 +911,6 @@ tab$tableau %>%
 
 ```
 
-
-
 ## La mise au travail domestique des belles-mères
 
 ```{r, results='asis'}
@@ -851,16 +928,31 @@ tab$tableau %>%
 
 ```
 
-
-- discussion tabet 
+-   discussion tabet
 
 ## Conclusion/transition : formes de continuité, d'un point de vue économique, entre monoparentalité et recompositions familiales
 
 # Chapitre 4. L'Etat face aux remises en couples des parents isolés
 
+## Des remises en couple encadrées par l'Etat ?
+
+Judiciarisées, les divorces et les séparations impliquants des enfants semblent davantage encadrées par les institutions que les remises en couples. À l’inverse, les recompositions familiales se passent souvent, dans un premier temps au moins, loin des yeux de la justice. Pour autant, les CAF et le fisc ont les yeux rivés sur ces remises en couples particulières. La caractérisation d’une vie conjugale constitue, pour les contrôleurs de la CAF, un enjeu de contrôle fréquent (Dubois, 2021), car dès lors, les ressources du conjoint ou de la conjointe seront prises en compte dans le calcul de divers droits.
+
+Les travaux des juristes et sociologues du droit des années 1990 autour d’Irene Théry et Marie-Thérèse Meulders-Klein (1993, 1995) formulent souvent une critique du droit civil de la famille qu’ils accusent de ne pas avoir su évoluer pour prendre en compte les nouveaux défis que les recompositions familiales poseraient naturellement. Dans cette perspective, la comptabilisation comme enfant « à charge » du couple d’un enfant issu d’une autre union par le fisc si le couple est marié et par la CAF si le couple cohabite, alors même qu’aucun lien légal n’unit ces individus, est interprété comme la reconnaissance d’une situation de fait (Damon, 2012). Cette conception du droit, héritée de Durkheim pour qui il est une cristallisation des transformations sociales, un révélateur des faits sociaux (Durkheim, 1893), occulte la force productrice du droit (Bourdieu, 1986). Les recompositions familiales ne sont pas nouvelles. De fait, dès l’instauration d’un impôt sur le revenu en 1916, la notion d’enfant à charge est déjà déconnectée du droit civil de la filiation (Carbonnier, 2016). Jusqu’aux années 1950, les recompositions familiales étaient simplement davantage liées au décès d’un des conjoints – du fait de la mortalité élevés des femmes notamment en couche et des hommes lors des périodes de guerre – qu’a une séparation (Flandrin, 1984). Leur relative nouveauté tient moins à l’existence de beaux-parents, qu’a l’existence, en même temps, des deux parents. En d’autres termes, la recomposition se fait moins selon un *modèle de substitution* qu’un *modèle de pérennité* (Clément et Bonvalet, 2005)*.*
+
+En revanche, les familles recomposées n’ont pas fait l’objet d’une construction comme un problème public comparable à celle dont les familles monoparentales ont fait l’objet à partir des années 1970 (Martin-Papineau, 2003). Le terme de « monoparentalité » n’apparaît pas tout de suite, ces familles sont d’abord désignées comme des « familles privées de pères ». À l’inverse, les familles recomposées ne sont pas le plus souvent « privées de pères » et ne sont donc pas l’objet d’inquiétudes, elles sont ainsi exclues des dispositifs destinés aux parents seuls. Dès lors la remise en couple devient un enjeu administratif. Les filles-mères, lorsqu’elles ne sont pas forcées à l’abandon, bénéficient d’un secours économique conditionné à une étroite surveillance. Leur mariage, d’autant plus si l’enfant bénéfice d’une reconnaissance dite « de complaisance » par leur mari, conditionne leur réintégration sociale et parfois le retour de leur enfant placé (Rivière, 2016). Se distinguant des premières par la respectabilité que leur confère le mariage (Skeggs, 2003), les veuves ayant à charge des enfants bénéficient d’abord de droits dérivés de ceux de leurs maris décédés puis de pensions et d’abattements fiscaux. Le remariage des veuves vient supprimer leur droit à cette protection. Les veufs avec enfants à charge sont eux exclus de ces dispositifs car considérés comme aptes au travail (Chaineaud, 2009). Ainsi, dès les premiers dispositifs de prise en charge de la monoparentalité, la remise en couple des femmes acquiert une importance décisive dans l’ouverture, mais surtout la fermeture du droit à l’assistance économique. Ainsi bien que d’un point de vue du droit civil de la filiation (voir de l’alliance dans le cas de simples re-cohabitations), les familles recomposées s’apparentent davantage aux familles monoparentales, elles ont, à revenu et statut marital identique, les mêmes droit sociaux et fiscaux que les familles nucléaires.
+
+En suivant Rémi Lenoir, la famille est par excellence une catégorie de la pensée d’Etat dont la structuration et le fonctionnement est tout entier encadré par la bureaucratie. Sa forme actuelle est moins la cristallisation de transformations sociales diffusées uniformément dans la population que l’inscription du mode de reproduction sociale des classes dominantes dans les catégories d’action politique visant expressément à permettre et maintenir ce mode de reproduction (Lenoir, 2003). Ainsi ces formes de décalages entre le droit civil et les droits sociaux et fiscaux ne peuvent pas être analysés comme le fruit de la progressive reconnaissance de la situation des familles recomposées. De même, ce décalage entre ce que l’on suppose des pratiques économiques des familles recomposées et ce que les différentes administrations de l’Etat prescrivent est sans doute moins à analyser comme un retard des dispositifs qui doivent s’adapter à la réalité des familles aujourd’hui, que comme ce qui caractérise les recompositions familiales et à ce titre produit des effets sur les individus impliqués. Ce sont justement ces effets que l’on voudrait prendre pour objet d’étude.
+
 ## Complexifier la parenté légale
 
 Idée qu'il faut articuler les différentes définitions de la parenté légale produites par différentes institutions, voir comment elles se superposent ou non
+
+Ces petites contradictions entre les pratiques prescrites par les différentes administrations de l’Etat sont loin d’être anodines. Elles sont de nature à produire des effets matériels sur les individus qui vivent dans ces familles. La recomposition familiale n’est pas simplement une affaire de sentiments, elle met en jeu la perte et l’obtention de droits sociaux et fiscaux. La CAF et le fisc, selon que le couple cohabite ou qu’il est uni légalement, ne font pas de différence dans la comptabilisation des enfants à charge entre les familles nucléaires et les familles recomposées : tous les enfants sont à charge des deux conjoints, quelle que soit leur filiation (Damon, 2012). Ainsi, la cohabitation avec un nouveau conjoint ou une nouvelle conjointe engendre la perte d’avantages fiscaux et sociaux. Les droits sociaux seront également désormais calculés sur l’ensemble des revenus du couple nouvellement formé. Lorsqu’une union civile est contractée, les parts représentées par le nouveau couple et les enfants de chacun des membres sont mutualisées pour le calcul de l’impôt.
+
+Il n’est pas aisé de déterminer *a priori* les effets de ces fermetures de droits. On peut néanmoins émettre quelques hypothèses qu’il s’agira de vérifier ou d’infirmer. Par exemple, les mécanismes socio-fiscaux agissent différemment selon les niveaux de revenus des couples, mais aussi selon les niveaux de revenus individuels. L’allocation parent isolé (API), intégrée au revenu de solidarité active (RSA) est réservée aux parents isolés touchant celui-ci. L’allocation de soutien familial (ASF) est réservée aux parents isolés dont l’ex-conjoint est déclaré impécunieux. En revanche, la demi-part fiscale supplémentaire n’a d’effet que sur les foyers imposables. Ces mécanismes semblent donc jouer différemment selon la classe sociale. Mais ils semblent aussi jouer différemment selon l’appartenance aux groupes de sexes. L’ASF, versée en lieu et place de pension alimentaire, et l’API ainsi que la demi-part fiscale sont supprimés avec une remise en couple. La conjugalisation des ressources par les CAF (pour le calcul du RSA, de l’AAH par exemple) et par le fisc (pour les parts que représentent les personnes à charge) produisent une fiction d’égalité entre conjoints. Ces mécanismes agissent donc différemment sur les conjoints suivant l’inégalité de revenus entre eux. Or, cette inégalité s’inscrit dans des rapports sociaux de sexe. La différence de revenus entre homme et femmes en couple se situait à 42% en moyenne en 2011 (Morin, 2014). Les conséquences économiques propres des mécanismes socio-fiscaux au moment des remises en couples des parents isolés semblent donc différenciées.
+
+Enfin, dans l’idéal, il faudra également s’intéresser au rôle que joue la justice dans les recompositions familiales qui, s’il reste secondaire en comparaison des séparations, ne doit pas être négligé. La remise en couple d’un parent est parfois l’occasion d’une réorganisation de la résidence des enfants, d’une révision de la pension alimentaire ou de la prestation compensatoire.
 
 ## Le niveau de vie dans les familles recomposées
 
@@ -925,7 +1017,6 @@ tab$tableau %>%
 
 ## Des revenus de transferts réduits pour les parents remis en couple
 
-
 ```{r, fig.cap = "Composition du revenu disponible en fonction du type de ménage (en \\%)"}
 
 familles <- readRDS("Data_output/familles_parents.Rds")
@@ -979,15 +1070,18 @@ liste <- c("IMPOTS_DIRECTS",
            "PREST_FAM_TOT", "PREST_LOGEMENT", "MINIMA_SOC")
 #liste
 library(GGally)
-revenus_comp2 %>%
+
+revenus_comp3 <- revenus_comp2 %>%
   filter(name %in% liste) %>%
   mutate(name = name %>% 
            fct_relevel(liste) %>% 
-           fct_rev()) %>%
-  ggplot(aes(x = n_TYPMEN_new, y = value_mean, fill = name)) +
+           fct_rev()) 
+ggplot(aes(x = n_TYPMEN_new, y = value_mean, fill = name), 
+       data = revenus_comp3) +
   geom_bar(stat = "identity") +
-  geom_text(aes(label = round(value_mean, 1)), 
-            position = position_stack(.5), 
+  geom_text(
+    aes(label = round(value_mean, 1)), 
+       position = position_stack(.5), 
             size = 3, 
             family = "serif") +
   geom_hline(yintercept = 0) +
@@ -1005,19 +1099,14 @@ revenus_comp2 %>%
                 "Minimas \nsociaux")),
      name = "Type de revenu :") +
   theme_memoire() + 
-  theme(axis.line.x = element_blank())
+  theme(axis.line.x = element_blank(), 
+        axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
-
-
-
 
 ## Des arrangements fiscaux spécifiques
 
 -   exploiter la variable nombre d'avis d'impositions
-
-
-
 
 \listoftables
 
@@ -1027,17 +1116,17 @@ revenus_comp2 %>%
 
 # Bibliographie
 
-## Littérature 
-
+## Littérature
 
 \setlength{\itemindent}{-.5in}
 
-::: {#refs_normal}
+::: {#refs}
 :::
 
-## R Packages 
+## R Packages
 
 <!-- ::: {#refs_software} -->
+
 <!-- ::: -->
 
 # Annexes
@@ -1082,8 +1171,6 @@ L'ensemble du code à l'origine de ce travail est disponible sur mon [dépôt gi
 
 Les données de l'enquête utilisée sont disponibles sur Quetlet.
 
-
 ```{r}
 knitr::write_bib(file = 'Rédaction/packages.bib')
 ```
-

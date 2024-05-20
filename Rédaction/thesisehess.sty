@@ -21,6 +21,14 @@
 \RequirePackage{svg}
 \usepackage{float}
 
+\usepackage{tcolorbox}
+\newtcolorbox[auto counter]{encadre}[2][]{%
+fonttitle=\bfseries,
+arc=0mm, 
+fontupper=\footnotesize,
+fontlower=\footnotesize,
+title=Encadré n°~\thetcbcounter : #2,#1}
+
 
 % Paramètres de la mise en page
 \geometry{a4paper, margin=2.5cm}

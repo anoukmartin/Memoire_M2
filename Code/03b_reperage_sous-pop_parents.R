@@ -72,7 +72,7 @@ infos_enfantsMenage <- enfantsMenage %>%
   group_by(n_IdentParent)%>%
   summarise(n_NEnfantsMen = n(), 
             n_AgeEnfantsMen = mean(AG))
-  
+infos_enfantsMenage  
 indiv <- left_join(indiv, infos_enfantsMenage, 
                    by = c("n_IdentIndiv" = "n_IdentParent"))
 
@@ -122,6 +122,28 @@ indiv <- left_join(indiv, infos_enfantsMenage,
                    by = c("n_IdentIndiv" = "n_IdentParent"))
 
 
+#infos enfants d'union précédantes 
+infos_enfantsMenage <- enfantsMenage %>%
+  filter(n_ConjMere != "Parent" | is.na(n_ConjMere)) %>%
+  pivot_longer(cols = c("n_IdentMere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsUnionAnt = n(), 
+            n_AgeEnfantsUnionAnt = mean(AG))
+infos_enfantsMenage2 <- enfantsMenage %>%
+  filter(n_ConjPere != "Parent" | is.na(n_ConjPere))  %>%
+  pivot_longer(cols = c("n_IdentPere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsUnionAnt = n(), 
+            n_AgeEnfantsUnionAnt = mean(AG))
+
+infos_enfantsMenage <- bind_rows(infos_enfantsMenage, infos_enfantsMenage2)
+
+indiv <- left_join(indiv, infos_enfantsMenage, 
+                   by = c("n_IdentIndiv" = "n_IdentParent"))
 
 
 # ensuite on ajoute les données sur les enfants hors domicile : 
@@ -193,7 +215,7 @@ infos_enfantsHD <- enfantsHD %>%
   group_by(n_IdentBeauParent)%>%
   summarise(n_NBeauxEnfantsHD = n(), 
             n_AgeBeauxEnfantsHD = mean(AG))
-infos_enfantsMenage2 <- enfantsMenage %>%
+infos_enfantsHD2 <- enfantsHD %>%
   filter(n_ConjPere == "Beau-parent") %>%
   pivot_longer(cols = c("n_IdentConjointPere"), 
                values_to = "n_IdentBeauParent",
@@ -201,10 +223,61 @@ infos_enfantsMenage2 <- enfantsMenage %>%
   group_by(n_IdentBeauParent)%>%
   summarise(n_NBeauxEnfantsHD = n(), 
             n_AgeBeauxEnfantsHD = mean(AG))
-infos_enfantsMenage <- bind_rows(infos_enfantsMenage, infos_enfantsMenage2)
+infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
 
 indiv <- left_join(indiv, infos_enfantsHD, 
                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
+
+
+#infos enfants du couple 
+infos_enfantsHD <- enfantsHD %>%
+  filter(n_ConjMere == "Parent") %>%
+  pivot_longer(cols = c("n_IdentMere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsCoupleHD = n(), 
+            n_AgeEnfantsCoupleHD = mean(AG))
+infos_enfantsHD2 <- enfantsHD %>%
+  filter(n_ConjPere == "Parent") %>%
+  pivot_longer(cols = c("n_IdentPere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsCoupleHD = n(), 
+            n_AgeEnfantsCoupleHD = mean(AG))
+
+infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
+
+indiv <- left_join(indiv, infos_enfantsHD, 
+                   by = c("n_IdentIndiv" = "n_IdentParent"))
+
+
+#infos enfants d'union précédantes 
+infos_enfantsHD <- enfantsHD %>%
+  filter(n_ConjMere != "Parent" | is.na(n_ConjMere)) %>%
+  pivot_longer(cols = c("n_IdentMere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsUnionAntHD = n(), 
+            n_AgeEnfantsUnionAntHD = mean(AG))
+infos_enfantsHD2 <- enfantsHD %>%
+  filter(n_ConjPere != "Parent" | is.na(n_ConjPere))  %>%
+  pivot_longer(cols = c("n_IdentPere"), 
+               values_to = "n_IdentParent",
+               values_drop_na = T) %>%
+  group_by(n_IdentParent)%>%
+  summarise(n_NEnfantsUnionAntHD = n(), 
+            n_AgeEnfantsUnionAntHD = mean(AG))
+
+infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
+
+indiv <- left_join(indiv, infos_enfantsHD, 
+                   by = c("n_IdentIndiv" = "n_IdentParent"))
+
+
+
 
 
 # Des variables communes pour les enfants hors et dans le ménage 
