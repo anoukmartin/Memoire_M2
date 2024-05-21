@@ -5,6 +5,7 @@
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 familles <- readRDS("Data_output/familles_parents.Rds")
+
 dic_fam<- look_for(familles)
 
 # Recodages sur familles 

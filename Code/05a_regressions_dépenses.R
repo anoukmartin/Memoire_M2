@@ -86,16 +86,21 @@ data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 
 data$n_AgeEnfantsMenage13
 data$n_REVENUS_F
-reg <- lm(
-  Vetements_enfants ~  n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
-  data = data, 
-  weights = data$PONDMEN, 
-  subset = !is.na(Vetements_enfants))
+
+reg <- survreg(Surv(Vetements_enfants, Vetements_enfants>1, type='left') ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage13 + n_FractionClasse + n_TYPFAM,
+               data=data, 
+               weights = data$PONDMEN, 
+               subset = !is.na(Vetements_enfants),
+               dist='gaussian')
+# reg <- lm(
+#   Vetements_enfants ~  NIVIE+ n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+#   data = data, 
+#   weights = data$PONDMEN, 
+#   subset = !is.na(Vetements_enfants))
 
 reg <- step(reg)
 tblreg1 <- tbl_regression(reg, intercept = T) |>
   add_glance_source_note() 
-
 
 tblreg1 
 
@@ -216,4 +221,57 @@ saveTableau(tblreg1,
             champ = paste0(infosBDF$champ, " formés par au moins un adulte agé de 25 à 65 ans et déclarant au moins un enfant à charge"), 
             ponderation = TRUE, 
             n = dim(reg$data)[1])
-            
+
+
+
+
+
+
+
+
+## Regressions dépenses dans les couples #######################################             
+# Contrôles : 
+# Nombre d’enfants, âge de l’homme et son carré, diplôme de l’homme et diplôme de la femme (en quatre postes), position professionnelle de l’emploi de l’homme et de celui de la femme, région de résidence, degré d’urbanisation de la commune de résidence
+#
+
+library(AER)
+data$n_TYPMEN_new
+data2 <- data %>%
+  filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
+  mutate(n_TYPFAM = n_TYPFAM %>% droplevels())
+library(AER)
+reg <- tobit(
+  Vetements_enfants ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+  left = 1,
+  data = data2, 
+  weights = data2$PONDMEN, 
+  subset = !is.na(Vetements_enfants))
+
+library(VGAM)
+reg <- vglm(Vetements_enfants ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+              tobit(Lower = 1),
+             data = data2, 
+             weights = data2$PONDMEN, 
+             subset = !is.na(Vetements_enfants))
+
+library(modelsummary)
+summary(reg)
+broom.helpers::tidy_parameters(reg)
+modelsummary(reg, 
+             estimate  = c("{estimate}{stars}"))
+
+reg %>%
+  tbl_regression()
+
+
+reg$tertab_regreg$terms
+tab_reg <- data.frame(coeff = reg$coefficients, 
+                      p = reg$)
+  
+  reg$coefficients
+reg
+tblreg1 <- tbl_regression(reg, intercept = T) |>
+  add_glance_source_note() 
+
+
+tblreg1 
