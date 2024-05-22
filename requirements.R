@@ -22,6 +22,7 @@ packagesList <- c("haven",
                  "bookdown", 
                  "GGally", 
                  "Cairo", 
+                 "ggthemes",
                  "wesanderson")
 install.packages(packagesList)
 

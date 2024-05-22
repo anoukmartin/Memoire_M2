@@ -165,28 +165,28 @@ saveTableau(tableau = tab,
 # REGRESSION ###################################################################
 names(conso)
 # make a list of independent variables
-#varlist <- names(conso2)[-c(13:14)]
-varlist <- names(conso)[-c(1, 248:249)]
-varlist <- varlist[str_starts(varlist, "C07")]
+varlist <- names(conso2)[-c(13:14)]
+# varlist <- names(conso)[-c(1, 248:249)]
+# varlist <- varlist[str_starts(varlist, "C13")]
 varlist
 
 
 ## Données finales sur lesquelles on fait les regressions#######################
 data0 <- familles %>%   
-  left_join(conso %>% 
+  left_join(conso2 %>% 
               select(any_of(varlist), "IDENT_MEN"), 
             by = "IDENT_MEN") %>%   
   mutate(`Revenus non individualisables` = REVDISP - (n_REVENUS_F + n_REVENUS_H), 
          REVSOC2 = REVSOC -(CHOMAGE+RETRAITES)) %>%
   mutate_at(.vars = vars("n_REVENUS_F", "n_REVENUS_H", "Revenus non individualisables", "REVSOC2", "NIVIE"),
-            .funs = function(x){x/1200}) 
+            .funs = function(x){x/12000}) 
 
 data0 <- data0 %>%
   filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels(), 
          n_TYPFAM = n_TYPFAM %>% droplevels())
-
-
+var_label(data0$n_REVENUS_F) <- "Revenu féminin"
+var_label(data0$n_REVENUS_H) <- "Revenu masculin"
 
 ## Régressions revenus HF sur tous les postes budgétaires #######################
 
@@ -199,20 +199,45 @@ fitreg <- function(x) {
           data=data0,
           weights = data0$PONDMEN, 
           dist='gaussian')}
-#install.packages("plm")
 
-# Une fonction pour différencié
+# on applique 
 results <- lapply(varlist, fitreg)
 
-names(results) <- 
-names(results) <- var_label(conso[, varlist]) %>% as.vector()
+ 
+names(results) <- varlist
 
-#ggcoef_compare(results)
+ggcoef_compare(results, 
+               include = c("n_REVENUS_F:n_TYPMEN_new", 
+                           "n_TYPMEN_new:n_REVENUS_H"), 
+               shape_values = c(16, 4), 
+               shape = "significance", 
+               conf.level = 0.90)
+
+
 
 reg_dat <- ggcoef_compare(results, 
-                          return_data = T, conf.level = 0.90)
+                          return_data = T, 
+                          add_reference_rows = TRUE,
+                          conf.level = 0.90)
 reg_dat <- reg_dat %>%
-  filter(!(variable %in% c("n_FractionClasse", "NENFANTS", "n_TYPMEN_new", "n_TYPFAM"))) %>%
+  filter(!(variable %in% c("n_FractionClasse", "NENFANTS", "n_TYPFAM"))) 
+
+plot_dat <- reg_dat %>%
+  mutate(Rev = if_else(str_detect(label, "féminin"), "Féminin", "Masculin"), 
+         Fam = if_else(str_detect(label, "Traditionelle"), "Traditionelle", "Recomposée"))
+  
+  
+plot_dat %>%
+  ggplot(aes(x = label, y = estimate, fill = Rev, alpha = Fam)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(aes(x=label, ymin=conf.low, ymax=conf.high)) +
+  facet_wrap(vars(model),
+             scales="free")
+             
+
+
+reg_dat2 <- reg_dat %>%
   filter(p.value <= 0.1)
 
-ggcoef_plot(reg_dat, dodged = TRUE, colour = "model")
+ggcoef_plot(reg_dat2, dodged = TRUE, facet_row = "model", scales = "free")
+

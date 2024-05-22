@@ -85,12 +85,45 @@ data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 ## Régression pondérée dépenses enfants ########################################
 
 data$n_AgeEnfantsMenage13
-data$n_REVENUS_F
-
-reg <- survreg(Surv(Vetements_enfants, Vetements_enfants>1, type='left') ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage13 + n_FractionClasse + n_TYPFAM,
+reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
                data=data, 
                weights = data$PONDMEN, 
                subset = !is.na(Vetements_enfants),
+               dist='gaussian')
+
+# reg <- lm(
+#   Vetements_enfants ~  NIVIE+ n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+#   data = data, 
+#   weights = data$PONDMEN, 
+#   subset = !is.na(Vetements_enfants))
+
+reg <- step(reg)
+tblreg1 <- tbl_regression(reg, intercept = T) |>
+  add_glance_source_note() 
+
+tblreg1 
+ggcoef_model(reg)
+
+# On enregistre 
+saveTableau(tableau = tblreg1, 
+            typ = "reg", 
+            label = "DepVetementEnfants", 
+            description = "Regressions sur les dépenses de vetement par enfants", 
+            champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
+            n = tblreg1$table_styling$source_note, 
+            ponderation = T)
+
+
+
+# Regression dépenses soclaires ################################################
+
+data$n_AgeEnfantsMenage13
+data$n_REVENUS_F
+
+reg <- survreg(Surv(Scolaire, Scolaire>1, type='left') ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+               data=data, 
+               weights = data$PONDMEN, 
+               subset = !is.na(Scolaire),
                dist='gaussian')
 # reg <- lm(
 #   Vetements_enfants ~  NIVIE+ n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
@@ -107,20 +140,16 @@ tblreg1
 # On enregistre 
 saveTableau(tableau = tblreg1, 
             typ = "reg", 
-            label = "DepVetementEnfants", 
+            label = "DepScolaireEnfants", 
             description = "Regressions sur les dépenses de vetement par enfants", 
             champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
             n = tblreg1$table_styling$source_note, 
             ponderation = T)
 
 
-# On ajout eles revenus des parents 
-reg_fam <- update(reg, ~ . + n_TYPFAM:n_REVENUS_F)
 
-reg_fam <- step(reg_fam)
-tblreg2 <- tbl_regression(reg_fam, intercept = T) |>
-  add_glance_source_note() 
-tblreg2
+
+
 
 # Regression habillement femme #################################################
 unique(data$DIP7_F)
@@ -172,106 +201,3 @@ ggcoef_compare(models = list("Simple" = reg1,  "Avec interaction" = reg2),
 
 
 
-# Regression habillement homme #################################################
-
-unique(data$DIP7_H)
-data$DIP7_H <- data$DIP7_H %>% fct_relevel("Baccalauréat")
-freq(data$CS12_H)
-data$CS12_H <- data$CS12_H %>% fct_relevel("Médiateur-ice")
-
-# Une premièe regresion simple sans interaction Revenus F avec structure familiale
-reg1 <- lm(
-  Vetements_homme ~  NIVIE + DIP7_H + CS12_H + n_TYPFAM,
-  data = data, 
-  weights = data$PONDMEN, 
-  subset = !is.na(n_IdentIndiv_H))
-
-reg1 <- step(reg1)
-
-tblreg1 <- tbl_regression(reg1, intercept = T) |>
-  add_glance_source_note() 
-
-
-tblreg1 
-
-
-# Idem mais avec interaction revenu F structure familiale 
-reg2 <- update(reg1, ~ . + n_REVENUS_H:n_TYPFAM)                       
-
-reg2 <- step(reg2)
-
-tblreg2 <- tbl_regression(reg2, intercept = T) |>
-  add_glance_source_note() 
-tblreg2
-
-# library(ggstats)
-
-ggcoef_compare(models = list("Simple" = reg1,  "Avec interaction" = reg2), 
-               conf.level = 0.90, 
-               type = "faceted")
-
-
-
-
-## Enregistrement des résultats ################################################
-saveTableau(tblreg1, 
-            type = "reg",
-            label = "DepVetement", 
-            description = "Regression sur les dépenses de vetement pour enfant du ménage", 
-            champ = paste0(infosBDF$champ, " formés par au moins un adulte agé de 25 à 65 ans et déclarant au moins un enfant à charge"), 
-            ponderation = TRUE, 
-            n = dim(reg$data)[1])
-
-
-
-
-
-
-
-
-## Regressions dépenses dans les couples #######################################             
-# Contrôles : 
-# Nombre d’enfants, âge de l’homme et son carré, diplôme de l’homme et diplôme de la femme (en quatre postes), position professionnelle de l’emploi de l’homme et de celui de la femme, région de résidence, degré d’urbanisation de la commune de résidence
-#
-
-library(AER)
-data$n_TYPMEN_new
-data2 <- data %>%
-  filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
-  mutate(n_TYPFAM = n_TYPFAM %>% droplevels())
-library(AER)
-reg <- tobit(
-  Vetements_enfants ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
-  left = 1,
-  data = data2, 
-  weights = data2$PONDMEN, 
-  subset = !is.na(Vetements_enfants))
-
-library(VGAM)
-reg <- vglm(Vetements_enfants ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
-              tobit(Lower = 1),
-             data = data2, 
-             weights = data2$PONDMEN, 
-             subset = !is.na(Vetements_enfants))
-
-library(modelsummary)
-summary(reg)
-broom.helpers::tidy_parameters(reg)
-modelsummary(reg, 
-             estimate  = c("{estimate}{stars}"))
-
-reg %>%
-  tbl_regression()
-
-
-reg$tertab_regreg$terms
-tab_reg <- data.frame(coeff = reg$coefficients, 
-                      p = reg$)
-  
-  reg$coefficients
-reg
-tblreg1 <- tbl_regression(reg, intercept = T) |>
-  add_glance_source_note() 
-
-
-tblreg1 
