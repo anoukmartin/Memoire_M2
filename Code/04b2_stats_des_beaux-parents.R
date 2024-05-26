@@ -5,7 +5,7 @@ familles <- readRDS("Data_output/familles_parents.Rds")
 familles$n_config <- familles$n_TYPMEN_new
 
 dep_men <- readRDS("Data_output/DepMenages.Rds")
-adultes$TYPMEN5
+
 adultes <- indiv %>%
   filter(ADULTE) %>%
   left_join(familles %>% 

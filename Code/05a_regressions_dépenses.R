@@ -84,8 +84,19 @@ data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 
 ## Régression pondérée dépenses enfants ########################################
 
-data$n_AgeEnfantsMenage13
-reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+
+data$Vetements_enfants
+data <- data %>%
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13 ))
+  
+tab <- data %>%
+  group_by(n_TYPMEN_new) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_enfants, weights = PONDMEN))
+  
+tab
+
+reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE + n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_FractionClasse + n_TYPFAM,
                data=data, 
                weights = data$PONDMEN, 
                subset = !is.na(Vetements_enfants),
@@ -97,7 +108,7 @@ reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ N
 #   weights = data$PONDMEN, 
 #   subset = !is.na(Vetements_enfants))
 
-reg <- step(reg)
+#reg <- step(reg)
 tblreg1 <- tbl_regression(reg, intercept = T) |>
   add_glance_source_note() 
 
@@ -110,7 +121,7 @@ saveTableau(tableau = tblreg1,
             label = "DepVetementEnfants", 
             description = "Regressions sur les dépenses de vetement par enfants", 
             champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
-            n = tblreg1$table_styling$source_note, 
+            n = nrow(data), 
             ponderation = T)
 
 
@@ -141,7 +152,7 @@ tblreg1
 saveTableau(tableau = tblreg1, 
             typ = "reg", 
             label = "DepScolaireEnfants", 
-            description = "Regressions sur les dépenses de vetement par enfants", 
+            description = "Regressions sur les dépenses de scolaires par enfants", 
             champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
             n = tblreg1$table_styling$source_note, 
             ponderation = T)
@@ -175,7 +186,7 @@ tblreg1
 
 
 # Idem mais avec interaction revenu F structure familiale 
-reg2 <- update(reg1, ~ . + n_REVENUS_F:n_TYPFAM)                       
+reg2 <- update(reg1, ~ . + n_REVENUS_F*n_TYPFAM)                       
 
 reg2 <- step(reg2)
 

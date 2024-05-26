@@ -108,7 +108,6 @@ menagesHF
 
 # On ajoute les données des ménages correspondants
 dep_men <- readRDS("Data_output/DepMenages.Rds")
-
 familles <- readRDS("Data_output/familles.Rds") %>%
   left_join(dep_men %>%
               select(IDENT_MEN, STALOG)) %>%
@@ -120,15 +119,17 @@ familles <- readRDS("Data_output/familles.Rds") %>%
   rec_NENFANTS(Var = "NENFANTS")  %>%
   rec_TAU() %>%
   rec_STALOG() %>%
-  rec_TYPLOG()
+  rec_TYPLOG() %>%
+  rec_PATRIB()
 
 freq(familles$STALOG)
 freq(familles$TYPLOG)
+freq(familles$PATRIB)
     
 
 
 familles <- familles %>%
-  select(IDENT_MEN, n_config, TYPMEN5, TYPMEN,  PONDMEN, NIVIEcut, n_IdentPRef, NENFANTS, REVSOCcut, TAU, STALOG, TYPLOG)
+  select(IDENT_MEN, n_config, TYPMEN5, TYPMEN,  PONDMEN, NIVIEcut, n_IdentPRef, NENFANTS, REVSOCcut, TAU, STALOG, TYPLOG, PATRIB)
 
 freq(familles$TAU)
 freq(familles$REVSOCcut)
@@ -144,7 +145,7 @@ menagesHF <- menagesHF %>%
   filter(n_IdentPRef == n_IdentIndiv1 | n_IdentPRef == n_IdentConjoint1) 
 
 menagesHF <- menagesHF %>%
-  filter(AG_F > 25 & AG_F <= 65 | AG_H > 25 & AG_H <= 65) 
+  filter(AG_F >= 25 & AG_F <= 65 | AG_H >= 25 & AG_H <= 65) 
 
 
 dup <- menagesHF[menagesHF$IDENT_MEN %in% menagesHF$IDENT_MEN[duplicated(menagesHF$IDENT_MEN)], ]
@@ -250,7 +251,7 @@ menagesHF$PONDMEN <- menagesHF$PONDMEN/mean(menagesHF$PONDMEN)
 saveRDS(menagesHF, file = "Data_output/familles_parents.Rds")
 
 rm(celibf, celibh, couplesgay, coupleshet, coupleslesb, dup, dupli, familles, femmes, 
-   hommes, indiv, menagesHF, menagesHF2, miss)
+   hommes, indiv, menagesHF, menagesHF2, miss, dep_men, enfantsMenage, enfantsMenage_moins13ans, infosBDF, list_beauxenfantsHD, list_enfantsHD, list_enfantsHDremisencouple)
 
 
 

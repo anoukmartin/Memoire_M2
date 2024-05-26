@@ -414,6 +414,32 @@ rec_REVENUS <- function(data, Var = "DIP14", NewVar = FALSE) {
   return(data)
 }
 
+rec_PATRIB  <- function(data, Var = "PATRIB", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>% 
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = c("", "99", "98"), 
+      "0 à moins de 5 000 euros" = "1", 
+      "5 000 de 30 000 euros" = c("2", "3", "4"), 
+      "30 000 à moins de 200 000 euros" = c("5", "6", "7", "8"),
+      "200 000 à moins de 350 000 euros" = c("9", "10", "11"), 
+      "350 000 euros et plus" = c("12", "13", "14", "15")) %>%
+    fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+
+      
+
 rec_PATRIMOINE <- function(data, Var = "n_PATRIMOINE", NewVar = FALSE) {
   data$temp <- NULL
   data[, "temp"] <- data[, Var]
@@ -443,7 +469,7 @@ rec_NENFANTS <- function(data, Var, NewVar = FALSE) {
                       breaks = c(-0.5, 0.5, 1.5, 2.5, 3.5, Inf), 
                       labels = c("Aucun", "Un", "Deux", 
                                  "Trois", 
-                                 "Trois et plus")) %>%
+                                 "Quatre et plus")) %>%
              fct_na_value_to_level(level = "Aucun"))
   if(isFALSE(NewVar)){
     data[, Var] <- data[, "temp"]
@@ -678,9 +704,10 @@ joli_tableau <- function(data,
   
   tableau_beau <- tableau %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
-        format = "latex",
+        #format = "latex",
         caption = tableau_titre) %>%
     kable_styling(
+      #font_size = 7,
       latex_options = c("hold_position", "scale_down", "repeat_header")) %>%
     pack_rows(index=group) 
   n <- length(unique(data[, by] %>% unlist()))

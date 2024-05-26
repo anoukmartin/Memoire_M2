@@ -24,8 +24,8 @@ familles <- familles %>%
   mutate(
     n_RevenusContribF = case_when(
       n_REVENUScut_F == "Sans revenus" & n_REVENUScut_F == "Sans revenus" ~ 50, 
-      n_REVENUScut_F == "Sans revenus" ~ 0, 
-      n_REVENUScut_H == "Sans revenus" ~ 100,
+      n_REVENUScut_F == "Sans revenus" & !is.na(n_REVENUScut_H) ~ 0, 
+      n_REVENUScut_H == "Sans revenus" & !is.na(n_REVENUScut_F) ~ 100,
       TRUE ~ (n_REVENUS_F/(n_REVENUS_F+n_REVENUS_H))*100)) %>%
   rec_PROP(Var = "n_RevenusContribF")
 
@@ -34,8 +34,9 @@ freq(familles$n_RevenusContribF)
 
 d_acm <- familles %>% 
   select( 
-    starts_with("n_RevenusContribF"),
-    starts_with("n_PATRIMOINEcut"),
+    #starts_with("n_RevenusContribF"),
+    #starts_with("n_PATRIMOINEcut"),
+    starts_with("PATRIB"),
     starts_with("CS12"), 
     starts_with("DIP7"), 
     #starts_with("NAIS7"),
@@ -134,10 +135,10 @@ arbre <- hclust(md, method = "ward.D2") # agrégation critère de ward
 
 dend <- as.dendrogram(arbre)
 
-
-plot(dend, main = "Dendrogramme", 
-     horiz = TRUE, leaflab = "none", 
-     xlim = c(70, 27.2))
+plot(dend)
+# plot(dend, main = "Dendrogramme", 
+#      horiz = TRUE, leaflab = "none", 
+#      xlim = c(70, 27.2))
 #text(x, y, labels)
 
 
@@ -158,20 +159,20 @@ typo <- cutree(arbre, 10)
 
 typo %>% freq
 
-# # On intègre le résultat dans les données
-# typo <- typo %>% as_factor() %>%
-#   fct_recode(
-#   "Classes populaires précarisées monoactifs [C1]" = "1", 
-#   "Classes populaires stabilisées rurale [C2]" = "2", 
-#   "Classes superieures urbaines [C3]" = "3", 
-#   "Classes moyennes à la retraite [C4]" = "4", 
-#   "Classes moyennes homogames [C5]" = "5", 
-#   "Classes populaires urbaines [C6]" = "6", 
-#   "Petits indépendants ruraux [C7]" = "7", 
-#   "Classes superieures à la retraités [C8]" = "8", 
-#   "Employé-e-s et ouvrier-e-s célibataires des villes moyennes [C9]" = "9", 
-#   "Classes superieures célibataires des grandes agglomérations [C10]" = "10")
-#   
+# On intègre le résultat dans les données
+typo <- typo %>% as_factor() %>%
+  fct_recode(
+  "Classes populaires fragiles [C1]" = "1",
+  "Petits-moyens [C2]" = "2",
+  " [C3]" = "3",
+  "Petites retraites[C4]" = "4",
+  " [C5]" = "5",
+  "Classes moyennes superieures [C6]" = "6",
+  "Petits indépendants [C7]" = "7",
+  "Classes superieures [C8]" = "8",
+  "Riches retraités  [C9]" = "9",
+  "Classes moyennes célibataires [C10]" = "10")
+
 
   
 # Taleau stats des dans les clusters ----
@@ -422,3 +423,9 @@ familles$n_FractionClasse <- typo %>% as.factor()
 freq(familles$n_FractionClasse)
 
 saveRDS(familles, "Data_output/familles_parents.Rds")
+saveRDS(familles %>% 
+          select(IDENT_MEN, n_FractionClasse), 
+        "Data_output/familles_FractionClasse.Rds")
+
+# du ménage 
+rm(acm_spe, acm_sup, arbre, contributions, coordonnees, cos2, d_acm, d_acm_sup, d_acm2, d_cah, dend, familles, frequences, gg, infosBDF, resultats_actives, tab, tab2, tab2_summary, tabcontrib, variances, vtest, index_modasup, inertie, liste_moda, md, poidsACMspe, seuil, typo)

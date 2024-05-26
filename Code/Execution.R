@@ -35,14 +35,19 @@ execute(part = "03c")
 execute(part = "03d")
 execute(part = "03e")
 
-# Résultats statistiques #######################################################
+# Résultats statistiques #######################################################                                   
 
 
 ## Statistiques descriptives ###################################################
 execute(part = "04b")
+execute(part = "04c")
 execute(part = "06a")
 
 ## Regressions #################################################################
+execute(part = "04e")
+
+execute(part = "04f")
+execute(part = "05a")
 execute(part = "05b")
 
 

@@ -470,7 +470,7 @@ g +
 
 ```
 
-A partir des variables ainsi produites sur les parents, nous avons pu identifier les personnes en couple. Pour classer les différents ménages en fonction de leur structure familiale, seuls les couples dont au moins un des deux membres était personne de référence du ménage ont été retenus. En reprenant la typologie de ménage de l'Insee (Personne seule sans enfant, personne seule avec enfant, couple sans enfants, couple avec enfants et ménages complexes) nous avons distingué, parmi les couples avec enfants, ceux dont au moins ceux dont au moins un des membres était beau-père ou belle-mère d'enfants vivants dans le ménage de ceux ou l'ensemble des enfants du ménage étaient issus de l'union conjugale actuelle. Les familles recomposées sont ainsi au nombre de 634 dans l'enquête. Elle représentent 4% des ménages formées par au moins un adulte âgé d'au moins 25 ans et de moins de 65 ans et 8,5% de ces ménages vivants avec un ou des enfants, contre 23,8% de familles monoparentales et 67,7% de familles traditionnelles.
+A partir des variables ainsi produites sur les parents, nous avons pu identifier les personnes en couple. Pour classer les différents ménages en fonction de leur structure familiale, seuls les couples dont au moins un des deux membres était personne de référence du ménage ont été retenus. En reprenant la typologie de ménage de l'Insee (Personne seule sans enfant, personne seule avec enfant, couple sans enfants, couple avec enfants et ménages complexes) nous avons distingué, parmi les couples avec enfants, ceux dont au moins ceux dont au moins un des membres était beau-père ou belle-mère d'enfants vivants dans le ménage de ceux ou l'ensemble des enfants du ménage étaient issus de l'union conjugale actuelle. Par soucis de fluidité, nous parlerons ainsi souvent de familles recomposées pour désigner ces ménages présentant une configuration familiale recomposée. Pour autant, il faut garder à l'esprit que la recomposition familiale est une phénomène qui débrode largement l'échelle du ménage. Ces familles recomposées sont ainsi au nombre de 634 dans l'enquête. Elle représentent 4% des ménages formées par au moins un adulte âgé d'au moins 25 ans et de moins de 65 ans et 8,5% de ces ménages vivants avec un ou des enfants, contre 23,8% de familles monoparentales et 67,7% de familles traditionnelles.
 
 ```{r}
 
@@ -527,7 +527,7 @@ tab
 
 ```
 
-[Peut-être faire carrément une autre sous partie avec une description de la composition des ménages dans les cas de configuration recomposées ? age des enfants, couples de mêmes sexe ....]
+[Peut-être faire carrément une autre sous partie avec une description de la composition des ménages dans les cas de configuration recomposées ? nombre age des enfants, couples de mêmes sexe ....]
 
 ```{r percent_fam, include = F}
 familles <- readRDS("Data_output/familles_parents.Rds")
@@ -580,7 +580,7 @@ tab
 
 Les beaux-parents et les parents ne ressemblent pas nécessairement dans les familles recomposées. Comme les parents de familles monoparentales sont le plus souvent des mères, les parents de familles recomposées sont le plus souvent des femmes. Dans les familles recomposées, ce sont le plus souvent elles qui ont des enfants issus d'une union précédentes. Elles sont aussi plus nombreuses que les hommes à avoir des enfants à la fois issus d'union précédente et actuelle (79,6% sont des femmes quand 20,4% sont des hommes). Ainsi les beaux-parents sont le plus souvent des hommes: 85,9% des beaux-parents n'ayant pas d'enfants sont des beaux-pères et 86,9% de ceux ayant des enfants issus de l'union actuelle sont des beau-pères de ceux ayant des enfants sont des beaux pères.
 
-```{r histosexeadultes, fig.cap = "Appartenance aux groupe de sexe des parents et beaux parents", out.width= "70%", fig.asp=0.6}
+```{r histosexeadultes, fig.cap = "Appartenance aux groupes de sexe des parents et beaux parents", out.width= "70%", fig.asp=0.6}
 load("Resultats/barplot_BPSexe.Rdata")
 tab$tableau
 ```
@@ -628,9 +628,9 @@ tab$tableau %>%
 
 Cette différence est en partie liée à la sur-représentation des femmes chez les parents et à la sur-représentation des hommes chez les beau-parents puisque ces derniers sont plus souvent ouvriers. Cela est très marqué chez les beaux-parents ayant des enfants puisque 11% des belles mères ayant des enfants sont ouvrières contre 40% des beaux pères ayant des enfants. Elle l'est en revanche beaucoup moins chez les beaux-parents sans enfants puisque 24% des belles-mères dans ce cas sont ouvrières contre 32% des beaux-pères. Parallèlement, les belles-mères sont plus souvent diplômées d'un bac+5 que les mères et que les beaux-pères, qu'elles aient elles-même des enfants ou non (15% à 16% contre 7% des mères et 7 à 9% des beau-pères)
 
-### Des couples moins inégalitaires ?
+### Des couples moins homogames ?
 
-Au vu des caractéristiques spécifiques que possèdent les mères, les pères, les belles-mères et les beaux-pères, on peut se demander si les unions secondaires sont plus ou moins égalitaires les premières unions.
+Au vu des caractéristiques spécifiques que possèdent les mères, les pères, les belles-mères et les beaux-pères, on peut se demander si les unions secondaires sont plus ou moins homogames que les premières unions.
 
 ```{r heatmapdiplome, fig.cap= "Homogamie de diplome : Diplôme des femmes en fonction de celui des hommes", fig.asp = 0.6, fig.width=9, fig.height=0.3}
 
@@ -725,11 +725,11 @@ tab$tableau %>%
                        lecture = "")
 ```
 
-# Chapitre 2. [Des arrangements monétaires plus inégalitaires]
+# Chapitre 2. Rester mère isolée. 
 
 ## Faire l'économie des ménages recomposées
 
-La quantification suppose un travail de construction de catégories de pensée et de classification concrètes par lequel est circonscrit un phénomène, avant de pouvoir le quantifier [@desrosières2013]. Dans l'enquête budget de famille, qui fait figure de référence sur l'économie domestique, l'unité "ménage" occupe une place centrale : l'ensemble des consommations et une part importante des dépenses et des revenus sont récoltées à l'échelle du ménage. Support des techniques d’échantillonnage, unité de compte, catégorie d’analyse, le "ménage" reste plus généralement au cœur de la production de données dans la statistique publique. Il ne va pourtant pas de soi, ni dans la forme actuelle qu’il prend, ni dans son existence même. À la fin du XIXème et au début XXème siècle, les statistiques vont progressivement s'autonomiser des demandes ponctuelles des administrations pour se routiniser [@desrosières]. À cette occasion, le ménage apparaît comme l’instrument de l'uniformisation des récoltes statistiques. Il se diffuse dans les enquêtes, qui se font plus régulières.
+La quantification suppose un travail de construction de catégories de pensée et de classification concrètes par lequel ont circonscrit un phénomène, avant de pouvoir le quantifier [@desrosières2013]. Dans l'enquête budget de famille, qui fait figure de référence sur l'économie domestique, l'unité "ménage" occupe une place centrale : l'ensemble des consommations et une part importante des dépenses et des revenus sont récoltées à l'échelle du ménage. Support des techniques d’échantillonnage, unité de compte, catégorie d’analyse, le "ménage" reste plus généralement au cœur de la production de données dans la statistique publique. Il ne va pourtant pas de soi, ni dans la forme actuelle qu’il prend, ni dans son existence même. À la fin du XIXème et au début XXème siècle, les statistiques vont progressivement s'autonomiser des demandes ponctuelles des administrations pour se routiniser [@desrosières]. À cette occasion, le ménage apparaît comme l’instrument de l'uniformisation des récoltes statistiques. Il se diffuse dans les enquêtes, qui se font plus régulières.
 
 ### De la catégorie administrative à la catégorie statistique : naissance du ménage comme unité budgétaire
 
@@ -737,7 +737,7 @@ Au XIVe siècle, alors que les ancêtres des premiers recensements sont mis en p
 
 Pour autant, le ménage n’est pas qu’une simple traduction d’une catégorie administrative dans l’appareil statistique, il répond aussi aux préoccupations spécifiques au déploiement et au renforcement de celui-ci. Comme l'a montré Alain Desrosières [-@desrosières2000], au début du XXème siècle, au fur et à mesure que les enquêtes se font plus routinières et thématisées, on cherche à limiter les coûts de celles-ci. Les progrès mathématiques en probabilités favorisent le développement des techniques d’échantillonnages. Ces techniques permettent d’enquêter moins d’individus tout en conservant la représentativité de l’enquête. Ce sont les recensements qui vont servir de base de sondage de sorte que ce ne sont pas les individus mais les logements qui sont alors tirés au sort. Le logement apparaît aussi comme un lieu d’enquête commode pour les enquêteurs. Le ménage alors définit comme ensemble des habitants apparentés d'un logement est ainsi une unité d’enquête qui correspond à organisation matérielle de la production des données.
 
-Avec le développement de l'appareil statistique d’État, la définition du ménage se précise. Après la seconde guerre mondiale le ménage est progressivement distingué de la famille : à partir de 1946, les liens entre le chef de ménage et les autres membres de celui-ci ne sont plus nécessairement des liens familiaux. Plus récemment, le ménage est partiellement distingué du logement. Depuis 2005, le Tronc commun des ménages permet de repérer des "*unités de vie*" au sein d'un même logement qui servent de base à la définition des frontières du ménage. Le ménage est alors l'ensemble des individus partageaint un logement et un budget. Le ménage est ainsi aujourd'hui avant tout une unité budgétaire.
+Avec le développement de l'appareil statistique d’État, la définition du ménage se précise. Après la seconde guerre mondiale le ménage est progressivement distingué de la famille : à partir de 1946, les liens entre le chef de ménage et les autres membres de celui-ci ne sont plus nécessairement des liens familiaux. Plus récemment, le ménage est partiellement distingué du logement. Depuis 2005, le Tronc commun des ménages permet de repérer des "*unités de vie*" au sein d'un même logement qui servent de base à la définition des frontières du ménage. Le ménage est alors l'ensemble des individus partageaient un logement et un budget. Le ménage est ainsi aujourd'hui avant tout une unité budgétaire.
 
 ```{=tex}
 \begin{encadre}{Définition du ménage selon INSEE (2024)}
@@ -772,42 +772,43 @@ Font donc partie du même ménage des personnes qui ont un \textbf{budget commun
 
 \end{encadre}
 ```
-### Faire "budget commun", un cache-sexe des pratiques économiques
 
-On le voit, la définition de groupe faisant "budget commun" par l'INSEE comme l'ensemble des individus qui apportent ou bénéficient des ressources servant à effectuer des dépenses faites pour la vie du ménage reste assez vague. Il n'est pas aisé de déterminer précisément ce qui relève de "la vie du ménage", en particulier si l'on exclu les dépenses liées au logement, qui constitue le premier poste budgétaire des ménages (19% du montant des dépenses annuelles des ménages était consacré au logement en 2017) et mais aussi les dépenses occasionnelles sans définir ce que serait une dépense régulière. Ainsi le périmètre des dépenses inclues dans ce "budget commun" reste assez flou : qu'en est-il des dépenses et des consommations alimentaires ou de transports qui constituent également deux des quartes plus gros postes budgétaires ? Plus encore, cette définition ne dit rien du mode de partage des ressources, des dépenses et des consommations : il suffit pour un individu de participer ou de bénéficier pour être considérer comme faisant budget commun.
 
-Cela n'est pas l'objet de l'enquête budget de famille. Cette enquête, effectuée tous les cinq ans depuis 1979, elle est d'abord conçue pour répondre à des questions macroéconomiques de comptabilité nationale. En fournissant une estimation de consommation moyenne très détaillée de biens et de service, elle est à l'origine des pondérations de l'instrument de mesure de l'inflation : l'indice des prix à la consommation[^1]. Elle est également utilisée par les comptes nationaux pour le calcul des indices des prix catégoriels et, en confrontant les données de l'enquête aux données agrées, pour rendre plus robuste la mesure de la consommation. Les utilisation de l'enquête dans une perspective microéconomique sont plus tardifs à l'INSEE. Le récent développement des modèles de micro-simulation a permis la simulation de l'effet des variations des taux d’impôts indirects sur la consommation des différentes catégories de ménages [@bourgignon, landais]. Pour autant, ces approches micro-économiques restent à l'échelle du ménage. En effet, les études statistiques portants sur la repartition des dépenses et la différenciation des consommations en bien et services au sein des familles sont peu nombreuses.
+### Faire "budget commun", un cache-sexe et un cache-misère pour les inégalités intra-familiales
+
+On le voit, la définition de groupe faisant "budget commun" par l'INSEE comme l'ensemble des individus qui apportent ou bénéficient des ressources servant à effectuer des dépenses faites pour la vie du ménage reste assez vague. Il n'est pas aisé de déterminer précisément ce qui relève de "la vie du ménage", en particulier si l'on exclu les dépenses liées au logement, qui constitue le premier poste budgétaire des ménages (19% du montant des dépenses annuelles des ménages était consacré au logement en 2017) et mais aussi les dépenses occasionnelles sans définir ce que serait une dépense régulière. Ainsi le périmètre des dépenses inclues dans ce "budget commun" reste assez flou : qu'en est-il des dépenses et des consommations alimentaires ou de transports qui constituent également deux des quatre plus gros postes budgétaires ? Plus encore, cette définition ne dit rien du mode de partage des ressources, des dépenses et des consommations : il suffit pour un individu de participer ou de bénéficier pour être considérer comme faisant budget commun.
+
+```{r, eval = F}
+menages <- readRDS("Data_output/menages.Rds")
+indiv <- readRDS("Data_output/indiv.Rds")
+names(indiv)
+
+couples <- indiv %>%
+  # filter(if_any(.cols = starts_with("LIEN_"), 
+  #               .fns = function(x){x == "01"})) %>%
+  # var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv") %>%
+  # var_IDENTIFIANT(IdentIndiv = "CONJOINT", "IDENT_MEN", NewVarName = "n_IdentConjoint") %>%
+  group_by(IDENT_MEN) %>%
+  summarise(separe = unique(BSMERE))
+
+```
+
+
+**[Un traitement sur les individus en couple budget commun ?]**
+
+Ces questions ne sont l'objet de l'enquête budget de famille. Cette enquête se situe dans la longue lignée des enquêtes ouvrières [@herpin2008]. Au XIXème siècle, des réformateurs sociaux, des hygiénistes, comme des communistes, commencent à s’intéresser aux conditions de vie des familles ouvrières [@lesenqu]. Édouard Ducpétiaux (1804-1868) inventorie les budgets de 199 ouvriers dans différentes régions belges [@Ducpétiaux, 1855]. En France, la tradition d'enquête sur les budgets familiaux est surtout monographique [@leplay1874 ; @halbwachs]. Ces enquête connaissent cependant une certaine postérité, et sont produites et utilisées, jusque dans les années 1950, par les réfromateurs sociaux pour décrire la pauvreté des ménages ouvriers [@desrosières2003]. Avec la mise en place de l'enquête Budget de famille, la perspective change à nouveau. Cette enquête, effectuée tous les cinq ans depuis 1979, elle est d'abord conçue pour répondre à des questions macroéconomiques de comptabilité nationale. En fournissant une estimation de consommation moyenne très détaillée de biens et de service, elle est à l'origine des pondérations de l'instrument de mesure de l'inflation : l'indice des prix à la consommation[^1]. Elle est également utilisée par les comptes nationaux pour le calcul des indices des prix catégoriels et, en confrontant les données de l'enquête aux données agrées, pour rendre plus robuste la mesure de la consommation. Les utilisation de l'enquête dans une perspective microéconomique sont plus tardifs à l'INSEE. Le récent développement des modèles de micro-simulation a permis la simulation de l'effet des variations des taux d’impôts indirects sur la consommation des différentes catégories de ménages [@bourguignon2022]. Pour autant, ces approches micro-économiques restent à l'échelle du ménage. En effet, dans l'enquête budget de familles les dépenses et les consommations ne sont pas individualisées. En d'autres termes, on ne sait pas l'argent de qui est dépensé au bénéficie de qui. Ainsi, les études statistiques portants sur la répartition des dépenses et la différenciation des consommations en bien et services au sein des familles sont peu nombreuses.
 
 [^1]: L'indice des prix à la consommation est calculé à partir d'un panier fixe de biens et service, dont le poids relatif est déterminé par sa part dans la dépense relative des ménages.
 
-Dans Angèle Jannot "Concernant la répartition et la consommation différenciées des biens et services au sein d'une famille, il existe encore peu d'études notamment parce que les grandes enquêtes statistiques en France permettent seulement d'interroger et de comparer la consommation relative de différents ménages et non les différences de consommation entre les individus (Roy, 2006). Pourtant, la consommation au sein des ménages est différentielle tant d'un point de vue quantitatif que qualitatif, notamment selon le genre et l'âge des membres de la famille (Delphy et Léonard, 1992)"
+#### A l'échelle du ménage, des structures de consommation proches des familles traditionnelles
 
-"Lors des moments de comptabilité et de répartition concrète du patrimoine, que ce soit lors des ruptures d'union ou des héritages, les règles de calcul sont toujours défavorables à l'accumulation patrimoniale des femmes tout comme les stratégies familiales de reproduction mises en place en amont (Bessière et Gollac, 2020). Avant ces moments particuliers de comptabilité d'autres travaux soulignent, quant à eux, la plus forte mise en commun des ressources au sein des couples parentaux (Roy, 2006)."
-
-### Les budgets des ménages, une difficile individualisation des dépenses et des consommations dans les enquêtes quantitatives
-
-Ainsi, dans l'enquête budget de familles les dépenses et les consommations ne sont pas individualisées. En d'autres termes, on ne sait pas l'argent de qui est dépensé au bénéficie de qui. Pourtant, pour étudier les inégalités économiques se déployant dans les familles, il est crucial de pouvoir étudier ce qui se passe à l'intérieur des ménages. Ainsi, nous avons chercher à individualiser certaines dépenses et consommations. En ce qui concerne les enfants, il n'est bien sur pas possible de distinguer les consommations suivants les individus auxquelles elles bénéficient, cependant un certain nombre de poste de dépenses sont, dans la nomenclature des produits, spécifiques aux enfants. Il s'agit des dépenses de garde d'enfants, d'habillement, des frais scolaires, des jouets, de l'équipement spécifique et de l'alimentation spécifique. Dans l'enquête budgets de familles en 2011, ces dépenses représentaient 13,6% du budget des ménages avec au moins un enfant de moins de 16 ans [@Hotte]. Cependant, dans le fichier de production et de recherche (FPR) de 2017 sur lequel nous avons travaillé, les postes de dépenses ont été agrégés au niveau 5 de la nomenclature. Ainsi seuls les jouets, les frais scolaires et les dépenses d'habillements sont effectivement imputable à la présence d'enfants. Parmi celles-ci nous avons choisit de nous concentrer sur les dépenses d'habillement. En effet, les dépenses scolaires varient très fortement selon l'âge des enfants et sont partiellement déterminées par l'existence de tarif sociaux pour certains type de consommation comme les repas scolaires, l'étude, ou l'inscription dans certains établissement privés. Ainsi mais sont, réglementairement, déterminées par le niveau de vie du ménage de sorte que pour les enfants les plus jeunes à niveau de vie du ménage égal, ce poste de consommation est difficilement interprétable. Les dépenses en matière de jouets ne nous paraissaient pas non plus .../ Les dépenses en vêtements et chaussures nous ont en revanche paru être un bon indicateur pour mesurer la consommation des différentes membres du ménage. D'une part, les vêtements ont été considéré comme un bon proxy du niveau de vie individuel. En effet, selon l'hypothèse de Rothbarth, les vêtements d'adultes sont des biens individuels : ils ne sont peu substituables entre homme et femme et ne sont pas adaptés aux enfants. Selon cette hypothèse le niveau de vie est une fonction des dépenses de vêtements pour adultes. Au delà des
-
-Le choix de L indicateur de la dépense en vêtements adulte est désigné sous le terme « d hypothèse identifiante de Rothbart ». En 1943, Rothbart établit une correspondance entre le niveau de vie des parents et celui des enfants. Pour résoudre le problème de Lindicateur du niveau de vie, il suffit alors de trouver des consommations représentant le bien-être des parents, et en particulier, des consommations individualisâmes correspondant à des consommations adultes. Cependant, ces consommations individuelles des parents ne doivent pas être affectées par des changements de mode de vie liés à l’arrivée de l’enfant. Les dépenses en vêtements adulte sont alors a priori considérées comme ne dépendant que du niveau de vie du ménage. Cette dépense a de plus été choisie comme étant la dépense la plus facilement individualisable dans les enquêtes effectuées sur les budgets des familles (en dehors de dépenses telles que le tabac ou l’alcool, qui sont par contre sensibles à un changement de modes de vie). Des estimations du coût de l’enfant sur les données françaises ont ainsi utilisé les dépenses en vêtements du dessus adultes
-
-Les dépenses individualisables de ensemble des familles avec enfant(s) de moins de 16 ans représentent en moyenne 6 005 euros en 2011, soit 13,6 % de leur budget. Elles sont en moyenne plus importantes pour les ménages propriétaires de leur logement (14,4 %) que chez les ménages locataires (12,1 %). Les postes les plus importants sont la garde d’enfants, qui dépasse la moitié des dépenses, puis l’habillement et les frais scolaires (graphique 1).
-
-## Des pratiques économiques inégalitaires
-
-### Des structures de consommation proches des familles traditionnelles 
-
-Les ménages à la configuration familiale recomposée et traditionelle présentent des structures de consommations relativement proches. Le logement, premier poste budgétaire des ménages formés par au moins un individu adulte âgé de 25 à 65 ans (19% de leur budget), ne représente que 15% du budget des familles recomposée. Cela les rapprochent des ménages à la configuration familiale traditionnelle pour qui le logement représente 15% des dépenses et des couples sans enfants qui consacrent 16% de leur budget. A l'inverse cela les éloignent des ménages monoparentaux et ou formés par un-e célibataire sans enfants, qui consacre respéctivement 23% et 27% de leur budget au logement. Le logement est en effet considéré, au sein d'un ménage, comme un bien collectif, c'est-à-dire dont la consommation par un individu ne réduit par la consommation par les autre individus (non-rivalité) et donc on ne peut difficilement limiter l'usage par l'ensemble des individus (non-exlcuabilité). Ainsi, pour les familles recomposées comme pour les familles traditionelle, la cohabitation conjuagle est source d'économies sur les dépenses en matière de logement. En particulier, le fait que les familles recomposées soient également des familles plus nombreuses (**Tableau XX**)
-
-
-Certains biens peuvent être considérés comme des biens collectifs au sein du ménage [4]
-[4]
-Un bien est dit « collectif » si sa consommation est non…. En conséquence, l’arrivée de nouveaux membres dans le ménage n’entraîne pas de nouvelles dépenses de consommation de ce bien. Sa consommation est source d’économies d’échelle. Le chauffage peut être qualifié de bien collectif. À l’opposé, la consommation de biens individuels, caractérisée par l’exclusion d’usage et la rivalité (par exemple les aliments), est proportionnelle à la taille du ménage. Entre ces deux catégories de biens se trouvent des biens mixtes dont la consommation peut être non rivale mais caractérisée par l’exclusion d’usage (le loisir par exemple) et d’autres pour lesquels la consommation est rivale mais l’usage est non exclusif (comme une baignoire). La plupart des biens occupent une position intermédiaire. Le vêtement peut être considéré comme un bien individuel, mais il peut se rapprocher d’un bien collectif lorsque les vêtements s’échangent entre les membres du ménage (notamment au sein de la fratrie). Il existe d’autres formes d’économies d’échelle lorsqu’un ménage de grande taille bénéficie de tarifs plus avantageux grâce à des achats en quantité importante ou de tarifs sociaux (carte famille nombreuse par exemple). Des économies peuvent également être dégagées concernant le travail domestique dans la mesure où un ménage de grande taille dispose potentiellement de davantage de temps libre : le temps consacré aux tâches domestiques (ménage, cuisine…) ne croît pas proportionnellement avec la taille de celui-ci. Gardes, Sayadi et Starzec [2013] montrent que les économies d’échelle réalisées dans un ménage en termes de travail domestique sont plus importantes que celles associées aux dépenses monétaires. À partir de données anglaises, Couprie et Ferrant [2015] ont montré que deux personnes vivant seules séparément ont besoin de 2 h 15 supplémentaires par jour pour atteindre le même niveau d’utilité qu’elles auraient eu si elles vivaient en couple. L’ampleur de ce type d’économies d’échelle dépend de la configuration du ménage, en particulier elles sont potentiellement moindres dans le cas d’un foyer monoparental que dans celui d’un couple. Dans certains cas, la charge d’une personne dépendante (nourrisson, enfant non scolarisé, personne âgée) intensifie les charges domestiques, ce qui engendre alors des déséconomies d’échelle : la naissance d’un enfant accroît la charge de travail domestique, et ce surcroît de travail repose sur les femmes, ce qui accentue le déséquilibre dans le partage des tâches domestiques et familiales (Pailhé et Solaz [2010] ; Régnier-Loilier et Hiron [2010]). Les échelles d’équivalence ne prennent pas en compte les coûts indirects liés à un moindre investissement dans la vie professionnelle et/ou au retrait partiel ou total de l’activité professionnelle de l’un des parents (Thévenon [2009]). Or ces coûts de renoncement à la carrière sont importants et sont supportés essentiellement par les femmes, ce qui pèse sur l’égalité des sexes (Meurs, Paihlé et Ponthieux [2010]).
+Lorsqu'on compare les postes de consommation les plus importants, les ménages à la configuration familiale recomposée et traditionnelle présentent des structures de consommations relativement proches. Le logement, premier poste budgétaire des ménages formés par au moins un individu adulte âgé de 25 à 65 ans (19% de leur budget), ne représente que 15% du budget des familles recomposée. Cela les rapprochent des ménages à la configuration familiale traditionnelle pour qui le logement représente 15% des dépenses et des couples sans enfants qui consacrent 16% de leur budget. A l'inverse cela les éloignent des ménages monoparentaux et ou formés par un-e célibataire sans enfants, qui consacre respectivement 23% et 27% de leur budget au logement. Le logement est en effet considéré, au sein d'un ménage, comme un bien collectif, c'est-à-dire dont la consommation par un individu ne réduit par la consommation par les autre individus (non-rivalité) et donc on ne peut difficilement limiter l'usage par l'ensemble des individus (non-excluabilitée). Ainsi, pour les familles recomposées comme pour les familles traditionnelles, la cohabitation conjugale est source d'économies d'échelle sur les dépenses en matière de logement. Le nombre d'enfants, plus élevé dans les familles recomposée que dans les familles traditionnelles et surtout que dans les familles monoparentales (**Tableau XX**), tends sans doute à renforcer ces économies d'échelle. Ces aussi le cas pour les dépenses relatives aux transports qui constituent en moyenne 14% du budget des ménages formés par au moins un individu adulte âgé de 25 à 65 ans. Les dépenses de transports constituent en effet en moyenne 16% du budget des couples, qu'ils vivent ou non avec des enfants et seulement 12% du budget des individus célibataires, avec ou sans enfants à charge. Il faut en réalité différencier les dépenses effectuées en lien avec la possession d'un véhicule et ceux qui relèvent des services de transports dont font partie les transports en commun. Ainsi les couples consacrent en effet en moyenne 6% de leur budget à l'achat de véhicules contre 4% pour les ménages monoparentaux 3% pour les célibataires sans enfants. Les couples consacrent également 7 à 8 % de leur budget aux frais d'utilisation de leurs véhicules (entretien, essence, stationnement, péage par exemple) contre 5 à 6 % pour les ménages de célibataires avec ou sans enfants. A l'inverse, ces derniers consacrent une part plus importante de leur budget aux services de transports (2,23 et 2,12% contre 1,64% du budget pour les familles recomposées, 1,71% des familles traditionnelle et 1,57% des couples sans enfants). Il s'agit probablement là d'un effet du lieu de résidence, puisque les familles monoparentales et les célibataires sont sur-représentés dans les ménages vivant dans les grandes agglomérations (**Tableau XX**). Le fait de résider dans des espaces urbains rend alors moins nécessaire la possession d'une voiture et à l'inverse les dépenses en transport en commun difficile à éviter. Les familles recomposées ont également une consommation de biens et services divers (assurances, coiffeurs, garde d'enfants) proches de celles des autres couples : elles y consacrent 16% de leur budget contre 17% pour les couples sans enfants et les familles traditionnelles, alors que les célibataires avec ou sans enfants n'y consacrent que 14% de leur budget. Cette structure de consommation marquée par une part importante du budget consacré aux transports et aux biens et services divers relativement au logement est caractéristique les ménages les plus aisés et les différencie des ménages les plus pauvres [@demoly2020].
 
 ```{r budget_structure, results = "asis"}
 
 load("Resultats/tab_structure_budget.Rdata")
 tab$tableau %>% 
-  as_kable_extra(caption = "Structure de consommation des ménages selon leur structure", digits = 1, booktabs = T) %>%
+  as_kable_extra(caption = "Structure de consommation des ménages selon leur configuration familiale", digits = 1, booktabs = T) %>%
   kable_styling(
     latex_options = c("hold_position", "scale_down", "repeat_header"),
     font_size = 7) %>%
@@ -818,7 +819,788 @@ tab$tableau %>%
 
 ```
 
-### Mais des dépenses spécifiques aux enfants plus faibles en particulier chez les hauts revenus
+Cependant, en ce qui concerne l'alimentation les familles recomposées y consacrent, comme les familles monoparentales, 15% de leur budget contre 17% dans les familles traditionnelles. Si la part que représente l'alimentation dans le budget a longtemps été considéré comme un bon indicateur du niveau de vie (loi d'Engel), cette hypothèse a été remise en cause devant l'augmentation de la part du budget allouée au logement. Il est cependant intéressant de constater que la part du budget alloué aux dépenses en biens individuels dans les ménages aux configurations familiales recomposées est proche voire inférieure de celle dans les familles traditionnelle. Les biens individuels sont des biens caractérisée par la rivalité (il ne peuvent être consommé par plusieurs individus en même temps) et l'exclusivité (il est possible d'en restreindre l'accès). Il s'agit notamment des aliments et des vêtements. Pourtant, les familles recomposées sont, en moyenne, plus nombreuses que les familles traditionnelles, le montant consacré à la consommation de ces biens devrait donc être proportionnel au nombre d'habitants, et la part dans le budget devrait donc être plus élevée.
+
+Pourtant, pour étudier les inégalités économiques se déployant dans les familles, il est crucial de pouvoir étudier ce qui se passe à l'intérieur des ménages. Les travaux ethnographiques ont en effet montré que la famille n'est pas toujours le lieu d'un communisme familial comme ce que décrivait @Durkheim. D’une part, la mise en commun des revenus dans un couple est rarement intégrale [@roy2005] et souvent subordonnée à une "cause commune" [@gollac]. D’autre part, l’hypothèse d’égalité des consommations a également été mise à mal puisque des logiques d’allocation inégalitaires des ressources peuvent présider au partage des biens individuels comme de la nourriture [@delphy2019] ou mais aussi des biens considérés comme collectifs comme l'espace du logement [@Coquard, @Lambert]. Supposer ainsi une unité budgétaire rend ainsi mécaniquement aveugle aux différences de revenus et des consommations entre les différents membres d’un logement, faisant de l’unité statistique du ménage, un "cache-sexe" de la théorie économique [@bessière2016] et un "cache-misère" des situation de pauvreté féminine [@maruani2012] qui entrave ainsi la réflexion sur les rapports sociaux entre hommes et femmes et sur conduit à sous-estimer la pauvreté en France.
+
+### Saisir les arrangements économiques familiaux dans l'enquête Budgets de famille
+
+Pour interroger les arrangements monétaires se déployant au sein des ménages on peut schématiquement se placer à trois niveau. Au niveau des revenus du ménage, on peut se demande comment ceux-ci sont répartis au sein de la famille.
+
+Dans Roy : "Une telle exploitation statistique de l'enquête « Budget des Familles » ne va pas sans difficulté. Cela revient en effet à chercher la trace de différenciations ou l’inégalité au sein du ménage, dans une enquête essentiellement construite pour mesurer le niveau de vie de cette entité globale que constitue le « ménage », précisément conçu comme une unité indivisible. Notre analyse permet néanmoins de distinguer trois groupes de biens : ceux pour lesquels l’argent semble indifférencié, les biens « masculins » et les biens « féminins »."
+
+\tikzset{every picture/.style={line width=0.75pt}}
+
+```{=tex}
+\begin{figure}
+\centering
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,360); %set diagram left start at 0, and has height of 360
+
+%Straight Lines [id:da591997284273247] 
+\draw [line width=3]    (224,187.67) -- (336.67,187.67) ;
+\draw [shift={(342.67,187.67)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (16.97,-8.15) -- (0,0) -- (16.97,8.15) -- cycle    ;
+%Straight Lines [id:da7822778688095842] 
+\draw [line width=3]    (418,187.67) -- (530.67,187.67) ;
+\draw [shift={(536.67,187.67)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (16.97,-8.15) -- (0,0) -- (16.97,8.15) -- cycle    ;
+%Straight Lines [id:da7354958436201802] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (188,91) -- (188.97,165.67) ;
+\draw [shift={(189,167.67)}, rotate = 269.25] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da6410274435771419] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (377.67,87) -- (377.67,169) ;
+\draw [shift={(377.67,171)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da7929911401630845] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (591.67,89.67) -- (591.67,165.67) ;
+\draw [shift={(591.67,167.67)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da3206475430119069] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (111,187) -- (145,187) ;
+\draw [shift={(147,187)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9156843538096584] 
+\draw [line width=3]    (420,202.67) -- (542.39,248.88) ;
+\draw [shift={(548,251)}, rotate = 200.69] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (16.97,-8.15) -- (0,0) -- (16.97,8.15) -- cycle    ;
+%Straight Lines [id:da028309255882011275] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (591,315) -- (591,271) ;
+\draw [shift={(591,269)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ]  (155,182) .. controls (155,178.69) and (157.69,176) .. (161,176) -- (216,176) .. controls (219.31,176) and (222,178.69) .. (222,182) -- (222,195) .. controls (222,198.31) and (219.31,201) .. (216,201) -- (161,201) .. controls (157.69,201) and (155,198.31) .. (155,195) -- cycle  ;
+\draw (158,180) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Revenus};
+% Text Node
+\draw  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=0.98 ]  (345.67,182) .. controls (345.67,178.69) and (348.35,176) .. (351.67,176) -- (407.67,176) .. controls (410.98,176) and (413.67,178.69) .. (413.67,182) -- (413.67,195) .. controls (413.67,198.31) and (410.98,201) .. (407.67,201) -- (351.67,201) .. controls (348.35,201) and (345.67,198.31) .. (345.67,195) -- cycle  ;
+\draw (348.67,180) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Dépense};
+% Text Node
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ]  (539.67,180.67) .. controls (539.67,177.35) and (542.35,174.67) .. (545.67,174.67) -- (642.67,174.67) .. controls (645.98,174.67) and (648.67,177.35) .. (648.67,180.67) -- (648.67,193.67) .. controls (648.67,196.98) and (645.98,199.67) .. (642.67,199.67) -- (545.67,199.67) .. controls (542.35,199.67) and (539.67,196.98) .. (539.67,193.67) -- cycle  ;
+\draw (542.67,178.67) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Consommation};
+% Text Node
+\draw (190.03,78.46) node  [font=\footnotesize] [align=left] {Qui a accès ?};
+% Text Node
+\draw (379.37,74.8) node  [font=\footnotesize] [align=left] {Qui dépense ? };
+% Text Node
+\draw (596.37,74.46) node  [font=\footnotesize] [align=left] {Qui consomme ? };
+% Text Node
+\draw (283.7,169.13) node  [font=\footnotesize] [align=left] {Les revenus de qui ? };
+% Text Node
+\draw (479.37,166.13) node  [font=\footnotesize] [align=left] {Pour la consommation \\de qui ? };
+% Text Node
+\draw (57.03,188.46) node  [font=\footnotesize] [align=left] {De qui \\proviennent-ils ?};
+% Text Node
+\draw (591.37,327.46) node  [font=\footnotesize] [align=left] {Qui épargne ? };
+% Text Node
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ]  (560.67,243.67) .. controls (560.67,240.35) and (563.35,237.67) .. (566.67,237.67) -- (619.67,237.67) .. controls (622.98,237.67) and (625.67,240.35) .. (625.67,243.67) -- (625.67,256.67) .. controls (625.67,259.98) and (622.98,262.67) .. (619.67,262.67) -- (566.67,262.67) .. controls (563.35,262.67) and (560.67,259.98) .. (560.67,256.67) -- cycle  ;
+\draw (563.67,241.67) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Epargne};
+
+
+\end{tikzpicture}
+
+\caption{Saisir l'économie domestique}
+\end{figure}
+```
+| Echelle  | Revenus | Dépenses | Consommation |
+|----------|---------|----------|--------------|
+| Ménage   |         |          |              |
+| Individu |         |          |              |
+
+## Des "causes communes" aux périmètres plus limités
+
+-   intro un peu théorique, cause commune blablabla
+
+```{r}
+familles <- readRDS("Data_output/familles_parents.Rds")
+menages <- readRDS("Data_output/menages.Rds")
+familles <- familles %>%
+  left_join(menages %>%
+              select("IDENT_MEN", "BS", "APART"), 
+            by = "IDENT_MEN") 
+  # mutate(BS = fct_recode(BS, 
+  #   "Tous les membres du logement font budget commun" = 0, 
+  #   "Certains membres du logement font budget à part" = 1
+  # ))
+
+familles %>%
+  as_survey_design(weigths = "PONDMEN") %>%
+  tbl_svysummary(by = "APART", 
+                 include = c("n_TYPMEN_new"), 
+                 percent = "row")
+
+```
+
+### Dépenses féminines et dépenses masculines
+
+Faute de pouvoir saisir directement l'appartenance de l'argent qui est dépensé dans différents types de consommations, nous en avons chercher des traces dans l'enquête. Nous avons ainsi choisi de modéliser l'utilisation de l'argent féminin et de l'argent masculin dans les ménages formés par des couples ayant des enfants à charge. Pour cela nous avons réalisé des régressions sur les différents types de consommations selon les méthodes classiques employés par les travaux sur le sujet [@phipps1998; @roy2006]. Il s'agit de modéliser la sensibilité de différents types de consommation à l'augmentation des revenus féminin et masculins. Pour chaque type de consommation, agrégé au niveau 2 de la nomenclature, nous effectuons donc une régression linéaire censurée[^2] sur le montant qui y est consacré dans laquelle nous introduisons deux termes d'interaction : entre le revenu féminin et le type de configuration familiale d'une part et entre le revenu masculin et le type de configuration d'autre part. Afin de contrôler les différentes différents facteurs influençant la consommation de différents types de biens et de services, nous introduisons dans le modèle la variable codant l'appartenance à des fraction de classe [**Voir cah**] qui résume de manière synthétique à la fois les positions professionnelles des conjoints, leur niveau de diplôme, l'âge des conjoints, le niveau de vie du ménage, laleur niveau de vie, que le nombre d'enfants dans le ménage. Nous avons ici préféré introduire une variable synthétique de la position sociale au niveau du ménage plutôt qu'un nombre plus important de variables au niveau individuel
+
+[^2]: Il s'agit d'un modèle de régression de Tobit, adapté aux variables continues pour lesquelles la valeur 0 est sur-représenté et dont la distribution suit une courbe de Gauss
+
+```{=tex}
+\begin{encadre}{Equation du modèle}
+
+$$
+M_k = \alpha + \beta_1 Y_F*T + \beta_2 Y_H*T + \beta_3 T + \beta_4 Y_M + \beta_5 C + \beta_6 N + \beta_7 L + \epsilon
+$$
+avec : 
+
+- $M_k$, le montant dépensé par le ménage pour la consommation de $k$
+
+- $Y_F$, les revenus féminin, 
+
+- $Y_M$, les revenus masculins
+
+- $Y_M$, le revenu disponible du ménage
+
+- $T$, le type de configuration familiale du méange (traditionelle vs recomposée)
+
+- $C$, la position sociale du ménage synthétique
+
+- $N$, le nombre d'enfants du ménage
+
+- $L$, le statut d'occupation du logement (propriétaire, locataire, autre)
+
+\end{encadre}
+```
+
+Ainsi on peut, à position sociale, nombre d'enfants et statut d'occupation du logement du ménage égaux, comparer l'effet de augmentation du revenu féminin ou masculin sur les dépenses effectuées par le ménage. Cela ne signifie pas que l'argent des femmes ou respectivement des hommes est utilisé pour les dépenses auxquelles elles sont corrélés et consommé par celui ou celle dont provient l'argent. Cela signifie simplement que l'augmentation du revenu masculin ou féminin a des effets sur le montant dépensé par le ménage sur ces différents postes. On ne peut pas par exemple exclure que l'augmentation du revenu féminin dans couple conduisent les couples à modifier l'arrangement économique en lien avec le loyer, par exemple en passant d'un 55%-45% à un 50%-50%, ce qui libereait l'argent masculin qui pourrait être consacré à d'autres dépenses, par exemple en loisir. Ainsi, dans le modèle, l'augmentation du revenu féminin se traduirait par une augmentation des consommations de loisir du ménage, sans pour autant que ce loisir ait été consommé par la femme. Pour autant, la sensibilité des consommations au revenu des hommes et des femmes constitue un bon moyen d'approcher la mise en commun des ressources et le partage des dépenses [@roy2006].
+
+L'autre problème de l'utilisation de cette méthode est la linéarisation de l'effet de l'augmentation de revenu. Nous avons chercher à limiter ce problème en utilisant un modèle de tobit plutôt qu'un OLS classique, ce qui permet une meilleur prise en compte de la sur-représentation des valeurs nulles sur certaines dépenses. Or 100 euros de plus n'ont pas nécessairement les mêmes effets lorsqu'on gagne 600 euros par mois que lorsque en gagne 3 000. 
+
+
+D'une manière générale, on ne peut pas analyser de manière symétrique l'influence de l'augmentation des revenus féminins et des revenus masculins. Ces revenus sont marqués socialement, et ne signifient pas la même chose suivant qu'ils proviennent du travail féminin ou du travail masculin. Ainsi, les revenus masculins ont longtemps été considéré comme les revenus principaux d'un ménage, supposés pouvoir seuls pourvoir aux besoins du groupe familial. A l'inverses les revenus féminins sont considérés comme des revenus d'appoints, complémentaires aux revenus masculins et donc utilisés pour améliorer l'ordinaire. Cela explique pourquoi lorsque les dépenses sont différemment sensibles aux revenus des hommes et des femmes, elles sont en général, plus sensibles aux revenus féminins qu'aux revenus masculin. Cela est d'autant plus vrai pour les postes de dépenses dont part dans le budget augmente avec le niveau de vie : les transports, les loisirs et la culture, les restaurants et hôtels ainsi que les biens et services divers. C'est aussi le cas du logement qui représente une part importante des budgets des ménages pauvres et plus faible pour les ménages aisées, mais dont le montant des dépenses augmente rapidement avec le revenu. Le corollaire est en revanche que si la consommation est moins sensible aux revenus masculins, c'est alors que l'épargne augmente quand le revenu masculin augmente. 
+
+
+```{r}
+#list.files("Resultats")
+load("Resultats/reg_brute_RevenusHF_etTYPMEN_sur_conso_interaction.Rdata")
+results <- tab$tableau
+#results
+
+
+results$`Consommation finale` %>%
+  tbl_regression()
+  
+```
+
+[Peut être présenter la régression sur la consommation finale]
+
+
+### Des dépenses moins partagées entre hommes et femmes que dans les familles traditionelles
+
+Dans les familles recomposées, certains de ces postes budgétaires significativement plus sensibles à l'augmentation des revenus féminins dans les familles traditionnelles voient l'écart de sensibilité se creuser. C'est le cas pour le logement, les restaurants et hôtels, les loisirs et la culture ainsi que les biens et services divers. Ainsi, ces dépenses apparaissent comme des dépenses féminines dans l'ensemble des ménages formés par des couples vivants avec des enfants, mais plus fortement dans les ménages recomposées. Ces dépenses apparaissent ainsi moins partagées dans les familles recomposées que dans les familles traditionnelles. En ce qui concerne le poste de logement, il englobe ici les 
+
+```{r ggcoef, fig.cap = "Sensibilité des différents types de consommation aux revenus féminins et masculin dans les familles traditionelles et recomposées", fig.height=12}
+
+# On récupère des données 
+reg_dat <- ggcoef_compare(results, 
+                          return_data = T, 
+                          add_reference_rows = TRUE,
+                          conf.level = 0.90)
+
+#summary(results$Alimentation)
+reg_dat1 <- reg_dat %>%
+  filter(variable %in% c("n_TYPMEN_newRecomposée:n_REVENUS_H",
+                          "n_TYPMEN_newTraditionelle:n_REVENUS_H",
+                          "n_REVENUS_F:n_TYPMEN_newRecomposée",
+                          "n_REVENUS_F:n_TYPMEN_newTraditionelle")) %>%
+  mutate(label = label %>%
+           droplevels() %>%
+           fct_recode(
+             "Revenus masculins *\n Famille recomposée" = "n_TYPMEN_newRecomposée:n_REVENUS_H", 
+             "Revenus masculins *\n Famille traditionelle" = "n_TYPMEN_newTraditionelle:n_REVENUS_H",
+             "Revenus féminins *\n Famille recomposée" = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+             "Revenus féminins *\n
+             Famille traditionelle" = "n_REVENUS_F:n_TYPMEN_newTraditionelle"))
+
+# On ne garde que ce qui est significatif 
+reg_dat1 <- reg_dat1 %>%
+  #filter(p.value <= 0.1) %>%
+  filter(!(model %in% c("Consommation finale", "EPARGNE")))
+
+gg <- ggcoef_plot(reg_dat1, 
+                  x = "estimate", 
+                  y = "label", 
+                  colour = "label", 
+                  errorbar_coloured = T) +
+  facet_wrap(.~model, ncol = 1,  switch = "y") +
+  scale_color_brewer(palette = "Paired") +
+  theme_tufte()+
+  theme(strip.text.y.left = element_text(angle = 0, hjust = 1, vjust = 0.5), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        panel.background = element_rect(fill = "white", ),
+        legend.position = "bottom", 
+        panel.grid.major.x = element_line(colour = "grey80"), 
+        panel.grid.minor.x = element_line(colour = "grey80"))
+    
+        
+gg
+
+#results$`Habillement et chaussures`$coefficients
+```
+
+
+Dans les familles recomposées, comme dans les familles traditionnelles certains postes de dépenses apparaissent plus ou moins sensibles que d'autres à l'augmentation des revenus féminins ou respectivement masculins. Il y a d'abord les postes de dépenses qui apparaissent aussi sensibles aux revenus de l'homme qu'aux revenus de la femme dans les familles traditionnelles comme dans les familles recomposées. C'est le cas de la santé pour laquelle la différence de sensibilité n'est pas significative entre les revenus féminins et masculins dans le premier cas comme dans le second. C'est également le cas pour les dépenses d'enseignements et les dépenses de communication. Pour ces dépenses, il s'agit principalement de tarifs forfaitaires : prix d'une consultation chez un médecin, coût d'un abonnement téléphonique, tarif de l'étude après l'école. Ces dépenses sont d'une manière générale peu sensibleS aux revenus. Elles représentent certes une part assez faible du budget des ménages (chiffres issues du tableau structure budgétaire) mais leur montant n'augmente que très peu avec l'augmentation du revenu (en particulier pour la santé et les communications). On a donc ici à faire à des dépenses probablement assez fixes. Il en va de même pour les dépenses pour les dépenses d'alcool, de tabac et de stupéfiant, qui, du fait du pouvoir addictif, peuvent également s'apparenter à des dépenses fixes.
+
+D'autres dépenses ne sont pas significativement sensibles aux revenus féminins ou masculins dans les familles traditionnelles mais le sont dans les familles recomposées. C'est le cas des dépenses d'habillement, qui semblent ainsi faire partie du champ des dépenses communes dans les familles traditionnelles : un euro supplémentaire gagné par un homme a le même effet sur ces dépenses qu'un euros supplémentaire gagner par une femme. A l'inverse, dans les familles recomposées, cents euros supplémentaire gagné par une femme fait augmenter de 3 euros le budget annuel consacré aux vêtements, alors que les revenus masculins n'ont pas d'influence significative sur les dépenses de vêtement et chaussures. Il semble donc que le partage des dépenses d'habillement ne soit pas fréquente dans les familles recomposée. Ces postes de dépenses étant, en partie au moins, dédiés aux enfants, on peut penser que ce qui joue ici est lié au statut de parent ou de beau-parent. Ainsi, il semble que les charges que représentent les vêtements et chaussures soient portées par les femmes, plus probablement les mères dans les familles recomposées.
+
+D'autres dépenses sont significativement sensibles aux revenus féminins par rapports aux revenus masculins dans les familles traditionnelles, mais cette différence n'est pas significative dans les familles recomposées : il s'agit des dépenses en matière d'alimentation et de transport, qui représentent deux des plus gros postes des dépenses des ménages, mais aussi de meubles et d'entretien courant du logement. Cela semble s'expliquer par la variance très importante des coefficients estimés pour les revenus masculins et surtout féminins pour ces dépenses dans familles recomposées. Les effectifs de ménages dont la configuration familiale est recomposée sont en effet bien plus faibles que ceux des familles traditionnelles, il est donc normal que les intervalles de confiances des coefficients estimés par les modèles soient plus étendus. Cependant, cela pourrait aussi s'expliquer par des pratiques différentes des hommes et des femmes en fonction de leur statut de parent ou de beau-parent.
+
+```{r, eval = FALSE}
+
+testCoeffWald <- function(model, c1, c2){
+  # Extraire les coefficients et la matrice de variance-covariance
+  coefs <- coef(model)
+  vcov_matrix <- vcov(model)
+  coefs
+  
+  # Calculer la statistique de Wald
+  beta_diff <- coefs[c1] - coefs[c2]
+  var_diff <- vcov_matrix[c1, c1] + vcov_matrix[c2, c2] - 2 * vcov_matrix[c2, c1]
+  wald_stat <- (beta_diff^2) / var_diff
+  
+  # Calculer la p-value
+  p_value <- pchisq(wald_stat, df = 1, lower.tail = FALSE)
+  
+  # Afficher le résultat
+  print(paste("Wald Statistic:", wald_stat))
+  print(paste("p-value:", p_value))
+  
+  # Interpréter le résultat
+  if(p_value < 0.1) {
+    print("Les coefficients ne sont pas égaux (rejeter H0)")
+  } else {
+    print("Les coefficients sont égaux (ne pas rejeter H0)")
+  }
+}
+
+tab <- data.frame(
+  c1 = c("n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+         "n_REVENUS_F:n_TYPMEN_newRecomposée"), 
+  c2 = c("n_TYPMEN_newTraditionelle:n_REVENUS_H", 
+         "n_TYPMEN_newRecomposée:n_REVENUS_H"))
+mod <- "Sante"       
+x <- 1
+lapply(1:2, function(x){
+  testCoeffWald(results[[mod]], 
+                c1 = tab[x, 1], 
+                c2 = tab[x, 2])
+})
+
+
+# Santé
+testCoeffWald(results$Sante, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$Sante, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Alcools, tabac et stup
+testCoeffWald(results$`Alcools,tabacs etstupefiants `, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Alcools,tabacs etstupefiants `, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Enseignement
+testCoeffWald(results$Enseignement, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$Enseignement,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Communication
+testCoeffWald(results$Communications, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$Communications,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Habillement
+testCoeffWald(results$`Habillement et chaussures`, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Habillement et chaussures`,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Alimentation
+testCoeffWald(results$Alimentation, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$Alimentation,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Transport
+testCoeffWald(results$Transports, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$Transports,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Meubles
+testCoeffWald(results$`Meubles et entretien de la maison`, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Meubles et entretien de la maison`,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Logement
+testCoeffWald(results$`Logement et charges`, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Logement et charges`,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Hotel restau
+testCoeffWald(results$`Restauration et hôtels`, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Restauration et hôtels`,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Biens et sevices divers
+testCoeffWald(results$`Biens et services divers`, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Biens et services divers`,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+
+# Loisir culture
+testCoeffWald(results$`Loisirs et culture`, 
+              c1 = "n_REVENUS_F:n_TYPMEN_newTraditionelle", 
+              c2 = "n_TYPMEN_newTraditionelle:n_REVENUS_H")
+testCoeffWald(results$`Loisirs et culture`,
+              c1 = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+              c2 = "n_TYPMEN_newRecomposée:n_REVENUS_H")
+```
+
+
+```{r ggcoef2, fig.cap = "Sensibilité des différents types de consommation aux revenus féminins et masculin dans les familles traditionelles et recomposées", fig.height=12}
+
+load("Resultats/reg_brute_RevenusHF_etTYPMEN_sur_conso13_interaction.Rdata")
+results <- tab$tableau
+
+
+# On récupère des données 
+reg_dat <- ggcoef_compare(results, 
+                          return_data = T, 
+                          add_reference_rows = TRUE,
+                          conf.level = 0.90)
+#summary(results$Alimentation)
+reg_dat1 <- reg_dat %>%
+  filter(!(variable %in% c("n_FractionClasse", "NENFANTS", "n_TYPFAM", "DIP7_F", "DIP7_H", "STALOG", "n_TYPMEN_new", "NIVIE", "REVDISP", "n_EnfantsMen_F", "n_EnfantsMen_H"))) 
+# On ne garde que ce qui est significatif 
+reg_dat1 <- reg_dat1 %>%
+  #filter(p.value <= 0.1) %>%
+  filter(model != "Consommation finale") %>%
+  filter(!str_detect(model, "Impôts|impôts|Taxe|taxe"))
+
+gg <- ggcoef_plot(reg_dat1, 
+                  x = "estimate", 
+                  y = "label", 
+                  colour = "label", 
+                  errorbar_coloured = T) +
+  facet_wrap(.~model, ncol = 1,  switch = "y") +
+  scale_color_brewer(palette = "Paired") +
+  theme_tufte()+
+  theme(strip.text.y.left = element_text(angle = 0, hjust = 1, vjust = 0.5), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        panel.background = element_rect(fill = "white", ),
+        legend.position = "bottom", 
+        panel.grid.major.x = element_line(colour = "grey80"), 
+        panel.grid.minor.x = element_line(colour = "grey80"))
+    
+        
+gg
+
+```
+
+
+### Beux-pères et belles-mères : des contributions assymétriques
+
+Pour essayer de comprendre à quoi sont dues ces variations de sensibilité des différents types de consommation aux revenus féminins et masculins dans les familles recomposées, nous avons procédé à une modélisation similaire sur la sous-population des ménages aux configurations familiales recomposées. Cependant fois-ci au lieu des interactions précédentes nous introduisons deux autres interactions, d'une part une entre les revenus féminins et l'existence d'enfants de la femme dans le ménage et d'autre part les revenus masculins et l'existence d'enfants de l'homme dans le ménage. Il s'agit ici de saisir les conditions de possibilité de la participations économique des pères, des beaux-pères, des mères et des belles-mères aux différentes "charges du ménage".
+
+
+```{r regFamRecompConso, fig.cap= "Sensibilité des différents postes de dépenses aux revenus féminins et masculin en fonction du statut parental dans les familles recomposées"}
+
+load("Resultats/reg_brute_Fam_recomp_RevenusHF_etEnfantsMenage_sur_conso_interaction.Rdata")
+results <- tab$tableau
+
+# On récupère des données 
+reg_dat <- ggcoef_compare(results, 
+                          return_data = T, 
+                          add_reference_rows = TRUE,
+                          conf.level = 0.90)
+
+#summary(results$Alimentation)
+reg_dat1 <- reg_dat %>%
+  filter(!(variable %in% c("n_FractionClasse", "NENFANTS", "n_TYPFAM", "DIP7_F", "DIP7_H", "STALOG", "n_TYPMEN_new", "NIVIE", "REVDISP"))) 
+
+# On ne garde que ce qui est significatif 
+reg_dat1 <- reg_dat1 %>%
+  #filter(p.value <= 0.1) %>%
+  filter(!(model %in% c("Consommation finale", "EPARGNE"))) 
+
+gg <- ggcoef_plot(reg_dat1, 
+                  x = "estimate", 
+                  y = "label", 
+                  colour = "label", 
+                  errorbar_coloured = T) +
+  facet_wrap(.~model, ncol = 1,  switch = "y") +
+  scale_color_brewer(palette = "Paired") +
+  theme_tufte()+
+  theme(strip.text.y.left = element_text(angle = 0, hjust = 1, vjust = 0.5), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        panel.background = element_rect(fill = "white", ),
+        #legend.position = "bottom", 
+        panel.grid.major.x = element_line(colour = "grey80"), 
+        panel.grid.minor.x = element_line(colour = "grey80"))
+    
+        
+gg
+```
+
+Ainsi, on observe 
+
+Comme on pouvait s'y attendre, les postes des dépenses aussi sensibles aux revenus masculins et qu'aux revenus féminins dans les familles recomposées ne présentent pas de différences significatives suivant le statut parental. En ce qui concerne l'alimentation, la santé, le tabac, l'alcool et les stupéfiants, l'enseignement, l'argent des pères, des mères, des belles-mères et des beaux-pères sans enfants a un effet similaire sur les dépenses.
+
+D'autres postes de dépenses sont marqués par le genre de l'individu dont provient le revenu, mais assez peu par son statut parental. C'est le cas des dépenses en matière de vêtement et de chaussures et de biens et de restauration et hôtel qui sont avant tout des dépenses liée aux revenus féminin, et assez peu au revenu masculin dans les familles recomposées.
+
+Aucun des postes de dépenses n'est sensible seulement au statut parental et non au genre. Tous les autres postes budgétaires sont à la fois sensible au genre et au statut beau-parental de la personne dont provient les revenus. Par exemple, la consommation en loisir et culture est surdéterminée par le revenu des mères, et celle en communication par le revenus des belles-mères sans enfants.
+
+En ce qui concerne le logement on observe un effet intéressant. Dans les familles recomposées, les revenus féminins paraissaient déterminer plus fortement que les revenus masculins les dépenses en matière de logement. Cependant, on voit qu'en différenciant ceux-ci en fonction du statut parental, on observe une sous-détermination des dépenses de logement par les revenus des beaux-pères sans enfants, la ou les coefficient ne sont pas significativement différents pour les belles-mères sans enfants, les mères et les pères. Plusieurs hypothèses peuvent expliquer cela. D'une part, les recompositions familiale peuvent donner lieu à emménagement d'un des conjoint-e-s, plus probablement celui ou celle qui n'a pas d'enfants, au domicile de l'autre, sans que cela ne donne lieu a un partage des charges locatives. Cependant, on devrait donc observer le même effet pour les belles-mères. Or ce n'est pas le cas. Ceci semble indiquer que les revenus des belles-mères déterminent tout autant les dépenses en matière de logement que celles des pères, là ou dans les couples constituée d'une femme ayant des enfants et d'un homme n'en ayant pas, seuls les revenus de cette dernière détermine les dépenses en matière de logement.
+
+Pour les biens et service divers, les revenus des pères ont plus d'effet que les revenus des beaux-pères et les revenus des mères on plus d'effet que les revenus des belles mères. Il semble donc la consommation en biens et services divers soit liée au fait d'avoir des enfants. Les biens et services divers contiennent en effet les services de garde qui peuvent représenter un poste de consommation non-négligeable, et qui expliquerait que les revenus des parents soit sur-déterminants dans ce type de dépenses. En revanche, ce sont bien les revenus des mères qui déterminent le plus fortement ce type de consommation. Cela rejoint les analyses selon lesquelles les services payants permettant de réduire le travail domestique effectué gratuitement par les femmes dans les familles est un "bien supérieur féminin".En l'occurrence, la garde d'enfant, si elle est une affaire de parent, reste surtout une affaire de mères. On peut ainsi penser que si les pères de famille recomposée y ont plus recours que les beaux-pères, ils peuvent néanmoins compter sur leur conjointe, même lorsque celle-ci n'as pas d'enfants, pour effectuer une partie du travail domestique et parental. Il est en revanche moins probable que les mères de famille recomposées puissent faire reproser une partie de ce travail sur leur conjoint, en particulier lorsque celui-ci n'as pas lui-même d'enfant.
+
+
+```{r, eval = F}
+summary(results$Sante)
+
+# Santé
+testCoeffWald(results$Sante, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$Sante, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+
+# Alcools, tabac et stup
+testCoeffWald(results$`Alcools,tabacs etstupefiants `, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Alcools,tabacs etstupefiants `, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+
+# Enseignement
+testCoeffWald(results$Enseignement, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$Enseignement, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+
+
+# Habillement
+testCoeffWald(results$`Habillement et chaussures`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Habillement et chaussures`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Habillement et chaussures`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+testCoeffWald(results$`Habillement et chaussures`, 
+              c1 = "n_REVENUS_F:n_EnfantsMen_FMère", 
+              c2 = "n_REVENUS_H:n_EnfantsMen_HPère")
+
+# Réstauration et hotels
+testCoeffWald(results$`Restauration et hôtels`,
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Restauration et hôtels`,
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Restauration et hôtels`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+testCoeffWald(results$`Restauration et hôtels`, 
+              c1 = "n_REVENUS_F:n_EnfantsMen_FMère", 
+              c2 = "n_REVENUS_H:n_EnfantsMen_HPère")
+
+# Biens et service
+testCoeffWald(results$`Biens et services divers`,
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Biens et services divers`,
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Biens et services divers`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+testCoeffWald(results$`Biens et services divers`, 
+              c1 = "n_REVENUS_F:n_EnfantsMen_FMère", 
+              c2 = "n_REVENUS_H:n_EnfantsMen_HPère")
+testCoeffWald(results$`Biens et services divers`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_H:n_EnfantsMen_HPère")
+testCoeffWald(results$`Biens et services divers`, 
+              c1 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+
+
+# Logement
+testCoeffWald(results$`Logement et charges`,
+              c1 = "n_REVENUS_H:n_EnfantsMen_HPère", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Logement et charges`,
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant")
+testCoeffWald(results$`Logement et charges`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+testCoeffWald(results$`Logement et charges`,
+              c1 = "n_REVENUS_F:n_EnfantsMen_FMère", 
+              c2 = "n_REVENUS_H:n_EnfantsMen_HPère")
+testCoeffWald(results$`Logement et charges`, 
+              c1 = "n_REVENUS_H:n_EnfantsMen_HBeau-père\nsans enfant", 
+              c2 = "n_REVENUS_H:n_EnfantsMen_HPère")
+testCoeffWald(results$`Logement et charges`, 
+              c1 = "n_REVENUS_F:n_EnfantsMen_FBelle-mère\nsans enfant", 
+              c2 = "n_REVENUS_F:n_EnfantsMen_FMère")
+```
+
+
+
+
+## Des inégalités de revenus aux inégalités de consommations
+
+### Les effets différenciés de la parentalité sur les revenus et des femmes
+
+Les moments de séparation permettent d'objectiver les effets différenciés de la conjugalité et de la parentalité sur les hommes et les femmes
+
+des hommes sans enfants avec des mères isolées Stats des H/F P/BP
+
+tableau croisés
+
+
+On l'a vu, les couples formant des ménages à la configuration familiale recom
+
+
+### Renforcées par une plus faible contribution des ex-conjoints
+
+```{r aide_autremenage, eval = FALSE, out.width= "70%", fig.asp=0.6}
+
+familles <- readRDS("Data_output/familles_parents.Rds")
+menages <- readRDS("Data_output/menages.Rds") %>%
+  select(IDENT_MEN, 
+         REV700, REV701, # transferts entre ménages
+         REVDISP, REVTOT) 
+
+names(menages)
+revenus_comp <- lapply(menages[,c("REV700", "REV701")], function(x){
+  revdisp <- menages$REVDISP %>% as.vector()
+  part <- (x/revdisp)*100
+  part <- x
+  return(part)
+})
+revenus_comp$IDENT_MEN <- menages$IDENT_MEN
+revenus_comp <- revenus_comp %>%
+  as.data.frame()
+
+revenus_comp <- revenus_comp %>%
+  filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
+  mutate(REV700 = REV700/12, 
+         REV701 = REV701/12) %>%
+  left_join(familles %>%
+              select(n_TYPMEN_new, PONDMEN, IDENT_MEN), 
+            by = "IDENT_MEN")
+
+
+revenus_comp2 <- revenus_comp %>%
+  pivot_longer(cols = c("REV700", "REV701"))
+
+revenus_comp2 <- revenus_comp2 %>%
+  group_by(n_TYPMEN_new, name) %>%
+  summarise(value_mean = weighted.mean(x = value, w=PONDMEN, na.rm = T))
+
+#unique(revenus_comp2$name)
+
+#liste
+library(GGally)
+
+
+revenus_comp2 <- revenus_comp2 %>%
+  mutate(name = name %>%
+           fct_relevel("REV701"))
+
+ggplot(aes(x = n_TYPMEN_new, y = value_mean, fill = name), 
+       data = revenus_comp2) +
+  geom_bar(stat = "identity") +
+  geom_text(
+    aes(label = round(value_mean, 1)), 
+       position = position_stack(.5), 
+            size = 3, 
+            family = "serif") +
+  geom_hline(yintercept = 0) +
+  labs(x = "Type de ménage", 
+       y = "Montant mensuel") + 
+   scale_fill_manual(
+     values =  alpha(
+       rev(c("#ff7f00", "#fdbf6f")), 
+        0.5), 
+     labels = rev(c("qui doit les verser\nobligatoirement", "qui les verse\nlibrement")),
+     name = "Sommes reçues\nrégulièrement\nd'un autre ménage :") +
+  theme_memoire() + 
+  theme(axis.line.x = element_blank(), 
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
+Seuls 16% des parents de familles monoparentales se voient verser régulièrement une somme d'argent par leur ex-conjoint-e. Dans les familles recomposées, ce chiffre n'est pas significativement différent : dans 15,9% d'entre elles, au moins un des deux membres du couple reçoit régulièrement un versement d'argent de la part de son ex-conjoint **(Tableau annexe ??)**. Il n'est malheureusement pas possible de distinguer les situations en fonction des caractéristiques sociales et de la situation économique de ces ex-conjoints, sur lesquels l'enquête ne renseigne pas.
+
+En revanche, le montant de ces versements réguliers apparaissent plus faibles dans les familles recomposées que dans les familles monoparentales. Le graphique ci-dessous présente le montent mensuel moyen versé par les ex-conjoints aux ménages en fonction de leur configuration familiale.
+
+```{r aide_exconj, out.width= "70%", fig.asp=0.6}
+# On récupère les revenus qui sont les versements des ex-conjoints
+menages <- readRDS("Data_output/menages.Rds")
+
+aide_reg <- menages %>%
+  select("IDENT_MEN",
+         starts_with("EXRECR"),
+         starts_with("MRECR"), 
+         starts_with("OBLRECR"), 
+         starts_with("PERRECR"), 
+         starts_with("PRORECR")) %>%
+  mutate_at(.vars = vars(starts_with("MRECR")), 
+            .funs = function(x){
+              if_else(x %in% c(999999, 999998), NA, x)
+            }) %>%
+  select(-c(paste0("MRECR", 1:3))) %>%
+  rename(MRECR1 = "MRECR1_D", 
+         MRECR2 = "MRECR2_D", 
+         MRECR3 = "MRECR3_D")
+
+variables <- c("MRECR", "OBLRECR", "PERRECR", "PRORECR")
+tabs <- lapply(variables, function(x){
+  tab <- pivot_longer(
+    aide_reg,
+    cols = starts_with(x),
+    names_to = "id_vers",
+    values_to = x, 
+    values_drop_na = F) %>%
+    mutate(id_vers = str_remove_all(id_vers, x)) %>%
+    select(all_of(c("IDENT_MEN", "id_vers", x)))
+})
+names(tabs) <- variables
+#lapply(tabs, dim)
+
+aide_reg2 <- tabs$MRECR %>%
+  left_join(tabs$OBLRECR, by = c("IDENT_MEN", "id_vers")) %>%
+   left_join(tabs$PERRECR, by = c("IDENT_MEN", "id_vers")) %>%
+   left_join(tabs$PRORECR, by = c("IDENT_MEN", "id_vers")) 
+
+aide_exconj <- aide_reg2 %>%
+  filter(PRORECR == "4") %>%
+  mutate(MRECR_mens = MRECR/PERRECR) %>%
+  mutate(MRECE_mens_oblig = if_else(OBLRECR == "1", MRECR_mens, NA), 
+         MRECE_mens_nonoblig = if_else(OBLRECR == "2", MRECR_mens, NA))
+         
+
+aide_exconjsum <- aide_exconj %>%
+  group_by(IDENT_MEN) %>%
+  summarize(montant_vers = sum(MRECR_mens, na.rm=T), 
+            montant_oblig = sum(MRECE_mens_oblig, na.rm = T), 
+            montant_nonoblig = sum(MRECE_mens_nonoblig, na.rm = T))
+
+# On récupère les donénes des familles 
+familles <- readRDS("Data_output/familles_parents.Rds")
+
+revenus_comp <- left_join(
+  familles %>%
+    select(n_TYPMEN_new, PONDMEN, IDENT_MEN, NIVIEcut), 
+  aide_exconjsum,
+  by = "IDENT_MEN") %>%
+  mutate(pens_exconj = if_else(is.na(montant_vers), "Non", "Oui"))
+
+# Graphique sur la part de famille ou une pension est versée
+pens_comp <- revenus_comp 
+pens_comp <- lprop(wtd.table(x = pens_comp$n_TYPMEN_new, y = pens_comp$pens_exconj, weights = pens_comp$PONDMEN)) %>%
+  as.data.frame() %>%
+  filter(Var2 == "Oui") %>%
+  filter(Var1 != "All")
+  
+            
+# Graphique montant 
+revenus_comp2 <- revenus_comp %>%
+  filter(pens_exconj == "Oui") %>%
+  filter(n_TYPMEN_new %in% c("Recomposée", "Monoparentale")) %>%
+  pivot_longer(cols = c("montant_oblig", "montant_nonoblig")) %>%
+  mutate(value = if_else(is.na(value), NA, value)) 
+
+revenus_comp2 <- revenus_comp2 %>%
+  group_by(n_TYPMEN_new, name) %>%
+  summarise(value_mean = weighted.mean(x = value, w=PONDMEN, na.rm = T))
+
+
+revenus_comp2 <- revenus_comp2 %>%
+  mutate(name = name %>%
+           fct_relevel("montant_nonoblig"))
+
+ggplot(aes(x = n_TYPMEN_new, y = value_mean, fill = name), 
+       data = revenus_comp2) +
+  geom_bar(stat = "identity") +
+  geom_text(
+    aes(label = round(value_mean, 1)), 
+       position = position_stack(.5), 
+            size = 3, 
+            family = "serif") +
+  geom_hline(yintercept = 0) +
+  labs(x = "Type de ménage", 
+       y = "Montant mensuel") + 
+   scale_fill_manual(
+     values =  alpha(
+       rev(c("#ff7f00", "#fdbf6f")), 
+        0.5), 
+     labels = rev(c("qui doit les verser\nobligatoirement",
+                    "qui les verse\nlibrement")),
+     name = "Sommes reçues\nrégulièrement\nd'ex-conjoint-e-s :") +
+  theme_memoire() + 
+  theme(axis.line.x = element_blank(), 
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+#names(revenus_comp)
+
+```
+
+On observe un plus faible montant reçu de la part les ex-conjoint-e-s dans les familles recomposées que dans les familles monoparentales : on passe d'un montant moyen de 296,2 euros par mois dans les familles monoparentales à 231,8 euros par mois dans les familles recomposées, soit une différence de 64,4 euros.Cette différence tient à la part de ces montants qui est versé librement par les ex-conjoint-e-s. Elle est en effet trois fois et demi plus faible dans les familles recomposée que dans les familles monoparentales. En revanche la différence pour les montants versés obligatoirement n'est pas significative. On ne peut pas, ici non plus, croiser ces résultats avec les caractéristiques des ex-conjoint-e-s. D'une part, puisque les montants des pensions versées obligatoirement aux parents de familles recomposées ou monoparentales sont proches, cela signifie donc que, assez probablement, les ex-conjoint-e-s débiteurs et débitrices de ces pensions ont, ou du moins, avaient au moment du jugement établissant le montant de ces pensions, des situations économiques comparables. D'autre part, cela signifie que la demande de révision du montant des pensions au moment de la remise en couple du parent créancier reste une pratique rare.
+
+
+## Qui produisent des inégalités de consommations à l'interieur des ménages
+
+\begin{encadre}{Les dépenses de vetement pour approcher la consommation des enfants}
+Ainsi, nous avons chercher à individualiser certaines dépenses et consommations. En ce qui concerne les enfants, un certain nombre de postes de dépenses sont, dans la nomenclature des produits, spécifiques aux enfants, même s'il n'est pas possible de savoir à quels enfants elles bénéficient. Il s'agit des dépenses de garde d'enfants, d'habillement, des frais scolaires, des jouets, de l'équipement spécifique et de l'alimentation spécifique. Dans l'enquête budgets de familles en 2011, ces dépenses représentaient 13,6% du budget des ménages avec au moins un enfant de moins de 16 ans [@Hotte]. Cependant, dans le fichier de production et de recherche (FPR) de 2017 sur lequel nous avons travaillé, les postes de dépenses ont été agrégés au niveau 5 de la nomenclature. Ainsi seuls les jouets, les frais scolaires et les dépenses d'habillements sont effectivement imputable à la présence d'enfants. Parmi celles-ci nous avons choisit de nous concentrer sur les dépenses d'habillement. En effet, les dépenses scolaires varient très fortement selon l'âge des enfants et sont partiellement déterminées par l'existence de tarif sociaux pour certains type de consommation comme les repas scolaires, l'étude, ou l'inscription dans certains établissement privés. Ainsi elles sont, réglementairement, déterminées par le niveau de vie du ménage de sorte que pour les enfants les plus jeunes à niveau de vie du ménage égal, ce poste de consommation est difficilement interprétable. Les dépenses en matière de jouets ne nous paraissaient pas non plus .../ Les dépenses en vêtements et chaussures nous ont en revanche paru être un bon indicateur pour approcher la consommation des enfants dans le ménage. D'une part, les vêtements ont été considéré comme un bon indicateur du niveau de vie individuel. En effet, selon l'hypothèse de Rothbarth, les vêtements d'adultes sont des biens individuels : ils ne sont peu substituables entre hommes et femmes et ne sont pas adaptés aux enfants. Selon cette hypothèse le niveau de vie est une fonction des dépenses de vêtements pour adultes. 
+
+[Le choix de L indicateur de la dépense en vêtements adulte est désigné sous le terme « d hypothèse identifiante de Rothbart ». En 1943, Rothbart établit une correspondance entre le niveau de vie des parents et celui des enfants. Pour résoudre le problème de Lindicateur du niveau de vie, il suffit alors de trouver des consommations représentant le bien-être des parents, et en particulier, des consommations individualisâmes correspondant à des consommations adultes. Cependant, ces consommations individuelles des parents ne doivent pas être affectées par des changements de mode de vie liés à l’arrivée de l’enfant. Les dépenses en vêtements adulte sont alors a priori considérées comme ne dépendant que du niveau de vie du ménage. Cette dépense a de plus été choisie comme étant la dépense la plus facilement individualisable dans les enquêtes effectuées sur les budgets des familles (en dehors de dépenses telles que le tabac ou l’alcool, qui sont par contre sensibles à un changement de modes de vie). Des estimations du coût de l’enfant sur les données françaises ont ainsi utilisé les dépenses en vêtements du dessus adultes
+
+Les dépenses individualisables de ensemble des familles avec enfant(s) de moins de 16 ans représentent en moyenne 6 005 euros en 2011, soit 13,6 % de leur budget. Elles sont en moyenne plus importantes pour les ménages propriétaires de leur logement (14,4 %) que chez les ménages locataires (12,1 %). Les postes les plus importants sont la garde d’enfants, qui dépasse la moitié des dépenses, puis l'habillement et les frais scolaires (graphique 1).]
+
+### Des dépenses spécifiques aux enfants plus faibles
+
+Certaines consommations spécifiques sont en effet plus faibles dans les familles recomposées que dans les familles traditionnelles. Parmi les ménages formé par au moins un adulte âgé de 25 à 65 ans et vivant avec au moins un enfant de moins de 13 ans, les familles traditionnelles dépensent en moyenne 610 euros en vêtements pour enfants de moins de 13 ans et nourrissons par ans contre 502 euros dans les familles recomposées. Cette différence parait a priori importante quand on sait que les familles recomposées ont en moyenne plus d'enfants. Cependant, on raisonne ici en valeur absolue dépensée dans ce type de consommation, qui dépend donc des revenus du ménage et
+
+Cependant les vêtement d'enfants ne sont pas des biens individuels purs, ils ne peuvent certes pas être portés par plusieurs individus en même temps, mais ils ne sont pas exclusifs : ils peuvent être portés par différents membre d'un fratrie au fur et a mesure
 
 ```{r reg_depEnfants, results = "asis"}
 
@@ -830,12 +1612,6 @@ tab$tableau %>%
     font_size = 7) %>%
   add_kablesource_note(champ = tab$champ, 
                        N = tab$n)
-
-```
-
-```{r, eval = FALSE}
-
-
 
 ```
 
@@ -862,10 +1638,6 @@ familles <- readRDS(file = "Data_output/familles_parents.Rds")
 
 ### [Budgets plus séparés]
 
--   sur les mariages et pacs
-
--   exploiter rapidement la variable de séparation de budget dans un même logement, croiser avec les déciles de revenus pour voir si on observe des logiques similaires que pour le patrimoine
-
 -   exploiter les variables de dépenses de la table individu vs ménage :
 
 Niveau individu : MAUTRES_SCO Montant des autres frais liés à la scolarité MAUTRES_SCO_D Montant définitif des autres frais liés à la scolarité MGARD1 Montant dépensé pour la crèche MGARD1_D Montant définitif dépensé pour la crèche MGARD2 Montant dépensé pour la garderie MGARD2_D Montant définitif dépensé pour la garderie MGARD3 Montant dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés MGARD3_D Montant définitif dépensé pour la garde scolaire ou d'étude en dehors des frais scolaires déjà déclarés MGARD4 Montant dépensé pour la nourrice ou l'assistante maternelle MGARD4_D Montant définitif dépensé pour la nourrice ou l'assistante maternelle MGARD5 Montant dépensé pour une autre personne rémunérée pour la garde d'enfants MGARD5_D Montant définitif dépensé pour une autre personne rémunérée pour la garde d'enfants MINSC Montant des frais d'inscription scolaire ou universitaire MINSC_D Montant définitif des frais d'inscription scolaire ou universitaire MPENS Montant des frais d'internat MPENS_D Montant définitif des frais d'internat MREPET Montant total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois MREPET_D Montant définitif total dépensé pour les cours particuliers, le soutien, etc. au cours des 2 derniers mois
@@ -874,7 +1646,9 @@ Niveau ménage : DEPPER2 Montant total à la charge du ménage pour la garde d'e
 
 -   régression : revenu du parent = meilleur prédicteur des consommations individualisable aux enfants que revenu du ménage
 
-# Chapitre 3. [Même idée que le chapitre 2, version travail domestique et autoproduction]
+# Chapitre 3. Des belles mères 
+
+[Même idée que le chapitre 2, version travail domestique et autoproduction]
 
 Les arrangements économiques ne sont pas réductibles à ceux qui touchent. Plus difficile à saisir dans les enquêtes de la statistique publique, il se déploient aussi
 
@@ -936,6 +1710,10 @@ tab$tableau %>%
 
 -   discussion tabet
 
+
+## Subititution travail doestique des belles-mères à des services marchands dans lorsque les pères sont les plus riches
+
+
 ## Conclusion/transition : formes de continuité, d'un point de vue économique, entre monoparentalité et recompositions familiales
 
 # Chapitre 4. L'Etat face aux remises en couples des parents isolés
@@ -966,7 +1744,7 @@ Au delà de l'indicateur de position sociale, le niveau de vie permet de quantif
 
 Calculé comme le quotient du revenu disponible d'un ménage sur le nombre d'unités de consommation de celui-ci, il permet de rendre comparable des ménages composées différemment. Pour cela, il s'appuie sur des échelles d'équivalence, qui attribuent un coefficient à chaque personne supplémentaire en fonction de ses caractéristiques propre. Ce coefficient correspond ainsi à la proportion de revenu supplémentaire que le ménage doit gagner pour cet individu, afin de bénéficier du même niveau de vie qu’une personne seule.
 
-Comment c'est mesuré ces echelles d'équivalences.
+Comment c'est mesuré ces échelles d'équivalences.
 
 L'Insee utilise généralement l'échelle dite de "l'OCDE modifiée" mais les administrations sociales et le fisc ont également leurs propres échelles d'équivalences parfois même spécifiques à chaque préstation sociale.
 
@@ -976,7 +1754,7 @@ echellesEquivalences <- NULL
 
 \*\* INSERER tableau des échelles d'équivalences \*\*
 
--   Plus les limites
+"Certains biens peuvent être considérés comme des biens collectifs au sein du ménage [4] [4] Un bien est dit « collectif » si sa consommation est non…. En conséquence, l’arrivée de nouveaux membres dans le ménage n’entraîne pas de nouvelles dépenses de consommation de ce bien. Sa consommation est source d’économies d’échelle. Le chauffage peut être qualifié de bien collectif. À l’opposé, la consommation de biens individuels, caractérisée par l’exclusion d’usage et la rivalité (par exemple les aliments), est proportionnelle à la taille du ménage. Entre ces deux catégories de biens se trouvent des biens mixtes dont la consommation peut être non rivale mais caractérisée par l’exclusion d’usage (le loisir par exemple) et d’autres pour lesquels la consommation est rivale mais l’usage est non exclusif (comme une baignoire). La plupart des biens occupent une position intermédiaire. Le vêtement peut être considéré comme un bien individuel, mais il peut se rapprocher d’un bien collectif lorsque les vêtements s’échangent entre les membres du ménage (notamment au sein de la fratrie). Il existe d’autres formes d’économies d’échelle lorsqu’un ménage de grande taille bénéficie de tarifs plus avantageux grâce à des achats en quantité importante ou de tarifs sociaux (carte famille nombreuse par exemple). Des économies peuvent également être dégagées concernant le travail domestique dans la mesure où un ménage de grande taille dispose potentiellement de davantage de temps libre : le temps consacré aux tâches domestiques (ménage, cuisine…) ne croît pas proportionnellement avec la taille de celui-ci. Gardes, Sayadi et Starzec [2013] montrent que les économies d’échelle réalisées dans un ménage en termes de travail domestique sont plus importantes que celles associées aux dépenses monétaires. À partir de données anglaises, Couprie et Ferrant [2015] ont montré que deux personnes vivant seules séparément ont besoin de 2 h 15 supplémentaires par jour pour atteindre le même niveau d’utilité qu’elles auraient eu si elles vivaient en couple. L’ampleur de ce type d’économies d’échelle dépend de la configuration du ménage, en particulier elles sont potentiellement moindres dans le cas d’un foyer monoparental que dans celui d’un couple. Dans certains cas, la charge d’une personne dépendante (nourrisson, enfant non scolarisé, personne âgée) intensifie les charges domestiques, ce qui engendre alors des déséconomies d’échelle : la naissance d’un enfant accroît la charge de travail domestique, et ce surcroît de travail repose sur les femmes, ce qui accentue le déséquilibre dans le partage des tâches domestiques et familiales (Pailhé et Solaz [2010] ; Régnier-Loilier et Hiron [2010]). Les échelles d’équivalence ne prennent pas en compte les coûts indirects liés à un moindre investissement dans la vie professionnelle et/ou au retrait partiel ou total de l’activité professionnelle de l’un des parents (Thévenon [2009]). Or ces coûts de renoncement à la carrière sont importants et sont supportés essentiellement par les femmes, ce qui pèse sur l’égalité des sexes (Meurs, Paihlé et Ponthieux [2010])."
 
 > revue de littérature sur le calcul du niveau de vie
 
@@ -986,20 +1764,15 @@ comparaisons internationales qui ne prennent pas en compte le niveau de démarch
 
 La question des limites du ménage
 
-------------------------------------------------------------------------
-
-**Estimer les niveaux de vie**
-
-\footnotesize
+```{=tex}
+\begin{encadre}{Estimer les niveau de vie}
 
 Revue de littérature sur l'estimation des niveau de vie [voir sociologie de la consommation et des budgets ouvriers].
 
 Dans l'enquête BDF 2017, trois variables subjectives permettent d'approcher des estimations du niveau de vie dans les familles.
 
-------------------------------------------------------------------------
-
-\normalsize
-
+\end{encadre}
+```
 ### Un niveau de vie subjectif qui s'éloigne de l'indicateur dans les familles recomposées
 
 Expliciter la méthode utiliser et la vérification des conditions.
@@ -1161,7 +1934,7 @@ enfantsMenage %>%
 
 ```{r tabcontrib, results='asis'}
 load("Resultats/tabs_contribmoda.Rdata")
-tab$tableau
+
 ```
 
 ### Classification ascendante hiérarchique
@@ -1169,6 +1942,36 @@ tab$tableau
 ```{r clustercomposition, results = "asis", fig.cap = "Composition sociale des clusters"}
 load("Resultats/tab_culsters_composition.Rdata")
 tab$tableau
+```
+
+## Budgets
+
+```{r}
+load("Resultats/tab_structure_budget_moins_agrégé.Rdata")
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Travail domestique et parental du statut parental et de la configuration familiale") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ)
+
+```
+
+```{r}
+load("Resultats/tab_structure_budget_moins_agrégé.Rdata")
+
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ)
 ```
 
 ## Reproductibilité
