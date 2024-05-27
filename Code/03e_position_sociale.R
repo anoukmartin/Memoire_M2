@@ -19,14 +19,15 @@ familles <- readRDS("Data_output/familles_parents.Rds")
 names(familles)
 
 freq(familles$hetero)
+
 familles <- familles %>%
   #filter(is.na(hetero) | hetero == "Hetero") %>%
   mutate(
     n_RevenusContribF = case_when(
       n_REVENUScut_F == "Sans revenus" & n_REVENUScut_F == "Sans revenus" ~ 50, 
-      n_REVENUScut_F == "Sans revenus" & !is.na(n_REVENUScut_H) ~ 0, 
-      n_REVENUScut_H == "Sans revenus" & !is.na(n_REVENUScut_F) ~ 100,
-      TRUE ~ (n_REVENUS_F/(n_REVENUS_F+n_REVENUS_H))*100)) %>%
+      n_REVENUScut_F == "Sans revenus" & !is.na(n_REVENUS_H) ~ 0, 
+      n_REVENUScut_H == "Sans revenus" & !is.na(n_REVENUS_F) ~ 100,
+      !is.na(n_REVENUS_F)&!is.na(n_REVENUS_H) ~ (n_REVENUS_F/(n_REVENUS_F+n_REVENUS_H))*100)) %>%
   rec_PROP(Var = "n_RevenusContribF")
 
 summary(familles$n_RevenusContribF)
@@ -36,7 +37,6 @@ d_acm <- familles %>%
   select( 
     #starts_with("n_RevenusContribF"),
     #starts_with("n_PATRIMOINEcut"),
-    starts_with("PATRIB"),
     starts_with("CS12"), 
     starts_with("DIP7"), 
     #starts_with("NAIS7"),
@@ -52,7 +52,8 @@ lapply(d_acm, freq)
 
 d_acm_sup <- familles %>%
   select(starts_with("NAIS7"), 
-         starts_with("AG6"), 
+         starts_with("AG6"),
+         PATRIB,
          n_TYPMEN_new) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% as.factor())
 
@@ -107,18 +108,20 @@ acm_spe <- speMCA(as.data.frame(d_acm),
 # plot.speMCA(acm_spe, type="v", axes=c(1,2), cex = 0.1)
 # plot.speMCA(acm_spe, type="v", axes=c(3,4))
 #install.packages("explor")
-#library(explor)
-#explor(acm_spe)
+library(explor)
+explor(acm_spe)
 
 # données sur les variables supplémentaires
 acm_sup <- supvars(acm_spe, d_acm_sup)
 
 barplot(acm_spe$eig$rate[1:20])
+
 plot(acm_spe$eig$rate[1:20] %>% diff() %>% diff(), type = "b")
 abline(h = 0)
 acm_spe$eig$rate[1:20] %>% diff() %>% diff()
 
-sum(acm_spe$eig$rate[1:7])
+acmstop <- 8
+sum(acm_spe$eig$rate[1:acmstop])
 # Variables illustratives pour l'ACM 
 
 # Pour avoir les données pour les variables suplémentaires
@@ -127,7 +130,7 @@ sum(acm_spe$eig$rate[1:7])
 
 
 # CAH ----
-d_cah <- acm_spe$ind$coord[, 1:7]
+d_cah <- acm_spe$ind$coord[, 1:acmstop]
 
 md <- daisy(d_cah, metric = "euclidean") # matrice de distances
 
@@ -143,7 +146,7 @@ plot(dend)
 
 
 inertie <- sort(arbre$height, decreasing = TRUE)
-plot(inertie[1:20], type = "s", xlab = "Nombre de classes", ylab = "Inertie") %>% 
+plot(inertie[1:20], type = "s", xlab = "Nombre de classes", ylab = "Inertie") %>%
   grid
 
 plot(inertie[1:20] %>% 
@@ -155,7 +158,7 @@ inertie[1:20] %>%
   diff()
 
 # sauts d'inertie à 7
-typo <- cutree(arbre, 10)
+typo <- cutree(arbre,10)
 
 typo %>% freq
 
@@ -358,9 +361,9 @@ resultats_actives <- frequences %>%
 # Tableau des contrib #########################################################
 
 
-sum(variances$`% de variance`[1:7])
+sum(variances$`% de variance`[1:acmstop])
 
-tabcontrib <- lapply(1:7, function(dim){
+tabcontrib <- lapply(1:acmstop, function(dim){
   names(resultats_actives)
   # On selectionne les bonnes lignes et colones 
   tab <- resultats_actives %>%
@@ -376,7 +379,7 @@ tabcontrib <- lapply(1:7, function(dim){
     mutate(Echelle = case_when(
       is.na(Echelle) ~ "Menage", 
       Echelle == "H" ~ "Homme", 
-      Echelle == "F" ~ "Femmme"))
+      Echelle == "F" ~ "Femme"))
   
   # Modalités contribuant le plus 
   m <- mean(tab$contib)
@@ -393,12 +396,12 @@ tabcontrib <- lapply(1:7, function(dim){
   tab <- tab %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
         caption = tableau_titre, 
-        format = "latex",
+        #format = "latex",
         col.names = c("Variable", "Echelle", "Modalite", "n", "%", "contrib", "coord")) %>%
     kable_styling(
       #full_width = T,
-      latex_options = c("hold_position", "scale_down", "repeat_header"),
-      font_size = 7) %>%
+      #font_size = 7,
+      latex_options = c("hold_position", "scale_down", "repeat_header")) %>%
     # add_header_above(c(" " = 3, 
     #                    "Coordonées" = 8, 
     #                    "Contribution" = 8), bold = TRUE) %>%
@@ -408,6 +411,9 @@ tabcontrib <- lapply(1:7, function(dim){
   return(tab)
   }
 )
+install.packages("explor")
+library("explor")
+explor(acm_spe)
 tabcontrib[[1]]
 saveTableau(tabcontrib, type = "tabs", 
             label = "contribmoda", 

@@ -1,9 +1,8 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-
 indiv <- readRDS("Data_output/parents.Rds") %>%
-  filter(NONENFANT) %>%
+  #filter(NONENFANT) %>%
   rec_DIP(Var = "DIP14", NewVar = "DIPL") %>%
   rec_CSP6(Var = "CS24", NewVar = "CS6") %>%
   rec_CSP12(Var = "CS42", NewVar = "CS12") %>%
@@ -15,7 +14,7 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_REVENUS(Var = "n_REVENUS", "n_REVENUScut") %>%
   rec_PATRIMOINE(Var = "n_PATRIMOINE", "n_PATRIMOINEcut") %>%
   rec_NAIS7() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, starts_with("n_"))
+  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, starts_with("n_"))
 
 freq(indiv$CS12)
 freq(indiv$DIP7)
@@ -23,6 +22,7 @@ freq(indiv$n_REVENUScut)
 freq(indiv$AG6)
 freq(indiv$n_NEnfantsHD)
 freq(indiv$NAIS7)
+freq(indiv$ADULTE)
 
 
 femmes <- indiv %>% 
@@ -108,6 +108,7 @@ menagesHF
 
 # On ajoute les données des ménages correspondants
 dep_men <- readRDS("Data_output/DepMenages.Rds")
+
 familles <- readRDS("Data_output/familles.Rds") %>%
   left_join(dep_men %>%
               select(IDENT_MEN, STALOG)) %>%
@@ -127,12 +128,12 @@ freq(familles$TYPLOG)
 freq(familles$PATRIB)
     
 
-
 familles <- familles %>%
-  select(IDENT_MEN, n_config, TYPMEN5, TYPMEN,  PONDMEN, NIVIEcut, n_IdentPRef, NENFANTS, REVSOCcut, TAU, STALOG, TYPLOG, PATRIB)
+  select(IDENT_MEN, n_config, TYPMEN5, TYPMEN,  PONDMEN, NIVIEcut, n_IdentPRef, NENFANTS, REVSOCcut, TAU, STALOG, TYPLOG, PATRIB, DNIVIE2)
 
 freq(familles$TAU)
 freq(familles$REVSOCcut)
+freq(familles$DNIVIE2)
 menagesHF <- left_join(menagesHF, familles, by = "IDENT_MEN") 
 
 # On vérifie qu'on a pas de ménages en double
@@ -145,14 +146,15 @@ menagesHF <- menagesHF %>%
   filter(n_IdentPRef == n_IdentIndiv1 | n_IdentPRef == n_IdentConjoint1) 
 
 menagesHF <- menagesHF %>%
-  filter(AG_F >= 25 & AG_F <= 65 | AG_H >= 25 & AG_H <= 65) 
+  filter(ADULTE_H | ADULTE_F) 
 
 
 dup <- menagesHF[menagesHF$IDENT_MEN %in% menagesHF$IDENT_MEN[duplicated(menagesHF$IDENT_MEN)], ]
 
 dupli <- menagesHF[duplicated(menagesHF), ]
-freq(dup$TYPMEN5)
+freq(dupli$TYPMEN5)
 freq(menagesHF$TYPMEN5)
+
 
 freq(familles$TYPMEN)
 freq(familles$NIVIEcut)

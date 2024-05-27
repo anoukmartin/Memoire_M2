@@ -37,7 +37,7 @@ names(dep_ind)[-1] <- travail_domestique
 parents <- readRDS("Data_output/parents.Rds") %>%
   filter(n_IdentIndiv %in% c(familles$n_IdentIndiv_F, familles$n_IdentIndiv_H)) %>%
   left_join(familles %>%
-              select(IDENT_MEN, n_TYPMEN_new, n_FractionClasse), 
+              select(IDENT_MEN, n_TYPMEN_new), 
             by = "IDENT_MEN") %>%
   left_join(dep_ind, by = "n_IdentIndiv") 
 # Modules sur le W domestique qui n'est posé qu'à la moitiée de l'échantillon de ménage, (FA de numéro pairs, mais on a pas cet identifiant, donc on )
@@ -61,7 +61,7 @@ parents <- parents %>%
 summary(parents$PONDIND)
 parents$PONDIND <- parents$PONDIND/mean(parents$PONDIND)
 freq(parents$n_BeauxEnfantsHD)
-freq(parents$`Aide scolaire aux enfants`)
+freq(parents$`Aide scolaireaux enfants`)
 
 
 
@@ -79,11 +79,11 @@ data <- parents %>%
 
 tab <- tbl_strata(
   data = data, 
-  strata = n_TYPMEN_new, 
+  strata = SEXE, 
   .tbl_fun =
     ~ .x %>%
     mutate(Effectifs = "1") %>%
-    tbl_svysummary(by = SEXE, 
+    tbl_svysummary(by = n_TYPMEN_new, 
                    include = c(travail_domestique, "Effectifs"),
                    missing = "no", 
                    type = list(c(travail_domestique, "Effectifs") ~ "dichotomous"), 
@@ -159,7 +159,7 @@ tab <- data2 %>%
   add_p() %>%
   add_stat_label(label = list(all_dichotomous() ~ "(en %)", 
                               Effectifs ~ "(non-pondérés)")) %>%
-  modify_header(all_stat_cols() ~ "**{level}** ({style_percent(p)}%)") 
+  modify_header(all_stat_cols() ~ "**{level}**\n({style_percent(p)}%)") 
 
 
 tab
