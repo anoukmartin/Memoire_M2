@@ -8,6 +8,7 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_CSP12(Var = "CS42", NewVar = "CS12") %>%
   rec_DIP7(Var = "DIP14", NewVar = "DIP7") %>%
   rec_AG6() %>%
+  rec_TYPEMPLOI() %>%
   rec_NENFANTS(Var = "n_NEnfantsMen") %>%
   rec_NENFANTS(Var = "n_NEnfantsHD") %>%
   rec_NENFANTS(Var = "n_NEnfantsTous") %>%
@@ -23,7 +24,7 @@ freq(indiv$AG6)
 freq(indiv$n_NEnfantsHD)
 freq(indiv$NAIS7)
 freq(indiv$ADULTE)
-
+freq(indiv$TYPEMPLOI)
 
 femmes <- indiv %>% 
   filter(SEXE == "2") 
@@ -177,7 +178,7 @@ summary(menagesHF$n_AgeEnfantsMenage)
 summary(menagesHF$n_NEnfantsMenage)
 
 enfantsMenage_moins13ans <- readRDS("Data_output/enfantsDuMenage.Rds") %>%
-  filter(AG <= 13)%>%
+  filter(AG < 13)%>%
   group_by(IDENT_MEN) %>%
   summarise(n_NEnfantsMenage13 = n(), 
             n_AgeEnfantsMenage13 = mean(AG, na.rm = T))
@@ -185,6 +186,26 @@ enfantsMenage_moins13ans <- readRDS("Data_output/enfantsDuMenage.Rds") %>%
 menagesHF <- left_join(menagesHF, enfantsMenage_moins13ans, by = "IDENT_MEN")
 summary(menagesHF$n_NEnfantsMenage13)
 summary(menagesHF$n_AgeEnfantsMenage13)
+
+
+enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
+  group_by(IDENT_MEN) %>%
+  summarise(n_NEnfantsHD = n(), 
+            n_AgeEnfantsHD = mean(AG, na.rm = T))
+
+menagesHF <- left_join(menagesHF, enfantsHD, by = "IDENT_MEN")
+summary(menagesHF$n_AgeEnfantsHD)
+summary(menagesHF$n_NEnfantsHD)
+
+enfantsHD_moins13ans <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
+  filter(AG < 13)%>%
+  group_by(IDENT_MEN) %>%
+  summarise(n_NEnfantsHD13 = n(), 
+            n_AgeEnfantsHD13 = mean(AG, na.rm = T))
+
+menagesHF <- left_join(menagesHF, enfantsHD_moins13ans, by = "IDENT_MEN")
+summary(menagesHF$n_NEnfantsHD13)
+summary(menagesHF$n_AgeEnfantsHD13)
 
 # Recodages famills recomposées 
 menagesHF <- menagesHF %>%
@@ -250,10 +271,16 @@ table(menagesHF$n_TYPMEN_new, menagesHF$n_TYPMEN_sexe, useNA = "ifany")
 
 menagesHF$PONDMEN <- menagesHF$PONDMEN/mean(menagesHF$PONDMEN)
 
+if(any(str_detect(list.files("Data_output"), "familles_FractionClasse.Rds"))){
+  fraction <- readRDS("Data_output/familles_FractionClasse.Rds")
+  familles <- left_join(familles, fraction, by = "IDENT_MEN")
+}
+  
+  
 saveRDS(menagesHF, file = "Data_output/familles_parents.Rds")
 
 rm(celibf, celibh, couplesgay, coupleshet, coupleslesb, dup, dupli, familles, femmes, 
-   hommes, indiv, menagesHF, menagesHF2, miss, dep_men, enfantsMenage, enfantsMenage_moins13ans, infosBDF, list_beauxenfantsHD, list_enfantsHD, list_enfantsHDremisencouple)
+   hommes, indiv, menagesHF, menagesHF2, miss, dep_men, enfantsMenage, enfantsMenage_moins13ans, infosBDF, list_beauxenfantsHD, list_enfantsHD, list_enfantsHDremisencouple, fraction)
 
 
 

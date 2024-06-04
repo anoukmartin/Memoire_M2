@@ -567,6 +567,27 @@ rec_NAIS7 <- function(data, Var = "NAIS7", NewVar = FALSE) {
   return(data)
 }
 
+rec_TYPEMPLOI <- function(data, Var = "TYPEMPLOI", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = c("", "8", "9"),
+      "Durée déterminée" = c("1", "2", "3", "4", "5"),
+      "Durée indéterminée à temps complet" = c("6"),
+      "Durée indéterminée à temps partiel" = c("7")) %>%
+        fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
 
 ## Tableau croisé, khi2 et résidus #############################################
 

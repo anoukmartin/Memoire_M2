@@ -59,6 +59,15 @@ saveData(menages, "menages")
 # Idem
 indiv <- read_sas(data_file = "Data_input/sas/individu.sas7bdat")
 names(indiv) <- str_to_upper(names(indiv))
+
+# Il y a un pb avec la variable TYPEMPLOI (7 n'est pas rensiegné)
+names(indiv)
+freq(indiv$TYPEMPLOI)
+freq(indiv$TRAVAIL)
+table(indiv$TRAVAIL, indiv$TYPEMPLOI)
+# On va considéré que tous ceux pour qui rien n'est rensiégné mais qui on un travail son en 7 
+indiv[indiv$TRAVAIL == "1" & indiv$TYPEMPLOI == "", ]$TYPEMPLOI <- "7"
+
 # On centre la variable de pondération 
 # Comme tous les individus d'un ménage sont enquêté, ils ont tous une probabilité de 1 d'être enquêté, donc leur poids est le même que celui du ménage
 indiv <- left_join(indiv, menages[, c("IDENT_MEN", "PONDMEN")])

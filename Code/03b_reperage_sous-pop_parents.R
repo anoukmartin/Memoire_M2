@@ -14,8 +14,6 @@ indiv <- readRDS("Data_output/indiv.Rds") %>%
   var_IDENTIFIANT(NewVarName = "n_IdentConjoint", 
                   IdentMenage = "IDENT_MEN", 
                   IdentIndiv = "CONJOINT")
-names(indiv)
-
 
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds") 
 

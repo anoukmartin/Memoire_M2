@@ -131,8 +131,8 @@ add_kablesource_note <- function(kbl_object,
   }
   
   kbl_object <- kbl_object %>%
-    kableExtra::add_footnote(c(source, champ, lecture), 
-                             notation = "none")
+    kableExtra::footnote(general = c(source, champ, lecture), 
+                         threeparttable = T)
   return(kbl_object)
 }
 

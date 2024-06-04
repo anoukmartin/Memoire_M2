@@ -1,3 +1,7 @@
+
+
+
+
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 familles <- readRDS("Data_output/familles_parents.Rds")
@@ -32,15 +36,21 @@ familles <- familles %>%
 
 summary(familles$n_RevenusContribF)
 freq(familles$n_RevenusContribF)
+familles$DNIVIE2
 
 d_acm <- familles %>% 
+  rename(DNIVIE = "DNIVIE2") %>%
   select( 
     #starts_with("n_RevenusContribF"),
     #starts_with("n_PATRIMOINEcut"),
     starts_with("CS12"), 
     starts_with("DIP7"), 
+    #starts_with("TYPEMPLOI"),
     #starts_with("NAIS7"),
-    TYPMEN, NIVIEcut, NENFANTS, TAU, TYPLOG, STALOG)  %>%
+    #NENFANTS, TYPMEN,
+    DNIVIE, 
+    #NIVIEcut,
+    TAU, TYPLOG, STALOG, PATRIB)  %>%
   select(-ends_with("2")) %>%
   mutate_all(factor)
 names(d_acm)
@@ -53,7 +63,9 @@ lapply(d_acm, freq)
 d_acm_sup <- familles %>%
   select(starts_with("NAIS7"), 
          starts_with("AG6"),
-         PATRIB,
+         starts_with("TYPEMPLOI"),
+         n_RevenusContribF,
+         NENFANTS, TYPMEN,
          n_TYPMEN_new) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% as.factor())
 
@@ -93,7 +105,8 @@ d_acm <- d_acm %>%
 liste_moda <- getindexcat(as.data.frame(d_acm))
 liste_moda
 
-index_modasup <- which(str_ends(liste_moda, ".NA")) # numéros d'index des modalités "vide"
+index_modasup <- which(str_ends(liste_moda, ".NA")
+                       | str_ends(liste_moda, ".Retraité-e")) # numéros d'index des modalités "vide"
 index_modasup
 liste_moda[index_modasup]
 
@@ -109,7 +122,7 @@ acm_spe <- speMCA(as.data.frame(d_acm),
 # plot.speMCA(acm_spe, type="v", axes=c(3,4))
 #install.packages("explor")
 library(explor)
-explor(acm_spe)
+#explor(acm_spe)
 
 # données sur les variables supplémentaires
 acm_sup <- supvars(acm_spe, d_acm_sup)
@@ -120,7 +133,7 @@ plot(acm_spe$eig$rate[1:20] %>% diff() %>% diff(), type = "b")
 abline(h = 0)
 acm_spe$eig$rate[1:20] %>% diff() %>% diff()
 
-acmstop <- 8
+acmstop <- 7
 sum(acm_spe$eig$rate[1:acmstop])
 # Variables illustratives pour l'ACM 
 
@@ -158,26 +171,28 @@ inertie[1:20] %>%
   diff()
 
 # sauts d'inertie à 7
-typo <- cutree(arbre,10)
+typo <- cutree(arbre,7)
 
 typo %>% freq
 
 # On intègre le résultat dans les données
 typo <- typo %>% as_factor() %>%
   fct_recode(
-  "Classes populaires fragiles [C1]" = "1",
-  "Petits-moyens [C2]" = "2",
-  " [C3]" = "3",
-  "Petites retraites[C4]" = "4",
-  " [C5]" = "5",
-  "Classes moyennes superieures [C6]" = "6",
-  "Petits indépendants [C7]" = "7",
-  "Classes superieures [C8]" = "8",
-  "Riches retraités  [C9]" = "9",
-  "Classes moyennes célibataires [C10]" = "10")
+    "Classes superieures pole privé [C7]" = "7",
+    "Classes populaires racisées [C6]" = "6",
+    "Petits indépendants [C4]" = "4",
+    "Classes superieures pole public [C2]" = "2",
+    "Classes moyennes superieures [C3]" = "3",
+    "Petits-moyens [C1]" = "1",
+    "Classes populaires urbaines [C5]" = "5") %>%
+  fct_relevel(
+    "Classes populaires racisées [C6]", "Classes populaires urbaines [C5]",
+    "Petits indépendants [C4]", "Petits-moyens [C1]", "Classes moyennes superieures [C3]",
+    "Classes superieures pole public [C2]", "Classes superieures pole privé [C7]"
+  )
 
 
-  
+
 # Taleau stats des dans les clusters ----
 d_acm$typo <- typo
 
@@ -195,7 +210,7 @@ saveTableau(tab, type = "tab", label = "culsters_composition",
             description = "composition sociale des clusters",
             ponderation = T, 
             n = "?",
-            champ = "Menages formés par des adultes (25-70 ans)")
+            champ = "Menages formés par des adultes (25-65 ans)")
 
 
 
@@ -227,37 +242,46 @@ tab2 <- tab2 %>%
   mutate_all(.funs = function(x){str_replace_all(x, ",", ".")}) %>%
   mutate_all(as.numeric) %>%
   rownames_to_column(var = "cluster") %>%
-  mutate(cluster = str_replace(cluster, "stat_", "C"))
+  mutate(cluster = str_replace(cluster, "stat_", "C")) 
 
+tab3 <- wtd.table(d_cah$typo, weights = d_cah$pond) %>%
+  as.data.frame() %>%
+  bind_cols(as.data.frame(freq(d_cah$typo))[, 1]) %>%
+  rename(n = `...3`)
 
-tab2 <- tab2 %>%
+tab3$Prop <- round((tab3$Freq/sum(tab3$Freq))*100,1)
+tab3 <- tab3 %>%
+  separate(Var1, into = c("name", "cluster"), sep = "\\[") %>%
+  mutate(cluster = str_remove_all(cluster, "]"))
+
+tab2 <-tab2 %>%
   pivot_longer(cols = starts_with("dim")) %>%
   mutate(name = str_replace(name, "dim.", "Dim "))
+
 tab2$cluster
 tab2_summary <- tab2 %>%
   group_by(name) %>%
   summarise(m = min(value), 
             M = max(value))
-tab2_summary$eig <- round(acm_spe$eig$rate[1:7], 2) 
+tab2_summary$eig <- round(acm_spe$eig$rate[1:acmstop], 2) 
 tab2_summary <- tab2_summary %>%
   mutate(dimLabel = paste0(name, " (", eig, "%)"))
 tab2 <- left_join(tab2, tab2_summary[, c(1,5)])
 tab2_summary
-tab2_summary$Mlabel <- c("Peu \ndoté-e-s", 
-                         "Faibles \npatrimoines", 
-                         "Rural/\ncouples", 
-                         "Célibataires\nsans enfants", 
-                         "Public", 
-                         "Inactifs", 
-                         "Hypergamie \n masculine")
 
-tab2_summary$mlabel <- c("Bien \ndoté-e-s", 
-                         "Patrimoine \nimportant",
-                         "Urbain/\ncélibataires", 
-                         "Famille nombreuse\n monoactive",
-                         "Privé", 
-                         "Petit-e-s \nindépendant-e-s", 
-                         "Hypogamie \nmasculine")
+tab2_summary$Mlabel <- c("Bien \ndoté-e-s", 
+                         "Urbain",
+                         "Inactif-ve-s/\npropriétaires", 
+                         "Familles\nnombreuses", 
+                         "Privé",  
+                         "Salarié-e-s")
+
+tab2_summary$mlabel <- c("Peu \ndoté-e-s", 
+                         "Rural", 
+                         "Actif-ve-s/\nLocataires",
+                         "Célibataires", 
+                         "Public", 
+                         "Indépendant-e-s")
 
 gg <- ggplot(tab2) + 
   theme_void() +
@@ -271,14 +295,14 @@ gg <- ggplot(tab2) +
                   max.overlaps=10000) +
   facet_wrap(dimLabel ~., ncol = 1, scales="free") +
   geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
-  geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
+  geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3) 
 gg  
 
 saveTableau(gg, type = "plot", label = "culsters_position", 
             description = "positions des cluster sur les différentes dimentions de l'ACM",
             ponderation = T, 
             n = "?",
-            champ = "adultres (25-70 ans) vivant en ménage ordinaire")
+            champ = "adultes (25-70 ans) vivant en ménage ordinaire")
 
  
 # Description statistique des axes ----
@@ -411,10 +435,8 @@ tabcontrib <- lapply(1:acmstop, function(dim){
   return(tab)
   }
 )
-install.packages("explor")
-library("explor")
-explor(acm_spe)
-tabcontrib[[1]]
+
+tabcontrib[[6]]
 saveTableau(tabcontrib, type = "tabs", 
             label = "contribmoda", 
             description = "contributions aux 7 axes de l'ACM", 
@@ -427,6 +449,8 @@ saveTableau(tabcontrib, type = "tabs",
 
 familles$n_FractionClasse <- typo %>% as.factor()
 freq(familles$n_FractionClasse)
+
+
 
 saveRDS(familles, "Data_output/familles_parents.Rds")
 saveRDS(familles %>% 

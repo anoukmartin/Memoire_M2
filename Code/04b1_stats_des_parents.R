@@ -2,7 +2,7 @@
 
 ## Données #####################################################################
 indiv  <- readRDS("Data_output/parents.Rds")
-
+infosBDF <- readRDS("Data_output/infosBDF.Rds")
 familles <- readRDS("Data_output/familles_parents.Rds") 
 familles$n_config <- familles$n_TYPMEN_new
 dep_men <- readRDS("Data_output/DepMenages.Rds")

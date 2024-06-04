@@ -42,7 +42,7 @@ data$n_NEnfantsCouple_F
 data <- familles %>%   
   left_join(conso2, by = "IDENT_MEN") %>%
   mutate(n_TYPMEN_new = droplevels(n_TYPMEN_new)) %>%
-  mutate(NIVIE = NIVIE/12000) %>%
+  mutate(NIVIE = NIVIE/1200) %>%
   mutate(n_REVENUS_F = n_REVENUS_F/12000) %>%
   mutate(n_REVENUS_H = n_REVENUS_H/12000) %>%
   mutate(REVDISP = REVDISP/12000) %>%
@@ -55,14 +55,27 @@ data <- familles %>%
   )) %>%
   mutate(n_TYPFAM = n_TYPFAM %>%
            as.factor() %>%
-           fct_relevel(c("Traditionelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe")))
+           fct_relevel(c("Traditionelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe"))) 
+
+data$n_NFraterie <- rowSums(data[ c("n_NEnfantsMenage", "n_NEnfantsHD")], na.rm = T)
+
+var_label(data$n_NFraterie) <- "Taille de la fraterie"
+var_label(data$n_TYPFAM) <- "Configuration familiale du ménage"
+var_label(data$n_FractionClasse) <- "Position sociale du ménage"
+var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants du ménage"
+var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
+
+data$n_FractionClasse <- relevel(data$n_FractionClasse,  "Classes moyennes superieures [C3]")
+
+# mutate(n_FractionClasse = n_FractionClasse %>% relevel("Classes moyennes salariées [C8]"))
 
 summary(data$Vetements_enfants)
 summary(data$Vetements_femme)
 summary(data$Vetements_homme)
+summary(data$n_NFraterie)
 names(data)
 summary(data$PONDMEN)
-data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+
 
 
 # data <- data %>%
@@ -87,8 +100,8 @@ data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 
 data$Vetements_enfants
 data <- data %>%
-  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13 ))
-  
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13))
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
   group_by(n_TYPMEN_new) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
@@ -96,10 +109,10 @@ tab <- data %>%
   
 tab
 
-reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE + n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_FractionClasse + n_TYPFAM,
+reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE +  n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
                data=data, 
                weights = data$PONDMEN, 
-               subset = !is.na(Vetements_enfants),
+               #subset = !is.na(Vetements_enfants),
                dist='gaussian')
 
 # reg <- lm(
@@ -109,14 +122,15 @@ reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ N
 #   subset = !is.na(Vetements_enfants))
 
 #reg <- step(reg)
-tblreg1 <- tbl_regression(reg, intercept = T) |>
+tblreg <- tbl_regression(reg, intercept = T, exponentiate = F) |>
   add_glance_source_note() 
 
-tblreg1 
-ggcoef_model(reg)
+tblreg
+
+#ggcoef_model(reg)
 
 # On enregistre 
-saveTableau(tableau = tblreg1, 
+saveTableau(tableau = tblreg, 
             typ = "reg", 
             label = "DepVetementEnfants", 
             description = "Regressions sur les dépenses de vetement par enfants", 

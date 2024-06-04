@@ -40,12 +40,10 @@ execute(part = "03e")
 
 ## Statistiques descriptives ###################################################
 execute(part = "04b")
-execute(part = "04c")
 execute(part = "06a")
 
 ## Regressions #################################################################
 execute(part = "04e")
-
 execute(part = "04f")
 execute(part = "05a")
 execute(part = "05b")

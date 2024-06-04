@@ -272,6 +272,7 @@ varlist
 
 
 ## Données finales sur lesquelles on fait les regressions#######################
+
 data0 <- familles %>% 
   left_join(conso2 %>% 
               select(any_of(varlist), "IDENT_MEN"), 
@@ -287,6 +288,8 @@ data0 <- familles %>%
     
 freq(data0$TYPMEN5)
 summary(data0$EPARGNE)
+summary(data0$Alimentation)
+
 data0 <- data0 %>%
   filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels(), 
