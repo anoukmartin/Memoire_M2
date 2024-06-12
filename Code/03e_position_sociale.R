@@ -121,7 +121,7 @@ acm_spe <- speMCA(as.data.frame(d_acm),
 # plot.speMCA(acm_spe, type="v", axes=c(1,2), cex = 0.1)
 # plot.speMCA(acm_spe, type="v", axes=c(3,4))
 #install.packages("explor")
-library(explor)
+#library(explor)
 #explor(acm_spe)
 
 # données sur les variables supplémentaires
@@ -192,6 +192,7 @@ typo <- typo %>% as_factor() %>%
   )
 
 
+freq(typo)
 
 # Taleau stats des dans les clusters ----
 d_acm$typo <- typo
@@ -269,19 +270,19 @@ tab2_summary <- tab2_summary %>%
 tab2 <- left_join(tab2, tab2_summary[, c(1,5)])
 tab2_summary
 
-tab2_summary$Mlabel <- c("Bien \ndoté-e-s", 
-                         "Urbain",
-                         "Inactif-ve-s/\npropriétaires", 
-                         "Familles\nnombreuses", 
-                         "Privé",  
-                         "Salarié-e-s")
-
-tab2_summary$mlabel <- c("Peu \ndoté-e-s", 
-                         "Rural", 
-                         "Actif-ve-s/\nLocataires",
-                         "Célibataires", 
-                         "Public", 
-                         "Indépendant-e-s")
+# tab2_summary$Mlabel <- c("Bien \ndoté-e-s", 
+#                          "Urbain",
+#                          "Inactif-ve-s/\npropriétaires", 
+#                          "Familles\nnombreuses", 
+#                          "Privé",  
+#                          "Salarié-e-s")
+# 
+# tab2_summary$mlabel <- c("Peu \ndoté-e-s", 
+#                          "Rural", 
+#                          "Actif-ve-s/\nLocataires",
+#                          "Célibataires", 
+#                          "Public", 
+#                          "Indépendant-e-s")
 
 gg <- ggplot(tab2) + 
   theme_void() +
@@ -459,3 +460,4 @@ saveRDS(familles %>%
 
 # du ménage 
 rm(acm_spe, acm_sup, arbre, contributions, coordonnees, cos2, d_acm, d_acm_sup, d_acm2, d_cah, dend, familles, frequences, gg, infosBDF, resultats_actives, tab, tab2, tab2_summary, tabcontrib, variances, vtest, index_modasup, inertie, liste_moda, md, poidsACMspe, seuil, typo)
+

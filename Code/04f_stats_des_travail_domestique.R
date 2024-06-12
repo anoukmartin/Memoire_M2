@@ -138,7 +138,7 @@ saveTableau(tab,
 
 
 
-# Tableaux beaux-parents vs parents 
+# Tableaux parents dans différentes familles 
 freq(data$variables$n_EnfantsMen)
 table(data$variables$n_EnfantsMen, data$variables$n_TYPMEN_new, useNA = "ifany")
 
@@ -193,7 +193,7 @@ freq(parents$n_EnfantsMen)
 ### Données adultes recomposées ####
 data_recomp <- parents %>%
   filter(n_TYPMEN_new == "Recomposée")
-data_recomp$PONDMEN <- data_recomp$PONDMEN/mean(data_recomp$PONDMEN)
+data_recomp$PONDIND <- data_recomp$PONDIND/mean(data_recomp$PONDIND)
 
 ### Données parents ####
 data_parents <- parents %>%
@@ -220,6 +220,38 @@ summary(data_beauxparents$PONDMEN)
 data_beauxparents$PONDMEN <- data_beauxparents$PONDMEN/mean(data_beauxparents$PONDMEN)
 
 ## Tableaux croisés #####
+
+tab <- data_recomp %>%
+  rec_SEXE() %>%
+  mutate(n_Enfants = case_when(
+    n_EnfantsMen & n_BeauxEnfantsMen ~ "Avec enfants et beaux-enfants",
+    n_EnfantsMen ~ "Avec enfants",
+    n_BeauxEnfantsMen ~ "Avec beaux-enfants")) %>%
+  mutate(n_Enfants = n_Enfants %>%
+           )
+  as_survey_design(weights = PONDIND) %>%
+  tbl_strata(
+    strata = "SEXE",
+    .tbl_fun =
+      ~ .x %>%
+      mutate(Effectifs = "1") %>%
+      tbl_svysummary(by = n_Enfants,
+                     include = c(travail_domestique, "Effectifs"),
+                     missing = "no",
+                     type = list(c(travail_domestique, "Effectifs") ~ "dichotomous"),
+                     statistic = list(all_dichotomous() ~ "{p}",
+                                      Effectifs ~ "{N_unweighted}"),
+                     value = list(travail_domestique ~ "Oui")
+      ) %>%
+      add_p()%>%
+      #add_difference() %>%
+      #add_overall(last = T) %>%
+      add_stat_label(label = list(all_dichotomous() ~ "",
+                                  Effectifs ~ "(non-pondérés)")) %>%
+      modify_header(all_stat_cols() ~ "**{level}**\n({style_percent(p)}%)",
+                    label ~ ""),
+    .header = "**{strata}**\n({style_percent(p)}%)")
+tab
 
 ### tableau parents #####
 tab1 <- data_parents %>%
@@ -291,7 +323,7 @@ f_bp <- f_bp %>%
   mutate(Prop = round((Freq/sum(f_parents$Freq))*100, 0))
 f_bp
 
-tab <- tbl_merge(list(tab1, tab2, margev), 
+tab3 <- tbl_merge(list(tab1, tab2, margev), 
           tab_spanner = c(paste0("**Parents** (", f_parents$Prop[2], "%)"), 
                           paste0("**Beaux-parents** (", f_bp$Prop[2], "%)"), 
                           NA))
@@ -305,6 +337,84 @@ saveTableau(tableau = tab,
             ponderation = T, 
             champ = "Individus adultes agés de 25 à 65 ans ou en couple avec un adulte agé de 25 à 65 ans, formant des ménages ordinaires recomposés", 
             n = nrow(data_recomp))
+
+
+
+
+
+## Regression avec effet fixe du ménage ########################################
+
+### Données finales sur lesquelles on fait les regressions######################
+
+data0 <- parents 
+freq(data0$n_TYPMEN_new)
+data0 <- data0 %>%
+  rec_SEXE() %>%
+  filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
+  mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels()) %>%
+  mutate_at(.vars = travail_domestique, 
+            .funs = function(x){
+              if_else(x == "Oui", 1, 0)
+            }) %>%
+  mutate_at(.vars = c("n_EnfantsMen", "n_BeauxEnfantsMen"), 
+            .funs = function(x){
+              if_else(x, "Oui", "Non") %>%
+                as_factor() %>%
+                fct_relevel("Oui")
+            })
+            
+
+data0$n_BeauxEnfantsMen
+data0$SEXE
+### regression #################################################################
+
+## Régressions revenus HF sur tous les postes budgétaires #######################
+row.names(freq(data0$Vaisselle))
+names(data0)
+lapply(travail_domestique, function(x){
+  barplot(freq(data0[[x]])$n,
+          names.arg=row.names(freq(data0[[x]])),
+  main = x)
+  })
+
+# Installer et charger le package fixest si nécessaire
+#install.packages("fixest")
+library(fixest)
+
+# Modèle avec fixest
+model <- glm(Menage ~ n_EnfantsMen:SEXE + n_BeauxEnfantsMen:SEXE,
+               data=data0,
+               weights = data0$PONDIND, 
+               family = "quasibinomial")
+
+# Résumé du modèle
+summary(model)
+
+
+### Regression simple sans interactions ####
+# create regression function
+fitreg <- function(x){ 
+  feglm.fit(get(x) ~ n_EnfantsMen*SEXE + n_BeauxEnfantsMen*SEXE | IDENT_MEN,
+          data=data0,
+          weights = data0$PONDIND, 
+          family = "quasibinomial")}
+
+
+# on applique 
+results <- lapply(travail_domestique, fitreg)
+names(results) <- travail_domestique
+
+ggcoef_compare(results)
+
+
+# On regarder les résidus 
+lapply(varlist, function(x) {
+  plot(density(residuals(results[[x]])), 
+       main = x)})
+Sys.sleep((1/60)*2)
+
+
+
 
 
 # MEME CHOSE VERSION NOMBRE DE JOURS ###########################################
@@ -604,4 +714,7 @@ saveTableau(tableau = tab,
             ponderation = T, 
             champ = "Individus adultes agés de 25 à 65 ans ou en couple avec un adulte agé de 25 à 65 ans, formant des ménages ordinaires recomposés", 
             n = nrow(data_recomp))
+
+
+
 

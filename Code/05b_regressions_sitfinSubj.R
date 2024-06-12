@@ -87,7 +87,7 @@ names(data)
 reg <- clm(AISE ~ NIVIE + n_FractionClasse + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPMEN_sexe,
            data = data, 
            weights = PONDFAM)
-step(reg)
+#step(reg)
 summary(reg)
 
 tblreg3 <- tbl_regression(reg, intercept = F, exponentiate = T)

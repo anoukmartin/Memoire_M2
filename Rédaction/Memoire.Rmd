@@ -68,25 +68,189 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 # Introduction
 
-```{r, eval = FALSE}
+Dans un premier temps, nous reviendons assez longuement sur ce qui nous sert de cadre d'analyse théorique : la conceptualisation du genre comme rapport social non seulement de domination, mais aussi d'exploitation. Nous montrons ensuite l’intérêt d'étudier le rôle que joue l’État dans ce système économique, justifiant ainsi de prendre pour objet les politiques familiales.
 
-bien définir ce qu'on entend par configuration familiale/conjugale, approche configurationelle.
+## Etat et rapports sociaux de sexe
 
-Accroche rapide :
+### Le genre comme rapport social d'exploitation
 
-Construire le cas des familles recomposées : pourquoi c'est intéressant ?
+KERGOAT ici
 
-Un des cas ou parenté légal, biologique et quotidienne ne sont pas a priori superposé. (Weber)
+On peut schématiquement différencier les théories des féministes materialistes et celles des féministes marxistes. Christine Delphy, dans *l'Ennemi Principal* [@delphy1970], à partir d’ethnographies réalisées dans les milieux paysans, montre que l'on peut analyser les rapports sociaux entre catégories de sexes avec les outils marxistes. Le travail domestique est définit par sa gratuité : les femmes ne sont pas rémunérées pour effectuer celui-ci. Le patriarcat est alors un système économique dans lequel la classe des femmes est exploitée par la classe des hommes en appropriant leur force de travail. Collette Guillaumin [@guillaumain] va plus loin en considérant que c'est non seulement la force de travail des femmes qui est appropriée mais aussi leur corps. Le "sexage", régime d'exploitation des femmes, gagnerait alors a être pensé sur le modèle de l'esclavage ou du servage plus que du salariat. En ce sens, elle rejoint Paola Tabet [@tabet1998] pour qui les femmes sont la classe d'individu exploités pour leur travail mais aussi appropriés en tant qu'outil de reproduction. Ainsi, pour les féministes matérialistes, il existe un mode production domestique, logiquement distinct et historiquement antérieur au mode production capitaliste mais qui interagit de manière complexe avec les autres régimes d'exploitation.
 
-Cas le plus courant, quelques statistiques => donc possible d'étudier quantitativement.
+Les féministes marxistes, quand a elles, ont d’avantage pensé l'exploitation des femmes dans le cadre du régime d'exploitation capitaliste, en cherchant a developper un point aveugle de la "reproduction de la force de travail" [@marx.LeCapital] : le travail nécéssaire à celle-ci. Sylvia Federici étudie la période de chasse au sorcière en Europe [@federici2014]. Elle montre que ce moment où les femmes sont renvoyées à la maison a permis d'assigner les femmes au travail reproductif. Ainsi, le travail reproductif réalisé par les femmes dans le cadre domestique est nécessaire au fonctionnement du capitalisme [@federiciCapitalismePatri]. Historiquement, il a favoriser ainsi l'accumulation primitive du capital, permettant ainsi le développement du capitalisme [@mariaMies, 1986]. Leopoldina Fortunati [@fortunati2022] insiste ainsi sur le caractère productif du travail reproductif. La travail reproductif ne peut pas être considérée comme un simple coût de la reproduction, il est essentiel pour la production et sa gratuité est intégrée dans la fixation du salaire de subsistance. Ainsi dans les théories de la reproduction sociales, l'exploitation des femmes profite avant tout aux capitalistes et non aux hommes.
 
-Donc quand on interroge les arrangement économique dans ces familles sous un angle statistique, c'est pour étudier la forme que peuvent prendre ces arrangement dans les cas ou les différentes dimensions de la parenté ne sont pas parfaitement superposées.
+Si ces travaux tendent a proposer des analyses du régime d'exploitation des femmes qui parassent difficilement conciliables, l'opposition très schématique entre ces deux courants de pensée tient en partie aux objets étudiés. Les féministes matérialistes construisent leur théorie à partir du cas des familles d'indépendants, le plus souvent d'agriculteurs, ou de sociétés pré-capitalistes. Dans les deux cas, il s'agit là d'exemples ou la division sociale du travail, au sens de Durkheim [@durkheim1893] est relativement faible, ne serait-ce qu'en terme de lieu. Dans le cas des familles d'indépendants, il n'est par exemple pas évident de distinguer les hommes des patrons, puisque ce sont plus souvent ces derniers qui dirigents et possèdent l'entreprise familiale. A l'inverse les féministes marxistes travaillent a partir d'études réalisées sur les milieux ouvriers, à un moment ou la généralisation du salariat sépare fortement l'espace domestique de l'espace professionnel, et dans le même temps, le travail productif du travail reproductif. Dans ce cas, les femmes mariées reproduisent la force de travail de leur conjoint pour que celui-ci puisse aller la vendre aux capitalistes. Ainsi, ces théories de la reproduction sociale et de l'exploitation domestique ont permis de construire des outils conceptuels plus ou moins adaptés en fonction des objets étudiés, mais qui ont donné lieu à de nombreux développement en sciences sociales.
+
+Le concept de travail reproductif se définit comme l'ensemble du travail nécessaire à la reproduction de la force de travail. Il a fait l'objet d'inportant développements qui ont à la fois précisé et élagit sa définition. La reproduction de la force de travail suppose que les besoins physiologiques des travailleurs et travailleuses soient suffisamment satisfait d'un jour à l'autre pour être capable de retourner travailler le lendemain : produire ou acheter de la nourriture, cuisiner celle-ci, maintenir un niveau d’hygiène correct ou fournir des services sexuels sont autant d'activités concrètes qui participent à cela. La reproduction de la force de travail suppose aussi le renouvellement de la main d’œuvre, c'est-à-dire le renouvellement démographique de la masse de travailleurs et travailleuses. Ainsi, s'occuper des enfants, leur donner à manger, les habiller, les laver fait partie de ce travail reproductif. Plus encore, l'activité de reproduction physiologique, de l'acte sexuel à l'allaitement fait partie de ce travail reproduction [@boulet]. Enfin, ce travail reproductif a été également pensé comme travail de reproduction des positions sociales. Dans *le Sens Pratique [@bourdieu1980]*, Bourdieu souligne déjà a quel point le travail domestique et parental, souvent effectué par les femmes, joue un un central dans la transmission du capital culturel et l'entretien du capital social, et contribue donc à la reproduction de la structure sociale. Bernard Lahire [@lahire, tableaux de familles] et Gaëlle Henri Pannièbre [@pannabière, meshériers] montrent en effet que cette transmission des dispositions scolaires et du capital culturel ne s'opère pas de manière mécanique, mais suppose un travail actif de la part des parents, et le plus souvent des mères. Le travail domestique des femmes est également un travail d'entretien du patrimoine immbolier ui préserve ainsi la valeur du capital économique détenu [@delphy1970]. Eva Illouz [@illouz] montre que le travail émotionnel réalisé par les femmes pour entretenir les liens sociaux des membres de la famille est déterminant dans la préservation du capital sociale. Ainsi, ce travail gratuit soutient à la fois les rapports sociaux de sexe à l’intérieur de la famille et la position sociale des membres de celle-ci [@combresHaicot].
+
+De nombreux travaux ont montré que celui-ci n'est pas seuelment réalisé dans la sphère domestique et peu être rémunéré : [CITER]. Cependant, le fait que le travail reproductif soit le plus souvent du travail domestique, c'est-à-dire du travail réalisé gratuitement au sein de la famille produit des effets concrets sur les conditions de rémunération de ces activités. Le travail du sexe, exemple dévéleoppé dès les premiers travaux des féministes marxistes, s'effectue principalement de manière principalement informelle, reste stigmatisé et non reconnu [@federici2014, @fortunati2022]. Nancy [@Fraser, *Fortunes of Feminism* (2013), *Justice Interruptus* (1997).] montre que le travail de soin, considéré comme naturel puisque réalisé gratuitement par les femmes, est dévalorisé sur le plan symbolique comme monétaire dans les sociétés capitalistes. iIl est ainsi sous-évalué et sous-rémunéré [@NancyFolbreInvisibleHeart]. Ainsi, il existe une division genrée du travail, par laquelle les femmes sont cantonnées à des emplois moins rémunérés moins qualifiés [@scottJoan, Genedet and politic og hustoies].
+
+La généralisation du salariat féminin n'a pas remis en cause ces analyses : les femmes qui occupent à la fois un emploi salarié continuent d'assurer la majeur partie du travail reproductif dans la sphère domestique, elles ont une "double journée" de travail [@Hochschild, the Second Shift]. Le salaire féminin, plus faible que le salaire masculin, est alors conçu comme salaire d'appoint et entretien ainsi la économique des femmes à l'égard de leur mari [@tilly1987]. L'argent féminin est généralement utilisé, voir complement absorbé pour les dépenses courantes du ménage qu'elles sont généralement chargées de réaliser, quand l'argent des hommes est généralement utilisé pour les dépenses de biens durables et d'investissement [@perrot].
+
+1.  **Intersectionnalité et Exploitation**
+
+    -   **Elsa Dorlin**
+
+        -   Œuvre : *Sexe, genre et sexualités* (2008).
+
+        -   Contribution : Dorlin utilise une perspective intersectionnelle pour examiner comment le genre, la race et la classe interagissent pour créer des régimes d'exploitation complexes.
+
+        -   Détail : Elle explore comment les femmes racisées subissent des formes spécifiques d'exploitation qui combinent racisme et sexisme, et comment ces dynamiques sont reproduites par les politiques publiques et les pratiques sociales.
+
+    -   Dani
+
+### Analyser le rôle de l'Etat
+
+#### Introduction
+
+La question de savoir comment l'État soutient le capitalisme a été largement débattue dans les sciences sociales. Les sociologues, économistes hétérodoxes et historiens ont apporté des perspectives diverses sur les mécanismes par lesquels l'État intervient pour stabiliser, légitimer et perpétuer le système capitaliste. Cette revue de littérature explore ces contributions en mettant l'accent sur les théories et les travaux empiriques marquants.
+
+#### Théories et Approches
+
+1.  **Théorie de l'État-Capitaliste**
+
+    **Nicos Poulantzas**
+
+    -   **Œuvres :** *L'État, le pouvoir, le socialisme* (1978).
+
+    -   **Contribution :** Poulantzas, avec son approche marxiste structuraliste, analyse l'État comme un instrument de la classe dominante. Il montre comment l'État capitaliste n'est pas un simple outil des capitalistes, mais un champ de lutte où les intérêts des différentes fractions de la bourgeoisie et des classes subalternes s'affrontent.
+
+    -   **Détail :** "L'État capitaliste joue un rôle central dans la reproduction des rapports de production en intégrant les contradictions du capitalisme et en les gérant pour éviter des crises majeures." Poulantzas explique que l'État maintient le capitalisme par la réglementation économique, la suppression des mouvements sociaux et la légitimation idéologique.
+
+2.  **Économie Politique Institutionnelle**
+
+    **Karl Polanyi**
+
+    -   **Œuvres :** *La Grande Transformation* (1944).
+
+    -   **Contribution :** Polanyi décrit le rôle de l'État dans la protection de l'économie de marché contre ses propres contradictions. Il montre que le marché autorégulé est une utopie qui nécessite une intervention constante de l'État pour fonctionner.
+
+    -   **Détail :** "Le double mouvement est une réponse à l'expansion destructrice du marché, nécessitant des contre-mouvements pour protéger la société." Polanyi souligne que l'État intervient pour réguler les marchés et atténuer les effets destructeurs du capitalisme sur les tissus sociaux.
+
+3.  **Marxisme et Théorie de la Crise**
+
+    **David Harvey**
+
+    -   **Œuvres :** *The Limits to Capital* (1982), *A Brief History of Neoliberalism* (2005).
+
+    -   **Contribution :** Harvey, avec une approche marxiste géographique, examine comment l'État gère les crises du capitalisme par des politiques néolibérales. Il analyse la manière dont les crises sont résolues par la restructuration spatiale et économique.
+
+    -   **Détail :** "Les crises de suraccumulation du capital sont résolues par des dévalorisations, des destructions créatives et des déplacements spatiaux." Harvey montre comment l'État intervient pour gérer les crises du capitalisme en favorisant des politiques d'austérité, de privatisation et de déréglementation.
+
+### Politiques Économiques et Interventions Étatiques
+
+1.  **Keynésianisme et Intervention État**
+
+    **John Maynard Keynes**
+
+    -   **Œuvres :** *The General Theory of Employment, Interest and Money* (1936).
+
+    -   **Contribution :** Keynes propose une intervention active de l'État pour stabiliser l'économie capitaliste. Il soutient que l'État doit utiliser la politique fiscale et monétaire pour gérer la demande et éviter les crises économiques.
+
+    -   **Détail :** "L'État doit intervenir pour corriger les insuffisances du marché et stabiliser l'économie." Keynes défend l'idée que le laissez-faire est inefficace pour maintenir la pleine emploi et la croissance économique. Il propose des mesures telles que les dépenses publiques pour stimuler la demande en période de récession.
+
+2.  **État-Providence et Redistribution**
+
+    **Pierre Rosanvallon**
+
+    -   **Œuvres :** *La crise de l'État-providence* (1981).
+
+    -   **Contribution :** Rosanvallon analyse le rôle de l'État-providence dans la légitimation du capitalisme en assurant une certaine redistribution des richesses et en offrant des services sociaux.
+
+    -   **Détail :** "L'État-providence est une réponse aux contradictions du capitalisme, visant à stabiliser la société et à maintenir la cohésion sociale." Rosanvallon montre comment l'État, par des politiques de protection sociale et de redistribution, atténue les inégalités générées par le capitalisme et légitime le système en offrant des garanties sociales aux citoyens.
+
+### Historiens et Politiques Économiques
+
+1.  **Histoire du Capitalisme et Interventions Étatiques**
+
+    **Fernand Braudel**
+
+    -   **Œuvres :** *Civilisation matérielle, économie et capitalisme* (1979).
+
+    -   **Contribution :** Braudel examine les différentes phases du capitalisme et le rôle des États dans la formation et la régulation des économies capitalistes à travers l'histoire.
+
+    -   **Détail :** "Le capitalisme a toujours été encastré dans des structures politiques et sociales qui le soutiennent." Braudel analyse comment les États ont favorisé l'émergence et la consolidation du capitalisme en offrant des infrastructures, des réglementations et des soutiens institutionnels.
+
+2.  **Histoire Économique et Régulation**
+
+    **Michel Aglietta**
+
+    -   **Œuvres :** *Régulation et crises du capitalisme* (1976).
+
+    -   **Contribution :** Aglietta, pionnier de l'école de la régulation, explore comment les régimes de régulation étatiques évoluent pour stabiliser les cycles économiques du capitalisme.
+
+    -   **Détail :** "Les régimes de régulation adaptent les structures économiques pour éviter les crises systémiques." Aglietta montre que l'État joue un rôle crucial dans la mise en place de cadres institutionnels qui permettent la régulation des économies capitalistes et la gestion des crises.
+
+### Sociologie et Pouvoir Étatique
+
+1.  **État et Légitimation du Capitalisme**
+
+    **Max Weber**
+
+    -   **Œuvres :** *Économie et société* (1922).
+
+    -   **Contribution :** Weber analyse comment l'État moderne légitime le capitalisme par le droit et la bureaucratie. Il explore les bases légales et rationnelles de l'autorité étatique qui soutiennent l'ordre économique.
+
+    -   **Détail :** "L'État, par sa bureaucratie et son système légal-rationnel, crée un environnement propice au développement capitaliste." Weber montre que l'État, en instaurant un cadre juridique stable et en régulant l'économie, facilite les transactions économiques et soutient le capitalisme.
+
+2.  **État, Capitalisme et Discipline**
+
+    **Michel Foucault**
+
+    -   **Œuvres :** *Naissance de la biopolitique* (1978-79).
+
+    -   **Contribution :** Foucault explore le concept de biopolitique et la manière dont l'État utilise des techniques de gouvernementalité pour réguler les populations et soutenir le capitalisme.
+
+    -   **Détail :** "L'État exerce un contrôle subtil sur les individus par des mécanismes de discipline et de régulation pour maintenir l'ordre capitaliste." Foucault décrit comment les politiques néolibérales redéfinissent le rôle de l'État, non plus comme simple garant des lois, mais comme gestionnaire des conditions de vie et de travail des populations pour optimiser le fonctionnement du capitalisme.
+
+### Conclusion
+
+La littérature sur la manière dont l'État soutient le capitalisme est riche et multidimensionnelle, couvrant des perspectives théoriques variées et des analyses empiriques détaillées. Les contributions de théoriciens comme Nicos Poulantzas, Karl Polanyi, David Harvey, John Maynard Keynes, Pierre Rosanvallon, Fernand Braudel, Michel Aglietta, Max Weber, et Michel Foucault offrent des insights profonds sur les mécanismes par lesquels l'État intervient pour stabiliser, légitimer et perpétuer le système capitaliste. Ces recherches montrent que l'État, loin d'être une entité neutre, joue un rôle actif et complexe dans le soutien du capitalisme, en adaptant ses politiques et ses institutions pour gérer les contradictions et les crises inhérentes au système.
+
+## Prendre pour objet les politiques familiales
+
+## Parenté civile, administrative et quotidienne
+
+## Le cas des familles recomposées
+
+## Etudier les arrangements économiques
+
+Les conséquences économiques du divorce et des séparations ont été largement étudiées. Ces travaux ont montré que la chute du niveau de vie est plus brutale, importante et durable pour les femmes que pour les hommes, d’autant plus lorsque le couple était marié [@abbas2019a]. Le partage du patrimoine lors des divorces tend également à défavoriser les femmes [@bessière2020]. Malgré des dispositifs supposés limiter ces effets (prestation compensatoire, pensions alimentaires), la progressive déjudiciarisation des séparations conjugales laisse jouer à plein les rapports de force intrafamiliaux, lésant de fait les conjoints et surtout les conjointes qui n’ont pas les ressources économiques ou juridiques pour défendre leurs intérêts [@bessière2013]. Partant, les familles dites « monoparentales » ont également fait l’objet de nombreuses études spécifiques démontrant qu’elles font souvent face à des situations de pauvreté [@algava2020]. Les remises en couple et les recompositions familiales n’ont pas fait l’objet d’investigations équivalentes. Pourtant, en 2016, 19% des mariages célébrés par des femmes et 19,7% de ceux célébrés par des hommes étaient des remariages (INSEE, 2020) et depuis 1999, environ un enfant sur dix vit dans une famille recomposée en France [@algava2020], c’est-à-dire un couple vivant au moins une partie du temps avec au moins un enfant issu d’une précédente union [@théry1993]. Ce type d’union concernait 9,1% des ménages ordinaires avec enfants en 2018 [@algava2020]. Les sociologues de la familles y ont ainsi parfois vu une « nouvelle forme familiale » et considéré qu'elles symbolisaient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017], caractérisée par la pluriparentalité [@legall] et la diversification des structures familiales [@thérydistinctiondedesexe]. Pourtant les configuration familliales recomposées ne sont pas radicalement nouvelles. Jusqu'à la seconde guerre mondiale, elles étaient d'avantage liées au décès d'un des conjoints -- du fait de la mortalité élevé des femmes notamment en couche et des hommes lors des périodes de guerre -- qu'a une séparation [@flandrin1984]. Leur relative nouveauté tient moins à l'existence de beau-parent, qu'a l'existence, en même temps, des deux parents. En d'autres termes, en théorie, la recomposition se fait moins selon un modèle de substitution qu'un modèle de pérennité [@clément2005]. Pour autant la "paternité de remplacement", plus fréquente durant les periode de forte mortalité masculine, n'as pas disparue, elle existe aussi dans les milieux ou les pères sont absents [@weber2013].
+
+Ainsi, Le cas des familles recomposée nécessite de considérer la pluralité des logements dans lesquels les recompositions se déploient pour sortir de la logique procédant par réduction à la résidence principale.
+
+**Revue de littérature plus histoirque pour resituer l'objet**
+
+**Irène Théry** (1996), dans *La distinction de sexe : une nouvelle approche de l'égalité*, Elle analyse comment ces transformations exigent une réévaluation des rôles de genre et des normes familiales. Théry déconstruit les modèles familiaux traditionnels et met en lumière la pluralité des structures familiales contemporaines, soulignant les implications sociales et juridiques de ces nouvelles formes de parenté.
+
+## La construction d'une parentée quotidienne. Le cas des familles recomposées
+
+Ces familles constituent pourtant un cas où parenté légale, biologique et quotidienne ne sont pas a priori superposées. En suivant Florence Weber [@weber2013], la parenté est un fait social complexe qui ne peut être analysé qu'en distinguant ses différentes dimensions. La *parenté légale* est une affaire d’État, elle est garantie par le droit civil de la filiation et se matérialise dans le nom (de famille) porté par les individus. La *parenté biologique* est une affaire de science, elle est lié à la transmission d'un patrimoine génétique dans le cadre de la procréation, qu'elle soit assisté médicalement ou non. Enfin la *parenté quotidienne* tient aux liens sociaux, économiques et affectifs construits par les pratiques, les interactions et les échanges au quotidien. Ainsi, si l'on définit la configuration familiale recomposées comme un couple vivant, au moins une partie du temps, avec au moins un enfant issu d'une précédente union, ce qui caractérise ces configurations est un recoupement imparfait entre d'un coté la parenté quotidienne et de l'autre la parenté biologique et/ou légale. En effet, le droit civil n'organise pas de la même manière les familles recomposées et les familles traditionnelle. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d’un de leurs parents légaux, y compris en cas de mariage ou de PACS [@damon2012]. Il n’y a ni obligation d’entretien, comme c’est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l’héritage comme c’est le cas pour les apparenté-e-s au premier et au second degré [@fulchiron1993]. En ce sens, étudier les familles recomposées permet de questionner les conditions de possibilité de construction d'une forme de parenté quotidienne sans filiation légale et biologique, mais lorsque celle-ci existe par ailleurs. C'est d'ailleurs souvent sous un angle de questionnement que les enquêtes éthnographiques s’intéressant aux familles recomposées.
+
+Dans *Le démariage : justice et vie privée* (1993), **Irène Théry** aborde les dilemmes de loyauté auxquels les enfants sont confrontés dans les familles recomposées. Elle examine comment ces enfants peuvent ressentir une pression pour être loyaux envers leurs parents biologiques tout en s'adaptant à la présence d'un beau-parent. Théry explore les conflits intergénérationnels exacerbés par les différends entre ex-conjoints, créant des tensions supplémentaires et complexifiant la gestion des relations familiales.
+
+**François de Singly** (1996), dans *Le soi, le couple et la famille*, analyse les interactions complexes entre parents, beaux-parents et enfants. Il met en avant les enjeux de loyauté conflictuelle et les attentes différenciées de chaque membre. De Singly insiste sur la négociation des identités et des rôles au sein des familles recomposées, soulignant l’importance de l’autorité et de l’affection pour instaurer des relations harmonieuses. Ces dynamiques reflètent la nécessité de repenser les formes de solidarité et d'interdépendance familiales.
+
+La thèse de Sylvie Cadolle, sous la direction de Irène Théry, [...].
+
+Plus tard, Agnès Martial [...].
+
+Enfin, l'identification symbolique et affective des enfants aux lignées beau-parentales est elle aussi rare, quand bien mêmes ceux qui y appartiennent font souvent partie de la « famille de référence » [@véron2007].
+
+Enfin, Florence Weber également questionne cet aspect dans le cadre des recomposition familiales
+
+**Florence Weber** (2005), dans *Le travail à côté : parenté et voisinage*, analyse les défis spécifiques que rencontrent les beaux-parents dans les familles recomposées. Weber décrit comment ces derniers naviguent dans des rôles souvent mal définis et les stratégies qu'ils utilisent pour établir des relations positives avec leurs beaux-enfants. Elle met en lumière l'importance de la communication et de la patience pour surmonter les obstacles et créer un environnement familial stable et harmonieux.
+
+## Les arrangements économiques
+
+Dans *Sociologie de la famille* (2001), **Martine Segalen** examine les dynamiques internes des familles recomposées, soulignant la nécessité d'une flexibilité continue et d'adaptations multiples pour chaque membre. Elle décrit comment les rôles et attentes sont constamment négociés pour maintenir l’équilibre familial. Segalen met en avant les tensions potentielles entre les nouveaux conjoints et les enfants issus de précédentes unions, et l’importance de créer de nouvelles routines familiales pour prévenir les conflits.
+
+Les travaux de **Irène Théry** et **Martine Segalen** examinent également les répercussions pour les adultes dans les familles recomposées. Ils explorent les défis liés à la gestion des relations avec les enfants de leur conjoint, la cohabitation avec des ex-conjoints, et l’équilibre entre responsabilités familiales et professionnelles. Ces analyses montrent comment les recompositions familiales réorganisent les liens de parenté et redistribuent les rôles au sein de la famille.
+
+Pourtant, ces
 
 Constitue un cas limite qui permet de questionner les usages de la catégorie familiales administratives (ménage statistique, ménage pour la caf, foyer fiscal) au prise de l'économie domestique
-
-problématique principale : catégories d'état vs catégories familiales ordinaires. Pas seulement montrer qu'il y a un écart, c'est quelque chose qu'on sait et qui est évident/normal, mais pour montrer ce qu'implique cet écart
-
-Estimation du niveau de vie dans ces familles
 
 Interroger les conditions de la mise au travail reproductif : puisque parenté quotidienne et biologique ne sont pas superposées, on peut dénaturaliser la prise en charge du travail domestique
 
@@ -94,15 +258,140 @@ Interroger les condition de contribution financières aux charges que représent
 
 Effets des catégories administratives et des politiques de redistribution dans ces famille
 
+problématique principale : catégories d'état vs catégories familiales ordinaires. Pas seulement montrer qu'il y a un écart, c'est quelque chose qu'on sait et qui est évident/normal, mais pour montrer ce qu'implique cet écart
+
+Les unions civiles (mariages et PACS) se font aussi davantage sous le régime de la séparation de biens lorsqu'une autre union civile a précédé, et lorsque des enfants nés d'une autre union existent [@frémeaux2013].
+
+## TRASH INTRO
+
+## Revue littérature genre et etat
+
+### Théories et Approches
+
+1.  **Féminisme Républicain**
+
+    -   **Christine Delphy**
+
+        -   Œuvre : *L'ennemi principal* (1998).
+
+        -   Contribution : Christine Delphy est une figure centrale du féminisme matérialiste en France. Elle critique les structures économiques et sociales patriarcales et examine comment l'État perpétue ces inégalités à travers des politiques discriminatoires.
+
+        -   Détail : Delphy argue que le patriarcat est intégré dans le système économique et que les femmes sont opprimées par leur rôle dans la reproduction sociale et économique.
+
+2.  **Féminisme Radical**
+
+    -   **Françoise Vergès**
+
+        -   Œuvre : *Le ventre des femmes. Capitalisme, racialisation, féminisme* (2017).
+
+        -   Contribution : Vergès explore les intersections entre le genre, la race et le capitalisme, en se concentrant sur l'histoire coloniale française et ses répercussions contemporaines.
+
+        -   Détail : Elle analyse comment les politiques de l'État, notamment en matière de contrôle des corps des femmes (avortement, stérilisation forcée), ont été utilisées comme outils de domination raciale et de genre.
+
+3.  **Intersectionnalité**
+
+    -   **Elsa Dorlin**
+
+        -   Œuvre : *Sexe, genre et sexualités* (2008).
+
+        -   Contribution : Dorlin est une pionnière des études intersectionnelles en France. Son travail examine comment le genre se croise avec d'autres axes d'oppression comme la race et la classe.
+
+        -   Détail : Elle discute de la manière dont les politiques publiques et les discours étatiques sur la laïcité et l'identité nationale peuvent reproduire des inégalités intersectionnelles.
+
+### Politiques Publiques et Genre
+
+1.  **Politiques de Parentalité**
+
+    -   **Anne-Marie Devreux**
+
+        -   Œuvre : *Les politiques de la parentalité* (2008).
+
+        -   Contribution : Devreux analyse les politiques familiales françaises, y compris le congé parental et les services de garde d'enfants, et leur impact sur la division du travail domestique.
+
+        -   Détail : Elle montre comment ces politiques, bien qu'apparemment neutres, peuvent en réalité renforcer les rôles de genre traditionnels en assignant principalement aux femmes la responsabilité des soins aux enfants.
+
+2.  **Violence de Genre**
+
+    -   **Sylvie Cromer**
+
+        -   Œuvre : *Violences conjugales et politiques publiques* (2006).
+
+        -   Contribution : Cromer explore les réponses étatiques à la violence conjugale en France, mettant en lumière les lacunes et les avancées des politiques publiques dans ce domaine.
+
+        -   Détail : Elle critique l'insuffisance des ressources allouées aux services de soutien et l'inadéquation des mesures de protection pour les victimes de violence conjugale.
+
+3.  **Représentation Politique**
+
+    -   **Réjane Sénac**
+
+        -   Œuvre : *L'invention de la diversité* (2012).
+
+        -   Contribution : Sénac analyse les politiques de diversité et de parité en France, en examinant comment elles sont mises en œuvre et leurs effets sur la représentation des femmes et des minorités dans les institutions politiques.
+
+        -   Détail : Elle soutient que bien que ces politiques aient permis des avancées, elles sont souvent limitées par des résistances institutionnelles et des interprétations restrictives de l'égalité.
+
+De ce fait, ni l’économie domestique quotidienne, ni les successions dans les familles recomposées ne peuvent être parfaitement assimilées à celles se déployant dans les familles nucléaires. En effet, les travaux d’Agnès Martial montrent que les cas dans lesquels la logique d’égalité entre tous les enfants des conjoints, quelle que soit leur filiation, préside au moment d’héritage sont rares. Ceux-ci surviennent d’avantage lorsque les séparations, recompositions et cohabitations interviennent tôt dans la vie des enfants et que l’un des parents est absent[[4]](#_ftn4). Ainsi, les recompositions familiales ne remettent généralement pas en cause les logiques de lignées fondées sur la filiation établie légalement. . On peut y voir des arrangements conjugaux visant à protéger mutuellement les intérêts patrimoniaux du nouveau conjoint et des enfants. À la différence des enjeux patrimoniaux, la question des revenus et des budgets n’a été que faiblement étudiée dans le cas des familles recomposées. Même les travaux d’Agnès Martial s’intéressent davantage à la manière dont les parents s’organisent financièrement après la séparation[[7]](#_ftn7) qu’à la manière dont les beaux-parents participent à cette économie quotidienne. La mise en commun d’une part des revenus étant couramment subordonnée à une « cause commune » [[8]](#_ftn8) - que peuvent représenter les enfants communs, l’accession à la propriété –, on peut néanmoins supposer que les couples formés secondairement, d'autant plus lorsque des enfants nés d'une autre union existent, sont loin de mettre en commun la totalité de leurs revenus, et continuent de subvenir individuellement à l’entretien de leurs enfants légaux. Les travaux sur ce sujet tendent à suggérer que les budgets y sont plus séparés et que les tâches ménagères et parentales sont d’avantage partagées entre conjoints[[9]](#_ftn9). Pour autant, ceux-ci ne permettent pas de distinguer les familles recomposées selon qu’elles le sont par l’homme, la femme ou les deux. Or les travaux de Sylvie Cadolle s’intéressant à la parentalité dans les familles recomposées~~,~~ suggèrent que devenir beau-père n’implique pas, en termes de « charge éducative », la même chose que devenir belle-mère[[10]](#_ftn10).
+
+[[1]](#_ftnref1) J. Damon, *Les familles recomposées*, *op. cit.*
+
+[[2]](#_ftnref2)Delecourt F. et Bourgaut-Coudeville D., « Les familles recomposées : aspects personnels, aspects alimentaires », dans *Les recompositions familiales aujourd’hui*, Paris, Nathan, 1993, p. 256‑279.
+
+[[3]](#_ftnref3) Hugues Fulchiron, « La transmission des biens dans les familles recomposées : entre trop de droit et pas de droits » dans *Les recompositions familiales aujourd’hui*, Paris, Nathan, 1993, p. 281-298.
+
+[[4]](#_ftnref4) Agnès Martial, « Le lien beau-parental à l’épreuve de la transmission L’héritage dans les familles recomposées après divorce », *Revue des politiques sociales et familiales*, 1999, vol. 55, n^o^ 1, p. 1‑9.
+
+[[5]](#_ftnref5) Bérangère Véron, « Héritages symboliques et rapport aux lignées dans les familles recomposées », *Recherches familiales*, 2007, n° 4, n^o^ 1, p. 25‑33.
+
+[[6]](#_ftnref6)Nicolas Frémeaux et Marion Leturcq, « Plus ou moins mariés : l’évolution du mariage et des régimes matrimoniaux en France », *Economie et statistique*, 2013, vol. 462, n^o^ 1, p. 125‑151.
+
+[[7]](#_ftnref7) Agnes Martial, « Comment rester liés ? Les comptes des familles recomposées », *Terrain : revue d’ethnologie de l’Europe*, 2005, n^o^ 45, p. 67‑82.
+
+[[8]](#_ftnref8) D. Roy, « « Tout ce qui est à moi est à toi ? », art cit.
+
+[[9]](#_ftnref9) Pauline Domingo, « Le quotidien des familles recomposées », *Revue des politiques sociales et familiales*, 2009, vol. 96, n^o^ 1, p. 96‑104.
+
+[[10]](#_ftnref10) Sylvie Cadolle, « Charges éducatives et rôle des femmes dans les familles recomposées », *Cahiers du Genre*, 2001, n° 30, n^o^ 1, p. 27‑52.
+
+Cas le plus courant, quelques statistiques =\> donc possible d'étudier quantitativement.
+
 Distinguer sociologiquement les familles recomposées et les familles nucléaires
 
-Cette approche a pour avantage de ne pas présupposer des liens affectifs et économiques différents les familles nucléaires et les familles recomposées, puisque la parenté quotidienne peut ne pas coïncider avec la parenté légale [@weber2013]. Pour autant, en suivant Rémi Lenoir [-@lenoir2003], nous considérons que la famille, en tant que groupe d'individus apparenté par des relations de filiations et/ou d'alliance, ne préexiste pas aux institutions qui objectivent ces relations. Ainsi le droit civil ne les organise pas de la même manière les relations de parenté et les relations entre beaux-parents et beaux-enfants. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d'un de leurs parents, y compris en cas de mariage ou de PACS [@damon2012]. Il n'y a ni obligation d'entretien, comme c'est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l'héritage comme c'est le cas pour les apparenté.e.s au premier et au second degré [@fulchiron1993]. De ce fait, ni l'économie domestique quotidienne, ni les successions dans les familles recomposées ne peuvent être parfaitement assimilées à celles se déployant dans les familles nucléaires. Les travaux d'Agnès Martial montrent que les cas dans lesquels la logique d'égalité entre tous les enfants des conjoints, quelle que soit leur filiation, préside au moment d'héritage sont rares [@martial1999]. Ainsi, les recompositions familiales ne remettent généralement pas en cause les logiques de lignées fondées sur la filiation établie légalement. L'identification symbolique et affective des enfants aux lignées beau-parentales est elle aussi rare, quand bien mêmes ceux qui y appartiennent font souvent partie de la « famille de référence » [@véron2007]. Les unions civiles (mariages et PACS) se font aussi davantage sous le régime de la séparation de biens lorsqu'une autre union civile a précédé, et lorsque des enfants nés d'une autre union existent [@frémeaux2013]. On peut y voir des arrangements conjugaux visant à protéger mutuellement les intérêts patrimoniaux du nouveau conjoint et des enfants. Ainsi, les relations économiques entre beaux-parents et beaux enfants semblent généralement suivre des logiques différentes de celles entre parents et enfants, et justifient donc un traitement sociologique spécifique des arrangements économiques dans les familles recomposées.
+Cette approche a pour avantage de ne pas présupposer des liens affectifs et économiques différents les familles nucléaires et les familles recomposées, puisque la parenté quotidienne peut ne pas coïncider avec la parenté légale [@weber2013]. Pour autant, en suivant Rémi Lenoir [-@lenoir2003], nous considérons que la famille, en tant que groupe d'individus apparenté par des relations de filiations et/ou d'alliance, ne préexiste pas aux institutions qui objectivent ces relations. Ainsi le droit civil ne les organise pas de la même manière les relations de parenté et les relations entre beaux-parents et beaux-enfants. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d'un de leurs parents, y compris en cas de mariage ou de PACS [@damon2012]. Il n'y a ni obligation d'entretien, comme c'est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l'héritage comme c'est le cas pour les apparenté.e.s au premier et au second degré [@fulchiron1993]. De ce fait, ni l'économie domestique quotidienne, ni les successions dans les familles recomposées ne peuvent être parfaitement assimilées à celles se déployant dans les familles nucléaires. Les travaux d'Agnès Martial montrent que les cas dans lesquels la logique d'égalité entre tous les enfants des conjoints, quelle que soit leur filiation, préside au moment d'héritage sont rares [@martial1999]. Ainsi, les recompositions familiales ne remettent généralement pas en cause les logiques de lignées fondées sur la filiation établie légalement. Les unions civiles (mariages et PACS) se font aussi davantage sous le régime de la séparation de biens lorsqu'une autre union civile a précédé, et lorsque des enfants nés d'une autre union existent [@frémeaux2013]. On peut y voir des arrangements conjugaux visant à protéger mutuellement les intérêts patrimoniaux du nouveau conjoint et des enfants. Ainsi, les relations économiques entre beaux-parents et beaux enfants semblent généralement suivre des logiques différentes de celles entre parents et enfants, et justifient donc un traitement sociologique spécifique des arrangements économiques dans les familles recomposées.
 
-Pourtant, ce n'est généralement pas sous cet angle que la sociologie s'est intéressée aux familles recomposées : A partir des années 1990, sociologues et psychologues s'emparent du sujet des « nouvelles formes familiales » et y voient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017]. Ces travaux s'inscrivent dans ce que Céline Bessière et Sibylle Gollac ont nommé « le grand récit de la famille moderne » déjà porté par @durkheim1975 et dont François de Singly, Ulrich Boeck et Anthony Giddens seront les grands continuateurs. Pourtant ces familles -- monoparentales comme recomposées -- ne sont pas radicalement nouvelles. Jusqu'à la seconde guerre mondiale, elles étaient d'avantage liées au décès d'un des conjoints -- du fait de la mortalité élevé des femmes notamment en couche et des hommes lors des périodes de guerre -- qu'a une séparation [@flandrin1984]. Leur relative nouveauté tient moins à l'existence de beau-parent, qu'a l'existence, en même temps, des deux parents. En d'autres termes, en théorie, la recomposition se fait moins selon un modèle de substitution qu'un modèle de pérennité [@clément2005]. Ainsi, Le cas des familles recomposée nécessite de considérer la pluralité des logements dans lesquels les recompositions se déploient pour sortir de la logique procédant par réduction à la résidence principale.
+Donc quand on interroge les arrangement économique dans ces familles sous un angle statistique, c'est pour étudier la forme que peuvent prendre ces arrangement dans les cas ou les différentes dimensions de la parenté ne sont pas parfaitement superposées.
+
+2)  revue de littérature
+
+Pourtant, ce n'est généralement pas sous cet angle que la sociologie s'est intéressée aux familles recomposées : A partir des années 1990, sociologues et psychologues s'emparent du sujet des « nouvelles formes familiales » et y voient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017]. Ces travaux s'inscrivent dans ce que Céline Bessière et Sibylle Gollac ont nommé « le grand récit de la famille moderne » déjà porté par @durkheim1975 et dont François de Singly, Ulrich Boeck et Anthony Giddens seront les grands continuateurs.
+
+Les implications patrimoniales des remariages ont fait l’objet de travaux soulignant le faible encadrement des relations entre beaux-parents et enfants des conjoints et conjointes (Brun, 1996 ; Fulchiron, 1993), qui limite de fait les transmissions économiques entre ceux-ci (Donnat, 2018). D’un point de vue successoral, l’opposition entre deux lignées - les enfants de la précédente union et le nouveau ou la nouvelle conjointe ainsi que les enfants éventuellement nés de la nouvelle union - a conduit les juristes à identifier un éventail d’outils pour protéger les droits des uns vis-à-vis des autres (Azincourt, 2013). À l’inverse, lorsqu’il s’agit des conséquences sur les revenus et le niveau de vie, on trouve peu d’études s’intéressant spécifiquement aux remises en couples. Lorsqu’elles existent, elles prennent rarement en compte la spécificité de ces nouvelles unions, et concluent alors à une augmentation du niveau de vie qui permet un retour à la situation économique précédant la séparation (voir Abbas et Garbinti, 2019), faisant de la situation de parent isolé une phase certes précaire mais transitoire. Ce travail de recherche vise à analyser les conséquences économiques des recompositions familiales en identifiant les spécificités des remises en couples dans les trajectoires individuelles et en caractérisant plus finement les configurations familiales recomposées, par l’étude des relations économiques et des arrangements familiaux qui s’y déploient. En se plaçant à l’échelle individuelle, mais en prêtant attention aux échanges économiques au sein du foyer et à l’extérieur de celui-ci, ce projet supposera de déborder la catégorie statistique du ménage pour la questionner. Nous chercherons alors à articuler la construction des catégories statistiques et des catégories administratives, qu’elles soient légales, sociales ou fiscales. Nous prêterons ainsi une attention particulière au rôle joué par l’Etat et des politiques sociales via l’encadrement des séparations et des remises en couple, dans la prise en charge des parents isolés et des familles recomposées. Au croisement de la sociologie de la famille, des politiques sociales et de la quantification, ce travail cherche à proposer une analyse de la manière dont l’administration juridique, sociale et fiscale des parents isolés reformant de nouvelles unions conjugales participe à produire l’ordre du genre.
+
+## trois problèmes /grandes question
+
+### Grand problème
+
+idée que le sexe est une des grandes catégories de classement de l'état (avec l'age et la nationalité), et dvp d'un état providence est articulée au développement du sexe comme catégorie d'adminsitation
+
+ensuite on montre comment les fmailles recomposées procèdent dirctement de ce problème de recherche
+
+```{r, eval = FALSE}
+
+que se dévoile le problème de recherche traité dans l’ouvrage, là aussi qu’il est élaboré, détaillé en morceaux, traduit en hypothèses, là encore que sont présentées les données empiriques qui ont servi à le traiter, là enfin que l’enquêteur peut raconter les différents outils disciplinaires dont il s’est servi pour travailler. Bref, c’est dans l’introduction que se donne à voir l’articulation entre un problème de recherche et un terrain d’enquête. Or le dévoilement de ce couple me semble essentiel à deux titres. D’une part en ce qu’il distingue les sciences sociales d’autres activités plus ou moins proches – enquêtes documentaires, rapports administratifs, collectes de passionnés. D’autre part et surtout parce que, dans le binôme, c’est le questionnement qui me paraît le plus fondamental, au sens où les données sont faillibles et périssables quand le cheminement démonstratif peut conserver une valeur de modèle transposable ailleurs à un autre moment. Il est ainsi des travaux dont les hypothèses théoriques peuvent survivre à la défaite de leur démonstration empirique [2]
+[2]
+Je pense notamment, mais on pourrait donner de nombreux autres…. Une précision encore, au besoin : la faillibilité des données ne saurait constituer un argument pour s’en passer puisque c’est leur présence et leurs usages qui, en sciences sociales, permet d’éprouver le raisonnement.
+
+
+bien définir ce qu'on entend par configuration familiale/conjugale, approche configurationelle.
+
+Accroche rapide :
+
+Construire le cas des familles recomposées : pourquoi c'est intéressant ?
+
+
+
+Estimation du niveau de vie dans ces familles
 
 Si l'on reprend donc le tryptique entre familles monoparentales, familles nucléaires et familles recomposées hérité de la sociologie de la famille des années 2000, c'est bien moins parce que ces catégories serait mieux adaptées à la société actuelle que parce que nous considérons ces familles comme un cas sociologique au sens de @passeron2020 pour observer la continuation de l'ordre du genre après la séparation conjugale. S'intéresser aux familles recomposées implique donc d'une part de sortir d'une analyse à l'échelle du ménage pour s'intéresser à ce qui se passe, d'un point de vue matériel, en son sein et à l'extérieur. D'autre part, cela suppose aussi de sortir d'une logique d'analyse par la composition du ménage pour s'intéresser aux relations économiques, légales et administratives qui unissent les individus qui le composent.
-
-
 
 ```
 
@@ -111,8 +400,8 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 L’enquête Budget des familles qui présente plusieurs avantages. Elle fournit un descriptif de tous les habitants du ménage et pas seulement de ceux concernés par l’enquête. Pour chacun d’entre eux, les liens avec les autres membres du ménage sont renseignés. Elle permet donc d’identifier les ménages correspondant à des familles recomposées. Le module destiné aux enfants résidants hors domicile permet également d’identifier les familles recomposées ponctuellement par les visites des enfants. En d’autres termes, cette enquête permet de dépasser l’unité statistique du ménage à la fois en interne et en externe. La taille de l’échantillon de l’enquête Budget des familles (n = 29 000) permet également d’espérer obtenir des effectifs suffisant dans la catégorie de « famille recomposée ». En outre, le volet 2017 contient un sur-échantillon de 2000 familles monoparentales qui permettra d’augmenter la significativité des comparaisons. Les informations détaillées sur chacun des membres du ménage, ainsi que sur les enfants hors domicile permettront de caractériser sociologiquement très finement ces familles. Grâce aux informations détaillées sur chacun des membres présentes dans l’enquête Budgets des familles, il est possible de comparer les situations individuelles des conjoints, notamment en termes de volume et de structure de revenus. Ensuite, cette enquête recense les dépenses individuelles de tous les individus de plus de 14 ans appartenant au ménage enquêté, y compris les services non-rémunérés effectués au sein du ménage. Ceci permet à la fois de saisir ce qui est dépensé par chacun des membres et le travail domestique effectué par ceux-ci, en d’autres termes leurs contributions matérielles aux charges du ménage. Il est ainsi possible de comparer la manière dont les individus contribuent à la production domestique dans les familles recomposées, nucléaires ou monoparentales entre les différents types de familles recomposées (selon que la famille est recomposée par un homme, une femme ou les deux, selon que les conjoints ont des enfants communs ou non). Un intérêt particulier sera porté aux dépenses et services qui concernent les enfants afin de mieux comprendre les modalités de leur prise en charge selon le sexe des conjoints. L’économie domestique ne se borne pas non plus aux frontières du logement. Les variables concernant les dépenses effectuées pour les enfants hors domicile seront également exploitées. La délégation d’une partie du travail domestique ou parental par recours au marché sera également étudiée. Enfin les montants précis des allocations perçues, des pensions alimentaires reçues et des impôts dû permettra, par la comparaison avec les familles monoparentales et les familles nucléaires, de donner quelques premières pistes sur les conséquences économiques des recompositions familiales.
 \end{encadre}
 ```
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| On proposera donc dans un premier temps une réflexion sur la manière dont il est possible de saisir sociologiquement les recompositions familiale dans les enquêtes ménages de la statistiqus publique (Chapitre 1). Puis, on s'interessera ensuite aux arrangemen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|------------------------------------------------------------------------|
 | Consignes mémoire \| ==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+ 1 – Introduction \| 1.1 - Construction de l’objet (10 pages / 30 000 signes) Revue de littérature française et/ou internationale Énoncé de la question de recherche et développement de la problématique. Annonce du plan et de la logique des différentes parties (« sous-questions »). \| \| 1.2 - Présentation des données (3 pages ou 20 pages suivant l’intensité du travail demandé) Choix des sources et modes de collecte de la base de données Base de données originale : Description de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Aspiration de données web : mode d’aspiration, origine et types de données collectées, apurement de la base… Utilisation de bases de données déjà construites, obtenues par l’intermédiaire du Centre Quételet ou d’autres fournisseurs : Détails de l’enquête (sur qui ? sur quoi ?), mode de collecte des données, mode de saisie, apurement de la base… Structure et contenu de la base de données utilisée Date de collecte des données et date de production de la base Population concernée, nombre d’individus Nature des variables utilisées Intérêts et limites des données pour la question de recherche \| \| **2 - Développement** Suivant les chapitres annoncés dans l’introduction (minimum 2, rarement plus de 5). Dans chaque chapitre : - Quelle est la question traitée ? - Quelles sont les méthodes utilisées permettant d’y répondre ? - Résultats importants (ne pas commenter intégralement les tableaux) - Commentaires et analyse distanciée - Positionnement par rapport à la littérature sur le sujet (compléments, différences, etc). - Discussions sur les précautions à prendre sur l’utilisation des données, sur l’interprétation des méthodes et résultats. - Conclusions : quel est l’apport à la question initiale ? Transition vers chapitre suivant. \| \| **3 - Conclusion (3 pages/10 000 signes)** Rappel de la question de départ, des données et des méthodes. Synthèse des principaux résultats. Retour réflexif sur l’apport et les limites du mémoire. Références bibliographiques \| |
 
 ------------------------------------------------------------------------
@@ -172,7 +461,7 @@ tab %>%
 
 Cette approche, qui s'intéresse seulement à la composition des ménages et non au liens entre individus ne permet pas de distinguer les familles recomposées des familles nucléaires, elle assimile toutes les couples avec enfants indépendants des liens juridiques, économiques ou affectifs qui unissent ces individus. Elle s'inscrit dans la théorie économique du ménage, qui suppose, qu'il soit composé ou non de plusieurs individus, que le comportement économique du ménage est assimilable à celui d'un individu unique [@donni2011]. En conséquence, les revenus individuels sont considérés comme communs et les dépenses également partagées [@bessière2016]. Dès lors, seule la composition du ménage importe, pour pouvoir appliquer des échelles d'équivalences et rendre ainsi comparables des ménages composés différemment.
 
-Si les grandes enquêtes de l'INSEE ne proposent généralement pas de variables permettant de distinguer les familles nucléaires des familles recomposées, le Tronc Commun des enquêtes Ménages (TCM) permet de récolter systématiquement des informations sur les liens entre les individus d'un même ménage. Dans l'enquête `r infosBDF$nom` (2017), pour chaque individu, sont renseignés les liens entretenus avec chaque autre individu appartenant au même ménage.
+Si les grandes enquêtes de l'INSEE ne proposent généralement pas de variables permettant de distinguer les familles nucléaires des familles recomposées, le Tronc Commun des enquêtes Ménages (TCM) permet de récolter systématiquement des informations sur les liens entre les individus d'un même logement grâce au Tableau des Habitants du Logement (THL). Dans l'enquête `r infosBDF$nom` (2017), pour chaque individu, sont renseignés les liens entretenus avec chaque autre individu appartenant au même ménage.
 
 ```{r LIENXX}
 dic <- readRDS("Documentation/Dictionnaire_individu.rds")  
@@ -1270,8 +1559,6 @@ reg_dat <- ggcoef_compare(results,
 #summary(results$Alimentation)
 reg_dat1 <- reg_dat %>%
   filter(!(variable %in% c("n_FractionClasse", "NENFANTS", "n_TYPFAM", "DIP7_F", "DIP7_H", "STALOG", "n_TYPMEN_new", "NIVIE", "REVDISP"))) 
-
-# On ne garde que ce qui est significatif 
 reg_dat1 <- reg_dat1 %>%
   #filter(p.value <= 0.1) %>%
   filter(!(model %in% c("Consommation finale", "EPARGNE"))) 
@@ -1293,6 +1580,43 @@ gg <- ggcoef_plot(reg_dat1,
         #legend.position = "bottom", 
         panel.grid.major.x = element_line(colour = "grey80"), 
         panel.grid.minor.x = element_line(colour = "grey80")) 
+    
+        
+
+
+
+reg_dat1 <- reg_dat %>%
+  filter(variable %in% c("n_REVENUS_H:n_EnfantsMen_HBeau−père
+sans enfant",
+                          "n_REVENUS_F:n_EnfantsMen_FBelle−mère
+sans enfant",
+                          "n_REVENUS_H:n_EnfantsMen_HPère",
+                          "n_REVENUS_M:n_EnfantsMen_MMère")) 
+  # mutate(label = label %>%
+  #          droplevels() %>%
+  #          fct_recode(
+  #            "Revenus masculins *\n Famille recomposée" = "n_TYPMEN_newRecomposée:n_REVENUS_H", 
+  #            "Revenus masculins *\n Famille traditionelle" = "n_TYPMEN_newTraditionelle:n_REVENUS_H",
+  #            "Revenus féminins *\n Famille recomposée" = "n_REVENUS_F:n_TYPMEN_newRecomposée", 
+  #            "Revenus féminins *\n
+  #            Famille traditionelle" = "n_REVENUS_F:n_TYPMEN_newTraditionelle"))
+
+gg <- ggcoef_plot(reg_dat1, 
+                  x = "estimate", 
+                  y = "label", 
+                  colour = "label", 
+                  errorbar_coloured = T, 
+                  stripped_rows = F) +
+  facet_wrap(.~model, ncol = 1,  switch = "y") +
+  scale_color_brewer(palette = "Paired") +
+  theme_tufte()+
+  theme(strip.text.y.left = element_text(angle = 0, hjust = 1, vjust = 0.5), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        panel.background = element_rect(fill = "white", ),
+        legend.position = "bottom", 
+        panel.grid.major.x = element_line(colour = "grey80"), 
+        panel.grid.minor.x = element_line(colour = "grey80"))
     
         
 gg
@@ -1723,7 +2047,7 @@ Dans l'enquête Budget de famille (2017), un module portant sur les activités d
 
 Cadolle
 
-Le tableau ci-dessous le taux de participations des hommes et des femmes au travail domestique et parental la semaine ayant précédé l'entretien. Il distinguent différentes taches.
+Le tableau ci-dessous le taux de participations des hommes et des femmes au travail domestique et parental la semaine ayant précédé l'entretien. Il distinguent différentes activités domestiques en déclinant différentes taches.
 
 ```{r, results = "asis"}
 load("Resultats/tab_Wdom_typefam_sexe.Rdata")
@@ -1738,18 +2062,19 @@ tab$tableau %>%
   column_spec(1, width = "3cm") %>%
   #row_spec(0, angle = -45) %>%
   add_kablesource_note(N = tab$n, 
-                       champ = tab$champ)
+                       champ = tab$champ, 
+                       lecture = "47% des hommes vivants en famille traditionelle ont fait du bricolage la semaine de l'enquête.")
+
+
 ```
 
-En ce qui concerne la plus part des items de travail domestique et parental, les femmes vivant en familles traditionnelles et recomposées apparaissent impliquées dans des proportions similaires. Les variations significatives d'implications des femmes dans le travail domestique et parental tiennent en général à la situation de monoparentalité par rapport à la vie en couple. Les femmes vivant en famille recomposée apparaissent cependant légèrement mais significativement moins impliquées dans le repassage (elles sont seulement 49% a avoir repasser des vêtements la semaine de l'enquête contre 57% des femmes vivant en famille traditionnelle et 54% des femmes vivants en famille recomposée) En revanche les hommes vivants en familles recomposées apparaissent plus impliqués dans certaines tâches que ceux vivants en famille traditionnelles. Ils sont en effet plus nombreux à avoir fait du repassage (13% contre 9,4%), des courses (70% contre 63%) ou du ménage (54% contre 44%). La participation féminine sur ces taches ne diffère pas significativement entre familles recomposées et familles traditionnelles sur ces taches.
+En ce qui concerne la plus part des taches domestique et parentales, les femmes vivants en familles traditionnelles et recomposées apparaissent impliquées dans des proportions similaires. Le variations significatives d'implications des femmes dans le travail domestique et parental tiennent en général à la situation de monoparentalité par rapport à la vie en couple. Les femmes vivant en famille recomposée apparaissent cependant légèrement mais significativement moins impliquées dans le repassage (elles sont seulement 49% a avoir repasser des vêtements la semaine de l'enquête contre 57% des femmes vivant en famille traditionnelle et 54% des femmes vivants en famille recomposée). En revanche les hommes vivants en familles recomposées apparaissent plus impliqués dans certaines tâches que ceux vivants en famille traditionnelles. Ils sont en effet plus nombreux à avoir fait du repassage (13% contre 9,4%), des courses (70% contre 63%) ou du ménage (54% contre 44%). La participation féminine sur ces taches ne diffère pas significativement entre familles recomposées et familles traditionnelles. Il semblent donc que les couples formant des ménages recomposées soient plus égalitaires : les hommes y sont légèrement plus engagé dans la prise en charge du travail domestique.
 
-[ explications, conclusion, transition]
+On peut ainsi se demander si l'effet observé n'est pas lié au statut parental. D'une part, la mobilisation légèrement plus forte des hommes sur le travail domestique pourrait être lié aux pères qui ont des enfants issus d'une précédante union et qui, ayant probablement connu une période de monoparentalité avant leur remise en couple ont du assurer eux même, au moins en partie, le travail domestique et parental lié au fait d'élever seul ses enfants. D'autre part, les belles-mères sans enfants sont largement sous-représentées parmi les femmes vivant en famille recomposées, on ne peut donc pas exclure qu'elles soient moins mobilisées que les mères.
 
-Ainsi, on peut se demander si l'effet observé n'est pas plutôt lié au statut parental. D'une part, la mobilisation légèrement plus forte des hommes sur le travail domestique pourrait être lié aux pères qui ont des enfants issus d'une précédante union et qui, ayant probablement connu une période de monoparentalité avant leur remise en couple ont du assurer eux même, au moins en partie, le travail domestique et parental lié au fait d'élever seul ses enfants. D'autre part, les femmes sans enfants sont largement sous-représentées parmi les femmes vivant en famille monoparentales, on ne peut donc pas exclures qu'elles soient moins mobilisé que les mères.
+### [Les parents en font + que dans le familles nucléaires mais moins que dans les familles monoparentales]
 
-### [Les parents en font + que dans le familles nucléaires]
-
-Le tableau ci-dessous présente la part des parents vivant en avec au moins un de leurs enfant ayant effectué des taches de travail domestique et parental durant la semaine de l'enquête.
+Le tableau ci-dessous présente la part de parents vivant en avec au moins un de leurs enfant ayant effectué des taches de travail domestique et parental durant la semaine de l'enquête.
 
 ```{r, results='asis'}
 
@@ -1773,16 +2098,19 @@ tab$tableau %>%
 
 ```
 
-La prise en charge du travail domestique par les parents vivants en famille recomposée apparaît similaire à celle des parents vivants en familles traditionnelle sur la majorité des taches. Cependant, ils sont significativement (p \< 0,001) plus nombreux à prendre avoir fait les courses et le ménage au moins une fois la semaine de l'enquête : 83% ont fait les courses contre 76% dans les familles traditionnelles et 74% on fait le ménage contre 67% dans les familles traditionnelles. Ils sont aussi légèrement et moins significativement plus nombreux à avoir aider les enfants (hors aide scolaire, c'est-à-dire habillage, change, bain à manger) que dans les familles traditionnelle, alors même que les enfants y sont en moyenne plus âgés.
+Sur la majorité des taches, la prise en charge du travail domestique par les parents vivants en famille recomposée apparaît similaire à celle des parents vivants en familles traditionnelle. Cependant, ils sont significativement (p \< 0,001) plus nombreux à prendre avoir fait les courses et le ménage au moins une fois la semaine de l'enquête : 83% ont fait les courses contre 76% dans les familles traditionnelles et 74% on fait le ménage contre 67% dans les familles traditionnelles. Ils sont aussi légèrement et moins significativement plus nombreux à avoir aider les enfants (hors aide scolaire, c'est-à-dire habillage, change, bain à manger) que dans les familles traditionnelle, alors même que les enfants y sont en moyenne plus âgés.
 
 ### La mise au travail domestique des belles-mères
+
+Le tableau suivant présente la participation aux différentes taches des parents et des beaux-parents en fonction de leur sexe dans les familles recomposées. Les effectifs étant très faibles, en particulier pour les belles-mères et les pères, les pourcentages ne sont donc pas interprétables en tant que tels, ils ne sont ici donnés qu'à titre indicatifs pour faciliter la lecture des résultats.
 
 ```{r, results='asis'}
 
 load("Resultats/tab_Wdom_PBP_sexe.Rdata")
+
 tab$tableau %>%
   as_kable_extra(digits = 1, booktabs = T, longtable = T,
-                 caption = "Travail domestique et parental du statut parental et du sexe") %>%
+                 caption = "Travail domestique et parental en fonction du statut parental et du sexe") %>%
   kable_styling(
     # full_width = T,
     latex_options = c("hold_position", "repeat_header"),
@@ -1794,7 +2122,15 @@ tab$tableau %>%
 
 ```
 
-Les beaux-pères prennent visiblement moins en charge le taravil domestique que les pères.
+**On peut ainsi observer un écart, le plus souvent significatif, entre hommes et femmes quelque soit le statut parental pour la majorité des taches domestiques et parentales. Sur les principaux postes de travail domestiques (courses, cuisine du quotidien, ménage et vaisselle), a statut parental égal, les femmes sont systèmatiquement plus nombreuses que les hommes à avoir effectué ces taches au cours de la semaine précédant l'enquête (à l’exception de la vaisselle pour les beaux-parents sans enfants). Les taches féminines restent ainsi des taches féminines dans les familles recomposées : a statut parental égal, le linge (saisir par l'item repassage), est significativement et systématiquement plus féminin que masculin. A l'inverse les taches masculines restent des taches masculines dans les familles recomposées : le bricolage est significativement et systématiquement une tache d’avantage effectuée par les hommes que par les femmes.**
+
+:   
+
+:   Les taches féminines restent féminines dans les familles recomposées : environ 90% des femmes, qu'elles soient et mères ou belles-mères ont fait au moins une fois les courses, le ménage ou la cuisine du quotidien durant la semaine qui précède l'enquête, contre 74% des pères et 68% des beaux-pères pour les courses , 52% des pères et 54% des beaux-pères pour le ménage et 57% des pères et 55% des beaux-pères pour la cuisine du quotidien.
+
+:   
+
+Les beaux-pères prennent visiblement moins en charge le travail domestique que les pères.
 
 -   discussion tabet
 
@@ -1804,17 +2140,19 @@ Les beaux-pères prennent visiblement moins en charge le taravil domestique que 
 
 # Chapitre 4. L'Etat face aux remises en couples des parents isolés
 
-## Des remises en couple encadrées par l'Etat ?
+## ??
 
-Judiciarisées, les divorces et les séparations impliquants des enfants semblent davantage encadrées par les institutions que les remises en couples. À l’inverse, les recompositions familiales se passent souvent, dans un premier temps au moins, loin des yeux de la justice. Pour autant, les CAF et le fisc ont les yeux rivés sur ces remises en couples particulières. La caractérisation d’une vie conjugale constitue, pour les contrôleurs de la CAF, un enjeu de contrôle fréquent (Dubois, 2021), car dès lors, les ressources du conjoint ou de la conjointe seront prises en compte dans le calcul de divers droits.
+### Des remises en couple encadrées par l'Etat ?
 
-Les travaux des juristes et sociologues du droit des années 1990 autour d’Irene Théry et Marie-Thérèse Meulders-Klein (1993, 1995) formulent souvent une critique du droit civil de la famille qu’ils accusent de ne pas avoir su évoluer pour prendre en compte les nouveaux défis que les recompositions familiales poseraient naturellement. Dans cette perspective, la comptabilisation comme enfant « à charge » du couple d’un enfant issu d’une autre union par le fisc si le couple est marié et par la CAF si le couple cohabite, alors même qu’aucun lien légal n’unit ces individus, est interprété comme la reconnaissance d’une situation de fait (Damon, 2012). Cette conception du droit, héritée de Durkheim pour qui il est une cristallisation des transformations sociales, un révélateur des faits sociaux (Durkheim, 1893), occulte la force productrice du droit (Bourdieu, 1986). Les recompositions familiales ne sont pas nouvelles. De fait, dès l’instauration d’un impôt sur le revenu en 1916, la notion d’enfant à charge est déjà déconnectée du droit civil de la filiation (Carbonnier, 2016). Jusqu’aux années 1950, les recompositions familiales étaient simplement davantage liées au décès d’un des conjoints – du fait de la mortalité élevés des femmes notamment en couche et des hommes lors des périodes de guerre – qu’a une séparation (Flandrin, 1984). Leur relative nouveauté tient moins à l’existence de beaux-parents, qu’a l’existence, en même temps, des deux parents. En d’autres termes, la recomposition se fait moins selon un *modèle de substitution* qu’un *modèle de pérennité* (Clément et Bonvalet, 2005)*.*
+Judiciarisées, les divorces et les séparations impliquants des enfants semblent davantage encadrées par les institutions que les remises en couples. Les recompositions familiales se passent souvent, dans un premier temps au moins, loin des yeux de la justice. Pour autant, les CAF et le fisc ont les yeux rivés sur ces remises en couples particulières. La caractérisation d’une vie conjugale constitue, pour les contrôleurs de la CAF, un enjeu de contrôle fréquent (Dubois, 2021), car dès lors, les ressources du conjoint ou de la conjointe seront prises en compte dans le calcul de divers droits.
+
+Les travaux des juristes et sociologues du droit des années 1990 autour d’Irene Théry et Marie-Thérèse Meulders-Klein (1993, 1995) formulent souvent une critique du droit civil de la famille qu’ils accusent de ne pas avoir su évoluer pour prendre en compte les nouveaux défis que les recompositions familiales poseraient naturellement. Dans cette perspective, la comptabilisation comme enfant « à charge » du couple d’un enfant issu d’une autre union par le fisc si le couple est marié et par la CAF si le couple cohabite, alors même qu’aucun lien légal n’unit ces individus, est interprété comme la reconnaissance d’une situation de fait (Damon, 2012). Cette conception du droit, héritée de Durkheim pour qui il est une cristallisation des transformations sociales, un révélateur des faits sociaux (Durkheim, 1893), occulte la force productrice du droit (Bourdieu, 1986). Les recompositions familiales ne sont pas nouvelles et de fait, dès l’instauration d’un impôt sur le revenu en 1916, la notion d’enfant à charge est déjà déconnectée du droit civil de la filiation (Carbonnier, 2016). Jusqu’aux années 1950, les recompositions familiales étaient simplement davantage liées au décès d’un des conjoints – du fait de la mortalité élevés des femmes notamment en couche et des hommes lors des périodes de guerre – qu’a une séparation (Flandrin, 1984). Leur relative nouveauté tient moins à l’existence de beaux-parents, qu’a l’existence, en même temps, des deux parents. En d’autres termes, la recomposition se fait moins selon un *modèle de substitution* qu’un *modèle de pérennité* (Clément et Bonvalet, 2005)*.*
 
 En revanche, les familles recomposées n’ont pas fait l’objet d’une construction comme un problème public comparable à celle dont les familles monoparentales ont fait l’objet à partir des années 1970 (Martin-Papineau, 2003). Le terme de « monoparentalité » n’apparaît pas tout de suite, ces familles sont d’abord désignées comme des « familles privées de pères ». À l’inverse, les familles recomposées ne sont pas le plus souvent « privées de pères » et ne sont donc pas l’objet d’inquiétudes, elles sont ainsi exclues des dispositifs destinés aux parents seuls. Dès lors la remise en couple devient un enjeu administratif. Les filles-mères, lorsqu’elles ne sont pas forcées à l’abandon, bénéficient d’un secours économique conditionné à une étroite surveillance. Leur mariage, d’autant plus si l’enfant bénéfice d’une reconnaissance dite « de complaisance » par leur mari, conditionne leur réintégration sociale et parfois le retour de leur enfant placé (Rivière, 2016). Se distinguant des premières par la respectabilité que leur confère le mariage (Skeggs, 2003), les veuves ayant à charge des enfants bénéficient d’abord de droits dérivés de ceux de leurs maris décédés puis de pensions et d’abattements fiscaux. Le remariage des veuves vient supprimer leur droit à cette protection. Les veufs avec enfants à charge sont eux exclus de ces dispositifs car considérés comme aptes au travail (Chaineaud, 2009). Ainsi, dès les premiers dispositifs de prise en charge de la monoparentalité, la remise en couple des femmes acquiert une importance décisive dans l’ouverture, mais surtout la fermeture du droit à l’assistance économique. Ainsi bien que d’un point de vue du droit civil de la filiation (voir de l’alliance dans le cas de simples re-cohabitations), les familles recomposées s’apparentent davantage aux familles monoparentales, elles ont, à revenu et statut marital identique, les mêmes droit sociaux et fiscaux que les familles nucléaires.
 
 En suivant Rémi Lenoir, la famille est par excellence une catégorie de la pensée d’Etat dont la structuration et le fonctionnement est tout entier encadré par la bureaucratie. Sa forme actuelle est moins la cristallisation de transformations sociales diffusées uniformément dans la population que l’inscription du mode de reproduction sociale des classes dominantes dans les catégories d’action politique visant expressément à permettre et maintenir ce mode de reproduction (Lenoir, 2003). Ainsi ces formes de décalages entre le droit civil et les droits sociaux et fiscaux ne peuvent pas être analysés comme le fruit de la progressive reconnaissance de la situation des familles recomposées. De même, ce décalage entre ce que l’on suppose des pratiques économiques des familles recomposées et ce que les différentes administrations de l’Etat prescrivent est sans doute moins à analyser comme un retard des dispositifs qui doivent s’adapter à la réalité des familles aujourd’hui, que comme ce qui caractérise les recompositions familiales et à ce titre produit des effets sur les individus impliqués. Ce sont justement ces effets que l’on voudrait prendre pour objet d’étude.
 
-## Complexifier la parenté légale
+### Complexifier la parenté légale
 
 Idée qu'il faut articuler les différentes définitions de la parenté légale produites par différentes institutions, voir comment elles se superposent ou non
 
@@ -1824,7 +2162,9 @@ Il n’est pas aisé de déterminer *a priori* les effets de ces fermetures de d
 
 Enfin, dans l’idéal, il faudra également s’intéresser au rôle que joue la justice dans les recompositions familiales qui, s’il reste secondaire en comparaison des séparations, ne doit pas être négligé. La remise en couple d’un parent est parfois l’occasion d’une réorganisation de la résidence des enfants, d’une révision de la pension alimentaire ou de la prestation compensatoire.
 
-## Le niveau de vie dans les familles recomposées
+## Le niveau de vie, crtière d'ouverture ou de fermeture des droits
+
+### dans les familles recomposées
 
 Au delà de l'indicateur de position sociale, le niveau de vie permet de quantifier des inégalités économiques entre individus ou encore d'analyser la consommation. Il est donc un indicateur central en sciences sociales. Le calcul du niveau de vie est également au fondement des dispositifs de redistribution. Les travaux s’intéressant au devenir des familles monoparentales après la séparation mettent en évidence une augmentation du niveau de vie avec la remise en couple. C’est par exemple le cas d’un dossier réalisé par Abbas et Garbinti, dans le Portrait social 2019 de l’INSEE qui dans lequel la remise en couple est qualifiée de « déterminant majeur de la convergence des niveaux de vie vers leurs niveaux d’origine » [@abbas2019, p. 104], en particulier pour les mères, après la chute brutale lors de la séparation. Pour autant, nombreux sont les angles morts de ce type de calcul.
 
