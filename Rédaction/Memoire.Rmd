@@ -68,7 +68,7 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 # Introduction
 
-Dans un premier temps, nous reviendons assez longuement sur ce qui nous sert de cadre d'analyse théorique : la conceptualisation du genre comme rapport social non seulement de domination, mais aussi d'exploitation. Nous montrons ensuite l’intérêt d'étudier le rôle que joue l’État dans ce système économique, justifiant ainsi de prendre pour objet les politiques familiales.
+Dans un premier temps, nous reviendrons assez longuement sur ce qui nous sert de cadre d'analyse théorique : la conceptualisation du genre comme rapport social non seulement de domination, mais aussi d'exploitation. Nous montrons ensuite l’intérêt d'étudier le rôle que joue l’État dans ce système économique, justifiant ainsi de prendre pour objet les politiques familiales.
 
 ## Etat et rapports sociaux de sexe
 
@@ -76,45 +76,47 @@ Dans un premier temps, nous reviendons assez longuement sur ce qui nous sert de 
 
 KERGOAT ici
 
-On peut schématiquement différencier les théories des féministes matérialistes et celles des féministes marxistes. Christine Delphy, dans *l'Ennemi Principal* [@delphy1970], à partir d’ethnographies réalisées dans les milieux paysans, montre que l'on peut analyser les rapports sociaux entre catégories de sexes avec les outils marxistes. Le travail domestique est définit par sa gratuité : les femmes ne sont pas rémunérées pour effectuer celui-ci. Le patriarcat est alors un système économique dans lequel la classe des femmes est exploitée par la classe des hommes en appropriant leur force de travail. Collette Guillaumin [@guillaumain] va plus loin en considérant que c'est non seulement la force de travail des femmes qui est appropriée mais aussi leur corps. Le "sexage", régime d'exploitation des femmes, gagnerait alors a être pensé sur le modèle de l'esclavage ou du servage plus que du salariat. En ce sens, elle rejoint Paola Tabet [@tabet1998] pour qui les femmes sont la classe d'individus exploités pour leur travail mais aussi appropriés en tant qu'outil de reproduction. Ainsi, pour les féministes matérialistes, il existe un mode production domestique, logiquement distinct et historiquement antérieur au mode production capitaliste mais qui interagit de manière complexe avec les autres régimes d'exploitation.
+On peut schématiquement différencier les théories des féministes matérialistes et celles des féministes marxistes. À partir d’ethnographies réalisées dans les milieux paysans, Christine Delphy, dans L'Ennemi Principal [@delphy1970], montre que l'on peut analyser les rapports sociaux entre catégories de sexe avec les outils marxistes. Le travail domestique est défini par sa gratuité : les femmes ne sont pas rémunérées pour effectuer celui-ci. Le patriarcat est alors un système économique dans lequel la classe des femmes est exploitée par la classe des hommes en s'appropriant leur force de travail. Collette Guillaumin [@guillaumin] va plus loin en considérant que c'est non seulement la force de travail des femmes qui est appropriée mais aussi leur corps. Le "sexage", régime d'exploitation des femmes, gagnerait alors à être pensé sur le modèle de l'esclavage ou du servage plus que du salariat. En ce sens, elle rejoint Paola Tabet [@tabet1998], pour qui les femmes sont la classe d'individus exploités pour leur travail mais aussi appropriées en tant qu'outil de reproduction. Ainsi, pour les féministes matérialistes, il existe un mode de production domestique, logiquement distinct et historiquement antérieur au mode de production capitaliste, mais qui interagit de manière complexe avec les autres régimes d'exploitation.
 
-Les féministes marxistes, quand a elles, ont d’avantage pensé l'exploitation des femmes dans le cadre du régime d'exploitation capitaliste, en cherchant a developper un point aveugle de la "reproduction de la force de travail" [@marx.LeCapital] : le travail nécéssaire à celle-ci. Sylvia Federici étudie la période de chasse au sorcière en Europe [@federici2014]. Elle montre que ce moment où les femmes sont renvoyées à la maison a permis d'assigner les femmes au travail reproductif. Ainsi, le travail reproductif réalisé par les femmes dans le cadre domestique est nécessaire au fonctionnement du capitalisme [@federiciCapitalismePatri]. Historiquement, il a favoriser ainsi l'accumulation primitive du capital, permettant ainsi le développement du capitalisme [@mariaMies, 1986]. Leopoldina Fortunati [@fortunati2022] insiste ainsi sur le caractère productif du travail reproductif. La travail reproductif ne peut pas être considérée comme un simple coût de la reproduction, il est essentiel pour la production et sa gratuité est intégrée dans la fixation du salaire de subsistance. Ainsi dans les théories de la reproduction sociales, l'exploitation des femmes profite avant tout aux capitalistes et non aux hommes.
+Les féministes marxistes, quant à elles, ont davantage pensé l'exploitation des femmes dans le cadre du régime d'exploitation capitaliste, en cherchant à développer un point aveugle de la "reproduction de la force de travail" [@marx.LeCapital] : le travail nécessaire à celle-ci. Sylvia Federici étudie la période de la chasse aux sorcières en Europe [@federici2014]. Elle montre que ce moment, où les femmes sont renvoyées à la maison, a permis d'assigner les femmes au travail reproductif. Ainsi, le travail reproductif réalisé par les femmes dans le cadre domestique est nécessaire au fonctionnement du capitalisme [@federiciCapitalismePatri]. Historiquement, il a favorisé l'accumulation primitive du capital, permettant ainsi le développement du capitalisme [@mariaMies, 1986]. Leopoldina Fortunati [@fortunati2022] insiste sur le caractère productif du travail reproductif. Le travail reproductif ne peut pas être considéré comme un simple coût de la reproduction, il est essentiel pour la production, et sa gratuité est intégrée dans la fixation du salaire de subsistance. Ainsi, dans les théories de la reproduction sociale, l'exploitation des femmes profite avant tout aux capitalistes et non aux hommes.
 
-Si ces travaux tendent a proposer des analyses du régime d'exploitation des femmes qui parassent difficilement conciliables, l'opposition très schématique entre ces deux courants de pensée tient en partie aux objets étudiés. Les féministes matérialistes construisent leur théorie à partir du cas des familles d'indépendants, le plus souvent d'agriculteurs, ou de sociétés pré-capitalistes. Dans les deux cas, il s'agit là d'exemples ou la division sociale du travail, au sens de Durkheim [@durkheim1893] est relativement faible, ne serait-ce qu'en terme de lieu. Dans le cas des familles d'indépendants, il n'est par exemple pas évident de distinguer les hommes des patrons, puisque ce sont plus souvent ces derniers qui dirigents et possèdent l'entreprise familiale. A l'inverse les féministes marxistes travaillent a partir d'études réalisées sur les milieux ouvriers, à un moment ou la généralisation du salariat sépare fortement l'espace domestique de l'espace professionnel, et dans le même temps, le travail productif du travail reproductif. Dans ce cas, les femmes mariées reproduisent la force de travail de leur conjoint pour que celui-ci puisse aller la vendre aux capitalistes. Ainsi, ces théories de la reproduction sociale et de l'exploitation domestique ont permis de construire des outils conceptuels plus ou moins adaptés en fonction des objets étudiés, mais qui ont donné lieu à de nombreux développement en sciences sociales.
+Si ces travaux tendent à proposer des analyses du régime d'exploitation des femmes qui paraissent difficilement conciliables, l'opposition très schématique entre ces deux courants de pensée tient en partie aux objets étudiés. Les féministes matérialistes construisent leur théorie à partir du cas des familles d'indépendants, le plus souvent d'agriculteurs, ou de sociétés pré-capitalistes. Dans les deux cas, il s'agit d'exemples où la division sociale du travail, au sens de Durkheim [@durkheim1893], est relativement faible, ne serait-ce qu'en termes de lieu. Dans le cas des familles d'indépendants, il n'est, par exemple, pas évident de distinguer les hommes des patrons, puisque ce sont souvent ces derniers qui dirigent et possèdent l'entreprise familiale. À l'inverse, les féministes marxistes travaillent à partir d'études réalisées sur les milieux ouvriers, à un moment où la généralisation du salariat sépare fortement l'espace domestique de l'espace professionnel, et dans le même temps, le travail productif du travail reproductif. Dans ce cas, les femmes mariées reproduisent la force de travail de leur conjoint pour que celui-ci puisse la vendre aux capitalistes. Ainsi, ces théories de la reproduction sociale et de l'exploitation domestique ont permis de construire des outils conceptuels plus ou moins adaptés en fonction des objets étudiés, mais qui ont donné lieu à de nombreux développements en sciences sociales.
 
-Le concept de travail reproductif se définit comme l'ensemble du travail nécessaire à la reproduction de la force de travail. Il a fait l'objet d’important développements qui ont à la fois précisé et élargit sa définition. La reproduction de la force de travail suppose que les besoins physiologiques des travailleurs et travailleuses soient suffisamment satisfait d'un jour à l'autre pour être capable de retourner travailler le lendemain : produire ou acheter de la nourriture, cuisiner celle-ci, maintenir un niveau d’hygiène correct ou fournir des services sexuels sont autant d'activités concrètes qui participent à cela. La reproduction de la force de travail suppose aussi le renouvellement de la main d’œuvre, c'est-à-dire le renouvellement démographique de la masse de travailleurs et travailleuses. Ainsi, s'occuper des enfants, leur donner à manger, les habiller, les laver fait partie de ce travail reproductif. Plus encore, l'activité de reproduction physiologique, de l'acte sexuel à l'allaitement fait partie de ce travail reproduction [@boulet]. Enfin, ce travail reproductif a été également pensé comme travail de reproduction des positions sociales. Dans *le Sens Pratique [@bourdieu1980]*, Bourdieu souligne déjà a quel point le travail domestique et parental, souvent effectué par les femmes, joue un un central dans la transmission du capital culturel et l'entretien du capital social, et contribue donc à la reproduction de la structure sociale. Bernard Lahire [@lahire, tableaux de familles] et Gaëlle Henri Pannièbre [@pannabière, meshériers] montrent en effet que cette transmission des dispositions scolaires et du capital culturel ne s'opère pas de manière mécanique, mais suppose un travail actif de la part des parents, et le plus souvent des mères. Le travail domestique des femmes est également un travail d'entretien du patrimoine immobilier ui préserve ainsi la valeur du capital économique détenu [@delphy1970]. Eva Illouz [@illouz] montre que le travail émotionnel réalisé par les femmes pour entretenir les liens sociaux des membres de la famille est déterminant dans la préservation du capital sociale. Ainsi, ce travail gratuit soutient à la fois les rapports sociaux de sexe à l’intérieur de la famille et la position sociale des membres de celle-ci [@combresHaicot].
+Le concept de travail reproductif se définit comme l'ensemble du travail nécessaire à la reproduction de la force de travail. Il a fait l'objet d'importants développements qui ont à la fois précisé et élargi sa définition. La reproduction de la force de travail suppose que les besoins physiologiques des travailleurs et travailleuses soient suffisamment satisfaits d'un jour à l'autre pour être capables de retourner travailler le lendemain : produire ou acheter de la nourriture, la cuisiner, maintenir un niveau d’hygiène correct ou fournir des services sexuels sont autant d'activités concrètes qui participent à cela. La reproduction de la force de travail suppose aussi le renouvellement de la main-d’œuvre, c'est-à-dire le renouvellement démographique de la masse de travailleurs et travailleuses. Ainsi, s'occuper des enfants, leur donner à manger, les habiller, les laver fait partie de ce travail reproductif. Plus encore, l'activité de reproduction physiologique, de l'acte sexuel à l'allaitement, fait partie de ce travail reproductif [@boulet].
 
-De nombreux travaux ont montré que celui-ci n'est pas seuelment réalisé dans la sphère domestique et peu être rémunéré : [CITER]. Cependant, le fait que le travail reproductif soit le plus souvent du travail domestique, c'est-à-dire du travail réalisé gratuitement au sein de la famille produit des effets concrets sur les conditions de rémunération de ces activités. Le travail du sexe, exemple dévéleoppé dès les premiers travaux des féministes marxistes, s'effectue principalement de manière principalement informelle, reste stigmatisé et non reconnu [@federici2014, @fortunati2022]. Nancy [@Fraser, *Fortunes of Feminism* (2013), *Justice Interruptus* (1997).] montre que le travail de soin, considéré comme naturel puisque réalisé gratuitement par les femmes, est dévalorisé sur le plan symbolique comme monétaire dans les sociétés capitalistes. iIl est ainsi sous-évalué et sous-rémunéré [@NancyFolbreInvisibleHeart]. Ainsi, il existe une division genrée du travail, par laquelle les femmes sont cantonnées à des emplois moins rémunérés moins qualifiés [@scottJoan, Genedet and politic og hustoies].
+Enfin, ce travail reproductif a également été pensé comme travail de reproduction des positions sociales. Dans Le Sens Pratique [@bourdieu1980], Bourdieu souligne déjà à quel point le travail domestique et parental, souvent effectué par les femmes, joue un rôle central dans la transmission du capital culturel et l'entretien du capital social, et contribue donc à la reproduction de la structure sociale. Bernard Lahire [@lahire, Tableaux de familles] et Gaëlle Henri-Panabière [@panabière, Les Héritiers] montrent en effet que cette transmission des dispositions scolaires et du capital culturel ne s'opère pas de manière mécanique, mais suppose un travail actif de la part des parents, et le plus souvent des mères. Le travail domestique des femmes est également un travail d'entretien du patrimoine immobilier qui préserve ainsi la valeur du capital économique détenu [@delphy1970]. Eva Illouz [@illouz] montre que le travail émotionnel réalisé par les femmes pour entretenir les liens sociaux des membres de la famille est déterminant dans la préservation du capital social. Ainsi, ce travail gratuit soutient à la fois les rapports sociaux de sexe à l’intérieur de la famille et la position sociale des membres de celle-ci [@combresHaicot].
 
-La généralisation du salariat féminin n'a pas remis en cause ces analyses : les femmes qui occupent à la fois un emploi salarié continuent d'assurer la majeur partie du travail reproductif dans la sphère domestique, elles ont une "double journée" de travail [@Hochschild, the Second Shift]. Le salaire féminin, plus faible que le salaire masculin, est alors conçu comme salaire d'appoint et entretien ainsi la économique des femmes à l'égard de leur mari [@tilly1987]. L'argent féminin est généralement utilisé, voir complement absorbé pour les dépenses courantes du ménage qu'elles sont généralement chargées de réaliser, quand l'argent des hommes est généralement utilisé pour les dépenses de biens durables et d'investissement [@perrot]. Ainsi, lorsqu'il existe le surplus de la production domestique est généralement approprié par les hommes [@jannot2021].
+De nombreux travaux ont montré que celui-ci n'est pas seulement réalisé dans la sphère domestique et peut être rémunéré : [CITER]. Cependant, le fait que le travail reproductif soit le plus souvent du travail domestique, c'est-à-dire du travail réalisé gratuitement au sein de la famille, produit des effets concrets sur les conditions de rémunération de ces activités. Le travail du sexe, exemple développé dès les premiers travaux des féministes marxistes, s'effectue principalement de manière informelle, reste stigmatisé et non reconnu [@federici2014, @fortunati2022]. Nancy Fraser, dans Fortunes of Feminism (2013) et Justice Interruptus (1997), montre que le travail de soin, considéré comme naturel puisqu'il est réalisé gratuitement par les femmes, est dévalorisé tant sur le plan symbolique que monétaire dans les sociétés capitalistes. Il est ainsi sous-évalué et sous-rémunéré [@NancyFolbreInvisibleHeart]. Ainsi, il existe une division genrée du travail, par laquelle les femmes sont cantonnées à des emplois moins rémunérés et moins qualifiés [@scottJoan, Gender and the Politics of History].
+
+La généralisation du salariat féminin n'a pas remis en cause ces analyses : les femmes qui occupent un emploi salarié continuent d'assurer la majeure partie du travail reproductif dans la sphère domestique, elles ont une "double journée" de travail [@Hochschild, The Second Shift]. Le salaire féminin, plus faible que le salaire masculin, est alors conçu comme un salaire d'appoint et entretient ainsi la dépendance économique des femmes à l'égard de leur mari [@tilly1987]. L'argent féminin est généralement utilisé, voire complètement absorbé, pour les dépenses courantes du ménage qu'elles sont généralement chargées de réaliser, tandis que l'argent des hommes est généralement utilisé pour les dépenses de biens durables et d'investissement [@perrot]. Ainsi, lorsqu'il existe, le surplus de la production domestique est généralement approprié par les hommes [@jannot2021].
 
 ### Analyser le rôle de l’État dans les rapports sociaux de sexe
 
-La question de savoir comment l'État soutient le capitalisme a été largement discuté dans les sciences sociales, soulignant le fait qu'un système économique comme celui-ci ne peux se perpétuer sans Etat. Le marché auto-régulé est en fait une utopie, qui nécessite en réalité une intervention constante de l’État pour fonctionner [@polany, grande transfo 1944]. En offrant des infrastructures, des réglementations et des soutiens institutionnels (droits de propriété, execution des contrats par exemple) l’État à favoriser l'émergence et la consolidation du capitalisme [@Braudel, Civilisation matérielle, économie et capitalisme (1979)]. En développant un appareil bureaucratique et un mode d'administration légal-rationnel, l’État offre un cadre juridique stable et dont l'application est prévisible, permettant le développement du capitalisme [@weber1995]. En gérant les crises économiques, l'Etat intégre les contradictions du capitalisme et joue donc un rôle central dans la reproduction des rapports de production [@poulantzas, *L'État, le pouvoir, le socialisme* (1978), @Aglietta, *Régulation et crises du capitalisme* (1976).]. En ce sens, l’État providence constitue une réponse aux contraditions du capitalisme, qui vise à maintenir la cohésion sociale, légitimant alors ce système économique [@Rosanvallon, crise de l'état providence]. D'un point de vu marxiste, l’État est alors l'instrument de la classe dominante, grâce auxquels les capitalistes servent leur intérêts en tant que classe [@MarxLeCapital]. Ces travaux montrent donc que, le capitalisme, en tant que système économique, ne peut exister seul, sans Etat pour le soutenir et que ce dernier tend a favoriser les intérêts des dominants.
+La question de savoir comment l'État soutient le capitalisme a été largement discutée dans les sciences sociales, soulignant le fait qu'un système économique comme celui-ci ne peut se perpétuer sans l'État. Le marché auto-régulé est en fait une utopie, qui nécessite en réalité une intervention constante de l’État pour fonctionner [@polany, La Grande Transformation (1944)]. En offrant des infrastructures, des réglementations et des soutiens institutionnels (droits de propriété, exécution des contrats, par exemple), l’État a favorisé l'émergence et la consolidation du capitalisme [@Braudel, Civilisation matérielle, économie et capitalisme (1979)]. En développant un appareil bureaucratique et un mode d'administration légal-rationnel, l’État offre un cadre juridique stable et dont l'application est prévisible, permettant le développement du capitalisme [@weber1995]. En gérant les crises économiques, l'État intègre les contradictions du capitalisme et joue donc un rôle central dans la reproduction des rapports de production [@poulantzas, L'État, le pouvoir, le socialisme (1978), @Aglietta, Régulation et crises du capitalisme (1976)]. En ce sens, l’État providence constitue une réponse aux contradictions du capitalisme, visant à maintenir la cohésion sociale et à légitimer ce système économique [@Rosanvallon, La Crise de l'État-providence]. D'un point de vue marxiste, l’État est alors l'instrument de la classe dominante, grâce auquel les capitalistes servent leurs intérêts en tant que classe [@Marx, Le Capital]. Ces travaux montrent donc que le capitalisme, en tant que système économique, ne peut exister seul, sans l'État pour le soutenir, et que ce dernier tend à favoriser les intérêts des dominants.
 
-Ainsi, si l'on veut étudier le genre avec les outils développés par les approches marxistes et matérialistes, on ne peut faire l'économie d'une réflexion sur le rôle que joue l’État dans l’existence, le renforcement ou l'affaiblissement des antagonismes sociaux de sexe. Que l'on considère l'exploitation domestique comme faisant partie intégrante du capitalisme ou comme système économique coexistant et imbriqué dans celui-ci, la place de l’État dans celui-ci mérite d'être interrogée. Les développements sur ce sujet sont bien moins nombreux que ceux interrogeant le rôle de l’État dans le système capitaliste. Ces travaux tendent à montrer que, en soutenant le système capitaliste, les politiques de contrôle des corps et des sexualités, en particulier en contexte colonial, soutiennent également les rapports de domination et d'exploitation des femmes et des minorités raciales [@verges, @dorlin]. La bio-politique fait en effet pleinement partie des modalités de régulation des population et de soutient au capitalisme utilisée par l’État [@foucault?].
+Ainsi, si l'on veut étudier le genre avec les outils développés par les approches marxistes et matérialistes, on ne peut faire l'économie d'une réflexion sur le rôle que joue l’État dans l’existence, le renforcement ou l'affaiblissement des antagonismes sociaux de sexe. Que l'on considère l'exploitation domestique comme faisant partie intégrante du capitalisme ou comme un système économique coexistant et imbriqué dans celui-ci, la place de l’État mérite d'être interrogée. Les développements sur ce sujet sont bien moins nombreux que ceux interrogeant le rôle de l’État dans le système capitaliste. Ces travaux tendent à montrer que, en soutenant le système capitaliste, les politiques de contrôle des corps et des sexualités, en particulier en contexte colonial, soutiennent également les rapports de domination et d'exploitation des femmes et des minorités raciales [@verges, @dorlin]. La bio-politique fait en effet pleinement partie des modalités de régulation des populations et de soutien au capitalisme utilisées par l’État [@foucault?].
 
-Pourtant, la sphère domestique apparaît comme l'un des trois éléments du triptyque Etat, marché, famille, dont l'agencement détermine de régime d’État providence, selon Esping-Andersen [@esping-andersen2007]. Selon lui, le rôle de l’État sur ce plan apparaît en effet plus ambivalent : il tend soit à renforcer les inégalités de genre, dans les régimes conservateurs et libéraux, soit à les modérés, dans les régimes sociaux-démocrates. Nombreux sont en effet les auteurs a souligner les effets ambigus des politiques familiales sur la répartition du travail reproductifs [@Devreux, 2008, ?? daures refs ?]. Pour Jane Jenson [@jenson1986], les politiques de soutient à la parentalité ne sont pas à analyser uniquement comme permettant de réduire les inégalités entre hommes et femmes. Devant le déclin de la population observé à la fin du XIXème siècle, elles sont, à l'origine, plutôt pensées pour favoriser le développement d'une force de travail saine et disciplinée. Les politiques de soutient à la natalité, l'instauration d'un congé rémunéré avant et après l'accouchement s’inscrivent dans l'activité étatique de construction sociale de la maternité. En les rendant responsables de l'éducation des enfants et de la gestion du budget familiale, ces politiques chercher également à faire des femmes les relais de l’État dans les familles.
+Pourtant, la sphère domestique apparaît comme l'un des trois éléments du triptyque État, marché, famille, dont l'agencement détermine le régime d’État providence, selon Esping-Andersen [@esping-andersen2007]. Selon lui, le rôle de l’État sur ce plan apparaît en effet plus ambivalent : il tend soit à renforcer les inégalités de genre dans les régimes conservateurs et libéraux, soit à les modérer dans les régimes sociaux-démocrates. De nombreux auteurs soulignent les effets ambigus des politiques familiales sur la répartition du travail reproductif [@Devreux, 2008, et d'autres références ?].
 
-### Les poltiques familiales comme point d'entrée
+Pour Jane Jenson [@jenson1986], les politiques de soutien à la parentalité ne sont pas à analyser uniquement comme permettant de réduire les inégalités entre hommes et femmes. Devant le déclin de la population observé à la fin du XIXe siècle, elles sont, à l'origine, plutôt pensées pour favoriser le développement d'une force de travail saine et disciplinée. Les politiques de soutien à la natalité et l'instauration d'un congé rémunéré avant et après l'accouchement s’inscrivent dans l'activité étatique de construction sociale de la maternité. En rendant les femmes responsables de l'éducation des enfants et de la gestion du budget familial, ces politiques cherchent également à faire des femmes les relais de l’État dans les familles.
 
-Les politiques sociales, et en particulier les politiques familiales, leur mise en oeuvre et leur réception constituent ainsi un endroit du monde social privilégié pour observer le rôle de l’État dans les rapports sociaux de sexe. La famille est le produit d'une construction sociale qui tient au politiques sociales et familiales mises en place par les administrations [@lenoir1991] et le lieu privilégiée d'expression des rapports sociaux entre hommes et femmes. En effet, la famille, entendu comme système de relations entre membres d'un groupe, ne préexiste pas aux institutions qui objectivent ces relations [@lenoir2003]. L’État n'est cependant pas un bloc monolithique, il est fait de plusieurs administrations, elles même peuplées par différents groupes sociaux en concurrence pour l'accès a différentes formes de pouvoir [@bourdieu2011]. Ainsi, analyser la manière dont l’État participe à la construction sociale de la famille, suppose de confronter les différentes définition de la famille produites par l’État, en analysant leurs points intersections comme de divergence.
+### Au prisme de la famille comme catégorie d'Etat
 
-En ce sens, le droit civil définit des liens d'alliance au travers d'union légales, le mariage et le pacs. Ces contrats, signés par les deux membres du couples, définissent une organisation économique conjugale. A défaut de contrat de mariage stipulant autre chose, le PACS et le mariage définissent une obligation de participation aux "charges du ménage". [solidarité et obligation alimentaires ?].
+Les politiques familiales, leur mise en œuvre et leur réception, constituent ainsi un terrain privilégié pour observer le rôle de l’État dans les rapports sociaux de sexe. La famille est le produit d'une construction sociale influencée par les politiques sociales et familiales mises en place par les administrations [@lenoir1991], et elle est le lieu privilégié d'expression des rapports sociaux entre hommes et femmes. En effet, la famille, entendue comme un système de relations entre membres d'un groupe, ne préexiste pas aux institutions qui objectivent ces relations [@lenoir2003]. La famille n'est en effet pas seuelement une catégorie pratique, principe organisateur du monde social, c'est une catégorie d'Etat. En suivant Pierre Bourdieu [@bourdieu1993, p.34], "*La définition dominante, légitime, de la famille nor­male (définition qui peut être explicite, comme dans le droit, ou implicite, comme, par exemple, dans les questionnaires de l'INED ou de l'INSEE consa­crés à la famille) repose sur une constellation de mots : maison, maisonnée, house, home, housebold, qui, sous apparence de la décrire, construit en fait la réalité sociale.*" Cependant, l’État n'est pas un bloc monolithique ; il est composé de plusieurs administrations, peuplées par différents groupes sociaux en concurrence pour l'accès à différentes formes de pouvoir [@bourdieu2011]. Ainsi, analyser la manière dont l’État participe à la construction sociale de la famille suppose de confronter les définitions concrètes de la famille produites par l’État, en analysant leurs intersections et leurs divergences.
 
-[blabla sur les diffé
+En ce sens, le droit civil définit les liens d'alliance à travers des unions légales telles que le mariage et le PACS. Ces contrats, signés par les deux membres du couple, définissent une organisation économique et patrimoniale conjugale. Le concubinage est définit par le code civil comme une union de fait mais n'ouvre aucun droit et ne définit aucun devoirs. En ce qui concernent les liens de filiation, ceux-ci sont établit par le droit civil en premier lieu par la désignation de la mère dans l'acte de naissance et par la présomption de paternité pour le mari de celle-ci. A défaut, elle peut être réalisée par déclaration de paternité ou maternité, ou enfin par reconnaissance de possession d'état. L’État ne se limite pas à sa dimension régalienne, c'est aussi un Etat social et fiscal. Ainsi, l'administration fiscale considère que la conjugalité existe lors qu'une union civile existe entre conjoint-e-s. Elle permet alors la conjugalisation de l'impôt. Elle ne reconnait pas non plus le concubinage, sauf, dans le cas très particulier de la demi-part fiscale supplémentaire accordée aux parents isolés : si un homme ou une femme élevant seul un ou plusieurs enfants se remet en couple cohabitant, même sans s'unir légalement a son nouveau ou sa nouvelle conjoint-e, cette demi-part fiscale supplémentaire est supprimée. Enfin les caisses d'allocation familiales qui distribuent l'essentiel des revenus de transferts ne regardent que la cohabitation et non l'existence d'union légale pour établir l’existence d'une vie conjugale. Pour les administrations fiscales et sociales, l’existence d'une filialtion reconnue par le droit civil importe assez peu. Dans l'ouverture de droits sociaux et d'avantage fiscaux c'est l’existence d'enfant "à charge". Pour les CAF, un enfant à charge est un enfant résidant dans le même foyer. Pour le fisc, un enfant peut être considéré à charge d'au moins un de ses parent légal jusqu'à ses 25 ans, sous certaines conditions. Un enfant sans lien légal peut être considéré à charge d'un individu, si celui si celui-ci est uni légalement par mariage ou PACS à l'un de ses parents, ou si l'enfant a été recueillis par celui-ci avant ses 18 ans. Enfin, l’État est aussi un Etat statistique, qui produit des données sur la famille. Ces données informent les analyses de la famille et des rapports sociaux de sexe dans le cadre de l'élaborations des politiques sociales, fiscales et judiciaires. L'INSEE définit le couple comme deux individus âgés de plus de 14 ou 15 ans selon les définitions, vivant ensemble et déclarant tous les deux être en couple, quelque soit leur état matrimonial (marié, pacés ou non). La statistique publique, dans les enquêtes ménages et le recensement, s’intéresse aux enfants au sens du droit civil et interroge la cohabitation avec leurs parents pour les considérer comme faisant partie d'un même ménage ou résidant hors domicile.
 
-et de filiation (la présomption de paternité pour le père uni légalement,
+L’ensemble de ces institutions produisent donc des définitions différentes des liens d'alliance et de filiation, et en fin de compte de la famille. Ces différences de définitions gagnent à être pensées avec les outils de l'anthropologie de la parenté. En suivant Florence Weber [@weber2013], la parenté est un fait social complexe qui ne peut être analysé qu'en distinguant ses différentes dimensions. La *parenté légale* est une affaire d’État, elle est garantie par le droit civil de la filiation et se matérialise dans le nom (de famille) porté par les individus. La *parenté biologique* est une affaire de science, elle est lié à la transmission d'un patrimoine génétique dans le cadre de la procréation, qu'elle soit assisté médicalement ou non. Enfin la *parenté quotidienne* tient aux liens sociaux, économiques et affectifs construits par les pratiques, les interactions et les échanges au quotidien. Ce qui nous intresse particulierement ici, c'est l'articulation entre la *parenté légale* et la *parenté pratique*. On pourrait en effet être tenté de penser les définitions produites par chaque institutions de l'Etat sur un continuum entre *parenté légale* et *parenté pratique*. Florence Weber, citant les droits à la retraite écrit, "*Alors même qu'elle n'est pas forcément instituée ni garantie par l'Etat, [la parenté pratique] est prise en compte par diverses branche du droit*" [@weber2013, p.77]. Ainsi, on oppserait le droit civil, du coté de la parenté légale, à une reconnaissance par les administrations sociales ou fiscale, de l'effectivité de la parentalité. Pourtant, ce qui est souvent ici interprété comme une prise en compte de la situation réelle, relève, de notre point de vue, d'avatage d'une hypothèse. La cohabitation, qui est un critère central pour ces administrations mais aussi pour l'INSEE, entre des membres qui n'ont aucune obligation légale les uns envers les autres ne garantie pas la construction d'une *parenté pratique*. Les multiples définitions de famille produites par les différentes administrations relevent d'avantage de la parenté légale. En effet, mêmes divergentes en certains point, on peut penser que celles-ci produisent des effets concrets sur les individus, participant à construire les catégories familiales pratiques. Ainsi la famille est certes une catégorie d’État mais fait l'objet de définitions concurrentes dont l'articulation avec les pratiques concrète mérite d'être analysé.
 
-Enfin l'Etat est aussi un Etat statistique, qui produit des données qui informent les analyses de la famille et des rapports sociaux de sexe.
+## Catégories familiales pratiques et étatiques
 
-En suivant Florence Weber [@weber2013], la parenté est un fait social complexe qui ne peut être analysé qu'en distinguant ses différentes dimensions. La *parenté légale* est une affaire d’État, elle est garantie par le droit civil de la filiation et se matérialise dans le nom (de famille) porté par les individus. La *parenté biologique* est une affaire de science, elle est lié à la transmission d'un patrimoine génétique dans le cadre de la procréation, qu'elle soit assisté médicalement ou non. Enfin la *parenté quotidienne* tient aux liens sociaux, économiques et affectifs construits par les pratiques, les interactions et les échanges au quotidien.
+Observer l'articualtion entre les catégories familiales produites par les différentes institutions de l'Etat et les catégories de la pratique n'est pas évident. Prendre pour objet les familles recomposées permet justement d'étudier cette articulation. En effet, elles constituent justement un casou la parenté légale ne recoupe pas systématiquement la parenté adminsitrative et la parenté pratique. En étudiant les arrangement économiques qui s'y déploient on peut alors saisir les moment ou les pratiques préscritent par le droit civil, les CAF, le fisc, et même la statitsique publique, recoupent les pratiques éffectives.
 
-## Les arrangements économiques dans les familles recomposées
+### La construction d'une parenté quotidienne sans parenté légale
 
-### La construction d'une parentée quotidienne sans parenté légale
+Les familles recomposées constituent un cas relativement courant où parenté légale, biologique et quotidienne ne sont pas a priori superposées. En 2016, 19% des mariages célébrés par des femmes et 19,7% de ceux célébrés par des hommes étaient des remariages (INSEE, 2020) et depuis 1999, environ un enfant sur dix vit dans une famille recomposée en France [@algava2020].
 
-Ces familles constituent justement un cas où parenté légale, biologique et quotidienne ne sont pas a priori superposées. Ainsi, si l'on définit la configuration familiale recomposées comme un couple vivant, au moins une partie du temps, avec au moins un enfant issu d'une précédente union, ce qui caractérise ces configurations est un recoupement imparfait entre d'un coté la parenté quotidienne et de l'autre la parenté biologique et/ou légale. En effet, le droit civil n'organise pas de la même manière les familles recomposées et les familles traditionnelle. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d’un de leurs parents légaux, y compris en cas de mariage ou de PACS [@damon2012]. Il n’y a ni obligation d’entretien, comme c’est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l’héritage comme c’est le cas pour les apparenté-e-s au premier et au second degré [@fulchiron1993]. En ce sens, étudier les familles recomposées permet de questionner les conditions de possibilité de construction d'une forme de parenté quotidienne sans filiation légale et biologique, mais lorsque celle-ci existe par ailleurs. C'est d'ailleurs souvent sous un angle de questionnement que les enquêtes éthnographiques s’intéressant aux familles recomposées.
+Ainsi, si l'on définit la configuration familiale recomposée comme un couple vivant, au moins une partie du temps, avec au moins un enfant issu d'une précédente union, ce qui caractérise ces configurations est un recoupement imparfait entre d'un coté la parenté quotidienne et de l'autre la parenté biologique et/ou légale. En effet, le droit civil n'organise pas de la même manière les familles recomposées et les familles traditionnelle. Il ne définit ni lien de filiation, ni obligation alimentaire entre des enfants et le nouveau ou la nouvelle conjointe d’un de leurs parents légaux, y compris en cas de mariage ou de PACS [@damon2012]. Il n’y a ni obligation d’entretien, comme c’est le cas pour les parents légaux [@delecourt1993], ni facilitation de la transmission de l’héritage comme c’est le cas pour les apparenté-e-s au premier et au second degré [@fulchiron1993]. En ce sens, étudier les familles recomposées permet de questionner les conditions de possibilité de construction d'une forme de parenté quotidienne sans filiation légale et biologique, alors que celle-ci existe par ailleurs. C'est d'ailleurs souvent sous un angle de questionnement que les enquêtes ethnographiques s’intéressant aux familles recomposées.
 
 Dans *Le démariage : justice et vie privée* (1993), **Irène Théry** aborde les dilemmes de loyauté auxquels les enfants sont confrontés dans les familles recomposées. Elle examine comment ces enfants peuvent ressentir une pression pour être loyaux envers leurs parents biologiques tout en s'adaptant à la présence d'un beau-parent. Théry explore les conflits intergénérationnels exacerbés par les différends entre ex-conjoints, créant des tensions supplémentaires et complexifiant la gestion des relations familiales.
 
@@ -132,7 +134,9 @@ Enfin, Florence Weber également questionne cet aspect dans le cadre des recompo
 
 ### Les arrangements économiques
 
-Les conséquences économiques du divorce et des séparations ont été largement étudiées. Ces travaux ont montré que la chute du niveau de vie est plus brutale, importante et durable pour les femmes que pour les hommes, d’autant plus lorsque le couple était marié [@abbas2019a]. Le partage du patrimoine lors des divorces tend également à défavoriser les femmes [@bessière2020]. Malgré des dispositifs supposés limiter ces effets (prestation compensatoire, pensions alimentaires), la progressive dé-judiciarisation des séparations conjugales laisse jouer à plein les rapports de force intrafamiliaux, lésant de fait les conjoints et surtout les conjointes qui n’ont pas les ressources économiques ou juridiques pour défendre leurs intérêts [@bessière2013]. Partant, les familles dites « monoparentales » ont également fait l’objet de nombreuses études spécifiques démontrant qu’elles font souvent face à des situations de pauvreté [@algava2020]. Les remises en couple et les recompositions familiales n’ont pas fait l’objet d’investigations équivalentes. Pourtant, en 2016, 19% des mariages célébrés par des femmes et 19,7% de ceux célébrés par des hommes étaient des remariages (INSEE, 2020) et depuis 1999, environ un enfant sur dix vit dans une famille recomposée en France [@algava2020], c’est-à-dire un couple vivant au moins une partie du temps avec au moins un enfant issu d’une précédente union [@théry1993]. Ce type d’union concernait 9,1% des ménages ordinaires avec enfants en 2018 [@algava2020]. Les sociologues de la familles y ont ainsi parfois vu une « nouvelle forme familiale » et considéré qu'elles symbolisaient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017], caractérisée par la pluriparentalité [@legall] et la diversification des structures familiales [@thérydistinctiondedesexe]. Pourtant les configuration familliales recomposées ne sont pas radicalement nouvelles. Jusqu'à la seconde guerre mondiale, elles étaient d'avantage liées au décès d'un des conjoints -- du fait de la mortalité élevé des femmes notamment en couche et des hommes lors des périodes de guerre -- qu'a une séparation [@flandrin1984]. Leur relative nouveauté tient moins à l'existence de beau-parent, qu'a l'existence, en même temps, des deux parents. En d'autres termes, en théorie, la recomposition se fait moins selon un modèle de substitution qu'un modèle de pérennité [@clément2005]. Pour autant la "paternité de remplacement", plus fréquente durant les periode de forte mortalité masculine, n'as pas disparue, elle existe aussi dans les milieux ou les pères sont absents [@weber2013].
+Les conséquences économiques du divorce et des séparations ont été largement étudiées. Ces travaux ont montré que la chute du niveau de vie est plus brutale, importante et durable pour les femmes que pour les hommes, d’autant plus lorsque le couple était marié [@abbas2019a]. Le partage du patrimoine lors des divorces tend également à défavoriser les femmes [@bessière2020]. Malgré des dispositifs supposés limiter ces effets (prestation compensatoire, pensions alimentaires), la progressive dé-judiciarisation des séparations conjugales laisse jouer à plein les rapports de force intrafamiliaux, lésant de fait les conjoints et surtout les conjointes qui n’ont pas les ressources économiques ou juridiques pour défendre leurs intérêts [@bessière2013]. Partant, les familles dites « monoparentales » ont également fait l’objet de nombreuses études spécifiques démontrant qu’elles font souvent face à des situations de pauvreté [@algava2020]. Les remises en couple et les recompositions familiales n’ont pas fait l’objet d’investigations équivalentes.
+
+c’est-à-dire un couple vivant au moins une partie du temps avec au moins un enfant issu d’une précédente union [@théry1993]. Les sociologues de la familles y ont ainsi parfois vu une « nouvelle forme familiale » et considéré qu'elles symbolisaient une « deuxième modernité » familiale [@singly2000; @singly1996; @singly2017], caractérisée par la pluriparentalité [@legall] et la diversification des structures familiales [@thérydistinctiondedesexe]. Pourtant les configuration familliales recomposées ne sont pas radicalement nouvelles. Jusqu'à la seconde guerre mondiale, elles étaient d'avantage liées au décès d'un des conjoints -- du fait de la mortalité élevé des femmes notamment en couche et des hommes lors des périodes de guerre -- qu'a une séparation [@flandrin1984]. Leur relative nouveauté tient moins à l'existence de beau-parent, qu'a l'existence, en même temps, des deux parents. En d'autres termes, en théorie, la recomposition se fait moins selon un modèle de substitution qu'un modèle de pérennité [@clément2005]. Pour autant la "paternité de remplacement", plus fréquente durant les periode de forte mortalité masculine, n'as pas disparue, elle existe aussi dans les milieux ou les pères sont absents [@weber2013].
 
 Ainsi, Le cas des familles recomposée nécessite de considérer la pluralité des logements dans lesquels les recompositions se déploient pour sortir de la logique procédant par réduction à la résidence principale.
 
@@ -230,8 +234,6 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 
 ```
 
-```{=tex}
-```
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | On proposera donc dans un premier temps une réflexion sur la manière dont il est possible de saisir sociologiquement les recompositions familiale dans les enquêtes ménages de la statistiqus publique (Chapitre 1). Puis, on s'interessera ensuite aux arrangemen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 +=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
@@ -1994,12 +1996,1001 @@ En suivant Rémi Lenoir, la famille est par excellence une catégorie de la pens
 
 Idée qu'il faut articuler les différentes définitions de la parenté légale produites par différentes institutions, voir comment elles se superposent ou non
 
+```{=tex}
+\begin{encadre}{Code civil. Livre Ier : Des personnes (Articles 7 à 515-13). Titre XIII : Du pacte civil de solidarité et du concubinage (Articles 515-1 à 515-8). Chapitre II : Du concubinage (Article 515-8)}
+
+\textbf{Article 515-8}
+Le concubinage est une union de fait, caractérisée par une vie commune présentant un caractère de stabilité et de continuité, entre deux personnes, de sexe différent ou de même sexe, qui vivent en couple.
+
+\end{encadre}
+```
 Ces petites contradictions entre les pratiques prescrites par les différentes administrations de l’Etat sont loin d’être anodines. Elles sont de nature à produire des effets matériels sur les individus qui vivent dans ces familles. La recomposition familiale n’est pas simplement une affaire de sentiments, elle met en jeu la perte et l’obtention de droits sociaux et fiscaux. La CAF et le fisc, selon que le couple cohabite ou qu’il est uni légalement, ne font pas de différence dans la comptabilisation des enfants à charge entre les familles nucléaires et les familles recomposées : tous les enfants sont à charge des deux conjoints, quelle que soit leur filiation (Damon, 2012). Ainsi, la cohabitation avec un nouveau conjoint ou une nouvelle conjointe engendre la perte d’avantages fiscaux et sociaux. Les droits sociaux seront également désormais calculés sur l’ensemble des revenus du couple nouvellement formé. Lorsqu’une union civile est contractée, les parts représentées par le nouveau couple et les enfants de chacun des membres sont mutualisées pour le calcul de l’impôt.
 
 Il n’est pas aisé de déterminer *a priori* les effets de ces fermetures de droits. On peut néanmoins émettre quelques hypothèses qu’il s’agira de vérifier ou d’infirmer. Par exemple, les mécanismes socio-fiscaux agissent différemment selon les niveaux de revenus des couples, mais aussi selon les niveaux de revenus individuels. L’allocation parent isolé (API), intégrée au revenu de solidarité active (RSA) est réservée aux parents isolés touchant celui-ci. L’allocation de soutien familial (ASF) est réservée aux parents isolés dont l’ex-conjoint est déclaré impécunieux. En revanche, la demi-part fiscale supplémentaire n’a d’effet que sur les foyers imposables. Ces mécanismes semblent donc jouer différemment selon la classe sociale. Mais ils semblent aussi jouer différemment selon l’appartenance aux groupes de sexes. L’ASF, versée en lieu et place de pension alimentaire, et l’API ainsi que la demi-part fiscale sont supprimés avec une remise en couple. La conjugalisation des ressources par les CAF (pour le calcul du RSA, de l’AAH par exemple) et par le fisc (pour les parts que représentent les personnes à charge) produisent une fiction d’égalité entre conjoints. Ces mécanismes agissent donc différemment sur les conjoints suivant l’inégalité de revenus entre eux. Or, cette inégalité s’inscrit dans des rapports sociaux de sexe. La différence de revenus entre homme et femmes en couple se situait à 42% en moyenne en 2011 (Morin, 2014). Les conséquences économiques propres des mécanismes socio-fiscaux au moment des remises en couples des parents isolés semblent donc différenciées.
 
 Enfin, dans l’idéal, il faudra également s’intéresser au rôle que joue la justice dans les recompositions familiales qui, s’il reste secondaire en comparaison des séparations, ne doit pas être négligé. La remise en couple d’un parent est parfois l’occasion d’une réorganisation de la résidence des enfants, d’une révision de la pension alimentaire ou de la prestation compensatoire.
 
+```{=tex}
+\begin{encadre}{Chapitre VI du code civil : Des devoirs et des droits respectifs des epoux}
+
+
+Code civil
+Livre Ier : Des personnes (Articles 7 à 515-13)
+Titre V : Du mariage (Articles 143 à 227)
+Chapitre VI : Des devoirs et des droits respectifs des époux (Articles 212 à 226)
+
+\textbf{Article 212}
+Les époux se doivent mutuellement respect, fidélité, secours, assistance.
+
+\textbf{Article 213}
+Les époux assurent ensemble la direction morale et matérielle de la famille. Ils pourvoient à l'éducation des enfants et préparent leur avenir.
+
+\textbf{Article 214}
+Si les conventions matrimoniales ne règlent pas la contribution des époux aux charges du mariage, ils y contribuent à proportion de leurs facultés respectives.
+
+Si l'un des époux ne remplit pas ses obligations, il peut y être contraint par l'autre dans les formes prévues au code de procédure civile.
+
+\textbf{Article 215}
+Les époux s'obligent mutuellement à une communauté de vie.
+
+La résidence de la famille est au lieu qu'ils choisissent d'un commun accord.
+
+Les époux ne peuvent l'un sans l'autre disposer des droits par lesquels est assuré le logement de la famille, ni des meubles meublants dont il est garni. Celui des deux qui n'a pas donné son consentement à l'acte peut en demander l'annulation : l'action en nullité lui est ouverte dans l'année à partir du jour où il a eu connaissance de l'acte, sans pouvoir jamais être intentée plus d'un an après que le régime matrimonial s'est dissous.
+
+\textbf{Article 216}
+Chaque époux a la pleine capacité de droit ; mais ses droits et pouvoirs peuvent être limités par l'effet du régime matrimonial et des dispositions du présent chapitre.
+
+\textbf{Article 217}
+Un époux peut être autorisé par justice à passer seul un acte pour lequel le concours ou le consentement de son conjoint serait nécessaire, si celui-ci est hors d'état de manifester sa volonté ou si son refus n'est pas justifié par l'intérêt de la famille.
+
+L'acte passé dans les conditions fixées par l'autorisation de justice est opposable à l'époux dont le concours ou le consentement a fait défaut, sans qu'il en résulte à sa charge aucune obligation personnelle.
+
+\textbf{Article 218}
+Un époux peut donner mandat à l'autre de le représenter dans l'exercice des pouvoirs que le régime matrimonial lui attribue. Il peut, dans tous les cas, révoquer librement ce mandat.
+
+\textbf{Article 219}
+Si l'un des époux se trouve hors d'état de manifester sa volonté, l'autre peut se faire habiliter par justice à le représenter, d'une manière générale, ou pour certains actes particuliers, dans l'exercice des pouvoirs résultant du régime matrimonial, les conditions et l'étendue de cette représentation étant fixées par le juge.
+
+A défaut de pouvoir légal, de mandat ou d'habilitation par justice, les actes faits par un époux en représentation de l'autre ont effet, à l'égard de celui-ci, suivant les règles de la gestion d'affaires.
+
+\textbf{Article 220}
+Chacun des époux a pouvoir pour passer seul les contrats qui ont pour objet l'entretien du ménage ou l'éducation des enfants : toute dette ainsi contractée par l'un oblige l'autre solidairement.
+
+La solidarité n'a pas lieu, néanmoins, pour des dépenses manifestement excessives, eu égard au train de vie du ménage, à l'utilité ou à l'inutilité de l'opération, à la bonne ou mauvaise foi du tiers contractant.
+
+Elle n'a pas lieu non plus, s'ils n'ont été conclus du consentement des deux époux, pour les achats à tempérament ni pour les emprunts à moins que ces derniers ne portent sur des sommes modestes nécessaires aux besoins de la vie courante et que le montant cumulé de ces sommes, en cas de pluralité d'emprunts, ne soit pas manifestement excessif eu égard au train de vie du ménage.
+
+\textbf{Article 220-1}
+Si l'un des époux manque gravement à ses devoirs et met ainsi en péril les intérêts de la famille, le juge aux affaires familiales peut prescrire toutes les mesures urgentes que requièrent ces intérêts.
+
+Il peut notamment interdire à cet époux de faire, sans le consentement de l'autre, des actes de disposition sur ses propres biens ou sur ceux de la communauté, meubles ou immeubles. Il peut aussi interdire le déplacement des meubles, sauf à spécifier ceux dont il attribue l'usage personnel à l'un ou à l'autre des conjoints.
+
+La durée des mesures prises en application du présent article doit être déterminée par le juge et ne saurait, prolongation éventuellement comprise, dépasser trois ans.
+
+\textbf{Article 220-2}
+Si l'ordonnance porte interdiction de faire des actes de disposition sur des biens dont l'aliénation est sujette à publicité, elle doit être publiée à la diligence de l'époux requérant. Cette publication cesse de produire effet à l'expiration de la période déterminée par l'ordonnance, sauf à la partie intéressée à obtenir dans l'intervalle une ordonnance modificative, qui sera publiée de la même manière.
+
+Si l'ordonnance porte interdiction de disposer des meubles corporels, ou de les déplacer, elle est signifiée par le requérant à son conjoint, et a pour effet de rendre celui-ci gardien responsable des meubles dans les mêmes conditions qu'un saisi. Signifiée à un tiers, elle le constitue de mauvaise foi.
+
+\textbf{Article 220-3}
+Sont annulables, à la demande du conjoint requérant, tous les actes accomplis en violation de l'ordonnance, s'ils ont été passés avec un tiers de mauvaise foi, ou même s'agissant d'un bien dont l'aliénation est sujette à publicité, s'ils sont simplement postérieurs à la publication prévue par l'article précédent.
+
+L'action en nullité est ouverte à l'époux requérant pendant deux années à partir du jour où il a eu connaissance de l'acte, sans pouvoir jamais être intentée, si cet acte est sujet à publicité, plus de deux ans après sa publication.
+
+\textbf{Article 221}
+Chacun des époux peut se faire ouvrir, sans le consentement de l'autre, tout compte de dépôt et tout compte de titres en son nom personnel.
+
+A l'égard du dépositaire, le déposant est toujours réputé, même après la dissolution du mariage, avoir la libre disposition des fonds et des titres en dépôt.
+
+\textbf{Article 222}
+Si l'un des époux se présente seul pour faire un acte d'administration, de jouissance ou de disposition sur un bien meuble qu'il détient individuellement, il est réputé, à l'égard des tiers de bonne foi, avoir le pouvoir de faire seul cet acte.
+
+Cette disposition n'est pas applicable aux meubles meublants visés à l'article 215, alinéa 3, non plus qu'aux meubles corporels dont la nature fait présumer la propriété de l'autre conjoint conformément à l'article 1404.
+
+\textbf{Article 223}
+Chaque époux peut librement exercer une profession, percevoir ses gains et salaires et en disposer après s'être acquitté des charges du mariage.
+
+\textbf{Article 225}
+Chacun des époux administre, oblige et aliène seul ses biens personnels.
+
+\textbf{Article 225-1}
+Chacun des époux peut porter, à titre d'usage, le nom de l'autre époux, par substitution ou adjonction à son propre nom dans l'ordre qu'il choisit, dans la limite d'un nom de famille pour chacun d'eux.
+
+\textbf{Article 226}
+Les dispositions du présent chapitre, en tous les points où elles ne réservent pas l'application des conventions matrimoniales, sont applicables, par le seul effet du mariage, quel que soit le régime matrimonial des époux.
+
+\end{encadre}
+```
+```{=tex}
+\begin{encadre}{??}
+Code civil
+Livre Ier : Des personnes (Articles 7 à 515-13)
+Titre VII : De la filiation (Articles 310-1 à 342-13)
+Article 310 (abrogé)
+Abrogé par LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Tous les enfants dont la filiation est légalement établie ont les mêmes droits et les mêmes devoirs dans leurs rapports avec leur père et mère. Ils entrent dans la famille de chacun d'eux.
+
+Chapitre Ier : Dispositions générales (Articles 310-1 à 311-24-2)
+Article 310-1
+Modifié par LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+La filiation est légalement établie, dans les conditions prévues au chapitre II du présent titre, par l'effet de la loi, par la reconnaissance volontaire ou par la possession d'état constatée par un acte de notoriété ainsi que, dans les conditions prévues au chapitre V du présent titre, par la reconnaissance conjointe.
+
+Elle peut aussi l'être par jugement dans les conditions prévues au chapitre III du présent titre.
+
+Article 310-2
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 4 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+S'il existe entre les père et mère de l'enfant un des empêchements à mariage prévus par les articles 161 et 162 pour cause de parenté, la filiation étant déjà établie à l'égard de l'un, il est interdit d'établir la filiation à l'égard de l'autre par quelque moyen que ce soit.
+
+Section 1 : Des preuves et présomptions (Articles 310-3 à 311-2)
+Article 310-3
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 5 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La filiation se prouve par l'acte de naissance de l'enfant, par l'acte de reconnaissance ou par l'acte de notoriété constatant la possession d'état.
+
+Si une action est engagée en application du chapitre III du présent titre, la filiation se prouve et se conteste par tous moyens, sous réserve de la recevabilité de l'action.
+
+Article 311
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La loi présume que l'enfant a été conçu pendant la période qui s'étend du trois centième au cent quatre-vingtième jour, inclusivement, avant la date de la naissance.
+
+La conception est présumée avoir eu lieu à un moment quelconque de cette période, suivant ce qui est demandé dans l'intérêt de l'enfant.
+
+La preuve contraire est recevable pour combattre ces présomptions.
+
+Article 311-1
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 5 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La possession d'état s'établit par une réunion suffisante de faits qui révèlent le lien de filiation et de parenté entre une personne et la famille à laquelle elle est dite appartenir.
+
+Les principaux de ces faits sont :
+
+1° Que cette personne a été traitée par celui ou ceux dont on la dit issue comme leur enfant et qu'elle-même les a traités comme son ou ses parents ;
+
+2° Que ceux-ci ont, en cette qualité, pourvu à son éducation, à son entretien ou à son installation ;
+
+3° Que cette personne est reconnue comme leur enfant, dans la société et par la famille ;
+
+4° Qu'elle est considérée comme telle par l'autorité publique ;
+
+5° Qu'elle porte le nom de celui ou ceux dont on la dit issue.
+
+Article 311-2
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 5 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La possession d'état doit être continue, paisible, publique et non équivoque.
+
+Section 2 : Du conflit des lois relatives à la filiation (Articles 311-14 à 311-17)
+Article 311-14
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La filiation est régie par la loi personnelle de la mère au jour de la naissance de l'enfant ; si la mère n'est pas connue, par la loi personnelle de l'enfant.
+
+Article 311-15
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 6 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Toutefois, si l'enfant et ses père et mère ou l'un d'eux ont en France leur résidence habituelle, commune ou séparée, la possession d'état produit toutes les conséquences qui en découlent selon la loi française, lors même que les autres éléments de la filiation auraient pu dépendre d'une loi étrangère.
+
+Article 311-17
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La reconnaissance volontaire de paternité ou de maternité est valable si elle a été faite en conformité, soit de la loi personnelle de son auteur, soit de la loi personnelle de l'enfant.
+
+Article 311-18 (abrogé)
+Abrogé par LOI n°2009-61 du 16 janvier 2009 - art. 2
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+L'action à fins de subsides est régie, au choix de l'enfant, soit par la loi de sa résidence habituelle, soit par la loi de la résidence habituelle du débiteur.
+
+Section 3 : De l'assistance médicale à la procréation (abrogé)
+Article 311-19 (abrogé)
+Abrogé par LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+En cas de procréation médicalement assistée avec tiers donneur, aucun lien de filiation ne peut être établi entre l'auteur du don et l'enfant issu de la procréation.
+
+Aucune action en responsabilité ne peut être exercée à l'encontre du donneur.
+
+Article 311-20 (abrogé)
+Abrogé par LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+Modifié par LOI n°2019-222 du 23 mars 2019 - art. 22
+
+Les époux ou les concubins qui, pour procréer, recourent à une assistance médicale nécessitant l'intervention d'un tiers donneur, doivent préalablement donner, dans des conditions garantissant le secret, leur consentement à un notaire, qui les informe des conséquences de leur acte au regard de la filiation.
+
+Le consentement donné à une procréation médicalement assistée interdit toute action aux fins d'établissement ou de contestation de la filiation à moins qu'il ne soit soutenu que l'enfant n'est pas issu de la procréation médicalement assistée ou que le consentement a été privé d'effet.
+
+Le consentement est privé d'effet en cas de décès, d'introduction d'une demande en divorce ou en séparation de corps ou de cessation de la communauté de vie, survenant avant la réalisation de la procréation médicalement assistée. Il est également privé d'effet lorsque l'homme ou la femme le révoque, par écrit et avant la réalisation de la procréation médicalement assistée, auprès du médecin chargé de mettre en œuvre cette assistance.
+
+Celui qui, après avoir consenti à l'assistance médicale à la procréation, ne reconnaît pas l'enfant qui en est issu engage sa responsabilité envers la mère et envers l'enfant.
+
+En outre, sa paternité est judiciairement déclarée. L'action obéit aux dispositions des articles 328 et 331.
+
+Section 3 : Des règles de dévolution du nom de famille et du nom d'usage (Articles 311-21 à 311-24-2)
+Article 311-21
+Modifié par LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+Lorsque la filiation d'un enfant est établie à l'égard de ses deux parents au plus tard le jour de la déclaration de sa naissance ou par la suite mais simultanément, ces derniers choisissent le nom de famille qui lui est dévolu : soit le nom du père, soit le nom de la mère, soit leurs deux noms accolés dans l'ordre choisi par eux dans la limite d'un nom de famille pour chacun d'eux. En l'absence de déclaration conjointe à l'officier de l'état civil mentionnant le choix du nom de l'enfant, celui-ci prend le nom de celui de ses parents à l'égard duquel sa filiation est établie en premier lieu et le nom de son père si sa filiation est établie simultanément à l'égard de l'un et de l'autre. En cas de désaccord entre les parents, signalé par l'un d'eux à l'officier de l'état civil, au plus tard au jour de la déclaration de naissance ou après la naissance, lors de l'établissement simultané de la filiation, l'enfant prend leurs deux noms, dans la limite du premier nom de famille pour chacun d'eux, accolés selon l'ordre alphabétique.
+
+En cas de naissance à l'étranger d'un enfant dont l'un au moins des parents est français, les parents qui n'ont pas usé de la faculté de choix du nom dans les conditions du précédent alinéa peuvent effectuer une telle déclaration lors de la demande de transcription de l'acte, au plus tard dans les trois ans de la naissance de l'enfant.
+
+Lorsqu'il a déjà été fait application du présent article, du deuxième alinéa de l'article 311-23, de l'article 342-12 ou de l'article 357 à l'égard d'un enfant commun, le nom précédemment dévolu ou choisi vaut pour les autres enfants communs.
+
+Lorsque les parents ou l'un d'entre eux portent un double nom de famille, ils peuvent, par une déclaration écrite conjointe, ne transmettre qu'un seul nom à leurs enfants.
+
+Article 311-22
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Les dispositions de l'article 311-21 sont applicables à l'enfant qui devient français en application des dispositions de l'article 22-1, dans les conditions fixées par un décret pris en Conseil d'Etat.
+
+Article 311-23
+Modifié par LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+Lorsque la filiation n'est établie qu'à l'égard d'un parent, l'enfant prend le nom de ce parent.
+
+Lors de l'établissement du second lien de filiation puis durant la minorité de l'enfant, les parents peuvent, par déclaration conjointe devant l'officier de l'état civil, choisir soit de lui substituer le nom de famille du parent à l'égard duquel la filiation a été établie en second lieu, soit d'accoler leurs deux noms, dans l'ordre choisi par eux, dans la limite d'un nom de famille pour chacun d'eux. Le changement de nom est mentionné en marge de l'acte de naissance. En cas d'empêchement grave, le parent peut être représenté par un fondé de procuration spéciale et authentique.
+
+Toutefois, lorsqu'il a déjà été fait application de l'article 311-21, du deuxième alinéa du présent article, de l'article 342-12 ou de l'article 357 à l'égard d'un autre enfant commun, la déclaration de changement de nom ne peut avoir d'autre effet que de donner le nom précédemment dévolu ou choisi.
+
+Si l'enfant a plus de treize ans, son consentement personnel est nécessaire.
+
+Article 311-24
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 8 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La faculté de choix ouverte en application des articles 311-21 et 311-23 ne peut être exercée qu'une seule fois.
+
+Article 311-24-1
+Création LOI n°2016-1547 du 18 novembre 2016 - art. 57
+
+En cas de naissance à l'étranger d'un enfant dont au moins l'un des parents est français, la transcription de l'acte de naissance de l'enfant doit retenir le nom de l'enfant tel qu'il résulte de l'acte de naissance étranger. Toutefois, au moment de la demande de transcription, les parents peuvent opter pour l'application de la loi française pour la détermination du nom de leur enfant, dans les conditions prévues à la présente section.
+
+Article 311-24-2
+Création LOI n°2022-301 du 2 mars 2022 - art. 1
+
+Toute personne majeure peut porter, à titre d'usage, l'un des noms prévus aux premier et dernier alinéas de l'article 311-21.
+
+A l'égard des enfants mineurs, cette faculté est mise en œuvre par les deux parents exerçant l'autorité parentale ou par le parent exerçant seul l'autorité parentale.
+
+En outre, le parent qui n'a pas transmis son nom de famille peut adjoindre celui-ci, à titre d'usage, au nom de l'enfant mineur. Cette adjonction se fait dans la limite du premier nom de famille de chacun des parents. Il en informe préalablement et en temps utile l'autre parent exerçant l'autorité parentale. Ce dernier peut, en cas de désaccord, saisir le juge aux affaires familiales, qui statue selon ce qu'exige l'intérêt de l'enfant.
+
+Dans tous les cas, si l'enfant est âgé de plus de treize ans, son consentement personnel est requis.
+
+NOTA :
+Conformément à l'article 5 de la loi n° 2022-301 du 2 mars 2022, ces dispositions entrent en vigueur le 1er juillet 2022.
+
+Chapitre Ier : Dispositions communes à la filiation légitime et à la filiation naturelle (abrogé)
+Section 1 : Des présomptions relatives à la filiation. (abrogé)
+Article 311-3 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°93-22 du 8 janvier 1993 - art. 13 () JORF 9 janvier 1993
+
+Les parents ou l'enfant peuvent demander au juge des tutelles que leur soit délivré, dans les conditions prévues aux articles 71 et 72 du présent code, un acte de notoriété faisant foi de la possession d'état jusqu'à preuve contraire ;
+
+Sans préjudice de tous autres moyens de preuve auxquels ils pourraient recourir pour en établir l'existence en justice, si elle venait à être contestée.
+
+Le lien de filiation établi par la possession d'état constatée dans l'acte de notoriété est mentionné en marge de l'acte de naissance de l'enfant.
+
+Section 2 : Des actions relatives à la filiation. (abrogé)
+Article 311-7 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Toutes les fois qu'elles ne sont pas enfermées par la loi dans des termes plus courts, les actions relatives à la filiation se prescrivent par trente ans à compter du jour où l'individu aurait été privé de l'état qu'il réclame, ou a commencé à jouir de l'état qui lui est contesté.
+
+Article 311-8 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+L'action qui appartenait à un individu quant à sa filiation ne peut être exercée par ses héritiers qu'autant qu'il est décédé mineur ou dans les cinq années après sa majorité ou son émancipation.
+
+Ses héritiers peuvent aussi poursuivre l'action qu'il avait déjà engagée, à moins qu'il n'y ait eu désistement ou péremption d'instance.
+
+Article 311-11 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°93-22 du 8 janvier 1993 - art. 14 () JORF 9 janvier 1993
+
+Pareillement quand, sur l'une des actions ouvertes par les articles 340 et 342 ci-dessous, il est opposé une défense tirée de ce que la mère a eu, pendant la période légale de la conception, des relations avec un tiers, le juge peut ordonner que celui-ci soit appelé en la cause.
+
+Article 311-12 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Les tribunaux règlent les conflits de filiation pour lesquels la loi n'a pas fixé d'autre principe, en déterminant par tous les moyens de preuve la filiation la plus vraisemblable.
+
+A défaut d'éléments suffisants de conviction, ils ont égard à la possession d'état.
+
+Article 311-13 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Dans le cas où ils sont amenés à écarter la prétention de la partie qui élevait en fait l'enfant mineur, les tribunaux peuvent, néanmoins, compte tenu de l'intérêt de l'enfant, accorder à cette partie un droit de visite.
+
+Section 3 : Du conflit des lois relatives à l'établissement de la filiation. (abrogé)
+Article 311-16 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Le mariage emporte légitimation lorsque, au jour où l'union a été célébrée, cette conséquence est admise, soit par la loi régissant les effets du mariage, soit par la loi personnelle de l'un des époux, soit par la loi personnelle de l'enfant.
+
+La légitimation par autorité de justice est régie, au choix du requérant, soit par la loi personnelle de celui-ci, soit par la loi personnelle de l'enfant.
+
+Section 4 : De la procréation médicalement assistée. (abrogé)
+Section 5 : Des règles de dévolution du nom de famille (abrogé)
+Chapitre II : De l'établissement de la filiation (Articles 311-25 à 317)
+Section 1 : De l'établissement de la filiation par l'effet de la loi (Articles 311-25 à 315)
+Paragraphe 1 : De la désignation de la mère dans l'acte de naissance (Article 311-25)
+Article 311-25
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 9 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La filiation est établie, à l'égard de la mère, par la désignation de celle-ci dans l'acte de naissance de l'enfant.
+
+Paragraphe 2 : De la présomption de paternité (Articles 312 à 315)
+Article 312
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 10 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+L'enfant conçu ou né pendant le mariage a pour père le mari.
+
+Article 313
+Modifié par LOI n°2019-222 du 23 mars 2019 - art. 22
+
+La présomption de paternité est écartée lorsque l'acte de naissance de l'enfant ne désigne pas le mari en qualité de père. Elle est encore écartée lorsque l'enfant est né plus de trois cents jours après l'introduction de la demande en divorce ou en séparation de corps ou après le dépôt au rang des minutes d'un notaire de la convention réglant l'ensemble des conséquences du divorce, et moins de cent quatre-vingts jours depuis le rejet définitif de la demande ou la réconciliation.
+
+NOTA :
+Conformément au VII de l’article 109 de la loi 2019-222 du 23 mars 2019, ces dispositions entrent en vigueur à une date fixée par décret en Conseil d'Etat, et au plus tard le 1er janvier 2021. Lorsque la requête initiale a été présentée avant l'entrée en vigueur prévue à la première phrase du présent VII, l'action en divorce ou en séparation de corps est poursuivie et jugée conformément aux dispositions du code civil dans leur rédaction antérieure à la même entrée en vigueur. Dans ce cas, le jugement rendu après ladite entrée en vigueur produit les effets prévus par la loi ancienne.
+
+Article 314
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+Si elle a été écartée en application de l'article 313, la présomption de paternité se trouve rétablie de plein droit si l'enfant a la possession d'état à l'égard du mari et s'il n'a pas une filiation paternelle déjà établie à l'égard d'un tiers.
+
+Article 315
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+Lorsque la présomption de paternité est écartée dans les conditions prévues à l'article 313, ses effets peuvent être rétablis en justice dans les conditions prévues à l'article 329. Le mari a également la possibilité de reconnaître l'enfant dans les conditions prévues aux articles 316 et 320.
+
+Section 2 : De l'établissement de la filiation par la reconnaissance (Articles 316 à 316-5)
+Article 316
+Modifié par LOI n°2018-778 du 10 septembre 2018 - art. 55
+
+Lorsque la filiation n'est pas établie dans les conditions prévues à la section I du présent chapitre, elle peut l'être par une reconnaissance de paternité ou de maternité, faite avant ou après la naissance.
+
+La reconnaissance n'établit la filiation qu'à l'égard de son auteur.
+
+Elle est faite dans l'acte de naissance, par acte reçu par l'officier de l'état civil ou par tout autre acte authentique.
+
+L'acte de reconnaissance est établi sur déclaration de son auteur, qui justifie :
+
+1° De son identité par un document officiel délivré par une autorité publique comportant son nom, son prénom, sa date et son lieu de naissance, sa photographie et sa signature ainsi que l'identification de l'autorité qui a délivré le document, la date et le lieu de délivrance ;
+
+2° De son domicile ou de sa résidence par la production d'une pièce justificative datée de moins de trois mois. Lorsqu'il n'est pas possible d'apporter la preuve d'un domicile ou d'une résidence et lorsque la loi n'a pas fixé une commune de rattachement, l'auteur fournit une attestation d'élection de domicile dans les conditions fixées à l'article L. 264-2 du code de l'action sociale et des familles.
+
+L'acte comporte les énonciations prévues à l'article 62 et la mention que l'auteur de la reconnaissance a été informé du caractère divisible du lien de filiation ainsi établi.
+
+NOTA :
+Conformément au IV de l'article 71 de la loi n° 2018-778 du 10 septembre 2018, les présentes dispositions entrent en vigueur à une date fixée par décret en Conseil d'Etat, au plus tard le 1er mars 2019 et s'appliquent aux demandes qui sont postérieures à cette date.
+
+Article 316-1
+Modifié par Ordonnance n°2019-964 du 18 septembre 2019 - art. 35 (VD)
+
+Lorsqu'il existe des indices sérieux laissant présumer, le cas échéant au vu de l'audition par l'officier de l'état civil de l'auteur de la reconnaissance de l'enfant, que celle-ci est frauduleuse, l'officier de l'état civil saisit sans délai le procureur de la République et en informe l'auteur de la reconnaissance.
+
+Le procureur de la République est tenu de décider, dans un délai de quinze jours à compter de sa saisine, soit de laisser l'officier de l'état civil enregistrer la reconnaissance ou mentionner celle-ci en marge de l'acte de naissance, soit qu'il y est sursis dans l'attente des résultats de l'enquête à laquelle il fait procéder, soit d'y faire opposition.
+
+La durée du sursis ainsi décidé ne peut excéder un mois, renouvelable une fois par décision spécialement motivée. Toutefois, lorsque l'enquête est menée, en totalité ou en partie, à l'étranger par l'autorité diplomatique ou consulaire, la durée du sursis est portée à deux mois, renouvelable une fois par décision spécialement motivée. Dans tous les cas, la décision de sursis et son renouvellement sont notifiés à l'officier de l'état civil et à l'auteur de la reconnaissance.
+
+A l'expiration du sursis, le procureur de la République fait connaître à l'officier de l'état civil et aux intéressés, par décision motivée, s'il laisse procéder à l'enregistrement de la reconnaissance ou à sa mention en marge de l'acte de naissance de l'enfant.
+
+L'auteur de la reconnaissance, même mineur, peut contester la décision de sursis ou de renouvellement de celui-ci devant le tribunal judiciaire, qui statue dans un délai de dix jours à compter de sa saisine. En cas d'appel, la cour statue dans le même délai.
+
+NOTA :
+Conformément à l'article 36 de l'ordonnance n° 2019-964 du 18 septembre 2019, ces dispositions entrent en vigueur au 1er janvier 2020.
+
+Article 316-2
+Modifié par LOI n°2018-778 du 10 septembre 2018 - art. 55
+
+Tout acte d'opposition du procureur de la République mentionne les prénoms et nom de l'auteur de la reconnaissance ainsi que les prénoms et nom, date et lieu de naissance de l'enfant concerné.
+
+En cas de reconnaissance prénatale, l'acte d'opposition mentionne les prénoms et nom de l'auteur de la reconnaissance ainsi que toute indication communiquée à l'officier de l'état civil relative à l'identification de l'enfant à naître.
+
+A peine de nullité, tout acte d'opposition à l'enregistrement d'une reconnaissance ou à sa mention en marge de l'acte de naissance de l'enfant énonce la qualité de l'auteur de l'opposition ainsi que les motifs de celle-ci. Il reproduit les dispositions législatives sur lesquelles est fondée l'opposition.
+
+L'acte d'opposition est signé, sur l'original et sur la copie, par l'opposant et notifié à l'officier de l'état civil, qui met son visa sur l'original.
+
+L'officier de l'état civil fait sans délai une mention sommaire de l'opposition sur le registre de l'état civil. Il mentionne également en marge de l'inscription de ladite opposition les éventuelles décisions de mainlevée dont expédition lui a été remise. L'auteur de la reconnaissance en est informé sans délai.
+
+En cas d'opposition, l'officier de l'état civil ne peut, sous peine de l'amende prévue à l'article 68, enregistrer la reconnaissance ou la mentionner sur l'acte de naissance de l'enfant, sauf si une expédition de la mainlevée de l'opposition lui a été remise.
+
+NOTA :
+Conformément au IV de l'article 71 de la loi n° 2018-778 du 10 septembre 2018, les présentes dispositions entrent en vigueur à une date fixée par décret en Conseil d'Etat, au plus tard le 1er mars 2019 et s'appliquent aux demandes qui sont postérieures à cette date.
+
+Article 316-3
+Modifié par Ordonnance n°2019-964 du 18 septembre 2019 - art. 35 (VD)
+
+Le tribunal judiciaire se prononce, dans un délai de dix jours à compter de sa saisine, sur la demande en mainlevée de l'opposition formée par l'auteur de la reconnaissance, même mineur.
+
+En cas d'appel, il est statué dans le même délai et, si le jugement dont il est fait appel a prononcé mainlevée de l'opposition, la cour doit statuer, même d'office.
+
+Le jugement rendu par défaut rejetant l'opposition à l'enregistrement de la reconnaissance ou à sa mention en marge de l'acte de naissance de l'enfant ne peut être contesté.
+
+NOTA :
+Conformément à l'article 36 de l'ordonnance n° 2019-964 du 18 septembre 2019, ces dispositions entrent en vigueur au 1er janvier 2020.
+
+Article 316-4
+Création LOI n°2018-778 du 10 septembre 2018 - art. 55
+
+Lorsque la saisine du procureur de la République concerne une reconnaissance prénatale ou concomitante à la déclaration de naissance, l'acte de naissance de l'enfant est dressé sans indication de cette reconnaissance.
+
+NOTA :
+Conformément au IV de l'article 71 de la loi n° 2018-778 du 10 septembre 2018, les présentes dispositions entrent en vigueur à une date fixée par décret en Conseil d'Etat, au plus tard le 1er mars 2019 et s'appliquent aux demandes qui sont postérieures à cette date.
+
+Article 316-5
+Création LOI n°2018-778 du 10 septembre 2018 - art. 55
+
+Lorsque la reconnaissance est enregistrée, ses effets pour l'application des articles 311-21 ou 311-23 remontent à la date de la saisine du procureur de la République.
+
+NOTA :
+Conformément au IV de l'article 71 de la loi n° 2018-778 du 10 septembre 2018, les présentes dispositions entrent en vigueur à une date fixée par décret en Conseil d'Etat, au plus tard le 1er mars 2019 et s'appliquent aux demandes qui sont postérieures à cette date.
+
+Section 3 : De l'établissement de la filiation par la possession d'état (Article 317)
+Article 317
+Modifié par LOI n°2019-222 du 23 mars 2019 - art. 6
+
+Chacun des parents ou l'enfant peut demander à un notaire que lui soit délivré un acte de notoriété qui fera foi de la possession d'état jusqu'à preuve contraire.
+
+L'acte de notoriété est établi sur la foi des déclarations d'au moins trois témoins et de tout autre document produit qui attestent une réunion suffisante de faits au sens de l'article 311-1. L'acte de notoriété est signé par le notaire et par les témoins.
+
+La délivrance de l'acte de notoriété ne peut être demandée que dans un délai de cinq ans à compter de la cessation de la possession d'état alléguée ou à compter du décès du parent prétendu, y compris lorsque celui-ci est décédé avant la déclaration de naissance.
+
+La filiation établie par la possession d'état constatée dans l'acte de notoriété est mentionnée en marge de l'acte de naissance de l'enfant.
+
+Chapitre II : De la filiation légitime. (abrogé)
+Section 1 : De la présomption de paternité. (abrogé)
+Article 313-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 10 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+La présomption de paternité est écartée quand l'enfant, inscrit sans l'indication du nom du mari, n'a de possession d'état qu'à l'égard de la mère.
+
+Article 313-2 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 10 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°93-22 du 8 janvier 1993 - art. 15 () JORF 9 janvier 1993
+
+Lorsque la présomption de paternité est écartée dans les conditions prévues aux articles précédents, la filiation de l'enfant est établie à l'égard de la mère comme s'il y avait eu désaveu admis en justice.
+
+Chacun des époux peut demander que les effets de la présomption de paternité soient rétablis, en justifiant que, dans la période légale de la conception, une réunion de fait a eu lieu entre eux, qui rend vraisemblable la paternité du mari.
+
+L'action est ouverte à l'enfant pendant les deux années qui suivent sa majorité.
+
+Article 318-2 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Il est statué sur les deux demandes par un seul et même jugement, qui ne peut accueillir la contestation de paternité que si la légitimation est admise.
+
+Section 2 : Des preuves de la filiation légitime. (abrogé)
+Article 324 (abrogé)
+Abrogé par Loi n°93-22 du 8 janvier 1993 - art. 60 (V) JORF 9 janvier 1993
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Le commencement de preuve par écrit résulte des titres de famille, des registres et papiers domestiques, ainsi que de tous autres écrits publics ou privés émanés d'une partie engagée dans la contestation ou qui y aurait intérêt si elle était vivante.
+
+Article 322-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Toutefois, s'il est allégué qu'il y a eu supposition d'enfant, ou substitution, même involontaire, soit avant, soit après la rédaction de l'acte de naissance, la preuve en sera recevable et pourra se faire par tous moyens.
+
+Section 3 : De la légitimation. (abrogé)
+Paragraphe 1 : De la légitimation par mariage. (abrogé)
+Article 331-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Quand la filiation d'un enfant naturel n'a été établie à l'égard de ses père et mère ou de l'un d'eux que postérieurement à leur mariage, la légitimation ne peut avoir lieu qu'en vertu d'un jugement.
+
+Ce jugement doit constater que l'enfant a eu, depuis la célébration du mariage, la possession d'état d'enfant commun.
+
+Article 331-2 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2002-304 du 4 mars 2002 - art. 6 () JORF 5 mars 2002 en vigueur le 1er janvier 2005
+
+Toute légitimation est mentionnée en marge de l'acte de naissance de l'enfant légitimé.
+
+Cette mention peut être requise par tout intéressé. Dans le cas de l'article 331, l'officier de l'état civil y pourvoit lui-même, s'il a eu connaissance de l'existence des enfants.
+
+La mention de la légitimation sur l'acte de naissance d'un enfant majeur est dépourvue d'effet sur son patronyme si l'acte ne comporte pas, en outre, la mention du consentement de l'intéressé à la modification de son nom de famille.
+
+Article 332 (abrogé)
+Abrogé par Loi n°93-22 du 8 janvier 1993 - art. 10 () JORF 9 janvier 1993
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+La légitimation peut avoir lieu après la mort de l'enfant, s'il a laissé des descendants ; elle profite alors à ceux-ci.
+
+Article 332-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2003-516 du 18 juin 2003 - art. 5 () JORF 19 juin 2003 en vigueur le 1er janvier 2005
+
+La légitimation confère à l'enfant légitimé les droits et les devoirs de l'enfant légitime.
+
+Par déclaration conjointe produite lors de la célébration du mariage ou constatée par le juge, les parents bénéficient de l'option ouverte à l'article 311-21, lorsque la filiation a été établie dans les conditions de l'article 334-1 et qu'ils n'ont pas usé de la faculté ouverte à l'article 334-2. Toutefois, la légitimation ne peut avoir pour effet de modifier le nom de famille d'un enfant majeur sans le consentement de celui-ci.
+
+Elle prend effet à la date du mariage.
+
+Paragraphe 2 : De la légitimation par autorité de justice (abrogé)
+Article 333-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+La requête aux fins de légitimation est formée par l'un des deux parents ou par les deux conjointement devant le tribunal de grande instance.
+
+Article 333-2 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Si l'un des parents de l'enfant se trouvait, au temps de la conception, dans les liens d'un mariage qui n'est pas dissous, sa requête n'est recevable qu'avec le consentement de son conjoint.
+
+Article 333-3 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Le tribunal vérifie si les conditions de la loi sont remplies et, après avoir reçu ou provoqué, le cas échéant, les observations de l'enfant lui-même, de l'autre parent quand il n'est pas partie à la requête, ainsi que du conjoint du requérant, il prononce, s'il l'estime justifiée, la légitimation.
+
+Article 333-4 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2002-304 du 4 mars 2002 - art. 8 () JORF 5 mars 2002 en vigueur le 1er janvier 2005
+
+La légitimation par autorité de justice prend effet à la date de la décision qui la prononce définitivement.
+
+Si elle a eu lieu à la requête d'un seul des parents, elle n'a point d'effet à l'égard de l'autre ; elle n'emporte pas modification du nom de famille de l'enfant, sauf décision contraire du tribunal.
+
+Article 333-5 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2003-516 du 18 juin 2003 - art. 9 () JORF 19 juin 2003 en vigueur le 1er janvier 2005
+
+Si la légitimation par autorité de justice a été prononcée à l'égard des deux parents, le nom de famille de l'enfant est déterminé en application des dispositions des articles 311-21 et 311-23 s'il est mineur, le tribunal statue sur les modalités d'exercice de l'autorité parentale, comme en matière de divorce.
+
+Article 333-6 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2002-304 du 4 mars 2002 - art. 10 () JORF 5 mars 2002 en vigueur le 1er janvier 2005
+
+Les dispositions de l'article 331-2 et des deux premiers alinéas de l'article 332-1 sont applicables à la légitimation par autorité de justice.
+
+Chapitre III : Des actions relatives à la filiation (Articles 318 à 337)
+Section 1 : Dispositions générales (Articles 318 à 324)
+Article 318
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Aucune action n'est reçue quant à la filiation d'un enfant qui n'est pas né viable.
+
+Article 318-1
+Modifié par Ordonnance n°2019-964 du 18 septembre 2019 - art. 35 (VD)
+
+Le tribunal judiciaire, statuant en matière civile, est seul compétent pour connaître des actions relatives à la filiation.
+
+NOTA :
+Conformément à l'article 36 de l'ordonnance n° 2019-964 du 18 septembre 2019, ces dispositions entrent en vigueur au 1er janvier 2020.
+
+\textbf{Article 319}
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 13 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+En cas d'infraction portant atteinte à la filiation d'une personne, il ne peut être statué sur l'action pénale qu'après le jugement passé en force de chose jugée sur la question de filiation.
+
+Article 320
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 13 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Tant qu'elle n'a pas été contestée en justice, la filiation légalement établie fait obstacle à l'établissement d'une autre filiation qui la contredirait.
+
+Article 321
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 13 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Sauf lorsqu'elles sont enfermées par la loi dans un autre délai, les actions relatives à la filiation se prescrivent par dix ans à compter du jour où la personne a été privée de l'état qu'elle réclame, ou a commencé à jouir de l'état qui lui est contesté. A l'égard de l'enfant, ce délai est suspendu pendant sa minorité.
+
+Article 322
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 13 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+L'action peut être exercée par les héritiers d'une personne décédée avant l'expiration du délai qui était imparti à celle-ci pour agir.
+
+Les héritiers peuvent également poursuivre l'action déjà engagée, à moins qu'il n'y ait eu désistement ou péremption d'instance.
+
+Article 323
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Les actions relatives à la filiation ne peuvent faire l'objet de renonciation.
+
+Article 324
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 13 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Les jugements rendus en matière de filiation sont opposables aux personnes qui n'y ont point été parties. Celles-ci ont le droit d'y former tierce opposition dans le délai mentionné à l'article 321 si l'action leur était ouverte.
+
+Les juges peuvent d'office ordonner que soient mis en cause tous les intéressés auxquels ils estiment que le jugement doit être rendu commun.
+
+Section 2 : Des actions aux fins d'établissement de la filiation (Articles 325 à 331)
+Article 325
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+A défaut de titre et de possession d'état, la recherche de maternité est admise.
+
+L'action est réservée à l'enfant qui est tenu de prouver qu'il est celui dont la mère prétendue a accouché.
+
+Article 326
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Lors de l'accouchement, la mère peut demander que le secret de son admission et de son identité soit préservé.
+
+Article 327
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 14 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 2 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La paternité hors mariage peut être judiciairement déclarée.
+
+L'action en recherche de paternité est réservée à l'enfant.
+
+Article 328
+Modifié par LOI n°2011-525 du 17 mai 2011 - art. 195
+
+Le parent, même mineur, à l'égard duquel la filiation est établie a, pendant la minorité de l'enfant, seul qualité pour exercer l'action en recherche de maternité ou de paternité.
+
+Si aucun lien de filiation n'est établi ou si ce parent est décédé ou dans l'impossibilité de manifester sa volonté, l'action est intentée par le tuteur conformément aux dispositions du deuxième alinéa de l'article 408.
+
+L'action est exercée contre le parent prétendu ou ses héritiers. A défaut d'héritiers ou si ceux-ci ont renoncé à la succession, elle est dirigée contre l'Etat. Les héritiers renonçants sont appelés à la procédure pour y faire valoir leurs droits.
+
+Article 329
+Modifié par LOI n°2011-525 du 17 mai 2011 - art. 195
+
+Lorsque la présomption de paternité a été écartée en application de l'article 313, chacun des époux peut demander, durant la minorité de l'enfant, que ses effets soient rétablis en prouvant que le mari est le père. L'action est ouverte à l'enfant pendant les dix années qui suivent sa majorité.
+
+Article 330
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+La possession d'état peut être constatée, à la demande de toute personne qui y a intérêt, dans le délai de dix ans à compter de sa cessation ou du décès du parent prétendu.
+
+Article 331
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 14 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Lorsqu'une action est exercée en application de la présente section, le tribunal statue, s'il y a lieu, sur l'exercice de l'autorité parentale, la contribution à l'entretien et à l'éducation de l'enfant et l'attribution du nom.
+
+Section 3 : Des actions en contestation de la filiation (Articles 332 à 337)
+Article 332
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La maternité peut être contestée en rapportant la preuve que la mère n'a pas accouché de l'enfant.
+
+La paternité peut être contestée en rapportant la preuve que le mari ou l'auteur de la reconnaissance n'est pas le père.
+
+Article 333
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+Lorsque la possession d'état est conforme au titre, seuls peuvent agir l'enfant, l'un de ses père et mère ou celui qui se prétend le parent véritable. L'action se prescrit par cinq ans à compter du jour où la possession d'état a cessé ou du décès du parent dont le lien de filiation est contesté.
+
+Nul, à l'exception du ministère public, ne peut contester la filiation lorsque la possession d'état conforme au titre a duré au moins cinq ans depuis la naissance ou la reconnaissance, si elle a été faite ultérieurement.
+
+Article 334
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+A défaut de possession d'état conforme au titre, l'action en contestation peut être engagée par toute personne qui y a intérêt dans le délai prévu à l'article 321.
+
+Article 335
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+La filiation établie par la possession d'état constatée par un acte de notoriété peut être contestée par toute personne qui y a intérêt en rapportant la preuve contraire, dans le délai de dix ans à compter de la délivrance de l'acte.
+
+Article 336
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La filiation légalement établie peut être contestée par le ministère public si des indices tirés des actes eux-mêmes la rendent invraisemblable ou en cas de fraude à la loi.
+
+Article 336-1
+Création LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+Lorsqu'il détient une reconnaissance paternelle prénatale dont les énonciations relatives à son auteur sont contredites par les informations concernant le père que lui communique le déclarant, l'officier de l'état civil compétent en application de l'article 55 établit l'acte de naissance au vu des informations communiquées par le déclarant. Il en avise sans délai le procureur de la République qui élève le conflit de paternité sur le fondement de l'article 336.
+
+Article 337
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Lorsqu'il accueille l'action en contestation, le tribunal peut, dans l'intérêt de l'enfant, fixer les modalités des relations de celui-ci avec la personne qui l'élevait.
+
+Chapitre III : De la filiation naturelle. (abrogé)
+Section 1 : Des effets de la filiation naturelle et de ses modes d'établissement en général. (abrogé)
+Article 334 (abrogé)
+Abrogé par Loi n°2002-305 du 4 mars 2002 - art. 10 () JORF 5 mars 2002
+Modifié par Loi n°2001-1135 du 3 décembre 2001 - art. 16 () JORF 4 décembre 2001
+
+L'enfant naturel a en général les mêmes droits et les mêmes devoirs que l'enfant légitime dans ses rapports avec ses père et mère.
+
+Il entre dans la famille de son auteur.
+
+Article 334-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2002-304 du 4 mars 2002 - art. 11 () JORF 5 mars 2002 en vigueur le 1er janvier 2005
+
+L'enfant naturel acquiert le nom de celui de ses deux parents à l'égard de qui sa filiation est établie en premier lieu.
+
+Article 334-2 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2003-516 du 18 juin 2003 - art. 12 () JORF 19 juin 2003 en vigueur le 1er janvier 2005
+
+Lorsque le nom de l'enfant naturel n'a pas été transmis dans les conditions prévues à l'article 311-21, ses parents peuvent, par déclaration conjointe devant l'officier de l'état civil, choisir pendant sa minorité soit de lui substituer le nom de famille du parent à l'égard duquel la filiation a été établie en second lieu, soit d'accoler leurs deux noms, dans l'ordre choisi par eux, dans la limite d'un nom de famille pour chacun d'eux. Mention du changement de nom figurera en marge de l'acte de naissance.
+
+Si l'enfant a plus de treize ans, son consentement personnel est nécessaire.
+
+Article 334-3 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi 2002-304 2002-03-04 art. 12-1 JORF 5 mars 2002 en vigueur le 1er janvier 2005
+
+Lorsque la déclaration prévue à l'article 334-2 n'a pu être faite, le changement de nom de l'enfant naturel doit être demandé au juge aux affaires familiales. Toutefois, le tribunal de grande instance saisi d'une requête en modification de l'état de l'enfant naturel peut dans un seul et même jugement statuer sur celle-ci et sur la demande de changement de nom de l'enfant qui lui serait présentée.
+
+L'action est ouverte pendant la minorité de l'enfant et dans les deux années qui suivront, soit sa majorité, soit une modification apportée à son état.
+
+Article 334-4 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+La substitution de nom s'étend de plein droit aux enfants mineurs de l'intéressé. Elle ne s'étend aux enfants majeurs qu'avec leur consentement.
+
+Article 334-5 (abrogé)
+Abrogé par Loi n°2003-516 du 18 juin 2003 - art. 9 () JORF 19 juin 2003 en vigueur le 1er janvier 2005
+Modifié par Loi n°2002-304 du 4 mars 2002 - art. 13 () JORF 5 mars 2002 en vigueur le 1er septembre 2003
+
+En l'absence de filiation maternelle ou paternelle établie, la femme du père ou le mari de la mère selon le cas peut conférer par substitution son propre nom de famille à l'enfant par une déclaration faite conjointement avec l'autre époux dans les conditions définies à l'article 334-2. Il peut également aux mêmes conditions être conféré à l'enfant les noms accolés des deux époux dans l'ordre choisi par eux et dans la limite d'un nom de famille pour chacun d'eux.
+
+L'enfant pourra toutefois demander à reprendre le nom qu'il portait antérieurement par une demande qu'il soumettra au juge aux affaires familiales, dans les deux années suivant sa majorité.
+
+Article 334-6 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Les règles d'attribution du nom prévues aux articles précédents ne préjudicient point aux effets de la possession d'état.
+
+Article 334-7 (abrogé)
+Abrogé par Loi n°2001-1135 du 3 décembre 2001 - art. 16 () JORF 4 décembre 2001
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Dans le cas prévu au troisième alinéa de l'article 334 ci-dessus, l'enfant naturel ne peut être élevé au domicile conjugal qu'avec le consentement du conjoint de son auteur.
+
+Article 334-8 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°82-536 du 25 juin 1982 - art. 1 () JORF 26 juin 1982
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+La filiation naturelle est légalement établie par reconnaissance volontaire.
+
+La filiation naturelle peut aussi se trouver légalement établie par la possession d'état ou par l'effet d'un jugement.
+
+Article 334-9 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Toute reconnaissance est nulle, toute demande en recherche est irrecevable, quand l'enfant a une filiation légitime déjà établie par la possession d'état.
+
+Article 334-10 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 15 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+S'il existe entre les père et mère de l'enfant naturel un des empêchements à mariage prévus par les articles 161 et 162 ci-dessus pour cause de parenté, la filiation étant déjà établie à l'égard de l'un, il est interdit d'établir la filiation à l'égard de l'autre.
+
+Section 2 : De la reconnaissance des enfants naturels (abrogé)
+Article 338 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Tant qu'elle n'a pas été contestée en justice, une reconnaissance rend irrecevable l'établissement d'une autre filiation naturelle qui la contredirait.
+
+Article 339 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°96-604 du 5 juillet 1996 - art. 26 () JORF 6 juillet 1996
+
+La reconnaissance peut être contestée par toutes personnes qui y ont intérêt, même par son auteur.
+
+L'action est aussi ouverte au ministère public, si des indices tirés des actes eux-mêmes rendent invraisemblable la filiation déclarée. Elle lui est également ouverte lorsque la reconnaissance est effectuée en fraude des règles régissant l'adoption.
+
+Quand il existe une possession d'état conforme à la reconnaissance et qui a duré dix ans au moins depuis celle-ci, aucune contestation n'est plus recevable, si ce n'est de la part de l'autre parent, de l'enfant lui-même ou de ceux qui se prétendent les parents véritables.
+
+Section 3 : Des actions en recherche de paternité et de maternité. (abrogé)
+Article 340-1 (abrogé)
+Abrogé par Loi n°93-22 du 8 janvier 1993 - art. 60 (V) JORF 9 janvier 1993
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+L'action en recherche de paternité ne sera pas recevable :
+
+1° S'il est établi que, pendant la période légale de la conception, la mère était d'une inconduite notoire ou qu'elle a eu commerce avec un autre individu, à moins qu'il ne résulte d'un examen des sangs ou de toute autre méthode médicale certaine que cet individu ne peut être le père ;
+
+2° Si le père prétendu était, pendant la même période, soit par suite d'éloignement, soit par l'effet de quelque accident, dans l'impossibilité physique d'être le père ;
+
+3° Si le père prétendu établit par un examen des sangs ou par toute autre méthode médicale certaine qu'il ne peut être le père de l'enfant.
+
+Article 340-2 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+L'action n'appartient qu'à l'enfant.
+
+Pendant la minorité de l'enfant, la mère, même mineure, a seule qualité pour l'exercer.
+
+Si la mère n'a pas reconnu l'enfant, si elle est décédée ou si elle se trouve dans l'impossibilité de manifester sa volonté, l'action sera intentée conformément aux dispositions de l'article 464, alinéa 3, du présent code.
+
+Article 340-3 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°93-22 du 8 janvier 1993 - art. 24 () JORF 9 janvier 1993
+
+L'action en recherche de paternité est exercée contre le père prétendu ou contre ses héritiers ; à défaut d'héritiers ou si ceux-ci ont renoncé à la succession, contre l'Etat, les héritiers renonçants devant être cependant appelés à la procédure pour y faire valoir leurs droits.
+
+Article 340-4 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°93-22 du 8 janvier 1993 - art. 25 () JORF 9 janvier 1993
+
+L'action doit, à peine de déchéance, être exercée dans les deux années qui suivent la naissance.
+
+Toutefois, si le père prétendu et la mère ont vécu pendant la période légale de la conception en état de concubinage impliquant, à défaut de communauté de vie, des relations stables ou continues, l'action peut être exercée jusqu'à l'expiration des deux années qui suivent la cessation du concubinage. Si le père prétendu a participé à l'entretien, à l'éducation ou à l'établissement de l'enfant en qualité de père, l'action peut être exercée jusqu'à l'expiration des deux années qui suivent la cessation de cette contribution.
+
+Si elle n'a pas été exercée pendant la minorité de l'enfant, celui-ci peut encore l'exercer pendant les deux années qui suivent la majorité.
+
+Article 340-5 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Lorsqu'il accueille l'action, le tribunal peut, à la demande de la mère, condamner le père à lui rembourser tout ou partie de ses frais de maternité et d'entretien pendant les trois mois qui ont précédé et les trois mois qui ont suivi la naissance, sans préjudice des dommages-intérêts auxquels elle pourrait prétendre par application des articles 1382 et 1383.
+
+Article 340-6 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°2002-305 du 4 mars 2002 - art. 9 () JORF 5 mars 2002
+
+Le tribunal statue, s'il y a lieu, sur l'attribution du nom et sur l'autorité parentale, conformément aux articles 334-3 et 372.
+
+Article 340-7 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+En rejetant la demande, les juges pourront, néanmoins, allouer des subsides à l'enfant, si les relations entre la mère et le défendeur ont été démontrées dans les conditions prévues aux articles 342 et suivants.
+
+Article 341 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Loi n°93-22 du 8 janvier 1993 - art. 26 () JORF 9 janvier 1993
+
+La recherche de la maternité est admise sous réserve de l'application de l'article 341-1.
+
+L'enfant qui exerce l'action sera tenu de prouver qu'il est celui dont la mère prétendue est accouchée.
+
+La preuve ne peut en être rapportée que s'il existe des présomptions ou indices graves.
+
+Section 4 : De l'action à fins de subsides (abrogé)
+Article 342-1 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+L'action à fins de subsides peut aussi être exercée par l'enfant d'une femme mariée, si son titre d'enfant légitime n'est pas corroboré par la possession d'état.
+
+Article 342-3 (abrogé)
+Abrogé par Ordonnance n°2005-759 du 4 juillet 2005 - art. 18 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Création Loi n°72-3 du 3 janvier 1972 - art. 1 () JORF 5 janvier 1972 en vigueur le 1er août 1972
+
+Quand il y a lieu à l'application de l'article 311-11 ci-dessus, le juge, en l'absence d'autres éléments de décision, a la faculté de mettre une indemnité destinée à assurer l'entretien et l'éducation de l'enfant à la charge des défendeurs, si des fautes sont établies à leur encontre, ou si des engagements ont été pris antérieurement par eux.
+
+Cette indemnité sera recouvrée par l'aide sociale à l'enfance, une oeuvre reconnue d'utilité publique, ou un mandataire de justice tenu au secret professionnel, qui la reversera au représentant légal de l'enfant. Les conditions de ce recouvrement et de ce reversement seront fixées par décret.
+
+Les dispositions régissant les subsides sont, pour le surplus, applicables à cette indemnité.
+
+Chapitre IV : De l'action à fins de subsides (Articles 342 à 342-8)
+Article 342
+Modifié par LOI n°2009-61 du 16 janvier 2009 - art. 1
+
+Tout enfant dont la filiation paternelle n'est pas légalement établie, peut réclamer des subsides à celui qui a eu des relations avec sa mère pendant la période légale de la conception.
+
+L'action peut être exercée pendant toute la minorité de l'enfant ; celui-ci peut encore l'exercer dans les dix années qui suivent sa majorité si elle ne l'a pas été pendant sa minorité.
+
+L'action est recevable même si le père ou la mère était au temps de la conception, engagé dans les liens du mariage avec une autre personne, ou s'il existait entre eux un des empêchements à mariage réglés par les articles 161 à 164 du présent code.
+
+Article 342-2
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Les subsides se règlent, en forme de pension, d'après les besoins de l'enfant, les ressources du débiteur, la situation familiale de celui-ci.
+
+La pension peut être due au-delà de la majorité de l'enfant, s'il est encore dans le besoin, à moins que cet état ne lui soit imputable à faute.
+
+Article 342-4
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Le défendeur peut écarter la demande en faisant la preuve par tous moyens qu'il ne peut être le père de l'enfant.
+
+Article 342-5
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La charge des subsides se transmet à la succession du débiteur suivant les règles de l'article 767.
+
+Article 342-6
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 16 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Les articles 327 alinéa 2, et 328 ci-dessus sont applicables à l'action à fins de subsides.
+
+Article 342-7
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+Le jugement qui alloue les subsides crée entre le débiteur et le bénéficiaire, ainsi que, le cas échéant, entre chacun d'eux et les parents ou le conjoint de l'autre, les empêchements à mariage réglés par les articles 161 à 164 du présent code.
+
+Article 342-8
+Modifié par Ordonnance n°2005-759 du 4 juillet 2005 - art. 3 () JORF 6 juillet 2005 en vigueur le 1er juillet 2006
+
+La chose jugée sur l'action à fins de subsides n'élève aucune fin de non-recevoir contre une action ultérieure en recherche de paternité.
+
+L'allocation des subsides cessera d'avoir effet si la filiation paternelle de l'enfant vient à être établie par la suite à l'endroit d'un autre que le débiteur.
+
+Chapitre V : De l'assistance médicale à la procréation avec tiers donneur (Articles 342-9 à 342-13)
+Article 342-9
+Création LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+En cas d'assistance médicale à la procréation nécessitant l'intervention d'un tiers donneur, aucun lien de filiation ne peut être établi entre l'auteur du don et l'enfant issu de l'assistance médicale à la procréation.
+
+Aucune action en responsabilité ne peut être exercée à l'encontre du donneur.
+
+Article 342-10
+Création LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+Les couples ou la femme non mariée qui, pour procréer, recourent à une assistance médicale nécessitant l'intervention d'un tiers donneur doivent donner préalablement leur consentement à un notaire, qui les informe des conséquences de leur acte au regard de la filiation ainsi que des conditions dans lesquelles l'enfant pourra, s'il le souhaite, accéder à sa majorité aux données non identifiantes et à l'identité de ce tiers donneur.
+
+Le consentement donné à une assistance médicale à la procréation interdit toute action aux fins d'établissement ou de contestation de la filiation, à moins qu'il ne soit soutenu que l'enfant n'est pas issu de l'assistance médicale à la procréation ou que le consentement a été privé d'effet.
+
+Le consentement est privé d'effet en cas de décès, d'introduction d'une demande en divorce ou en séparation de corps, de signature d'une convention de divorce ou de séparation de corps par consentement mutuel selon les modalités prévues à l'article 229-1 ou de cessation de la communauté de vie, survenant avant la réalisation de l'insémination ou du transfert d'embryon. Il est également privé d'effet lorsque l'un des membres du couple le révoque, par écrit et avant la réalisation de l'assistance médicale à la procréation, auprès du médecin chargé de mettre en œuvre cette insémination ou ce transfert ou du notaire qui l'a reçu.
+
+Article 342-11
+Création LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+Lors du recueil du consentement prévu à l'article 342-10, le couple de femmes reconnaît conjointement l'enfant.
+
+La filiation est établie, à l'égard de la femme qui accouche, conformément à l'article 311-25. Elle est établie, à l'égard de l'autre femme, par la reconnaissance conjointe prévue au premier alinéa du présent article. Celle-ci est remise par l'une des deux femmes ou, le cas échéant, par la personne chargée de déclarer la naissance à l'officier de l'état civil, qui l'indique dans l'acte de naissance.
+
+Tant que la filiation ainsi établie n'a pas été contestée en justice dans les conditions prévues au deuxième alinéa de l'article 342-10, elle fait obstacle à l'établissement d'une autre filiation dans les conditions prévues au présent titre.
+
+Article 342-12
+Création LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+Lorsque la filiation est établie dans les conditions prévues à l'article 342-11 par reconnaissance conjointe, les femmes qui y sont désignées choisissent le nom de famille qui est dévolu à l'enfant au plus tard au moment de la déclaration de naissance : soit le nom de l'une d'elles, soit leurs deux noms accolés dans l'ordre choisi par elles dans la limite d'un nom de famille pour chacune d'elles. En l'absence de déclaration conjointe à l'officier de l'état civil mentionnant le choix du nom de l'enfant, celui-ci prend leurs deux noms, dans la limite du premier nom de famille de chacune d'elles, accolés selon l'ordre alphabétique.
+
+En cas de naissance à l'étranger d'un enfant dont l'un au moins des parents est français, les parents qui n'ont pas usé de la faculté de choix du nom dans les conditions prévues au premier alinéa du présent article peuvent effectuer une telle déclaration lors de la demande de transcription de l'acte, au plus tard dans les trois ans suivant la naissance de l'enfant.
+
+Lorsqu'il a déjà été fait application du présent article, de l'article 311-21, du deuxième alinéa de l'article 311-23 ou de l'article 357 à l'égard d'un enfant commun, le nom précédemment dévolu ou choisi vaut pour les autres enfants communs.
+
+Lorsque les parents ou l'un d'entre eux portent un double nom de famille, ils peuvent, par une déclaration écrite conjointe, ne transmettre qu'un seul nom à leurs enfants.
+
+Lorsqu'il est fait application du dernier alinéa de l'article 342-13 et que la filiation de l'enfant s'en trouve modifiée, le procureur de la République modifie le nom de l'enfant par application du présent article.
+
+Article 342-13
+Création LOI n°2021-1017 du 2 août 2021 - art. 6 (V)
+
+Celui qui, après avoir consenti à l'assistance médicale à la procréation, ne reconnaît pas l'enfant qui en est issu engage sa responsabilité envers la mère et envers l'enfant.
+
+En outre, sa paternité est judiciairement déclarée. L'action obéit aux dispositions des articles 328 et 331.
+
+La femme qui, après avoir consenti à l'assistance médicale à la procréation, fait obstacle à la remise à l'officier de l'état civil de la reconnaissance conjointe mentionnée à l'article 342-10 engage sa responsabilité.
+
+En cas d'absence de remise de la reconnaissance conjointe mentionnée au même article 342-10, celle-ci peut être communiquée à l'officier de l'état civil par le procureur de la République à la demande de l'enfant majeur, de son représentant légal s'il est mineur ou de toute personne ayant intérêt à agir en justice. La reconnaissance conjointe est portée en marge de l'acte de naissance de l'enfant. Toutefois, la filiation établie par la reconnaissance conjointe ne peut être portée dans l'acte de naissance tant que la filiation déjà établie à l'égard d'un tiers, par présomption, reconnaissance volontaire ou adoption plénière, n'a pas été contestée en justice dans les conditions prévues à la section 3 du chapitre III du présent titre, par une action en tierce opposition dans les conditions prévues à l'article 353-2 ou par un recours en révision dans les conditions prévues par décret.
+
+\end{encadre}
+```
 ## Le niveau de vie, critère d'ouverture ou de fermeture des droits
 
 ### dans les familles recomposées
