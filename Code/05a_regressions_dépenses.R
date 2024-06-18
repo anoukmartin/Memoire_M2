@@ -189,7 +189,7 @@ reg1 <- lm(
   weights = data$PONDMEN, 
   subset = !is.na(n_IdentIndiv_F))
 
-reg1 <- step(reg1)
+#reg1 <- step(reg1)
 
 tblreg1 <- tbl_regression(reg1, intercept = T) |>
   add_glance_source_note() 
@@ -202,7 +202,7 @@ tblreg1
 # Idem mais avec interaction revenu F structure familiale 
 reg2 <- update(reg1, ~ . + n_REVENUS_F*n_TYPFAM)                       
 
-reg2 <- step(reg2)
+#reg2 <- step(reg2)
 
 tblreg2 <- tbl_regression(reg2, intercept = T) |>
   add_glance_source_note() 
@@ -212,17 +212,17 @@ tblreg2
 
 # library(ggstats)
 
-ggcoef_compare(models = list("Simple" = reg1,  "Avec interaction" = reg2), 
-               conf.level = 0.90, 
-               intercept = F,
-               variable_labels = list(
-                 NIVIE = "Niveau de vie du ménage", 
-                 DIP7_F = "Diplôme", 
-                 CS12_F = "CSP", 
-                 n_TYPFAM = "Type de ménage", 
-                 n_REVENUS_F = "Revenus"),
-               type = "faceted") +
-  theme_tufte()
+# ggcoef_compare(models = list("Simple" = reg1,  "Avec interaction" = reg2), 
+#                conf.level = 0.90, 
+#                intercept = F,
+#                variable_labels = list(
+#                  NIVIE = "Niveau de vie du ménage", 
+#                  DIP7_F = "Diplôme", 
+#                  CS12_F = "CSP", 
+#                  n_TYPFAM = "Type de ménage", 
+#                  n_REVENUS_F = "Revenus"),
+#                type = "faceted") +
+#   theme_tufte()
 
 
 

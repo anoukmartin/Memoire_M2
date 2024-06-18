@@ -227,8 +227,8 @@ tab <- data_recomp %>%
     n_EnfantsMen & n_BeauxEnfantsMen ~ "Avec enfants et beaux-enfants",
     n_EnfantsMen ~ "Avec enfants",
     n_BeauxEnfantsMen ~ "Avec beaux-enfants")) %>%
-  mutate(n_Enfants = n_Enfants %>%
-           )
+  # mutate(n_Enfants = n_Enfants %>%
+  #          )
   as_survey_design(weights = PONDIND) %>%
   tbl_strata(
     strata = "SEXE",
@@ -379,32 +379,32 @@ lapply(travail_domestique, function(x){
 
 # Installer et charger le package fixest si nécessaire
 #install.packages("fixest")
-library(fixest)
-
-# Modèle avec fixest
-model <- glm(Menage ~ n_EnfantsMen:SEXE + n_BeauxEnfantsMen:SEXE,
-               data=data0,
-               weights = data0$PONDIND, 
-               family = "quasibinomial")
-
-# Résumé du modèle
-summary(model)
+#library(fixest)
+# 
+# # Modèle avec fixest
+# model <- glm(Menage ~ n_EnfantsMen:SEXE + n_BeauxEnfantsMen:SEXE,
+#                data=data0,
+#                weights = data0$PONDIND, 
+#                family = "quasibinomial")
+# 
+# # Résumé du modèle
+# summary(model)
 
 
 ### Regression simple sans interactions ####
 # create regression function
-fitreg <- function(x){ 
-  feglm.fit(get(x) ~ n_EnfantsMen*SEXE + n_BeauxEnfantsMen*SEXE | IDENT_MEN,
-          data=data0,
-          weights = data0$PONDIND, 
-          family = "quasibinomial")}
-
-
-# on applique 
-results <- lapply(travail_domestique, fitreg)
-names(results) <- travail_domestique
-
-ggcoef_compare(results)
+# fitreg <- function(x){ 
+#   feglm.fit(get(x) ~ n_EnfantsMen*SEXE + n_BeauxEnfantsMen*SEXE | IDENT_MEN,
+#           data=data0,
+#           weights = data0$PONDIND, 
+#           family = "quasibinomial")}
+# 
+# 
+# # on applique 
+# results <- lapply(travail_domestique, fitreg)
+# names(results) <- travail_domestique
+# 
+# ggcoef_compare(results)
 
 
 # On regarder les résidus 

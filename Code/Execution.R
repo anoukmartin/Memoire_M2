@@ -25,7 +25,7 @@ source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 
 # Réimporter les données brutes ################################################
 # On exécute les scripts commençant par 02
-execute(part = "02ab")
+execute(part = "02a")
 
 # Repérages sous populations ###################################################
 # On exécute les scripts commençant par 03
@@ -40,6 +40,7 @@ execute(part = "03e")
 
 ## Statistiques descriptives ###################################################
 execute(part = "04b")
+execute(part = "04c")
 execute(part = "06a")
 
 ## Regressions #################################################################

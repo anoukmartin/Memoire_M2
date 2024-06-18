@@ -284,26 +284,26 @@ tab2_summary
 #                          "Public", 
 #                          "Indépendant-e-s")
 
-gg <- ggplot(tab2) + 
-  theme_void() +
-  aes(x = value, y = 1) +
-  geom_hline(yintercept = 1, col = "grey") +
-  annotate("point", x = 0, y = 1, shape = 3, col = "grey", size = 3) +
-  annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
-  geom_point() +
-  geom_text_repel(aes(label = cluster), 
-                  direction="x", vjust = -2, 
-                  max.overlaps=10000) +
-  facet_wrap(dimLabel ~., ncol = 1, scales="free") +
-  geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
-  geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3) 
-gg  
-
-saveTableau(gg, type = "plot", label = "culsters_position", 
-            description = "positions des cluster sur les différentes dimentions de l'ACM",
-            ponderation = T, 
-            n = "?",
-            champ = "adultes (25-70 ans) vivant en ménage ordinaire")
+# gg <- ggplot(tab2) + 
+#   theme_void() +
+#   aes(x = value, y = 1) +
+#   geom_hline(yintercept = 1, col = "grey") +
+#   annotate("point", x = 0, y = 1, shape = 3, col = "grey", size = 3) +
+#   annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
+#   geom_point() +
+#   geom_text_repel(aes(label = cluster), 
+#                   direction="x", vjust = -2, 
+#                   max.overlaps=10000) +
+#   facet_wrap(dimLabel ~., ncol = 1, scales="free") +
+#   geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
+#   geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3) 
+# gg  
+# 
+# saveTableau(gg, type = "plot", label = "culsters_position", 
+#             description = "positions des cluster sur les différentes dimentions de l'ACM",
+#             ponderation = T, 
+#             n = "?",
+#             champ = "adultes (25-70 ans) vivant en ménage ordinaire")
 
  
 # Description statistique des axes ----
