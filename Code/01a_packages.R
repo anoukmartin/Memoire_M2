@@ -165,7 +165,6 @@ theme_memoire <- function(base_size = 14) {
       legend.key.size = unit(1.5, "lines"),
       legend.background = element_rect(fill = "transparent", colour = NA),
       # Les étiquettes dans le cas d'un facetting
-      strip.position = "bottom"
       # strip.background = element_rect(fill = "#17252D", color = "#17252D"),
       # strip.text = element_text(size = rel(0.85), face = "bold", color = "white", margin = margin(5,0,5,0))
     )
