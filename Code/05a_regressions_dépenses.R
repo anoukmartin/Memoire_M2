@@ -66,6 +66,7 @@ var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants du ménage"
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
 
 data$n_FractionClasse <- relevel(data$n_FractionClasse,  "Classes moyennes superieures [C3]")
+var_label(data$n_FractionClasse) <- "Fraction de classe"
 
 # mutate(n_FractionClasse = n_FractionClasse %>% relevel("Classes moyennes salariées [C8]"))
 
@@ -137,6 +138,115 @@ saveTableau(tableau = tblreg,
             champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
             n = nrow(data), 
             ponderation = T)
+
+
+# régression sur les services domestiques ######################################
+
+
+
+depmen <- readRDS("Data_output/DepMenages.Rds") %>%
+  select(IDENT_MEN, starts_with("DEPPER")) %>%
+  select(IDENT_MEN, ends_with("_D"))
+depmen[is.na(depmen)] <- 0
+
+data <- data %>%
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13))
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+
+look_for(depmen)
+var_label(depmen) <- var_label(depmen) %>%
+  str_remove("Montant définitif total à la charge du ménage pour ") %>%
+  str_to_sentence()
+data <- data %>%
+  left_join(depmen, by = "IDENT_MEN")
+
+data$DEPPER2_D
+data$n_NEnfantsMenage13
+data$n_TYPMEN_sexe
+data$NIVIESquare <- data$NIVIE*data$NIVIE
+var_label(data$NIVIESquare) <- "Niveau de vie mensuel au carré (en centaine d'euros)"
+data$n_AgeEnfantsMenageSquare <- data$n_AgeEnfantsMenage*data$n_AgeEnfantsMenage
+data$DEPPER2_D <- data$DEPPER2_D/data$n_NEnfantsMenage13
+
+tab <- data %>%
+  group_by(n_TYPMEN_sexe) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(DEPPER2_D, weights = PONDMEN))
+
+tab
+
+# Regresion Garde d'enfants
+reg <- survreg(Surv(DEPPER2_D+1, DEPPER2_D+1>1, type='left') ~ NIVIE + n_NFraterie + n_AgeEnfantsMenage + n_FractionClasse + n_TYPMEN_sexe,
+               data=data, 
+               weights = data$PONDMEN, 
+               #subset = !is.na(Vetements_enfants),
+               dist='gaussian')
+
+
+tblreg <- tbl_regression(reg, intercept = T, exponentiate = F) |>
+  add_glance_source_note() 
+
+tblreg
+
+#ggcoef_model(reg)
+
+# On enregistre 
+saveTableau(tableau = tblreg, 
+            typ = "reg", 
+            label = "DepGardeEnfants", 
+            description = "Regressions sur les dépenses de garde enfants", 
+            champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
+            n = nrow(data), 
+            ponderation = T)
+
+
+############TRASH ####################
+
+
+enfants <- readRDS("Data_output/enfantsDuMenage.Rds")
+depind <- readRDS("Data_output/DepIndiv.Rds")
+
+tab <- look_for(depind) %>%
+  filter(str_detect(label, "Montant")) %>% 
+  filter(!str_detect(label, "tranche")) %>% 
+  filter(!str_detect(label, "hors domicile")) %>%
+  mutate(definitif = if_else(str_detect(variable, "_D"), T, F), 
+         var = str_remove(variable, "_D"))  %>%
+  arrange(-definitif)
+tab$dup <- duplicated(tab$var)
+tab <- tab %>% filter(!dup) %>%
+  mutate(period = case_when(
+    str_detect(label, "mensuel") ~ "mensuel", 
+    str_detect(label, "annuel") ~ "annuel", 
+    str_detect(label, "habituel") ~ "habituel",
+    str_detect(label, "12 mois") ~ "annuel", 
+    str_detect(label, "12 derniers mois") ~ "annuel", 
+    str_detect(label, "6 mois") ~ "biannuel", 
+    str_detect(label, "6 derniers mois") ~ "biannuel", 
+    str_detect(label, "2 mois") ~ "2 mois", 
+    str_detect(label, "2 derniers mois") ~ "2 mois")) %>%
+  arrange(pos)
+freq(tab$period)
+depind <- depind %>% select(all_of(tab$variable))
+freq(tab$pos)
+
+indiv <- left_join(indiv %>% select(IDENT_MEN, NOI, ENFANT), 
+                   depind, 
+                   by = c("IDENT_MEN", "NOI"))
+
+
+
+
+tab <- data %>%
+  group_by(n_TYPMEN_new) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_enfants, weights = PONDMEN))
+
+tab
+
+
+
+
 
 
 

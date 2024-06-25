@@ -15,7 +15,8 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_REVENUS(Var = "n_REVENUS", "n_REVENUScut") %>%
   rec_PATRIMOINE(Var = "n_PATRIMOINE", "n_PATRIMOINEcut") %>%
   rec_NAIS7() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, starts_with("n_"))
+  rec_ETAMATRI() %>%
+  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, ETAMATRI, starts_with("n_"))
 
 freq(indiv$CS12)
 freq(indiv$DIP7)
@@ -25,6 +26,7 @@ freq(indiv$n_NEnfantsHD)
 freq(indiv$NAIS7)
 freq(indiv$ADULTE)
 freq(indiv$TYPEMPLOI)
+freq(indiv$ETAMATRI)
 
 femmes <- indiv %>% 
   filter(SEXE == "2") 

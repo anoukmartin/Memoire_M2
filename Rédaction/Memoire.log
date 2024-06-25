@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  18 JUN 2024 15:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.18)  25 JUN 2024 13:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -271,37 +271,9 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
 )
 \Gin@req@height=\dimen171
 \Gin@req@width=\dimen172
-) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/soul/soul.sty
-Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
-(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/soul/soul-ori.sty
-Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
-\SOUL@word=\toks29
-\SOUL@lasttoken=\toks30
-\SOUL@syllable=\toks31
-\SOUL@cmds=\toks32
-\SOUL@buffer=\toks33
-\SOUL@token=\toks34
-\SOUL@syllgoal=\dimen173
-\SOUL@syllwidth=\dimen174
-\SOUL@charkern=\dimen175
-\SOUL@hyphkern=\dimen176
-\SOUL@dimen=\dimen177
-\SOUL@dimeni=\dimen178
-\SOUL@minus=\count296
-\SOUL@comma=\count297
-\SOUL@apo=\count298
-\SOUL@grave=\count299
-\SOUL@spaceskip=\skip64
-\SOUL@ttwidth=\dimen179
-\SOUL@uldp=\dimen180
-\SOUL@ulht=\dimen181
-) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
-Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-))
-\cslhangindent=\skip65
-\csllabelwidth=\skip66
+)
+\cslhangindent=\skip64
+\csllabelwidth=\skip65
 (./thesisehess.sty
 Package: thesisehess 
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
@@ -316,12 +288,12 @@ File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2024/06/02 v24.6 The Babel package
-\babel@savecnt=\count300
-\U@D=\dimen182
+\babel@savecnt=\count296
+\U@D=\dimen173
 \l@unhyphenated=\language8
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count301
+\bbl@dirlevel=\count297
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
@@ -336,27 +308,27 @@ Package babel Info: Hyphen rules for 'acadian' set to \l@french
 (babel)             (\language7). Reported on input line 91.
 Package babel Info: Hyphen rules for 'canadien' set to \l@french
 (babel)             (\language7). Reported on input line 92.
-\FB@stdchar=\count302
+\FB@stdchar=\count298
 Package babel Info: Making : an active character on input line 422.
 Package babel Info: Making ; an active character on input line 423.
 Package babel Info: Making ! an active character on input line 424.
 Package babel Info: Making ? an active character on input line 425.
-\FBguill@level=\count303
-\FBold@everypar=\toks35
-\FB@Mht=\dimen183
-\mc@charclass=\count304
-\mc@charfam=\count305
-\mc@charslot=\count306
-\std@mcc=\count307
-\dec@mcc=\count308
-\FB@parskip=\dimen184
-\listindentFB=\dimen185
-\descindentFB=\dimen186
-\labelindentFB=\dimen187
-\labelwidthFB=\dimen188
-\leftmarginFB=\dimen189
-\parindentFFN=\dimen190
-\FBfnindent=\dimen191
+\FBguill@level=\count299
+\FBold@everypar=\toks29
+\FB@Mht=\dimen174
+\mc@charclass=\count300
+\mc@charfam=\count301
+\mc@charslot=\count302
+\std@mcc=\count303
+\dec@mcc=\count304
+\FB@parskip=\dimen175
+\listindentFB=\dimen176
+\descindentFB=\dimen177
+\labelindentFB=\dimen178
+\labelwidthFB=\dimen179
+\leftmarginFB=\dimen180
+\parindentFFN=\dimen181
+\FBfnindent=\dimen182
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex
 Package babel Info: Importing font and identification data for french
 (babel)             from babel-fr.ini. Reported on input line 11.
@@ -368,49 +340,49 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count309
-\Gm@cntv=\count310
-\c@Gm@tempcnt=\count311
-\Gm@bindingoffset=\dimen192
-\Gm@wd@mp=\dimen193
-\Gm@odd@mp=\dimen194
-\Gm@even@mp=\dimen195
-\Gm@layoutwidth=\dimen196
-\Gm@layoutheight=\dimen197
-\Gm@layouthoffset=\dimen198
-\Gm@layoutvoffset=\dimen199
-\Gm@dimlist=\toks36
+\Gm@cnth=\count305
+\Gm@cntv=\count306
+\c@Gm@tempcnt=\count307
+\Gm@bindingoffset=\dimen183
+\Gm@wd@mp=\dimen184
+\Gm@odd@mp=\dimen185
+\Gm@even@mp=\dimen186
+\Gm@layoutwidth=\dimen187
+\Gm@layoutheight=\dimen188
+\Gm@layouthoffset=\dimen189
+\Gm@layoutvoffset=\dimen190
+\Gm@dimlist=\toks30
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip67
-\thanksmargin=\skip68
-\droptitle=\skip69
+\thanksmarkwidth=\skip66
+\thanksmargin=\skip67
+\droptitle=\skip68
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box63
-\beforetitleunit=\skip70
-\aftertitleunit=\skip71
-\ttl@plus=\dimen256
-\ttl@minus=\dimen257
-\ttl@toksa=\toks37
-\titlewidth=\dimen258
-\titlewidthlast=\dimen259
-\titlewidthfirst=\dimen260
+\beforetitleunit=\skip69
+\aftertitleunit=\skip70
+\ttl@plus=\dimen191
+\ttl@minus=\dimen192
+\ttl@toksa=\toks31
+\titlewidth=\dimen193
+\titlewidthlast=\dimen194
+\titlewidthfirst=\dimen195
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
-\f@nch@headwidth=\skip72
-\f@nch@O@elh=\skip73
-\f@nch@O@erh=\skip74
-\f@nch@O@olh=\skip75
-\f@nch@O@orh=\skip76
-\f@nch@O@elf=\skip77
-\f@nch@O@erf=\skip78
-\f@nch@O@olf=\skip79
-\f@nch@O@orf=\skip80
+\f@nch@headwidth=\skip71
+\f@nch@O@elh=\skip72
+\f@nch@O@erh=\skip73
+\f@nch@O@olh=\skip74
+\f@nch@O@orh=\skip75
+\f@nch@O@elf=\skip76
+\f@nch@O@erf=\skip77
+\f@nch@O@olf=\skip78
+\f@nch@O@orf=\skip79
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks38
-\pgfutil@tempdima=\dimen261
-\pgfutil@tempdimb=\dimen262
+\pgfutil@everybye=\toks32
+\pgfutil@tempdima=\dimen196
+\pgfutil@tempdimb=\dimen197
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box64
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
@@ -420,31 +392,31 @@ Package: pgf 2023-01-15 v3.1.10 (3.1.10)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks39
-\pgfkeys@temptoks=\toks40
+\pgfkeys@pathtoks=\toks33
+\pgfkeys@temptoks=\toks34
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks41
+\pgfkeys@tmptoks=\toks35
 ))
-\pgf@x=\dimen263
-\pgf@y=\dimen264
-\pgf@xa=\dimen265
-\pgf@ya=\dimen266
-\pgf@xb=\dimen267
-\pgf@yb=\dimen268
-\pgf@xc=\dimen269
-\pgf@yc=\dimen270
-\pgf@xd=\dimen271
-\pgf@yd=\dimen272
+\pgf@x=\dimen198
+\pgf@y=\dimen199
+\pgf@xa=\dimen256
+\pgf@ya=\dimen257
+\pgf@xb=\dimen258
+\pgf@yb=\dimen259
+\pgf@xc=\dimen260
+\pgf@yc=\dimen261
+\pgf@xd=\dimen262
+\pgf@yd=\dimen263
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count312
-\c@pgf@countb=\count313
-\c@pgf@countc=\count314
-\c@pgf@countd=\count315
-\t@pgf@toka=\toks42
-\t@pgf@tokb=\toks43
-\t@pgf@tokc=\toks44
-\pgf@sys@id@count=\count316
+\c@pgf@counta=\count308
+\c@pgf@countb=\count309
+\c@pgf@countc=\count310
+\c@pgf@countd=\count311
+\t@pgf@toka=\toks36
+\t@pgf@tokb=\toks37
+\t@pgf@tokc=\toks38
+\pgf@sys@id@count=\count312
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -455,59 +427,59 @@ File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count317
-\pgfsyssoftpath@bigbuffer@items=\count318
+\pgfsyssoftpath@smallbuffer@items=\count313
+\pgfsyssoftpath@bigbuffer@items=\count314
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen273
-\pgfmath@count=\count319
+\pgfmath@dimen=\dimen264
+\pgfmath@count=\count315
 \pgfmath@box=\box65
-\pgfmath@toks=\toks45
-\pgfmath@stack@operand=\toks46
-\pgfmath@stack@operation=\toks47
+\pgfmath@toks=\toks39
+\pgfmath@stack@operand=\toks40
+\pgfmath@stack@operation=\toks41
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count320
+\c@pgfmathroundto@lastzeros=\count316
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen274
-\pgf@picmaxx=\dimen275
-\pgf@picminy=\dimen276
-\pgf@picmaxy=\dimen277
-\pgf@pathminx=\dimen278
-\pgf@pathmaxx=\dimen279
-\pgf@pathminy=\dimen280
-\pgf@pathmaxy=\dimen281
-\pgf@xx=\dimen282
-\pgf@xy=\dimen283
-\pgf@yx=\dimen284
-\pgf@yy=\dimen285
-\pgf@zx=\dimen286
-\pgf@zy=\dimen287
+\pgf@picminx=\dimen265
+\pgf@picmaxx=\dimen266
+\pgf@picminy=\dimen267
+\pgf@picmaxy=\dimen268
+\pgf@pathminx=\dimen269
+\pgf@pathmaxx=\dimen270
+\pgf@pathminy=\dimen271
+\pgf@pathmaxy=\dimen272
+\pgf@xx=\dimen273
+\pgf@xy=\dimen274
+\pgf@yx=\dimen275
+\pgf@yy=\dimen276
+\pgf@zx=\dimen277
+\pgf@zy=\dimen278
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen288
-\pgf@path@lasty=\dimen289
+\pgf@path@lastx=\dimen279
+\pgf@path@lasty=\dimen280
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen290
-\pgf@shorten@start@additional=\dimen291
+\pgf@shorten@end@additional=\dimen281
+\pgf@shorten@start@additional=\dimen282
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box66
 \pgf@hbox=\box67
 \pgf@layerbox@main=\box68
-\pgf@picture@serial@count=\count321
+\pgf@picture@serial@count=\count317
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen292
+\pgflinewidth=\dimen283
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen293
-\pgf@pt@y=\dimen294
-\pgf@pt@temp=\dimen295
+\pgf@pt@x=\dimen284
+\pgf@pt@y=\dimen285
+\pgf@pt@temp=\dimen286
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
@@ -516,12 +488,12 @@ File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen296
+\pgfarrowsep=\dimen287
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen297
-\pgf@sys@shading@range@num=\count322
-\pgf@shadingcount=\count323
+\pgf@max=\dimen288
+\pgf@sys@shading@range@num=\count318
+\pgf@shadingcount=\count319
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
@@ -542,46 +514,46 @@ File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen298
-\pgf@nodesepend=\dimen299
+\pgf@nodesepstart=\dimen289
+\pgf@nodesepend=\dimen290
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen300
-\pgffor@skip=\dimen301
-\pgffor@stack=\toks48
-\pgffor@toks=\toks49
+\pgffor@iter=\dimen291
+\pgffor@skip=\dimen292
+\pgffor@stack=\toks42
+\pgffor@toks=\toks43
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count324
-\pgfplotmarksize=\dimen302
+\pgf@plot@mark@count=\count320
+\pgfplotmarksize=\dimen293
 )
-\tikz@lastx=\dimen303
-\tikz@lasty=\dimen304
-\tikz@lastxsaved=\dimen305
-\tikz@lastysaved=\dimen306
-\tikz@lastmovetox=\dimen307
-\tikz@lastmovetoy=\dimen308
-\tikzleveldistance=\dimen309
-\tikzsiblingdistance=\dimen310
+\tikz@lastx=\dimen294
+\tikz@lasty=\dimen295
+\tikz@lastxsaved=\dimen296
+\tikz@lastysaved=\dimen297
+\tikz@lastmovetox=\dimen298
+\tikz@lastmovetoy=\dimen299
+\tikzleveldistance=\dimen300
+\tikzsiblingdistance=\dimen301
 \tikz@figbox=\box71
 \tikz@figbox@bg=\box72
 \tikz@tempbox=\box73
 \tikz@tempbox@bg=\box74
-\tikztreelevel=\count325
-\tikznumberofchildren=\count326
-\tikznumberofcurrentchild=\count327
-\tikz@fig@count=\count328
+\tikztreelevel=\count321
+\tikznumberofchildren=\count322
+\tikznumberofcurrentchild=\count323
+\tikz@fig@count=\count324
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count329
-\pgfmatrixcurrentcolumn=\count330
-\pgf@matrix@numberofcolumns=\count331
+\pgfmatrixcurrentrow=\count325
+\pgfmatrixcurrentcolumn=\count326
+\pgf@matrix@numberofcolumns=\count327
 )
-\tikz@expandcount=\count332
+\tikz@expandcount=\count328
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
@@ -590,19 +562,19 @@ File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen311
-\captionmargin=\dimen312
-\caption@leftmargin=\dimen313
-\caption@rightmargin=\dimen314
-\caption@width=\dimen315
-\caption@indent=\dimen316
-\caption@parindent=\dimen317
-\caption@hangindent=\dimen318
+\caption@tempdima=\dimen302
+\captionmargin=\dimen303
+\caption@leftmargin=\dimen304
+\caption@rightmargin=\dimen305
+\caption@width=\dimen306
+\caption@indent=\dimen307
+\caption@parindent=\dimen308
+\caption@hangindent=\dimen309
 Package caption Info: Standard document class detected.
 Package caption Info: french babel package is loaded.
 )
-\c@caption@flags=\count333
-\c@continuedfloat=\count334
+\c@caption@flags=\count329
+\c@continuedfloat=\count330
 Package caption Info: longtable package is loaded.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
@@ -610,38 +582,38 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 Package: expl3 2024-05-27 L3 programming layer (loader) 
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count335
+\l__color_backend_stack_int=\count331
 \l__pdf_internal_box=\box75
 ))
 Package: l3keys2e 2024-05-08 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count336
-\l__lipsum_a_int=\count337
-\l__lipsum_b_int=\count338
+\g__lipsum_par_int=\count332
+\l__lipsum_a_int=\count333
+\l__lipsum_b_int=\count334
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\c@blindtext=\count339
-\c@Blindtext=\count340
-\c@blind@countparstart=\count341
-\blind@countxx=\count342
-\blindtext@numBlindtext=\count343
-\blind@countyy=\count344
-\c@blindlist=\count345
-\c@blindlistlevel=\count346
-\c@blindlist@level=\count347
-\blind@listitem=\count348
-\c@blind@listcount=\count349
-\c@blind@levelcount=\count350
-\blind@mathformula=\count351
-\blind@Mathformula=\count352
-\c@blind@randomcount=\count353
-\c@blind@randommax=\count354
-\c@blind@pangramcount=\count355
-\c@blind@pangrammax=\count356
+\c@blindtext=\count335
+\c@Blindtext=\count336
+\c@blind@countparstart=\count337
+\blind@countxx=\count338
+\blindtext@numBlindtext=\count339
+\blind@countyy=\count340
+\c@blindlist=\count341
+\c@blindlistlevel=\count342
+\c@blindlist@level=\count343
+\blind@listitem=\count344
+\c@blind@listcount=\count345
+\c@blind@levelcount=\count346
+\blind@mathformula=\count347
+\blind@Mathformula=\count348
+\c@blind@randomcount=\count349
+\c@blind@randommax=\count350
+\c@blind@pangramcount=\count351
+\c@blind@pangrammax=\count352
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-05-23 v7.01i Hypertext links for LaTeX
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -650,6 +622,9 @@ Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(/home/onyxia/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
@@ -662,13 +637,13 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count357
+\c@section@level=\count353
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen319
-\Hy@linkcounter=\count358
-\Hy@pagecounter=\count359
+\@linkdim=\dimen310
+\Hy@linkcounter=\count354
+\Hy@pagecounter=\count355
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-05-23 v7.01i Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -676,7 +651,7 @@ Now handling font encoding PD1 ...
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count360
+\Hy@SavedSpaceFactor=\count356
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-05-23 v7.01i Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -690,21 +665,21 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count361
+\c@Hy@tempcnt=\count357
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen320
+\XeTeXLinkMargin=\dimen311
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count362
-\Field@Width=\dimen321
-\Fld@charsize=\dimen322
+\Fld@menulength=\count358
+\Field@Width=\dimen312
+\Fld@charsize=\dimen313
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -716,9 +691,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count363
-\c@Item=\count364
-\c@Hfootnote=\count365
+\Hy@abspage=\count359
+\c@Item=\count360
+\c@Hfootnote=\count361
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -727,8 +702,8 @@ File: hpdftex.def 2024-05-23 v7.01i Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count366
-\c@bookmark@seq@number=\count367
+\Fld@listcount=\count362
+\c@bookmark@seq@number=\count363
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -736,7 +711,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip81
+\Hy@SectionHShift=\skip80
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/svg/svg.sty
 Package: svg 2020/11/26 v2.02k (include SVG pictures)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
@@ -756,9 +731,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 77.
 )
-\c@svg@param@lastpage=\count368
+\c@svg@param@lastpage=\count364
 \svg@box=\box76
-\c@svg@param@currpage=\count369
+\c@svg@param@currpage=\count365
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/transparent/transparent.sty
 Package: transparent 2022-10-27 v1.5 Transparency with color stacks
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
@@ -767,10 +742,10 @@ Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color 
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ))) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count370
-\float@exts=\toks50
+\c@float@type=\count366
+\float@exts=\toks44
 \float@box=\box77
-\@float@everytoks=\toks51
+\@float@everytoks=\toks45
 \@floatcapt=\box78
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
 Package: threeparttablex 2013/07/23 v0.3 by daleif
@@ -780,66 +755,66 @@ Package: threeparttable 2003/06/13  v 3.0
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
 )
-\TPTL@width=\skip82
+\TPTL@width=\skip81
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks52
-\verbatim@line=\toks53
+\every@verbatim=\toks46
+\verbatim@line=\toks47
 \verbatim@in@stream=\read4
 )
 \tcb@titlebox=\box80
 \tcb@upperbox=\box81
 \tcb@lowerbox=\box82
 \tcb@phantombox=\box83
-\c@tcbbreakpart=\count371
-\c@tcblayer=\count372
-\c@tcolorbox@number=\count373
+\c@tcbbreakpart=\count367
+\c@tcblayer=\count368
+\c@tcolorbox@number=\count369
 \l__tcobox_tmpa_box=\box84
-\l__tcobox_tmpa_dim=\dimen323
+\l__tcobox_tmpa_dim=\dimen314
 \tcb@temp=\box85
 \tcb@temp=\box86
 \tcb@temp=\box87
 \tcb@temp=\box88
 )
-\c@tcb@cnt@encadre=\count374
-\vspaceamount=\skip83
+\c@tcb@cnt@encadre=\count370
+\vspaceamount=\skip82
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
-\c@KVtest=\count375
-\sf@farskip=\skip84
-\sf@captopadj=\dimen324
-\sf@capskip=\skip85
-\sf@nearskip=\skip86
-\c@subfigure=\count376
-\c@subfigure@save=\count377
-\c@lofdepth=\count378
-\c@subtable=\count379
-\c@subtable@save=\count380
-\c@lotdepth=\count381
-\sf@top=\skip87
-\sf@bottom=\skip88
+\c@KVtest=\count371
+\sf@farskip=\skip83
+\sf@captopadj=\dimen315
+\sf@capskip=\skip84
+\sf@nearskip=\skip85
+\c@subfigure=\count372
+\c@subfigure@save=\count373
+\c@lofdepth=\count374
+\c@subtable=\count375
+\c@subtable@save=\count376
+\c@lotdepth=\count377
+\sf@top=\skip86
+\sf@bottom=\skip87
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip89
-\multirow@cntb=\count382
-\multirow@dima=\skip90
-\bigstrutjot=\dimen325
+\multirow@colwidth=\skip88
+\multirow@cntb=\count378
+\multirow@dima=\skip89
+\bigstrutjot=\dimen316
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen326
-\WF@size=\dimen327
-\c@WF@wrappedlines=\count383
+\wrapoverhang=\dimen317
+\WF@size=\dimen318
+\c@WF@wrappedlines=\count379
 \WF@box=\box89
-\WF@everypar=\toks54
+\WF@everypar=\toks48
 Package: wrapfig 2003/01/31  v 3.6
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/05/26 v1.0h Color table columns (DPC)
-\everycr=\toks55
-\minrowclearance=\skip91
-\rownum=\count384
+\everycr=\toks49
+\minrowclearance=\skip90
+\rownum=\count380
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
@@ -853,56 +828,59 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box90
-\sift@deathcycles=\count385
-\@vwid@loff=\dimen328
-\@vwid@roff=\dimen329
+\sift@deathcycles=\count381
+\@vwid@loff=\dimen319
+\@vwid@roff=\dimen320
 )
-\c@taburow=\count386
-\tabu@nbcols=\count387
-\tabu@cnt=\count388
-\tabu@Xcol=\count389
-\tabu@alloc=\count390
-\tabu@nested=\count391
-\tabu@target=\dimen330
-\tabu@spreadtarget=\dimen331
-\tabu@naturalX=\dimen332
-\tabucolX=\dimen333
-\tabu@Xsum=\dimen334
-\extrarowdepth=\dimen335
-\abovetabulinesep=\dimen336
-\belowtabulinesep=\dimen337
-\tabustrutrule=\dimen338
-\tabu@thebody=\toks56
-\tabu@footnotes=\toks57
+\c@taburow=\count382
+\tabu@nbcols=\count383
+\tabu@cnt=\count384
+\tabu@Xcol=\count385
+\tabu@alloc=\count386
+\tabu@nested=\count387
+\tabu@target=\dimen321
+\tabu@spreadtarget=\dimen322
+\tabu@naturalX=\dimen323
+\tabucolX=\dimen324
+\tabu@Xsum=\dimen325
+\extrarowdepth=\dimen326
+\abovetabulinesep=\dimen327
+\belowtabulinesep=\dimen328
+\tabustrutrule=\dimen329
+\tabu@thebody=\toks50
+\tabu@footnotes=\toks51
 \tabu@box=\box91
 \tabu@arstrutbox=\box92
 \tabu@hleads=\box93
 \tabu@vleads=\box94
-\tabu@cellskip=\skip92
+\tabu@cellskip=\skip91
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box95
 \UL@hyphenbox=\box96
-\UL@skip=\skip93
-\UL@hook=\toks58
-\UL@height=\dimen339
-\UL@pe=\count392
-\UL@pixel=\dimen340
+\UL@skip=\skip92
+\UL@hook=\toks52
+\UL@height=\dimen330
+\UL@pe=\count388
+\UL@pixel=\dimen331
 \ULC@box=\box97
 Package: ulem 2019/11/18
-\ULdepth=\dimen341
+\ULdepth=\dimen332
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen342
-\c@nlinenum=\count393
-\TeXr@lab=\toks59
+\rotheadsize=\dimen333
+\c@nlinenum=\count389
+\TeXr@lab=\toks53
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
-\BKM@id=\count394
+\BKM@id=\count390
 )) (./Memoire.aux
 
 LaTeX Warning: Label `ref-lesenqu' multiply defined.
+
+
+LaTeX Warning: Label `ref-aglietta1976' multiply defined.
 
 
 LaTeX Warning: Label `ref-algava2020' multiply defined.
@@ -926,6 +904,9 @@ LaTeX Warning: Label `ref-bessiuxe8re2020' multiply defined.
 LaTeX Warning: Label `ref-bonvalet2003' multiply defined.
 
 
+LaTeX Warning: Label `ref-boulet2020' multiply defined.
+
+
 LaTeX Warning: Label `ref-bourdieu1980' multiply defined.
 
 
@@ -936,6 +917,9 @@ LaTeX Warning: Label `ref-bourdieu2011' multiply defined.
 
 
 LaTeX Warning: Label `ref-bourguignon2022' multiply defined.
+
+
+LaTeX Warning: Label `ref-braudel1983' multiply defined.
 
 
 LaTeX Warning: Label `ref-brun1996' multiply defined.
@@ -954,6 +938,9 @@ LaTeX Warning: Label `ref-cayouette-rembliuxe8re2019' multiply defined.
 
 
 LaTeX Warning: Label `ref-chiche2010' multiply defined.
+
+
+LaTeX Warning: Label `ref-cluxe9ment2005' multiply defined.
 
 
 LaTeX Warning: Label `ref-damon2012' multiply defined.
@@ -998,6 +985,9 @@ LaTeX Warning: Label `ref-donnat2018' multiply defined.
 LaTeX Warning: Label `ref-donni2011' multiply defined.
 
 
+LaTeX Warning: Label `ref-dorlin2009' multiply defined.
+
+
 LaTeX Warning: Label `ref-durkheim1975' multiply defined.
 
 
@@ -1010,7 +1000,19 @@ LaTeX Warning: Label `ref-esping-andersen2007' multiply defined.
 LaTeX Warning: Label `ref-federici2014' multiply defined.
 
 
+LaTeX Warning: Label `ref-federici2019' multiply defined.
+
+
+LaTeX Warning: Label `ref-flandrin1984' multiply defined.
+
+
 LaTeX Warning: Label `ref-fortunati2022' multiply defined.
+
+
+LaTeX Warning: Label `ref-foucault2004' multiply defined.
+
+
+LaTeX Warning: Label `ref-fraser2013' multiply defined.
 
 
 LaTeX Warning: Label `ref-fruxe9meaux2013' multiply defined.
@@ -1019,10 +1021,28 @@ LaTeX Warning: Label `ref-fruxe9meaux2013' multiply defined.
 LaTeX Warning: Label `ref-gollac2011' multiply defined.
 
 
+LaTeX Warning: Label `ref-guillaumin1992' multiply defined.
+
+
+LaTeX Warning: Label `ref-haicault1984' multiply defined.
+
+
 LaTeX Warning: Label `ref-halbwachs' multiply defined.
 
 
+LaTeX Warning: Label `ref-henri-panabiuxe8re2010' multiply defined.
+
+
 LaTeX Warning: Label `ref-herpin2008' multiply defined.
+
+
+LaTeX Warning: Label `ref-hochschild2017' multiply defined.
+
+
+LaTeX Warning: Label `ref-hochschild2012' multiply defined.
+
+
+LaTeX Warning: Label `ref-hooks1984' multiply defined.
 
 
 LaTeX Warning: Label `ref-jannot2021' multiply defined.
@@ -1031,7 +1051,16 @@ LaTeX Warning: Label `ref-jannot2021' multiply defined.
 LaTeX Warning: Label `ref-jenson1986' multiply defined.
 
 
+LaTeX Warning: Label `ref-kergoat1978' multiply defined.
+
+
+LaTeX Warning: Label `ref-lahire2016' multiply defined.
+
+
 LaTeX Warning: Label `ref-lambert2005' multiply defined.
+
+
+LaTeX Warning: Label `ref-langevin2016' multiply defined.
 
 
 LaTeX Warning: Label `ref-lapinte2013' multiply defined.
@@ -1070,13 +1099,31 @@ LaTeX Warning: Label `ref-martin-papineau2003' multiply defined.
 LaTeX Warning: Label `ref-maruani2012' multiply defined.
 
 
+LaTeX Warning: Label `ref-marx1867' multiply defined.
+
+
+LaTeX Warning: Label `ref-mies2022' multiply defined.
+
+
 LaTeX Warning: Label `ref-parsons1968' multiply defined.
+
+
+LaTeX Warning: Label `ref-perrot1998' multiply defined.
 
 
 LaTeX Warning: Label `ref-phipps1998' multiply defined.
 
 
 LaTeX Warning: Label `ref-piketty2013' multiply defined.
+
+
+LaTeX Warning: Label `ref-polanyi1944' multiply defined.
+
+
+LaTeX Warning: Label `ref-pulantzas1978' multiply defined.
+
+
+LaTeX Warning: Label `ref-rosanvallon1992' multiply defined.
 
 
 LaTeX Warning: Label `ref-roux2010' multiply defined.
@@ -1091,10 +1138,16 @@ LaTeX Warning: Label `ref-roy2006' multiply defined.
 LaTeX Warning: Label `ref-saint-pol2004' multiply defined.
 
 
+LaTeX Warning: Label `ref-scott1988' multiply defined.
+
+
 LaTeX Warning: Label `ref-segalen2013' multiply defined.
 
 
 LaTeX Warning: Label `ref-singly1996' multiply defined.
+
+
+LaTeX Warning: Label `ref-singly2000' multiply defined.
 
 
 LaTeX Warning: Label `ref-singly2017' multiply defined.
@@ -1121,6 +1174,12 @@ LaTeX Warning: Label `ref-tilly1987' multiply defined.
 LaTeX Warning: Label `ref-toulemon2011' multiply defined.
 
 
+LaTeX Warning: Label `ref-verguxe8s2021' multiply defined.
+
+
+LaTeX Warning: Label `ref-vuxe9ron2007' multiply defined.
+
+
 LaTeX Warning: Label `ref-weber2002' multiply defined.
 
 
@@ -1135,39 +1194,39 @@ LaTeX Warning: Label `ref-weber1995' multiply defined.
 )
 \openout1 = `Memoire.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
-LaTeX Font Info:    ... okay on input line 152.
-LaTeX Info: Redefining \microtypecontext on input line 152.
-Package microtype Info: Applying patch `item' on input line 152.
-Package microtype Info: Applying patch `toc' on input line 152.
-Package microtype Info: Applying patch `eqnum' on input line 152.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Info: Redefining \microtypecontext on input line 146.
+Package microtype Info: Applying patch `item' on input line 146.
+Package microtype Info: Applying patch `toc' on input line 146.
+Package microtype Info: Applying patch `eqnum' on input line 146.
 
-Package microtype Warning: Unable to apply patch `footnote' on input line 152.
+Package microtype Warning: Unable to apply patch `footnote' on input line 146.
 
-Package microtype Info: Applying patch `verbatim' on input line 152.
+Package microtype Info: Applying patch `verbatim' on input line 146.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 152.
+LaTeX Info: Redefining \showhyphens on input line 146.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1179,8 +1238,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \degres on input line 152.
-LaTeX Info: Redefining \up on input line 152.
+LaTeX Info: Redefining \degres on input line 146.
+LaTeX Info: Redefining \up on input line 146.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1222,46 +1281,46 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 152.
+Package hyperref Info: Link coloring OFF on input line 146.
 <ehess.png, id=7, 1927.2pt x 2077.7625pt>
 File: ehess.png Graphic file (type png)
 <use ehess.png>
-Package pdftex.def Info: ehess.png  used on input line 156.
+Package pdftex.def Info: ehess.png  used on input line 150.
 (pdftex.def)             Requested size: 52.75555pt x 56.87708pt.
 <ens.png, id=9, 674.52pt x 255.95625pt>
 File: ens.png Graphic file (type png)
 <use ens.png>
-Package pdftex.def Info: ens.png  used on input line 156.
+Package pdftex.def Info: ens.png  used on input line 150.
 (pdftex.def)             Requested size: 149.95929pt x 56.90419pt.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 156.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 150.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 156.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 150.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 156.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 150.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 156.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 150.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 156.
+(Font)              <12> on input line 150.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 156.
+(Font)              <8> on input line 150.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 156.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 156.
+(Font)              <6> on input line 150.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 150.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 156.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 150.
 (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/home/onyxia/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1292,7 +1351,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ] (./Memoire.toc
 
 [7]
-Underfull \vbox (badness 1490) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -1335,116 +1394,40 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [21]
-Underfull \vbox (badness 2088) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [22]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 712.
-(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [23]
 
-[24{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-
-LaTeX Warning: Hyper reference `_ftn4' on page 25 undefined on input line 762.
-
-
-LaTeX Warning: Hyper reference `_ftn7' on page 25 undefined on input line 771.
-
-
-LaTeX Warning: Hyper reference `_ftn8' on page 25 undefined on input line 774.
-
-
-LaTeX Warning: Hyper reference `_ftn9' on page 25 undefined on input line 782.
-
-
-LaTeX Warning: Hyper reference `_ftn10' on page 25 undefined on input line 788.
-
-
+[24]
 
 [25]
 
-LaTeX Warning: Hyper reference `_ftnref1' on page 26 undefined on input line 790.
-
-
-LaTeX Warning: Hyper reference `_ftnref2' on page 26 undefined on input line 793.
-
-
-LaTeX Warning: Hyper reference `_ftnref3' on page 26 undefined on input line 798.
-
-
-LaTeX Warning: Hyper reference `_ftnref4' on page 26 undefined on input line 803.
-
-
-LaTeX Warning: Hyper reference `_ftnref5' on page 26 undefined on input line 808.
-
-
-LaTeX Warning: Hyper reference `_ftnref6' on page 26 undefined on input line 812.
-
-
-LaTeX Warning: Hyper reference `_ftnref7' on page 26 undefined on input line 817.
-
-
-
 [26]
-
-LaTeX Warning: Hyper reference `_ftnref8' on page 27 undefined on input line 821.
-
-
-LaTeX Warning: Hyper reference `_ftnref9' on page 27 undefined on input line 824.
-
-
-LaTeX Warning: Hyper reference `_ftnref10' on page 27 undefined on input line 828.
-
-
 
 [27]
 
-[28]
-Overfull \hbox (0.22923pt too wide) in alignment at lines 927--936
- [] 
- []
+[28
 
-
-Overfull \hbox (0.22923pt too wide) in alignment at lines 936--938
- [] 
- []
-
-
-Overfull \hbox (7558.06636pt too wide) in paragraph at lines 939--959
-\T1/lmr/m/n/12 (-20) ==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+ 
- []
-
-
-Overfull \hbox (0.22923pt too wide) in alignment at lines 938--975
- [] 
- []
-
-
-
-[29]
-
-[30]
-Underfull \hbox (badness 1292) in paragraph at lines 981--981
+]
+Underfull \hbox (badness 1292) in paragraph at lines 872--872
 |\T1/lmr/bx/n/24.88 (+20) Chapitre 1. Sai-sir les re-mises en
  []
 
 
 
-[31
-
-]
+[29]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 1034.
+(Font)              <5> on input line 925.
 
 
 
@@ -1454,7 +1437,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[32]
+[30]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1467,7 +1450,34 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
+[31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[32]
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
 [33]
+<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=379, 505.89pt x 252.945pt>
+File: Memoire_files/figure-latex/mosaic-enfants-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/mosaic-enfants-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-enfants-1.pdf  used on input line 1175.
+(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1488,38 +1498,11 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[35]
-<Memoire_files/figure-latex/mosaic-enfants-1.pdf, id=390, 505.89pt x 252.945pt>
-File: Memoire_files/figure-latex/mosaic-enfants-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/mosaic-enfants-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/mosaic-enfants-1.pdf  used on input line 1284.
-(pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[36]
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.85004pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.85004pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
-
-[37 <./Memoire_files/figure-latex/mosaic-enfants-1.pdf>]
-<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=413, 505.89pt x 252.945pt>
+[35 <./Memoire_files/figure-latex/mosaic-enfants-1.pdf>]
+<Memoire_files/figure-latex/mosaic-adultes-1.pdf, id=401, 505.89pt x 252.945pt>
 File: Memoire_files/figure-latex/mosaic-adultes-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/mosaic-adultes-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/mosaic-adultes-1.pdf  used on input line 1331.
+Package pdftex.def Info: Memoire_files/figure-latex/mosaic-adultes-1.pdf  used on input line 1222.
 (pdftex.def)             Requested size: 455.25046pt x 227.62523pt.
 
 
@@ -1530,28 +1513,28 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[38 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>]
-Overfull \hbox (5.16064pt too wide) in paragraph at lines 1383--1383
+[36 <./Memoire_files/figure-latex/mosaic-adultes-1.pdf>]
+Overfull \hbox (5.16064pt too wide) in paragraph at lines 1274--1274
 []|\T1/lmr/bx/n/12 (-20) n_AgeEnfantsCoupleHD|  
  []
 
 
-Overfull \hbox (9.54843pt too wide) in paragraph at lines 1386--1386
+Overfull \hbox (9.54843pt too wide) in paragraph at lines 1277--1277
 []|\T1/lmr/bx/n/12 (-20) n_NEnfantsUnionAntHD|  
  []
 
 
-Overfull \hbox (21.84647pt too wide) in paragraph at lines 1392--1392
+Overfull \hbox (21.84647pt too wide) in paragraph at lines 1283--1283
 []|\T1/lmr/bx/n/12 (-20) n_AgeEnfantsUnionAntHD|  
  []
 
 
-Overfull \hbox (9.54843pt too wide) in paragraph at lines 1431--1431
+Overfull \hbox (9.54843pt too wide) in paragraph at lines 1322--1322
 []|\T1/lmr/bx/n/12 (-20) n_NEnfantsUnionAntHD|  
  []
 
 
-Overfull \hbox (21.84647pt too wide) in paragraph at lines 1437--1437
+Overfull \hbox (21.84647pt too wide) in paragraph at lines 1328--1328
 []|\T1/lmr/bx/n/12 (-20) n_AgeEnfantsUnionAntHD|  
  []
 
@@ -1564,7 +1547,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[39]
+[37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1576,14 +1559,14 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[40]
-<Memoire_files/figure-latex/histosexeadultes-1.pdf, id=442, 505.89pt x 303.1325pt>
+[38]
+<Memoire_files/figure-latex/histosexeadultes-1.pdf, id=431, 505.89pt x 303.1325pt>
 File: Memoire_files/figure-latex/histosexeadultes-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/histosexeadultes-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/histosexeadultes-1.pdf  used on input line 1470.
+Package pdftex.def Info: Memoire_files/figure-latex/histosexeadultes-1.pdf  used on input line 1361.
 (pdftex.def)             Requested size: 318.67378pt x 190.95135pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 1562.
+(Font)              <7> on input line 1434.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1596,8 +1579,32 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[41 <./Memoire_files/figure-latex/histosexeadultes-1.pdf>]
-Underfull \vbox (badness 5667) has occurred while \output is active []
+[39 <./Memoire_files/figure-latex/histosexeadultes-1.pdf>]
+Underfull \vbox (badness 3907) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[40]
+Underfull \vbox (badness 2088) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.85004pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.85004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
+
+[41]
+Underfull \vbox (badness 1087) has occurred while \output is active []
 
 
 
@@ -1631,18 +1638,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 
 [44]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Memoire_files/figure-latex/heatmapdiplome-1.pdf, id=473, 650.43pt x 389.455pt>
-File: Memoire_files/figure-latex/heatmapdiplome-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/heatmapdiplome-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/heatmapdiplome-1.pdf  used on input line 1791.
-(pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
 (fancyhdr)                Make it at least 27.85004pt, for example:
@@ -1651,8 +1646,11 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [45]
-Overfull \vbox (133.47244pt too high) has occurred while \output is active []
-
+<Memoire_files/figure-latex/heatmapdiplome-1.pdf, id=478, 650.43pt x 389.455pt>
+File: Memoire_files/figure-latex/heatmapdiplome-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/heatmapdiplome-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/heatmapdiplome-1.pdf  used on input line 1745.
+(pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
 
 
 
@@ -1663,10 +1661,10 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [46 <./Memoire_files/figure-latex/heatmapdiplome-1.pdf>]
-<Memoire_files/figure-latex/heatmapCSP-1.pdf, id=493, 650.43pt x 389.455pt>
+<Memoire_files/figure-latex/heatmapCSP-1.pdf, id=492, 650.43pt x 389.455pt>
 File: Memoire_files/figure-latex/heatmapCSP-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/heatmapCSP-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/heatmapCSP-1.pdf  used on input line 1816.
+Package pdftex.def Info: Memoire_files/figure-latex/heatmapCSP-1.pdf  used on input line 1770.
 (pdftex.def)             Requested size: 455.2582pt x 272.59286pt.
 
 
@@ -1678,9 +1676,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [47 <./Memoire_files/figure-latex/heatmapCSP-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1690,7 +1685,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [48]
-Underfull \vbox (badness 6016) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -1702,6 +1697,9 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [49]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1711,9 +1709,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [50]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1723,6 +1718,9 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [51]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1732,9 +1730,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [52]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1765,7 +1760,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
 [55]
-Overfull \hbox (125.23315pt too wide) in paragraph at lines 2219--2243
+Overfull \hbox (125.23315pt too wide) in paragraph at lines 2180--2204
  [] 
  []
 
@@ -1799,11 +1794,15 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-13.23146pt}.
 
-[58
+[58]
+
+[59
 
 ]
-
-[59]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2358.
+(/home/onyxia/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -1821,7 +1820,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
-[61]
+[61{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
 Underfull \vbox (badness 3291) has occurred while \output is active []
 
 
@@ -1834,127 +1833,127 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [62]
-Overfull \hbox (1.51866pt too wide) in paragraph at lines 2477--2477
+Overfull \hbox (1.51866pt too wide) in paragraph at lines 2515--2515
  []|\T1/lmr/m/n/7 (-20) Recomp- 
  []
 
 
-Overfull \hbox (2.29825pt too wide) in paragraph at lines 2477--2477
+Overfull \hbox (2.29825pt too wide) in paragraph at lines 2515--2515
  []|\T1/lmr/m/n/7 (-20) Personne 
  []
 
 
-Overfull \hbox (3.61526pt too wide) in paragraph at lines 2477--2478
+Overfull \hbox (3.61526pt too wide) in paragraph at lines 2515--2516
  \T1/lmr/m/n/7 (-20) valeur| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2481--2482
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2519--2520
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2482--2483
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2520--2521
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2483--2484
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2521--2522
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2484--2485
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2522--2523
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2485--2486
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2523--2524
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2486--2487
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2524--2525
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2487--2488
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2525--2526
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2488--2489
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2526--2527
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2489--2490
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2527--2528
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2490--2491
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2528--2529
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2491--2492
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2529--2530
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2492--2493
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2530--2531
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2493--2494
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2531--2532
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (6.89697pt too wide) in paragraph at lines 2494--2495
+Overfull \hbox (6.89697pt too wide) in paragraph at lines 2532--2533
  []|\T1/lmr/m/n/7 (-20) <0,001| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (1.10985pt too wide) in paragraph at lines 2495--2495
+Overfull \hbox (1.10985pt too wide) in paragraph at lines 2533--2533
  []|\T1/lmr/m/n/7 (-20) 100,0000| 
  []
 
 
-Overfull \hbox (12.15903pt too wide) in paragraph at lines 2473--2508
+Overfull \hbox (12.15903pt too wide) in paragraph at lines 2511--2546
  [] 
  []
 
@@ -1992,7 +1991,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [65]
-Overfull \hbox (29.52344pt too wide) in paragraph at lines 2661--2662
+Overfull \hbox (29.52344pt too wide) in paragraph at lines 2699--2700
  [][] 
  []
 
@@ -2006,8 +2005,49 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [66]
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
+
+[67]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 2711.
+(Font)              <10> on input line 2770.
+
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
+
+[68{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+Overfull \hbox (2.91048pt too wide) in paragraph at lines 2834--2867
+ [] 
+ []
+
+
+Underfull \vbox (badness 2103) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (14.61858pt): 
+(fancyhdr)                Make it at least 27.11652pt, for example:
+(fancyhdr)                \setlength{\headheight}{27.11652pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
+
+[69]
+<Memoire_files/figure-latex/ggcoef-1.pdf, id=625, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/ggcoef-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/ggcoef-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/ggcoef-1.pdf  used on input line 2909.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2020,19 +2060,8 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
-[67]
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.11652pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.11652pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
-
-[68{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/onyxia/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-Overfull \hbox (2.91048pt too wide) in paragraph at lines 2775--2808
- [] 
- []
+[70]
+Underfull \vbox (badness 2478) has occurred while \output is active []
 
 
 
@@ -2043,37 +2072,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
-[69]
-<Memoire_files/figure-latex/ggcoef-1.pdf, id=624, 505.89pt x 404.51125pt>
-File: Memoire_files/figure-latex/ggcoef-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/ggcoef-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/ggcoef-1.pdf  used on input line 2850.
-(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
-
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.11652pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.11652pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
-
-[70 <./Memoire_files/figure-latex/ggcoef-1.pdf>]
-
-
-Package fancyhdr Warning: \headheight is too small (14.61858pt): 
-(fancyhdr)                Make it at least 27.11652pt, for example:
-(fancyhdr)                \setlength{\headheight}{27.11652pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
-
-[71]
-<Memoire_files/figure-latex/regFamRecompConso-1.pdf, id=639, 505.89pt x 404.51125pt>
-File: Memoire_files/figure-latex/regFamRecompConso-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/regFamRecompConso-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/regFamRecompConso-1.pdf  used on input line 2930.
-(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
-
+[71 <./Memoire_files/figure-latex/ggcoef-1.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2086,8 +2085,11 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [72]
-Underfull \vbox (badness 1515) has occurred while \output is active []
-
+<Memoire_files/figure-latex/regFamRecompConso-1.pdf, id=644, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/regFamRecompConso-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/regFamRecompConso-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/regFamRecompConso-1.pdf  used on input line 2989.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
 
 
 
@@ -2116,10 +2118,10 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [75]
-<Memoire_files/figure-latex/aide_exconj-1.pdf, id=664, 505.89pt x 303.1325pt>
+<Memoire_files/figure-latex/aide_exconj-1.pdf, id=665, 505.89pt x 303.1325pt>
 File: Memoire_files/figure-latex/aide_exconj-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/aide_exconj-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/aide_exconj-1.pdf  used on input line 3045.
+Package pdftex.def Info: Memoire_files/figure-latex/aide_exconj-1.pdf  used on input line 3104.
 (pdftex.def)             Requested size: 318.67378pt x 190.95135pt.
 
 
@@ -2131,9 +2133,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [76 <./Memoire_files/figure-latex/aide_exconj-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -2143,8 +2142,7 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [77]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \vbox (badness 7722) has occurred while \output is active []
 
 
 
@@ -2156,9 +2154,6 @@ Package fancyhdr Warning: \headheight is too small (14.61858pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.49794pt}.
 
 [78]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (14.61858pt): 
@@ -2184,27 +2179,27 @@ Underfull \vbox (badness 7397) has occurred while \output is active []
 [81
 
 ]
-Overfull \hbox (202.89897pt too wide) in alignment at lines 3288--3295
+Overfull \hbox (202.89897pt too wide) in alignment at lines 3347--3354
  [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (202.89897pt too wide) in alignment at lines 3295--3302
+Overfull \hbox (202.89897pt too wide) in alignment at lines 3354--3361
  [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (202.89897pt too wide) in alignment at lines 3302--3304
+Overfull \hbox (202.89897pt too wide) in alignment at lines 3361--3363
  [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (202.89897pt too wide) in alignment at lines 3304--3307
+Overfull \hbox (202.89897pt too wide) in alignment at lines 3363--3366
  [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (202.89897pt too wide) in alignment at lines 3307--3322
+Overfull \hbox (202.89897pt too wide) in alignment at lines 3366--3381
  [] [] [] [] [] [] [] [] [] [] 
  []
 
@@ -2218,32 +2213,32 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [84]
-Overfull \hbox (336.94148pt too wide) in alignment at lines 3442--3449
+Overfull \hbox (336.94148pt too wide) in alignment at lines 3501--3508
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (336.94148pt too wide) in alignment at lines 3449--3456
+Overfull \hbox (336.94148pt too wide) in alignment at lines 3508--3515
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (336.94148pt too wide) in alignment at lines 3456--3458
+Overfull \hbox (336.94148pt too wide) in alignment at lines 3515--3517
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (336.94148pt too wide) in alignment at lines 3458--3461
+Overfull \hbox (336.94148pt too wide) in alignment at lines 3517--3520
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (336.94148pt too wide) in alignment at lines 3461--3476
+Overfull \hbox (336.94148pt too wide) in alignment at lines 3520--3535
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (5121.93436pt too wide) in paragraph at lines 3497--3504
+Overfull \hbox (5121.93436pt too wide) in paragraph at lines 3556--3563
 []
  []
 
@@ -2284,25 +2279,30 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [94]
 
 [95]
-Underfull \hbox (badness 10000) in paragraph at lines 4815--4828
-
- []
-
-<Memoire_files/figure-latex/unnamed-chunk-17-1.pdf, id=774, 505.89pt x 404.51125pt>
-File: Memoire_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
-<use Memoire_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 4831.
-(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2088) has occurred while \output is active []
 
 
 
 [96]
+Underfull \hbox (badness 10000) in paragraph at lines 4991--5004
 
-[97 <./Memoire_files/figure-latex/unnamed-chunk-17-1.pdf>]
+ []
 
-[98
+
+
+[97]
+<Memoire_files/figure-latex/unnamed-chunk-17-1.pdf, id=788, 505.89pt x 404.51125pt>
+File: Memoire_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use Memoire_files/figure-latex/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: Memoire_files/figure-latex/unnamed-chunk-17-1.pdf  used on input line 5007.
+(pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
+
+
+[98 <./Memoire_files/figure-latex/unnamed-chunk-17-1.pdf>]
+
+[99]
+
+[100
 
 ] (./Memoire.lot)
 \tf@lot=\write5
@@ -2310,9 +2310,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[99]
+[101]
 
-[100
+[102
 
 ] (./Memoire.lof)
 \tf@lof=\write6
@@ -2320,28 +2320,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[101]
-
-[102
-
-]
-
 [103]
 
 [104
 
 ]
-Underfull \vbox (badness 1838) has occurred while \output is active []
-
-
 
 [105]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
+[106
 
-
-[106]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+]
+Underfull \vbox (badness 1838) has occurred while \output is active []
 
 
 
@@ -2366,459 +2356,620 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [111]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lesenqu}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5274 \bibitem[\citeproctext]{ref-lesenqu}
-                                           
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-algava2020}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5279 \bibitem[\citeproctext]{ref-algava2020}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-azincourt2013}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5285 \bibitem[\citeproctext]{ref-azincourt2013}
-                                                 
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2013}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5291 ...item[\citeproctext]{ref-bessiuxe8re2013}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2022}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5295 ...item[\citeproctext]{ref-bessiuxe8re2022}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2016}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5301 ...item[\citeproctext]{ref-bessiuxe8re2016}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2020}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5307 ...item[\citeproctext]{ref-bessiuxe8re2020}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bonvalet2003}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5313 \bibitem[\citeproctext]{ref-bonvalet2003}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourdieu1980}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5318 \bibitem[\citeproctext]{ref-bourdieu1980}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourdieu1993}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5322 \bibitem[\citeproctext]{ref-bourdieu1993}
-                                                
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [112]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourdieu2011}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5328 \bibitem[\citeproctext]{ref-bourdieu2011}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourguignon2022}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5332 ...item[\citeproctext]{ref-bourguignon2022}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-brun1996}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5339 \bibitem[\citeproctext]{ref-brun1996}
-                                            
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cadolle2000}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5343 \bibitem[\citeproctext]{ref-cadolle2000}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cadolle2001}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5347 \bibitem[\citeproctext]{ref-cadolle2001}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-carbonnier2016}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5353 \bibitem[\citeproctext]{ref-carbonnier2016}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cayouette-rembliuxe8re2019}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5359 ...roctext]{ref-cayouette-rembliuxe8re2019}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-chiche2010}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5365 \bibitem[\citeproctext]{ref-chiche2010}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-damon2012}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5371 \bibitem[\citeproctext]{ref-damon2012}
-                                             
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delalande2010}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5375 \bibitem[\citeproctext]{ref-delalande2010}
-                                                 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [113]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delphy1970}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5380 \bibitem[\citeproctext]{ref-delphy1970}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delphy2019}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5384 \bibitem[\citeproctext]{ref-delphy2019}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-abbas2019a}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5388 \bibitem[\citeproctext]{ref-abbas2019a}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-abbas2019}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5397 \bibitem[\citeproctext]{ref-abbas2019}
-                                             
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-demoly2020}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5406 \bibitem[\citeproctext]{ref-demoly2020}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desplanques1993}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5411 ...item[\citeproctext]{ref-desplanques1993}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2000}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5415 ...m[\citeproctext]{ref-desrosiuxe8res2000}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2003}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5419 ...m[\citeproctext]{ref-desrosiuxe8res2003}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2013}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5426 ...m[\citeproctext]{ref-desrosiuxe8res2013}
-                                                  
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [114]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-domingo2009}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5432 \bibitem[\citeproctext]{ref-domingo2009}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-donnat2018}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5438 \bibitem[\citeproctext]{ref-donnat2018}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-donni2011}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5443 \bibitem[\citeproctext]{ref-donni2011}
-                                             
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-durkheim1975}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5449 \bibitem[\citeproctext]{ref-durkheim1975}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-durkheim1893}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5453 \bibitem[\citeproctext]{ref-durkheim1893}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-esping-andersen2007}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5459 ...[\citeproctext]{ref-esping-andersen2007}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-federici2014}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5464 \bibitem[\citeproctext]{ref-federici2014}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fortunati2022}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5469 \bibitem[\citeproctext]{ref-fortunati2022}
-                                                 
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fruxe9meaux2013}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5474 ...item[\citeproctext]{ref-fruxe9meaux2013}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-gollac2011}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5479 \bibitem[\citeproctext]{ref-gollac2011}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-halbwachs}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5484 \bibitem[\citeproctext]{ref-halbwachs}
-                                             
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [115]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-herpin2008}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lesenqu}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5489 \bibitem[\citeproctext]{ref-herpin2008}
+l.5622 \bibitem[\citeproctext]{ref-lesenqu}
+                                           
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-aglietta1976}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5627 \bibitem[\citeproctext]{ref-aglietta1976}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-algava2020}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5631 \bibitem[\citeproctext]{ref-algava2020}
                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-jannot2021}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-azincourt2013}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5495 \bibitem[\citeproctext]{ref-jannot2021}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-jenson1986}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5503 \bibitem[\citeproctext]{ref-jenson1986}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lambert2005}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5509 \bibitem[\citeproctext]{ref-lambert2005}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lapinte2013}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5513 \bibitem[\citeproctext]{ref-lapinte2013}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-laslett1983}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5517 \bibitem[\citeproctext]{ref-laslett1983}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-legall1994}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5522 \bibitem[\citeproctext]{ref-legall1994}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-leplay1874}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5526 \bibitem[\citeproctext]{ref-leplay1874}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lenoir1991}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5532 \bibitem[\citeproctext]{ref-lenoir1991}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lenoir2003}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5538 \bibitem[\citeproctext]{ref-lenoir2003}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martial2002}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5543 \bibitem[\citeproctext]{ref-martial2002}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martial2005}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5549 \bibitem[\citeproctext]{ref-martial2005}
-                                               
+l.5637 \bibitem[\citeproctext]{ref-azincourt2013}
+                                                 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [116]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martial2000}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2013}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5555 \bibitem[\citeproctext]{ref-martial2000}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martin2020}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5559 \bibitem[\citeproctext]{ref-martin2020}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martin-papineau2003}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5565 ...[\citeproctext]{ref-martin-papineau2003}
+l.5643 ...item[\citeproctext]{ref-bessiuxe8re2013}
                                                   
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-maruani2012}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2022}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5572 \bibitem[\citeproctext]{ref-maruani2012}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-parsons1968}) has been already used, duplicate ignored
+l.5647 ...item[\citeproctext]{ref-bessiuxe8re2022}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2016}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5577 \bibitem[\citeproctext]{ref-parsons1968}
-                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-phipps1998}) has been already used, duplicate ignored
+l.5653 ...item[\citeproctext]{ref-bessiuxe8re2016}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bessiuxe8re2020}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5581 \bibitem[\citeproctext]{ref-phipps1998}
+l.5659 ...item[\citeproctext]{ref-bessiuxe8re2020}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bonvalet2003}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5665 \bibitem[\citeproctext]{ref-bonvalet2003}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-boulet2020}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5670 \bibitem[\citeproctext]{ref-boulet2020}
                                               
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-piketty2013}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourdieu1980}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5587 \bibitem[\citeproctext]{ref-piketty2013}
+l.5676 \bibitem[\citeproctext]{ref-bourdieu1980}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourdieu1993}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5680 \bibitem[\citeproctext]{ref-bourdieu1993}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourdieu2011}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5686 \bibitem[\citeproctext]{ref-bourdieu2011}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-bourguignon2022}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5690 ...item[\citeproctext]{ref-bourguignon2022}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-braudel1983}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5697 \bibitem[\citeproctext]{ref-braudel1983}
                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roux2010}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-brun1996}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5591 \bibitem[\citeproctext]{ref-roux2010}
+l.5701 \bibitem[\citeproctext]{ref-brun1996}
                                             
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roy2005}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5595 \bibitem[\citeproctext]{ref-roy2005}
-                                           
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roy2006}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5601 \bibitem[\citeproctext]{ref-roy2006}
-                                           
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [117]
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-saint-pol2004}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cadolle2000}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5607 \bibitem[\citeproctext]{ref-saint-pol2004}
-                                                 
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-segalen2013}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5613 \bibitem[\citeproctext]{ref-segalen2013}
+l.5705 \bibitem[\citeproctext]{ref-cadolle2000}
                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-singly1996}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cadolle2001}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5619 \bibitem[\citeproctext]{ref-singly1996}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-singly2017}) has been already used, duplicate ignored
+l.5709 \bibitem[\citeproctext]{ref-cadolle2001}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-carbonnier2016}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5623 \bibitem[\citeproctext]{ref-singly2017}
-                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-stettinger2014}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5627 \bibitem[\citeproctext]{ref-stettinger2014}
+l.5715 \bibitem[\citeproctext]{ref-carbonnier2016}
                                                   
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-tabet1998}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cayouette-rembliuxe8re2019}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5633 \bibitem[\citeproctext]{ref-tabet1998}
+l.5721 ...roctext]{ref-cayouette-rembliuxe8re2019}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-chiche2010}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5727 \bibitem[\citeproctext]{ref-chiche2010}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-cluxe9ment2005}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5733 \bibitem[\citeproctext]{ref-cluxe9ment2005}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-damon2012}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5739 \bibitem[\citeproctext]{ref-damon2012}
                                              
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-thuxe9ry1993}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delalande2010}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5638 \bibitem[\citeproctext]{ref-thuxe9ry1993}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delecourt1993}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5642 \bibitem[\citeproctext]{ref-delecourt1993}
+l.5743 \bibitem[\citeproctext]{ref-delalande2010}
                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fulchiron1993}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delphy1970}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5647 \bibitem[\citeproctext]{ref-fulchiron1993}
-                                                 
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-tilly1987}) has been already used, duplicate ignored
+l.5748 \bibitem[\citeproctext]{ref-delphy1970}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delphy2019}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5652 \bibitem[\citeproctext]{ref-tilly1987}
-                                             
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-toulemon2011}) has been already used, duplicate ignored
+l.5752 \bibitem[\citeproctext]{ref-delphy2019}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-abbas2019a}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5656 \bibitem[\citeproctext]{ref-toulemon2011}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-weber2002}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.5662 \bibitem[\citeproctext]{ref-weber2002}
-                                             
+l.5756 \bibitem[\citeproctext]{ref-abbas2019a}
+                                              
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [118]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-abbas2019}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5765 \bibitem[\citeproctext]{ref-abbas2019}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-demoly2020}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5774 \bibitem[\citeproctext]{ref-demoly2020}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desplanques1993}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5779 ...item[\citeproctext]{ref-desplanques1993}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2000}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5783 ...m[\citeproctext]{ref-desrosiuxe8res2000}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2003}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5787 ...m[\citeproctext]{ref-desrosiuxe8res2003}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-desrosiuxe8res2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5794 ...m[\citeproctext]{ref-desrosiuxe8res2013}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-domingo2009}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5800 \bibitem[\citeproctext]{ref-domingo2009}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-donnat2018}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5806 \bibitem[\citeproctext]{ref-donnat2018}
+                                              
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[119]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-donni2011}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5811 \bibitem[\citeproctext]{ref-donni2011}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-dorlin2009}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5817 \bibitem[\citeproctext]{ref-dorlin2009}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-durkheim1975}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5822 \bibitem[\citeproctext]{ref-durkheim1975}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-durkheim1893}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5826 \bibitem[\citeproctext]{ref-durkheim1893}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-esping-andersen2007}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5832 ...[\citeproctext]{ref-esping-andersen2007}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-federici2014}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5837 \bibitem[\citeproctext]{ref-federici2014}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-federici2019}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5842 \bibitem[\citeproctext]{ref-federici2019}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-flandrin1984}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5846 \bibitem[\citeproctext]{ref-flandrin1984}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fortunati2022}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5850 \bibitem[\citeproctext]{ref-fortunati2022}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-foucault2004}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5855 \bibitem[\citeproctext]{ref-foucault2004}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fraser2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5860 \bibitem[\citeproctext]{ref-fraser2013}
+                                              
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[120]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fruxe9meaux2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5864 ...item[\citeproctext]{ref-fruxe9meaux2013}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-gollac2011}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5869 \bibitem[\citeproctext]{ref-gollac2011}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-guillaumin1992}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5874 \bibitem[\citeproctext]{ref-guillaumin1992}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-haicault1984}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5878 \bibitem[\citeproctext]{ref-haicault1984}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-halbwachs}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5883 \bibitem[\citeproctext]{ref-halbwachs}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-henri-panabiuxe8re2010}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5888 ...iteproctext]{ref-henri-panabiuxe8re2010}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-herpin2008}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5892 \bibitem[\citeproctext]{ref-herpin2008}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-hochschild2017}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5898 \bibitem[\citeproctext]{ref-hochschild2017}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-hochschild2012}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5903 \bibitem[\citeproctext]{ref-hochschild2012}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-hooks1984}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5908 \bibitem[\citeproctext]{ref-hooks1984}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-jannot2021}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5912 \bibitem[\citeproctext]{ref-jannot2021}
+                                              
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[121]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-jenson1986}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5920 \bibitem[\citeproctext]{ref-jenson1986}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-kergoat1978}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5926 \bibitem[\citeproctext]{ref-kergoat1978}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lahire2016}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5929 \bibitem[\citeproctext]{ref-lahire2016}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lambert2005}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5933 \bibitem[\citeproctext]{ref-lambert2005}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-langevin2016}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5937 \bibitem[\citeproctext]{ref-langevin2016}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lapinte2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5943 \bibitem[\citeproctext]{ref-lapinte2013}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-laslett1983}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5947 \bibitem[\citeproctext]{ref-laslett1983}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-legall1994}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5952 \bibitem[\citeproctext]{ref-legall1994}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-leplay1874}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5956 \bibitem[\citeproctext]{ref-leplay1874}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lenoir1991}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5962 \bibitem[\citeproctext]{ref-lenoir1991}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-lenoir2003}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5968 \bibitem[\citeproctext]{ref-lenoir2003}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martial2002}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5973 \bibitem[\citeproctext]{ref-martial2002}
+                                               
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[122]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martial2005}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5979 \bibitem[\citeproctext]{ref-martial2005}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martial2000}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5985 \bibitem[\citeproctext]{ref-martial2000}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martin2020}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5989 \bibitem[\citeproctext]{ref-martin2020}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-martin-papineau2003}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5995 ...[\citeproctext]{ref-martin-papineau2003}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-maruani2012}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6002 \bibitem[\citeproctext]{ref-maruani2012}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-marx1867}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6007 \bibitem[\citeproctext]{ref-marx1867}
+                                            
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-mies2022}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6011 \bibitem[\citeproctext]{ref-mies2022}
+                                            
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-parsons1968}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6016 \bibitem[\citeproctext]{ref-parsons1968}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-perrot1998}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6020 \bibitem[\citeproctext]{ref-perrot1998}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-phipps1998}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6024 \bibitem[\citeproctext]{ref-phipps1998}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-piketty2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6030 \bibitem[\citeproctext]{ref-piketty2013}
+                                               
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[123]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-polanyi1944}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6034 \bibitem[\citeproctext]{ref-polanyi1944}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-pulantzas1978}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6039 \bibitem[\citeproctext]{ref-pulantzas1978}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-rosanvallon1992}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6043 ...item[\citeproctext]{ref-rosanvallon1992}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roux2010}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6047 \bibitem[\citeproctext]{ref-roux2010}
+                                            
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roy2005}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6051 \bibitem[\citeproctext]{ref-roy2005}
+                                           
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-roy2006}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6057 \bibitem[\citeproctext]{ref-roy2006}
+                                           
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-saint-pol2004}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6063 \bibitem[\citeproctext]{ref-saint-pol2004}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-scott1988}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6069 \bibitem[\citeproctext]{ref-scott1988}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-segalen2013}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6073 \bibitem[\citeproctext]{ref-segalen2013}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-singly1996}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6079 \bibitem[\citeproctext]{ref-singly1996}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-singly2000}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6083 \bibitem[\citeproctext]{ref-singly2000}
+                                              
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[124]
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-singly2017}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6087 \bibitem[\citeproctext]{ref-singly2017}
+                                              
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-stettinger2014}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6091 \bibitem[\citeproctext]{ref-stettinger2014}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-tabet1998}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6097 \bibitem[\citeproctext]{ref-tabet1998}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-thuxe9ry1993}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6102 \bibitem[\citeproctext]{ref-thuxe9ry1993}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-delecourt1993}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6106 \bibitem[\citeproctext]{ref-delecourt1993}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-fulchiron1993}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6111 \bibitem[\citeproctext]{ref-fulchiron1993}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-tilly1987}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6116 \bibitem[\citeproctext]{ref-tilly1987}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-toulemon2011}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6120 \bibitem[\citeproctext]{ref-toulemon2011}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-verguxe8s2021}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6126 \bibitem[\citeproctext]{ref-verguxe8s2021}
+                                                 
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-vuxe9ron2007}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6131 \bibitem[\citeproctext]{ref-vuxe9ron2007}
+                                                
+pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-weber2002}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6137 \bibitem[\citeproctext]{ref-weber2002}
+                                             
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[125]
 pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-weber2009}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5667 \bibitem[\citeproctext]{ref-weber2009}
+l.6142 \bibitem[\citeproctext]{ref-weber2009}
                                              
 pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-weber2013}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5672 \bibitem[\citeproctext]{ref-weber2013}
+l.6147 \bibitem[\citeproctext]{ref-weber2013}
                                              
 pdfTeX warning (ext4): destination with the same identifier (name{cite.ref-weber1995}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.5677 \bibitem[\citeproctext]{ref-weber1995}
+l.6152 \bibitem[\citeproctext]{ref-weber1995}
                                              
 
-[119]
-
-[120
-
-]
-Overfull \hbox (7.18471pt too wide) in paragraph at lines 5688--5688
+[126]
+Overfull \hbox (7.18471pt too wide) in paragraph at lines 6163--6163
 |\T1/lmr/bx/n/17.28 (-20) Statistiques des-crip-tives des dif-fé-rentes sous-populations| 
  []
 
-<Memoire_files/figure-latex/statdesenfants-1.pdf, id=1166, 505.89pt x 404.51125pt>
+<Memoire_files/figure-latex/statdesenfants-1.pdf, id=1246, 505.89pt x 404.51125pt>
 File: Memoire_files/figure-latex/statdesenfants-1.pdf Graphic file (type pdf)
 <use Memoire_files/figure-latex/statdesenfants-1.pdf>
-Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 5692.
+Package pdftex.def Info: Memoire_files/figure-latex/statdesenfants-1.pdf  used on input line 6167.
 (pdftex.def)             Requested size: 455.25046pt x 364.01971pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[121 <./Memoire_files/figure-latex/statdesenfants-1.pdf>]
+[127
 
-[122]
-
-[123]
-
-[124]
-
-[125]
-
-[126]
-
-[127]
+ <./Memoire_files/figure-latex/statdesenfants-1.pdf>]
 
 [128]
 
@@ -2898,6 +3049,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [166]
 
+[167]
+
+[168]
+
+[169]
+
+[170]
+
+[171]
+
+[172]
+
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
@@ -2908,38 +3071,35 @@ Underfull \vbox (badness 4967) has occurred while \output is active []
 
 
 
-[167]
+[173]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[168]
+[174]
 Overfull \vbox (3.90648pt too high) has occurred while \output is active []
 
 
 
-[169]
+[175]
 
-[170] (./Memoire.aux)
+[176] (./Memoire.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 1
 L3 programming layer <2024-05-27>
  ***********
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 34263 strings out of 475499
- 649842 string characters out of 5775982
+ 34075 strings out of 475499
+ 647141 string characters out of 5775982
  2100905 words of memory out of 5000000
- 55400 multiletter control sequences out of 15000+600000
- 676802 words of font info for 346 fonts, out of 8000000 for 9000
+ 55174 multiletter control sequences out of 15000+600000
+ 677306 words of font info for 352 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 109i,16n,107p,2998b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,16n,107p,1489b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist, replaced by a fixed one
 
@@ -2950,10 +3110,10 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></home/onyxia/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on Memoire.pdf (170 pages, 986212 bytes).
+Output written on Memoire.pdf (176 pages, 1008241 bytes).
 PDF statistics:
- 1767 PDF objects out of 2073 (max. 8388607)
- 1510 compressed objects within 16 object streams
- 373 named destinations out of 1000 (max. 500000)
- 66137 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 1856 PDF objects out of 2073 (max. 8388607)
+ 1593 compressed objects within 16 object streams
+ 409 named destinations out of 1000 (max. 500000)
+ 66145 words of extra memory for PDF output out of 74296 (max. 10000000)
 

@@ -139,6 +139,22 @@ rec_COUPLE <- function(data, NewVar = FALSE) {
   return(data)
 }
 
+rec_ETAMATRI <- function(data, NewVar = FALSE) {
+  data <- data %>%
+    mutate(temp = case_when(
+      ETAMATRI == "1" ~ "Célibataire", 
+      ETAMATRI == "2" ~ "Marié-e", 
+      ETAMATRI == "3" ~ "Veuf-ve", 
+      ETAMATRI == "4" ~ "Divorcé-e"))
+  if(isFALSE(NewVar)){
+    data$ETAMATRI <- data$temp 
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
 rec_TYPMEN5 <- function(data, NewVar = FALSE) {
   data <- data %>%
     mutate(temp = case_when(

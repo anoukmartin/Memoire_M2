@@ -4,14 +4,22 @@
 indiv  <- readRDS("Data_output/parents.Rds")
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 familles <- readRDS("Data_output/familles_parents.Rds") 
-familles$n_config <- familles$n_TYPMEN_new
+familles$n_config <- familles$n_TYPMEN_sexe
+familles$n_config <- familles$n_config %>%
+  fct_recode(
+    "En couple avec l'autre parent" = "Mère et père en couple",
+    "Célibataire" = "Mère célibataire",
+    "Célibataire" = "Père célibataire",
+    "En couple avec une autre personne" = "Mère en couple",
+    "En couple avec une autre personne" = "Père en couple"
+  )
 dep_men <- readRDS("Data_output/DepMenages.Rds")
-
+familles$n_TYPMEN_sexe
 parents <- indiv %>%
   filter(ADULTE) %>%
   filter(n_EnfantsMen) %>%
   left_join(familles %>% 
-              select(IDENT_MEN, n_config, TYPMEN5)) %>%
+              select(IDENT_MEN, n_config, TYPMEN5, n_TYPMEN_sexe )) %>%
   left_join(dep_men %>%
               select(IDENT_MEN, STALOG)) %>%
   filter(TYPMEN5 != "Autre type de ménage (ménage complexe)") %>%
@@ -33,15 +41,15 @@ freq(parents$TYPMEN5)
 freq(parents$STALOG)
 freq(parents$n_PATRIMOINE)
 
+
 dat <- parents %>%
   as_survey_design(weights = PONDIND) %>%
-  select("n_NEnfantsMen", "n_AgeEnfantsMen", "n_NEnfantsCouple", "n_AgeEnfantsCouple", "n_NEnfantsHD", "n_AgeEnfantsHD", "SEXE", "n_config") %>%
+  select("AG", "n_NEnfantsMen", "n_AgeEnfantsMen", "n_NEnfantsCouple", "n_AgeEnfantsCouple", "n_NEnfantsHD", "n_AgeEnfantsHD", "SEXE", "n_config") %>%
   mutate(Ensemble = T, 
          Effectifs = T) 
 
 
 ### Tableau caractéristiques sociales des parents des familles recomposées ####
-
 dat <- parents %>%
   mutate(IPROPLOC = fct_recode(IPROPLOC,
                                "en titre" = "1",
@@ -56,46 +64,51 @@ dat <- parents %>%
                            "Mère" = "Femme", 
                            "Père" = "Homme")) %>%
   as_survey_design(weights = PONDIND) %>%
-  select("AG", "DIP7", "CS12", "n_REVENUS", "n_PATRIMOINE", "SEXE", "LOGEMENT", "n_config") %>%
+  select("DIP7", "CS12", "n_REVENUS", "SEXE", "n_config") %>%
   mutate(Ensemble = T, 
          Effectifs = T)
-freq(dat$variables$LOGEMENT)
 
 
-var_label(dat$variables$AG) <- NULL
 
 tbl <- dat %>%
   tbl_strata(
-    strata = n_config,
+    strata = SEXE,
     .tbl_fun =
       ~ .x %>%
-      select(-n_config) %>%
-      tbl_svysummary(by = SEXE, , 
+      select(-SEXE) %>%
+      tbl_svysummary(by = n_config, 
                      digits = everything() ~ 0,
                      statistic = list(all_categorical() ~ "{p}", 
                                       all_continuous2() ~ c("{mean}", "{sd}"), 
                                       Effectifs ~ "{n_unweighted}"), 
-                     missing = "no"
+                     missing = "no", 
+                     label = list(DIP7 ~ "Plus haut niveau de diplôme", 
+                                  CS12 ~ "Catégorie socioprofessionnelle", 
+                                  n_REVENUS ~ "Tranche de revenus")
       ) %>%
       add_stat_label() %>%
       modify_header(all_stat_cols() ~ "{level}") %>%
-      add_overall(last = F, col_label = "**Ens**"),
+      add_overall(last = T, col_label = "**Ensemble**"),
     .header = "**{strata}**"
   )
-
+tbl
 tot <- dat %>%
-  select(-n_config) %>%
-  tbl_svysummary(by = SEXE,
+  select(-SEXE) %>%
+  tbl_svysummary(by = n_config,
                  digits = everything() ~ 0,
                  statistic = list(all_categorical() ~ "{p}", 
                                   all_continuous2() ~ c("{mean}", "{sd}"), 
                                   Effectifs ~ "{n_unweighted}"),
-                 missing = "no"
+                 missing = "no", 
+                 label = list(DIP7 ~ "Plus haut niveau de diplôme", 
+                              CS12 ~ "Catégorie socioprofessionnelle", 
+                              n_REVENUS ~ "Tranche de revenus")
   ) %>%
-  modify_header(all_stat_cols() ~ "{level}") %>%
-  add_overall(last = F, col_label = "**Ens**")
+  modify_header(all_stat_cols() ~ "**{level}**") %>%
+  add_overall(last = T, col_label = "**Ensemble**") %>%
+  add_p()
 # modify_header(all_stat_cols() ~ "**Ensemble**") 
-
+tot
 
 # eff <- dat %>%
 #   select(-SEXE, -n_config) %>%
