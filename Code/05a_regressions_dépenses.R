@@ -142,8 +142,6 @@ saveTableau(tableau = tblreg,
 
 # régression sur les services domestiques ######################################
 
-
-
 depmen <- readRDS("Data_output/DepMenages.Rds") %>%
   select(IDENT_MEN, starts_with("DEPPER")) %>%
   select(IDENT_MEN, ends_with("_D"))

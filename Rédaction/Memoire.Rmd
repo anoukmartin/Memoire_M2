@@ -68,9 +68,15 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 # Introduction
 
+Dans le cadre des études sociologiques contemporaines, l'analyse des rapports sociaux de sexe s'avère essentielle pour comprendre les dynamiques de pouvoir, de privilège et de subordination qui façonnent notre société. Les interactions entre l'État, la famille et les rôles de genre révèlent des mécanismes complexes d'exploitation et de contrôle social. Ce travail se propose d'explorer ces interactions en examinant le genre comme un rapport social d'exploitation et en analysant le rôle de l'État dans la structuration de ces rapports.
+
+Le concept de genre ne peut être pleinement appréhendé sans considérer son implication dans les structures de pouvoir et les relations économiques. En particulier, la famille, en tant que catégorie d'État, joue un rôle crucial dans la reproduction des inégalités de genre. Cette étude s'appuie sur les catégories familiales à la fois pratiques et étatiques pour démontrer comment les arrangements économiques influencent la construction de la parenté quotidienne, souvent en l'absence de parenté légale reconnue.
+
+Pour approfondir cette analyse, nous nous appuierons sur l'enquête "Budget de familles 2017" de l'INSEE, qui offre une perspective détaillée sur les budgets des ménages français. En comparant et caractérisant les différentes configurations familiales, nous mettrons en lumière les disparités existantes et les pratiques parentales diverses, qu'elles soient légales, administratives ou pratiques. Ainsi, cette étude vise à enrichir notre compréhension des rapports sociaux de sexe et à éclairer les implications des politiques étatiques sur les structures familiales et les relations de genre.
+
 ## Etat, famille et rapports sociaux de sexe
 
-La famille constitue un terrain privilégié d'analyse des rapports sociaux de sexe. En même temps, elle est façonnée par les interventions multiples de l’État à travers ses politiques et ses cadres réglementaires. Ces constructions légales et statistiques ne se contentent pas de refléter, mais participent activement à façonner les pratiques familiales et les dynamiques de genre. Dans un premier temps, nous reviendrons sur ce qui nous sert de cadre d'analyse théorique : la conceptualisation du genre comme rapport social non seulement de domination, mais aussi d'exploitation. Nous montrons ensuite l’intérêt d'étudier le rôle que joue l’État dans ce système économique, justifiant ainsi de prendre pour objet les différentes défintions de la famille par les institustions de l'Etat.
+La famille constitue un terrain privilégié d'analyse des rapports sociaux de sexe. En même temps, elle est façonnée par les interventions multiples de l’État à travers ses politiques et ses cadres réglementaires. Ces constructions légales et statistiques ne se contentent pas de refléter, mais participent activement à façonner les pratiques familiales et les dynamiques de genre. Dans un premier temps, nous reviendrons sur ce qui nous sert de cadre d'analyse théorique : la conceptualisation du genre comme rapport social non seulement de domination, mais aussi d'exploitation. Nous montrons ensuite l’intérêt d'étudier le rôle que joue l’État dans ce système économique, justifiant ainsi de prendre pour objet les différentes défintions de la famille par les institutions de l'Etat.
 
 ### Le genre comme rapport social d'exploitation
 
@@ -170,7 +176,7 @@ Pour autant, la taille de l'échantillon reste trop faible pour étudier l'influ
 
 Pour saisir la parenté pratique, nous cherchons a étudier l'économie domestique des familles. Cette enquête recense les dépenses et les consommations effectuées par le ménage, au niveau 5 de la nomenclature des biens et services. On a donc accès au budget détaillé pour chaque ménage. Les services non-rémunérés effectués au sein du ménage sont renseigné. Ceci permet de saisir le travail domestique effectué par ceux-ci, et donc, une partie de la contribution matérielle aux charge du ménage. Cependant, il reste difficile de comparer la manière dont les individus contribuent aux charges du ménages et à la production domestique dans les familles recomposées, nucléaires ou monoparentales et entre les différents types de familles recomposées (selon que la famille est recomposée par un homme, une femme ou les deux, selon que les conjoints ont des enfants communs ou non). En effet, d'une part les consommations sont saisies à l'échelle du ménage, et les dépenses lorsqu'elles sont rattachées à un individu, sont liées à celui qui a effectué la dépense, et pas à celui dont les revenus ont été utilisés. Enfin, si l'on aborder l'économie domestique sous l'angle d'arrangements familiaux, on ne peut pas avec cette enquête en saisir la dimensions plus ou moins conflictuelle ou consensuelle de ceux-ci : elle ne propose pas de variables permettant de saisir pleinement les dimensions subjectives et relationnelles de ces arrangements.
 
-Finalement, au croisement de la sociologie du genre, de la famille et de l'Etat, ce travail de recherche, en prenant pour objet les arrangements économiques dans les familles recomposées, cherche à proposer une analyse de la manière dont l'administration juridique, sociale et fiscale des parents isolés reformant de nouvelles unions conjugales participe à produire l’ordre du genre.
+Finalement, au croisement de la sociologie du genre, de la famille et de l'Etat, ce travail de recherche, en prenant pour objet les arrangements économiques dans les familles recomposées, cherche à proposer une analyse de la manière dont l'administration juridique, sociale et fiscale des parents isolés reformant de nouvelles unions conjugales participe à produire l'ordre du genre.
 
 ```{r, eval = FALSE}
 
@@ -3135,90 +3141,11 @@ En conclusion, cette analyse révèle que le niveau de vie du ménage et l'appar
 
 Le graphique présenté illustre la composition du revenu disponible en fonction de différents types de ménages. Chaque barre verticale représente un type de ménage, avec des segments de couleurs différentes indiquant les proportions de diverses sources de revenus. Les types de revenus comprennent les salaires, les revenus d'activité indépendante, les prestations sociales et familiales, les retraites, le chômage, les transferts entre ménages, et les impôts directs. La fréquence des revenus est mesurée en pourcentage.
 
-```{r, fig.cap = "Composition du revenu disponible en fonction du type de ménage (en \\%)"}
+```{r, fig.cap = "Composition du revenu disponible en fonction de la configuration familiale (en \\%)"}
 
-familles <- readRDS("Data_output/familles_parents.Rds")
-menages <- readRDS("Data_output/menages.Rds") %>%
-  select(IDENT_MEN, 
-         REVACT, # revenu d'activité
-         REVINDEP , SALAIRES , REV_ETRANGER, # décompo
-         REVSOC, # revenus sociaux
-         CHOMAGE, RETRAITES, PREST_PRECARITE_VIEIL, PREST_PRECARITE_HAND, 
-         PREST_PRECARITE_RSA, PPA, PREST_LOGEMENT, PREST_FAM_TOT, # décompo
-         REVPAT, # revenu du patrimoine
-         REV700, REV701, # transferts entre ménages
-         REV999, # Autres ressources 
-         IMPOTREV_M, TAXHAB_M, # Impots et taxes 
-         REVDISP, REVTOT) %>%
-  mutate(IMPOTREV_M = -IMPOTREV_M, 
-         TAXHAB_M  = -TAXHAB_M, 
-         IMPOTS_DIRECTS = IMPOTREV_M + TAXHAB_M, 
-         TRANSFERTS_INTERMENAGES = REV700 + REV701,
-         MINIMA_SOC = PREST_PRECARITE_VIEIL + PREST_PRECARITE_HAND + PREST_PRECARITE_RSA + PPA)
+load("Resultats/plot_compRevDisp.Rdata")
+tab$tableau
 
-names(menages)
-revenus_comp <- lapply(menages[, -1], function(x){
-  revdisp <- menages$REVDISP %>% as.vector()
-  part <- (x/revdisp)*100
-  return(part)
-})
-revenus_comp$IDENT_MEN <- menages$IDENT_MEN
-revenus_comp <- revenus_comp %>%
-  as.data.frame()
-
-revenus_comp <- revenus_comp %>%
-  filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
-  left_join(familles %>%
-              select(n_TYPMEN_new, PONDMEN, IDENT_MEN), 
-            by = "IDENT_MEN")
-
-
-revenus_comp2 <- revenus_comp %>%
-  pivot_longer(cols = names(menages)[-1])
-
-revenus_comp2 <- revenus_comp2 %>%
-  group_by(n_TYPMEN_new, name) %>%
-  summarise(value_mean = weighted.mean(x = value, w=PONDMEN, na.rm = T))
-
-#unique(revenus_comp2$name)
-
-liste <- c("IMPOTS_DIRECTS",
-           "SALAIRES", "REVINDEP", "CHOMAGE", "RETRAITES", 
-           "TRANSFERTS_INTERMENAGES",
-           "PREST_FAM_TOT", "PREST_LOGEMENT", "MINIMA_SOC")
-#liste
-library(GGally)
-
-revenus_comp3 <- revenus_comp2 %>%
-  filter(name %in% liste) %>%
-  mutate(name = name %>% 
-           fct_relevel(liste) %>% 
-           fct_rev()) 
-ggplot(aes(x = n_TYPMEN_new, y = value_mean, fill = name), 
-       data = revenus_comp3) +
-  geom_bar(stat = "identity") +
-  geom_text(
-    aes(label = round(value_mean, 1)), 
-       position = position_stack(.5), 
-            size = 3, 
-            family = "serif") +
-  geom_hline(yintercept = 0) +
-  labs(x = "Type de ménage", 
-       y = "Fréquence") + 
-   scale_fill_manual(
-     values =  alpha(
-       rev(c("#49006a", 
-             "#084081", "#2b8cbe","#7bccc4", "#ccebc5",
-             "#feb24c",
-             "#fcbba1", "#fb6a4a", "#de2d26")), 
-        0.5), 
-     labels = rev(c("Impôts\ndirects", "Salaires", "Revenus d'activité\nindépendante", "Chômage", "Retraites", "Transferts \nentre ménages", 
-                "Prestations \nfamiliales", "Prestations \nlogement", 
-                "Minimas \nsociaux")),
-     name = "Type de revenu :") +
-  theme_memoire() + 
-  theme(axis.line.x = element_blank(), 
-        axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
@@ -3238,8 +3165,7 @@ En résumé, ce graphique met en lumière les variations significatives dans la 
 
 familles <- readRDS("Data_output/familles_parents.Rds")
 
-tab <- familles %>%
-  as.survey
+tab <- familles 
 
 ```
 
