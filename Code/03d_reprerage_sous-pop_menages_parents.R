@@ -211,20 +211,40 @@ summary(menagesHF$n_AgeEnfantsHD13)
 
 # Recodages famills recomposées 
 menagesHF <- menagesHF %>%
-  mutate(RECOMP = case_when(
-    n_BeauxEnfantsMen_H | n_BeauxEnfantsMen_F ~ T,
-    TRUE ~ F)) %>%
+  mutate(
+    RECOMP = case_when(
+      (n_BeauxEnfantsMen_H | n_BeauxEnfantsMen_F) & (n_EnfantsMen_H | n_EnfantsMen_F) ~ T,
+      TRUE ~ F), 
+    TRAD = case_when(
+      !n_BeauxEnfantsMen_H & !n_BeauxEnfantsMen_F & n_EnfantsMen_H & n_EnfantsMen_F ~ T,
+      TRUE ~ F), 
+    MONOP = case_when(
+      (n_EnfantsMen_H & is.na(n_EnfantsMen_F)) | (n_EnfantsMen_F & is.na(n_EnfantsMen_H)) ~ T,
+      TRUE ~ F
+    ))
+table(menagesHF$RECOMP, menagesHF$TRAD, useNA = "always") 
+table(menagesHF$RECOMP, menagesHF$MONOP, useNA = "always") 
+table(menagesHF$TRAD, menagesHF$MONOP, useNA = "always")
+
+table(menagesHF$TYPMEN5, menagesHF$TRAD, useNA = "always")
+table(menagesHF$TYPMEN5, menagesHF$RECOMP, useNA = "always")
+table(menagesHF$TYPMEN5, menagesHF$MONOP, useNA = "always")
+
+menagesHF <- menagesHF %>%
   mutate(n_TYPMEN_new = case_when(
     TYPMEN5 == "Couple avec au moins un enfant" & RECOMP  ~ "Recomposée", 
-    TYPMEN5 == "Couple avec au moins un enfant"  ~ "Traditionelle", 
-    TYPMEN5 == "Famille monoparentale" ~ "Monoparentale", 
-    TYPMEN5 == "Autre type de ménage (ménage complexe)" ~ "Complexe", 
-    TRUE ~ TYPMEN5)) %>%
+    TYPMEN5 == "Couple avec au moins un enfant" & TRAD  ~ "Traditionelle", 
+    TYPMEN5 == "Famille monoparentale" & MONOP ~ "Monoparentale", 
+    TYPMEN5 == "Couple sans enfant" ~ "Couple sans enfant",
+    TYPMEN5 == "Personne seule" ~ "Personne seule",
+    TRUE ~ "Complexe")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>%
            fct_relevel(
              "Couple sans enfant", "Traditionelle", "Recomposée", "Monoparentale",
              "Personne seule", "Complexe"
            ))
+
+table(menagesHF$TYPMEN5, menagesHF$n_TYPMEN_new)
 
 # On ajoute des recodages qui synthétise les configurations recomposées
 menagesHF <- menagesHF %>%
@@ -243,6 +263,7 @@ menagesHF <- menagesHF %>%
       TRUE ~ NA_character_), 
     n_RecompGenre = n_EnfantsUnionAnt)
 
+table(menagesHF$n_TYPMEN_new, menagesHF$n_EnfantsMen_H, useNA = "always")
 # Recodages configuration familiale + sexe des parents
 menagesHF <- menagesHF %>%
   mutate(
@@ -251,12 +272,18 @@ menagesHF <- menagesHF %>%
       n_EnfantsMen_H & n_BeauxEnfantsMen_F ~ "Père en couple", 
       n_EnfantsMen_F & n_BeauxEnfantsMen_H ~ "Mère en couple", 
       n_EnfantsMen_H & is.na(n_IdentConjoint_F) ~ "Père célibataire", 
-      n_EnfantsMen_F & is.na(n_IdentConjoint_H) ~ "Mère célibataire")) %>%
+      n_EnfantsMen_F & is.na(n_IdentConjoint_H) ~ "Mère célibataire",
+      !is.na(n_IdentIndiv_F) & !is.na(n_IdentIndiv_H) & (!n_EnfantsMen_F | is.na(n_EnfantsMen_F)) & (!n_EnfantsMen_H | is.na(n_EnfantsMen_H)) ~ "Homme et femme en couple",
+    (!n_EnfantsMen_F | is.na(n_EnfantsMen_F)) & !is.na(n_IdentIndiv_F) ~ "Femme célibataire",
+    (!n_EnfantsMen_H | is.na(n_EnfantsMen_H)) & !is.na(n_IdentIndiv_H) ~ "Homme célibataire")) %>%
   mutate(n_TYPMEN_sexe = n_TYPMEN_sexe %>%
            fct_relevel(
              "Mère et père en couple", 
              "Mère célibataire", "Père célibataire",
-             "Mère en couple", "Père en couple"))
+             "Mère en couple", "Père en couple", 
+             "Homme et femme en couple", 
+             "Homme célibataire", 
+             "Femme célibataire"))
 
 
 freq(menagesHF$RECOMP)
@@ -265,6 +292,7 @@ freq(menagesHF$n_SexeParent)
 freq(menagesHF$n_EnfantsUnionAnt)
 freq(menagesHF$n_RecompGenre)
 freq(menagesHF$n_TYPMEN_sexe)
+table(menagesHF$n_TYPMEN_new, menagesHF$n_TYPMEN_sexe, useNA = "always")
 
 # On peut comparer les deux recodages
 table(menagesHF$n_TYPMEN_new, menagesHF$n_config, useNA = "ifany")

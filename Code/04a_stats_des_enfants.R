@@ -108,3 +108,4 @@ saveTableau(tableau = tab,
             ponderation = F)
 
 rm(tab) # un peu de ménage
+

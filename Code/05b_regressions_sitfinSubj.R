@@ -6,13 +6,13 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 
 menages <- readRDS("Data_output/menages.Rds") %>%
-  select(IDENT_MEN, AISE, NIVIE)
- 
+  select(IDENT_MEN, AISE, NIVIE, SEXEREP) %>%
+  rec_SEXE(Var = "SEXEREP")
+menages$SEXEREP
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
   left_join(menages, 
             by = "IDENT_MEN") 
 
-familles$n_NEnfantsMenage
 
 dic_fam<- look_for(familles)
 # 
@@ -57,22 +57,40 @@ data <- familles |>
   mutate(AISE = if_else(AISE %in% c("", "8", "9"), NA, AISE) %>%
            as.factor() %>%
            fct_relevel("5", "4", "3", "2", "1")) %>%
-  mutate(NIVIE = NIVIE/1200) %>%
-  filter(n_NEnfantsMenage >0)
-  # mutate(n_configMenage = n_configMenage %>%
+  mutate(n_NEnfantsMenage = if_else(is.na(n_NEnfantsMenage), 0, n_NEnfantsMenage)) %>%
+  mutate(n_NEnfantsMenage13 = if_else(is.na(n_NEnfantsMenage13), 0, n_NEnfantsMenage13)) %>%
+  #mutate(n_NEnfantsMenage = n_NEnfantsMenage - n_NEnfantsMenage13) %>%
+  mutate(n_NEnfantsHD = if_else(is.na(n_NEnfantsHD), 0, n_NEnfantsHD)) %>%
+  #rec_NENFANTS(Var = "n_NEnfantsMenage") %>%
+  # rec_NENFANTS(Var = "n_NEnfantsHD") %>%
+  mutate(NIVIE = NIVIE/1200) 
+freq(data$n_NEnfantsMenage13)
+freq(data$n_NEnfantsMenage)
+freq(data$n_NEnfantsHD)
+
+# mutate(n_configMenage = n_configMenage %>%
   #          fct_relevel("Parents en couple", "Mère en couple", "Père en couple",
   #                      "Mère célibataire", "Père célibataire", "Couple sans enfant",
   #                      "Femme seule", "Homme seul", "Autre type de ménage (ménage complexe)"))
 
-
+drop
 data <- data %>%
+  subset(!(n_TYPMEN_sexe %in% c("Homme et femme en couple", "Homme célibataire", "Femme célibataire"))) %>%
+  mutate(n_TYPMEN_sexe = droplevels(n_TYPMEN_sexe)) %>%
   mutate(PONDFAM = PONDMEN/mean(data$PONDMEN)) # On centre la variable de pondération
 class(data$NIVIE)
+freq(data$n_TYPMEN_sexe)
 
 ## Régression pondérée #########################################################
 
 library(ordinal)
 
+var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
+data$n_FractionClasse <- relevel(data$n_FractionClasse, "Classes moyennes superieures [C3]")
+var_label(data$n_FractionClasse) <- "Fraction de classe"
+var_label(data$n_NEnfantsMenage) <- "Nombre d'enfants"
+var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants"
+var_label(data$n_TYPMEN_sexe) <- "Configuration parentale"
 summary(data$NIVIE)
 plot(data$AISE, data$NIVIE)
 freq(data$n_TYPMEN_sexe)
@@ -80,16 +98,19 @@ chisq.test(data$AISE, data$n_TYPMEN_sexe)
 plot(data$AISE, data$n_AgeEnfantsMenage)
 freq(data$n_FractionClasse)
 plot(data$n_FractionClasse, data$AISE)
-
+data$NIVIEsq <- data$NIVIE*data$NIVIE
 data$AISE
 names(data)
+
+
 
 reg <- clm(AISE ~ NIVIE + n_FractionClasse + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPMEN_sexe,
            data = data, 
            weights = PONDFAM)
 #step(reg)
 summary(reg)
-
+freq(data$n_NEnfantsMenage)
+freq(data$n_TYPMEN_sexe)
 tblreg3 <- tbl_regression(reg, intercept = F, exponentiate = T)
 tblreg3 
 

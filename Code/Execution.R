@@ -42,6 +42,7 @@ execute(part = "03e")
 execute(part = "04b")
 execute(part = "04c")
 execute(part = "06a")
+execute(part = "06b")
 
 ## Regressions #################################################################
 execute(part = "04e")

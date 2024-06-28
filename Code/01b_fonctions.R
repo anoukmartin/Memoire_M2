@@ -771,3 +771,41 @@ joli_tableau <- function(data,
 }
   
   
+
+insert_line_breaks <- function(text, max_length = 160) {
+  # Split the text into words
+  words <- unlist(strsplit(text, " "))
+  
+  # Initialize variables
+  current_line <- ""
+  result <- ""
+  
+  # Loop through each word
+  for (word in words) {
+    # Check if adding the next word exceeds the max length
+    if (nchar(current_line) + nchar(word) + 1 > max_length) {
+      # If it does, add the current line to the result and start a new line
+      result <- paste(result, current_line, sep = "\n")
+      current_line <- word
+    } else {
+      # Otherwise, add the word to the current line
+      if (nchar(current_line) > 0) {
+        current_line <- paste(current_line, word, sep = " ")
+      } else {
+        current_line <- word
+      }
+    }
+  }
+  
+  # Add the last line to the result
+  result <- paste(result, current_line, sep = "\n")
+  
+  # Remove the leading newline character if present
+  result <- sub("^\n", "", result)
+  
+  return(result)
+}
+
+# Exemple d'utilisation
+texte <- "Ceci est un exemple de texte assez long pour démontrer comment la fonction peut insérer des retours à la ligne tous les 120 caractères sans couper les mots. Chaque mot sera maintenu intact, et les retours à la ligne seront ajoutés de manière appropriée."
+cat(insert_line_breaks(texte))

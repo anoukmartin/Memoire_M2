@@ -104,11 +104,15 @@ data <- data %>%
   filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13))
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
-  group_by(n_TYPMEN_new) %>%
+  group_by(n_TYPMEN_new, DNIVIE2) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
   summarise(mean_wtd = wtd.mean(Vetements_enfants, weights = PONDMEN))
   
-tab
+tab %>%
+  pivot_wider(id_cols = DNIVIE2, 
+              names_from = n_TYPMEN_new, 
+              values_from = mean_wtd)
+              
 
 reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE +  n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
                data=data, 
@@ -167,12 +171,17 @@ data$n_AgeEnfantsMenageSquare <- data$n_AgeEnfantsMenage*data$n_AgeEnfantsMenage
 data$DEPPER2_D <- data$DEPPER2_D/data$n_NEnfantsMenage13
 
 tab <- data %>%
-  group_by(n_TYPMEN_sexe) %>%
+  group_by(n_TYPMEN_sexe, DNIVIE2) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
   summarise(mean_wtd = wtd.mean(DEPPER2_D, weights = PONDMEN))
 
-tab
+tab %>%
+  pivot_wider(id_cols = DNIVIE2, 
+            names_from = n_TYPMEN_sexe, 
+            values_from = mean_wtd)
 
+data$DEPPER2_D
+data$n_REVENUS_F
 # Regresion Garde d'enfants
 reg <- survreg(Surv(DEPPER2_D+1, DEPPER2_D+1>1, type='left') ~ NIVIE + n_NFraterie + n_AgeEnfantsMenage + n_FractionClasse + n_TYPMEN_sexe,
                data=data, 
@@ -185,6 +194,10 @@ tblreg <- tbl_regression(reg, intercept = T, exponentiate = F) |>
   add_glance_source_note() 
 
 tblreg
+
+
+
+
 
 #ggcoef_model(reg)
 

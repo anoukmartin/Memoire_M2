@@ -5,7 +5,6 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fix-cm}
-\RequirePackage[english,french]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{geometry}
 \RequirePackage{xcolor}
@@ -24,7 +23,6 @@
 \usepackage{tikz}
 \usepackage{threeparttablex}
 \usepackage{longtable}
-
 \usepackage{tcolorbox}
 \newtcolorbox[auto counter]{encadre}[2][]{%
 fonttitle=\bfseries,
@@ -33,6 +31,8 @@ fontupper=\footnotesize,
 fontlower=\footnotesize,
 title=Encadré n°~\thetcbcounter : #2,#1}
 
+\RequirePackage[french]{babel}
+\addto\captionsfrench{\def\tablename{Tableau}}
 
 % Paramètres de la mise en page
 \geometry{a4paper, margin=2.5cm}
