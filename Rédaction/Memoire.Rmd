@@ -1009,11 +1009,9 @@ l'INSEE du couple, qui accorde une grande importance aux représentations
 de l’enquêté.
 
 ```{=tex}
-\begin{encadre}{Couple (définition selon l'INSEE}
+\begin{encadre}{Couple (définition selon l'INSEE)}
 
-Un couple est composé de deux personnes de 15 ans ou plus, habitant le
-même logement et déclarant actuellement être en couple, quel que soit
-leur état matrimonial légal (qu'ils soient donc mariés ou non).
+Un couple est composé de deux personnes de 15 ans ou plus, habitant le même logement et déclarant actuellement être en couple, quel que soit leur état matrimonial légal (qu'ils soient donc mariés ou non).
 
 \end{encadre}
 ```
@@ -1033,20 +1031,17 @@ monoparentale, il faut qu'enfant vive avec au moins un de ses parents.
 \begin{encadre}{Enfant du ménage (définition selon l'INSEE)}
 
 Un enfant, au sens des enquêtes auprès des ménages, est une personne
-célibataire, qui n'est pas en couple avec une personne de son ménage (au
-sens des enquêtes auprès des ménages), ayant un parent (père ou mère)
-dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une
-personne de son ménage.
+célibataire, qui n'est pas en couple avec une personne de son ménage (au sens des enquêtes auprès des ménages), ayant un parent (père ou mère) dans son ménage, et n'étant pas lui-même parent (père ou mère) d'une personne de son ménage.
 
 \end{encadre}
 ```
-Ainsi, la statitique publique met également l'accent sur la cohabitation
-entre enfant et parent pour classer les ménages en fonction de leur
-structure familiale. Cependant, elle ne s'y limite pas : les ménages
-composés d'individus vivant avec leurs grands-parents et sans leur
-parents sont par exemple classés dans les lénages complexes. C'est bien
-l'existance d'un lien de filiation direct ou non qui détermine aussi ces
-catégorisations.
+Ainsi, la statistique publique met également l'accent sur la
+cohabitation entre enfant et parent pour classer les ménages en fonction
+de leur structure familiale. Cependant, elle ne s'y limite pas : les
+ménages composés d'individus vivant avec leurs grands-parents et sans
+leur parents sont par exemple classés dans les ménages complexes. C'est
+bien l’existence d'un lien de filiation direct ou non qui détermine
+aussi ces catégorisations.
 
 #### La parenté légale dans les enquêtes ménages
 
@@ -1081,23 +1076,23 @@ dic %>%
 Ces liens sont codés à partir de la déclaration qu'en font les
 individus, il reflètent donc les catégories familiales ordinaires. La
 question à l'origine de la déclaration d'un lien entre parent et enfant
-ne fait ainsi pas référence au droit civil de filiation. Sans qu'elle se
-suffise à elle-même, la parenté légale a cependant acquis une grande
-centralité dans la définition ordinaire du père et de la mère
-[@weber2013], de sorte que l'on peut raisonnablement considérer que
-l'enquête saisit bien des liens établits par le droit. On obsreve aussi
-que liens entre beaux-parents et beaux-enfants sont renseignées
-(modalités 31 et 32). Cependant en cherchant les questions à l'origine
-du code de ces variables, on comprend que ces modalités correspondent en
-réalité des relations avec la belle-famille, c'est-à-dire les parents du
-conjoint. L'absence de cette modalité témoigne de l'impensé que
-constitue les relations entre un adulte et les enfants de son conjoint,
-qui n'as pas moins d'existance légale que celles qui concernent la
-belle-famille, dans la statistique publique. Quoiqu'il en soi, ces
-variables permettent de saisir les liens de filiation légale. En
-articulant ceux-ci aux lien conjugaux, il est possible d'identifier les
-ménages dans lesquels un couple vit avec au moins un enfant qui n'est
-pas légalement issu de leur union.
+ne fait ainsi pas référence au droit civil de filiation. Même si les
+catégories familiales pratiques ne peuvent être réduites à celles du
+droit civil, elles y sont, de fait, fortement liées [@weber2013], de
+sorte que l'on peut raisonnablement considérer que l'enquête saisit bien
+des liens établit par le droit. On observe aussi que liens entre
+beaux-parents et beaux-enfants sont renseignées (modalités 31 et 32).
+Cependant en cherchant les questions à l'origine du code de ces
+variables, on comprend que ces modalités correspondent en réalité des
+relations avec la belle-famille, c'est-à-dire les parents du conjoint.
+L'absence de cette modalité témoigne de l'impensé que constitue les
+relations entre un adulte et les enfants de son conjoint, qui n'as pas
+moins d’existence légale que celles qui concernent la belle-famille,
+dans la statistique publique. Quoiqu'il en soi, ces variables permettent
+de saisir les liens de filiation légale. En articulant ceux-ci aux lien
+conjugaux, il est possible d'identifier les ménages dans lesquels un
+couple vit avec au moins un enfant qui n'est pas légalement issu de leur
+union.
 
 Par ailleurs, il ne suffit pas de s'intéresser aux liens de parenté
 légaux entre les individus appartenant à un unique logement, puisque
@@ -1248,13 +1243,15 @@ figure de l'enfant, font appel au pathos [@stettinger2014]. En outre,
 écrire les statistiques du point de vue des enfants parait d'autant plus
 problématique que ceux-ci sont rarement interrogés par les grandes
 enquêtes et que leur situation est presque toujours déduite des
-déclarations de leurs parents. Ainsi, nous concentrerons les analyses
-sur les ménages et les adultes qui les composent.
+déclarations de leurs parents. Dans l'enquête `r infosBDF$nom` , l'âge
+moyen des répondants et répondantes se situe ainsi autour de 52 ans.
+Ainsi, nous concentrerons les analyses sur les ménages et les adultes
+qui les composent.
 
 #### Qu'est ce qu'un enfant ?
 
 ```{r}
-enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds")
+indiv <- readRDS("Data_output/individus.Rds")
 ```
 
 Avant d'essayer d'identifier la situation familiale des enfants, il nous
@@ -1298,8 +1295,9 @@ Active (RSA) [@lima2015]. Ce seuil parait ainsi correspondre à un
 changement dans le mode d'administration des populations, il n'en
 conserve pas moins une part d'arbitraire.
 
-Le graphique ci-dessous illustre la situation familiale des enfants. Il
-distingue les familles traditonelles, monoparentales et recomposées.
+Le graphique ci-dessous illustre la situation familiale des enfants,
+décrite par les liens légaux et la cohabitation. Il distingue les
+familles traditionnelles, monoparentales et recomposées.
 
 ```{r mosaic-enfants, fig.cap= "Situation familiale des enfants",  fig.asp = 0.5}
 
@@ -1344,9 +1342,6 @@ tab$x_coord <- round(tab$xmin + (tab$xmax - tab$xmin)/2, 3)
 tab$y_coord <- round(tab$ymin + (tab$ymax - tab$ymin)/2, 3)
 tab <- tab[as.numeric(str_remove(tab$label, "%")) > 0.01, ]
 
-tab$label
-
-
 g +
   geom_text(data = tab, 
             aes(x = x_coord, y = y_coord, label = label), 
@@ -1384,22 +1379,23 @@ g +
 rm(familles, dat, g, b, tab)
 ```
 
-7 enfants vivants en ménage ordinaire sur 10 vivent dans une famille
-traditionnelle, c'est-à-dire avec leurs deux parents. C'est de loin la
-situation la plus courante. Les enfants vivant en familles monoparentale
+7 enfants vivants en ménage ordinaire sur 10 vivent avec leurs deux
+parents, et eventuellement, les autres enfants issus de leur union,
+c'est-à-dire dans une famille traditionnelle. C'est de loin la situation
+la plus courante. Les enfants vivants en familles monoparentale
 représentent 19,4% de ceux vivants en ménage ordinaires, soit un peu
 moins d'un enfants sur cinq. Les enfants vivants en famille recomposées
-sont deux fois moins nombreux : ceux-ci représentent 10,6% des enfants
-vivants en ménage ordinaire, soit envions 1 sur 10. On retrouve ici des
-chiffres proches mais néanmoins différents de ceux produit par
-@algava2020 à partir des données du recensement en 2018 qui comptaient
-68% d'enfants vivants en familles traditionnelles, 21% en familles
-monoparentales et 11% en familles recomposées. Cela s'explique peut-être
-par les différences de définition du couple et du ménage entre le
-recensement et les enquêtes ménages [@toulemon2011], mais cela tient
-aussi peut-être à la limite d'age que nous avons ici définit pour les
-enfants (25 ans) ce qui de fait, réduit le nombre de famille considérés
-comme monoparentales.
+sont deux fois moins nombreux que ceux vivant en famille monoparentale :
+ceux-ci représentent 10,6% des enfants vivants en ménage ordinaire, soit
+envions 1 sur 10. On retrouve ici des chiffres proches mais néanmoins
+différents de ceux produit par @algava2020 à partir des données du
+recensement en 2018 qui comptaient 68% d'enfants vivants en familles
+traditionnelles, 21% en familles monoparentales et 11% en familles
+recomposées. Cela s'explique peut-être par les différences de définition
+du couple et du ménage entre le recensement et les enquêtes ménages
+[@toulemon2011], mais cela tient aussi peut-être à la limite d'age que
+nous avons ici définit pour les enfants (25 ans) ce qui de fait, réduit
+le nombre de famille considérés comme monoparentales.
 
 Parmis les enfants vivants en familles recomposées, 27,3% sont issus de
 l'union actuelle et vivent donc, comme ceux vivant en famille
