@@ -131,25 +131,47 @@ freq(familles$TYPLOG)
 freq(familles$PATRIB)
     
 
-familles <- familles %>%
-  select(IDENT_MEN, n_config, TYPMEN5, TYPMEN,  PONDMEN, NIVIEcut, n_IdentPRef, NENFANTS, REVSOCcut, TAU, STALOG, TYPLOG, PATRIB, DNIVIE2)
+familles_typemen <- familles %>%
+  select(IDENT_MEN, TYPMEN5, n_IdentPRef)
 
-freq(familles$TAU)
-freq(familles$REVSOCcut)
-freq(familles$DNIVIE2)
-menagesHF <- left_join(menagesHF, familles, by = "IDENT_MEN") 
+menagesHF <- left_join(menagesHF, familles_typemen, by = "IDENT_MEN") 
 
 # On vérifie qu'on a pas de ménages en double
 dup <- menagesHF[duplicated(menagesHF$IDENT_MEN), ]
 freq(dup$TYPMEN5)
-# ca de concerne que des ménages complexes
 
-#On vire les menages aucun membre n'est la personne de référence du ménage (ie principal apporteur de ressource, actif, agé)
+#On vire les couples aucun membre n'est la personne de référence du ménage (ie principal apporteur de ressource, actif, agé)
 menagesHF <- menagesHF %>%
   filter(n_IdentPRef == n_IdentIndiv1 | n_IdentPRef == n_IdentConjoint1) 
+dup <- menagesHF[menagesHF$IDENT_MEN %in% menagesHF$IDENT_MEN[duplicated(menagesHF$IDENT_MEN)], ]
+freq(dup$TYPMEN5)
+
+
+familles <- familles %>%
+  select(IDENT_MEN, TYPMEN, TYPMEN5, PONDMEN, NIVIEcut, NENFANTS, REVSOCcut, TAU, STALOG, TYPLOG, PATRIB, DNIVIE2, n_IdentPRef)
+
+menagesHF <- left_join(familles, 
+                       menagesHF %>%
+                         select(-TYPMEN5, -n_IdentPRef),
+                        by = "IDENT_MEN")
+
+
+dup <- menagesHF[duplicated(menagesHF$IDENT_MEN), ]
+freq(dup$TYPMEN5)
+  
+table(menagesHF$ADULTE_H, menagesHF$ADULTE_F, useNA  = "ifany")
 
 menagesHF <- menagesHF %>%
-  filter(ADULTE_H | ADULTE_F) 
+   mutate(ADULTE_C = case_when(
+     ADULTE_H | ADULTE_F ~ TRUE, 
+     ADULTE_H & is.na(ADULTE_F) ~ T, 
+     ADULTE_F & is.na(ADULTE_H) ~ T, 
+     is.na(ADULTE_H) & is.na(ADULTE_F) ~ NA,
+     TRUE ~ FALSE))
+
+freq(menagesHF$ADULTE_C)
+table(menagesHF$ADULTE_C, menagesHF$ADULTE_F, useNA  = "ifany")
+table(menagesHF$ADULTE_C, menagesHF$ADULTE_H, useNA  = "ifany")
 
 
 dup <- menagesHF[menagesHF$IDENT_MEN %in% menagesHF$IDENT_MEN[duplicated(menagesHF$IDENT_MEN)], ]
@@ -158,9 +180,7 @@ dupli <- menagesHF[duplicated(menagesHF), ]
 freq(dupli$TYPMEN5)
 freq(menagesHF$TYPMEN5)
 
-
-freq(familles$TYPMEN)
-freq(familles$NIVIEcut)
+freq(menagesHF$ADULTE_C)
 
 # Les ménages de vieux et de très jeunes sont exclus
 miss <- familles %>%
@@ -230,20 +250,50 @@ table(menagesHF$TYPMEN5, menagesHF$TRAD, useNA = "always")
 table(menagesHF$TYPMEN5, menagesHF$RECOMP, useNA = "always")
 table(menagesHF$TYPMEN5, menagesHF$MONOP, useNA = "always")
 
+
+names(menagesHF)
+
+# Variable "couple"
+menagesHF <- menagesHF %>%
+  mutate(n_CPL = case_when(
+    !is.na(n_IdentIndiv_H) & !is.na(n_IdentIndiv_F) ~ T, 
+    is.na(n_IdentIndiv_H) | is.na(n_IdentIndiv_F) ~ F))
+freq(menagesHF$n_CPL)
+
+freq(menagesHF$n_NEnfantsMenage)
+# Variale "enfant dans le ménage"
+menagesHF <- menagesHF %>%
+  mutate(n_EnfantsMenage = case_when(
+    n_NEnfantsMenage > 0 ~ T,
+    n_NEnfantsMenage == 0 | is.na(n_NEnfantsMenage) ~ F))
+freq(menagesHF$n_EnfantsMenage) 
+
+# Variable "enfant du couple" 
+table(menagesHF$n_NEnfantsCouple_F, menagesHF$n_NEnfantsCouple_H, useNA = "ifany")
+menagesHF$n_NEnfantsCouple <- menagesHF$n_NEnfantsCouple_F
+menagesHF <- menagesHF %>%
+  mutate(n_EnfantsCouple = case_when(
+    n_NEnfantsCouple > 0 ~ T,
+    n_NEnfantsCouple == 0 | is.na(n_NEnfantsCouple) ~ F))
+freq(menagesHF$n_EnfantsCouple) 
+table(menagesHF$n_EnfantsCouple, menagesHF$n_EnfantsMenage, useNA = "ifany")
+
 menagesHF <- menagesHF %>%
   mutate(n_TYPMEN_new = case_when(
+    #!ADULTE_C ~ "Autre",
     TYPMEN5 == "Couple avec au moins un enfant" & RECOMP  ~ "Recomposée", 
     TYPMEN5 == "Couple avec au moins un enfant" & TRAD  ~ "Traditionelle", 
     TYPMEN5 == "Famille monoparentale" & MONOP ~ "Monoparentale", 
     TYPMEN5 == "Couple sans enfant" ~ "Couple sans enfant",
     TYPMEN5 == "Personne seule" ~ "Personne seule",
-    TRUE ~ "Complexe")) %>%
+    TRUE ~ "Autre")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>%
            fct_relevel(
              "Couple sans enfant", "Traditionelle", "Recomposée", "Monoparentale",
-             "Personne seule", "Complexe"
+             "Personne seule", "Autre"
            ))
-
+summary(menagesHF$AG_F[menagesHF$n_TYPMEN_new != "Autre"])
+summary(menagesHF$AG_H[menagesHF$n_TYPMEN_new != "Autre"])
 table(menagesHF$TYPMEN5, menagesHF$n_TYPMEN_new)
 
 # On ajoute des recodages qui synthétise les configurations recomposées
@@ -295,19 +345,29 @@ freq(menagesHF$n_TYPMEN_sexe)
 table(menagesHF$n_TYPMEN_new, menagesHF$n_TYPMEN_sexe, useNA = "always")
 
 # On peut comparer les deux recodages
-table(menagesHF$n_TYPMEN_new, menagesHF$n_config, useNA = "ifany")
-
 table(menagesHF$n_TYPMEN_new, menagesHF$n_TYPMEN_sexe, useNA = "ifany")
 
-menagesHF$PONDMEN <- menagesHF$PONDMEN/mean(menagesHF$PONDMEN)
+# On enregistre les ménages tels quels 
+saveRDS(menagesHF, file = "Data_output/menages_parents.Rds")
+
+
+# On ne conserve que les ménages ou la personne de référence ou son conjoint
+menagesHF2 <- menagesHF %>%
+  filter(ADULTE_C)
+
+menagesHF2$PONDMEN <- menagesHF2$PONDMEN/mean(menagesHF2$PONDMEN)
+
+infosBDF$champ2_men <- "ménages ordinaires résidant en France formés par des adultes (25-64 ans)"
+infosBDF$champ2_fam <- "ménages ordinaires résidant en France formés par des adultes (25-64 ans) vivant avec au moins un enfant (moins de 25 ans)"
+
 
 if(any(str_detect(list.files("Data_output"), "familles_FractionClasse.Rds"))){
   fraction <- readRDS("Data_output/familles_FractionClasse.Rds")
-  familles <- left_join(familles, fraction, by = "IDENT_MEN")
+  menagesHF2 <- left_join(menagesHF2, fraction, by = "IDENT_MEN")
 }
   
-  
-saveRDS(menagesHF, file = "Data_output/familles_parents.Rds")
+
+saveRDS(menagesHF2, file = "Data_output/familles_parents.Rds")
 
 rm(celibf, celibh, couplesgay, coupleshet, coupleslesb, dup, dupli, familles, femmes, 
    hommes, indiv, menagesHF, menagesHF2, miss, dep_men, enfantsMenage, enfantsMenage_moins13ans, infosBDF, list_beauxenfantsHD, list_enfantsHD, list_enfantsHDremisencouple, fraction)

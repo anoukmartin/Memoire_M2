@@ -46,6 +46,7 @@ mot, mot, mot
 \markboth{Table des matières}{Table des matières}
 \addcontentsline{toc}{chapter}{Table des matières}
 ```
+
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(
@@ -1206,7 +1207,7 @@ leur enfant résidant chez l'autre parent. C'est grâce à cet ensemble de
 variables que l'on peut distinguer les structures familiales recomposées
 des structures familiales traditionnelles.
 
-### De la situation familiale des enfants à celle des parents
+### De la situation familiale des enfants à la configuration familiale des ménages
 
 Lorsqu'il s'agit de quantifier l'isolement parental et les
 recompositions familiales, la statistique publique adopte souvent le
@@ -1250,10 +1251,6 @@ qui les composent.
 
 #### Qu'est ce qu'un enfant ?
 
-```{r}
-indiv <- readRDS("Data_output/individus.Rds")
-```
-
 Avant d'essayer d'identifier la situation familiale des enfants, il nous
 faut d'abord définir ce qu'on entend par "enfant". D'un point de vu
 sociologique, il n'est pas si aisé de circonscrire cette catégorie
@@ -1263,7 +1260,8 @@ position dans les rapports entre générations familiales. Aucune limite
 d'âge n'étant fixée, l'INSEE privilégie une définition de l'enfance qui
 comme position dans les rapports familiaux au sein du groupe qui
 cohabite et forme un ménage. Dans l'enquête `r infosBDF$nom` on dénombre
-ainsi `r nrow(enfantsMenage)` enfants au sens du TCM.
+ainsi 15 770 enfants au sens du TCM, soit 36,8% des individus du champ
+de l'enquête.
 
 Pour être en mesure de comparer nos résultats avec ceux produit par la
 statistique publique, nous aurions aimé choisir de conserver l'ensemble
@@ -1295,18 +1293,34 @@ Active (RSA) [@lima2015]. Ce seuil parait ainsi correspondre à un
 changement dans le mode d'administration des populations, il n'en
 conserve pas moins une part d'arbitraire.
 
-Le graphique ci-dessous illustre la situation familiale des enfants,
-décrite par les liens légaux et la cohabitation. Il distingue les
-familles traditionnelles, monoparentales et recomposées.
+Définit de la sorte, les enfants sont au nombre de 14 722, soit 93,3%
+des enfants au sens des enquêtes ménages. Ils ont en moyenne 11 ans.
+72,4% d'entre eux résident avec leurs deux parents, 22.1% d'entre eux
+résident seulement avec leur mère et 5,5% d'entre eux seulement avec
+leur père. Pour 8.3% de ceux qui ne résident qu'avec un seul de leur
+parent (soit 2,3% des enfants en général), l'autre parent est décédé ou
+inconnu. Dans les autres cas, celui-ci réside simplement ailleurs.
+L'enquête ne fournit pas d'informations sur les éventuels contacts et
+visites des enfants à leur autre parent lorsque celui-ci existe. Enfin
+parmi les enfants vivants avec un seul de leur parents, 27,5% cohabitent
+également avec le conjoint ou la conjointe de leur parent. Le graphique
+ci-dessous résume la situation familiale des enfants, décrite par les
+liens légaux et la cohabitation. Il distingue les ménage selon leur
+configuration familiale : traditionnelle, monoparentale et recomposée ou
+complexe.
 
 ```{r mosaic-enfants, fig.cap= "Situation familiale des enfants",  fig.asp = 0.5}
 
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
-  filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale")) %>%
+  #filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale", "Complexe")) %>%
   mutate(n_config = n_TYPMEN_new) %>%
   select(IDENT_MEN, n_config) 
 
-dat <- readRDS("Data_output/enfantsDuMenage.Rds") %>%
+dat <- readRDS("Data_output/enfantsDuMenage.Rds") 
+nrow(dat)
+weighted.mean(dat$AG, dat$PONDIND)
+
+dat <- dat %>%
   inner_join(familles, by = "IDENT_MEN") %>%
   select(n_config, n_NPARENTS, n_AutreParent, PONDMEN) %>%
   mutate(n_config = n_config %>%
@@ -1360,11 +1374,12 @@ g +
                         infosBDF$vague,  
                         insert_line_breaks(paste0(
                           "\nChamp : Enfants vivant en ",
+                          
                           infosBDF$champ, 
-                          " (hors ménages complexes) (n = ", 
+                          " (n = ", 
                           nrow(dat), ")")
                           ), 
-                        insert_line_breaks("\nLecture : 70% des enfants résidant en ménage ordinaires en 2017 vivaient en famille traditionelle."))) +
+                        insert_line_breaks("\nLecture : 68% des enfants résidant en ménage ordinaires en 2017 vivaient en famille traditionelle."))) +
   theme_memoire() +
   theme(legend.position = "left", 
         axis.line = element_blank(),
@@ -1379,54 +1394,36 @@ g +
 rm(familles, dat, g, b, tab)
 ```
 
-7 enfants vivants en ménage ordinaire sur 10 vivent avec leurs deux
-parents, et eventuellement, les autres enfants issus de leur union,
-c'est-à-dire dans une famille traditionnelle. C'est de loin la situation
-la plus courante. Les enfants vivants en familles monoparentale
-représentent 19,4% de ceux vivants en ménage ordinaires, soit un peu
-moins d'un enfants sur cinq. Les enfants vivants en famille recomposées
-sont deux fois moins nombreux que ceux vivant en famille monoparentale :
-ceux-ci représentent 10,6% des enfants vivants en ménage ordinaire, soit
-envions 1 sur 10. On retrouve ici des chiffres proches mais néanmoins
-différents de ceux produit par @algava2020 à partir des données du
-recensement en 2018 qui comptaient 68% d'enfants vivants en familles
-traditionnelles, 21% en familles monoparentales et 11% en familles
-recomposées. Cela s'explique peut-être par les différences de définition
-du couple et du ménage entre le recensement et les enquêtes ménages
-[@toulemon2011], mais cela tient aussi peut-être à la limite d'age que
-nous avons ici définit pour les enfants (25 ans) ce qui de fait, réduit
-le nombre de famille considérés comme monoparentales.
+68% des enfants vivants en ménage ordinaire vivent en famille
+traditionnelle. C'est de loin la situation la plus courante. Les enfants
+vivants en familles monoparentale représentent 18,9% de ceux vivants en
+ménage ordinaires. Les enfants vivants en famille recomposées sont deux
+fois moins nombreux que ceux vivant en famille monoparentale : ceux-ci
+représentent 10,4% des enfants vivants en ménage ordinaire, soit envions
+1 sur 10. Enfin 2,7% d'entre eux vivent dans des ménages à la
+configuration familiale complexe, c'est-à-dire avec au moins un de leur
+parents, mais éventuellement d'autre individus apparentés au deuxième ou
+troisième degré et/ou avec d'autres individus sans lien de parenté. On
+retrouve ici des chiffres proches mais néanmoins différents de ceux
+produit par @algava2020 à partir des données du recensement en 2018 qui
+comptaient 68% d'enfants vivants en familles traditionnelles, 21% en
+familles monoparentales et 11% en familles recomposées. Il s'agit en
+premier lieu d'une différence de champ, puisque nous incluons ici les
+ménages à la configuration familiale complexe, qui sont exclus du de
+l'analyse de @algava2020. Cela s'explique peut-être aussi par les
+différences de définition du couple et du ménage entre le recensement et
+les enquêtes ménages [@toulemon2011]. Enfin cela tient aussi à la limite
+d'age que nous avons ici définit pour les enfants (25 ans) ce qui de
+fait, réduit le nombre de famille considérés comme monoparentales.
 
-Parmis les enfants vivants en familles recomposées, 27,3% sont issus de
+Parmi les enfants vivants en familles recomposées, 26,9% sont issus de
 l'union actuelle et vivent donc, comme ceux vivant en famille
-traditionnelles, avec leurs deux parents.
-
-Dans 83,5% cas, ces enfants résident avec leur mères. Les enfants
-vivants avec leur mères célibataires représentent ainsi 16,2% des
-enfants vivants en ménage ordinaires.
-
-Le plus souvent l'autre parent existe et réside ailleurs.
-
-Dans le cas des familles monoparentales, 14,5% des enfants résident
-uniquement avec leur mère, tandis que 1,8% vivent avec leur père.
-
-Les familles recomposées, où les enfants vivent avec l'un de leurs
-parents et un beau-parent, montrent une diversité plus importante. 3,2%
-des enfants vivent avec leur mère dans une famille recomposée, tandis
-que 2,1% résident avec leur père. Il est intéressant de noter que 2,9%
-des enfants dans des familles recomposées ont un autre parent décédé ou
-inconnu.
-
-En résumé, la majorité des enfants en France en 2017 vivent dans une
-famille traditionnelle, suivie par ceux vivant dans des familles
-monoparentales, principalement avec leur mère. Les familles recomposées
-représentent une part moindre, mais non négligeable, de la population
-enfantine, avec une répartition presque égale entre ceux vivant avec
-leur mère et ceux vivant avec leur père.
-
-On retrouve ici les chiffres du recensement de 2018 [@algava2020].
-[Peut-être commenter un peu plus les différences de situations survant
-que l'autre parent est décédé ou inconnu ou non]
+traditionnelles, avec leurs deux parents. 51,9% vivent avec leur mère et
+son conjoint ou sa conjointe et 21,1% vivent avec leur père et son
+conjoint ou sa conjointe. Ces enfants vivant avec un seul de leur parent
+remis en couple représente donc 73,1% des enfants vivants vivants en
+familles recomposées. Pour 92,1% d'entre eux, leur autre parent n'est
+pas inconnu ou décédé et réside simplement dans un autre logement.
 
 ```{r}
 enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds")
@@ -1442,32 +1439,55 @@ enfants vivant hors domicile, les enfants résidant ailleurs s'ils sont
 célibataires et sans enfants et qu'ils ont moins de 25 ans. Ils sont au
 nombre de `r nrow(enfantsHD)` dans l'enquête.
 
-A partir des situations familiales des enfants, il est ainsi possible de
-déterminer celles des parents. Pour chaque enfant, nous avons récupéré,
-lorsqu'ils était disponible, l'identifiant du père, de la mère, du
-conjoint ou de la conjointe du père et du conjoint ou de la conjoint de
-la mère. En comparant, l'identifiant du conjoints et conjointe de chaque
-parent à celui de l'autre parent, nous avons pu déterminer pour chaque
-enfant, l'identifiant des parents et des beaux-parents lorsqu'ils
-existaient. Ainsi pour chaque individu de l'enquête nous avons pu
-déterminé s'il était parent, s'il était beau parent, le nombre d'enfants
-et de beaux-enfants (dans le ménage et hors domicile) ainsi que leur âge
-moyen. Dans un soucis de cohérence et d'intelligibilité des résultats
-nous n'avons conservé ces informations que pour les adultes ou en couple
-avec un adulte. Nous avons définit la catégorie des adultes en miroir
-des enfants, comme l'ensemble des individus qui ne sont pas enfants au
-sens du TCM et qui ont 25 ans ou plus et moins de 65 ans. Encore une
-fois, ces critères d'âge ont été choisis en fonction de seuils qui nous
-paraissent refléter des transformations dans l'administration des
-populations. L'âge de 65 ans correspond à l'âge d'ouverture des droits
-au minimum vieillesse (ASPA) et est proche de l'age conjoncturel moyen
-de départ à la retraite (63 ans pour les femmes et 62 ans et deux mois
-pour les hommes).
+#### Qu'est ce qu'un adulte ?
+
+Dans un soucis de cohérence et d'intelligibilité des résultats nous
+avons définit la catégorie des adultes. D'un point de vue sociologique, les adultes constituent pas, encore moins que les enfants, un groupe bien définit. Si l'entrée dans la vieillesse se définit par la sortie du marché du travail [@lenoir1979] et arrêt des activités de reproduction sexuelle [@charlap], l'âge adulte se définit en creux, comme l'âge du travail et celui de la reproduction biologique. En miroir avec la catégorie des enfants, les adultes sont ici définit comme l'ensemble des individus qui ne sont pas enfants au sens du TCM et qui ont 25 ans ou plus et moins de 65 ans. Encore une fois, ces critères d'âge ont été choisis en fonction de seuils qui nous paraissent refléter des transformations dans l'administration des populations. L'âge de 65 ans correspond à l'âge d'ouverture des droits au minimum vieillesse (ASPA) et est proche de l'age conjoncturel moyen de départ à la retraite (63 ans pour les femmes et 62 ans et deux mois pour les hommes). Il s'agit également d'un seuil généralement utilisé dans la statistique publique lorsque l'on étudie la population en âge de travailler. Les adultes ainsi définit sont 19 238 individus dans l'enquête. Ils représentent 68,1% des individus qui ne sont pas des enfants du ménage au sens du TCM. Ces adultes ont en moyenne 44 ans et 11 mois, contre 51 ans et 3 mois pour les individus qui ne sont pas des enfants au sens du TCM.
+
+```{r, eval = F}
+
+indiv <- readRDS("Data_output/parents.Rds")
+familles <- readRDS("Data_output/familles_parents.Rds")
+familles$IDENT_MEN
+indiv$IDENT_MEN
+indiv <- left_join(indiv, 
+                   familles %>%
+                     select("TYPMEN5", "n_TYPMEN_new", "n_TYPMEN_sexe", "IDENT_MEN"), 
+                   by = "IDENT_MEN")
+nonenfants <- indiv %>%
+  filter(NONENFANT)
+adultes <- indiv %>%
+  filter(ADULTE)
+
+weighted.mean(nonenfants$AGE, nonenfants$PONDIND)
+
+weighted.mean(adultes$AGE, adultes$PONDIND)
+
+
+# Calculer les pourcentages d'individus pondérés par âge et configuration familiale
+data_summary <- indiv %>%
+  filter(ADULTE) %>%
+  group_by(AGE, n_TYPMEN_new) %>%
+  summarise(weighted_count = sum(PONDIND)) %>%
+  mutate(total_weight = sum(weighted_count),
+         percentage = weighted_count / total_weight * 100)
+
+# Créer le graphique
+ggplot(data_summary, aes(x = AGE, y = percentage, fill = n_TYPMEN_new)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(x = "Âge", y = "Pourcentage d'individus", fill = "Configuration familiale") +
+  theme_minimal()
+
+```
+
+A partir des situations familiales des enfants, il est ainsi possible de déterminer celles des adultes du ménage. Pour chaque enfant, nous avons récupéré l'identifiant du père, de la mère, du conjoint ou de la conjointe du père et du conjoint ou de la conjointe de la mère, lorsque ils et elles faisaient partie du champ de l'enquête. Bien que les couples vivant dans des logements séparés soient plus fréquents lors de la formation d'unions secondaires et que l'absence de cohabitation fasse partie d'un processus de "reconjugalisation" [@régnier-loilier2019], nous avons choisit de considérer comme couple uniquement les conjoints cohabitants. Ce choix tient d'une part à la volonté de notre part d'articuler l'absence de parenté légale à la possibilité de construction d'une parenté pratique, ce qui, le plus souvent, suppose le partage du quotidien. D'autre part, cela tient à des considérations pratiques puisque les personnes vivants dans des logements séparés ne sont pas considérés comme faisant partie d'un même ménage et sont donc hors champ de l'enquête. En ce sens, y compris lorsqu'il s'agit de conjoint ou conjointe, l'enquête n'interroge pas leurs caractéristiques et leurs pratiques économiques. Enfin les effectifs concernés dans l'enquête par la conjugalité non-cohabitante sont très faibles et n'aurait pas permis une analyse spécifique. 
+
+57,6 % de ces adultes, qu'ils vivent en couple ou non, cohabite avec des enfants : les leurs ou ceux d'autres individus du ménage. Parmi ces adultes, seuls 14.9% d'entre eux vivent uniquement avec des enfants qui ne sont pas les leurs. 85,1% d'entre eux vivent donc avec leurs enfants (et éventuellement d'autres enfants). Dans 81% des cas, leurs enfants sont uniquement issus du couple qui forme le ménage au moment de l'enquête (ce qui représente 69,1% des adultes vivant dans des ménages avec enfants). Dans 16,2% des cas, leurs enfants sont uniquement issus d'unions qui sont rompues au moment de l'enquête. Dans 2,3% des cas, ces enfants sont issus d'union précédentes et de l'union actuelle. Le graphique ci-dessous synthétise la situation familiale de ces adultes vivant dans des ménages avec enfants.
 
 ```{r mosaic-adultes, fig.cap= "Situation familiale des adultes",  fig.asp = 0.5}
 
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
-  filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale")) %>%
+ #filter(!(n_TYPMEN_new %in% c("Couple sans enfant", "Personne seule"))) %>%
   mutate(n_config = n_TYPMEN_new) %>%
   select(IDENT_MEN, n_config) %>%
   filter(!is.na(n_config))
@@ -1475,18 +1495,20 @@ familles <- readRDS("Data_output/familles_parents.Rds") %>%
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds") 
 
 dat <- readRDS("Data_output/parents.Rds") %>%
+  inner_join(familles, by = "IDENT_MEN")
+  
+dat <- dat %>% 
   filter(!(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv)) %>%
   #filter(n_Parent | n_BeauParent) %>%
-  inner_join(familles, by = "IDENT_MEN") %>%
   mutate(n_StatutParent = case_when(
     n_EnfantsMen & n_BeauxEnfantsMen ~ "Beau-parent avec enfant", 
     n_EnfantsMen & (!n_BeauxEnfantsMen | is.na(n_BeauxEnfantsMen)) ~ "Parent", 
     (!n_EnfantsMen | is.na(n_EnfantsMen)) & n_BeauxEnfantsMen ~ "Beau-parent sans enfant",
     TRUE ~ "Sans enfants")) %>%
   mutate(n_StatutEnfants = case_when(
-    n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "précédante et actuelle", 
-    n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "précédante", 
-    n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "actuelle", 
+    n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "Précédante(s) et actuelle", 
+    n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "Précédante(s)", 
+    n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "Actuelle", 
     TRUE ~ "Sans enfants")) %>%
   mutate(n_config = n_config %>%
            as.factor() %>% fct_infreq(), 
@@ -1499,13 +1521,14 @@ dat <- readRDS("Data_output/parents.Rds") %>%
   mutate(n_StatutParent = as.factor(n_StatutParent) %>%
            fct_relevel("Parent"))
  
+dat$n_EnfantsHD[is.na(dat$n_EnfantsHD)] <- F
 dat$PONDIND <- dat$PONDMEN/mean(dat$PONDMEN)
 # Graph
 g <- ggplot(dat) +
   geom_mosaic(
     aes(
-      x = product(SEXE, n_StatutEnfants, n_config),
-      alpha = SEXE,
+      x = product(n_EnfantsHD, n_StatutEnfants, n_config),
+      alpha = n_EnfantsHD,
       fill= n_StatutEnfants,
       weight = PONDIND,
       na.rm = TRUE), 
@@ -1517,7 +1540,7 @@ tab$label <- round((tab$.wt/sum(tab$.wt))*100, 1)
 tab$label <- paste0(tab$label, "%")
 tab$x_coord <- round(tab$xmin + (tab$xmax - tab$xmin)/2, 3)
 tab$y_coord <- round(tab$ymin + (tab$ymax - tab$ymin)/2, 3)
-tab <- tab[tab$label > 0.01, ]
+tab <- tab[tab$label != "0%", ]
 
 
 g +
@@ -1534,50 +1557,52 @@ g +
   guides(fill = guide_legend(order = 1),
          alpha = guide_legend(order = 2)) +
   theme_memoire() +
+  labs(caption = paste0("Source : ", infosBDF$nom, ", ", 
+                        infosBDF$vague,  
+                        insert_line_breaks(paste0(
+                          "\nChamp : Adultes (25-64 ans) résidants avec au moins un enfant en",
+                          
+                          infosBDF$champ , 
+                          " (n = ", 
+                          nrow(dat), ")")
+                          ), 
+                        insert_line_breaks("\nLecture : 68% des enfants résidant en ménage ordinaires en 2017 vivaient en famille traditionelle."))) +
   theme(legend.position = "left", 
         axis.line = element_blank(),
         axis.ticks.x=element_blank(), 
         axis.text.y=element_blank(), 
         axis.ticks.y=element_blank(), 
+        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
         # Supprimer les lignes de la grille du panneau
         panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank()) 
 
 ```
 
-A partir des variables ainsi produites sur les parents, nous avons pu
-identifier les personnes en couple. Bien que les couples vivant dans des
-logement séparés soient plus fréquent lors de la formation d'union
-secondaires et que l'absence de cohabitation fasse préelnnement partie
-d'un procèdsus de "reconjugalisation" [\@; @régnier-loilier2019], nous
-avons choisit de considérer comme couple uniquement les conjoint
-cohabitant. Ce choix tient d'une part à la volonté de notre part
-d'articuler l'absence de parenté légale à la possibilité de construction
-d'une parenté pratique, ce qui, le plus souvent, se fait dans le partage
-du quotidien. D'autre part, cela tient à des ocnsidération pratique
-puisque les personnes vivants dans des logements éparés ne sont pas
-considérés comme faisant partie d'un même ménage. En ce sens, y compris
-lorsqu'il s'agit d'un conjoint, l'enquête n'interrogent pas leur
-caractéristiques et leurs pratiques économiques. Enfin les effectifs
-concernés dans l'enquête par la conjugalité non-cohabitante sont très
-faibles. Pour classer les différents ménages en fonction de leur
-configuration familiale, seuls les couples dont au moins un des deux
-membres était personne de référence du ménage ont été retenus. En
-reprenant la typologie de ménage de l'Insee (Personne seule sans enfant,
-personne seule avec enfant, couple sans enfants, couple avec enfants et
-ménages complexes) nous avons distingué, parmi les couples avec enfants,
-ceux dont au moins ceux dont au moins un des membres était beau-père ou
-belle-mère d'enfants vivants dans le ménage de ceux ou l'ensemble des
-enfants du ménage étaient issus de l'union conjugale actuelle. Par
-soucis de fluidité, nous parlerons ainsi souvent de familles recomposées
-pour désigner ces ménages présentant une configuration familiale
-recomposée. Pour autant, il faut garder à l'esprit que la recomposition
-familiale est une phénomène qui déborde largement l'échelle du ménage.
-Ces familles recomposées sont ainsi au nombre de 634 dans l'enquête.
+
+Vivre dans une famille traditionnelle représente la situation la plus courante pour les adultes vivants dans des ménages avec enfants : ils sont 66,1% dans ce cas. Les adultes vivants en familles recomposées et monoparentales sont moins nombreux. Ils sont 11% à être en situation de monoparentalité, dont majoritairement des femmes (elles représentent 80% des adultes de ménages monoparentaux). Ils sont également 8,6% à vivre dans une famille recomposée. Dans ces familles, seules 25,6% d'entre eux n'ont pas d'enfant, et sont donc seulement beau-père ou belle-mère. 55,8% d'entre eux ont des enfants issus d'unions conjugales autre que le couple actuel formant le ménage. Ce sont principalement les femmes qui sont dans ce cas, puisque 75% des femmes qui vivent en famille recomposées ont des enfants issus d'unions antérieures. 41,8% des adultes vivant en famille recomposés ont, comme dans les familles traditionnelles, des enfants issus de l'union conjugale actuelle, mais seulement 23,2% d'entre eux ont des enfants issus d'union précédante et des enfants issus du couple actuel. Enfin les adultes vivants dans des ménages avec enfants sont 14,1% à vivre dans des ménages dont la configuration familiale ne s'apparente pas à l'une de trois catégories (traditionnelle, monoparentale, recomposée), le plus souvent sans enfants (90% d'entre eux). 
+
+#### La configuration familiale des ménages 
+
+Pour classer les différents ménages en fonction de leur configuration familiale,
+nous avons repris la typologie de ménage de l'Insee (Personne seule sans enfant, personne seule avec enfant, couple sans enfants, couple avec enfants et ménages complexes) en considérant les ménages dont les enfants étaient tous âgés de 25 ans comme des ménages à la configuration familiale complexe. Nous avons ensuite regardé la situation familiales des couples formant le ménage (c'est à dire dont au moins l'un des deux membres est la personne de référence du ménage). Nous avons distingué, parmi les couples avec enfants, ceux dont au moins ceux dont au moins un des membres était beau-père ou belle-mère d'enfants vivants dans le ménage de ceux ou l'ensemble des enfants du ménage étaient issus de l'union conjugale actuelle. Par soucis de fluidité, nous parlerons ainsi souvent de familles recomposées pour désigner ces ménages présentant une configuration familiale recomposée. 
+
+
+Pour autant, il faut garder à l'esprit que la recomposition familiale est une phénomène qui déborde largement l'échelle du ménage. Ces familles recomposées sont ainsi au nombre de 634 dans l'enquête.
 Elle représentent 4% des ménages formées par au moins un adulte âgé d'au
 moins 25 ans et de moins de 65 ans et 8,5% de ces ménages vivants avec
 un ou des enfants, contre 23,8% de familles monoparentales et 67,7% de
 familles traditionnelles.
+
+nous n'avons conservé ces informations que pour les adultes ou en couple avec un adulte. Nous avons définit la catégorie des adultes
+
+
+
+
+
+
+
+### Des familles plus nombreuses, des adultes plus agés
 
 ```{r}
 
@@ -6145,6 +6170,10 @@ Retour réflexif sur l’apport et les limites du mémoire.
 <!-- ::: -->
 
 # Annexes
+
+## Note méthodologique sur la pondération dans l'enquête 
+
+
 
 ## Statistiques descriptives des différentes sous-populations
 

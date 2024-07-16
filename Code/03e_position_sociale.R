@@ -1,7 +1,5 @@
 
 
-
-
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 familles <- readRDS("Data_output/familles_parents.Rds")
@@ -178,17 +176,21 @@ typo %>% freq
 # On intègre le résultat dans les données
 typo <- typo %>% as_factor() %>%
   fct_recode(
-    "Classes superieures pole privé [C7]" = "7",
-    "Classes populaires racisées [C6]" = "6",
-    "Petits indépendants [C4]" = "4",
-    "Classes superieures pole public [C2]" = "2",
-    "Classes moyennes superieures [C3]" = "3",
+    "Classes superieures pole privé [C7]" = "7", #OK
+    "Classes populaires issues de l'immigration [C3]" = "3", #OK
+    "Petits indépendants [C5]" = "5", #OK
+    "Classes superieures pole public [C2]" = "2", #OK
+    "Classes moyennes superieures [C4]" = "4",
     "Petits-moyens [C1]" = "1",
-    "Classes populaires urbaines [C5]" = "5") %>%
+    "Classes populaires urbaines [C6]" = "6") %>%
   fct_relevel(
-    "Classes populaires racisées [C6]", "Classes populaires urbaines [C5]",
-    "Petits indépendants [C4]", "Petits-moyens [C1]", "Classes moyennes superieures [C3]",
-    "Classes superieures pole public [C2]", "Classes superieures pole privé [C7]"
+    "Classes populaires issues de l'immigration [C3]", 
+    "Classes populaires urbaines [C6]",
+    "Petits indépendants [C5]", 
+    "Petits-moyens [C1]", 
+    "Classes moyennes superieures [C4]",
+    "Classes superieures pole public [C2]", 
+    "Classes superieures pole privé [C7]"
   )
 
 

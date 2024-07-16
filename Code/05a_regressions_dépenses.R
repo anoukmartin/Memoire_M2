@@ -190,7 +190,7 @@ reg <- survreg(Surv(DEPPER2_D+1, DEPPER2_D+1>1, type='left') ~ NIVIE + n_NFrater
                dist='gaussian')
 
 
-tblreg <- tbl_regression(reg, intercept = T, exponentiate = F) |>
+tblreg <- tbl_regression(reg, intercept = T) |>
   add_glance_source_note() 
 
 tblreg

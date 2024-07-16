@@ -15,7 +15,7 @@ familles$n_config <- familles$n_config %>%
   ) 
 dep_men <- readRDS("Data_output/DepMenages.Rds")
 familles$n_TYPMEN_sexe
-table(parents$n_NEnfantsUnionAnt, parents$COUPLE, useNA = "always")
+#table(parents$n_NEnfantsUnionAnt, parents$COUPLE, useNA = "always")
 
 parents <- indiv %>%
   filter(ADULTE) %>%
@@ -150,29 +150,6 @@ saveTableau(tbl_meres,
             n = tbl_peres$N)
 
 
-dat %>%
-  filter(SEXE == "Père") %>%
-  tbl_strata(
-    strata = n_config,
-    .tbl_fun =
-      ~ .x %>%
-      select(-SEXE) %>%
-      tbl_svysummary(by = COUPLE, 
-                     digits = everything() ~ 0,
-                     statistic = list(all_categorical() ~ "{p}", 
-                                      all_continuous2() ~ c("{mean}", "{sd}"), 
-                                      Effectifs ~ "{n_unweighted}"), 
-                     missing = "no", 
-                     label = list(DIP7 ~ "Plus haut niveau de diplôme", 
-                                  CS12 ~ "Catégorie socioprofessionnelle", 
-                                  n_REVENUS ~ "Tranche de revenus")
-      ) %>%
-      add_stat_label() %>%
-      modify_header(all_stat_cols() ~ "{level}") %>%
-      add_overall(last = T, col_label = "**Ensemble**"),
-    .header = "**{strata}**"
-  )
-tbl_peres
 
 tot <- dat %>%
   select(-SEXE) %>%
@@ -201,14 +178,14 @@ tot
 #   ) %>%
 #   modify_header(all_stat_cols() ~ "**Eff**") 
 
-tab <- tbl_merge(tbls = list(tbl, tot), tab_spanner = FALSE) 
-tab
-
-saveTableau(tab, 
-            type = "des", 
-            label = "ParentsCaracteristiquesSociales",
-            description = "Caractéristiques sociales des parents des enfants du ménage en fonction de la configuration familiale",
-            champ = paste0("parents d'enfants vivants en ", infosBDF$champ), 
-            ponderation = T,
-            n = nrow(dat$variables))
+# tab <- tbl_merge(tbls = list(tbl, tot), tab_spanner = FALSE) 
+# tab
+# 
+# saveTableau(tab, 
+#             type = "des", 
+#             label = "ParentsCaracteristiquesSociales",
+#             description = "Caractéristiques sociales des parents des enfants du ménage en fonction de la configuration familiale",
+#             champ = paste0("parents d'enfants vivants en ", infosBDF$champ), 
+#             ponderation = T,
+#             n = nrow(dat$variables))
 
