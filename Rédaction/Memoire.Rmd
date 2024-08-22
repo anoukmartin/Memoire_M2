@@ -46,7 +46,6 @@ mot, mot, mot
 \markboth{Table des matières}{Table des matières}
 \addcontentsline{toc}{chapter}{Table des matières}
 ```
-
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(
@@ -772,7 +771,7 @@ structure de revenus. De ce fait, on peut, assez finement articuler les
 positons des conjoint dans les rapports sociaux de classe et de sexe.
 
 Pour autant, la taille de l'échantillon reste trop faible pour étudier
-l'influance croisée des configurations familiales et du milieu social
+l’influence croisée des configurations familiales et du milieu social
 sur les variables économiques qui nous intéressent. Cela limite donc les
 possibilités d'articulation des la classe et de la configuration
 familiale dans nos analyses.
@@ -1317,8 +1316,8 @@ familles <- readRDS("Data_output/familles_parents.Rds") %>%
   select(IDENT_MEN, n_config) 
 
 dat <- readRDS("Data_output/enfantsDuMenage.Rds") 
-nrow(dat)
-weighted.mean(dat$AG, dat$PONDIND)
+# nrow(dat)
+# weighted.mean(dat$AG, dat$PONDIND)
 
 dat <- dat %>%
   inner_join(familles, by = "IDENT_MEN") %>%
@@ -1442,7 +1441,26 @@ nombre de `r nrow(enfantsHD)` dans l'enquête.
 #### Qu'est ce qu'un adulte ?
 
 Dans un soucis de cohérence et d'intelligibilité des résultats nous
-avons définit la catégorie des adultes. D'un point de vue sociologique, les adultes constituent pas, encore moins que les enfants, un groupe bien définit. Si l'entrée dans la vieillesse se définit par la sortie du marché du travail [@lenoir1979] et arrêt des activités de reproduction sexuelle [@charlap], l'âge adulte se définit en creux, comme l'âge du travail et celui de la reproduction biologique. En miroir avec la catégorie des enfants, les adultes sont ici définit comme l'ensemble des individus qui ne sont pas enfants au sens du TCM et qui ont 25 ans ou plus et moins de 65 ans. Encore une fois, ces critères d'âge ont été choisis en fonction de seuils qui nous paraissent refléter des transformations dans l'administration des populations. L'âge de 65 ans correspond à l'âge d'ouverture des droits au minimum vieillesse (ASPA) et est proche de l'age conjoncturel moyen de départ à la retraite (63 ans pour les femmes et 62 ans et deux mois pour les hommes). Il s'agit également d'un seuil généralement utilisé dans la statistique publique lorsque l'on étudie la population en âge de travailler. Les adultes ainsi définit sont 19 238 individus dans l'enquête. Ils représentent 68,1% des individus qui ne sont pas des enfants du ménage au sens du TCM. Ces adultes ont en moyenne 44 ans et 11 mois, contre 51 ans et 3 mois pour les individus qui ne sont pas des enfants au sens du TCM.
+avons définit la catégorie des adultes. D'un point de vue sociologique,
+les adultes constituent pas, encore moins que les enfants, un groupe
+bien définit. Si l'entrée dans la vieillesse se définit par la sortie du
+marché du travail [@lenoir1979] et arrêt des activités de reproduction
+sexuelle [@charlap], l'âge adulte se définit en creux, comme l'âge du
+travail et celui de la reproduction biologique. En miroir avec la
+catégorie des enfants, les adultes sont ici définit comme l'ensemble des
+individus qui ne sont pas enfants au sens du TCM et qui ont 25 ans ou
+plus et moins de 65 ans. Encore une fois, ces critères d'âge ont été
+choisis en fonction de seuils qui nous paraissent refléter des
+transformations dans l'administration des populations. L'âge de 65 ans
+correspond à l'âge d'ouverture des droits au minimum vieillesse (ASPA)
+et est proche de l'age conjoncturel moyen de départ à la retraite (63
+ans pour les femmes et 62 ans et deux mois pour les hommes). Il s'agit
+également d'un seuil généralement utilisé dans la statistique publique
+lorsque l'on étudie la population en âge de travailler. Les adultes
+ainsi définit sont 19 238 individus dans l'enquête. Ils représentent
+68,1% des individus qui ne sont pas des enfants du ménage au sens du
+TCM. Ces adultes ont en moyenne 44 ans et 11 mois, contre 51 ans et 3
+mois pour les individus qui ne sont pas des enfants au sens du TCM.
 
 ```{r, eval = F}
 
@@ -1480,9 +1498,39 @@ ggplot(data_summary, aes(x = AGE, y = percentage, fill = n_TYPMEN_new)) +
 
 ```
 
-A partir des situations familiales des enfants, il est ainsi possible de déterminer celles des adultes du ménage. Pour chaque enfant, nous avons récupéré l'identifiant du père, de la mère, du conjoint ou de la conjointe du père et du conjoint ou de la conjointe de la mère, lorsque ils et elles faisaient partie du champ de l'enquête. Bien que les couples vivant dans des logements séparés soient plus fréquents lors de la formation d'unions secondaires et que l'absence de cohabitation fasse partie d'un processus de "reconjugalisation" [@régnier-loilier2019], nous avons choisit de considérer comme couple uniquement les conjoints cohabitants. Ce choix tient d'une part à la volonté de notre part d'articuler l'absence de parenté légale à la possibilité de construction d'une parenté pratique, ce qui, le plus souvent, suppose le partage du quotidien. D'autre part, cela tient à des considérations pratiques puisque les personnes vivants dans des logements séparés ne sont pas considérés comme faisant partie d'un même ménage et sont donc hors champ de l'enquête. En ce sens, y compris lorsqu'il s'agit de conjoint ou conjointe, l'enquête n'interroge pas leurs caractéristiques et leurs pratiques économiques. Enfin les effectifs concernés dans l'enquête par la conjugalité non-cohabitante sont très faibles et n'aurait pas permis une analyse spécifique. 
+A partir des situations familiales des enfants, il est ainsi possible de
+déterminer celles des adultes du ménage. Pour chaque enfant, nous avons
+récupéré l'identifiant du père, de la mère, du conjoint ou de la
+conjointe du père et du conjoint ou de la conjointe de la mère, lorsque
+ils et elles faisaient partie du champ de l'enquête. Bien que les
+couples vivant dans des logements séparés soient plus fréquents lors de
+la formation d'unions secondaires et que l'absence de cohabitation fasse
+partie d'un processus de "reconjugalisation" [@régnier-loilier2019],
+nous avons choisit de considérer comme couple uniquement les conjoints
+cohabitants. Ce choix tient d'une part à la volonté d'articuler
+l'absence de parenté légale à la possibilité de construction d'une
+parenté pratique, ce qui, le plus souvent, suppose le partage du
+quotidien. D'autre part, cela tient à des considérations pratiques
+puisque les personnes vivants dans des logements séparés ne sont pas
+considérés comme faisant partie d'un même ménage et sont donc hors champ
+de l'enquête. En ce sens, y compris lorsqu'il s'agit de conjoint ou
+conjointe, l'enquête n'interroge pas leurs caractéristiques sociales et
+leurs pratiques économiques. Enfin les effectifs concernés dans
+l'enquête par la conjugalité non-cohabitante sont très faibles et
+n'aurait pas permis une analyse spécifique.
 
-57,6 % de ces adultes, qu'ils vivent en couple ou non, cohabite avec des enfants : les leurs ou ceux d'autres individus du ménage. Parmi ces adultes, seuls 14.9% d'entre eux vivent uniquement avec des enfants qui ne sont pas les leurs. 85,1% d'entre eux vivent donc avec leurs enfants (et éventuellement d'autres enfants). Dans 81% des cas, leurs enfants sont uniquement issus du couple qui forme le ménage au moment de l'enquête (ce qui représente 69,1% des adultes vivant dans des ménages avec enfants). Dans 16,2% des cas, leurs enfants sont uniquement issus d'unions qui sont rompues au moment de l'enquête. Dans 2,3% des cas, ces enfants sont issus d'union précédentes et de l'union actuelle. Le graphique ci-dessous synthétise la situation familiale de ces adultes vivant dans des ménages avec enfants.
+57,6 % de ces adultes, qu'ils vivent en couple ou non, cohabite avec des
+enfants : les leurs ou ceux d'autres individus du ménage. Parmi ces
+adultes, seuls 14.9% d'entre eux vivent uniquement avec des enfants qui
+ne sont pas les leurs. 85,1% d'entre eux vivent donc avec leurs enfants
+(et éventuellement d'autres enfants). Dans 81% des cas, leurs enfants
+sont uniquement issus du couple qui forme le ménage au moment de
+l'enquête (ce qui représente 69,1% des adultes vivant dans des ménages
+avec enfants). Dans 16,2% des cas, leurs enfants sont uniquement issus
+d'unions qui sont rompues au moment de l'enquête. Dans 2,3% des cas, ces
+enfants sont issus d'union précédentes et de l'union actuelle. Le
+graphique ci-dessous synthétise la situation familiale de ces adultes
+vivant dans des ménages avec enfants.
 
 ```{r mosaic-adultes, fig.cap= "Situation familiale des adultes",  fig.asp = 0.5}
 
@@ -1579,30 +1627,52 @@ g +
 
 ```
 
+Vivre dans une famille traditionnelle représente la situation la plus
+courante pour les adultes vivants dans des ménages avec enfants : ils
+sont 66,1% dans ce cas. Les adultes vivants en familles recomposées et
+monoparentales sont moins nombreux. Ils sont 11% à être en situation de
+monoparentalité, dont majoritairement des femmes (elles représentent 80%
+des adultes de ménages monoparentaux). Ils sont également 8,6% à vivre
+dans une famille recomposée. Dans ces familles, seules 25,6% d'entre eux
+n'ont pas d'enfant, et sont donc seulement beau-père ou belle-mère.
+55,8% d'entre eux ont des enfants issus d'unions conjugales autre que le
+couple actuel formant le ménage. Ce sont principalement les femmes qui
+sont dans ce cas, puisque 75% des femmes qui vivent en famille
+recomposées ont des enfants issus d'unions antérieures. 41,8% des
+adultes vivant en famille recomposés ont, comme dans les familles
+traditionnelles, des enfants issus de l'union conjugale actuelle, mais
+seulement 23,2% d'entre eux ont des enfants issus d'union précédente et
+des enfants issus du couple actuel. Enfin les adultes vivants dans des
+ménages avec enfants sont 14,1% à vivre dans des ménages dont la
+configuration familiale ne s'apparente pas à l'une de trois catégories
+(traditionnelle, monoparentale, recomposée), le plus souvent sans
+enfants (90% d'entre eux).
 
-Vivre dans une famille traditionnelle représente la situation la plus courante pour les adultes vivants dans des ménages avec enfants : ils sont 66,1% dans ce cas. Les adultes vivants en familles recomposées et monoparentales sont moins nombreux. Ils sont 11% à être en situation de monoparentalité, dont majoritairement des femmes (elles représentent 80% des adultes de ménages monoparentaux). Ils sont également 8,6% à vivre dans une famille recomposée. Dans ces familles, seules 25,6% d'entre eux n'ont pas d'enfant, et sont donc seulement beau-père ou belle-mère. 55,8% d'entre eux ont des enfants issus d'unions conjugales autre que le couple actuel formant le ménage. Ce sont principalement les femmes qui sont dans ce cas, puisque 75% des femmes qui vivent en famille recomposées ont des enfants issus d'unions antérieures. 41,8% des adultes vivant en famille recomposés ont, comme dans les familles traditionnelles, des enfants issus de l'union conjugale actuelle, mais seulement 23,2% d'entre eux ont des enfants issus d'union précédante et des enfants issus du couple actuel. Enfin les adultes vivants dans des ménages avec enfants sont 14,1% à vivre dans des ménages dont la configuration familiale ne s'apparente pas à l'une de trois catégories (traditionnelle, monoparentale, recomposée), le plus souvent sans enfants (90% d'entre eux). 
+#### La configuration familiale des ménages
 
-#### La configuration familiale des ménages 
-
-Pour classer les différents ménages en fonction de leur configuration familiale,
-nous avons repris la typologie de ménage de l'Insee (Personne seule sans enfant, personne seule avec enfant, couple sans enfants, couple avec enfants et ménages complexes) en considérant les ménages dont les enfants étaient tous âgés de 25 ans comme des ménages à la configuration familiale complexe. Nous avons ensuite regardé la situation familiales des couples formant le ménage (c'est à dire dont au moins l'un des deux membres est la personne de référence du ménage). Nous avons distingué, parmi les couples avec enfants, ceux dont au moins ceux dont au moins un des membres était beau-père ou belle-mère d'enfants vivants dans le ménage de ceux ou l'ensemble des enfants du ménage étaient issus de l'union conjugale actuelle. Par soucis de fluidité, nous parlerons ainsi souvent de familles recomposées pour désigner ces ménages présentant une configuration familiale recomposée. 
-
-
-Pour autant, il faut garder à l'esprit que la recomposition familiale est une phénomène qui déborde largement l'échelle du ménage. Ces familles recomposées sont ainsi au nombre de 634 dans l'enquête.
-Elle représentent 4% des ménages formées par au moins un adulte âgé d'au
+Pour classer les différents ménages en fonction de leur configuration
+familiale, nous avons repris la typologie de ménage de l'Insee (Personne
+seule sans enfant, personne seule avec enfant, couple sans enfants,
+couple avec enfants et ménages complexes) en considérant les ménages
+dont les enfants étaient tous âgés de 25 ans comme des ménages à la
+configuration familiale complexe. Nous avons ensuite regardé la
+situation familiales des couples formant le ménage (c'est-à-dire dont au
+moins l'un des deux membres est la personne de référence du ménage).
+Nous avons distingué, parmi les couples avec enfants, ceux dont au moins
+ceux dont au moins un des membres était beau-père ou belle-mère
+d'enfants vivants dans le ménage de ceux ou l'ensemble des enfants du
+ménage étaient issus de l'union conjugale actuelle. Par soucis de
+fluidité, nous parlerons souvent de familles recomposées pour désigner
+ces ménages présentant une configuration familiale recomposée. Pour
+autant, il faut garder à l'esprit que la recomposition familiale est une
+phénomène qui déborde largement l'échelle du ménage. Ces familles
+recomposées sont ainsi au nombre de 634 dans l'enquête. Elle
+représentent 4% des ménages formées par au moins un adulte âgé d'au
 moins 25 ans et de moins de 65 ans et 8,5% de ces ménages vivants avec
 un ou des enfants, contre 23,8% de familles monoparentales et 67,7% de
 familles traditionnelles.
 
-nous n'avons conservé ces informations que pour les adultes ou en couple avec un adulte. Nous avons définit la catégorie des adultes
-
-
-
-
-
-
-
-### Des familles plus nombreuses, des adultes plus agés
+### Des familles plus nombreuses, des adultes plus âgés
 
 ```{r}
 
@@ -1642,6 +1712,7 @@ tab <- parents %>%
                  include = c(all_of(variablesHD), "Effectifs"), 
                  type = list(all_continuous2() ~ "continuous", 
                              Effectifs = "dichotomous"),
+                 value = list(Effectifs = "1"),
                  statistic = list(all_continuous() ~ "{mean} ans", 
                                   all_categorical() ~ "{p}%", 
                                   Effectifs = "{n_unweighted}"), 
@@ -1650,11 +1721,10 @@ tab <- parents %>%
 
 tab 
 
-tab$table_body$label[c(1, 8, 15)] <- c("Union actuelle", "Union(s) anterieure(s)", "Ensemble")
-tab$table_body$label[c(7, 14, 21)] <- "Age moyen"
+tab$table_body$label[c(1, 10, 17)] <- c("Union actuelle", "Union(s) anterieure(s)", "Ensemble")
+tab$table_body$label[c(7, 16, 23)] <- "Age moyen"
 tab$table_styling$header$label[6] <- "**Enfant(s) issu(s) de**"
 tab
-
 
 
 ```
@@ -1717,9 +1787,9 @@ tab
 
 Finalement, le travail de recodage réalisé pour saisir les
 configurations familiales recomposées conserve le ménage comme unité
-d'analyse statistique. Cela tient auatnt à des choix méthodologiques
-qu'a des considération pratiques. D'une part, seules les pratiques
-économiques des membres du ménage sont intérrogées par l'enquête.
+d'analyse statistique. Cela tient autant à des choix méthodologiques
+qu'a des considérations pratiques. D'une part, seules les pratiques
+économiques des membres du ménage sont interrogées par l'enquête.
 Lorsqu'on choisit de travailler sur celles-ci, il faut bien "faire
 avec". D'autre part, les frontières du ménage correspondent généralement
 aux frontières du logement. En donnant ainsi de l'importance à la
@@ -1727,31 +1797,30 @@ cohabitation, on considère que le partage d'un quotidien est une
 condition de possibilité de la construction d'une forme de parenté
 pratique, entre individus qui ne sont pas apparentés légalement. Du même
 coup, on exclut cette possibilité entre individu ne résidant pas
-ensemble. En ce sens, la définition ainsi porduite des configuration
-familiales recomposées coincide avec elle qui est généralement proposé
+ensemble. En ce sens, la définition ainsi produite des configuration
+familiales recomposées coïncide avec elle qui est généralement proposé
 par les études statistiques, fondée sur la résidence principale des
 enfants [@bloch2020]. Ainsi, de nombreuses variables ont été construites
-à partire de cette articulation entre la parenté civile et la
+à partir de cette articulation entre la parenté civile et la
 cohabitation pour qualifier la configuration familiale du ménage. Pour
 prendre en compte autant que possible le phénomène de recomposition à
 une échelle plus large que celle du ménage, des variables ont été
-construites pour détéreminer l’existence d'enfants et de parents au sens
+construites pour déterminer l’existence d'enfants et de parents au sens
 légal des termes, résidant hors du domicile du ménage.
 
 ## Les unions secondaires : des mères et des beaux-pères
 
-Les parents, au sens du droit civil, ne ressemblent pas nécessairement à
-leur conjoint dans les familles recomposées. Comme les parents de
-familles monoparentales sont le plus souvent des mères, les parents de
-familles recomposées sont le plus souvent des femmes. Dans les familles
+Les parents, au sens du droit civil, ne ressemblent pas à leur conjoint
+dans les familles recomposées. Comme les parents de familles
+monoparentales sont le plus souvent des mères, les parents de familles
+recomposées sont le plus souvent des femmes. Dans les familles
 recomposées, ce sont le plus souvent elles qui ont des enfants issus
 d'une union précédente. Elles sont aussi plus nombreuses que les hommes
 à avoir des enfants à la fois issus d'union précédente et actuelle
 (79,6% sont des femmes quand 20,4% sont des hommes). Ainsi les
 beaux-parents sont le plus souvent des hommes: 85,9% des beaux-parents
 n'ayant pas d'enfants sont des beaux-pères et 86,9% de ceux ayant des
-enfants issus de l'union actuelle sont des beau-pères de ceux ayant des
-enfants sont des beaux pères.
+enfants issus de l'union actuelle sont des beau-pères.
 
 ```{r histosexeadultes, fig.cap = "Appartenance aux groupes de sexe des parents et beaux parents", out.width= "70%", fig.asp=0.6}
 load("Resultats/barplot_BPSexe.Rdata")
@@ -1762,33 +1831,123 @@ tab$tableau +
     "Lecture : Les hommes représentent 14,5% des adultes vivants en familles recomposées ayant des enfants issus d'une union précédante"))
 ```
 
+Les places différenciées qu'occupent les hommes et les femmes dans les
+familles recomposées justifie ainsi un traitement spécifiques selon
+l'appartenance aux catégories sociales sexe des individus qui composent
+ces couples. Ainsi nous proposons en premier lieu de s'intéresser aux
+caractéristiques des parents vivants en familles recomposées. Ensuite
+nous nous attacherons à caractériser socialement les beaux parents
+vivants dans ces familles.
+
 ### Se remettre en couple quand on a des enfants
 
 Les trajectoires conjugales – comprenant les mises en couple, les
 séparations et les remises en couple – sont des phénomènes complexes
 influencés par une variété de facteurs socio-démographiques et
-familiaux.
+familiaux. Les chances de se remettre en couple après une séparation
+diffèrent significativement entre les hommes et les femmes. Les hommes
+se remettent ainsi plus fréquemment et plus rapidement en couple que les
+femmes [@singly1983; @cassan2005]. Cela s'explique par les effets
+différenciés de l'âge et de l’existence d'enfants issus d'unions
+précédentes sur les chances de remises de couple des hommes et des
+femmes. En effet, l'avancée en âge diminue significativement les chances
+de reformer une nouvelle union [@costemalle2015]. Ainsi les parents qui
+se remettent en couple sont en moyenne plus jeunes que ceux ne formant
+pas de nouvelle union [@abbas2019]. L'effet de l'âge est cependant plus
+important pour les femmes : les écarts d'âge en défaveur des femmes dans
+les couples hétérosexuels [@bozon2006], et en particulier de
+l'affirmation de préférences pour les femmes plus jeunes avec l'avancée
+en âge des hommes [@BERGSTROM] font diminuer les chances de reformer un
+couple pour les femmes les plus âgés. L’existence d'enfants issus d'une
+union précédente a également un effet plus négatif sur les chances de
+remise en couples et neutre sur celles des hommes [@costemalle2015]. En
+réalité, c'est la charge quotidienne des enfants qui réduit la
+probabilité pour les femmes de se remettre en couple. En effet, à
+conditions égales, celles dont les enfants sont en résidence alternée
+ont plus de chances de former une nouvelle union que celles dont les
+enfants résident principalement chez elles [@abbas2019].
 
-Les parents remis en couple présentent des caractéristiques sociales
-spécifiques au regard des parents célibataires. Continuité biographique
-ou non ?
+La position dans les rapports sociaux de classe joue, ici aussi, de
+manière différente selon l'appartenance aux groupes sociaux de sexe des
+parents célibataires [@abbas2019]. Les hommes cadres, ainsi que les
+artisans-commerçants, sont parmi ceux qui ont les meilleures chances de
+reformer une union. Pour les femmes, en revanche, la situation est plus
+complexe. Les femmes cadres ont, à situations égales, moins de chance de
+se remettre en couple. Un niveau d'indépendance économique élevé peut
+réduire les pressions à se remettre en couple, permettant à certaines de
+choisir le célibat [@bonnet]. Bien que les non-diplômés, hommes ou
+femmes, aient une probabilité plus faible de se remettre en couple,
+l'effet du diplôme n'est pas linéaire. Chez les hommes, cette
+probabilité est la plus élevée pour ceux ayant un baccalauréat, et la
+plus faible pour les non-diplômés.
 
-Le tableau suivant présente les caractéristiques sociales des hommes en
-fonction de leur statut parental et de leur situation conjugale. Les
-catégories observées incluent les hommes sans enfants (célibataires ou
-en couple) et les pères (célibataires, en couple parental, remis en
+Les tableaux ci-dessous présentent les caractéristiques sociales des
+hommes et des femmes en fonction de leur statut parental. Les catégories
+observées incluent les hommes/femmes sans enfants (célibataires ou en
+couple) et les pères/mères (célibataires, en couple parental, remis en
 couple sans nouveaux enfants, remis en couple avec nouveaux enfants,
 c'est-à-dire vivant en couple mais ayant des enfants d'une précédente
 union). On limite ici l'analyse aux enfants vivant dans le ménage, les
-hommes considérés comme remis en couple sont donc ceux dont les enfants
-issus d'unions anterieures cohabitent avec lui. On entend par couple
-parental la situation dans laquelle une personne est en couple avec
-l'autre parent de ses l'ensemble de ses enfants. De ce fait, les hommes
-classés parmi les pères remis en couple peuvent ou non avoir eu des
-enfants de cette nouvelle unions. Compte tenu des effectifs, nous ne
-distingons pas ces deux types de situations. Les caractéristiques
-présentés sont le niveau de diplôme, la catégorie socioprofessionnelle
-et la tranche de revenus.
+pères ou mères considéré-e-s comme remis en couple sont donc ceux dont
+les enfants issus d'unions antérieures cohabitent avec elles ou lui. On
+entend par couple parental la situation dans laquelle une personne est
+en couple avec l'autre parent de l'ensemble de ses enfants. De ce fait,
+les hommes et femmes classé-e-s parmi les pères et mères remis en couple
+peuvent ou non avoir eu des enfants de cette nouvelle unions. Compte
+tenu des effectifs, nous ne distinguons pas ces deux types de
+situations. Les caractéristiques sociales présentés sont le niveau de
+diplôme, la catégorie socioprofessionnelle et la tranche de revenus. La
+catégorie socio-professionnelle a été recodée, comme dans l'article de
+Joannie Cayouette-Remblière et Mathieu Ichou [@cayouette-remblière2019]
+à partir des catégories de l'INSEE, en s'inspirant des travaux de
+@vanzanten, 2009 et @Bouffartigue, 2001 sur les classes moyennes et
+supérieures. En distinguant donc au sein des cadres et professions
+intellectuelles supérieures et des professions intermédiaires, les
+individus travaillant dans le public de ceux travaillant dans le privé.
+Au sein des classes populaires, nous avons distingué les catégories
+qualifiées des catégories non-qualifiées. Le niveau de diplôme est
+recodé en sept postes.
+
+```{r}
+load("Resultats/des_MeresCaracteristiquesSociales.Rdata")
+
+tab$tableau %>% 
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Caractéristiques sociales des femmes en fonction de leur statut parental", 
+                 col.names = c(" ","Célib.", "Couple",
+                               "Célib.","Couple parent.", "Remise en couple", "Ensemble")) %>%
+  add_header_above(c(" ", "Femme sans enfants " = 2, "Mères" = 3, " ")) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ)
+```
+
+Les mères remises en couple présentent des caractéristiques sociales
+proches des mères célibataires. En effet, elles sont en moyenne moins
+diplômées que les mères en couple parental (elles sont 46,8% et 50,4%
+avec un diplôme inférieur eu bac contre 35,6% des mères en couple avec
+l'autre parent de leurs enfants). Elles occupent plus souvent des
+emplois subalternes : elles sont sous-représentées parmi les cadres,
+cheffes d'entreprises, professions libérales, petites indépendantes et
+cadres du public ou de la culture, par rapport aux autres femmes, y
+compris les mères en couple parental. Les mères célibataires, et surtout
+celles remises en couple apparaissent sur-représentées dans les emplois
+d'ouvriers non-qualifiés et chez les employés qualifiés. En revanche,
+les mères remises en couple ont, dans leur ensemble des revenus plus
+élevés que les mères célibataires : elles sont 55,8% à gagner plus de
+1250 euros mensuel contre 48,7% des mères célibataires, ce qui les
+rapproche d'avantage des mères en couple parental (55,1%). Ces
+caractéristiques socio-démographiques partagées entre les mères de
+familles monoparentales et celles de familles recomposées, relativement
+stables au cours de la trajectoire individuelle, confirment la
+continuité biographique entre période de monoparentalité et remise en
+couple. Cette continuité n'est cependant pas identique pour les hommes
+et les femmes. En effet, si les mères de familles monoparentales et
+recomposées se ressemblent, les pères de familles monoparentales et
+recomposées semblent présenter des caractéristiques assez différentes.
 
 ```{r statdesparents2, results = "asis"}
 
@@ -1797,7 +1956,7 @@ tab$tableau %>%
   as_kable_extra(digits = 1, booktabs = T,
                  caption = "Caractéristiques sociales des hommes en fonction de leur statut parental", 
                  col.names = c(" ","Célib.", "Couple",
-                           "Couple parent.", "Célib.", "Remis en couple", "Ensemble")) %>%
+                           "Célib.", "Couple parent.", "Remis en couple", "Ensemble")) %>%
   add_header_above(c(" ", "Hommes sans enfants " = 2, "Pères" = 3, " ")) %>%
   kable_styling(
     latex_options = c("hold_position", "scale_down", "repeat_header"),
@@ -1808,101 +1967,40 @@ tab$tableau %>%
 
 ```
 
-Comme les pères célibataires, les pères ayant fomés un nouveau couple
-alors qu'ils avaient des enfants issus d'une union antérieure sont
-sur-représentés parmi les diplômés de CAP et BEP (34% et 35% contre 29%
-des hommes et 28% des pères en couple parental). A l'inverse, ils sont,
-comme les hommes dans leur ensemble (20%) moins nombreux que les pères
-célibataires a être diplômés du premier cycle du supérieur (19% contre
-24%) et . D'un point de vu de la profession, les pères remis en couple
-se distinguent par une proportion plus faible de cadres/chefs
-d'entreprise (12%) que les autres pères (16% pour les pères célibataires
-et 18% pour les pères en couple parental). En revanche, ils sont, comme
-les pères célibataires, plus nombreux à être médiateurs (18%) ou ouvrier
-qualifiés (27%) que les pères en couple (11% et 24%). Comme les pères en
-couple parental, les pères remis en couple sont plus nombreux que les
-pères célibataires à être technicien (11% contre 6%) ou employés
-qualifiés (8% contre 5%).
-
-Les tranches de revenus montrent que les pères remis en couple sont bien
-représentés dans les tranches de revenus moyens à élevés. Par exemple,
-27% des pères remis en couple gagnent entre 1750 et 2250 euros par mois,
-comparé à 23% des pères en couple parental et à 19% des pères
-célibataires. En revanche, 16% des pères remis en couple ont des revenus
-supérieurs à 2950 euros, ce qui est inférieure aux pères en couple
-parental (23%) et aux pères célibataires (19%). Les père célibataires
-sont semeblent en revanhce d'avatange représenté dans les tranches de
-revenis moyennes. Ils sont 25% à gagner entre 1250 et 1850 euros contre
-20% des pères remis en couple et 19% des pères en couple parental.
-
-```{r}
-load("Resultats/des_MeresCaracteristiquesSociales.Rdata")
-tab$tableau %>% 
-  as_kable_extra(digits = 1, booktabs = T,
-                 caption = "Caractéristiques sociales des femmes en fonction de leur statut parental", 
-                 col.names = c(" ","Célib.", "Couple",
-                           "Couple parent.", "Célib.", "Remise en couple", "Ensemble")) %>%
-  add_header_above(c(" ", "Femme sans enfants " = 2, "Mères" = 3, " ")) %>%
-  kable_styling(
-    latex_options = c("hold_position", "scale_down", "repeat_header"),
-    font_size = 7) %>%
-  #row_spec(0, angle = -45) %>%
-  add_kablesource_note(N = tab$n, 
-                       champ = tab$champ)
-```
-
-Les mères remises en couple apparaissent moins diplomées que les mères
-vivant en couple parental et
-
-Les parents de familles monoparentales et recomposées apparaissent moins
-diplômé.e.s que ceux de familles traditionnelles : ils et elles sont
-moins souvent diplômé.e.s d'un bac+5 ou plus (4% et 3% contre 15%) et
-plus souvent diplômé.e.s du brevet des collèges ou sans diplôme (21% et
-20% contre 17%). Ils et elles appartiennent donc logiquement moins
-souvent aux cadres et professions intellectuelles supérieures que les
-autres (9% et 8% contre 19%).
-
-Ces parents ont également des revenus plus faibles que les parents en
-couple avec l'autre parent de leurs enfants. Les mères de familles
-monoparentales et recomposées ont des revenus assez proches (moins de
-550 euros par mois pour 15% et 14%, entre 550 et 850 euros pour 8% et
-7%, entre 850 et 1250 euros pour 13% et 15%).
-
-Ces caractéristiques socio-démographiques partagées entre les parents de
-familles monoparentales et celles de familles recomposées, relativement
-stables au cours de la trajectoire individuelle, confirment la
-continuité biographique entre période de monoparentalité et remise en
-couple. Cette continuité n'est cependant pas identique pour les hommes
-et les femmes. En effet, si les mères de familles monoparentales et
-recomposées se ressemblent, les pères de familles monoparentales et
-recomposées semblent présenter des caractéristiques assez différentes.
-La ressemblance observée en moyenne est liée, pour partie à une
-écrasante sur-représentation des femmes dans les parents de familles
-monoparentales et recomposées (83% et 84%).
-
-En effet, les mères de familles recomposées sont sous-représentées chez
-les cadres et professions intellectuelles supérieures (8% contre 13%
-chez les mères de familles traditionnelles). Les mères de familles
-recomposées sont cependant un peu plus diplômées que les mères de
-familles monoparentales : si elles sont aussi rarement diplômées d'un
-bac+5 ou plus, elles sont plus nombreuses à avoir un diplôme bac+1 à
-bac+3 (23% contre 22%) et moins nombreuses à être sans diplôme ou
-simplement le Brevet des collèges (20% contre 21%).
-
-En ce qui concerne les pères de familles recomposées, ils se distinguent
-assez nettement des pères célibataires. Ceux-ci sont moins diplômés :
-17% ont un diplôme du supérieur contre 27% des pères de familles
-monoparentales. Ils sont ainsi logiquement sur-représentés dans les
-professions les moins qualifiées : 48% sont ouvriers ou employés et
-seulement 12% sont cadres ou professions intellectuelles supérieures,
-contre 39% d'employés et ouvriers et 20% de cadres chez les pères
-célibataires.
+Les pères remis en couple présentent des caractéristiques distinctes
+lorsqu'on les compare aux autres catégories d'hommes. En termes de
+niveau de diplôme, ils se démarquent par une proportion légèrement plus
+faible de titulaires de doctorats ou de diplômes d'ingénieur (3,4%) par
+rapport aux autres pères. Ils apparaissent légèrement moins diplômés que
+les pères célibataires et les pères en couple (29,8% d'entre eux ont un
+diplôme supérieure au baccalauréat contre 35,3% des pères célibataires
+et 35,8% des pères en couple parental). Ils restent en revanche
+relativement plus diplômés que les hommes sans enfants (ils sont 12%
+sans diplôme contre 19% des célibataires sans enfants et 16% des hommes
+en couples sans enfants). Sur le plan socioprofessionnel, ces pères se
+caractérisent par une sur-représentation dans les catégories d'ouvriers
+qualifiés (27%), ce qui les rapprochent des autres pères (26% des pères
+célibataires et de 24% des pères en couple parental sont ouvriers
+qualifiés), contre 21% des hommes en général.En revanche, il se
+distinguent des homme sans enfants et des pères en couple parental par
+leur sur-représentation dans les catégories socio-professionnelles
+plutôt féminisées : ils sont 12,8% a être employés contre 9,4% des
+hommes en général et 18% a être médiateur contre 9,6% des hommes ne
+général. C'est aussi le cas pour les pères célibataires qui sont eux
+aussi su-représentés dans la catégorie des médiateurs. En termes de
+revenus, les pères remis en couple tendent à se situer dans les tranches
+intermédiaires : ils sont moins nombreux que les autres hommes à avoir
+de très faibles revenus (seuls 4,7% d'entre eux ont des revenus
+inférieures à 550 euros mensuels, contre 11,3% des hommes) mais sont
+aussi moins nombreux que les autres (à l'exception des hommes
+célibataires sans enfants) à avoir des revenus élevés (16% d'entre eux
+gagnent plus de 2950 euros mensuels contre 20% des hommes en général).
 
 On peut avancer plusieurs hypothèses liées aux bénéfices différenciés à
 la conjugalité des hommes et des femmes. Ainsi, si la continuité entre
 situation de monoparentalité et remise en couple apparaît assez nette
 pour les femmes, elle l'est beaucoup moins pour les hommes. Les hommes
-reformant des unions apparaissent très différents de ceux élevant leurs
+reformant des unions apparaissent assez différents de ceux élevant leurs
 enfants seuls. En premier lieu, le niveau de diplôme, la profession, le
 revenu et le patrimoine peuvent influencer la probabilité de se remettre
 en couple davantage pour les hommes ayant des enfants à charge que pour
@@ -1921,115 +2019,46 @@ connaissance, des travaux portant sur de telles décisions de justice
 n'existent pas. Cependant, lorsqu'il s'agit de fixer la résidence
 principale des enfants lors d'une séparation, les juges aux affaires
 familiales mobilisent des critères différents pour évaluer cette
-possibilité chez les hommes et les femmes. Là où un logement petit, des
-revenus faibles et la difficile articulation entre travail à plein temps
-et garde des enfants sont jugés problématiques pour les pères, ils ne le
-sont pas pour les mères. On peut donc penser que ces mêmes facteurs
-jouent si une demande de réexamen de la résidence des enfants est
-formulée après une remise en couple. Ainsi, l'accès à un logement plus
-grand, les économies d'échelle et la prise en charge du travail
-domestique voire parental par la nouvelle conjointe pourraient favoriser
-l'obtention de la résidence (alternée ou exclusive) par les pères
-n'ayant auparavant qu'un droit de visite. Ces mêmes facteurs pourraient
-expliquer que les pères n'ayant pas demandé la résidence de leurs
-enfants lorsqu'ils étaient célibataires formulent cette demande une fois
-remis en couple.
-
-#### Trash
-
-Les parents de familles monoparentales et recomposées apparaissent moins
-diplômé.e.s que ce de familles traditionnelles : ils et elles sont moins
-souvent diplômé.e.s d'un bac+5 ou plus (9% contre 15%) et plus souvent
-diplômé.e.s du brevet des collèges ou sans diplôme (24% et 21% contre
-17%). Ils et elles appartiennent donc logiquement moins souvent cadres
-et professions intellectuelles supérieures que les autres(13% et 12%
-contre 18%). Ces parents ont également des revenus plus faibles que les
-parents en couple avec l'autre parent de leurs enfants (1536 et 1696
-euros mensuel en moyenne contre 1980) et des patrimoines moins élevés (9
-720 et 9 182 euros en moyenne contre 13 247 euros). Ils et elles sont en
-effets moins souvent propriétaires sans crédit de leur logement (12 et
-13% contre 23% dans les familles traditionnelle). Ces caractéristiques
-socio-démographiques partagées entre les parents de familles
-monoparentales et celles de familles recomposées, relativement stables
-au cours de la trajectoire individuelle, confirment la continuité
-biographique entre période de monoparentalité et remise en couple. Cette
-continuité n'est cependant pas identique pour les hommes et les femmes.
-En effet, si les mères de familles monoparentales et recomposées se
-ressemble, les pères de familles monoparentales et recomposées semblent
-présenter des caractéristiques assez différentes. La ressemblance
-observée en moyenne est liée, pour partie à une écrasante
-sur-représentation des femmes dans les parents de familles
-monoparentales et recomposées [CHIFFRES]. En effet, les mères de
-familles recomposées ont des revenus assez proches des mères de familles
-monoparentales (1 430 euros mensuels contre 1 386). Il en va de même
-pour les patrimoines : les mères de familles recomposée possèdent en
-moyennes 8 444 euros contre 8 368 pour celles qui sont célibataires.
-Elle sont sous représentés chez les cadres et professions
-intellectuelles supérieures (11% contre 14% chez les mères de familles
-traditionnelles). Les mères de familles recomposées sont cependant un
-peu plus diplômées que les mères de familles monoparentales : si elles
-aussi rarement diplômes d'un bac+5 ou plus, elles sont plus nombreuses à
-être avoir un diplôme bac+1 à bac+3 (25% contre 22%) et moins nombreuses
-à être sans diplôme ou simplement le Brevet des collèges (22% contre
-18%). En ce qui concerne les pères de familles recomposées ils se
-distinguent assez nettement des pères célibataires. Ceux-ci sont moins
-diplômés : 27% ont un diplôme du supérieur contre 35% des pères de
-familles monoparentales. Ils sont ainsi logiquement sur-représenté dans
-les professions les moins qualifiées : 48% sont ouvriers ou employés et
-seulement 15% sont cadre ou professions intellectuelle supérieure,
-contre 40% d'employés et ouvriers et 20% de cadres chez les pères
-célibataires. On observe des résultats similaires en matière de
-patrimoine et de revenus : les pères célibataires gagnent plus et
-possèdent plus que les pères de familles recomposées. Ainsi les pères
-célibataires sont 18% à être propriétaires du logement ou ils vivent,
-contre Cette différence tient en réalité aux caractéristiques très
-spécifiques des pères célibataires, au regard des mères célibataires,
-qui les rapprochent des pères de familles traditionnelles. Cas marginal
-chez les hommes, le fait d'élever seul ses enfants semble conditionner à
-la dispositions de ressources économiques, matérielles et culturelles
-importantes. [BIBLIO qui va dans ce sens]. On peut avancer plusieurs
-hypothèses liés aux bénéficies différenciés à la conjugalités des hommes
-et des femmes. Ainsi, si la continuité entre situation de
-monoparentalité et remise en couple apparaît assez nette pour les
-femmes, elles l'est beaucoup moins pour les hommes. Les hommes reformant
-des unions apparaissent très différents de ceux élevant leurs enfants
-seuls. En premier lieu, le niveau de diplôme, la profession, le revenu
-et le patrimoine peuvent influencer la probabilité de se remettre en
-couple d'avantage pour les hommes ayant des enfants à charge que pour
-les femmes dans cette situation. Dans ce cas, cela signifie que les
-hommes les plus doté culturellement et économiquement se remettrait
-moins en couple que ceux disposant de moins de ressources. Moins
-contraints sur le plan économique, les avantages matériels et financier
-à la conjugalité et à la cohabitation jouent peut-être relativement
-moins pour eux que ceux disposant de plus faibles ressources. L'autre
-explication tient au fait que la situation de monoparentalité ne précédé
-pas nécessairement la recomposition familiale. En effet, la remise en
-couple d'un parent d'ayant pas la garde de ses enfants pourrait
-favoriser l'obtention de la garde de ceux-ci. A notre connaissance, des
-travaux portant sur de telles décision de justice n'existent pas.
-Cependant, lorsqu'il s'agit de fixer la résidence principale des enfants
-lors d'une séparation, les juges aux affaires familiales mobilisent des
-critères différents pour évaluer cette possibilité chez les hommes et
-les femmes. Là ou un logement petit, des revenus faibles et la difficile
-articulation entre travail à plein temps et garde des enfants sont jugé
-problématique pour les pères, elles ne le sont pas pour les mères
-[@tirbunal des couples]. On peut donc penser que ces mêmes facteurs
-jouent si une demande de réexamen de la résidence des enfants est
-formulée après une remise en couple. Ainsi, l'accès à un logement plus
-grand, les économies d'échelles et la prise en charge du travail
-domestique voir parental par la nouvelle conjointe pourrait favoriser
-l'obtention de la résidence (alternée ou exclusive) par les pères
-n'ayant au paravent qu'un doit de visite. Ces mêmes facteur pourraient
-expliquer que les pères n'ayant pas demandé la résidence de leurs
-enfants lorsqu'il étaient célibataires formulent cette demande une fois
-remis en couple.
-
-#### End trash
+possibilité chez les hommes et les femmes [@tribunal des couples]. Là où
+un logement petit, des revenus faibles et la difficile articulation
+entre travail à plein temps et garde des enfants sont jugés
+problématiques pour les pères, ils ne le sont pas pour les mères. On
+peut donc penser que ces mêmes facteurs jouent si une demande de
+réexamen de la résidence des enfants est formulée après une remise en
+couple. Ainsi, l'accès à un logement plus grand, les économies d'échelle
+et la prise en charge du travail domestique voire parental par la
+nouvelle conjointe pourraient favoriser l'obtention de la résidence
+(alternée ou exclusive) par les pères n'ayant auparavant qu'un droit de
+visite. Ces mêmes facteurs pourraient expliquer que les pères n'ayant
+pas demandé la résidence de leurs enfants lorsqu'ils étaient
+célibataires formulent cette demande une fois remis en couple.
 
 ### Beaux-pères et belles-mères
 
-[IDEM ici j'ai changé les recodages donc, il va falloir changer les %]
-Comme on l'a vu, les beau-parents sont le plus souvent des beau-pères.
+Comme on l'a vu, les beau-parents sont le plus souvent des beau-pères :
+ils représentent deux tiers des beaux-parents cohabitant avec les
+enfants de leurs conjoint ou conjointe. Dans la grande majorité des cas
+(91,4%), ces beaux-pères n'avaient pas d'enfant avant de former l'union
+actuelle. A l'inverse, lorsque les femmes deviennent belles-mères, elles
+sont plus nombreuses à déjà avoir des enfants issus d'unions précédentes
+(41,4%). Le graphique ci-dessous présente les histoires parentales des
+beaux-parents en fonction de leur appartenance aux groupes sociaux de
+sexe.
+
+```{r, out.width= "80%", fig.asp=0.8, fig.cap = "Histoire parentale des beaux parents en fonction de leur sexe"}
+
+load("Resultats/barplot_BP_Sexe_enfants.Rdata")
+
+tab$tableau + 
+  labs(caption = paste0(
+    "Source : ", infosBDF$nom, ", ", infosBDF$vague, ".\n", 
+    "Champ : ", tab$champ, " (n = ", tab$n, ")\n", 
+    "Lecture : 59,8% des beaux-pères vivants en famille recomposées ont des enfants issus uniquement de l'union actuelle."))
+
+```
+
+#### Trash
+
 Leur revenu est en moyenne plus élevé que celui des parents (2185 euros
 contre 1592 euros mensuel), même si l'écart est moindre lorsqu'ils et
 elles ont eux-même des enfants (1844 euros mensuels). Le constat est
@@ -2078,76 +2107,62 @@ sont plus souvent diplômées d'un bac+5 que les mères et que les
 beaux-pères, qu'elles aient elles-même des enfants ou non (15% à 16%
 contre 7% des mères et 7 à 9% des beau-pères)
 
-### Des couples moins homogames ?
+#### End trash
+
+### Une homogamie de profession plus que de diplôme
 
 Au vu des caractéristiques spécifiques que possèdent les mères, les
-pères, les belles-mères et les beaux-pères, on peut se demander si les
-unions secondaires sont plus ou moins homogames que les premières
-unions.
+pères, les belles-mères et les beaux-pères, on peut se demander si les unions secondaires sont plus ou moins homogames que les premières unions. En premier lieu, les remise en couple ne sont pas
+systématiquement des remise en couple hétérosexuel. Dans l'enquête, les ménages à la configuration traditionnelle sont tous formés par un homme et une femme.
+L'absence de famille homoparentale dans l'enquête budget de famille 2016 est donc notable, mais s'explique aisément par la législation qui
+interdit, avant 2013 l'adoption aux conjoints de mêmes sexes. En
+revanche, les couples à l'origine de recompositions familiales sont dans 3,5% des cas, des couples de même sexe. Cette proportion est similaire chez les couples sans enfants. En revanche, les couples de même sexe formés secondairement et vivants avec des enfants issus d'une précédante union sont pour l'essentiel des couples de femmes : ils représentent 2,8% des couples formant des ménages recomposées. Ces résultats concordent avec les étudies statistiques sur les couples de même sexe :
+En 2018, 14% des couples en général et un quart des couples de femmes
+vivaient avec des enfants [@algavaPenant]. Ainsi, les unions
+secondaires, en particulier pour les femmes, peuvent être l'occasion
+d'une reconfiguration des positions dans les rapports sociaux de sexe à
+l'échelle du couple. Pour autant, ces situations restent marginales dans l'enquête : elles concernent seulement 18 couples. Ainsi, lorsque nous étudions l'homogamie conjugale dans la suite de cette partie, nous avons exclu ces configurations. 
 
-```{r heatmapdiplome, fig.cap= "Homogamie de diplome : Diplôme des femmes en fonction de celui des hommes", fig.asp = 0.6, fig.width=9, fig.height=0.3}
+Les graphiques ci-dessous présentent les plus hauts niveau de diplôme des femmes en fonction de ceux des hommes. Ils permettent de comparer les couples vivants avec des enfants issus d'unions précédentes à l'ensemble des couples vivants avec des enfants et des couples avec ou sans enfants.
+
+```{r heatmapdiplome, fig.cap= "Homogamie de diplome : Diplôme des femmes en fonction de celui des hommes", fig.asp = 0.7, fig.width=8, fig.height=0.3}
 
 load("Resultats/tileplot_homogamiedeuxgraphs.Rdata")
-tab$tableau
+tab$tableau + 
+  labs(caption = paste0(
+    "Source : ", infosBDF$nom, ", ", infosBDF$vague, ".\n", 
+    "Champ : ", tab$champ, " (n = ", tab$n, ")\n", 
+    "Lecture : "))
 
 ```
 
-Les couples formés après une première histoire conjugale et familiale
-apparaissent moins clairement homogames que le reste de la population.
-En effet, les hommes diplômes d'un doctorat, de grande école ou d'école
-d'ingénieur sont 27% a être en couple avec une femme diplômés de master
-(contre 20 à 21% pour l'ensemble des couples ou l'ensemble des couples
-avec enfants). Ils sont également 34% a être en couple avec une femme
-diplômés d'un CAP ou d'un BEP contre 3 à 4% pour l'ensemble des couples.
-Parmi les diplômés du brevet des collèges, ils sont aussi 42% a être en
-couple avec une femme diplômée d'une licence, d'un BTS, d'un DUT ou d'un
-diplôme sanitaire et social (niveau bac +2), contre entre 22 et 23% de
-l'ensemble des couples. Ces spécificités sont vraisemblablement lié aux
-caractéristiques propres des mères célibataires (moins diplômées que les
-autres). Elles informent cependant sur les niveau d’inégalités entre les
-conjoit-e-s qui forment ces ménages à la structure familiale recomposée.
+Si l'on regarde les niveau de diplôme, les couples formés après une
+première histoire conjugale et familiale apparaissent moins clairement
+homogames que le reste de la population. En effet, les hommes diplômes
+d'un doctorat, de grande école ou d'école d'ingénieur sont 27% a être en couple avec une femme diplômés de master (contre 20 à 21% pour
+l'ensemble des couples ou l'ensemble des couples avec enfants). Ils sont également 34% a être en couple avec une femme diplômés d'un CAP ou d'un BEP contre 3 à 4% pour l'ensemble des couples. Parmi les diplômés du brevet des collèges, ils sont aussi 42% a être en couple avec une femme diplômée d'une licence, d'un BTS, d'un DUT ou d'un diplôme sanitaire et social (niveau bac +2), contre entre 22 et 23% de l'ensemble des couples. Ces spécificités sont vraisemblablement lié aux
+caractéristiques propres des mères célibataires (moins diplômées que les autres). Elles informent cependant sur les niveau d’inégalités entre les conjoit-e-s qui forment ces ménages à la structure familiale recomposée.
 
-```{r heatmapCSP, fig.cap= "Homogamie de profession : Profession des femmes en fonction de celle des hommes", fig.asp = 0.6, fig.width=9, fig.height=0.3}
+Les graphiques ci-dessous présentent les professions des femmes en fonctions de celles des hommes.  
+
+```{r heatmapCSP, fig.cap= "Homogamie de profession : Profession des femmes en fonction de celle des hommes",  fig.asp = 0.7, fig.width=8, fig.height=0.3}
 
 load("Resultats/tileplot_homogamieCSPtroisgraphs.Rdata")
-tab$tableau 
+tab$tableau +
+  theme(legend.position = "none") +
+  labs(caption = paste0(
+    "Source : ", infosBDF$nom, ", ", infosBDF$vague, ".\n", 
+    "Champ : ", tab$champ, " (n = ", tab$n, ")\n", 
+    "Lecture : "))
 
 ```
 
 Les couples formées par des unions secondaires dans le cadre des
 recompositions familiale apparaissent également singuliers du point de
-vue des l'appartenance des conjoints aux catégories
-socio-professionnelles. Là oû l'homogamie de diplôme apparaît moins
-évidente que pour l'ensemble des couples, l’homogamie de profession
-apparaît plus forte pour ces couples. C'est en particulier vrai pour les
-cadres du public ou de la culture (43% des hommes occupant ces postes
-sont en couple avec des femmes occupent ces mêmes poste, contre 24% dans
-les couples avec enfants et 27% dans l'ensemble des couples. On observe
-la même chose à l'autre bout du spectre social, chez les ouvriers et
-ouvrières non qualifiées : 28% des ouvriers non qualifiés sont en couple
-avec une ouvrière non qualifiée, contre 13% dans l'ensemble des couples.
-Cette homogamie de profession plutôt plus que de diplôme peu s'expliquer
-par les temporalité de mise en couple et de remise en couple. Si de plus
-en plus de couple se rencontrent durant leurs études, souvent commune,
-et se forment à cet occasion, favorisant de fait l'homogamie de diplôme,
-les effets différenciés de la conjugalité sur les hommes et les femmes
-font rapidement diverger les carrières féminines et masculines,
-produisant, de fait, des couples moins homogames du point de vu de la
-profession que du diplôme [@Milan Bouchet-Valat, Sébastien Grobon,
-population]. Les unions à l'origine de recompositions familiales
-interviennent mécaniquement plus tardivement dans les trajectoires
-individuelles. De ce fait, lors des secondes unions, le conjoint ou la
-conjointe est deux fois plus fréquemment rencontrée sur le lieu de
-travail que lors des premières unions, et il est plus rare d'avoir connu
-le nouveau ou la nouvelle conjointe à l'occasion des études [@Vianney
-Costemalle]. Une autre spécificité des couples formant des ménages à la
-configuration familiale recomposée tiens à la plus grande association
-entre un-e actif-ve et un-e inacti-ve. 30% des hommes retraités sont
-ainsi en couple avec une femme occupant une position de "médiatrice" au
-sein des professions intermédiaires, contre seulement 11% des hommes
-dans l'ensemble des couples avec enfants. Dans ces derniers les hommes
+vue des l'appartenance des conjoints aux catégories socio-professionnelles. Là oû l'homogamie de diplôme apparaît moins faible pour ces couples que pour l'ensemble des couples, l'homogamie de profession apparaît elle plus forte. C'est en particulier vrai pour les cadres du public ou de la culture (43% des hommes occupant ces postes sont en couple avec des femmes occupent ces mêmes poste, contre 24% dans les couples avec enfants et 27% dans l'ensemble des couples. On observe la même chose à l'autre bout du spectre social, chez les ouvriers et ouvrières non qualifiées : 28% des ouvriers non qualifiés sont en couple avec une ouvrière non qualifiée, contre 13% dans l'ensemble des couples.
+Cette homogamie de profession plutôt plus que de diplôme peut s'expliquer par les temporalités de mise en couple et de remise en couple. Si de plus en plus de couple se rencontrent durant leurs études, souvent communes, et se forment à cette occasion, favorisant de fait l'homogamie de diplôme, les effets différenciés de la conjugalité sur les hommes et les femmes font rapidement diverger les carrières féminines et masculines, produisant, de fait, des couples moins homogames du point de vu de la profession que du diplôme [@Milan Bouchet-Valat, Sébastien Grobon, population]. Les unions à l'origine de recompositions familiales interviennent mécaniquement plus tardivement dans les trajectoires individuelles. De ce fait, lors des secondes unions, le conjoint ou la conjointe est deux fois plus fréquemment rencontrée sur le lieu de travail que lors des premières unions, et il est plus rare d'avoir connu le nouveau ou la nouvelle conjointe à l'occasion des études [@Vianney Costemalle]. Une autre spécificité des couples formant des ménages à la configuration familiale recomposée tiens à la plus grande association entre un-e actif-ve et un-e inacti-ve. 30% des hommes retraités sont ainsi en couple avec une femme occupant une position de "médiatrice" au sein des professions intermédiaires, contre seulement 11% des hommes dans l'ensemble des couples avec enfants. Dans ces derniers les hommes
 retraités sont en effet majoritairement en couple avec une femme
-retraité (26%). Dans les couples de familles recomposées, les hommes
+retraité (24%). Dans les couples de familles recomposées, les hommes
 inactifs (autres que retraités) sont également majoritairement avec des
 employées qualifiées (39%), là ou ils sont majoritairement avec des
 femmes elles aussi inactives dans les couples avec enfants (33%). Cela
@@ -2181,13 +2196,13 @@ familles %>%
 
 ```
 
-[Peut-être que je devrais ajouter un paragraphe sur les inégalités de
-patrimoine et de revenu ici ? Mais je pense garder cela pour parler des
-arrangements économiques dans le chapitre 2]
+
+
+conclusion : sur les inégalités entre conjoint, sur les positions dans la famille, sur le ménage
 
 ## Décrire la position sociale des familles recomposées : une approche par les configurations conjugales
 
-Si échelle du ménage ne permet de saisir que partiellement les faits
+Si l'échelle du ménage ne permet de saisir que partiellement les faits
 sociaux de déployant à une échelle inter-individuelle (logement,
 enfants, couple) [@Bonvalet ; @Toulemont], c'est celle qui est utilisée
 dans les enquêtes de la statistique publique. Caractériser socialement
@@ -2209,14 +2224,7 @@ référence est la plus âgée. Or, dans les familles recomposées, les
 beaux-parents, surtout lorsqu'ils n'ont pas eux-même d'enfants, ont en
 moyenne des revenus plus élevés que les parents. Ils sont donc
 mécaniquement plus souvent personne de référence que les parents
-[Chiffre + annexe]. Ainsi, la priorité serait ici non seulement donnée à
-l'homme, mais en particulier au beau-père sans enfants dans le ménage.
-Nous aurions aussi pu construire une PCS "Ménage" en suivant la nouvelle
-nomenclature mise en place en 2020. Codée par une opération de synthèse
-des catégories socioprofessionnelles (CSP) des deux membres du couple
-lorsqu'il existe, cette PCS « ménage » est chargée de mieux rendre
-compte de la position sociale du ménage. Cependant en cherchant à
-synthétiser dans une même échelle des positions sociales dans les
+**[Chiffre + annexe]**. Ainsi, la priorité serait ici non seulement donnée à l'homme, mais en particulier au beau-père sans enfants dans le ménage. Nous aurions aussi pu construire une PCS "Ménage" en suivant la nouvelle nomenclature mise en place en 2020. Codée par une opération de synthèse des catégories socioprofessionnelles (CSP) des deux membres du couple lorsqu'il existe, cette PCS « ménage » est chargée de mieux rendre compte de la position sociale du ménage. Cependant en cherchant à synthétiser dans une même échelle des positions sociales dans les
 rapports sociaux de classes et de genre parfois antagoniques, cette
 refonte ne change pas fondamentalement de perspective : le ménage reste
 une unité de base, presque assimilable à un individu. C'est pourquoi
@@ -2231,9 +2239,7 @@ importante de cette méthode est qu'elle produit des résultats
 sensiblement différents en fonction des données utilisées, ce qui rend
 difficile toute comparaison avec d'autres enquêtes. L'application de la
 nomenclature PCS Ménage aurait justement eu l'avantage de la
-comparabilité. Cependant, l'introduction de la PCS ménage étant récente,
-il n'existe pas encore, à notre connaissance de travaux portant sur les
-familles recomposées faisant usage de cette nomenclature.
+comparabilité. Cependant, l'introduction de la PCS ménage étant récente, il n'existe pas encore, à notre connaissance de travaux portant sur les familles recomposées faisant usage de cette nomenclature.
 
 ### Une approche multidimentionelle et configurationelle
 
@@ -2254,164 +2260,16 @@ aux premiers et troisièmes problèmes. Dans le cadre qui est le notre,
 celui des recompositions familiales, le deuxième problème est loin
 d'être anecdotique : l'existence d'un ex-conjoint ou d'une ex-conjointe
 hors du ménage éventuellement débiteur ou débitrice d'une pension
-alimentaire et fréquentant éventuellement certains des enfants du ménage
-plus ou moins régulièrement pose de toute évidence la question de la
-pertinence des frontières du ménage tel que définit dans la statistique
-publique. Cependant, l'enquête `r infosBDF$nom` ne fournit pas de
-données permettant de positionner socialement les ex-conjoints et
-ex-conjointes des couples étudiés. Il n'est ainsi pas possible, dans ce
-cadre, de dépasser ce deuxième problème.
+alimentaire et fréquentant éventuellement certains des enfants du ménage plus ou moins régulièrement pose de toute évidence la question de la pertinence des frontières du ménage tel que définit dans la statistique publique. Cependant, l'enquête `r infosBDF$nom` ne fournit pas de données permettant de positionner socialement les ex-conjoints et ex-conjointes des couples étudiés. Il n'est ainsi pas possible, dans ce cadre, de dépasser ce deuxième problème.
 
-Une première catégorie de variables de stratification retenues
-caractérisent, à l'échelle du ménage, l'espace d'habitation de celui-ci
-: type de logement (maison ou appartement), statut d'occupation du
-logement (propriétaire sans crédit, propriétaire avec crédit ou
-locataire), aire urbaine de la commune d'habitation (en tranches
-d'habitants). Une autre catégorie de variables à l'échelle du ménage
-caractérisent la composition familiale, le rapport à l'emploi et le
-niveau de vie : type de ménage en fonction du statut conjugal
-(couple/célibataire) et de l'activité des membres (actifs en
-emploi/actif sans emploi ou inactif), le nombre d'enfants (un, deux,
-trois, ou quatre et plus), et le revenu par unité de consommation (en
-tranches d'euros mensuels). Ces variables à l'échelle du ménage
-ressemblent, à peu de choses près à celles employés par Joannie
-Cayouette-Remblère et Mathieu Ichou pour l'enquête Trajectoire et
-Origine dans leur article. Afin de saisir le rôle différencié des
-caractéristiques sociales des hommes et des femmes, les variables de
-stratification sociale retenues à l'échelle de l'individu sont, comme
-dans l'article, différenciées selon l'appartenance aux groupes sociaux
-de sexe. Dans le cas des couples de même sexe, très minoritaires dans
-l'enquête (n=76), l'un membre a été catégoriser au hasard avec les
-femmes (respectivement les hommes). La catégorie socio-professionnelle,
-recodée, comme dans l'article de Cayouette et Ichou à partir des
-catégories de l'INSEE, en s'inspirant des travaux de [@vanZanten, 2009;
-@Bouffartigue, 2001] sur les classes moyennes et superieures. En
-distinguant donc au sein des cadres et professions intellectuelles
-supérieures et des professions intermédiaires, les individus travaillant
-dans le public de ceux travaillant dans le privé. Au sein des classes
-populaires, nous avons distingué les catégories qualifiées des
-catégories non-qualiées. Le niveau de diplôme est recodé en sept postes.
-A la différence, nous avons introduit une variable d'épargne (recodée en
-tranche), elle aussi différenciée entre hommes et femmes. Pour compenser
-l'introduction de la variable de revenu à échelle du ménage (niveau de
-vie) ce qui permet la prise en compte des personnes à charge dans le
-ménage, nous avons introduit une variable mesurant l'inégalité de
-revenus entre conjoint : la contribution du revenus des femmes dans les
-revenus totaux du ménage (recodé en tranches). Nous n'avons cependant
-pas pu intégrer des variables permettant de saisir la position dans les
-rapports sociaux de "race". En effet, disposant seulement de deux
-variables codant le lieu de naissance et la nationalité, on ne pouvait
-approcher que le fait d'appartenir à la première génération
-l'immigration. Les tentatives réalisées polarisaient alors très
-fortement l'ACM entre les couples dont les deux membres étaient nés à
-l'étranger et ceux nés en France. Cette variable à cependant été
-intégrée en tant que variable supplémentaire, au même titre que l'âge.
-socio-professionnelle. En comparaison du travail réalisé par Joannie
-Caouette Remblière et Mathieu Ichou, les variables ici choisies donnent
-donc plus de place à la mesure de l'homogamie et des inégalités
-économiques entre conjoints et moins aux positions dans les rapports
-sociaux de race, au trajectoires migratoires et à la nationalité. C'est
-un des autres avantages de cette méthode : elles permet d'adapter les
-dimensions de la stratification sociale privilégiées à l'objet étudié.
+```{=tex}
+\begin{encadre}{Des résultats convergents}
+Des principes de structuration de l'espace sociale proches de ceux obtenu par Joannie Cayouette-Remblière et Mathieu Ichou
 
-### Des configurations familiales dans l'espace social
-
-Nous avons réalisé une analyse des correspondances multiples spécifique
-[@chiche2010], technique statistique permettant de neutraliser l'effet
-de certaines modalités redondantes ou non-interprétables (valeurs
-manquantes, variable ne concernant qu'un sous-population). Nous avons
-choisit de conserver sept dimensions de celle-ci. L'usage du critère du
-coude (changement de signe de la dérivée des valeur propres) permettait
-de conserver un, cinq, sept ou treize axes, mais c'est surtout le
-critère de l'interprétabilité sociologique [@roux2010] qui nous a
-conduit à en retenir 8 plutôt que 5. En effet, l'axe 6 qui renvoie aux
-distinctions entre indépendants contenait, selon nous, une opposition
-importante qui n'était pas encore apparu dans les premiers axes. Ainsi,
-les 7 premiers axes permettent d'expliquer 22% de la variance totale du
-nuage du point
-
-L'**axe 1** de l'ACM, qui concentre 5,08% de la variance du nuage de
-points, renvoie au volume global de capitaux en distinguant les ménages
-disposant de ressources économiques et culturelles importantes et ceux
-plus démunis. Il oppose par exemple les hommes et femmes diplomé-e-s de
-doctorat, école d'ingénieur, grandes école et master, cadre, chef-fe
-d'entreprise, profession libérale, cadre du public ou de la culture,
-avec un niveau de vie supérieur à 2950 euros par mois, en couple avec
-deux actifs en emploi, aux individus sans diplômes (ou avec le CEP), aux
-femmes inactives, dont le niveau de vie compris entre 550 euros et 850
-euros mensuels, célibataires sans emploi ou couples sans actifs en
-emploi. L'**axe 2** concentre 3,95% de la variance. Il oppose les
-ménages inactifs disposant d'un patrimoine important aux ménages actifs
-disposant de faibles patrimoines. Il distingue donc d'un coté les
-ménages dans lesquels hommes et femmes sont retraités, propriétaire de
-leur logement et possèdent chacun de plus de 10 000 euros d'épargne aux
-ménages actifs, locataires de leur logement, ou hommes et femmes
-disposent de moins de 1000 euros d'épargne, et ou les hommes sont
-généralement ouvriers qualifiés. L'**axe 3** concentre 3,72% de la
-variance et opposent les ménages urbains, plus souvent célibataires, aux
-ménages ruraux, plus souvent formés par des couples. Parmi les modalités
-contribuant le plus a la construction de cet axe, on observe une
-opposition entre d'un coté, les communes rurales, le fait d'habiter dans
-une maison, et les communes de l'agglomération parisienne, le fait
-d'habiter dans un appartement et d'être locataire. Cette oppositions est
-redoublée par une opposition entre les couples peu diplômés et dont les
-hommes sont souvent ouvriers et les célibataires, en particulier les
-femmes, très diplômées, cadre ou cheffes d'entreprises ou profession
-libérale. L'**axe 4** concentre 3,02% de la variance. Il oppose les
-ménages avec un niveau de vie élevé, constitués par des couples
-mono-actifs ayant plus de trois enfants et dont la femme est
-généralement inactive aux célibataires en emploi ayant eux aussi un
-niveau de vie plutôt élevé. L'**axe 5** concentre 2,23% de la variance
-du nuage de point. Il oppose d'un coté les "gens du public" aux "gens du
-privé" [@Singly]. Ainsi on trouve d'un coté les hommes et femmes
-occupant des professions intermédiaires de médiateurs ou médiatrices,
-diplômés d'une licence, d'un BTS, d'un DUT ou d'un diplôme de santé ou
-du social (niveau bac+2), dont les membres des couples ont des revenus
-proches. De l'autre coté, sont situés les diplômés de doctorat, d'école
-d'ingénieur ou de grande école, qui occupent des poste de cadre
-d'entreprise, professions libérale ou chef-fe d'entreprise et les
-diplômés de CAP ou BEP qui occupent des positions de d’ouvrier-e-s ou
-d'employé-es non-qualifié-es. L'**axe 6**, qui concentre 2,09% de la
-variance oppose les petits indépendants avec un niveau très faible
-niveau de vie (sans revenus ou moins de 550 euros par mois), habitants
-dans des espaces ruraux, et dont la femme contribue d'avantage que
-l'homme aux revenus du couple celui-ci étant plus souvent inactif aux
-couples ou seul l'homme est actif, probablement chef d'entreprise (plus
-que cadre ou professions libéral) et disposant de très faibles niveau
-d'épargne. L'**axe 7** concentre 2% de la variance. Il oppose d'un coté
-les couples dans lesquels hypergames au couple hypogames. On distingue
-d'un coté les couples dans lesquels la contribution des femmes au
-revenus du ménage est supérieur à 50% voir 60%, elles sont généralement
-cadre du public ou ouvrière non qualifié, mais leur conjoint est souvent
-sans diplôme et sans économies. De l'autre, on observe les couples dans
-lesquels les hommes sont plus diplômés, les femmes inactives ou petites
-indépendante et contribuent à moins de 20% des revenus conjugaux. On
-observe ainsi des formes d'équivalence entre les dimensions de l'analyse
-réalisée ici et celles réalisées par Joannie Cayouette Remblière et
-Mathieu Ichou sur les données Panel de la DEPP et sur l'enquêtre
-Trajectoires et Origines de l'Insee.
-
-A partir de ces huit axes nous avons réalisé une classification
-ascendante hiérarchique sur les coordonnées des individus. Dans le même
-esprit nous avons choisit 9 clusters. D'une part, au regard des saut
-d'inertie cela nous paraissait pertinent, d'autre part, il nous semblé
-que le découpage en 7 clusters, qui paraissait également pertinente du
-point de vu des sauts d'inertie reproduisait trop fortement un
-classification de PCS classique. En outre, puisque l'axe 2 de l'ACM
-oppose les ménages de retraités aux autres ménages, il nous a semblé
-qu'il fallait un nombre plus important de cluster pour obtenir des
-distinction relativement fines à l'intérieur des classes populaires,
-moyennes et supérieures.
-
-[PLOT DU DENDROGRAME avec les fréquence dans chaque groupe et leur nom]
-
-[Plot positions des clusters sur les axes]
-
-```{r clusterposition, fig.cap = "Position des clusters sur les différents axes", eval = F}
-load("Resultats/plot_culsters_position.Rdata")
-tab$tableau 
-
+\end{encadre}
 ```
+
+------------------
 
 Le **cluster 1** comprend ??% CLASSES POP précaire/fragiles des ménages
 formés par au moins un adulte agé de 25 à 65 ans. Il est constitué
@@ -6132,6 +5990,17 @@ pour les couples sans enfant et les personnes seules.
 
 ### Des arrangements fiscaux spécifiques
 
+contractualisation :
+
+*Dans près de 73 % des cas, les remises en couple se traduisent en 2015
+par une union libre plutôt que par un Pacs (17 % des cas) ou un mariage
+(10 % des cas). La prédominance des unions libres reflète à la fois le
+fait que les secondes unions sont moins souvent contractualisées que les
+premières [**Ouvrir dans un nouvel ongletCostemalle, 2019**] et que la
+remise en couple est observée ici dans un délai assez court, dans les
+quatre années suivant la séparation. Une partie des nouvelles unions
+seront contractualisées ultérieurement. =\> dans abbas et garbinti*
+
 ```{r}
 
 familles <- readRDS("Data_output/familles_parents.Rds")
@@ -6171,9 +6040,7 @@ Retour réflexif sur l’apport et les limites du mémoire.
 
 # Annexes
 
-## Note méthodologique sur la pondération dans l'enquête 
-
-
+## Note méthodologique sur la pondération dans l'enquête
 
 ## Statistiques descriptives des différentes sous-populations
 
@@ -6193,14 +6060,153 @@ enfantsMenage %>%
   theme_memoire(base_size = 14)
 ```
 
-## Analyse factorielle
+## Construction de la variable de position sociale du ménage
 
-### Contributions aux dimentions de l'ACM
+### Choix des variables de stratification sociale 
 
-```{r tabcontrib, results='asis'}
+Comme dans l'article de Joannie Cayouette-Remblière et Mathieu Ichou [@Cayouette], une première catégorie de variables de stratification retenues caractérisent, à l'échelle du ménage, l'espace d'habitation de celui-ci : type de logement (maison ou appartement), statut d'occupation du logement (propriétaire sans crédit, propriétaire avec crédit ou locataire), aire urbaine de la commune d'habitation (en tranches d'habitants). A la différence des auteurs de l'article, nous n'avons en revanche pas retenu de variables caractérisant la composition et la structure familiale des ménages. Puisque nous cherchons à justement à situer les recompositions familiales dans l'espace social, nous avons chercher à positionner socialement les ménages indépendamment de leur structure familiale. A l'échelle du ménage, nous avons retenu, en plus, les déciles de revenu par unité de consommation (niveau de vie) ainsi que le patrimoine du ménage estimé par le ou la répondant-e à l'enquête. 
+Afin de saisir le rôle différencié des caractéristiques sociales des hommes et des femmes, les variables de stratification sociale retenues à l'échelle de l'individu sont, comme dans l'article, différenciées selon l'appartenance aux groupes sociaux de sexe. Dans le cas des couples de même sexe, très minoritaires dans l'enquête (n=76), l'un membre a été catégorisé au hasard avec les femmes (respectivement les hommes). La catégorie socio-professionnelle, recodée, comme dans l'article de Cayouette et Ichou à partir des catégories de l'INSEE, en s'inspirant des travaux de [@vanZanten, 2009;
+@Bouffartigue, 2001] sur les classes moyennes et supérieures. En
+distinguant donc au sein des cadres et professions intellectuelles
+supérieures et des professions intermédiaires, les individus travaillant dans le public de ceux travaillant dans le privé. Au sein des classes populaires, nous avons distingué les catégories qualifiées des catégories non-qualifiées. Le niveau de diplôme est recodé en sept postes.
+
+Nous n'avons cependant pas pu intégrer des variables permettant de saisir la position dans les rapports sociaux de "race". En effet, disposant seulement de deux variables codant le lieu de naissance et la nationalité, on ne pouvait approcher que le fait d'appartenir à la première génération l'immigration. Les tentatives réalisées polarisaient alors très fortement l'ACM entre les couples dont les deux membres étaient nés à l'étranger et ceux nés en France. Cette variable à cependant été intégrée en tant que variable supplémentaire, au même titre que l'âge, les variables de structure et de compositions familiales. En comparaison du travail réalisé par Joannie Caouette Remblière et Mathieu Ichou, les variables ici choisies donnent donc plus de place à la mesure de l'homogamie et des ressources économiques du ménage et moins aux positions dans les rapports sociaux de race, au trajectoires migratoires et à la nationalité ainsi qu'à la composition. C'est un des autres avantages de cette méthode : elles permet d'adapter les dimensions de la stratification sociale privilégiées à l'objet étudié.
+
+### Mise en oeuvre de l'analyse des correspondances multiples 
+
+Nous avons réalisé une analyse des correspondances multiples spécifique
+[@chiche2010], technique statistique permettant de neutraliser l'effet
+de certaines modalités redondantes ou non-interprétables (valeurs
+manquantes, variable ne concernant qu'un sous-population). Comme dans l'article qui nous sert de modèle, nous avons choisit de considérer comme modalités supplémentaires les valeurs manquantes pour les hommes, ou respectivement les femmes, lorsque les ménages étaient composés de célibataires. Par ailleurs, l’enquête ne permettant pas de connaitre la CSP détaillée des individus retraités au moment de l'enquête, et afin d'éviter une sur-polarisation de l'espace par les couples de retaités, nous avons considérer comme supplémentaire les modalités "retaité-e".
+
+Nous avons choisit de conserver sept dimensions de celle-ci. L'usage du critère du coude (changement de signe de la dérivée des valeur propres associés aux axes) permettait de conserver cinq, sept ou dix, mais c'est surtout le critère de l'interprétabilité sociologique [@roux2010] qui nous a conduit à en retenir 7 plutôt que 5. En effet, l'axe 6 qui renvoie aux distinctions entre indépendants contenait, selon nous, une opposition importante qui n'était pas encore apparu dans les premiers axes. Ainsi, les 7 premiers axes permettent d'expliquer 23,8% de la variance totale du nuage du point
+
+#### Axe 1 : volume de capitaux culturels et économiques 
+
+L'Axe 1 représentant 6,1 % de l'inertie totale. Il met en évidence une opposition marquée entre des groupes sociaux caractérisés par un capital économique et scolaire élevé, et des groupes avec un volume de de capitaux plus faible. Les modalités qui contribuent positivement à cet axe sont associées à des individus ayant un haut niveau de formation, comme ceux titulaires d'un doctorat ou d'un master, et occupant des positions professionnelles de cadres ou de chefs d'entreprise. Ces groupes se distinguent également par un niveau de vie élevé et un patrimoine conséquent, souvent supérieur à 350 000 euros. En revanche, les modalités négatives sont liées à des individus moins diplômés, souvent sans diplôme ou avec un certificat d'études primaires, vivant dans des ménages aux revenus plus modestes. Ces ménages sont fréquemment locataires et disposent d'un patrimoine limité, inférieur à 30 000 euros. Ainsi, l'Axe 1 oppose clairement les groupes favorisés, dotés de ressources économiques et éducatives importantes, aux groupes plus pauvres, marqués par une faible qualification et une moindre sécurité économique.
+
+```{r tabcontrib, results='asis',}
 load("Resultats/tabs_contribmoda.Rdata")
+tab$tableau[1][[1]]
 
 ```
+
+#### Axe 2 : urbain / rural
+
+L'**axe 2** concentre 4,66% de la variance totale. Il révèle une opposition entre des catégories urbaines, bien diplômées, et des groupes plus ruraux avec un capital scolaire plus faible. Les modalités qui contribuent positivement à cet axe sont liées à une localisation urbaine. Ces groupes sont souvent locataires et vivent dans des appartements, reflétant un profil socio-économique marqués par un niveau de vie élevé, mais un patrimoine plus modeste. En contraste, les modalités contribuant négativement à l'Axe 2 sont associées à des individus résidant majoritairement en milieu rural ou périurbain. Ces groupes sont principalement propriétaires de maisons, avec un patrimoine économique plus conséquent. De fait, cette opposition recoupe une opposition en terme de niveau de diplôme : Les individus titulaires de diplômes élevés, comme le doctorat ou le master, se concentrent dans les zones urbaines, notamment dans l'agglomération parisienne, et s'oppose à ceux ayant ayant un niveau de formation intermédiaire, comme les titulaires d’un CAP ou BEP.
+
+```{r}
+tab$tableau[2][[1]]
+```
+
+#### Axe 3 : Volume de patrimoine
+
+L'Axe 3, qui explique 3,38 % de l'inertie totale, met en évidence une opposition entre terme de volume de patrimoine économique, aux sein des différentes fractions des groupes sociaux ayant les niveaux de vies les plus élevés. Les modalités contribuant le plus et positivement associés à cet axe sont associées à des individus ayant des niveau de patrimoines élevés et propriétaires de leurs logements sans crédits. Ces hauts patrimoines sont associés au décile de niveau de vie le plus élavé (D10) et aux niveaux de diplômes à la fois les plus haut et les plus faibles, ainsi qu'aux individus appartenant aux petits indépendants.
+En revanche, les modalités contribuant fortement mais négativement à l'axe 3 sont liées à des individus ayant un niveau de formation intermédiaire (licence, BTS, DUT) ou technique, et appartenant à des professions intermédiaires comme les techniciens ou les médiateurs, dont ils et elles tirent une bonne rémunération (déciles de niveau de vie 8 et 9.). En revanche, ces groupes résident plus fréquemment dans des appartements, sont locataires et ont des niveau de patrimoine plus faibles.
+
+```{r}
+tab$tableau[3][[1]]
+
+```
+
+
+#### Axe 4 : classes populaires biactives / femmes célibataires
+L'axe 4 de l'ACM capture 2,68% de la variance totale. Il oppose, aux seins des déciles de vies les plus faibles, les couples bi-actifs formés par des hommes ouvriers qualifiés et des femmes employées qualifiées, aux femmes célibataires inactive ou en emploi, appartenant u décile le plus pauvre.
+
+```{r}
+tab$tableau[4][[1]]
+
+```
+
+#### Axe 5 : Privé / public 
+
+Cet axe, expliquant 2.4% de la variance totale, présente une opposition assez claire entre les gens du public et les gens du privé
+Il oppose d'un coté les "gens du public" aux "gens du
+privé" [@Singly]. Ainsi on trouve d'un coté les hommes et femmes
+occupant des professions intermédiaires de médiateurs ou médiatrices,
+diplômés d'une licence, d'un BTS, d'un DUT ou d'un diplôme de santé ou
+du social (niveau bac+2), dont les membres des couples ont des revenus
+proches. De l'autre coté, sont situés les diplômés de doctorat, d'école
+d'ingénieur ou de grande école, qui occupent des poste de cadre
+d'entreprise, professions libérale ou chef-fe d'entreprise et les
+diplômés de CAP ou BEP qui occupent des positions de d’ouvrier-e-s ou
+d'employé-es non-qualifié-es.
+
+```{r}
+tab$tableau[5][[1]]
+
+```
+
+
+#### Axe 6
+
+```{r}
+tab$tableau[6][[1]]
+
+```
+
+#### Axe 7
+
+```{r}
+tab$tableau[7][[1]]
+
+```
+
+ L'**axe 4** concentre 3,02% de la variance. Il oppose les
+ménages avec un niveau de vie élevé, constitués par des couples
+mono-actifs ayant plus de trois enfants et dont la femme est
+généralement inactive aux célibataires en emploi ayant eux aussi un
+niveau de vie plutôt élevé. L'**axe 5** concentre 2,23% de la variance
+du nuage de point. 
+
+L'**axe 6**, qui concentre 2,09% de la
+variance oppose les petits indépendants avec un niveau très faible
+niveau de vie (sans revenus ou moins de 550 euros par mois), habitants
+dans des espaces ruraux, et dont la femme contribue d'avantage que
+l'homme aux revenus du couple celui-ci étant plus souvent inactif aux
+couples ou seul l'homme est actif, probablement chef d'entreprise (plus
+que cadre ou professions libéral) et disposant de très faibles niveau
+d'épargne. L'**axe 7** concentre 2% de la variance. Il oppose d'un coté
+les couples dans lesquels hypergames au couple hypogames. On distingue
+d'un coté les couples dans lesquels la contribution des femmes au
+revenus du ménage est supérieur à 50% voir 60%, elles sont généralement
+cadre du public ou ouvrière non qualifié, mais leur conjoint est souvent
+sans diplôme et sans économies. De l'autre, on observe les couples dans
+lesquels les hommes sont plus diplômés, les femmes inactives ou petites
+indépendante et contribuent à moins de 20% des revenus conjugaux. On
+observe ainsi des formes d'équivalence entre les dimensions de l'analyse
+réalisée ici et celles réalisées par Joannie Cayouette Remblière et
+Mathieu Ichou sur les données Panel de la DEPP et sur l'enquêtre
+Trajectoires et Origines de l'Insee.
+
+A partir de ces huit axes nous avons réalisé une classification
+ascendante hiérarchique sur les coordonnées des individus. Dans le même
+esprit nous avons choisit 9 clusters. D'une part, au regard des saut
+d'inertie cela nous paraissait pertinent, d'autre part, il nous semblé
+que le découpage en 7 clusters, qui paraissait également pertinente du
+point de vu des sauts d'inertie reproduisait trop fortement un
+classification de PCS classique. En outre, puisque l'axe 2 de l'ACM
+oppose les ménages de retraités aux autres ménages, il nous a semblé
+qu'il fallait un nombre plus important de cluster pour obtenir des
+distinction relativement fines à l'intérieur des classes populaires,
+moyennes et supérieures.
+
+[PLOT DU DENDROGRAME avec les fréquence dans chaque groupe et leur nom]
+
+[Plot positions des clusters sur les axes]
+
+```{r clusterposition, fig.cap = "Position des clusters sur les différents axes", eval = F}
+load("Resultats/plot_culsters_position.Rdata")
+tab$tableau 
+
+```
+
+
+
+
+### Analyse factorielle
+
+
 
 ### Classification ascendante hiérarchique
 
