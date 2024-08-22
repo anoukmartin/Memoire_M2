@@ -86,7 +86,7 @@ freq(data$n_TYPMEN_sexe)
 library(ordinal)
 
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
-data$n_FractionClasse <- relevel(data$n_FractionClasse, "Classes moyennes superieures [C3]")
+data$n_FractionClasse <- relevel(data$n_FractionClasse, "Classes moyennes superieures [C4]")
 var_label(data$n_FractionClasse) <- "Fraction de classe"
 var_label(data$n_NEnfantsMenage) <- "Nombre d'enfants"
 var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants"

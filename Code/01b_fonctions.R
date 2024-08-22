@@ -741,10 +741,10 @@ joli_tableau <- function(data,
   
   tableau_beau <- tableau %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
-        #format = "latex",
+        format = "latex",
         caption = tableau_titre) %>%
     kable_styling(
-      #font_size = 7,
+      font_size = 7,
       latex_options = c("hold_position", "scale_down", "repeat_header")) %>%
     pack_rows(index=group) 
   n <- length(unique(data[, by] %>% unlist()))

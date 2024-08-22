@@ -51,7 +51,7 @@ dat <- adultes %>%
   #                          "Père" = "Homme")) %>%
   mutate(n_StatutParent = case_when(
     n_EnfantsMen & n_BeauxEnfantsMen ~ "Beau-parent avec enfant", 
-    n_EnfantsMen & (!n_BeauxEnfantsMen | is.na(n_BeauxEnfantsMen)) ~ "Parent", 
+    n_EnfantsMen & (!n_BeauxEnfantsMen | is.na(n_BeauxEnfantsMen)) ~ "Parent sans beaux-enfants", 
     (!n_EnfantsMen | is.na(n_EnfantsMen)) & n_BeauxEnfantsMen ~ "Beau-parent sans enfant",
     TRUE ~ "Sans enfants")) %>%
   mutate(n_StatutParent = as.factor(n_StatutParent) %>%
@@ -69,13 +69,30 @@ freq(dat$variables$LOGEMENT)
 
 var_label(dat$variables$AG) <- NULL
 
+#
+
+
+# tableau 
 tbl <- dat %>%
+  #filter(n_StatutParent != "Parent sans beaux-enfants")  %>%
+  # mutate(SEXE = fct_recode(SEXE, 
+  #                          "Belle-mère (33%)" = "F", 
+  #                          "Beau-père (67%)" = "H")) %>%
+  mutate(n_StatutEnfants = fct_recode(n_StatutEnfants,
+    "Sans enfants" = "Actuelle", 
+    "Sans enfants" = "Sans enfants", 
+    "Avec enfants" = "Précédante", 
+    "Avec enfants" = "Précédante et actuelle")) %>%
+  mutate(var = case_when(
+    
+  ))
+  select(-c(n_PATRIMOINE, LOGEMENT, AG)) %>%
   tbl_strata(
     strata = n_StatutParent,
     .tbl_fun =
       ~ .x %>%
       select(-n_StatutParent) %>%
-      tbl_svysummary(by = SEXE, 
+      tbl_svysummary(by = n_StatutEnfants, 
                      digits = everything() ~ 0,
                      statistic = list(all_categorical() ~ "{p}", 
                                       all_continuous2() ~ c("{mean}", "{sd}"), 
@@ -156,9 +173,11 @@ tab
 #install.packages("GGally")
 library(GGally)
 
-
+levels(dat$variables$n_StatutEnfants)
 dat$variables <- dat$variables %>%
-  mutate(n_StatutEnfants = n_StatutEnfants %>%as.factor()) 
+  mutate(n_StatutEnfants = n_StatutEnfants %>%
+           factor(levels = c("Précédante", "Précédante et actuelle", "Actuelle", "Sans enfants")),
+         SEXE = SEXE %>% as.factor()) 
 
 gg <- dat$variables %>%
   ggplot() +
@@ -189,3 +208,50 @@ saveTableau(gg,
             champ = "Adultes apparentant aux familles recomposées vivants dans des ménages ordinaires", 
             ponderation = T,
             n = nrow(dat$variables))
+
+# Pett graph beaux-parents 
+## Tableau sexe statut parent ####
+
+tab <- dat %>%
+  filter(n_StatutParent != "Parent sans beaux-enfants")  %>%
+  tbl_svysummary(by = n_StatutEnfants, 
+                 include = "SEXE") %>%
+  add_overall() %>%
+  add_p
+tab
+
+gg <- dat$variables %>%
+  filter(n_StatutParent != "Parent sans beaux-enfants")  %>%
+  mutate(SEXE = fct_recode(SEXE, 
+    "Belle-mère (33%)" = "F", 
+    "Beau-père (67%)" = "H")) %>%
+  #mutate(n_StatutEnfants = fct_rev(n_StatutEnfants))
+  ggplot() +
+  aes(x = SEXE, fill = n_StatutEnfants, weight = PONDIND) +
+  geom_bar(position = "fill") +
+  geom_text(aes(by = SEXE), 
+            stat = "prop", position = position_fill(.5)) +
+  xlab("") +
+  ylab("Proportion") +
+  labs(fill = "Enfants issus de l'union") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::percent) + 
+  scale_fill_brewer(palette = "Pastel2") + 
+  
+  #                   labels = paste0(levels(d_clust$CSP), 
+  #                                   c(" (1,43%)", " (6,7%)", 
+  #                                     " (18,88%)", " (25,96%)", 
+  #                                     " (31,99%)", " (15,06%)"))) +
+  theme_memoire() + 
+  theme(legend.position="bottom")
+#labs(caption = "Source : enquête PACS, 2020.\nChamp : population majeure résidant en France métropolitaine (hors Corse) en logement ordinaire.")
+
+gg
+
+saveTableau(gg, 
+            type = "barplot", 
+            label = "BP_Sexe_enfants", 
+            description = "",
+            champ = "beaux-parents apparentant aux familles recomposées vivants dans des ménages ordinaires", 
+            ponderation = T,
+            n = nrow(dat$variables %>% filter(n_StatutParent != "Parent sans beaux-enfants")))

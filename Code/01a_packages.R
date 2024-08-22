@@ -44,10 +44,17 @@ theme_gtsum$`pkgwide-str:theme_name` = "Compact_custom"
 theme_gtsum$`tbl_summary-fn:addnl-fn-to-run` = bold_labels
 theme_gtsum$`tbl_svysummary-fn:addnl-fn-to-run` = bold_labels
 theme_gtsum$`tbl_regression-fn:addnl-fn-to-run` = bold_labels
-theme_gtsum$`tbl_summary-str:continuous_stat` = c("{mean}", 
-                                                  "{p25} - {p75}", 
-                                                  "{min} - {max}")
-theme_gtsum$`tbl_summary-str:categorical_stat` = "{p}% ({n})"
+theme_gtsum$`tbl_summary-arg:statistic` = list(
+  all_continuous() ~ c("{mean}",
+                       "{p25} - {p75}",
+                       "{min} - {max}"),
+  all_categorical() ~ "{p}% ({n})", 
+  all_dichotomous() ~ "{p}% ({n})")
+                                       
+# theme_gtsum$`tbl_summary-str:continuous_stat` = c("{mean}",
+#                                                   "{p25} - {p75}",
+#                                                   "{min} - {max}")
+# theme_gtsum$`tbl_summary-str:categorical_stat` = "{p}% ({n})"
 
 # theme_gtsum$`tbl_svysummary-str:continuous_stat` = c("{mean}", 
 #                                                     "{p25} - {p75}", 

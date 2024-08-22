@@ -184,9 +184,9 @@ configSynthese$n_genreFam <- labelled(configSynthese$n_genreFam,
 configSynthese$n_enfantNewUnion <- labelled(configSynthese$n_enfantNewUnion, 
                                     label = "Existance d'enfants issus de l'union actuelle")
 
-configSynthese %>%
-  select(n_config, n_genreFam, n_enfantNewUnion) %>%
-  tbl_summary(by = "n_config")
+# configSynthese %>%
+#   select(n_config, n_genreFam, n_enfantNewUnion) %>%
+#   tbl_summary(by = "n_config")
 
 familles <- menages %>%
   left_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
@@ -380,9 +380,9 @@ configSynthese$n_genreFamTemp <- labelled(configSynthese$n_genreFamTemp,
 configSynthese$n_enfantNewUnionHD <- labelled(configSynthese$n_enfantNewUnionHD, 
                                             label = "Existance d'enfants issus de l'union actuelle hors domicile")
 
-configSynthese %>%
-  select(n_configTemp, n_genreFamTemp, n_enfantNewUnionHD) %>%
-  tbl_summary(by = "n_configTemp")
+# configSynthese %>%
+#   select(n_configTemp, n_genreFamTemp, n_enfantNewUnionHD) %>%
+#   tbl_summary(by = "n_configTemp")
 
 
 # Infos sur les enfants HD 

@@ -22,7 +22,7 @@ execute <- function(part, path = "Code"){
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 
-
+library(questionr)
 # Réimporter les données brutes ################################################
 # On exécute les scripts commençant par 02
 execute(part = "02a")
@@ -36,8 +36,6 @@ execute(part = "03d")
 execute(part = "03e")
 
 # Résultats statistiques #######################################################                                   
-
-
 ## Statistiques descriptives ###################################################
 execute(part = "04b")
 execute(part = "04c")

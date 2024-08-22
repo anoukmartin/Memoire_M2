@@ -133,12 +133,14 @@ acm_spe$eig$rate[1:20] %>% diff() %>% diff()
 
 acmstop <- 7
 sum(acm_spe$eig$rate[1:acmstop])
+
 # Variables illustratives pour l'ACM 
 
 # Pour avoir les données pour les variables suplémentaires
 #acm_spe_varssup <- supvars(acm_spe, vars_sup)
 
-
+#explor::explor(acm_spe)
+coord <- acm_sup$coord
 
 # CAH ----
 d_cah <- acm_spe$ind$coord[, 1:acmstop]
@@ -423,23 +425,24 @@ tabcontrib <- lapply(1:acmstop, function(dim){
   tab <- tab %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
         caption = tableau_titre, 
-        #format = "latex",
+        format = "latex",
         col.names = c("Variable", "Echelle", "Modalite", "n", "%", "contrib", "coord")) %>%
     kable_styling(
       #full_width = T,
-      #font_size = 7,
+      font_size = 7,
       latex_options = c("hold_position", "scale_down", "repeat_header")) %>%
     # add_header_above(c(" " = 3, 
     #                    "Coordonées" = 8, 
     #                    "Contribution" = 8), bold = TRUE) %>%
-    footnote(general = c("Source :", infosBDF$nom, ", ", infosBDF$vague), 
+    footnote(general = paste0(c("Source :", infosBDF$nom, ", ", infosBDF$vague)), 
              escape = F)
   
   return(tab)
   }
 )
 
-tabcontrib[[6]]
+tabcontrib[[2]]
+
 saveTableau(tabcontrib, type = "tabs", 
             label = "contribmoda", 
             description = "contributions aux 7 axes de l'ACM", 

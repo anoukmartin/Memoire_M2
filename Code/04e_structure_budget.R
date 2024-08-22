@@ -104,17 +104,18 @@ data <- familles %>%
 data[, names(conso2)[-c(16)]] <- (data[, names(conso2)[-c(16)]]/data$`Consommation finale`)*100
 data
 ## Tableau : structure des budgets #############################################
-
+names(data)
 tab <- data %>%  
   mutate(Effectifs = 1) %>%
   as_survey_design(weights = "PONDMEN") %>%  
   select(-PONDMEN, -IDENT_MEN) %>%  
   tbl_svysummary(by = "n_TYPMEN_new",  
-                 include = c(names(conso2)[-16], "Effectifs"),
-                 statistic = list(all_continuous() ~"{mean}", 
-                                  Effectifs ~ "{n}"),  
+                 include = c(names(conso2)[-c(13:16)], "Effectifs"),
                  type = list(everything() ~ "continuous", 
-                             Effectifs ~ "dichotomous"),        
+                             Effectifs ~ "dichotomous"),
+                 statistic = list(all_continuous() ~"{mean}",
+                                  Effectifs ~ "{n}"),
+                 value = list(Effectifs ~ "1"),
                  missing = "no")   
   
 tab <- tab %>% 
@@ -153,6 +154,7 @@ tab <- data %>%
                  include = c(names(conso3)[-c(57:58)], "Effectifs"),
                  statistic = list(all_continuous() ~"{mean}", 
                                   Effectifs ~ "{n}"),  
+                 value = list(Effectifs ~ "1"), 
                  type = list(everything() ~ "continuous", 
                              Effectifs ~ "dichotomous"),        
                  missing = "no")   
@@ -191,6 +193,7 @@ tab <- data %>%
                              "Effectifs"),
                  statistic = list(all_continuous() ~"{mean}", 
                                   Effectifs ~ "{n_unweighted}"),  
+                 value = list(Effectifs ~ "1"), 
                  type = list(all_continuous2() ~ "continuous",
                              Effectifs ~ "dichotomous"),        
                  missing = "no")   
@@ -237,11 +240,12 @@ tab <- data %>%
   as_survey_design(weights = "PONDMEN") %>%  
   select(-PONDMEN, -IDENT_MEN) %>%  
   tbl_svysummary(by = "n_TYPMEN_new",  
-                 include = c(names(conso2)[-16], "Effectifs"),
+                 include = c(names(conso2)[-c(13:16)], "Effectifs"),
                  statistic = list(all_continuous() ~"{mean}", 
                                   Effectifs ~ "{n_unweighted}"),  
                  type = list(everything() ~ "continuous", 
-                             Effectifs ~ "dichotomous"),        
+                             Effectifs ~ "dichotomous"), 
+                 value =list(Effectifs = "1"),
                  missing = "no")   
 
 tab <- tab %>% 

@@ -65,7 +65,7 @@ var_label(data$n_FractionClasse) <- "Position sociale du ménage"
 var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants du ménage"
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
 
-data$n_FractionClasse <- relevel(data$n_FractionClasse,  "Classes moyennes superieures [C3]")
+data$n_FractionClasse <- relevel(data$n_FractionClasse,  "Classes moyennes superieures [C4]")
 var_label(data$n_FractionClasse) <- "Fraction de classe"
 
 # mutate(n_FractionClasse = n_FractionClasse %>% relevel("Classes moyennes salariées [C8]"))

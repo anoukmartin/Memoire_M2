@@ -92,7 +92,8 @@ tab <- tbl_strata(
                    type = list(c(travail_domestique, "Effectifs") ~ "dichotomous"), 
                    statistic = list(all_dichotomous() ~ "{p}", 
                                     Effectifs ~ "{N_unweighted}"),
-                   value = list(travail_domestique ~ "Oui")
+                   value = list(travail_domestique ~ "Oui", 
+                                Effectifs ~ "1")
                    ) %>%
     add_p()%>%
     #add_difference() %>%
@@ -108,11 +109,12 @@ tab
 margev <- data %>%
   mutate(Effectifs = "1") %>%
   tbl_svysummary(include = c(travail_domestique, "Effectifs"),
-                 missing = "no", 
+                 missing = "no",  
                  type = list(c(travail_domestique, Effectifs) ~ "dichotomous"), 
                  statistic = list(all_dichotomous() ~ "{p}", 
                                   Effectifs ~ "{n_unweighted}"),
-                 value = list(travail_domestique ~ "Oui")
+                 value = list(travail_domestique ~ "Oui", 
+                              Effectifs ~ "1")
     ) %>%
   
   add_stat_label(label = list(all_dichotomous() ~ "", 
@@ -166,7 +168,8 @@ tab <- data2 %>%
                   type = list(everything() ~ "dichotomous"), 
                   statistic= list(travail_domestique ~ "{p}", 
                                   Effectifs ~ "{N_unweighted}"),
-                   value = list(everything() ~ "Oui")) %>%
+                   value = list(everything() ~ "Oui", 
+                                Effectifs ~ "1")) %>%
   add_overall(last = T) %>%
   add_p() %>%
   add_stat_label(label = list(all_dichotomous() ~ "", 
@@ -241,7 +244,8 @@ tab <- data_recomp %>%
                      type = list(c(travail_domestique, "Effectifs") ~ "dichotomous"),
                      statistic = list(all_dichotomous() ~ "{p}",
                                       Effectifs ~ "{N_unweighted}"),
-                     value = list(travail_domestique ~ "Oui")
+                     value = list(travail_domestique ~ "Oui", 
+                                  Effectifs ~ "1")
       ) %>%
       add_p()%>%
       #add_difference() %>%
@@ -263,7 +267,8 @@ tab1 <- data_parents %>%
                  type = list(everything() ~ "dichotomous"), 
                  statistic= list(travail_domestique ~ "{p}", 
                                  Effectifs ~ "{N_unweighted}"),
-                 value = list(everything() ~ "Oui")) %>%
+                 value = list(everything() ~ "Oui", 
+                              Effectifs = "1")) %>%
   #add_overall(last = T) %>%
   add_p() %>%
   add_stat_label(label = list(all_dichotomous() ~ "", 
@@ -282,7 +287,8 @@ tab2 <- data_beauxparents %>%
                  type = list(everything() ~ "dichotomous"), 
                  statistic= list(travail_domestique ~ "{p}", 
                                  Effectifs ~ "{N_unweighted}"),
-                 value = list(everything() ~ "Oui")) %>%
+                 value = list(everything() ~ "Oui", 
+                              Effectifs = "1")) %>%
   #add_overall(last = T) %>%
   add_p() %>%
   add_stat_label(label = list(all_dichotomous() ~ "", 
@@ -300,7 +306,8 @@ margev <- data_recomp %>%
                  type = list(everything() ~ "dichotomous"), 
                  statistic= list(travail_domestique ~ "{p}", 
                                  Effectifs ~ "{N_unweighted}"),
-                 value = list(everything() ~ "Oui")) %>%
+                 value = list(everything() ~ "Oui", 
+                              Effectifs ~ "1")) %>%
   add_stat_label(label = list(all_dichotomous() ~ "", 
                               Effectifs ~ "(non-pondérés)")) %>%
   modify_header(all_stat_cols() ~ "**{level}** ({style_percent(p)}%)") 
@@ -498,6 +505,7 @@ tab <- tbl_strata(
     tbl_svysummary(by = n_TYPMEN_new, 
                    include = c(travail_domestique, "Effectifs"),
                    missing = "no", 
+                   value = list(Effectifs ~ "1"), 
                    type = list("Effectifs" ~ "dichotomous", 
                                travail_domestique ~ "continuous"), 
                    statistic = list(all_continuous() ~ "{mean}", 
@@ -519,6 +527,7 @@ margev <- data %>%
                  missing = "no", 
                  type = list("Effectifs" ~ "dichotomous", 
                              travail_domestique ~ "continuous"), 
+                 value = list(Effectifs ~ "1"), 
                  statistic = list(all_continuous() ~ "{mean}", 
                                   Effectifs ~ "{N_unweighted}")
   ) %>%
@@ -570,7 +579,8 @@ tab <- data2 %>%
                              Effectifs ~ "dichotomous"), 
                  statistic= list(travail_domestique ~ "{mean}", 
                                  Effectifs ~ "{N_unweighted}"),
-                 value = list(everything() ~ "Oui")) %>%
+                 value = list(everything() ~ "Oui", 
+                              Effectifs ~ "1")) %>%
   add_overall(last = T) %>%
   add_p() %>%
   add_stat_label(label = list(all_continuous() ~ "", 
@@ -634,6 +644,7 @@ tab1 <- data_parents %>%
                  missing = "no", 
                  type = list(everything() ~ "continuous", 
                              Effectifs ~ "dichotomous"), 
+                 value = list(Effectifs ~ "1"), 
                  statistic= list(travail_domestique ~ "{mean}", 
                                  Effectifs ~ "{N_unweighted}")) %>%
   #add_overall(last = T) %>%

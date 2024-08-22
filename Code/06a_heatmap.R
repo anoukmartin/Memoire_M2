@@ -1,31 +1,52 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
+
+couples <- readRDS("Data_output/familles_parents.Rds")
+
+couples %>%
+  filter(n_TYPMEN_new %in% c("Couple sans enfant", "Traditionelle", "Recomposée")) %>%
+  mutate(PONDMEN = PONDMEN/mean(couples$PONDMEN),
+         n_TYPMEN_new = droplevels(n_TYPMEN_new)) %>%
+  as_survey_design(weights = PONDMEN) %>%
+  tbl_svysummary(
+  by = n_TYPMEN_new, 
+  include = c("n_TYPMEN_new", "hetero")
+) %>%
+  add_overall()
+couples$n_TYPMEN_new
+
+coupleshet$DIP7_F
 coupleshet <- readRDS("Data_output/familles_parents.Rds") %>%
   filter(hetero == "Hetero") %>%
-  mutate(DIP7_F = DIP7_F %>%
-    fct_recode(
-      NULL = "NULL",
-      "Doctorat, ingénieur, grande école" = "Diplôme universitaire du 3eme cycle, ingénieur, grande école",
-      "Master" = "Diplôme universitaire de 2eme cycle",
-      "Licence, BTS, DUT, diplôme santé social" = "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)"
-    ), 
-    DIP7_H = DIP7_H %>%
-      fct_recode(
-        NULL = "NULL",
-        "Doctorat, ingénieur, grande école" = "Diplôme universitaire du 3eme cycle, ingénieur, grande école",
-        "Master" = "Diplôme universitaire de 2eme cycle",
-        "Licence, BTS, DUT, diplôme santé social" = "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)"
-      ), 
+  mutate(
+  #DIP7_F = DIP7_F %>%
+  #   fct_recode(
+  #     NULL = "NULL",
+  #     "Doctorat,\ningénieur,\ngrande école" = "Diplôme universitaire du 3eme cycle, ingénieur, grande école",
+  #     "Master" = "Diplôme universitaire de 2eme cycle",
+  #     "Licence, BTS, DUT, diplôme santé social" = "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)"
+  #   ), 
+  #   DIP7_H = DIP7_H %>%
+  #     fct_recode(
+  #       NULL = "NULL",
+  #       "Doctorat, ingénieur, grande école" = "Diplôme universitaire du 3eme cycle, ingénieur, grande école",
+  #       "Master" = "Diplôme universitaire de 2eme cycle",
+  #       "Licence, BTS, DUT, diplôme santé social" = "Diplôme universitaire de 1er cycle, BTS, DUT, diplôme santé social (niveau bac + 2)"
+  #     ), 
     CS12_F = CS12_F %>%
       fct_recode(
+        "Cadre/chef−fe d'etp, prof. lib." = "Cadre/chef-fe d'entreprise, profession libérale",
         NULL = "NULL"
       ), 
     CS12_H = CS12_H %>%
       fct_recode(
+        "Cadre/chef−fe d'etp, prof. lib." = "Cadre/chef-fe d'entreprise, profession libérale",
         NULL = "NULL"
       ))
     
+
 freq(coupleshet$DIP7_F) 
+freq(coupleshet$CS12_F)
 #irec(coupleshet$CS12_F)
 
 # HEATMAP homogame de diplome ###############################################
@@ -59,7 +80,10 @@ tabcouplesh <- lprop(tabcouples, total = F) %>%
 tabcouplesh1 <- tabcouplesh
 
 # Plot
-gg <- ggplot(tabcouplesh, 
+gg <- tabcouplesh %>%
+  mutate(Var2 = fct_rev(Var2), 
+         Var1 = fct_rev(Var1)) %>%
+  ggplot( 
        aes(x = Var2, y = Var1, fill = Freq)) +
   geom_tile(color = "white") +
   geom_text(aes(label = FreqRound), color = "black", size = 3.2) +
@@ -159,20 +183,27 @@ gg
 
 
 ### Données #####
-tabcouplesh$pop <- "Couples avec enfants"
-tabcouplesh2$pop <- "Nouvelles unions"
+tabcouplesh$pop <- "Ensemble des\ncouples avec enfant(s)"
+tabcouplesh2$pop <- "Couples avec enfant(s)\nissus d'union(s)\nprécédante(s)"
 tabcouplesh1$pop <- "Ensemble des couples"
 
 tabcouplesh <- bind_rows(tabcouplesh1, tabcouplesh, tabcouplesh2)
 
 ### Plot ####
-gg <- ggplot(tabcouplesh, 
+gg <- tabcouplesh %>%
+  mutate(Var1 = fct_rev(Var1), 
+         Var2 = fct_rev(Var2), 
+         pop = factor(pop, 
+                      levels = c("Couples avec enfant(s)\nissus d'union(s)\nprécédante(s)",
+                                 "Ensemble des\ncouples avec enfant(s)", 
+                                 "Ensemble des couples"))) %>%
+  ggplot( 
              aes(x = Var2, y = Var1, fill = Freq)) +
   geom_tile(color = "white") +
   geom_text(aes(label = FreqRound), color = "black", size = 3.2) +
   xlab("Femme") + ylab("Homme") +
   scale_fill_gradient(low = "white", high = "darkgreen") + 
-  facet_grid(. ~ pop)+
+  facet_grid(. ~ pop) +
   theme_memoire() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 gg
@@ -183,7 +214,7 @@ saveTableau(gg,
             label = "homogamiedeuxgraphs", 
             description = "Diplôme des femmes en fonction de celui des hommes", 
             champ = c(
-              paste0("Couples vivants en ", infosBDF$champ),
+              paste0("Couples de sexes différents vivants en ", infosBDF$champ),
               paste0("Couple unis secondairement vivants en ", infosBDF$champ)), 
             ponderation = T,
             n = nrow(couples))
@@ -319,15 +350,21 @@ gg
 
 
 ### Données #####
-tabcouplesh$pop <- "Couples avec enfants"
-tabcouplesh2$pop <- "Nouvelles unions"
+tabcouplesh$pop <- "Ensemble des\ncouples avec enfant(s)"
+tabcouplesh2$pop <- "Couples avec enfant(s)\nissus d'union(s)\nprécédante(s)"
 tabcouplesh1$pop <- "Ensemble des couples"
 
 tabcouplesh <- bind_rows(tabcouplesh1, tabcouplesh, tabcouplesh2)
 
 ### Plot ####
-gg <- ggplot(tabcouplesh, 
-             aes(x = Var2, y = Var1, fill = Freq)) +
+gg <- tabcouplesh %>%
+  mutate(Var1 = fct_rev(Var1), 
+         Var2 = fct_rev(Var2), 
+         pop = factor(pop, 
+                      levels = c("Couples avec enfant(s)\nissus d'union(s)\nprécédante(s)",
+                                 "Ensemble des\ncouples avec enfant(s)", 
+                                 "Ensemble des couples"))) %>%
+  ggplot(aes(x = Var2, y = Var1, fill = Freq)) +
   geom_tile(color = "white") +
   geom_text(aes(label = FreqRound), color = "black", size = 3.2) +
   xlab("Femme") + ylab("Homme") +
@@ -343,7 +380,7 @@ saveTableau(gg,
             label = "homogamieCSPtroisgraphs", 
             description = "CSP des femmes en fonction de celle des hommes", 
             champ = c(
-              paste0("Couples vivants en ", infosBDF$champ),
+              paste0("Couples de sexes différents en vivants", infosBDF$champ),
               paste0("Couple unis secondairement vivants en ", infosBDF$champ)), 
             ponderation = T,
             n = nrow(couples))
