@@ -229,6 +229,16 @@ menagesHF <- left_join(menagesHF, enfantsHD_moins13ans, by = "IDENT_MEN")
 summary(menagesHF$n_NEnfantsHD13)
 summary(menagesHF$n_AgeEnfantsHD13)
 
+enfantsHD_autreparent <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
+  filter(HODCO == "3") %>%
+  group_by(IDENT_MEN) %>%
+  summarise(n_NEnfantsHD_autreparent = n(), 
+            n_AgeEnfantsHD_autreparent = mean(AG, na.rm = T))
+
+menagesHF <- left_join(menagesHF, enfantsHD_autreparent, by = "IDENT_MEN")
+summary(menagesHF$n_AgeEnfantsHD_autreparent)
+summary(menagesHF$n_NEnfantsHD_autreparent)
+
 # Recodages famills recomposées 
 menagesHF <- menagesHF %>%
   mutate(

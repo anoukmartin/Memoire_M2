@@ -15,7 +15,7 @@ couples %>%
   add_overall()
 couples$n_TYPMEN_new
 
-coupleshet$DIP7_F
+
 coupleshet <- readRDS("Data_output/familles_parents.Rds") %>%
   filter(hetero == "Hetero") %>%
   mutate(

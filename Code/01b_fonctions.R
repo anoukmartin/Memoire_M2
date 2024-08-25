@@ -742,6 +742,7 @@ joli_tableau <- function(data,
   tableau_beau <- tableau %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
         format = "latex",
+        col.names = linebreak(names(tableau), align = "c"),
         caption = tableau_titre) %>%
     kable_styling(
       font_size = 7,

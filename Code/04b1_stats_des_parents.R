@@ -147,7 +147,7 @@ saveTableau(tbl_meres,
             description = "Caractéristiques sociales des femme en fonction de leur statut parental",
             champ = paste0("Femmes vivants en ", infosBDF$champ), 
             ponderation = T,
-            n = tbl_peres$N)
+            n = tbl_meres$N)
 
 
 

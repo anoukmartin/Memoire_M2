@@ -1,6 +1,6 @@
 
 
-infosBDF <- readRDS("Data_output/infosBDF.Rds")
+infosBDF <<- readRDS("Data_output/infosBDF.Rds")
 
 familles <- readRDS("Data_output/familles_parents.Rds")
 
@@ -152,9 +152,10 @@ arbre <- hclust(md, method = "ward.D2") # agrégation critère de ward
 dend <- as.dendrogram(arbre)
 
 plot(dend)
-# plot(dend, main = "Dendrogramme", 
-#      horiz = TRUE, leaflab = "none", 
-#      xlim = c(70, 27.2))
+plot(dend, main = "Clusters",
+     horiz = TRUE, leaflab = "none",
+     xlim = c(78, 30))
+text(x = 20, y = 0, "blabla")
 #text(x, y, labels)
 
 
@@ -206,15 +207,20 @@ d_acm2 <- d_acm %>%
   mutate_if(is.factor,
             fct_na_level_to_value, 
             extra_levels = "NA")
+# d_acm2$typo <- lapply(d_acm2$typo %>% as.vector(), 
+#                       FUN = function(x){insert_line_breaks(x, 15)})
 
-tab <- joli_tableau(d_acm2, by = "typo", vars_quali = names(d_acm2), weigths = poidsACMspe, 
-                    tableau_titre = "Structure des clusters (variables actives et supplémentaires)", source = "blabla", champ = "blabla", lecture = "blabla")
+nrow(d_acm2)
+tab <- joli_tableau(data = d_acm2, by = "typo", vars_quali = names(d_acm2), weigths = poidsACMspe, 
+                    tableau_titre = "Structure des clusters (variables actives et supplémentaires)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
+                   champ = "ménages ordinaires formés par des adultes (25-65 ans). (n = 12 355)", 
+                   lecture = "blabla")
 tab
 
 saveTableau(tab, type = "tab", label = "culsters_composition", 
             description = "composition sociale des clusters",
             ponderation = T, 
-            n = "?",
+            n = "12355",
             champ = "Menages formés par des adultes (25-65 ans)")
 
 
@@ -274,40 +280,42 @@ tab2_summary <- tab2_summary %>%
 tab2 <- left_join(tab2, tab2_summary[, c(1,5)])
 tab2_summary
 
-# tab2_summary$Mlabel <- c("Bien \ndoté-e-s", 
-#                          "Urbain",
-#                          "Inactif-ve-s/\npropriétaires", 
-#                          "Familles\nnombreuses", 
-#                          "Privé",  
-#                          "Salarié-e-s")
-# 
-# tab2_summary$mlabel <- c("Peu \ndoté-e-s", 
-#                          "Rural", 
-#                          "Actif-ve-s/\nLocataires",
-#                          "Célibataires", 
-#                          "Public", 
-#                          "Indépendant-e-s")
+tab2_summary$Mlabel <- c("Capitaux\nélevés",
+                         "Urbain",
+                         "Hauts\npatrimoines",
+                         "Couples\nbiactivité",
+                         "Faible\ncapital cult",
+                         "Privé",
+                         "Indépendant-e-s")
 
-# gg <- ggplot(tab2) + 
-#   theme_void() +
-#   aes(x = value, y = 1) +
-#   geom_hline(yintercept = 1, col = "grey") +
-#   annotate("point", x = 0, y = 1, shape = 3, col = "grey", size = 3) +
-#   annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
-#   geom_point() +
-#   geom_text_repel(aes(label = cluster), 
-#                   direction="x", vjust = -2, 
-#                   max.overlaps=10000) +
-#   facet_wrap(dimLabel ~., ncol = 1, scales="free") +
-#   geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
-#   geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3) 
-# gg  
-# 
-# saveTableau(gg, type = "plot", label = "culsters_position", 
-#             description = "positions des cluster sur les différentes dimentions de l'ACM",
-#             ponderation = T, 
-#             n = "?",
-#             champ = "adultes (25-70 ans) vivant en ménage ordinaire")
+tab2_summary$mlabel <- c("Capitaux\nfaibles",
+                         "Rural",
+                         "Faibles\npatrimoines",
+                         "Femmes\ncélibataires",
+                         "Fort\ncapital cult", 
+                         "Public",
+                         "Salarié-e-s")
+
+gg <- ggplot(tab2) +
+  theme_void() +
+  aes(x = value, y = 1) +
+  geom_hline(yintercept = 1, col = "grey") +
+  annotate("point", x = 0, y = 1, shape = 3, col = "grey", size = 3) +
+  annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
+  geom_point() +
+  geom_text_repel(aes(label = cluster),
+                  direction="x", vjust = -2,
+                  max.overlaps=10000) +
+  facet_wrap(dimLabel ~., ncol = 1, scales="free") +
+  geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
+  geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
+gg
+
+saveTableau(gg, type = "plot", label = "culsters_position",
+            description = "positions des cluster sur les différentes dimentions de l'ACM",
+            ponderation = T,
+            n = "?",
+            champ = "adultes (25-70 ans) vivant en ménage ordinaire")
 
  
 # Description statistique des axes ----

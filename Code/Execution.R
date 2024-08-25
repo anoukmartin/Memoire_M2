@@ -12,17 +12,16 @@ execute <- function(part, path = "Code"){
   to_execute
   for (script in to_execute) {
     print(paste0("Execution du script : ", script))
-    source(file.path(path, script), verbose = T)
+    source(file.path(path, script), verbose = T, max.deparse.length = 20000)
   }
 }
-
 
 # Au démarrage #################################################################
 # On exécute les scripts de setup commençant par 00 et 01
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
 
-library(questionr)
+
 # Réimporter les données brutes ################################################
 # On exécute les scripts commençant par 02
 execute(part = "02a")
@@ -37,7 +36,8 @@ execute(part = "03e")
 
 # Résultats statistiques #######################################################                                   
 ## Statistiques descriptives ###################################################
-execute(part = "04b")
+execute(part = "04b1")
+execute(part = "04b2")
 execute(part = "04c")
 execute(part = "06a")
 execute(part = "06b")
