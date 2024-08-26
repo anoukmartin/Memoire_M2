@@ -4,7 +4,7 @@
 # 
 # familles <- readRDS("Data_output/familles.Rds")
 # dictionnaire <- look_for(familles)
-# infosBDF <- readRDS("Data_output/infosBDF.Rds")
+ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 # famillesToutes <- readRDS("Data_output/famillesToutes.Rds")
 # 
 # 
@@ -73,10 +73,12 @@ tab <- familles %>%
   as_survey_design(weights = PONDMEN) %>%
   tbl_svysummary(by = n_TYPMEN_new, 
                  include = c("n_FractionClasse", "Ensemble"), 
-                 statistic = list(all_categorical() ~ "{p}")
+                 statistic = list(all_categorical() ~ "{p}"), 
+                 label = list(n_FractionClasse ~ "Fraction de classe")
                  )  %>%
-  add_overall(last = T) %>%
-  modify_header(all_stat_cols() ~ "**{level}**")
+  modify_header(all_stat_cols() ~ "**{level}**") %>%
+  add_overall(last = T, col_label = "**Ensemble**") %>%
+  add_stat_label() 
 tab
 
 ### b) enregistrement du tableau ####
@@ -84,7 +86,7 @@ saveTableau(tableau = tab,
             type = "tab",
             label = "positionTypeFamiliaux",
             description = "position sociale des types familiales (fractions de classe) ",
-            champ = paste0(infosBDF$champ, "dont la personne de référence ou son/sa conjoint-e est un adulte agé de 25 à 65 ans"), 
+            champ = paste0(infosBDF$champ, " dont la personne de référence ou son/sa conjoint-e est un adulte agé de 25 à 65 ans"), 
             n = dim(familles)[1], 
             ponderation = T)
 

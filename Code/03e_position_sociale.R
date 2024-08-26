@@ -176,52 +176,136 @@ typo <- cutree(arbre,7)
 
 typo %>% freq
 
+
 # On intègre le résultat dans les données
 typo <- typo %>% as_factor() %>%
   fct_recode(
-    "Classes superieures pole privé [C7]" = "7", #OK
-    "Classes populaires issues de l'immigration [C3]" = "3", #OK
+    "Bourgeoisie économique [C7]" = "7", #OK
+    "Classes populaires précaires [C3]" = "3", #OK
     "Petits indépendants [C5]" = "5", #OK
-    "Classes superieures pole public [C2]" = "2", #OK
+    "Bourgeoisie culturelle [C2]" = "2", #OK
     "Classes moyennes superieures [C4]" = "4",
     "Petits-moyens [C1]" = "1",
-    "Classes populaires urbaines [C6]" = "6") %>%
+    "Classes populaires célibataires et urbaines [C6]" = "6") %>%
   fct_relevel(
-    "Classes populaires issues de l'immigration [C3]", 
-    "Classes populaires urbaines [C6]",
+    "Classes populaires précaires [C3]", 
+    "Classes populaires célibataires et urbaines [C6]",
     "Petits indépendants [C5]", 
     "Petits-moyens [C1]", 
     "Classes moyennes superieures [C4]",
-    "Classes superieures pole public [C2]", 
-    "Classes superieures pole privé [C7]"
+    "Bourgeoisie culturelle [C2]", 
+    "Bourgeoisie économique [C7]"
   )
 
 
 freq(typo)
 
+
+# # test 
+# 
+# # Calculer le nombre d'individus par cluster
+# cluster_sizes <- table(typo)
+# 
+# # Calculer les pourcentages par cluster
+# cluster_percentages <- round(100 * cluster_sizes / sum(cluster_sizes), 2)
+# 
+# cut_height <- max(arbre$height[which(diff(cutree(arbre, k = 8)) != 0)])
+# 
+# # Dessiner le dendrogramme avec une coupe à 7 clusters
+# plot(arbre, labels = FALSE, hang = -1, main = "Dendrogramme coupé à 7 clusters")
+#      #ylim = c(45, max(arbre$height)))
+# rect.hclust(arbre, k = 7, cluster = typo)
+# i <- 6
+# arbre$merge
+# for(i in 1:7) {
+#   cluster_pos <- which(typo == levels(typo)[i])
+#   dat <- arbre$merge %>% as.data.frame() 
+#   mean_x <- mean(dat[cluster_pos, 1], na.rm = T)
+#   text(mean_x, 25, 
+#        labels = paste0(cluster_sizes[i], " (", cluster_percentages[i], "%)"), 
+#        col = "blue", cex = 0.5)
+# }
+# 
+# for(i in 1:7) {
+#   cluster_pos <- which(clusters == i)
+#   
+#   # Position moyenne des branches dans ce cluster
+#   mean_x <- mean(as.numeric(names(clusters)[cluster_pos]))
+#   
+#   # Ajout du texte avec le nombre et le pourcentage
+#   text(mean_x, 45, 
+#        labels = paste0(cluster_sizes[i], " (", cluster_percentages[i], "%)"), 
+#        col = "blue", pos = 3, cex = 0.8)
+# }
+# 
+# # Dessiner le dendrogramme avec une coupe à 7 clusters
+# plot(dend, labels = FALSE, hang = -1, main = "Dendrogramme avec coupe en 7 clusters")
+# rect.hclust(arbre, k = 7, border = 2:8)
+# 
+
+
+
 # Taleau stats des dans les clusters ----
 d_acm$typo <- typo
 
 d_acm2 <- d_acm %>%
-  bind_cols(d_acm_sup) %>%
+  #bind_cols(d_acm_sup) %>%
   mutate_if(is.factor,
             fct_na_level_to_value, 
             extra_levels = "NA")
-# d_acm2$typo <- lapply(d_acm2$typo %>% as.vector(), 
-#                       FUN = function(x){insert_line_breaks(x, 15)})
 
 nrow(d_acm2)
 tab <- joli_tableau(data = d_acm2, by = "typo", vars_quali = names(d_acm2), weigths = poidsACMspe, 
-                    tableau_titre = "Structure des clusters (variables actives et supplémentaires)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
+                    tableau_titre = "Structure des clusters (variables actives)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
                    champ = "ménages ordinaires formés par des adultes (25-65 ans). (n = 12 355)", 
                    lecture = "blabla")
-tab
+tab <- tab %>%
+  column_spec(1, "2in") %>%
+  column_spec(2, "0.7in") %>%
+  column_spec(3, "0.7in") %>%
+  column_spec(4, "0.7in") %>%
+  column_spec(5, "0.7in") %>%
+  column_spec(6, "0.7in") %>%
+  column_spec(7, "0.7in") %>%
+  column_spec(8, "0.7in") %>%
+  column_spec(9, "0.7in") 
 
-saveTableau(tab, type = "tab", label = "culsters_composition", 
+saveTableau(tab, type = "tab", label = "clusters_composition_act", 
             description = "composition sociale des clusters",
             ponderation = T, 
             n = "12355",
             champ = "Menages formés par des adultes (25-65 ans)")
+
+### tableau des variables supplémentaires 
+
+d_acm3 <- d_acm_sup %>%
+  mutate_if(is.factor,
+            fct_na_level_to_value, 
+            extra_levels = "NA")
+d_acm3$typo <- typo
+
+nrow(d_acm3)
+tab <- joli_tableau(data = d_acm3, by = "typo", vars_quali = names(d_acm3), weigths = poidsACMspe, 
+                    tableau_titre = "Structure des clusters (variables supplémentaires)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
+                    champ = "ménages ordinaires formés par des adultes (25-65 ans). (n = 12 355)", 
+                    lecture = "blabla")
+tab <- tab %>%
+  column_spec(1, "2in") %>%
+  column_spec(2, "0.7in") %>%
+  column_spec(3, "0.7in") %>%
+  column_spec(4, "0.7in") %>%
+  column_spec(5, "0.7in") %>%
+  column_spec(6, "0.7in") %>%
+  column_spec(7, "0.7in") %>%
+  column_spec(8, "0.7in") %>%
+  column_spec(9, "0.7in") 
+
+saveTableau(tab, type = "tab", label = "clusters_composition_sup", 
+            description = "composition sociale des clusters",
+            ponderation = T, 
+            n = "12355",
+            champ = "Menages formés par des adultes (25-65 ans)")
+
 
 
 

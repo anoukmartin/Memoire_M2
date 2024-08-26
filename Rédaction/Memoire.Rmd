@@ -52,12 +52,12 @@ knitr::opts_chunk$set(
   echo = FALSE, 
   message = FALSE, 
   warning = FALSE, 
-  fig.width = 7,
+  fig.width = 9,
   fig.asp = 0.8,
   fig.align="center",
   out.width = "100%", 
   results = "asis", 
-  fig.pos = 'H')
+  fig.pos = 'h')
 
 source(file = "Code/01a_packages.R") # packages et options par défaut des fonctions
 source(file = "Code/01b_fonctions.R") # des nouvelles fonctions utiles ici
@@ -894,12 +894,44 @@ Si l'on reprend donc le tryptique entre familles monoparentales, familles nuclé
 
 # Chapitre 1. Saisir les remises en couple, repérer les familles recomposées. Faire (avec) le ménage dans les données.
 
-La construction de typologies familiales, en se basant sur la composition des groupes domestiques et la structure des relations entre les individus résidant ensemble, est une pratique classique en sociologie de la famille [@leplay1874 ; @durkheim1975 ; @parsons1968] et en anthropologie sociale [@laslett1983 ; @goldelier]. Selon ces auteurs, décrire les différentes formes familiales permet d'analyser l'évolution des relations entre apparenté·e·s dans le temps et, plus généralement, d’inférer des changements macro-sociologiques. Cependant, ces typologies peuvent parfois exagérer ou minimiser le caractère novateur de certaines formes identifiées. De plus, comme toutes les typologies, elles peinent à capturer la diversité des configurations familiales et leur relative fluidité au cours de la vie d’un·e individu·e. Ainsi, notre objectif n’est pas de proposer une nouvelle typologie des formes familiales qui refléterait mieux la réalité sociologique ou les évolutions récentes de la société, mais plutôt de définir des catégories utiles pour analyser les relations économiques au sein de la famille.
+La construction de typologies familiales, en se basant sur la
+composition des groupes domestiques et la structure des relations entre
+les individus résidant ensemble, est une pratique classique en
+sociologie de la famille [@leplay1874 ; @durkheim1975 ; @parsons1968] et
+en anthropologie sociale [@laslett1983 ; @goldelier]. Selon ces auteurs,
+décrire les différentes formes familiales permet d'analyser l'évolution
+des relations entre apparenté·e·s dans le temps et, plus généralement,
+d’inférer des changements macro-sociologiques. Cependant, ces typologies
+peuvent parfois exagérer ou minimiser le caractère novateur de certaines
+formes identifiées. De plus, comme toutes les typologies, elles peinent
+à capturer la diversité des configurations familiales et leur relative
+fluidité au cours de la vie d’un·e individu·e. Ainsi, notre objectif
+n’est pas de proposer une nouvelle typologie des formes familiales qui
+refléterait mieux la réalité sociologique ou les évolutions récentes de
+la société, mais plutôt de définir des catégories utiles pour analyser
+les relations économiques au sein de la famille.
 
-Dans les années 1970, la monoparentalité a été reconnue comme une catégorie statistique permettant de mieux administrer cette population [@martin-papineau2003]. Cependant, les familles recomposées et les familles nucléaires sont encore souvent regroupées sous des catégories communes dans les enquêtes statistiques. Par conséquent, quantifier les phénomènes de recompositions familiales nécessite des choix qui ne sont pas neutres. Les familles recomposées se définissent comme un couple vivant avec au moins un enfant issu d’une union précédente d’au moins un des conjoints [@théry1993]. Ce chapitre propose de discuter la manière dont l'Etat statistique participe à la construction sociale de la famille au prisme des choix effectués dans le cadre de ce travail, pour catégoriser les ménages en fonction de leur configuration familiale. Pour identifier les familles recomposées, nous avons opté pour une définition qui associe l'existence d'un lien de parenté civil entre l’enfant et le parent à la cohabitation de ce parent avec l’enfant d’une part, et avec un·e conjoint·e d’autre part. Bien que cette définition exclue certaines situations qui pourraient également être considérées comme des formes familiales recomposées, elle semble la plus appropriée pour notre étude et les contraintes du champ de l’enquête. 
+Dans les années 1970, la monoparentalité a été reconnue comme une
+catégorie statistique permettant de mieux administrer cette population
+[@martin-papineau2003]. Cependant, les familles recomposées et les
+familles nucléaires sont encore souvent regroupées sous des catégories
+communes dans les enquêtes statistiques. Par conséquent, quantifier les
+phénomènes de recompositions familiales nécessite des choix qui ne sont
+pas neutres. Les familles recomposées se définissent comme un couple
+vivant avec au moins un enfant issu d’une union précédente d’au moins un
+des conjoints [@théry1993]. Ce chapitre propose de discuter la manière
+dont l'Etat statistique participe à la construction sociale de la
+famille au prisme des choix effectués dans le cadre de ce travail, pour
+catégoriser les ménages en fonction de leur configuration familiale.
+Pour identifier les familles recomposées, nous avons opté pour une
+définition qui associe l'existence d'un lien de parenté civil entre
+l’enfant et le parent à la cohabitation de ce parent avec l’enfant d’une
+part, et avec un·e conjoint·e d’autre part. Bien que cette définition
+exclue certaines situations qui pourraient également être considérées
+comme des formes familiales recomposées, elle semble la plus appropriée
+pour notre étude et les contraintes du champ de l’enquête.
 
 ## La famille comme catégorie statistique
-
 
 ### Une définition du groupe familial centrée sur la cohabitation
 
@@ -1277,7 +1309,7 @@ liens légaux et la cohabitation. Il distingue les ménage selon leur
 configuration familiale : traditionnelle, monoparentale et recomposée ou
 complexe.
 
-```{r mosaic-enfants, fig.cap= "Situation familiale des enfants",  fig.asp = 0.5}
+```{r mosaic-enfants, fig.cap= "Situation familiale des enfants", fig.asp = 0.7}
 
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
   #filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale", "Complexe")) %>%
@@ -1287,7 +1319,6 @@ familles <- readRDS("Data_output/familles_parents.Rds") %>%
 dat <- readRDS("Data_output/enfantsDuMenage.Rds") 
 # nrow(dat)
 # weighted.mean(dat$AG, dat$PONDIND)
-
 dat <- dat %>%
   inner_join(familles, by = "IDENT_MEN") %>%
   select(n_config, n_NPARENTS, n_AutreParent, PONDMEN) %>%
@@ -1295,7 +1326,7 @@ dat <- dat %>%
            as.factor() %>% fct_infreq(), 
          n_NPARENTS = n_NPARENTS %>%
            str_remove_all("Enfant résidant chez") %>%
-           as.factor() %>% fct_infreq(), 
+           as.factor() %>% fct_infreq(),
          n_AutreParent = case_when(
            n_AutreParent == "autre parent inconnu ou décédé" ~ T, 
            is.na(n_AutreParent) ~ F, 
@@ -1330,8 +1361,8 @@ g +
             size = 3, 
             family = "serif") + 
   xlab("") + ylab("") + 
-  scale_fill_brewer(type = "qual", palette = 1, 
-                    name = "Enfant résidant chez", 
+  scale_fill_manual(values = c("grey", "#998ec3", "#f1a340"),
+                    name = "Enfant résidant chez",
                     labels = c("ses deux parents","sa mère", "son père"))+
   scale_alpha_manual(values =c(.5,.9), 
                       name = "Autre parent décédé\nou inconnu", 
@@ -1363,7 +1394,10 @@ rm(familles, dat, g, b, tab)
 ```
 
 68% des enfants vivants en ménage ordinaire vivent en famille
-traditionnelle. C'est de loin la situation la plus courante. Les enfants vivants en familles monoparentale représentent 18,9% de ceux vivants en ménage ordinaires. Les enfants vivants en famille recomposées sont deux fois moins nombreux que ceux vivant en famille monoparentale : ceux-ci
+traditionnelle. C'est de loin la situation la plus courante. Les enfants
+vivants en familles monoparentale représentent 18,9% de ceux vivants en
+ménage ordinaires. Les enfants vivants en famille recomposées sont deux
+fois moins nombreux que ceux vivant en famille monoparentale : ceux-ci
 représentent 10,4% des enfants vivants en ménage ordinaire, soit envions
 1 sur 10. Enfin 2,7% d'entre eux vivent dans des ménages à la
 configuration familiale complexe, c'est-à-dire avec au moins un de leur
@@ -1498,13 +1532,13 @@ enfants sont issus d'union précédentes et de l'union actuelle. Le
 graphique ci-dessous synthétise la situation familiale de ces adultes
 vivant dans des ménages avec enfants.
 
-```{r mosaic-adultes, fig.cap= "Situation familiale des adultes",  fig.asp = 0.5}
+```{r mosaic-adultes, fig.cap= "Situation familiale des adultes",  fig.asp = 0.7}
 
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
- #filter(!(n_TYPMEN_new %in% c("Couple sans enfant", "Personne seule"))) %>%
+  filter(!(n_TYPMEN_new %in% c("Couple sans enfant", "Personne seule"))) %>%
   mutate(n_config = n_TYPMEN_new) %>%
   select(IDENT_MEN, n_config) %>%
-  filter(!is.na(n_config))
+  filter(!is.na(n_config)) 
 
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds") 
 
@@ -1538,11 +1572,12 @@ dat <- dat %>%
 dat$n_EnfantsHD[is.na(dat$n_EnfantsHD)] <- F
 dat$PONDIND <- dat$PONDMEN/mean(dat$PONDMEN)
 # Graph
+dat$SEXE
 g <- ggplot(dat) +
   geom_mosaic(
     aes(
-      x = product(n_EnfantsHD, n_StatutEnfants, n_config),
-      alpha = n_EnfantsHD,
+      x = product(SEXE, n_StatutEnfants, n_config),
+      alpha = SEXE,
       fill= n_StatutEnfants,
       weight = PONDIND,
       na.rm = TRUE), 
@@ -1638,13 +1673,29 @@ moins 25 ans et de moins de 65 ans et 8,5% de ces ménages vivants avec
 un ou des enfants, contre 23,8% de familles monoparentales et 67,7% de
 familles traditionnelles.
 
-## De grandes familles 
+## De grandes familles
 
-Les familles recomposées telles que nous les saisissons dans le cadre de ce travail apparaissent plus nombreuses et plus étendues que les autres. Elles comptent un nombre d'enfants plus important, à la fois au sein du ménage et vivant hors domicile. Ces familles interagissent aussi probablement avec le ou les ex-conjoint·e·s et parents des enfants résidant ou non au domicile du ménage. Nous ne disposons cependant pas de variables permettant de caractériser socialement ces ex-conjoint·e·s, ni les liens entretenus par le ménage ou ses membres avec celleux-ci.
+Les familles recomposées telles que nous les saisissons dans le cadre de
+ce travail apparaissent plus nombreuses et plus étendues que les autres.
+Elles comptent un nombre d'enfants plus important, à la fois au sein du
+ménage et vivant hors domicile. Ces familles interagissent aussi
+probablement avec le ou les ex-conjoint·e·s et parents des enfants
+résidant ou non au domicile du ménage. Nous ne disposons cependant pas
+de variables permettant de caractériser socialement ces ex-conjoint·e·s,
+ni les liens entretenus par le ménage ou ses membres avec celleux-ci.
 
-### Des familles plus nombreuses et des enfants plus agés 
+### Des familles plus nombreuses et des enfants plus agés
 
-Les familles recomposées comptent un nombre d'enfants plus important que les autres. Alors que 57 % des familles monoparentales ne comptent qu'un seul enfant vivant dans le ménage, ce n'est le cas que de 34 % des familles recomposées. À l'inverse, 35 % des familles recomposées comptent trois enfants ou plus, contre 10 % des familles monoparentales et 17 % des familles traditionnelles. Ainsi, les familles monoparentales sont davantage représentées parmi les ménages ne comptant qu'un seul enfant, et les familles recomposées sont les plus représentées parmi les familles nombreuses, tandis que les familles traditionnelles sont les plus représentées parmi les ménages comptant deux enfants (47 %).
+Les familles recomposées comptent un nombre d'enfants plus important que
+les autres. Alors que 57 % des familles monoparentales ne comptent qu'un
+seul enfant vivant dans le ménage, ce n'est le cas que de 34 % des
+familles recomposées. À l'inverse, 35 % des familles recomposées
+comptent trois enfants ou plus, contre 10 % des familles monoparentales
+et 17 % des familles traditionnelles. Ainsi, les familles monoparentales
+sont davantage représentées parmi les ménages ne comptant qu'un seul
+enfant, et les familles recomposées sont les plus représentées parmi les
+familles nombreuses, tandis que les familles traditionnelles sont les
+plus représentées parmi les ménages comptant deux enfants (47 %).
 
 ```{r, fig.cap = "Nombre moyen d'enfants vivant dans le ménage", out.width= "70%", fig.asp=0.6}
 
@@ -1676,13 +1727,62 @@ ggplot(familles) +
 
 ```
 
-Ces résultats sont convergents avec ceux obtenus par @algava2018 avec l'enquête Famille et Logements (Insee 2011), qui révèle des pourcentages très proches. Cela s'explique par la présence d'enfants issu·e·s de plusieurs unions précédentes et éventuellement de l'union actuelle. Les enfants vivant dans ces ménages à la configuration familiale recomposée sont également en moyenne plus âgé·e·s que dans les autres ménages. Iels ont en moyenne 12 ans et 11 mois contre 10 ans et 5 mois dans les ménages à la configuration familiale traditionnelle. En cela, iels se rapprochent des enfants vivant dans les familles monoparentales qui ont en moyenne 12 ans et 10 mois. En effet, avec l'avancée en âge des enfants, au gré des séparations et des remises en couple, les enfants deviennent de moins en moins nombreux à vivre en famille traditionnelle : 8 % des enfants de moins de trois ans vivent dans une famille recomposée, contre 12 % entre 15 et 17 ans [@algava2018].
+Ces résultats sont convergents avec ceux obtenus par @algava2018 avec
+l'enquête Famille et Logements (Insee 2011), qui révèle des pourcentages
+très proches. Cela s'explique par la présence d'enfants issu·e·s de
+plusieurs unions précédentes et éventuellement de l'union actuelle. Les
+enfants vivant dans ces ménages à la configuration familiale recomposée
+sont également en moyenne plus âgé·e·s que dans les autres ménages. Iels
+ont en moyenne 12 ans et 11 mois contre 10 ans et 5 mois dans les
+ménages à la configuration familiale traditionnelle. En cela, iels se
+rapprochent des enfants vivant dans les familles monoparentales qui ont
+en moyenne 12 ans et 10 mois. En effet, avec l'avancée en âge des
+enfants, au gré des séparations et des remises en couple, les enfants
+deviennent de moins en moins nombreux à vivre en famille traditionnelle
+: 8 % des enfants de moins de trois ans vivent dans une famille
+recomposée, contre 12 % entre 15 et 17 ans [@algava2018].
 
-### Des enfants vivants hors domicile 
+### Des enfants vivants hors domicile
 
-Les ménages recomposés sont aussi plus nombreux que les autres à déclarer avoir des enfants résidant hors du domicile du ménage. Ainsi, 16 % des familles recomposées déclarent avoir des enfants résidant hors du domicile, contre 5 % en moyenne. D'une manière générale, ces enfants sont aussi plus nombreux que dans les autres familles : 38 % des familles recomposées ayant des enfants vivant hors du domicile du ménage en ont au moins deux, contre 31 % des ménages à la configuration traditionnelle et 30 % des personnes seules. D'une manière générale, les enfants vivant hors du domicile sont souvent de jeunes adultes résidant hors du domicile parental ou des enfants résidant de manière principale, exclusive ou alternée chez un autre parent. Parmi les couples sans enfants, qui sont 5 % à déclarer des enfants hors du domicile du ménage, seuls 2 % déclarent des enfants vivant chez l'autre parent d'un·e des membres du couple. Parmi les familles traditionnelles, dont 3 % ont des enfants vivant hors du domicile, seules 1 % ont des enfants vivant chez l'autre parent d'un·e des membres du couple. Dans ces couples, les enfants résidant hors du domicile du ménage sont donc majoritairement des enfants résidant hors du domicile parental. Ainsi, ces enfants sont en moyenne plus âgé·e·s (20 ans) que ceux déclarés par les ménages à la configuration familiale recomposée, les parents de familles monoparentales et les célibataires résidant seuls. Dans les familles recomposées, les enfants résidant hors domicile sont principalement des enfants d'un·e des conjoint·e·s vivant chez son autre parent : 11 % des familles recomposées déclarent en effet des enfants dans cette situation. Ces enfants vivant hors du domicile sont aussi les plus jeunes : iels ont en moyenne 17 ans et 10 mois, et 16 ans et 7 mois lorsqu'iels résident chez leur autre parent. Ces résultats suggèrent que les remises en couple des parents ayant des enfants issus d'une ou plusieurs unions précédentes se font, davantage que les autres, avec des conjoint·e·s ayant également des enfants issus de précédentes unions, que ceux-ci cohabitent ou non avec leur parent.
+Les ménages recomposés sont aussi plus nombreux que les autres à
+déclarer avoir des enfants résidant hors du domicile du ménage. Ainsi,
+16 % des familles recomposées déclarent avoir des enfants résidant hors
+du domicile, contre 5 % en moyenne. D'une manière générale, ces enfants
+sont aussi plus nombreux que dans les autres familles : 38 % des
+familles recomposées ayant des enfants vivant hors du domicile du ménage
+en ont au moins deux, contre 31 % des ménages à la configuration
+traditionnelle et 30 % des personnes seules. D'une manière générale, les
+enfants vivant hors du domicile sont souvent de jeunes adultes résidant
+hors du domicile parental ou des enfants résidant de manière principale,
+exclusive ou alternée chez un autre parent. Parmi les couples sans
+enfants, qui sont 5 % à déclarer des enfants hors du domicile du ménage,
+seuls 2 % déclarent des enfants vivant chez l'autre parent d'un·e des
+membres du couple. Parmi les familles traditionnelles, dont 3 % ont des
+enfants vivant hors du domicile, seules 1 % ont des enfants vivant chez
+l'autre parent d'un·e des membres du couple. Dans ces couples, les
+enfants résidant hors du domicile du ménage sont donc majoritairement
+des enfants résidant hors du domicile parental. Ainsi, ces enfants sont
+en moyenne plus âgé·e·s (20 ans) que ceux déclarés par les ménages à la
+configuration familiale recomposée, les parents de familles
+monoparentales et les célibataires résidant seuls. Dans les familles
+recomposées, les enfants résidant hors domicile sont principalement des
+enfants d'un·e des conjoint·e·s vivant chez son autre parent : 11 % des
+familles recomposées déclarent en effet des enfants dans cette
+situation. Ces enfants vivant hors du domicile sont aussi les plus
+jeunes : iels ont en moyenne 17 ans et 10 mois, et 16 ans et 7 mois
+lorsqu'iels résident chez leur autre parent. Ces résultats suggèrent que
+les remises en couple des parents ayant des enfants issus d'une ou
+plusieurs unions précédentes se font, davantage que les autres, avec des
+conjoint·e·s ayant également des enfants issus de précédentes unions,
+que ceux-ci cohabitent ou non avec leur parent.
 
-Comme expliqué dans la deuxième partie de ce chapitre, les couples déclarant des enfants d'un·e seul·e des deux conjoint·e·s ne résidant pas au domicile du ménage n'ont pas été catégorisés avec les familles recomposées, puisque nous avons privilégié une définition centrée sur la cohabitation. Pour autant, les ménages à la configuration recomposée représentent 18 % des ménages qui déclarent au moins un enfant résidant au domicile d'un autre parent.
+Comme expliqué dans la deuxième partie de ce chapitre, les couples
+déclarant des enfants d'un·e seul·e des deux conjoint·e·s ne résidant
+pas au domicile du ménage n'ont pas été catégorisés avec les familles
+recomposées, puisque nous avons privilégié une définition centrée sur la
+cohabitation. Pour autant, les ménages à la configuration recomposée
+représentent 18 % des ménages qui déclarent au moins un enfant résidant
+au domicile d'un autre parent.
 
 ```{r, fig.cap = "Nombre moyen d'enfants hors du ménage dans le ménage", out.width= "70%", fig.asp=0.6}
 
@@ -1717,24 +1817,95 @@ familles %>%
 
 ```
 
+De ce fait, elles représentent 37,5 % des familles recomposées, au sens
+large du terme, si l'on exclut les ménages à la configuration familiale
+complexe (classés dans "autre"). Avec le recodage proposé dans ce
+travail, on saisit donc non seulement les recompositions familiales qui
+interviennent à l'échelle du ménage, mais aussi une part non négligeable
+de celles qui interviennent à une échelle plus large.
 
-De ce fait, elles représentent 37,5 % des familles recomposées, au sens large du terme, si l'on exclut les ménages à la configuration familiale complexe (classés dans "autre"). Avec le recodage proposé dans ce travail, on saisit donc non seulement les recompositions familiales qui interviennent à l'échelle du ménage, mais aussi une part non négligeable de celles qui interviennent à une échelle plus large.
-
-Finalement, le travail de recodage réalisé pour saisir les configurations familiales recomposées conserve le ménage comme unité d'analyse statistique. Cela tient autant à des choix méthodologiques qu'à des considérations pratiques. D'une part, seules les pratiques économiques des membres du ménage sont interrogées par l'enquête. Lorsqu'on choisit de travailler sur celles-ci, il faut bien 'faire avec'. D'autre part, les frontières du ménage correspondent généralement aux frontières du logement. En donnant ainsi de l'importance à la cohabitation, on considère que le partage d'un quotidien est une condition de possibilité de la construction d'une forme de parenté pratique, entre individus qui ne sont pas apparenté·e·s légalement. Du même coup, on exclut cette possibilité entre individus ne résidant pas ensemble. En ce sens, la définition ainsi produite des configurations familiales recomposées coïncide avec celle qui est généralement proposée par les études statistiques, fondée sur la résidence principale des enfants [@bloch2020]. Ainsi, de nombreuses variables ont été construites à partir de cette articulation entre la parenté civile et la cohabitation pour qualifier la configuration familiale du ménage. Pour prendre en compte autant que possible le phénomène de recomposition à une échelle plus large que celle du ménage, des variables ont été construites pour déterminer l'existence d'enfants et de parents au sens légal des termes, résidant hors du domicile du ménage.
+Finalement, le travail de recodage réalisé pour saisir les
+configurations familiales recomposées conserve le ménage comme unité
+d'analyse statistique. Cela tient autant à des choix méthodologiques
+qu'à des considérations pratiques. D'une part, seules les pratiques
+économiques des membres du ménage sont interrogées par l'enquête.
+Lorsqu'on choisit de travailler sur celles-ci, il faut bien 'faire
+avec'. D'autre part, les frontières du ménage correspondent généralement
+aux frontières du logement. En donnant ainsi de l'importance à la
+cohabitation, on considère que le partage d'un quotidien est une
+condition de possibilité de la construction d'une forme de parenté
+pratique, entre individus qui ne sont pas apparenté·e·s légalement. Du
+même coup, on exclut cette possibilité entre individus ne résidant pas
+ensemble. En ce sens, la définition ainsi produite des configurations
+familiales recomposées coïncide avec celle qui est généralement proposée
+par les études statistiques, fondée sur la résidence principale des
+enfants [@bloch2020]. Ainsi, de nombreuses variables ont été construites
+à partir de cette articulation entre la parenté civile et la
+cohabitation pour qualifier la configuration familiale du ménage. Pour
+prendre en compte autant que possible le phénomène de recomposition à
+une échelle plus large que celle du ménage, des variables ont été
+construites pour déterminer l'existence d'enfants et de parents au sens
+légal des termes, résidant hors du domicile du ménage.
 
 # Chapitre 2 : Se remettre en couple. Des configurations conjugales spécifiques.
 
-Avec l'augmentation des divorces et des séparations, les trajectoires conjugales sont devenues plus variées et complexes. Non seulement les unions durables sont de moins en moins courantes, mais il est également devenu plus fréquent de vivre plusieurs unions au cours de sa vie [@Rault et Régnier-Loilier, 2015]. En 2013, une personne sur cinq âgée de 26 à 65 ans avait connu deux relations de couple, et 5 % en avaient vécu trois ou plus. Il est également de plus en plus commun que le premier partenaire ait déjà vécu en couple. Les premières unions deviennent de plus en plus courte au fil des générations : 40 % des personnes nées entre 1978 et 1987 et ayant déjà vécu en couple ont eu une première relation qui a duré moins de dix ans, contre 16 % pour celles nées entre 1948 et 1957 [@Costemalle2015]. En revanche, l'âge et le sexe des individu n’influence pas de la même manière les premières mises  en couples et les unions suivantes, en particulier lorsque des enfants sont issus des premières [@singly1983; @cassan2005].
+Avec l'augmentation des divorces et des séparations, les trajectoires
+conjugales sont devenues plus variées et complexes. Non seulement les
+unions durables sont de moins en moins courantes, mais il est également
+devenu plus fréquent de vivre plusieurs unions au cours de sa vie
+[@Rault et Régnier-Loilier, 2015]. En 2013, une personne sur cinq âgée
+de 26 à 65 ans avait connu deux relations de couple, et 5 % en avaient
+vécu trois ou plus. Il est également de plus en plus commun que le
+premier partenaire ait déjà vécu en couple. Les premières unions
+deviennent de plus en plus courte au fil des générations : 40 % des
+personnes nées entre 1978 et 1987 et ayant déjà vécu en couple ont eu
+une première relation qui a duré moins de dix ans, contre 16 % pour
+celles nées entre 1948 et 1957 [@Costemalle2015]. En revanche, l'âge et
+le sexe des individu n’influence pas de la même manière les premières
+mises en couples et les unions suivantes, en particulier lorsque des
+enfants sont issus des premières [@singly1983; @cassan2005].
 
-Ce chapitre discute les effets des probabilités différenciées de remises en couple entre homme et femmes sur les configurations de genre des couples à l'origine des recompositions familiales. On entend par configuration de genre d'un couple, l'articulation entre la position de chaque conjoint-e dans les rapports sociaux de sexe et le volume et la structure des capitaux respectivement détenus par les conjoint-e-s. Elle permet ainsi de saisir les rapports de pouvoir se déployant, localement, au sein de la famille. 
-Pour cela, nous nous placerons d'abord à l'échelle individuelle pour aborder les caractéristiques sociales spécifiques des individus selon leur position dans la famille (mère, père, beau-père, belle-mère). Ensuite, à l’échelle du couple, nous interrogerons le caractères plus ou moins inégalitaires des unions formées après une première histoire conjugale et familiales d'au moins l'un des deux membres. Enfin, à partir des caractéristiques sociales des conjoint-e-s et du ménage formé par celleux-ci, nous chercherons à situer socialement les recompositions familiales à l’échelle de la société française.
+Ce chapitre discute les effets des probabilités différenciées de remises
+en couple entre homme et femmes sur les configurations de genre des
+couples à l'origine des recompositions familiales. On entend par
+configuration de genre d'un couple, l'articulation entre la position de
+chaque conjoint-e dans les rapports sociaux de sexe et le volume et la
+structure des capitaux respectivement détenus par les conjoint-e-s. Elle
+permet ainsi de saisir les rapports de pouvoir se déployant, localement,
+au sein de la famille. Pour cela, nous nous placerons d'abord à
+l'échelle individuelle pour aborder les caractéristiques sociales
+spécifiques des individus selon leur position dans la famille (mère,
+père, beau-père, belle-mère). Ensuite, à l’échelle du couple, nous
+interrogerons le caractères plus ou moins inégalitaires des unions
+formées après une première histoire conjugale et familiales d'au moins
+l'un des deux membres. Enfin, à partir des caractéristiques sociales des
+conjoint-e-s et du ménage formé par celleux-ci, nous chercherons à
+situer socialement les recompositions familiales à l’échelle de la
+société française.
 
 ## Mères, pères, beaux-pères et belles-mères
 
 ### Le genre des unions secondaires : des mères et des beaux-pères
 
-Lors des séparations et des divorces, il est courant que la résidence principale des enfants soit fixée chez leur mères, si bien que un an après la séparation les trois quarts des enfants résident exclusivement chez leur mère [@Bonnet2015]. Même si la résidence alternée tend à augmenter (en 2020, 12% des enfants dont les parents sont séparés @Bloch), les pères restent peu nombreux à en faire la demande [@collectif onze]. Ainsi, les familles monoparentales sont, dans leur écrasante majorité formées par des mères célibataires et leurs enfants cohabitants. 
-Parallèlement, les femmes d'autant plus lorsqu'elles sont agés et qu'elles ont des enfants, ont des plus faibles probabilités que les hommes de se remettre en couple [@singly1983; @cassan2005]. L'articulation entre, d'un coté, l'extrême féminisation de la monoparentalité et de l'autre, la moindre possibilité pour ces femmes de reformer des unions conjugales fait de la recomposition familiale, moins une suite logique des biographies conjugales qu'une situation très spécifique. Le graphique ci-dessous présente justement la situation parentale des individus apparentant des couples formés après une première histoire conjugale et familiale d'au moins l'un-e des conjoint-e-s.
+Lors des séparations et des divorces, il est courant que la résidence
+principale des enfants soit fixée chez leur mères, si bien que un an
+après la séparation les trois quarts des enfants résident exclusivement
+chez leur mère [@Bonnet2015]. Même si la résidence alternée tend à
+augmenter (en 2020, 12% des enfants dont les parents sont séparés
+@Bloch), les pères restent peu nombreux à en faire la demande
+[@collectif onze]. Ainsi, les familles monoparentales sont, dans leur
+écrasante majorité formées par des mères célibataires et leurs enfants
+cohabitants. Parallèlement, les femmes d'autant plus lorsqu'elles sont
+agés et qu'elles ont des enfants, ont des plus faibles probabilités que
+les hommes de se remettre en couple [@singly1983; @cassan2005].
+L'articulation entre, d'un coté, l'extrême féminisation de la
+monoparentalité et de l'autre, la moindre possibilité pour ces femmes de
+reformer des unions conjugales fait de la recomposition familiale, moins
+une suite logique des biographies conjugales qu'une situation très
+spécifique. Le graphique ci-dessous présente justement la situation
+parentale des individus apparentant des couples formés après une
+première histoire conjugale et familiale d'au moins l'un-e des
+conjoint-e-s.
 
 ```{r histosexeadultes, fig.cap = "Appartenance aux groupes de sexe des parents et beaux parents", out.width= "70%", fig.asp=0.6}
 
@@ -1747,13 +1918,34 @@ tab$tableau +
     "Lecture : Les hommes représentent 14,5% des adultes vivants en familles recomposées ayant des enfants issus d'une union précédante"))
 ```
 
-Les parents de familles recomposées sont le plus souvent des femmes. Dans les familles recomposées, ce sont le plus souvent elles qui ont des enfants issus d'une union précédente. Elles sont aussi plus nombreuses que les hommes à avoir des enfants à la fois issus d'union précédente et actuelle (79,6% sont des femmes quand 20,4% sont des hommes). Ainsi les beaux-parents sont le plus souvent des hommes: 85,9% des beaux-parents n'ayant pas d'enfants sont des beaux-pères et 86,9% de ceux ayant des enfants issus de l'union actuelle sont des beau-pères.
+Les parents de familles recomposées sont le plus souvent des femmes.
+Dans les familles recomposées, ce sont le plus souvent elles qui ont des
+enfants issus d'une union précédente. Elles sont aussi plus nombreuses
+que les hommes à avoir des enfants à la fois issus d'union précédente et
+actuelle (79,6% sont des femmes quand 20,4% sont des hommes). Ainsi les
+beaux-parents sont le plus souvent des hommes: 85,9% des beaux-parents
+n'ayant pas d'enfants sont des beaux-pères et 86,9% de ceux ayant des
+enfants issus de l'union actuelle sont des beau-pères.
 
-Les probabilités différentielles de remises en couple entre hommes et femmes, et en particulier entre pères et mères explique que l'on trouve, proportionnellement plus de pères de famille recomposées ayant des enfants issus d'une ou de plusieurs unions précédentes que de pères célibataires. Ainsi le différentiel de probabilité de remise en couple entre pères et mères célibataires ne réduit que légèrement la sur-représentation des mères de famille recomposées ayant des enfants issus d'unions précédentes par rapport aux mères célibataires.
+Les probabilités différentielles de remises en couple entre hommes et
+femmes, et en particulier entre pères et mères explique que l'on trouve,
+proportionnellement plus de pères de famille recomposées ayant des
+enfants issus d'une ou de plusieurs unions précédentes que de pères
+célibataires. Ainsi le différentiel de probabilité de remise en couple
+entre pères et mères célibataires ne réduit que légèrement la
+sur-représentation des mères de famille recomposées ayant des enfants
+issus d'unions précédentes par rapport aux mères célibataires.
 
-Les beaux-pères représentent ainsi deux tiers des beaux-parents cohabitant avec les enfants de leurs conjoint ou conjointe. Dans la grande majorité des cas (91,4%), ces beaux-pères n'avaient pas d'enfant avant de former l'union actuelle. A l'inverse, lorsque les femmes deviennent belles-mères, elles sont plus nombreuses à déjà avoir des enfants issus d'unions précédentes (41,4%). Le graphique ci-dessous présente les histoires parentales des beaux-parents en fonction de leur appartenance aux groupes sociaux de sexe.
+Les beaux-pères représentent ainsi deux tiers des beaux-parents
+cohabitant avec les enfants de leurs conjoint ou conjointe. Dans la
+grande majorité des cas (91,4%), ces beaux-pères n'avaient pas d'enfant
+avant de former l'union actuelle. A l'inverse, lorsque les femmes
+deviennent belles-mères, elles sont plus nombreuses à déjà avoir des
+enfants issus d'unions précédentes (41,4%). Le graphique ci-dessous
+présente les histoires parentales des beaux-parents en fonction de leur
+appartenance aux groupes sociaux de sexe.
 
-```{r, out.width= "80%", fig.asp=0.8, fig.cap = "Histoire parentale des beaux parents en fonction de leur sexe"}
+```{r, fig.height=0.5, fig.cap = "Histoire parentale des beaux parents en fonction de leur sexe"}
 
 load("Resultats/barplot_BP_Sexe_enfants.Rdata")
 
@@ -1765,16 +1957,67 @@ tab$tableau +
 
 ```
 
-Les situations parentales différenciées des hommes et des femmes dans les familles recomposées justifient ainsi un traitement spécifiques des beau-parents et des parents selon l'appartenance aux catégories sociales sexe des individus qui composent ces couples. 
+Les situations parentales différenciées des hommes et des femmes dans
+les familles recomposées justifient ainsi un traitement spécifiques des
+beaux-parents et des parents selon leur l'appartenance aux groupes
+sociaux de sexe.
 
-Cependant, les remises en couple ne sont pas systématiquement des remise en couple hétérosexuel. Dans l'enquête, les ménages à la configuration traditionnelle sont tous formés par un homme
-et une femme. L'absence de famille homoparentale dans l'enquête budget de famille 2016 est donc notable, mais s'explique aisément par la législation qui interdit, avant 2013 l'adoption aux conjoints de mêmes sexes. En revanche, les couples à l'origine de recompositions familiales sont dans 3,5% des cas, des couples de même sexe. Cette proportion est similaire chez les couples sans enfants. Les couples de même sexe formés secondairement et vivants avec des enfants issus d'une précédante union sont pour l'essentiel des couples de femmes : ils représentent 2,8% des couples formant des ménages recomposées. Ces résultats concordent avec les étudies statistiques sur les couples de même sexe : En 2018, 14% des couples en général et un quart des couples de femmes vivaient avec des enfants [@algavaPenant]. Les biographies conjugales des hommes et des femmes en couple avec un individu du même sexe sont en effets différenciées. Alors que chez les hommes, l'entrée dans la sexualité est généralement suivie d'une mise en couple rapide avec un autre homme, les femmes en couple avec d'autres femmes ont plus souvent déjà connu une période de conjugalité hétérosexuelle [@RaultLambert]. Ainsi, les unions secondaires, en particulier pour les femmes, peuvent être l'occasion d'une reconfiguration des positions dans les rapports sociaux de sexe à l'échelle du couple. Pour autant, ces situations restent marginales dans l'enquête : elles concernent seulement 18 couples. 
+Cependant, les remises en couple ne sont pas systématiquement des remise
+en couple hétérosexuel. Dans l'enquête, les ménages à la configuration
+traditionnelle sont tous formés par un homme et une femme. L'absence de
+famille homoparentale dans l'enquête budget de famille 2016 est donc
+notable, mais s'explique aisément par la législation qui interdit, avant
+2013 l'adoption aux conjoints de mêmes sexes. En revanche, les couples à
+l'origine de recompositions familiales sont dans 3,5% des cas, des
+couples de même sexe. Cette proportion est similaire chez les couples
+sans enfants. Les couples de même sexe formés secondairement et vivants
+avec des enfants issus d'une précédante union sont pour l'essentiel des
+couples de femmes : ils représentent 2,8% des couples formant des
+ménages recomposées. Ces résultats concordent avec les étudies
+statistiques sur les couples de même sexe : En 2018, 14% des couples en
+général et un quart des couples de femmes vivaient avec des enfants
+[@algavaPenant]. Les biographies conjugales des hommes et des femmes en
+couple avec un individu du même sexe sont en effets différenciées. Alors
+que chez les hommes, l'entrée dans la sexualité est généralement suivie
+d'une mise en couple rapide avec un autre homme, les femmes en couple
+avec d'autres femmes ont plus souvent déjà connu une période de
+conjugalité hétérosexuelle [@RaultLambert]. Ainsi, les unions
+secondaires, en particulier pour les femmes, peuvent être l'occasion
+d'une reconfiguration des positions dans les rapports sociaux de sexe à
+l'échelle du couple. Pour autant, ces situations restent marginales dans
+l'enquête : elles concernent seulement 18 couples.
 
 ### Se remettre en couple quand on a des enfants
 
-Les trajectoires conjugales – comprenant les mises en couple, les séparations et les remises en couple – sont des phénomènes complexes influencés par une variété de facteurs socio-démographiques et familiaux. Les chances de se remettre en couple après une séparation diffèrent significativement entre les hommes et les femmes. Les hommes se remettent ainsi plus fréquemment et plus rapidement en couple que les femmes [@singly1983; @cassan2005]. Cela s'explique par les effets différenciés de l'âge et de l’existence d'enfants issu·e·s d'unions précédentes sur les chances de remise en couple des hommes et des femmes. En effet, l'avancée en âge diminue significativement les chances de reformer une nouvelle union [@costemalle2015]. Ainsi, les parents qui se remettent en couple sont en moyenne plus jeunes que celleux ne formant pas de nouvelle union [@abbas2019]. L'effet de l'âge est cependant plus important pour les femmes : les écarts d'âge en défaveur des femmes dans les couples hétérosexuels [@bozon2006], et en particulier l'affirmation de préférences pour des femmes plus jeunes avec l'avancée en âge des hommes [@BERGSTROM], font diminuer les chances de reformer un couple pour les femmes les plus âgées.
+Les trajectoires conjugales – comprenant les mises en couple, les
+séparations et les remises en couple – sont des phénomènes complexes
+influencés par une variété de facteurs socio-démographiques et
+familiaux. Les chances de se remettre en couple après une séparation
+diffèrent significativement entre les hommes et les femmes. Les hommes
+se remettent ainsi plus fréquemment et plus rapidement en couple que les
+femmes [@singly1983; @cassan2005]. Cela s'explique par les effets
+différenciés de l'âge et de l’existence d'enfants issu·e·s d'unions
+précédentes sur les chances de remise en couple des hommes et des
+femmes. En effet, l'avancée en âge diminue significativement les chances
+de reformer une nouvelle union [@costemalle2015]. Ainsi, les parents qui
+se remettent en couple sont en moyenne plus jeunes que celleux ne
+formant pas de nouvelle union [@abbas2019]. L'effet de l'âge est
+cependant plus important pour les femmes : les écarts d'âge en défaveur
+des femmes dans les couples hétérosexuels [@bozon2006], et en
+particulier l'affirmation de préférences pour des femmes plus jeunes
+avec l'avancée en âge des hommes [@BERGSTROM], font diminuer les chances
+de reformer un couple pour les femmes les plus âgées.
 
-Ainsi, les hommes et les femmes vivants dans des ménages à la configuration familiale traditionnelle ou recomposée ont des âges similaires. Les femmes sont en moyenne âgées de 41 ans dans les familles traditionnelles et de 41 ans et 2 mois dans les familles recomposées. Les hommes sont en moyenne âgés de 43 ans et 7 mois dans les familles traditionnelles et de 43 ans et 11 mois dans les familles recomposées, avec des écart-types similaires pour les hommes et les femmes. En d'autre terme, l'effet biographique lié à une seconde union forcément plus tardive que la première est compensé par la plus faible probabilité de se remettre en couple avec l'avancée en âge.
+Ainsi, les hommes et les femmes vivants dans des ménages à la
+configuration familiale traditionnelle ou recomposée ont des âges
+similaires. Les femmes sont en moyenne âgées de 41 ans dans les familles
+traditionnelles et de 41 ans et 2 mois dans les familles recomposées.
+Les hommes sont en moyenne âgés de 43 ans et 7 mois dans les familles
+traditionnelles et de 43 ans et 11 mois dans les familles recomposées,
+avec des écart-types similaires pour les hommes et les femmes. En
+d'autre terme, l'effet biographique lié à une seconde union forcément
+plus tardive que la première est compensé par la plus faible probabilité
+de se remettre en couple avec l'avancée en âge.
 
 ```{r, fig.cap = "Âge moyen (et écart-type) des hommes et des femmes par type de ménage", out.width= "70%", fig.asp=0.6}
 
@@ -1835,11 +2078,35 @@ ggplot(age_stats_long, aes(x = n_TYPMEN_new, y = age_moyen, fill = sexe)) +
   
 ```
 
-La position dans les rapports sociaux de classe joue, ici aussi, de manière différenciée selon l'appartenance aux groupes sociaux de sexe des parents célibataires [@abbas2019]. Les hommes cadres, ainsi que les artisans-commerçants, sont parmi ceux qui ont les meilleures chances de reformer une union. Pour les femmes, en revanche, la situation est plus complexe. Les femmes cadres ont, à situations égales, moins de chance de se remettre en couple. Un niveau d'indépendance économique élevé peut réduire les pressions à se remettre en couple, permettant à certaines de choisir le célibat [@bonnet]. Bien que les non-diplômés, hommes ou
-femmes, aient une probabilité plus faible de se remettre en couple, l'effet du diplôme n'est pas linéaire. Chez les hommes, cette probabilité est la plus élevée pour ceux ayant un baccalauréat, et la plus faible pour les non-diplômés.
+La position dans les rapports sociaux de classe joue, ici aussi, de
+manière différenciée selon l'appartenance aux groupes sociaux de sexe
+des parents célibataires [@abbas2019]. Les hommes cadres, ainsi que les
+artisans-commerçants, sont parmi ceux qui ont les meilleures chances de
+reformer une union. Pour les femmes, en revanche, la situation est plus
+complexe. Les femmes cadres ont, à situations égales, moins de chance de
+se remettre en couple. Un niveau d'indépendance économique élevé peut
+réduire les pressions à se remettre en couple, permettant à certaines de
+choisir le célibat [@bonnet]. Bien que les non-diplômés, hommes ou
+femmes, aient une probabilité plus faible de se remettre en couple,
+l'effet du diplôme n'est pas linéaire. Chez les hommes, cette
+probabilité est la plus élevée pour ceux ayant un baccalauréat, et la
+plus faible pour les non-diplômés.
 
-Les tableaux ci-dessous présentent les caractéristiques sociales des hommes et des femmes en fonction de leur statut parental. Les catégories observées incluent les hommes/femmes sans enfants (célibataires ou en couple) et les pères/mères (célibataires, en couple parental, remis en couple, c'est-à-dire vivant en couple mais ayant des enfants d'une précédente union). On limite ici l'analyse aux enfants vivant dans le ménage, les pères ou mères considéré-e-s comme remis en couple sont donc ceux dont les enfants issus d'unions antérieures cohabitent avec elles ou eux. On entend par couple parental la situation dans laquelle une personne est en couple avec l'autre parent de l'ensemble de ses enfants. De ce fait, les hommes et femmes classé-e-s parmi les pères et mères remis en couple peuvent ou non avoir eu des enfants de cette nouvelle union. Compte tenu des effectifs, nous ne distinguons pas ces deux types de situations. Les  caractéristiques sociales présentés sont le niveau de diplôme, la catégorie socioprofessionnelle et la tranche de revenus.
-
+Les tableaux ci-dessous présentent les caractéristiques sociales des
+hommes et des femmes en fonction de leur statut parental. Les catégories
+observées incluent les hommes/femmes sans enfants (célibataires ou en
+couple) et les pères/mères (célibataires, en couple parental, remis en
+couple, c'est-à-dire vivant en couple mais ayant des enfants d'une
+précédente union). On limite ici l'analyse aux enfants vivant dans le
+ménage, les pères ou mères considéré-e-s comme remis en couple sont donc
+ceux dont les enfants issus d'unions antérieures cohabitent avec elles
+ou eux. On entend par couple parental la situation dans laquelle une
+personne est en couple avec l'autre parent de l'ensemble de ses enfants.
+De ce fait, les hommes et femmes classé-e-s parmi les pères et mères
+remis en couple peuvent ou non avoir eu des enfants de cette nouvelle
+union. Compte tenu des effectifs, nous ne distinguons pas ces deux types
+de situations. Les caractéristiques sociales présentés sont le niveau de
+diplôme, la catégorie socioprofessionnelle et la tranche de revenus.
 
 ```{=tex}
 
@@ -1852,8 +2119,6 @@ Le niveau de diplôme est recodé en sept postes, en reprenant les mêmes catég
 
 \end{encadre}
 ```
-
-
 ```{r}
 load("Resultats/des_MeresCaracteristiquesSociales.Rdata")
 
@@ -1872,7 +2137,29 @@ tab$tableau %>%
                        lecture = "4% des femmes célibataires sans enfants sont diplomés d'un doctorat, d'une école d'ingénieur ou d'une grande école.")
 ```
 
-Les mères remises en couple présentent des caractéristiques sociales proches des mères célibataires. En effet, elles sont en moyenne moins diplômées que les mères en couple parental : elles sont 47 % et 50 % à avoir un diplôme inférieur au bac, contre 36 % des mères en couple avec l'autre parent de leurs enfants. Elles occupent plus souvent des emplois subalternes et sont sous-représentées parmi les cadres, cheffes d'entreprises, professions libérales, petites indépendantes et cadres du public ou de la culture, par rapport aux autres femmes, y compris les mères en couple parental. Les mères célibataires, et surtout celles remises en couple, apparaissent sur-représentées chez les ouvrières non qualifiées et chez les employées qualifiées. En revanche, les mères remises en couple ont, dans leur ensemble, des revenus plus élevés que les mères célibataires : elles sont 56 % à gagner plus de 1 250 euros mensuels, contre 49 % des mères célibataires, ce qui les rapproche davantage des mères en couple parental (55 %). Ces caractéristiques socio-démographiques partagées entre les mères de familles monoparentales et celles de familles recomposées sont relativement stables au cours de la trajectoire individuelle. Elles confirment la continuité biographique entre période de monoparentalité et remise en couple. Cette continuité n'est cependant pas identique pour les hommes et les femmes. En effet, si les mères de familles monoparentales et recomposées se ressemblent, les pères de familles monoparentales et recomposées semblent présenter des caractéristiques assez différentes.
+Les mères remises en couple présentent des caractéristiques sociales
+proches des mères célibataires. En effet, elles sont en moyenne moins
+diplômées que les mères en couple parental : elles sont 47 % et 50 % à
+avoir un diplôme inférieur au bac, contre 36 % des mères en couple avec
+l'autre parent de leurs enfants. Elles occupent plus souvent des emplois
+subalternes et sont sous-représentées parmi les cadres, cheffes
+d'entreprises, professions libérales, petites indépendantes et cadres du
+public ou de la culture, par rapport aux autres femmes, y compris les
+mères en couple parental. Les mères célibataires, et surtout celles
+remises en couple, apparaissent sur-représentées chez les ouvrières non
+qualifiées et chez les employées qualifiées. En revanche, les mères
+remises en couple ont, dans leur ensemble, des revenus plus élevés que
+les mères célibataires : elles sont 56 % à gagner plus de 1 250 euros
+mensuels, contre 49 % des mères célibataires, ce qui les rapproche
+davantage des mères en couple parental (55 %). Ces caractéristiques
+socio-démographiques partagées entre les mères de familles
+monoparentales et celles de familles recomposées sont relativement
+stables au cours de la trajectoire individuelle. Elles confirment la
+continuité biographique entre période de monoparentalité et remise en
+couple. Cette continuité n'est cependant pas identique pour les hommes
+et les femmes. En effet, si les mères de familles monoparentales et
+recomposées se ressemblent, les pères de familles monoparentales et
+recomposées semblent présenter des caractéristiques assez différentes.
 
 ```{r statdesparents2, results = "asis"}
 
@@ -1893,22 +2180,86 @@ tab$tableau %>%
 
 ```
 
-Les pères remis en couple présentent des caractéristiques distinctes lorsqu'on les compare aux autres catégories d'hommes. En termes de niveau de diplôme, ils se démarquent par une proportion légèrement plus faible de titulaires de doctorats ou de diplômes d'ingénieur (3 %) par rapport aux autres pères. Ils apparaissent légèrement moins diplômés que les pères célibataires et les pères en couple parental (30 % d'entre eux ont un diplôme supérieur au baccalauréat, contre 35 % des pères célibataires et 36 % des pères en couple parental). Ils restent en revanche relativement plus diplômés que les hommes sans enfants (12 % sont sans diplôme contre 19 % des célibataires sans enfants et 16 % des hommes en couple sans enfants).
+Les pères remis en couple présentent des caractéristiques distinctes
+lorsqu'on les compare aux autres catégories d'hommes. En termes de
+niveau de diplôme, ils se démarquent par une proportion légèrement plus
+faible de titulaires de doctorats ou de diplômes d'ingénieur (3 %) par
+rapport aux autres pères. Ils apparaissent légèrement moins diplômés que
+les pères célibataires et les pères en couple parental (30 % d'entre eux
+ont un diplôme supérieur au baccalauréat, contre 35 % des pères
+célibataires et 36 % des pères en couple parental). Ils restent en
+revanche relativement plus diplômés que les hommes sans enfants (12 %
+sont sans diplôme contre 19 % des célibataires sans enfants et 16 % des
+hommes en couple sans enfants).
 
-Sur le plan socioprofessionnel, ces pères se caractérisent par une sur-représentation dans les catégories d'ouvriers qualifiés (27 %), ce qui les rapproche des autres pères (26 % des pères célibataires et 24 % des pères en couple parental sont ouvriers qualifiés), contre 21 % des hommes en général. En revanche, ils se distinguent des hommes sans enfants et des pères en couple parental par leur sur-représentation dans les catégories socioprofessionnelles plutôt féminisées : 13 % sont employés contre 9 % des hommes en général, et 18 % sont médiateurs contre 10 % des hommes en général. C'est aussi le cas pour les pères célibataires, qui sont eux aussi sur-représentés dans la catégorie des médiateurs.
+Sur le plan socioprofessionnel, ces pères se caractérisent par une
+sur-représentation dans les catégories d'ouvriers qualifiés (27 %), ce
+qui les rapproche des autres pères (26 % des pères célibataires et 24 %
+des pères en couple parental sont ouvriers qualifiés), contre 21 % des
+hommes en général. En revanche, ils se distinguent des hommes sans
+enfants et des pères en couple parental par leur sur-représentation dans
+les catégories socioprofessionnelles plutôt féminisées : 13 % sont
+employés contre 9 % des hommes en général, et 18 % sont médiateurs
+contre 10 % des hommes en général. C'est aussi le cas pour les pères
+célibataires, qui sont eux aussi sur-représentés dans la catégorie des
+médiateurs.
 
-En termes de revenus, les pères remis en couple tendent à se situer dans les tranches intermédiaires : ils sont moins nombreux que les autres hommes à avoir de très faibles revenus (seuls 5 % d'entre eux ont des revenus inférieurs à 550 euros mensuels, contre 11 % des hommes) mais sont aussi moins nombreux que les autres (à l'exception des hommes célibataires sans enfants) à avoir des revenus élevés (16 % d'entre eux gagnent plus de 2 950 euros mensuels, contre 20 % des hommes en général).
+En termes de revenus, les pères remis en couple tendent à se situer dans
+les tranches intermédiaires : ils sont moins nombreux que les autres
+hommes à avoir de très faibles revenus (seuls 5 % d'entre eux ont des
+revenus inférieurs à 550 euros mensuels, contre 11 % des hommes) mais
+sont aussi moins nombreux que les autres (à l'exception des hommes
+célibataires sans enfants) à avoir des revenus élevés (16 % d'entre eux
+gagnent plus de 2 950 euros mensuels, contre 20 % des hommes en
+général).
 
-On peut avancer plusieurs hypothèses liées aux bénéfices différenciés à la conjugalité des hommes et des femmes. Ainsi, si la continuité entre situation de monoparentalité et remise en couple apparaît assez nette pour les femmes, elle l'est beaucoup moins pour les hommes. Les hommes reformant des unions apparaissent assez différents de ceux élevant leurs
-enfants seuls. En premier lieu, le niveau de diplôme, la profession, le revenu et le patrimoine peuvent influencer la probabilité de se remettre en couple davantage pour les hommes ayant des enfants à charge que pour les femmes dans cette situation. Dans ce cas, cela signifie que les hommes les plus dotés culturellement et économiquement se remettraient moins en couple que ceux disposant de moins de ressources. Moins contraints sur le plan économique, les avantages matériels et financiers à la conjugalité et à la cohabitation jouent peut-être relativement moins pour eux que ceux disposant de plus faibles ressources.
+On peut avancer plusieurs hypothèses liées aux bénéfices différenciés à
+la conjugalité des hommes et des femmes. Ainsi, si la continuité entre
+situation de monoparentalité et remise en couple apparaît assez nette
+pour les femmes, elle l'est beaucoup moins pour les hommes. Les hommes
+reformant des unions apparaissent assez différents de ceux élevant leurs
+enfants seuls. En premier lieu, le niveau de diplôme, la profession, le
+revenu et le patrimoine peuvent influencer la probabilité de se remettre
+en couple davantage pour les hommes ayant des enfants à charge que pour
+les femmes dans cette situation. Dans ce cas, cela signifie que les
+hommes les plus dotés culturellement et économiquement se remettraient
+moins en couple que ceux disposant de moins de ressources. Moins
+contraints sur le plan économique, les avantages matériels et financiers
+à la conjugalité et à la cohabitation jouent peut-être relativement
+moins pour eux que ceux disposant de plus faibles ressources.
 
-L'autre explication tient au fait que la situation de monoparentalité ne précède pas nécessairement la recomposition familiale. En effet, la remise en couple d'un parent n'ayant pas la garde de ses enfants pourrait favoriser l'obtention de la garde de ceux-ci. À notre connaissance, des travaux portant sur de telles décisions de justice n'existent pas. Cependant, lorsqu'il s'agit de fixer la résidence principale des enfants lors d'une séparation, les juges aux affaires familiales mobilisent des critères différents pour évaluer cette
-possibilité chez les hommes et les femmes [@tribunal des couples]. Là où un logement petit, des revenus faibles et la difficile articulation entre travail à plein temps et garde des enfants sont jugés problématiques pour les pères, ils ne le sont pas pour les mères. On peut donc penser que ces mêmes facteurs jouent si une demande de réexamen de la résidence des enfants est formulée après une remise en couple. Ainsi, l'accès à un logement plus grand, les économies d'échelle et la prise en charge du travail domestique voire parental par la nouvelle conjointe pourraient favoriser l'obtention de la résidence (alternée ou exclusive) par les pères n'ayant auparavant qu'un droit de
-visite. Ces mêmes facteurs pourraient expliquer que les pères n'ayant pas demandé la résidence de leurs enfants lorsqu'ils étaient célibataires formulent cette demande une fois remis en couple.
+L'autre explication tient au fait que la situation de monoparentalité ne
+précède pas nécessairement la recomposition familiale. En effet, la
+remise en couple d'un parent n'ayant pas la garde de ses enfants
+pourrait favoriser l'obtention de la garde de ceux-ci. À notre
+connaissance, des travaux portant sur de telles décisions de justice
+n'existent pas. Cependant, lorsqu'il s'agit de fixer la résidence
+principale des enfants lors d'une séparation, les juges aux affaires
+familiales mobilisent des critères différents pour évaluer cette
+possibilité chez les hommes et les femmes [@tribunal des couples]. Là où
+un logement petit, des revenus faibles et la difficile articulation
+entre travail à plein temps et garde des enfants sont jugés
+problématiques pour les pères, ils ne le sont pas pour les mères. On
+peut donc penser que ces mêmes facteurs jouent si une demande de
+réexamen de la résidence des enfants est formulée après une remise en
+couple. Ainsi, l'accès à un logement plus grand, les économies d'échelle
+et la prise en charge du travail domestique voire parental par la
+nouvelle conjointe pourraient favoriser l'obtention de la résidence
+(alternée ou exclusive) par les pères n'ayant auparavant qu'un droit de
+visite. Ces mêmes facteurs pourraient expliquer que les pères n'ayant
+pas demandé la résidence de leurs enfants lorsqu'ils étaient
+célibataires formulent cette demande une fois remis en couple.
 
-### Beaux-pères et belles-mères 
+### Beaux-pères et belles-mères : des positions sociales asymétriques
 
-Le tableau ci-dessous présente les caractéristiques des hommes adultes vivants en familles recomposées en fonction de leur situation parentale au moment de leur remise en couple. Il distingue les cas ou les hommes remis en couple sont pères et se mette en couple avec un-e conjoint-e sans enfant (pères sans beaux-enfants), où les hommes sont pères et se mettent en couple avec un-e conjoint-e ayant des enfants (beaux-pères avec enfants) et où les hommes sont sans enfants et se mettent en couple avec un-e conjoint-e ayant des enfants (beau-père sans enfants). 
+Le tableau ci-dessous présente les caractéristiques des hommes adultes
+vivants en familles recomposées en fonction de leur situation parentale
+au moment de leur remise en couple. Il distingue les cas où les hommes
+remis en couple sont pères et se mette en couple avec un-e conjoint-e
+sans enfant (pères sans beaux-enfants), où les hommes sont pères et se
+mettent en couple avec un-e conjoint-e ayant des enfants (beaux-pères
+avec enfants) et où les hommes sont sans enfants et se mettent en couple
+avec un-e conjoint-e ayant des enfants (beau-père sans enfants).
 
 ```{r statdesbeauxperes, results = "asis"}
 
@@ -1927,9 +2278,24 @@ tab$tableau %>%
 
 ```
 
-Les beaux-pères sans enfants au moment de la remise en couple apparaissent moins diplômés que les pères : ils sont moins souvent titulaires de diplôme d'un niveau supérieur au baccalauréat que les pères : 24% contre 32% des pères ayant de beaux-enfants et 30% des pères sans beaux-enfants. Les beaux-pères qui avaient déjà des enfants au moment de la remise en couple sont représentés chez les professions intermédiaires occupants des postes de médiateurs par rapports aux autres hommes vivant en familles recomposées. Les beaux-pères (avec ou sans enfants) sont aussi sur-représentés chez les ouvriers non-qualifiés si on les compare aux pères sans beaux-enfants. Les différences de revenus observées entre ces catégories d'hommes ne sont en revanche pas significatives. 
+Les beaux-pères sans enfants au moment de la remise en couple
+apparaissent moins diplômés que les pères : ils sont moins souvent
+titulaires de diplôme d'un niveau supérieur au baccalauréat que les
+pères : 24% contre 32% des pères ayant de beaux-enfants et 30% des pères
+sans beaux-enfants. Les beaux-pères qui avaient déjà des enfants au
+moment de la remise en couple sont représentés chez les professions
+intermédiaires occupants des postes de médiateurs par rapports aux
+autres hommes vivant en familles recomposées. Les beaux-pères (avec ou
+sans enfants) sont aussi sur-représentés chez les ouvriers non-qualifiés
+si on les compare aux pères sans beaux-enfants. Les différences de
+revenus observées entre ces catégories d'hommes ne sont en revanche pas
+significatives.
 
-Comme le tableau précédant, le tableau ci-dessous présente les caractéristiques sociales des femmes vivant dans des familles recomposées, en fonction de leur statut parental au moment de la remise en couple. Il compare trois groupes : les belles-mères avec enfants, les belles-mères sans enfants, et les mères sans beaux-enfants.
+Comme le tableau précédant, le tableau ci-dessous présente les
+caractéristiques sociales des femmes vivant dans des familles
+recomposées, en fonction de leur statut parental au moment de la remise
+en couple. Il compare trois groupes : les belles-mères avec enfants, les
+belles-mères sans enfants, et les mères sans beaux-enfants.
 
 ```{r statdesbellesmeres, results = "asis"}
 
@@ -1948,33 +2314,50 @@ tab$tableau %>%
 
 ```
 
-Les belles-mères sans enfants au moment de la mise en couple sont davantage diplômées que les autres groupes, avec 18 % ayant un Master, contre seulement 9 % des belles-mères avec enfants et 7 % des mères sans beaux-enfants.
-Diplômes intermédiaires : Les femmes ayant un diplôme de niveau Licence, BTS, DUT ou équivalent sont bien représentées dans tous les groupes, avec une légère prédominance chez les belles-mères avec enfants (28 %).
-Diplômes faibles : Une proportion notable de femmes sans diplôme ou ayant un diplôme de niveau CAP/BEP est observée, notamment chez les belles-mères sans enfants (33 %) et les mères sans beaux-enfants (40 %).
-Catégorie socioprofessionnelle :
-Professions supérieures : Les cadres, chefs d'entreprise et professions libérales sont plus présentes chez les belles-mères avec enfants (9 %) que dans les autres groupes (6 %).
-Employées qualifiées : Les belles-mères avec enfants sont surreprésentées parmi les employées qualifiées (28 %) par rapport aux belles-mères sans enfants (14 %) et aux mères sans beaux-enfants (25 %).
-Inactivité et précarité : Une proportion importante de femmes, notamment dans les groupes des belles-mères avec enfants et des mères sans beaux-enfants, sont inactives ou dans des emplois peu qualifiés (20 % et 25 % respectivement).
-Tranche de revenus :
-Bas revenus : Les belles-mères avec enfants sont plus souvent situées dans les tranches de revenus les plus faibles, avec 15 % gagnant moins de 550 euros par mois. En revanche, les belles-mères sans enfants sont plus nombreuses dans les tranches de revenus plus élevées.
-Revenus intermédiaires : La majorité des femmes se trouvent dans les tranches de revenus intermédiaires, avec 24 % des belles-mères avec enfants et 21 % des mères sans beaux-enfants gagnant entre 1 250 et 1 850 euros par mois.
-Revenus élevés : Les belles-mères sans enfants sont moins souvent dans les tranches de revenus supérieurs (seulement 4 % gagnent plus de 2 950 euros par mois) par rapport aux belles-mères avec enfants (14 %).
-Effectifs :
-Le tableau se base sur un échantillon total de 629 femmes, réparties entre 78 belles-mères avec enfants, 113 belles-mères sans enfants, et 438 mères sans beaux-enfants.
+Les belles-mères sans enfants au moment de la mise en couple sont
+davantage diplômées que les autres groupes, avec 18 % ayant un Master,
+contre seulement 9 % des belles-mères avec enfants et 7 % des mères sans
+beaux-enfants, et seuls 6% sans diplôme ou seulement le CEP contre 16%
+pour les autres. Elles ne sont pourtant pas sur-représentées chez les
+cadres par rapports aux belles mères ayant des enfants et aux mères sans
+beaux-enfants, mais seulement chez les médiatrices. Dans les classes
+populaires, elles apparaissent en revanche sous représentés chez les
+employées (28% sont employées contre 35% en moyenne), catégorie
+habituellement plus féminine, et sur-représentées chez les ouvrières
+(21% sont ouvrières contre 15% en moyenne), notamment qualifiées,
+catégorie habituellement plus masculine. Ainsi, elles ont des revenus
+plus élevés que les autres, puisque 48% d'entre elles gagnent plus de
+1750 euros par mois contre 40% des femmes vivants en familles
+recomposées.
 
-Conclusion :
-Les résultats montrent des différences significatives dans les caractéristiques sociales des femmes selon leur statut parental au moment de la remise en couple, particulièrement en termes de niveau de diplôme, catégorie socioprofessionnelle et tranche de revenus. Les belles-mères sans enfants semblent généralement mieux placées en termes de qualification et de revenus, tandis que les belles-mères avec enfants et les mères sans beaux-enfants font face à davantage de défis socio-économiques.
+Ainsi les beaux pères sans enfants sont moins diplômés que les autres
+hommes vivants en famille recomposée, en ce sens, ils sont d'avantage
+représentés chez les ouvriers non-qualifiés. A l'inverse, les
+belles-mères sans enfants sont d'avantage diplômés que les autres femmes
+vivants en famille recomposée et occupent d'avantage des emplois de
+catégories intermédiaire ou subordonnés mais qualifiés. Il est aussi
+intéressant de noter la sur-représentation des beaux-pères dans les
+emplois de catégories intermédiaires à dominante féminine (les
+"médiateur-ice-s") et des belles-mères dans les emplois subalternes à
+dominante masculine (les ourvier-e-s). Ainsi, d'une part les positions
+dans les rapports sociaux de classe des beaux-pères et des belles-mères
+ne sont pas analogues, et semble correspondent aux différences de
+positions observées pour les mères et les pères célibataires. D'autre
+part, on observe sur-représentation des beaux-pères et des pères remis
+en couple dans les catégories socio-professionnelles à dominantes
+féminines et des belles-mères et des mères remises en couple dans les
+catégories à dominantes masculine. Ces deux résultats tendent à
+accréditer l'hypothèse d'une forme d'homogamie professionnelle dans les
+unions conjugales secondaires.
 
-
-
-## Des unions tout aussi inégalitaires 
-
-### Une homogamie de profession plus que de diplôme
+## Des unions secondaires plus ou moins inégalitaires ?
 
 Au vu des caractéristiques spécifiques que possèdent les mères, les
 pères, les belles-mères et les beaux-pères, on peut se demander si les
 unions secondaires sont plus ou moins homogames que les premières
-unions. 
+unions.
+
+### Une homogamie de profession plus que de diplôme
 
 Les graphiques ci-dessous présentent les plus hauts niveau de diplôme
 des femmes en fonction de ceux des hommes. Ils permettent de comparer
@@ -1997,7 +2380,7 @@ Si l'on regarde les niveau de diplôme, les couples formés après une
 première histoire conjugale et familiale apparaissent moins clairement
 homogames que le reste de la population. En effet, les hommes diplômes
 d'un doctorat, de grande école ou d'école d'ingénieur sont 27% a être en
-couple avec une femme diplômés de master (contre 20 à 21% pour
+couple avec une femme diplômée de master (contre 20 à 21% pour
 l'ensemble des couples ou l'ensemble des couples avec enfants). Ils sont
 également 34% a être en couple avec une femme diplômés d'un CAP ou d'un
 BEP contre 3 à 4% pour l'ensemble des couples. Parmi les diplômés du
@@ -2027,7 +2410,7 @@ tab$tableau +
 Les couples formées par des unions secondaires dans le cadre des
 recompositions familiale apparaissent également singuliers du point de
 vue des l'appartenance des conjoints aux catégories
-socio-professionnelles. Là oû l'homogamie de diplôme apparaît moins
+socio-professionnelles. Là oû l'homogamie de diplôme apparaît plus
 faible pour ces couples que pour l'ensemble des couples, l'homogamie de
 profession apparaît elle plus forte. C'est en particulier vrai pour les
 cadres du public ou de la culture (43% des hommes occupant ces postes
@@ -2092,22 +2475,52 @@ familles %>%
 
 ```
 
+### Des inégalités de revenu et d'épargne
 
-### Des ingéalités de revenu et d'épargne
-
-Les moments de séparation, parce qu'ils sont des moments de comptabilité concrête, permettent d'objectiver les effets différenciés de la conjugalité et de la parentalité sur les hommes et les femmes [@Tibunal des couples]. Après la rupture, les femmes ayant le plus souvent la garde des enfants, ces différences entre ex-conjoints s'accentuent [@ref
+Les moments de séparation, parce qu'ils sont des moments de comptabilité
+concrête, permettent d'objectiver les effets différenciés de la
+conjugalité et de la parentalité sur les hommes et les femmes [@Tibunal
+des couples]. Après la rupture, les femmes ayant le plus souvent la
+garde des enfants, ces différences entre ex-conjoints s'accentuent [@ref
 ?]. [Revue de littérature plus détaillée sur ces deux aspects.]
 
-On l'a vu, les couples formant des ménages à la configuration familiale recomposée sont moins souvent homogames si l'on regarde leur niveau de diplôme, mais il le sont plus souvent que les autres couples si on regarde leur position professionnelle. Ainsi on pourrait s'attendre à ce que ces couples, qui se forment plus fréquemment sur leur lieu de travail **[retrouver la ref]**, aient des revenus plus proches que les couples formés plus tôt dans les trajectoires individuelles.
+En même temps, les couples formant des ménages à la configuration
+familiale recomposée sont moins souvent homogames si l'on regarde leur
+niveau de diplôme, mais il le sont plus souvent que les autres couples
+si on regarde leur position professionnelle. Ainsi on pourrait
+s'attendre à ce que ces couples, qui se forment plus fréquemment sur
+leur lieu de travail [@costemalle], aient des revenus plus proches que
+les couples formés plus tôt dans les trajectoires individuelles. Ainsi
+on peut se demander comment s'articule ensemble les effets des
+trajectoires conjugales et familiales différentiés des hommes et des
+femmes avant la recomposition familiale et ceux de l'homogamie
+professionnelle.
+
+```{=tex}
+\begin{encadre}{Contribution féminine aux revenus du couple}
+
+Afin de quantifier l'inégalité de revenus entre conjoint, on calcule la contribution féminine aux revenus du couple. La part du revenu que la femme apporte au couple correspond à sa contribution par rapport au total des revenus individualisables perçus par les deux membres : 
 
 
+$\text{Contribution féminine} = \frac{\text{Revenus de la femme}}{\text{Revenus de l'homme} + \text{Revenus de la femme}}$
 
 
+Si les revenus de l'homme et de la femme sont identiques, la contribution de la femme est de 50 %. 
+Elle est de 0 % lorsque seul l'homme perçoit un revenu, et de 100 % lorsque seule la femme en perçoit. La contribution moyenne est calculée en prenant la moyenne des contributions des femmes dans l'ensemble des couples. 
+Il est à noter que dans 1,7 % des couples formés par au moins un adulte agé de 25 à 65 ans, aucun des deux partenaires ne perçoit de revenu, mais la contribution de la femme est tout de même considérée comme étant de 50 %.
+
+\end{encadre}
+```
 ```{r, include = FALSE}
-familles <- readRDS("Data_output/familles_parents.Rds")
+
+familles <- readRDS("Data_output/familles_parents.Rds") %>%
+  filter(!is.na(couple))
+
 familles$diff <- familles$n_REVENUS_F - familles$n_REVENUS_H
 familles$rap <- familles$n_REVENUS_H/familles$n_REVENUS_F
-
+table(familles$n_REVENUScut_F, familles$n_REVENUScut_H)
+210/nrow(familles)*100
+  
 familles <- familles  %>%
  mutate(
     n_RevenusContribF = case_when(
@@ -2118,7 +2531,6 @@ familles <- familles  %>%
   rec_PROP(Var = "n_RevenusContribF", 
            NewVar = "n_RevenusContribF_cut")
 
-summary(familles$n_RevenusContribF)
 weighted.mean(familles$n_RevenusContribF, weights = familles$PONDMEN, na.rm = T)
 quantile(familles$n_RevenusContribF, 
          weights = familles$PONDMEN, 
@@ -2141,7 +2553,7 @@ freq(familles$TYPMEN)
 
 freq(familles$CS12_F)
 familles <- familles %>%
-  filter(str_detect(TYPMEN5, "Couple")) %>%
+  #filter(str_detect(TYPMEN5, "Couple")) %>%
   mutate(TYPMEN_sexe = case_when(
     TYPMEN == "Couple avec un seul actif en emploi" & CS12_F %in% c("Retraité-é", 
                                                                     "Autre inactif-ve")  ~ "Couple avec un homme actif en emploi", 
@@ -2153,18 +2565,23 @@ familles <- familles %>%
 
 ```
 
+Dans l'ensemble dans un couple sur quatre, la femme gagne un revenu plus
+élevé que son conjoint. Nos résultats sont ici convergents avec ceux
+obtenus par @Morin2014 à partir de l'enquête revenus fiscaux et sociaux.
+Le graphique ci-dessous présente la contribution des femmes aux revenus
+du ménage en fonction de la configuration familiale du ménage.
 
+```{r, fig.cap = "Inégalité de revenu dans les couples en fonction de la configuration familiale du ménage", fig.asp = 0.35, fig.width = 9}
 
-```{r}
 familles %>%
-  filter(TYPMEN == "Couple avec deux actifs en emploi") %>%
+  #filter(TYPMEN == "Couple avec deux actifs en emploi") %>%
   mutate(n_RevenusContribF_cut = factor(n_RevenusContribF_cut) %>%
            fct_rev(), 
          n_TYPMEN_new = factor(n_TYPMEN_new) %>%
            fct_rev()) %>%
   ggplot(aes(x = n_TYPMEN_new, weigths = "PONDMEN")) + 
   geom_bar(aes(fill = n_RevenusContribF_cut), position = "fill") +
-  geom_text(aes(by = n_TYPMEN_new, fill = n_RevenusContribF_cut), stat = "prop", position = position_fill(.5)) +
+  geom_text(aes(by = n_TYPMEN_new, fill = n_RevenusContribF_cut), stat = "prop", position = position_fill(.5), size = 3) +
   scale_fill_brewer(palette = "PuOr",
                     direction = -1,
                     name = "Contribution\nféminine aux\nrevenus du\nménage")  +
@@ -2174,22 +2591,58 @@ familles %>%
   labs(x = "Configuration familiale du ménage", 
        )
 
+
+# familles %>%
+#   as_survey_design(weights = PONDMEN) %>%
+#   tbl_svysummary(include = c("TYPMEN_sexe",
+#                              "TYPEMPLOI_F",
+#                              "TYPEMPLOI_H"),
+#                              by = "n_TYPMEN_new")
+
 ```
 
+Dans 73,3% des ménages à la configuration familiales recomposée, le
+revenu masculin est plus élevé que le revenu féminin. On observe des
+proportions similaires (74,1%) dans les ménages à la configuration
+familiale traditionnelle. Les couples vivants sans enfants à leur
+domicile apparaissent légèrement moins inégalitaires que ceux vivant
+avec enfants (69,6%). La naissance d'enfant constitue en effet un moment
+d'accentuation des trajectoires professionnelles divergentes entre
+hommes et femmes [@MeursPailhéPonthieux]. C'est donc avant tout la
+présence d'enfants dans le ménage qui joue ici. Les femmes remises en
+couples ont probablement subi, comme les autres, le ralentissement de
+leur progression professionnelle, et notamment salariale, après la
+naissance de leurs enfants. A l'inverse les hommes subissent, moins
+souvent que les femmes, une perte de revenus après la naissance de leurs
+enfants, ils semblent même bénéficier d'une plus forte progression
+salariale après leur mise en couple [@retrouver **la ref**]. En
+revanche, les couples à l'origine de recompositions familiales les
+inégalités en défaveur des femmes apparaissent moins fortes que dans les
+autres couples : dans 43,1% d'entre eux, la femme contribue entre 40 et
+50% aux revenus du ménage contre 30% dans les couples formant des
+ménages à la configuration familiale traditionnelle.
 
+Cela s'explique en effet par la sur-représentation des configurations
+familiales recomposées dans lesquelles ce sont des mères célibataires
+qui se sont remises en couple. Le graphique ci-dessous présente la
+contribution des femmes aux revenus du ménage dans les familles
+recomposées, en fonction du sexe des parents. Il distingue les cas ou
+les hommes et femmes ont tous les deux des enfants, y compris issus de
+l'union actuelle, (mères et pères en couple), les cas ou seuls la femme
+à des enfants (mère en couple) et les cas ou seul l'homme à des enfants
+(père en couple).
 
-```{r}
+```{r, fig.cap = "Inégalité de revenu dans les familles recomposées en fonction du genre des parents", fig.asp = 0.3, fig.width = 9}
 
 familles %>%
-  filter(TYPMEN == "Couple avec deux actifs en emploi") %>%
   filter(n_TYPMEN_new =="Recomposée") %>%
   mutate(n_RevenusContribF_cut = factor(n_RevenusContribF_cut) %>%
            fct_rev(), 
-         n_TYPMEN_new = factor(n_TYPMEN_new) %>%
+         n_TYPMEN_sexe = factor(n_TYPMEN_sexe) %>%
            fct_rev()) %>%
   ggplot(aes(x = n_TYPMEN_sexe, weigths = "PONDMEN")) + 
   geom_bar(aes(fill = n_RevenusContribF_cut), position = "fill") +
-  geom_text(aes(by = n_TYPMEN_sexe, fill = n_RevenusContribF_cut), stat = "prop", position = position_fill(.5)) +
+  geom_text(aes(by = n_TYPMEN_sexe, fill = n_RevenusContribF_cut), stat = "prop", position = position_fill(.5), size = 3) +
   scale_fill_brewer(palette = "PuOr",
                     direction = -1,
                     name = "Contribution\nféminine aux\nrevenus du\nménage")  +
@@ -2201,39 +2654,78 @@ familles %>%
 
 ```
 
-conclusion : sur les inégalités entre conjoint, sur les positions dans
-la famille, sur le ménage
+Ainsi, dans 33,1% des cas une mère célibataire est remise en couple avec
+un homme sans enfants cohabitants, celle-ci a des revenus supérieurs à
+ceux de son conjoint. Dans 11,3% des cas, cette dernière contribue même
+à plus de 80% aux revenus individualisables du ménage. On peut
+probablement expliquer cela par le passage de ces mères par une période
+de monoparentalité. En effet, bien que les mères ayant la garde de leurs
+enfants connaissent une chute brutale de leur niveau de vie au moment de
+la séparation, ces difficultés économiques favorisent le retour à
+l'emploi pour les femmes qui étaient inactives avant la rupture
+conjugale [@abbasgarbinti]. A l'inverse, dans 74,1% les couples de sexes
+différents vivants seulement avec les enfants de l'homme, l'homme à un
+revenu supérieur à la femme. Dans 37,9% des cas, la contribution
+féminine aux revenus du couple est même inférieure à 40%. On observe
+bien un effet de la situation parentale dans ces couples puisque le fait
+d'avoir des enfants tend à renforcer les inégalités de revenus dans le
+couple pour les hommes et la modérer pour les femmes.
 
-## Décrire la position sociale des familles recomposées : une approche par les configurations conjugales
+Ainsi, les couples à l'origine de recompositions familiales apparaissent
+aussi souvent inégalitaires que les autres couples vivants avec des
+enfants. En revanche, cette inégalité, en défaveur des femmes est
+souvent moins forte que dans ces derniers : les femmes ont souvent un
+revenu inférieure mais proche de celui de leur conjoint. Les mères
+célibataires remises en couple avec un homme sans enfants apparaissent
+plus souvent que les autres dans des couples ou inégalité de revenu est
+en leur faveur. Ces inégalités de revenus, aussi fréquentes que dans les
+autres familles, mais moins fortes sont cohérentes avec plus forte
+homogamie de professions. Cette homogamie, probablement liée à des
+rencontres plus fréquentes sur le lieu de travail lors avec l'avancée en
+âge, ne corrige en revanche pas les effets différenciés des trajectoires
+conjugales et familiales antérieures sur les hommes et les femmes, elle
+ne semble que modérer les inégalités à l'intérieur du couple.
 
-Si l'échelle du ménage ne permet de saisir que partiellement les faits
-sociaux de déployant à une échelle inter-individuelle (logement,
-enfants, couple) [@Bonvalet ; @Toulemont], c'est celle qui est utilisée
-dans les enquêtes de la statistique publique. Caractériser socialement
-les ménages, et non seulement les individus qui les composent permet
-ainsi d'étudier les caractéristiques des logements en fonction des
-ménages qui y vivent, la réussite scolaire des enfants en fonction des
-ménages auquel ils appartiennent ou encore de calculer un niveau vie
-commun à l'ensemble des membres. On a vu que, dans les familles
-recomposées plus que dans les autres, le logement appartient à l'un des
-conjoint, les enfants ne sont pas tous des enfants communs au couple et
-que les couples sont moins homogames du point de vu du diplôme, mais
-d'avantage du point de vue de la profession. Ainsi, résumer la position
-sociale du ménage à celle de la personne de référence, ne nous
-paraissait pas satisfaisant. La personne de référence est en effet le
-principal apporteur de ressource. A égalité de de ressources, la
-personne de référence est, par ordre de priorité l'actif puis le
-retraité puis l'autre inactif. A situation égale, la personne de
-référence est la plus âgée. Or, dans les familles recomposées, les
-beaux-parents, surtout lorsqu'ils n'ont pas eux-même d'enfants, ont en
-moyenne des revenus plus élevés que les parents. Ils sont donc
-mécaniquement plus souvent personne de référence que les parents. Ainsi, la priorité serait ici non seulement
-donnée à l'homme, mais en particulier au beau-père sans enfants dans le
-ménage. Nous aurions aussi pu construire une PCS "Ménage" en suivant la
-nouvelle nomenclature mise en place en 2020. Codée par une opération de
-synthèse des catégories socioprofessionnelles (CSP) des deux membres du
-couple lorsqu'il existe, cette PCS « ménage » est chargée de mieux
-rendre compte de la position sociale du ménage. Cependant en cherchant à
+## Décrire la position sociale des familles recomposées : articuler les positions dans les rapports sociaux des membres du ménage
+
+Raisonner à l'échelle de l'individu nous a permis de caractériser assez
+finement les positions sociales des adultes appartenant aux ménages à la
+configuration familiale recomposée. Puis, travailler à l'échelle du
+couple, en confrontant les caractéristiques des hommes et des femmes a
+permis de saisir certains aspects des rapports sociaux de sexe à
+l'intérieur des familles. Si l'échelle du ménage ne permet de saisir que
+partiellement les faits sociaux de déployant à une échelle
+inter-individuelle (logement, enfants, couple) [@Bonvalet ; @Toulemont],
+c'est celle qui est utilisée dans les enquêtes de la statistique
+publique. Caractériser socialement les ménages, et non seulement les
+individus qui les composent permet par exemple d'étudier les
+caractéristiques des logements en fonction des ménages qui y vivent, la
+réussite scolaire des enfants en fonction des ménages auquel ils
+appartiennent ou encore de calculer un niveau vie commun à l'ensemble
+des membres.
+
+Dans les familles recomposées plus que dans les autres, les enfants ne
+sont pas tous des enfants communs au couple et les couples sont moins
+homogames du point de vu du diplôme, mais d'avantage du point de vue de
+la profession. Ainsi, résumer la position sociale du ménage à celle de
+la personne de référence, ne nous paraissait pas satisfaisant. La
+personne de référence est en effet le principal apporteur de ressource.
+A égalité de de ressources, la personne de référence est, par ordre de
+priorité l'actif puis le retraité puis l'autre inactif. A situation
+égale, la personne de référence est la plus âgée. Or, dans les familles
+recomposées, les beaux-parents, surtout lorsqu'ils n'ont pas eux-même
+d'enfants, ont en moyenne des revenus plus élevés que les parents. Ils
+sont donc mécaniquement plus souvent personne de référence que les
+parents. Ainsi, la priorité serait ici non seulement donnée à l'homme,
+mais en particulier au beau-père sans enfants dans le ménage.
+
+### Une approche multidimentionelle de la stratification sociale
+
+Nous aurions pu construire une PCS "Ménage" en suivant la nouvelle
+nomenclature mise en place en 2020. Codée par une opération de synthèse
+des catégories socioprofessionnelles (CSP) des deux membres du couple
+lorsqu'il existe, cette PCS « ménage » est chargée de mieux rendre
+compte de la position sociale du ménage. Cependant en cherchant à
 synthétiser dans une même échelle des positions sociales dans les
 rapports sociaux de classes et de genre parfois antagoniques, cette
 refonte ne change pas fondamentalement de perspective : le ménage reste
@@ -2252,8 +2744,6 @@ nomenclature PCS Ménage aurait justement eu l'avantage de la
 comparabilité. Cependant, l'introduction de la PCS ménage étant récente,
 il n'existe pas encore, à notre connaissance de travaux portant sur les
 familles recomposées faisant usage de cette nomenclature.
-
-### Une approche multidimentionelle et configurationelle
 
 Chercher à caractériser socialement les familles recomposées suppose
 donc approche qui prend en compte les configurations conjugales de
@@ -2285,24 +2775,176 @@ dépasser ce deuxième problème.
 
 En comparaison du travail réalisé par Joannie Cayouette Remblière et Mathieu Ichou, les variables choisies ici donnent plus de place à la mesure de l'homogamie et des ressources économiques du ménage, et moins aux positions dans les rapports sociaux de race, aux trajectoires migratoires, à la nationalité ainsi qu'à la composition. C'est l'un des autres avantages de cette méthode : elle permet d'adapter les dimensions de la stratification sociale privilégiées à l'objet étudié.
 
-On observe des formes d'équivalence entre les dimensions de l'analyse réalisée ici et celles réalisées par Joannie Cayouette Remblière et Mathieu Ichou sur les données du Panel de la DEPP et sur l'enquête Trajectoires et Origines de l'Insee. Les deux premiers axes de l'ACM, correspondant au volume global de capitaux et à la localisation résidentielle, sont identiques aux deux premiers axes obtenus par les auteur-e-s de l'article. Le troisième axe, qui correspond au volume de patrimoine détenu par les ménages, n'a pas d'équivalent dans l'article, mais il s'explique par l'importance accordée au patrimoine dans le choix des variables introduites dans l'ACM. L'opposition entre les "gens du public" et les "gens du privé" [@Singly] se retrouve ici sur l'axe 6, celle entre les indépendants et les salariés sur l'axe 7.
+On observe des formes d'équivalence entre les dimensions de l'analyse réalisée ici et celles réalisées par Joannie Cayouette Remblière et Mathieu Ichou sur les données du Panel de la DEPP et sur l'enquête Trajectoires et Origines de l'Insee. Les deux premiers axes de l'ACM, correspondant au volume global de capitaux et à la localisation résidentielle, sont identiques aux deux premiers axes obtenus par les auteur-e-s de l'article. Le troisième axe, qui correspond au volume de patrimoine détenu par les ménages, n'a pas d'équivalent dans l'article, mais il s'explique par l'importance accordée au patrimoine dans le choix des variables introduites dans l'ACM. L'opposition entre les "gens du public" et les "gens du privé" [@Singly] se retrouve ici sur l'axe 6, celle entre les indépendants et les salariés sur l'axe 7. 
+
+De même, les septs clusters obtenus garce à la CAH montrent des ressemeblences avec ceux ebtenus pare les auteur-ice-s de l'article, en paticulier avec ceux obtenus à partir de l'enquête Trajectoire et Origine. Ainsi, les cluster 2 et 7 crespondent respectivement aux cluster T2/P2 et T1/P1 de l'article : il s'agit des classes superieures à fort capital culturel et des classes superieures à fort capital économique. On retrouve aussi les "petits-moyens" (C1 dans notre travail et T4 dans l'article). Les "petits indépendants" (C5) trouvent ainsi leur equivaent dans les cluster T5 et P6. Le cluster des "classes populaires urbaines et célibataires" (C6) se situe quemque part entre les ouvriers et employés célibataires de trajectoires et Origines (T6) et la petite fonction publique du panel de la DEEP (P5). Enfin les "classes populaires précaires" (C3), apparaissent prochent des classes populaires précarisées du panel de la DEEP (P9) et des "classes populaires imigrés urbaines" de Trajectoire et Origine (T8).
+
 
 Pour plus de détails sur la construction de la variable de position sociale du ménage, voir les développements en annexe
 
 \end{encadre}
 ```
-[Peut être que je devrais passer moins de temps à décrire les clusters,
-et accorder plus de place à la sous-sous partie sur le caractere situé
-des recompositions familiales]
+En reproduisant la méthode proposé par les auteur-ice-s de l'article,
+nous avons construits 7 clusters qui correspondent à 7 fractions de
+classes.
 
-### La recomposition familiale, une configuration située socialement
+```{r, eval = F}
+familles <- readRDS("Data_output/familles_parents.Rds")
 
-Le tableau présente la répartition des configurations familiales selon
-les fractions de classe, en pourcentages. Pour chaque type de ménage,
-les pourcentages indiquent la proportion des différentes classes
-sociales. Comparer ces proportions à la distribution globale permet de
-déterminer si certaines classes sont surreprésentées ou
-sous-représentées dans certaines configurations familiales.
+familles %>%
+  as_survey_design(weights = PONDMEN) %>%
+  tbl_svysummary(include = n_FractionClasse, 
+                 statistic = list(n_FractionClasse ~ "{p}% ({p_unweighted})"))
+```
+
+Le cluster 1 [C1] comprend 20% de la population (et 21,8% de
+l'échantillon), est constitués d'hommes ouvriers qualifiés (37,1%) et de
+femmes employés (50,3,%) rarement inactif-ve-s mais plus souvent
+retraité-e-s qui habitent dans des communes rurales, ou des villes
+petites et moyennes. Iels ont des niveau de diplômes assez faibles mais
+possèdent des qualifications techniques (CAP ou BEP notamment). Iels ont
+des niveaux de vie et de patrimoine (estimé) intermédiaires. Iels sont
+majoritairement propriétaires avec ou sans crédit (92,1%) et résident
+généralement dans des maisons (92,3%) plutôt que des appartements. Iels
+sont principalement nés en France. Lorsqu'iels sont salarié-e-s, iels
+très majoritairement en emplois à durée indéterminée et à temps complet.
+Ils représentent donc les fractions les plus stables et qualifié du
+salariat d’exécution, accédant de ce fait à un niveau de vie
+intermédiaire et à la propriété immobilière. C'est pourquoi nous avons
+choisit de les nommer les "petits-moyens", en référence aux fractions de
+classes étudiées par [@cartiercoutantmascletsiblot].
+
+Le cluster 2 représentent 9,3% des ménages (7% de l'échantillon). Les
+hommes et les femmes qui y appartiennent occupent des postes de cadre du
+public ou de la culture (environ 30%), de cadre du privé, chef
+d'entreprise et profession libérale (environ 20%) et de professions
+intermédiaires "médiatrices" (15% pour les hommes et 20% pour les
+femmes). Iels sont majoritairement diplomé-e-s d'un master et sont
+sur-représentés parmi les diplômé-e-s d'un doctorat, des écoles
+d'ingénieur ou des grandes écoles et vivent dans les grandes villes et
+l'agglomération parisienne. Iels ont des niveaux de vie parmi les plus
+élevés, mais sont le plus souvent locataires (61,6%) et vivent en
+appartement (73,7%). Très diplomés, urbains et occupant des emplois
+d'encardement plutôt dans le secteur public, ces ménages n'accedent par
+pour autant au niveau de vie ou de patrimoine les plus élevés ni la
+propriété de leur logement. En ce sens, nous avons choisit de les
+nommer, la "bourgeoisie culturelle", pour refléter les distinctions
+opérées au sein des classes supérieures selon la structure des capitaux
+détenus [@bourdieudistinction]
+
+Le cluster 3 représente 9,2% des ménages (15,9% de l'échantillon). Ils
+comprend des hommes ouvriers (50,8%), retraités ou, dans une moindre
+mesure inactifs et des femmes principalement inactives (48,7%) et moins
+souvent opuvière non qualifiées (19%). La très grande majorité d'entre
+elleux sont sans diplômes ou avec seulement le CEP. Ils ont des niveau
+de vie particulièrement faibles puisque 45,2% de ces ménages se trouvent
+dans le premier décile de niveau de vie et des patrimoines nuls ou très
+faibles. Iels sont majoritairement locataires de leur logement (83,2%)
+et résident en appartement (69,3%). Les hommes et les femmes de ces
+ménages sont sur-représenté parmi les travailleur-euse-s en contrat à
+durée déterminée et les sans emplois. Seuls la moitié des hommes et des
+femme de ce cluster sont nés-e-s en France métropolitaine, et environ un
+tiers sont né-e-s en Afrique. Iels représentent donc les fractions les
+plus précaires et pauvres des classes populaires, souvent immigrés et
+probablement souvent issus de l'immigration. Nous ne disposons pas, ici
+des variables nécéssaires pour affirmer, que l'appartenance à cette
+fraction de classe signifie aussi une posisition dominée dans les
+rapports sociaux de "race", en ce sens avons décidé de nommé ce cluster
+les "classes populaires précaires", tout en gardant à l'esprit les liens
+entre immigrations et précarisation sur le marché du travail [@brinbaum]
+
+Le cluster 4 comprend 22% des ménages (19,3% de l'échantillon). Il est
+composé de femmes occupants des emploi de catégorie intermédiaires
+notamment de médiatrices (45,2%) et d'homme occupant des emploi
+intermédiaires mais aussi de cadre du privé, de chef d'entreprise ou de
+professions libérales pour 20,4% d'entre eux. Iels ont donc logiquement
+des niveaux de diplôme correspondants à ces emplois (entre le
+baccalauréat et la licence). Ces ménages vivent principalement hors de
+l'agglomération parisienne, ce qui leur permet d’accéder à un niveau de
+vie proche de celui du cluster 2 (les classes supérieures à dominante
+culturel) mais aussi à la propriété de leur logement (92,1%), le plus
+souvent avec crédit en cours de remboursement (53,5%). Ceux-ci estiment
+leur patrimoines dans les tranches les plus hautes, et semblent donc
+posséder des biens, notamment immobilier, de valeurs plus élevé que les
+"petits-moyens" du premier cluster. En ce sens, nous avons choisit de
+les nommer les "classes moyennes supérieures de province".
+
+Le cluster 5 concentre 6,9% des ménages (7,8% de l'échantillon). Il est
+composé majoritairement d'hommes et de femmes petit-e-s indépendant-e-s,
+de niveau de diplôme inférieure ou équivalent au baccalauréat. Ces
+ménages se caractérisent par des niveaux de vie très faibles (40,1%
+appartiennent au premier décile) mais des niveau de patrimoines notables
+(77,3% estiment leur patrimoine à plus de 30 000 euros, et 22% à plus de
+350 000 euros). Ils sont en effets souvent propriétaires de leur
+logement (64.8%). Ils sont sur-représentés dans les communes rurales et
+les petites communes, probablement du fait de la présence des
+agriculteurs dans ce groupe. Logiquement, nous avons donc nommé ce
+cluster les "petits indépendants".
+
+Le cluster 6 comprend 25% des ménages (22,7% de l'échantillon). Il est
+composé par des ménages ou vivent des femmes employées (53,6%) et des
+homme ouvriers qualifiés (29%) et dans une moindre mesure occupant des
+emploi d'employés (19,8%) ou de professions intermédiaires (23,7%). Iels
+ont des niveau de diplômes intermédiaires, mais des niveau de vie plus
+faibles que les "petits-moyen". Les hommes et les femmes de ces ménages
+sont en effet sur-représentés parmi les salariés en contrat à durée
+déterminée. Ces ménages résident principalement dans les grandes villes
+et l'agglomération parisienne (70,9%), ce qui se traduit par la location
+d'un logement (88,7% d'entre eux), le plus souvent d'un appartement
+(78,5%). Les personnes né-e-s en Afrique et dans les DOM-TOM y sont
+sur-repésentées tout en restant minoritaires. Il s'agit en majorité de
+célibataires sans enfant s (41,6%) et de familles monoparentales
+(19,2%), ce qui explique la faiblesse de leur niveau de vie en
+comparaison des emploi occupés. En ce sens, nous proposons de les nommer
+les "classes populaires célibataires et urbaines".
+
+Enfin le cluster 7 comprend 7,1% des ménages (5,4% de l'échantillon).
+Les hommes et les femmes qui y appartiennent occupent des emplois de
+cadre du privé, de chef-fe d'entreprise ou des professions libérales
+(72,9% des hommes et 51,6% des femmes) et plus marginalement de cadre du
+public ou de la culture (10,4% des hommes et 15,8% des femmes). Iels
+sont très fortement diplomé-e-s et ont le niveau de vie le plus élevé de
+tous les clusters (70,6% appartiennent au 10ème décile). Encore
+d'avantage que ménages appartenant à la bourgeoisie culturelle, ces
+ménages résident dans les grandes villes, et particulièrement dans
+l'agglomération parisienne (43%). Cependant, à la différence des
+premières, ces ménages résident majoritairement dans des maisons (64,6%)
+et sont propriétaires de leur logement (84,6%). Ainsi, ils estiment leur
+patrimoines élevés : 69,3% déclarent un patrimoine du ménage supérieur à
+350 000 euros. Il est également interéssant de noter que les personne
+né-e-s à l'étranger hors UE et Afrique y sont légerment sur-représenté,
+traduisant le caractère cosmopolite de la bourgeoisie économique
+[@wagner]. Nous avons donc choisit de nommer ce cluster, la "bourgeoisie
+économique", pour traduire, comme dans le cas de la bourgeoisie
+culturelle, la structure des capitaux détenus par cette fraction de
+classe [@bourdieudistinction].
+
+Les variables décrivant la composition et la structure familiale des
+ménages ont été volontairement exclu de l'analyse géométrique des
+données. L'espace social ainsi produit ignore donc, par construction,
+les configurations familiale.s L'axe 4 de l'analyse met cependant en
+évidence l'importance de la conjugalité et de la bi-activité dans la
+stratification sociale, notamment au sein des classes populaires.
+L'analyse des clusters confirme l'importance de celles-ci. En premier
+lieu, comme le montre les clusters 1 et 6, dans les classes populaires,
+le célibat est associé à une plus grande précarité, notamment pour les
+homme seuls et les mères célibataires. En miroir, le cluster 1
+constituant les "petits moyens", parmi lesquels les couples sont
+majoritaires et sur-représentés par rapport à l'ensemble de la
+population, accèdent, y compris avec des niveau de diplômes plus bas, à
+des positions professionnelles et des revenus plus élevés que les
+individus des clusters 1 et 6.
+
+### La recomposition familiale, une configuration familiale plus fréquente dans les classes populaires.
+
+Il s'agit maintenant de situer les configurations familiales dans
+l'espace social. Le tableau ci-dessous présente la répartition des
+configurations familiales selon les fractions de classe, en
+pourcentages. Pour chaque type de ménage, les pourcentages indiquent la
+proportion des différentes fractions de classes sociales. Comparer ces
+proportions à la distribution globale permet de déterminer si certaines
+configurations familiales sont sur-représentées ou sous-représentées
+dans certaines fractions de classes.
 
 ```{r famillesrecposition, results = "asis", fig.cap = "Position sociale des familles recomposées"}
 load("Resultats/tab_positionTypeFamiliaux.Rdata")
@@ -2311,87 +2953,58 @@ tab$tableau %>%
                  booktabs = TRUE) %>%
   kable_styling(latex_options = "hold_position", 
                 font_size = 7) %>%
+    column_spec(1, "1.7in") %>%
+  column_spec(2, "0.5in") %>%
+  column_spec(3, "0.5in") %>%
+  column_spec(4, "0.5in") %>%
+  column_spec(5, "0.5in") %>%
+  column_spec(6, "0.5in") %>%
+  column_spec(7, "0.5in") %>%
+  column_spec(8, "0.5in") %>%
   add_kablesource_note(N = tab$n, 
                        champ = tab$champ,
-                       lecture = "")
+                       lecture = "14% des couples sans enfants appartiennent aux classes populaires urbaines.")
 ```
 
-Pour les couples sans enfant, on observe que 5,9% appartiennent aux
-classes populaires racisées (C6), ce qui est inférieur à leur
-représentation dans l'ensemble de la population (9,2%). Les classes
-populaires urbaines (C5) sont également légèrement sous-représentées à
-14% par rapport à 25% dans l'ensemble de la population. Les petits
-indépendants (C4) sont légèrement surreprésentés à 6,1% par rapport à
-6,9%. Les petits-moyens (C1) sont surreprésentés à 32% par rapport à 20%
-dans l'ensemble de la population. Les classes moyennes supérieures (C3)
-sont surreprésentées à 23% par rapport à 9,3%. Les classes supérieures
-du pôle public (C2) sont surreprésentées à 9,7% par rapport à 7,1%, et
-les classes supérieures du pôle privé (C7) sont surreprésentées à 9,2%
-par rapport à 7,1%.
+D'une manière générale, dans les ménages recomposés, les classes
+populaires précaires (C6) sont sur-représentées à 14% par rapport à
+9,2%. Les petits indépendants (C4) sont également sur représentés à 9,2%
+par rapport à 6,9%. Logiquement, les classes populaires célibataires et
+urbaines y sont sous-représentées. Les classes supérieures (à dominante
+culturelle comme économique) y sont également légèrement
+sous-représentés. Cependant, lorsqu'on les compare aux ménages à la
+configuration familiale traditionnelle, elles apparaissent largement
+sur-représentées dans les fractions les plus défavorisées. Elles sont en
+effet beaucoup moins nombreuses a ppartenir à la bourgeoisie économique
+(6,7% contre 12% des familles traditionnelle), et aux classes moyennes
+supérieures (21% contre 30%). Elles sont beaucoup plus nombreuses à
+appartenir à la fraction la plus pauvre, les classes populaires
+précaires (14% contre 8,1%) et même aux classes populaires célibataires
+et urbaines (20% contre 15%). En cela, elle se rapproche des ménages à
+la configuration familiale monoparentale : ils sont 14% à appartenir aux
+classes populaires précaires et 47% à appartenir aux classes populaires
+célibataires et urbaines. Ainsi, les familles recomposées sont
+gloablement sur-représentés dans les clases populaires et moyennes si on
+les compare aux classes supérieures. Elles représentent ainsi 6,2% des
+classes populaires précaires, 5,6% des petits indépendants, et 4,5% des
+"petits moyens" contre 4% des classes moyennes supérieures, 3,2% de la
+bourgoisie culturelle et 3,2% de la bourgeoisie économique.
 
-Pour les ménages traditionnels, les classes populaires racisées (C6)
-sont légèrement sous-représentées à 8,1% par rapport à 9,2%. Les classes
-populaires urbaines (C5) sont sous-représentées à 15% par rapport à 25%.
-Les petits indépendants (C4) sont légèrement surreprésentés à 7,1% par
-rapport à 6,9%. Les petits-moyens (C1) sont surreprésentés à 22% par
-rapport à 20%. Les classes moyennes supérieures (C3) sont nettement
-surreprésentées à 29% par rapport à 9,3%. Les classes supérieures du
-pôle public (C2) sont proportionnellement représentées à 7,1%. Les
-classes supérieures du pôle privé (C7) sont surreprésentées à 11% par
-rapport à 7,1%.
-
-Dans les ménages recomposés, les classes populaires racisées (C6) sont
-surreprésentées à 14% par rapport à 9,2%. Les classes populaires
-urbaines (C5) sont également surreprésentées à 20% par rapport à 25%.
-Les petits indépendants (C4) sont surreprésentés à 9,2% par rapport à
-6,9%. Les petits-moyens (C1) sont sous-représentés à 12% par rapport à
-20%. Les classes moyennes supérieures (C3) sont surreprésentées à 21%
-par rapport à 9,3%. Les classes supérieures du pôle public (C2) sont
-proportionnellement représentées à 7,1%. Les classes supérieures du pôle
-privé (C7) sont proportionnellement représentées à 6,7%.
-
-Les familles monoparentales montrent une surreprésentation des classes
-populaires racisées (C6) et des classes populaires urbaines (C5) à 14%
-et 47% respectivement, par rapport à 9,2% et 25% dans l'ensemble de la
-population. Les petits indépendants (C4) sont proportionnellement
-représentés à 6,5% par rapport à 6,9%. Les petits-moyens (C1) sont
-sous-représentés à 8,2% par rapport à 20%. Les classes moyennes
-supérieures (C3) sont proportionnellement représentées à 14%. Les
-classes supérieures du pôle public (C2) sont proportionnellement
-représentées à 7,4%. Les classes supérieures du pôle privé (C7) sont
-sous-représentées à 2,2% par rapport à 7,1%.
-
-Pour les personnes seules, les classes populaires racisées (C6) sont
-sous-représentées à 10% par rapport à 9,2%. Les classes populaires
-urbaines (C5) sont surreprésentées à 39% par rapport à 25%. Les petits
-indépendants (C4) sont surreprésentés à 7,3% par rapport à 6,9%. Les
-petits-moyens (C1) sont sous-représentés à 12% par rapport à 20%. Les
-classes moyennes supérieures (C3) sont proportionnellement représentées
-à 13%. Les classes supérieures du pôle public (C2) sont surreprésentées
-à 13% par rapport à 7,1%. Les classes supérieures du pôle privé (C7)
-sont sous-représentées à 3,1% par rapport à 7,1%.
-
-Enfin, les ménages complexes présentent une proportion de 13% de classes
-populaires racisées (C6), ce qui est supérieur à 9,2% dans l'ensemble de
-la population. Les classes populaires urbaines (C5) sont
-proportionnellement représentées à 25%. Les petits indépendants (C4)
-sont sous-représentés à 5,1% par rapport à 6,9%. Les petits-moyens (C1)
-sont surreprésentés à 36% par rapport à 20%. Les classes moyennes
-supérieures (C3) sont proportionnellement représentées à 14%. Les
-classes supérieures du pôle public (C2) sont proportionnellement
-représentées à 6,2%. Les classes supérieures du pôle privé (C7) sont
-sous-représentées à 1,3% par rapport à 7,1%.
-
-En résumé, ce tableau révèle des variations significatives dans la
-répartition des configurations familiales selon les fractions de classe.
-Les classes populaires urbaines et racisées sont souvent surreprésentées
-dans les ménages monoparentaux et complexes. Les classes moyennes et
-supérieures montrent une plus forte présence dans les ménages sans
-enfant, traditionnels, et recomposés. Les ménages traditionnels et les
-couples sans enfant tendent à être composés de classes moyennes
-supérieures et de classes supérieures du pôle privé, tandis que les
-personnes seules et les ménages complexes montrent une plus grande
-diversité de classes sociales.
+On peut avancer plusieurs explications à la fréquence plus élevées des
+recompositions familiales dans classes populaires. On sait que les mères
+célibataires se remettent d'autant moins en couple qu'elles ont des
+revenus et des diplômes élevés [@retrouver]. En miroir, la précarité et
+la faiblesse des revenus des mères célibataires favorise leur remise en
+couple. Ainsi, dans les milieux où les contraintes budgétaires pèsent
+plus lourds, la cohabitation conjugale apparaît comme un moyen de
+limiter les dépenses, notamment de logement, et accélère la mise en
+couple cohabitant [@retrouver]. Cette remise en couple peut ensuite
+favoriser l'accès aux positions plus favorables. La conjugalité
+constitue en effet une ressource pour accéder à la propriété
+[@lambert2005] et accéder aux fractions les plus stables des classes
+populaires et aux classes moyennes [@amosséCartier]. De fait, c'est cela
+qui sépare les classes populaires célibataires et urbaines des petits
+moyens.
 
 # Chapitre 3. Rester mère isolée. Les arrangements monétaires inégalitaires dans les familles recomposées.
 
@@ -3563,10 +4176,7 @@ testCoeffWald(results$`Logement et charges`,
 
 ## Des inégalités de revenus aux inégalités de consommations
 
-### Des couples plus homogames mais tout aussi inégalitaires
-
-
-### Renforcées par une plus faible contribution des ex-conjoints
+### Des inégalités de revenus renforcées par une plus faible contribution des ex-conjoints
 
 ```{r aide_autremenage, eval = FALSE, out.width= "70%", fig.asp=0.6}
 
@@ -4049,7 +4659,7 @@ déterminant pour savoir si le répondant est un homme ou une femme.
 
 Les différentes classes sociales montrent des variations intéressantes
 lorsqu'elles sont comparées aux classes moyennes supérieures (C3), qui
-servent de modalité de référence. Les classes populaires racisées (C6)
+servent de modalité de référence. Les classes populaires précaires (C6)
 ont un OR de 0,84, mais ce résultat n'est pas significatif (p=0,11). Les
 classes populaires urbaines (C5) ont un OR de 1,22, suggérant une
 probabilité plus élevée que le répondant soit une femme, avec un
@@ -4265,7 +4875,7 @@ significatif.
 
 Pour les fractions de classe, les classes moyennes supérieures (C3)
 servent de modalité de référence. Comparées à cette modalité, les
-classes populaires racisées (C6) présentent un coefficient de -1499,
+classes populaires précaires (C6) présentent un coefficient de -1499,
 mais cette relation n'est pas statistiquement significative. Les classes
 populaires urbaines (C5) ont un coefficient de -381, ce qui est
 significatif et montre une diminution des dépenses. Les petits
@@ -5584,6 +6194,10 @@ En cas d'absence de remise de la reconnaissance conjointe mentionnée au même a
 ```
 ## Le niveau de vie, critère d'ouverture ou de fermeture des droits
 
+expliquer à quel point c'est central dans les politiques de
+redistribution, cf "France STratégie, le couple contribue-t-il encore à
+réduire les ingalités"
+
 ### dans les familles recomposées
 
 Au delà de l'indicateur de position sociale, le niveau de vie permet de
@@ -5715,7 +6329,7 @@ budgétaire.
 
 Les différentes classes socio-économiques présentent également des
 différences significatives. Les personnes appartenant aux classes
-populaires racisées (C6) ont un OR de 1,52 (IC 95% : 1,28 - 1,80 ; p \<
+populaires précaires (C6) ont un OR de 1,52 (IC 95% : 1,28 - 1,80 ; p \<
 0,001), ce qui indique qu'elles ressentent une aisance budgétaire
 supérieure par rapport à la catégorie de référence. Les classes
 populaires urbaines (C5) affichent un OR de 2,92 (IC 95% : 2,35 - 3,63 ;
@@ -6151,13 +6765,15 @@ tab$tableau[7][[1]]
 
 ### Classification ascendante hiérarchique
 
+#### Septs clusters pour sept fractions de classe
+
 A partir de ces sept axes nous avons réalisé une classification
 ascendante hiérarchique sur les coordonnées des individus. Nous avons
 choisit un découpage du dendrograme en 7 clusters. D'une part le critère
 du coude permettait de réaliser un tel découpage, d'autre part, celui-ci
 nous semblait proposer des distinctions intéressantes à l'intérieur des
 classes populaires et des classes supérieures, tout en conservant des
-effectifs suffisant dans chaque cluster.
+effectifs suffisant dans chaque clusters.
 
 ```{r clusterposition, fig.cap = "Position des clusters sur les différents axes"}
 
@@ -6166,9 +6782,20 @@ tab$tableau
 
 ```
 
-```{r clustercomposition, results = "asis", fig.cap = "Composition sociale des clusters"}
-load("Resultats/tab_culsters_composition.Rdata")
-tab$tableau 
+#### Caractérisation sociale des clusters
+
+```{r clustercomposition, results = "asis"}
+load("Resultats/tab_clusters_composition_act.Rdata")
+tab$tableau %>%
+  landscape()
+
+```
+
+```{r clustercomposition2, results = "asis"}
+load("Resultats/tab_clusters_composition_sup.Rdata")
+tab$tableau %>%
+  landscape()
+
 ```
 
 ## Budgets

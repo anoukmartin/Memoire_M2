@@ -60,7 +60,7 @@ var_label(adultes$AG) <- NULL
 
 dat <- adultes %>%
   as_survey_design(weights = PONDIND) %>%
-  select("AG", "DIP7", "CS12", "n_REVENUS", "n_PATRIMOINE", "SEXE", "LOGEMENT", "n_StatutParent", "n_StatutEnfants", "n_EnfantsHD") %>%
+  select("AG", "DIP7", "CS12", "n_REVENUS", "n_PATRIMOINE", "SEXE", "LOGEMENT", "n_StatutParent", "n_StatutEnfants") %>%
   mutate(Ensemble = T, 
          Effectifs = T)
 
@@ -112,10 +112,11 @@ tbl <- dat2 %>%
     label = list(DIP7 ~ "Plus haut niveau de diplôme", 
                  CS12 ~ "Catégorie socioprofessionnelle"),
     missing = "no") %>%
-  add_stat_label() %>%
   modify_header(all_stat_cols() ~ "**{level}**") %>%
-  add_overall(last = T, col_label = "**Ensemble**") 
+  add_overall(last = T, col_label = "**Ensemble**") %>%
+  add_stat_label() 
 
+tbl
 saveTableau(tbl, 
             type = "des", 
             label = "BeauxPeres_CaracteristiquesSociales",
@@ -142,10 +143,10 @@ tbl <- dat2 %>%
                  CS12 ~ "Catégorie socioprofessionnelle", 
                  n_REVENUS ~ "Tranche de revenus"),
     missing = "no") %>%
-  add_stat_label() %>%
   modify_header(all_stat_cols() ~ "**{level}**") %>%
-  add_overall(last = T, col_label = "**Ensemble**") 
-
+  add_overall(last = T, col_label = "**Ensemble**")  %>%
+  add_stat_label() 
+tbl
 saveTableau(tbl, 
             type = "des", 
             label = "BeauxMeres_CaracteristiquesSociales",
@@ -327,13 +328,14 @@ gg <- dat$variables %>%
   aes(x = SEXE, fill = n_StatutEnfants, weight = PONDIND) +
   geom_bar(position = "fill") +
   geom_text(aes(by = SEXE), 
+            size = 2.5,
             stat = "prop", position = position_fill(.5)) +
   xlab("") +
   ylab("Proportion") +
   labs(fill = "Enfants issus de l'union") +
   coord_flip() +
   scale_y_continuous(labels = scales::percent) + 
-  scale_fill_brewer(palette = "Pastel2") + 
+  scale_fill_brewer(palette = "BrBG") + 
   
   #                   labels = paste0(levels(d_clust$CSP), 
   #                                   c(" (1,43%)", " (6,7%)", 

@@ -502,9 +502,10 @@ rec_PROP <- function(data, Var, NewVar = FALSE) {
   data$temp
   data <- data %>% 
     mutate(temp = cut(temp,
-                      breaks = c(-Inf, 20, 40, 50, 60, Inf), 
+                      breaks = c(-Inf, 20, 40, 50, 60, 80, Inf), 
                       labels = c("Moins de 20%", "Entre 20 et 40%",
-                                 "Entre 40 et 50%", "Entre 50% et 60%", "Plus de 60%")))
+                                 "Entre 40 et 50%", "Entre 50% et 60%", 
+                                 "Entre 60 et 80%", "Plus de 80%")))
   if(isFALSE(NewVar)){
     data[, Var] <- data[, "temp"]
     data$temp <- NULL
