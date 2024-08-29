@@ -42,6 +42,7 @@ data$n_NEnfantsCouple_F
 data <- familles %>%   
   left_join(conso2, by = "IDENT_MEN") %>%
   mutate(n_TYPMEN_new = droplevels(n_TYPMEN_new)) %>%
+  mutate(n_TYPMEN_sexe = droplevels(n_TYPMEN_sexe)) %>%
   mutate(NIVIE = NIVIE/1200) %>%
   mutate(n_REVENUS_F = n_REVENUS_F/12000) %>%
   mutate(n_REVENUS_H = n_REVENUS_H/12000) %>%
@@ -59,7 +60,7 @@ data <- familles %>%
 
 data$n_NFraterie <- rowSums(data[ c("n_NEnfantsMenage", "n_NEnfantsHD")], na.rm = T)
 
-var_label(data$n_NFraterie) <- "Taille de la fraterie"
+var_label(data$n_NFraterie) <- "Taille de la fraterie étendue"
 var_label(data$n_TYPFAM) <- "Configuration familiale du ménage"
 var_label(data$n_FractionClasse) <- "Position sociale du ménage"
 var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants du ménage"
@@ -101,7 +102,8 @@ summary(data$PONDMEN)
 
 data$Vetements_enfants
 data <- data %>%
-  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13))
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
+  mutate(n_TYPFAM = droplevels(n_TYPFAM)) 
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
   group_by(n_TYPMEN_new, DNIVIE2) %>%
@@ -127,8 +129,11 @@ reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ N
 #   subset = !is.na(Vetements_enfants))
 
 #reg <- step(reg)
-tblreg <- tbl_regression(reg, intercept = T, exponentiate = F) |>
-  add_glance_source_note() 
+tblreg <- tbl_regression(reg, intercept = T, 
+                         label = list(n_TYPFAM ~ "Configuration familiale du ménage")) |>
+  add_significance_stars(hide_ci = F, hide_se =  T, 
+                         threshold = c(0.001, 0.01, 0.05, 0.1)) %>%
+  add_glance_source_note()
 
 tblreg
 
@@ -142,6 +147,170 @@ saveTableau(tableau = tblreg,
             champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
             n = nrow(data), 
             ponderation = T)
+
+## Régression pondérée dépenses femme ########################################
+
+
+data$Vetements_femme
+data <- data %>%
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
+  mutate(n_TYPFAM = droplevels(n_TYPFAM)) 
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+tab <- data %>%
+  group_by(n_TYPMEN_new, DNIVIE2) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_femme, weights = PONDMEN))
+
+tab %>%
+  pivot_wider(id_cols = DNIVIE2, 
+              names_from = n_TYPMEN_new, 
+              values_from = mean_wtd)
+
+
+reg <- survreg(Surv(Vetements_femme+1, Vetements_femme+1>1, type='left') ~ NIVIE +  n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+               data=data, 
+               weights = data$PONDMEN, 
+               #subset = !is.na(Vetements_enfants),
+               dist='gaussian')
+
+# reg <- lm(
+#   Vetements_enfants ~  NIVIE+ n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+#   data = data, 
+#   weights = data$PONDMEN, 
+#   subset = !is.na(Vetements_enfants))
+
+#reg <- step(reg)
+tblreg <- tbl_regression(reg, intercept = T, 
+                         label = list(n_TYPFAM ~ "Configuration familiale du ménage")) |>
+  add_significance_stars(hide_ci = F, hide_se =  T, 
+                         threshold = c(0.001, 0.01, 0.05, 0.1)) %>%
+  add_glance_source_note() 
+
+tblreg
+
+#ggcoef_model(reg)
+
+# On enregistre 
+saveTableau(tableau = tblreg, 
+            typ = "reg", 
+            label = "DepVetementFemme", 
+            description = "Regressions sur les dépenses de vetement par enfants", 
+            champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
+            n = nrow(data), 
+            ponderation = T)
+
+
+
+#### Regression dépenses de vetement homme #########
+data$Vetements_homme
+data <- data %>%
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
+  mutate(n_TYPFAM = droplevels(n_TYPFAM)) 
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+tab <- data %>%
+  group_by(n_TYPMEN_new, DNIVIE2) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_homme, weights = PONDMEN))
+
+tab %>%
+  pivot_wider(id_cols = DNIVIE2, 
+              names_from = n_TYPMEN_new, 
+              values_from = mean_wtd)
+
+
+reg <- survreg(Surv(Vetements_homme+1, Vetements_homme+1>1, type='left') ~ NIVIE +  n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+               data=data, 
+               weights = data$PONDMEN, 
+               #subset = !is.na(Vetements_enfants),
+               dist='gaussian')
+
+# reg <- lm(
+#   Vetements_enfants ~  NIVIE+ n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+#   data = data, 
+#   weights = data$PONDMEN, 
+#   subset = !is.na(Vetements_enfants))
+
+#reg <- step(reg)
+tblreg <- tbl_regression(reg, intercept = T, 
+                         label = list(n_TYPFAM ~ "Configuration familiale du ménage")) |>
+  add_significance_stars(hide_ci = F, hide_se =  T, 
+                         threshold = c(0.001, 0.01, 0.05, 0.1)) %>%
+  add_glance_source_note() 
+
+tblreg
+
+#ggcoef_model(reg)
+
+# On enregistre 
+saveTableau(tableau = tblreg, 
+            typ = "reg", 
+            label = "DepVetementHomme", 
+            description = "Regressions sur les dépenses de vetement ", 
+            champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayantà charge au moins un enfant de moins de 14 ans"), 
+            n = nrow(data), 
+            ponderation = T)
+
+
+## Régression pondérée dépenses adultes ########################################
+
+
+data$Vetements_adultes <- data$Vetements_femme+data$Vetements_homme
+data$n_NEnfantsplus13 <- data$n_NEnfantsMenage - data$n_NEnfantsMenage13
+
+data <- data %>%
+  mutate(n_NAdultes = case_when(
+    !is.na(couple) ~ 2+n_NEnfantsplus13, 
+    is.na(couple) ~ 1+n_NEnfantsplus13))
+data$n_NAdultes
+data$Vetements_adultes <- data$Vetements_adultes/data$n_NAdultes
+data <- data %>%
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
+  mutate(n_TYPFAM = droplevels(n_TYPFAM)) 
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+tab <- data %>%
+  group_by(n_TYPMEN_new, DNIVIE2) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_adultes, weights = PONDMEN))
+
+tab %>%
+  pivot_wider(id_cols = DNIVIE2, 
+              names_from = n_TYPMEN_new, 
+              values_from = mean_wtd)
+
+
+reg <- survreg(Surv(Vetements_adultes+1, Vetements_adultes+1>1, type='left') ~ NIVIE + n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+               data=data, 
+               weights = data$PONDMEN, 
+               #subset = !is.na(Vetements_enfants),
+               dist='gaussian')
+
+# reg <- lm(
+#   Vetements_enfants ~  NIVIE+ n_NEnfantsMenage13 + n_AgeEnfantsMenage13 + n_NEnfantsMenage + n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+#   data = data, 
+#   weights = data$PONDMEN, 
+#   subset = !is.na(Vetements_enfants))
+
+#reg <- step(reg)
+tblreg <- tbl_regression(reg, intercept = T, 
+                         label = list(n_TYPFAM ~ "Configuration familiale du ménage")) |>
+  add_significance_stars(hide_ci = F, hide_se =  T, 
+                         threshold = c(0.001, 0.01, 0.05, 0.1)) %>%
+  add_glance_source_note() 
+
+tblreg
+
+#ggcoef_model(reg)
+
+# On enregistre 
+saveTableau(tableau = tblreg, 
+            typ = "reg", 
+            label = "DepVetementAdulte", 
+            description = "Regressions sur les dépenses de vetement par adulte", 
+            champ = paste0(infosBDF$champ, "formé par au moins un adulte agé et 25 à 65 ans et ayant à charge au moins un enfant de moins de 14 ans"), 
+            n = nrow(data), 
+            ponderation = T)
+
+
 
 
 # régression sur les services domestiques ######################################

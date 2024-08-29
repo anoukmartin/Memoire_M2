@@ -105,6 +105,7 @@ data[, names(conso2)[-c(16)]] <- (data[, names(conso2)[-c(16)]]/data$`Consommati
 data
 ## Tableau : structure des budgets #############################################
 names(data)
+class(data$Alimentation)
 tab <- data %>%  
   mutate(Effectifs = 1) %>%
   as_survey_design(weights = "PONDMEN") %>%  
@@ -297,9 +298,17 @@ summary(data0$Alimentation)
 data0 <- data0 %>%
   filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels(), 
-         n_TYPFAM = n_TYPFAM %>% droplevels())
+         n_TYPFAM = n_TYPFAM %>% droplevels(), 
+         n_FractionClasse = n_FractionClasse %>% fct_relevel(
+           "Classes moyennes superieures [C4]", "Classes populaires précaires [C3]",
+           "Classes populaires célibataires et urbaines [C6]", "Petits indépendants [C5]",
+           "Petits-moyens [C1]", "Bourgeoisie culturelle [C2]", "Bourgeoisie économique [C7]"
+         ))
 var_label(data0$n_REVENUS_F) <- "Revenu féminin"
 var_label(data0$n_REVENUS_H) <- "Revenu masculin"
+var_label(data0$n_FractionClasse) <- "Fraction de classe"
+var_label(data0$n_TYPMEN_new) <- "Configuration familiale"
+var_label(data0$STALOG) <- "Statut d'occupation du logement"
 data0$PONDMEN <- data0$PONDMEN/mean(data0$PONDMEN)
 
 ## Régressions revenus HF sur tous les postes budgétaires #######################
@@ -307,6 +316,7 @@ data0$PONDMEN <- data0$PONDMEN/mean(data0$PONDMEN)
 names(data0)
 #Nombre d’enfants, âge de l’homme et son carré, diplôme de l’homme et diplôme de la femme (en quatre postes), position professionnelle de l’emploi de l’homme et de celui de la femme, région de résidence, degré d’urbanisation de la commune de résidence.
 varlist <- c(varlist, "EPARGNE")
+
 lapply(varlist, function(x){plot(density(data0[[x]]), 
                                  main=x)})
 
@@ -373,8 +383,9 @@ saveTableau(tableau = results,
 
 ### Regression simple avec TYpe de ménage et interaction HF et type de ménage ####
 # create regression function
+
 fitreg <- function(x) { 
-  survreg(Surv(get(x)+1, get(x)+1>=1, type='left') ~ n_REVENUS_F:n_TYPMEN_new + n_REVENUS_H:n_TYPMEN_new + n_TYPMEN_new + n_FractionClasse + NENFANTS + STALOG,
+  survreg(Surv(get(x)+1, get(x)+1>=1, type='left') ~ n_FractionClasse + STALOG + NENFANTS + n_REVENUS_F:n_TYPMEN_new + n_REVENUS_H:n_TYPMEN_new + n_TYPMEN_new, 
           data=data0,
           weights = data0$PONDMEN, 
           dist='gaussian')}
@@ -382,6 +393,7 @@ fitreg <- function(x) {
 
 # on applique 
 results <- lapply(varlist, fitreg)
+Sys.sleep((1/60)*2)
 names(results) <- varlist
 
 # On regarder les résidus 
@@ -389,7 +401,7 @@ lapply(varlist, function(x) {
   plot(density(residuals(results[[x]])), 
        main = x)})
 
-Sys.sleep((1/60)*2)
+
 summary(results$Alimentation)
 saveTableau(tableau = results, 
             type = "reg_brute", 
@@ -399,6 +411,83 @@ saveTableau(tableau = results,
             ponderation = T, 
             n = nrow(data0))
 
+
+
+#### Mise en forme ####
+##### Tableau conso / epargne ####
+
+tab1 <- results$`Consommation finale` %>%
+  tbl_regression() %>%
+  add_significance_stars(hide_ci = F, hide_se = T)
+tab2 <- results$EPARGNE %>%
+  tbl_regression() %>%
+  add_significance_stars(hide_ci = F, hide_se = T)
+
+tab3 <- tbl_merge(list(tab1, tab2)) %>%
+  as_kable_extra(caption = "Regression sur le montant de consommation et d'épargne annuel", 
+                 digits = 1, booktabs = T, format = "latex") %>%
+  kable_styling(
+    latex_options = c("hold_position", "repeat_header"),
+    font_size = 7)
+tab3
+saveTableau(tableau = tab3, 
+            type = "reg", 
+            label = "RevenusHF_etTYPMEN_sur_consototepargne_interaction", 
+            description = "Regresison revenus h/f avec type de famille sur poste budgétaire et interaction", 
+            champ = "ménages formées par des couples dont au moins l'un des membres est un adulte agé de 25 à 56 ans et vivant avec au moins un enfant de moins de 25 ans", 
+            ponderation = T, 
+            n = nrow(data0))
+
+#### Graph coeef ####
+reg_dat <- ggcoef_compare(results, 
+                          return_data = T, 
+                          add_reference_rows = TRUE,
+                          conf.level = 0.90)
+reg_dat$variable
+#summary(results$Alimentation)
+reg_dat1 <- reg_dat %>%
+  filter(var_type == "interaction")
+
+# On ne garde que ce qui est significatif 
+reg_dat1 <- reg_dat1 %>%
+  #filter(p.value <= 0.1) %>%
+  filter(!(model %in% c("Consommation finale", "EPARGNE")))
+
+gg <- ggcoef_plot(reg_dat1, 
+                  x = "estimate", 
+                  y = "label", 
+                  colour = "label", 
+                  errorbar_coloured = T, 
+                  stripped_rows = F) +
+  facet_wrap(.~model, ncol = 1,  switch = "y") +
+  scale_color_brewer(palette = "PuOr") +
+  scale_x_continuous(name = "Beta (euros dépensés pour une augmentation du revenu de 100 euros)") +
+  theme_tufte(base_size = 14)+
+  theme(strip.text.y.left = element_text(angle = 0, hjust = 1, vjust = 0.5), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        panel.background = element_rect(fill = "white", ),
+        panel.border = element_rect(fill = NA, colour = "white"),
+        legend.position = "right", 
+        panel.grid.major.x = element_line(colour = "grey80"), 
+        panel.grid.minor.x = element_line(colour = "grey80"), 
+        legend.title = element_text(size = rel(0.85), face = "bold"),
+        legend.text = element_text(size = rel(0.70), face = "bold"),
+        legend.key = element_rect(fill = "transparent", colour = NA),
+        legend.key.size = unit(1.5, "lines"),
+        legend.background = element_rect(fill = "transparent", colour = NA),
+        plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0, size = rel(0.60)))
+
+
+gg
+saveTableau(tableau = gg, 
+            type = "reg_graph", 
+            label = "RevenusHF_etTYPMEN_sur_conso_interaction", 
+            description = "Regresison revenus h/f avec type de famille sur poste budgétaire et interaction", 
+            champ = "ménages formées par des couples dont au moins l'un des membres est un adulte agé de 25 à 56 ans et vivant avec au moins un enfant de moins de 25 ans", 
+            ponderation = T, 
+            n = nrow(data0))
 
 
 ### Regression sur uniquement les familles recomposées #########################
@@ -429,6 +518,7 @@ fitreg <- function(x) {
 
 # on applique 
 results <- lapply(varlist, fitreg)
+Sys.sleep((1/60)*2)
 names(results) <- varlist
 
 # On regarder les résidus 
@@ -438,9 +528,58 @@ lapply(varlist, function(x) {
 
 summary(results$Alimentation)
 
-Sys.sleep((1/60)*2)
+
 saveTableau(tableau = results, 
             type = "reg_brute", 
+            label = "Fam_recomp_RevenusHF_etEnfantsMenage_sur_conso_interaction", 
+            description = "Regression revenus h/f avec ", 
+            champ = "ménages formées par des couples dont au moins l'un des membres est un adulte agé de 25 à 56 ans et vivant avec au moins un enfants de moins de 25 ans issu d'une union précédante", 
+            ponderation = T, 
+            n = nrow(data1))
+
+##### mise en page #####
+
+# On récupère des données 
+reg_dat <- ggcoef_compare(results, 
+                          return_data = T, 
+                          add_reference_rows = TRUE,
+                          conf.level = 0.90)
+
+#summary(results$Alimentation)
+reg_dat1 <- reg_dat %>%
+  filter(var_type == "interaction") %>%
+  filter(!(model %in% c("Consommation finale", "EPARGNE"))) 
+
+gg <- ggcoef_plot(reg_dat1, 
+                  x = "estimate", 
+                  y = "label", 
+                  colour = "label", 
+                  errorbar_coloured = T, 
+                  stripped_rows = F) +
+  facet_wrap(.~model, ncol = 1,  switch = "y") +
+  scale_color_brewer(palette = "PuOr") +
+  xlab(label = "Beta (euros dépensés pour une augmentation du revenu de 100 euros)") +
+  theme_tufte(base_size = 14)+
+  theme(strip.text.y.left = element_text(angle = 0, hjust = 1, vjust = 0.5), 
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(), 
+        panel.background = element_rect(fill = "white", ),
+        panel.border = element_rect(fill = NA, colour = "white"),
+        #legend.position = "bottom", 
+        panel.grid.major.x = element_line(colour = "grey80"), 
+        panel.grid.minor.x = element_line(colour = "grey80"), 
+        legend.title = element_text(size = rel(0.85), face = "bold"),
+        legend.text = element_text(size = rel(0.70), face = "bold"),
+        legend.key = element_rect(fill = "transparent", colour = NA),
+        legend.key.size = unit(1.5, "lines"),
+        legend.background = element_rect(fill = "transparent", colour = NA),
+        plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0, size = rel(0.60)))
+
+
+gg
+saveTableau(tableau = gg, 
+            type = "reg_graph", 
             label = "Fam_recomp_RevenusHF_etEnfantsMenage_sur_conso_interaction", 
             description = "Regression revenus h/f avec ", 
             champ = "ménages formées par des couples dont au moins l'un des membres est un adulte agé de 25 à 56 ans et vivant avec au moins un enfants de moins de 25 ans issu d'une union précédante", 
