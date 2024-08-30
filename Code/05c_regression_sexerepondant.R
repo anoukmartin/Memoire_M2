@@ -21,19 +21,26 @@ data <- familles %>%
       SEXEREP == "Femme" ~ 1, 
       SEXEREP == "Homme" ~ 0),
     NIVIE = NIVIE/1200, 
-    n_FractionClasse = relevel(n_FractionClasse, "Classes moyennes superieures [C3]"))
+    n_FractionClasse = relevel(n_FractionClasse, "Classes moyennes superieures [C4]")) %>%
+  filter(hetero == "Hetero") %>%
+  mutate(n_TYPMEN_new = droplevels(n_TYPMEN_new), 
+         n_TYPMEN_sexe = droplevels(n_TYPMEN_sexe))
+
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
 var_label(data$n_FractionClasse) <- "Fraction de classe"
 var_label(data$n_TYPMEN_sexe) <- "Configuration parentale"
 var_label(data$n_TYPMEN_new) <- "Configuration familiale"
 var_label(data$DNIVIE2) <- "Décile de niveau de vie"
 
+data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+
 tab <- data %>%
-  #filter(n_TYPMEN_new != "Complexe") %>%
+  mutate(Ensemble = "1") %>%
   as_survey_design(weights = PONDMEN) %>%
-  tbl_svysummary(include = c("DNIVIE2", "n_FractionClasse", "n_TYPMEN_new", "n_TYPMEN_sexe", "SEXEREP"), 
+  tbl_svysummary(include = c("DNIVIE2", "n_FractionClasse", "n_TYPMEN_new", "n_TYPMEN_sexe", "SEXEREP", "Ensemble"), 
                  by = SEXEREP, 
-                 percent = "row") 
+                 percent = "row")  %>%
+  add_p()
 tab
 
 saveTableau(tab, type = "tab", 
@@ -43,12 +50,12 @@ saveTableau(tab, type = "tab",
             champ = paste0(infosBDF$champ, " dont la personne de référence ou le conjoint est un adulte agé de 25 à 65 ans"), 
             n = nrow(data))
             
-data <- data %>%
-  subset(!(n_TYPMEN_new %in% c("Complexe", "Monoparentale", "Personne seule")))
+# data <- data %>%
+#   subset(!(n_TYPMEN_new %in% c("Complexe", "Monoparentale", "Personne seule")))
 
 reg <- glm(formula = SEXEREP ~ NIVIE + n_FractionClasse + n_TYPMEN_sexe, 
            data = data,
-    weights = PONDMEN, 
+    weights = PONDMEN,
     family = "quasibinomial")
 
 summary(reg)
@@ -57,11 +64,12 @@ summary(reg)
 tblreg <- tbl_regression(reg, exponentiate = T, 
                          label = list(NIVIE ~ "Niveau de vie mensuel (en centaine d'euros)", 
                                       n_FractionClasse ~ "Fraction de classe", 
-                                      n_TYPMEN_sexe ~ "Configuration parentale")) %>%
+                                      n_TYPMEN_sexe ~ "Configuration parentale du couple")) %>%
+  bold_labels() %>%
   add_glance_source_note()
 tblreg
 
-saveTableau(tab, type = "reg", 
+saveTableau(tblreg, type = "reg", 
             label = "SexeRep",
             description = "Regression sur le sexe du répondant dans les couples enquétés", 
             ponderation = T, 

@@ -62,6 +62,7 @@ data$n_NFraterie <- rowSums(data[ c("n_NEnfantsMenage", "n_NEnfantsHD")], na.rm 
 
 var_label(data$n_NFraterie) <- "Taille de la fraterie étendue"
 var_label(data$n_TYPFAM) <- "Configuration familiale du ménage"
+var_label(data$n_TYPMEN_sexe) <- "Configuration familiale du ménage"
 var_label(data$n_FractionClasse) <- "Position sociale du ménage"
 var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants du ménage"
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
@@ -321,15 +322,19 @@ depmen <- readRDS("Data_output/DepMenages.Rds") %>%
 depmen[is.na(depmen)] <- 0
 
 data <- data %>%
-  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13))
+  filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
+  filter(str_detect(TYPMEN5, "enfant") | str_detect(TYPMEN5, "monoparentale") )%>%
+  mutate(n_TYPMEN_sexe = droplevels(n_TYPMEN_sexe))
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+freq(data$n_TYPMEN_sexe)
 
 look_for(depmen)
 var_label(depmen) <- var_label(depmen) %>%
   str_remove("Montant définitif total à la charge du ménage pour ") %>%
   str_to_sentence()
 data <- data %>%
-  left_join(depmen, by = "IDENT_MEN")
+  left_join(depmen, by = "IDENT_MEN") 
+
 
 data$DEPPER2_D
 data$n_NEnfantsMenage13
@@ -342,6 +347,7 @@ data$DEPPER2_D <- data$DEPPER2_D/data$n_NEnfantsMenage13
 tab <- data %>%
   group_by(n_TYPMEN_sexe, DNIVIE2) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+
   summarise(mean_wtd = wtd.mean(DEPPER2_D, weights = PONDMEN))
 
 tab %>%
@@ -355,7 +361,6 @@ data$n_REVENUS_F
 reg <- survreg(Surv(DEPPER2_D+1, DEPPER2_D+1>1, type='left') ~ NIVIE + n_NFraterie + n_AgeEnfantsMenage + n_FractionClasse + n_TYPMEN_sexe,
                data=data, 
                weights = data$PONDMEN, 
-               #subset = !is.na(Vetements_enfants),
                dist='gaussian')
 
 

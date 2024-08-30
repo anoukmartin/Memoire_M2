@@ -1854,33 +1854,33 @@ Avec l'augmentation des divorces et des séparations, les trajectoires
 conjugales sont devenues plus variées et complexes. Non seulement les
 unions durables sont de moins en moins courantes, mais il est également
 devenu plus fréquent de vivre plusieurs unions au cours de sa vie
-[@Rault et Régnier-Loilier, 2015]. En 2013, une personne sur cinq âgée
+[\@Rault et Régnier-Loilier, 2015]. En 2013, une personne sur cinq âgée
 de 26 à 65 ans avait connu deux relations de couple, et 5 % en avaient
 vécu trois ou plus. Il est également de plus en plus commun que le
 premier partenaire ait déjà vécu en couple. Les premières unions
-deviennent de plus en plus courte au fil des générations : 40 % des
+deviennent de plus en plus courtes au fil des générations : 40 % des
 personnes nées entre 1978 et 1987 et ayant déjà vécu en couple ont eu
 une première relation qui a duré moins de dix ans, contre 16 % pour
-celles nées entre 1948 et 1957 [@Costemalle2015]. En revanche, l'âge et
-le sexe des individu n’influence pas de la même manière les premières
-mises en couples et les unions suivantes, en particulier lorsque des
-enfants sont issus des premières [@singly1983; @cassan2005].
+celles nées entre 1948 et 1957 [\@Costemalle2015]. En revanche, l'âge et
+le sexe des individus n’influencent pas de la même manière les premières
+mises en couple et les unions suivantes, en particulier lorsque des
+enfants sont issus des premières [\@singly1983; \@cassan2005].
 
 Ce chapitre discute les effets des probabilités différenciées de remises
-en couple entre homme et femmes sur les configurations de genre des
+en couple entre hommes et femmes sur les configurations de genre des
 couples à l'origine des recompositions familiales. On entend par
 configuration de genre d'un couple, l'articulation entre la position de
-chaque conjoint-e dans les rapports sociaux de sexe et le volume et la
-structure des capitaux respectivement détenus par les conjoint-e-s. Elle
-permet ainsi de saisir les rapports de pouvoir se déployant, localement,
-au sein de la famille. Pour cela, nous nous placerons d'abord à
+chaque conjoint·e dans les rapports sociaux de sexe et le volume et la
+structure des capitaux respectivement détenus par les conjoint·e·s. Cela
+permet ainsi de saisir les rapports de pouvoir se déployant localement,
+au sein de la famille. **Pour cela, nous nous placerons d'abord à
 l'échelle individuelle pour aborder les caractéristiques sociales
 spécifiques des individus selon leur position dans la famille (mère,
-père, beau-père, belle-mère). Ensuite, à l’échelle du couple, nous
-interrogerons le caractères plus ou moins inégalitaires des unions
-formées après une première histoire conjugale et familiales d'au moins
-l'un des deux membres. Enfin, à partir des caractéristiques sociales des
-conjoint-e-s et du ménage formé par celleux-ci, nous chercherons à
+père, beau-père, belle-mère).** Ensuite, à l’échelle du couple, nous
+interrogerons le caractère plus ou moins inégalitaire des unions formées
+après une première histoire conjugale et familiale d'au moins l'un des
+deux membres. Enfin, à partir des caractéristiques sociales des
+conjoint·e·s et du ménage formé par celleux-ci, nous chercherons à
 situer socialement les recompositions familiales à l’échelle de la
 société française.
 
@@ -1889,24 +1889,24 @@ société française.
 ### Le genre des unions secondaires : des mères et des beaux-pères
 
 Lors des séparations et des divorces, il est courant que la résidence
-principale des enfants soit fixée chez leur mères, si bien que un an
-après la séparation les trois quarts des enfants résident exclusivement
-chez leur mère [@Bonnet2015]. Même si la résidence alternée tend à
-augmenter (en 2020, 12% des enfants dont les parents sont séparés
-@Bloch), les pères restent peu nombreux à en faire la demande
-[@collectif onze]. Ainsi, les familles monoparentales sont, dans leur
-écrasante majorité formées par des mères célibataires et leurs enfants
-cohabitants. Parallèlement, les femmes d'autant plus lorsqu'elles sont
-agés et qu'elles ont des enfants, ont des plus faibles probabilités que
-les hommes de se remettre en couple [@singly1983; @cassan2005].
-L'articulation entre, d'un coté, l'extrême féminisation de la
-monoparentalité et de l'autre, la moindre possibilité pour ces femmes de
-reformer des unions conjugales fait de la recomposition familiale, moins
-une suite logique des biographies conjugales qu'une situation très
-spécifique. Le graphique ci-dessous présente justement la situation
-parentale des individus apparentant des couples formés après une
-première histoire conjugale et familiale d'au moins l'un-e des
-conjoint-e-s.
+principale des enfants soit fixée chez leurs mères, si bien qu'un an
+après la séparation, les trois quarts des enfants résident exclusivement
+chez leur mère [\@Bonnet2015]. Même si la résidence alternée tend à
+augmenter (en 2020, 12 % des enfants dont les parents sont séparés
+vivaient en résidence alternée [\@Bloch]), les pères restent peu
+nombreux à en faire la demande [\@collectif onze]. Ainsi, les familles
+monoparentales sont, dans leur écrasante majorité, formées par des mères
+célibataires et leurs enfants cohabitants. Parallèlement, les femmes,
+d'autant plus lorsqu'elles sont âgées et qu'elles ont des enfants, ont
+des probabilités plus faibles que les hommes de se remettre en couple
+[\@singly1983; \@cassan2005]. **L'articulation entre, d'un côté,
+l'extrême féminisation de la monoparentalité et, de l'autre, la moindre
+possibilité pour ces femmes de reformer des unions conjugales fait de la
+recomposition familiale moins une suite logique des biographies
+conjugales qu'une situation très spécifique.** Le graphique ci-dessous
+présente justement la situation parentale des individus appartenant à
+des couples formés après une première histoire conjugale et familiale
+d'au moins l'un·e des conjoint·e·s.
 
 ```{r histosexeadultes, fig.cap = "Appartenance aux groupes de sexe des parents et beaux parents", out.width= "70%", fig.asp=0.6}
 
@@ -1920,31 +1920,31 @@ tab$tableau +
 ```
 
 Les parents de familles recomposées sont le plus souvent des femmes.
-Dans les familles recomposées, ce sont le plus souvent elles qui ont des
-enfants issus d'une union précédente. Elles sont aussi plus nombreuses
-que les hommes à avoir des enfants à la fois issus d'union précédente et
-actuelle (79,6% sont des femmes quand 20,4% sont des hommes). Ainsi les
-beaux-parents sont le plus souvent des hommes: 85,9% des beaux-parents
-n'ayant pas d'enfants sont des beaux-pères et 86,9% de ceux ayant des
-enfants issus de l'union actuelle sont des beau-pères.
+Dans ces familles, ce sont généralement elles qui ont des enfants issus
+d'une union précédente. Elles sont aussi plus nombreuses que les hommes
+à avoir des enfants issus à la fois d'une union précédente et de l'union
+actuelle (79,6 % sont des femmes contre 20,4 % d'hommes). Ainsi, les
+beaux-parents sont le plus souvent des hommes : 85,9 % des beaux-parents
+n'ayant pas d'enfants sont des beaux-pères, et 86,9 % de ceux ayant des
+enfants issus de l'union actuelle sont des beaux-pères.
 
-Les probabilités différentielles de remises en couple entre hommes et
-femmes, et en particulier entre pères et mères explique que l'on trouve,
-proportionnellement plus de pères de famille recomposées ayant des
+**Les probabilités différentielles de remises en couple entre hommes et
+femmes, en particulier entre pères et mères, expliquent que l'on trouve
+proportionnellement plus de pères de familles recomposées ayant des
 enfants issus d'une ou de plusieurs unions précédentes que de pères
-célibataires. Ainsi le différentiel de probabilité de remise en couple
-entre pères et mères célibataires ne réduit que légèrement la
-sur-représentation des mères de famille recomposées ayant des enfants
+célibataires.** Ainsi, le différentiel de probabilité de remise en
+couple entre pères et mères célibataires ne réduit que légèrement la
+surreprésentation des mères de familles recomposées ayant des enfants
 issus d'unions précédentes par rapport aux mères célibataires.
 
 Les beaux-pères représentent ainsi deux tiers des beaux-parents
-cohabitant avec les enfants de leurs conjoint ou conjointe. Dans la
-grande majorité des cas (91,4%), ces beaux-pères n'avaient pas d'enfant
-avant de former l'union actuelle. A l'inverse, lorsque les femmes
-deviennent belles-mères, elles sont plus nombreuses à déjà avoir des
-enfants issus d'unions précédentes (41,4%). Le graphique ci-dessous
-présente les histoires parentales des beaux-parents en fonction de leur
-appartenance aux groupes sociaux de sexe.
+cohabitant avec les enfants de leur conjoint·e. Dans la grande majorité
+des cas (91,4 %), ces beaux-pères n'avaient pas d'enfant avant de former
+l'union actuelle. À l'inverse, lorsque les femmes deviennent
+belles-mères, elles sont plus nombreuses à déjà avoir des enfants issus
+d'unions précédentes (41,4 %). Le graphique ci-dessous présente les
+histoires parentales des beaux-parents en fonction de leur appartenance
+aux groupes sociaux de sexe.
 
 ```{r, fig.height=0.5, fig.cap = "Histoire parentale des beaux parents en fonction de leur sexe"}
 
@@ -1959,34 +1959,34 @@ tab$tableau +
 ```
 
 Les situations parentales différenciées des hommes et des femmes dans
-les familles recomposées justifient ainsi un traitement spécifiques des
-beaux-parents et des parents selon leur l'appartenance aux groupes
-sociaux de sexe.
+les familles recomposées justifient ainsi un traitement spécifique des
+beaux-parents et des parents selon leur appartenance aux groupes sociaux
+de sexe.
 
-Cependant, les remises en couple ne sont pas systématiquement des remise
-en couple hétérosexuel. Dans l'enquête, les ménages à la configuration
-traditionnelle sont tous formés par un homme et une femme. L'absence de
-famille homoparentale dans l'enquête budget de famille 2016 est donc
-notable, mais s'explique aisément par la législation qui interdit, avant
-2013 l'adoption aux conjoints de mêmes sexes. En revanche, les couples à
-l'origine de recompositions familiales sont dans 3,5% des cas, des
-couples de même sexe. Cette proportion est similaire chez les couples
-sans enfants. Les couples de même sexe formés secondairement et vivants
-avec des enfants issus d'une précédante union sont pour l'essentiel des
-couples de femmes : ils représentent 2,8% des couples formant des
-ménages recomposées. Ces résultats concordent avec les étudies
-statistiques sur les couples de même sexe : En 2018, 14% des couples en
-général et un quart des couples de femmes vivaient avec des enfants
-[@algavaPenant]. Les biographies conjugales des hommes et des femmes en
-couple avec un individu du même sexe sont en effets différenciées. Alors
-que chez les hommes, l'entrée dans la sexualité est généralement suivie
-d'une mise en couple rapide avec un autre homme, les femmes en couple
-avec d'autres femmes ont plus souvent déjà connu une période de
-conjugalité hétérosexuelle [@RaultLambert]. Ainsi, les unions
-secondaires, en particulier pour les femmes, peuvent être l'occasion
-d'une reconfiguration des positions dans les rapports sociaux de sexe à
-l'échelle du couple. Pour autant, ces situations restent marginales dans
-l'enquête : elles concernent seulement 18 couples.
+Cependant, les remises en couple ne sont pas systématiquement des
+remises en couple hétérosexuel. Dans l'enquête, les ménages à la
+configuration traditionnelle sont tous formés par un homme et une femme.
+L'absence de familles homoparentales dans l'enquête Budget de Famille
+2016 est donc notable, mais s'explique aisément par la législation qui
+interdisait, avant 2013, l'adoption aux conjoints de même sexe. En
+revanche, les couples à l'origine de recompositions familiales sont dans
+3,5 % des cas des couples de même sexe. Cette proportion est similaire
+chez les couples sans enfants. Les couples de même sexe formés
+secondairement et vivant avec des enfants issus d'une union précédente
+sont pour l'essentiel des couples de femmes : ils représentent 2,8 % des
+couples formant des ménages recomposés. Ces résultats concordent avec
+les études statistiques sur les couples de même sexe : en 2018, 14 % des
+couples en général et un quart des couples de femmes vivaient avec des
+enfants [\@algavaPenant]. Les biographies conjugales des hommes et des
+femmes en couple avec une personne du même sexe sont en effet
+différenciées. Alors que chez les hommes, l'entrée dans la sexualité est
+généralement suivie d'une mise en couple rapide avec un autre homme, les
+femmes en couple avec d'autres femmes ont plus souvent déjà connu une
+période de conjugalité hétérosexuelle [\@RaultLambert]. Ainsi, les
+unions secondaires, en particulier pour les femmes, peuvent être
+l'occasion d'une reconfiguration des positions dans les rapports sociaux
+de sexe à l'échelle du couple. Pour autant, ces situations restent
+marginales dans l'enquête : elles concernent seulement 18 couples.
 
 ### Se remettre en couple quand on a des enfants
 
@@ -1996,29 +1996,29 @@ influencés par une variété de facteurs socio-démographiques et
 familiaux. Les chances de se remettre en couple après une séparation
 diffèrent significativement entre les hommes et les femmes. Les hommes
 se remettent ainsi plus fréquemment et plus rapidement en couple que les
-femmes [@singly1983; @cassan2005]. Cela s'explique par les effets
+femmes [\@singly1983; \@cassan2005]. Cela s'explique par les effets
 différenciés de l'âge et de l’existence d'enfants issu·e·s d'unions
 précédentes sur les chances de remise en couple des hommes et des
 femmes. En effet, l'avancée en âge diminue significativement les chances
-de reformer une nouvelle union [@costemalle2015]. Ainsi, les parents qui
-se remettent en couple sont en moyenne plus jeunes que celleux ne
-formant pas de nouvelle union [@abbas2019]. L'effet de l'âge est
+de reformer une nouvelle union [\@costemalle2015]. Ainsi, les parents
+qui se remettent en couple sont en moyenne plus jeunes que celleux ne
+formant pas de nouvelle union [\@abbas2019]. L'effet de l'âge est
 cependant plus important pour les femmes : les écarts d'âge en défaveur
-des femmes dans les couples hétérosexuels [@bozon2006], et en
+des femmes dans les couples hétérosexuels [\@bozon2006], et en
 particulier l'affirmation de préférences pour des femmes plus jeunes
-avec l'avancée en âge des hommes [@BERGSTROM], font diminuer les chances
-de reformer un couple pour les femmes les plus âgées.
+avec l'avancée en âge des hommes [\@BERGSTROM], font diminuer les
+chances de reformer un couple pour les femmes les plus âgées.
 
-Ainsi, les hommes et les femmes vivants dans des ménages à la
+Ainsi, les hommes et les femmes vivant dans des ménages à la
 configuration familiale traditionnelle ou recomposée ont des âges
 similaires. Les femmes sont en moyenne âgées de 41 ans dans les familles
 traditionnelles et de 41 ans et 2 mois dans les familles recomposées.
 Les hommes sont en moyenne âgés de 43 ans et 7 mois dans les familles
 traditionnelles et de 43 ans et 11 mois dans les familles recomposées,
-avec des écart-types similaires pour les hommes et les femmes. En
-d'autre terme, l'effet biographique lié à une seconde union forcément
-plus tardive que la première est compensé par la plus faible probabilité
-de se remettre en couple avec l'avancée en âge.
+avec des écarts-types similaires pour les hommes et les femmes. **En
+d'autres termes, l'effet biographique lié à une seconde union, forcément
+plus tardive que la première, est compensé par la plus faible
+probabilité de se remettre en couple avec l'avancée en âge.**
 
 ```{r, fig.cap = "Âge moyen (et écart-type) des hommes et des femmes par type de ménage", out.width= "70%", fig.asp=0.6}
 
@@ -2079,19 +2079,19 @@ ggplot(age_stats_long, aes(x = n_TYPMEN_new, y = age_moyen, fill = sexe)) +
   
 ```
 
-La position dans les rapports sociaux de classe joue, ici aussi, de
-manière différenciée selon l'appartenance aux groupes sociaux de sexe
-des parents célibataires [@abbas2019]. Les hommes cadres, ainsi que les
+La position dans les rapports sociaux de classe joue également un rôle
+différencié selon l'appartenance aux groupes sociaux de sexe des parents
+célibataires [\@abbas2019]. Les hommes cadres, ainsi que les
 artisans-commerçants, sont parmi ceux qui ont les meilleures chances de
 reformer une union. Pour les femmes, en revanche, la situation est plus
-complexe. Les femmes cadres ont, à situations égales, moins de chance de
-se remettre en couple. Un niveau d'indépendance économique élevé peut
+complexe. Les femmes cadres ont, à situations égales, moins de chances
+de se remettre en couple. Un niveau d'indépendance économique élevé peut
 réduire les pressions à se remettre en couple, permettant à certaines de
-choisir le célibat [@bonnet]. Bien que les non-diplômés, hommes ou
+choisir le célibat [\@bonnet]. Bien que les non-diplômé·e·s, hommes ou
 femmes, aient une probabilité plus faible de se remettre en couple,
 l'effet du diplôme n'est pas linéaire. Chez les hommes, cette
 probabilité est la plus élevée pour ceux ayant un baccalauréat, et la
-plus faible pour les non-diplômés.
+plus faible pour les non-diplômé·e·s.
 
 Les tableaux ci-dessous présentent les caractéristiques sociales des
 hommes et des femmes en fonction de leur statut parental. Les catégories
@@ -2099,24 +2099,25 @@ observées incluent les hommes/femmes sans enfants (célibataires ou en
 couple) et les pères/mères (célibataires, en couple parental, remis en
 couple, c'est-à-dire vivant en couple mais ayant des enfants d'une
 précédente union). On limite ici l'analyse aux enfants vivant dans le
-ménage, les pères ou mères considéré-e-s comme remis en couple sont donc
+ménage, les pères ou mères considéré·e·s comme remis en couple sont donc
 ceux dont les enfants issus d'unions antérieures cohabitent avec elles
 ou eux. On entend par couple parental la situation dans laquelle une
 personne est en couple avec l'autre parent de l'ensemble de ses enfants.
-De ce fait, les hommes et femmes classé-e-s parmi les pères et mères
+De ce fait, les hommes et femmes classé·e·s parmi les pères et mères
 remis en couple peuvent ou non avoir eu des enfants de cette nouvelle
 union. Compte tenu des effectifs, nous ne distinguons pas ces deux types
-de situations. Les caractéristiques sociales présentés sont le niveau de
-diplôme, la catégorie socioprofessionnelle et la tranche de revenus.
+de situations. Les caractéristiques sociales présentées sont le niveau
+de diplôme, la catégorie socioprofessionnelle et la tranche de revenus.
 
 ```{=tex}
 
 \begin{encadre}{Recodages des CSP et du niveau de diplôme}
 
-La catégorie socio-professionnelle a été recodée, comme dans l'article de Joannie Cayouette-Remblière et Mathieu Ichou [@cayouette-remblière2019] à partir des catégories de l'INSEE, en s'inspirant des travaux de @vanzanten2009 et @Bouffartigue, 2001 sur les classes moyennes et supérieures. En distinguant donc au sein des cadres et professions intellectuelles supérieures et des professions intermédiaires, les individus travaillant dans le public de ceux travaillant dans le privé. Ainsi, au sein de professions intermédiaires nous distinguons les téchnicien-ne-s, des "médiateur-ice-s". Ce dernier groupe comprend les professions de l'enseignement, de la santé, du social, de l'administratif et du commerce.  Au sein, des classes supérieures, on regroupe les cadres du privé et les chefs d'entreprises d'un coté, les cadres du public et de la culture de l'autre. 
-Au sein des classes populaires, nous avons distingué les catégories qualifiées des catégories non-qualifiées. En particulier, nous avons considéré comme employés qualifiés les 
+La catégorie socio-professionnelle a été recodée, comme dans l'article de Joannie Cayouette-Remblière et Mathieu Ichou [@cayouette-remblière2019], à partir des catégories de l'INSEE, en s'inspirant des travaux de @vanzanten2009 et @Bouffartigue, 2001 sur les classes moyennes et supérieures. Nous distinguons ainsi, au sein des cadres et professions intellectuelles supérieures et des professions intermédiaires, les individus travaillant dans le public de ceux travaillant dans le privé. Au sein des professions intermédiaires, nous distinguons les technicien·ne·s des "médiateur·ice·s". Ce dernier groupe comprend les professions de l'enseignement, de la santé, du social, de l'administratif et du commerce. Au sein des classes supérieures, on regroupe les cadres du privé et les chefs d'entreprises d'un côté, et les cadres du public et de la culture de l'autre.
 
-Le niveau de diplôme est recodé en sept postes, en reprenant les mêmes catégories que @cayouette-remblière2019
+Au sein des classes populaires, nous avons distingué les catégories qualifiées des catégories non qualifiées. **En particulier, nous avons considéré comme employés qualifiés les...**
+
+Le niveau de diplôme est recodé en sept postes, en reprenant les mêmes catégories que @cayouette-remblière2019.
 
 \end{encadre}
 ```
@@ -2137,6 +2138,8 @@ tab$tableau %>%
                        champ = tab$champ, 
                        lecture = "4% des femmes célibataires sans enfants sont diplomés d'un doctorat, d'une école d'ingénieur ou d'une grande école.")
 ```
+
+[orthographe chat gpt, tu es ici dans le chapitre 2]
 
 Les mères remises en couple présentent des caractéristiques sociales
 proches des mères célibataires. En effet, elles sont en moyenne moins
@@ -3027,44 +3030,46 @@ niveau de vie des ménages. Il en va de même pour la situation vis-à-vis
 du logement. Le logement peut très bien appartenir à un seul des deux
 membres du couple, le ménage est considéré comme propriétaire.
 
-# Chapitre 3. Rester mère isolée. Les arrangements monétaires inégalitaires dans les familles recomposées.
+# Chapitre 3. Rester mère isolée. Les arrangements économiques inégalitaires dans les familles recomposées.
 
-Ainsi, travailler sur les conséquences économiques des recomposions
-suppose de travailler sur ce qui se passe au sein des ménages, de
-chercher à saisir les arrangements économiques qui s'y déploient. En
-travaillant, sur ces arrangements, on cherche à comprendre
-l'articulation entre la *parenté légale* et la *parenté pratique* dans
+Ainsi, travailler sur les conséquences économiques des recompositions
+suppose de se pencher sur ce qui se passe au sein des ménages, en
+cherchant à saisir les arrangements économiques qui s'y déploient. En
+étudiant ces arrangements, on cherche à comprendre l'articulation entre
+la parenté légale, en particulier civile, et la parenté pratique dans
 les familles recomposées. Agnès Martial [-@martial2003] a mis en
 évidence le rôle que joue la cohabitation dans la construction de liens
-"quasi-parentaux" entre beaux-enfants et beaux-parents. Cependant, ce
+"quasi-parentaux" entre beaux-enfants et beaux-parents. Cependant, son
 travail analyse principalement les discours produits par les adultes et
-les enfants de ces familles, qui décrivent des beau-parents investis
-dans l'éducation des enfants de leur conjoint-e, liés affectivement à
-ceux-ci, et contribuant à leur entretiens. On peut regretter qu'il ne
-confronte pas ces discours aux partiques effectives qui permettraient
-d'affrimer cette "contribution". Il s'agit donc ici d'interroger la
-participation aux "charges du ménage" que représentent les enfants non
-communs de la part des pères, des mères, des beaux-pères et des
-belles-mères. Ici aussi, la catégorie statistique de ménage constitut un
-obstacle important pour saisir l'économie domestique. Ce chapitre
-propose donc d'abord de revenir sur l'histoire du lien entre le "ménage"
-et les enquêtes sur les budgets familiaux. A partir de la, il questionne
-l'effectivité du "budget commun" qui définit, en théorie les contour du
-ménage, et interroge la traduction des inégalités de revenus en
-inégalités de consommations au sein de celui-ci. Ainsi, on peut
-questionne les forme de continuité dans les conditions matérielles
-d'existence des parents célibataires entre les situations de
+les enfants de ces familles, qui décrivent des beaux-parents investis
+dans l'éducation des enfants de leur conjoint·e, liés affectivement à
+ceux-ci, et contribuant à leur entretien. On peut regretter qu'il ne
+confronte pas ces discours aux pratiques économiques qui permettraient
+de discuter les représentations des hommes et des femmes vivant en
+famille recomposée. Il s'agit donc ici d'interroger la participation aux
+"charges du ménage" que représentent les enfants non communs de la part
+des pères, des mères, des beaux-pères et des belles-mères. Ici aussi, la
+catégorie statistique de ménage constitue un obstacle important pour
+saisir l'économie domestique. Ce chapitre propose donc d'abord de
+revenir sur l'histoire du lien entre le "ménage" et les enquêtes sur les
+budgets familiaux. À partir de là, il questionne l'effectivité du
+"budget commun" qui définit, en théorie, les contours du ménage. Pour
+saisir pleinement les contours des pratiques économiques qui relèvent
+des liens de parenté pratiques, il analyse également la participation
+des parents et beaux-parents aux tâches domestiques et parentales.
+Ainsi, il questionne les formes de continuité dans les conditions
+matérielles d'existence des parents célibataires entre les situations de
 monoparentalité et les remises en couple.
 
 ## Faire l'économie des ménages recomposées
 
 La quantification suppose un travail de construction de catégories de
-pensée et de classification concrètes par lequel on circonscrit un
-phénomène, avant de pouvoir le quantifier [@desrosières2013]. Dans
-l'enquête budget de famille, qui fait figure de référence sur l'économie
+pensée et de classification concrètes par lesquelles on circonscrit un
+phénomène avant de pouvoir le quantifier [@desrosières2013]. Dans
+l'enquête Budget de famille, qui fait figure de référence sur l'économie
 domestique, l'unité "ménage" occupe une place centrale : l'ensemble des
-consommations et une part importante des dépenses et des revenus sont
-récoltées à l'échelle du ménage. Support des techniques
+consommations, ainsi qu'une part importante des dépenses et des revenus,
+sont récoltées à l'échelle du ménage. Support des techniques
 d’échantillonnage, unité de compte, catégorie d’analyse, le "ménage"
 reste plus généralement au cœur de la production de données dans la
 statistique publique. Il ne va pourtant pas de soi, ni dans la forme
@@ -3074,20 +3079,20 @@ actuelle qu’il prend, ni dans son existence même.
 
 Au XIVe siècle, alors que les ancêtres des premiers recensements sont
 mis en place, des listes de « feux » sont constituées. En comptant les «
-feux », on compte les foyers, les logements, autour desquelles les
-groupes familiaux vivent. Ces inventaires servent à constituer une base
+feux », on compte les foyers, les logements autour desquels les groupes
+familiaux vivent. Ces inventaires servent à constituer une base
 permettant le prélèvement de l’impôt [@saint-pol2004]. En France, après
-la révolution, l’impôt est d’abord assis sur le logement et la propriété
-foncière (pour trois des « quatre vielles »), ce qui explique que le
+la Révolution, l’impôt est d’abord assis sur le logement et la propriété
+foncière (pour trois des « quatre vieilles »), ce qui explique que le
 recensement compte les logements [@delalande2010]. Après la Première
-Guerre mondiale, la mise en place d’un impôt sur le revenu progressif en
-lieu et place de la proportionnalité de la contribution personnelle et
-mobilière impose de considérer la familialisation de celui-ci
-[@carbonnier2016]. Des lors les revenus du chef de famille sont imposés
+Guerre mondiale, la mise en place d’un impôt sur le revenu progressif,
+en lieu et place de la proportionnalité de la contribution personnelle
+et mobilière, impose de considérer la familialisation de celui-ci
+[@carbonnier2016]. Dès lors, les revenus du chef de famille sont imposés
 en fonction de la liste des individus considérés à sa charge. Ainsi, la
 genèse du ménage comme catégorie statistique est imbriquée dans celle du
 foyer fiscal comme catégorie administrative. Selon Olivier Martin, ces
-premières enquêtes constituent des techniques d’Etat : "*ces enquêtes ne
+premières enquêtes constituent des techniques d'État : "*Ces enquêtes ne
 sont pas liées à des préoccupations d’ordre scientifique : il ne s’agit
 pas d’établir des connaissances savantes sur les faits économiques,
 démographiques ou sociographiques. La visée est pragmatique*"
@@ -3095,30 +3100,31 @@ démographiques ou sociographiques. La visée est pragmatique*"
 
 Pour autant, le ménage n’est pas qu’une simple traduction d’une
 catégorie administrative dans l’appareil statistique, il répond aussi
-aux préoccupations spécifiques au déploiement et au renforcement de
-celui-ci. Comme l'a montré Alain Desrosières [-@desrosières2000], au
-début du XXème siècle, au fur et à mesure que les enquêtes se font plus
+aux préoccupations spécifiques au déploiement et au renforcement de ce
+dernier. Comme l'a montré Alain Desrosières [-@desrosières2000], au
+début du XXᵉ siècle, au fur et à mesure que les enquêtes se font plus
 routinières et thématisées, on cherche à limiter les coûts de celles-ci.
 Les progrès mathématiques en probabilités favorisent le développement
-des techniques d’échantillonnages. Ces techniques permettent d’enquêter
+des techniques d’échantillonnage. Ces techniques permettent d’enquêter
 moins d’individus tout en conservant la représentativité de l’enquête.
-Ce sont les recensements qui vont servir de base de sondage de sorte que
-ce ne sont pas les individus mais les logements qui sont alors tirés au
-sort. Le logement apparaît aussi comme un lieu d’enquête commode pour
-les enquêteurs. Le ménage alors définit comme ensemble des habitants
-apparentés d'un logement est ainsi une unité d’enquête qui correspond à
-organisation matérielle de la production des données.
+Ce sont les recensements qui vont servir de base de sondage, de sorte
+que ce ne sont pas les individus mais les logements qui sont alors tirés
+au sort. Le logement apparaît aussi comme un lieu d’enquête commode pour
+les enquêteurs. Le ménage, alors défini comme l'ensemble des
+habitant·e·s apparenté·e·s d'un logement, devient une unité d’enquête
+qui correspond à l'organisation matérielle de la production des données.
 
 Avec le développement de l'appareil statistique d’État, la définition du
-ménage se précise. Après la seconde guerre mondiale le ménage est
+ménage se précise. Après la Seconde Guerre mondiale, le ménage est
 progressivement distingué de la famille : à partir de 1946, les liens
 entre le chef de ménage et les autres membres de celui-ci ne sont plus
 nécessairement des liens familiaux. Plus récemment, le ménage est
 partiellement distingué du logement. Depuis 2005, le Tronc commun des
-ménages permet de repérer des "*unités de vie*" au sein d'un même
-logement qui servent de base à la définition des frontières du ménage.
-Le ménage est alors l'ensemble des individus partagent un logement et un
-budget. Le ménage est ainsi aujourd'hui avant tout une unité budgétaire.
+ménages permet de repérer des "unités de vie" au sein d'un même
+logement, qui servent de base à la définition des frontières du ménage.
+Le ménage est alors défini comme l'ensemble des individus partageant un
+logement et un budget. Le ménage est ainsi aujourd'hui avant tout une
+unité budgétaire.
 
 ```{=tex}
 \begin{encadre}{Définition du ménage selon INSEE (2024)}
@@ -3155,22 +3161,25 @@ Font donc partie du même ménage des personnes qui ont un \textbf{budget commun
 ```
 ### Faire "budget commun", un cache-sexe et un cache-misère pour les inégalités intra-familiales
 
-On le voit, la définition de groupe faisant "budget commun" par l'INSEE
-comme l'ensemble des individus qui apportent ou bénéficient des
-ressources servant à effectuer des dépenses faites pour la vie du ménage
-reste assez vague. Il n'est pas aisé de déterminer précisément ce qui
-relève de "la vie du ménage", en particulier si l'on exclu les dépenses
-liées au logement, qui constitue le premier poste budgétaire des ménages
-(19% du montant des dépenses annuelles des ménages était consacré au
-logement en 2017) mais aussi les dépenses occasionnelles sans définir ce
-que serait une dépense régulière. Ainsi le périmètre des dépenses
-inclues dans ce "budget commun" reste assez flou : qu'en est-il des
-dépenses et des consommations alimentaires ou de transports qui
-constituent également deux des quatre plus gros postes budgétaires ?
-Plus encore, cette définition ne dit rien du mode de partage des
-ressources, des dépenses et des consommations : il suffit pour un
-individu de "participer" ou de "bénéficier" pour être considérer comme
-faisant budget commun.
+On le voit, la définition du groupe faisant "budget commun" par l'INSEE,
+comme l'ensemble des individus apportant ou bénéficiant des ressources
+servant à effectuer des dépenses pour la vie du ménage, reste assez
+vague. Il n'est pas aisé de déterminer précisément ce qui relève de "la
+vie du ménage", surtout si l'on exclut les dépenses liées au logement,
+qui constituent pourtant le premier poste budgétaire des ménages (19% du
+montant des dépenses annuelles en 2017). De plus, les dépenses
+occasionnelles ne sont pas clairement distinguées des dépenses
+régulières, ce qui complexifie davantage la définition de ce "budget
+commun". Ainsi, le périmètre des dépenses incluses dans ce "budget
+commun" reste assez flou : qu'en est-il des dépenses alimentaires ou de
+transport, qui constituent également deux des quatre plus gros postes
+budgétaires? Plus encore, cette définition ne précise rien sur le mode
+de partage des ressources, des dépenses et des consommations au sein du
+ménage. Il suffit qu'un individu "participe" ou "bénéficie" pour être
+considéré comme faisant partie du "budget commun". Cette approche masque
+les potentiels déséquilibres dans la contribution aux dépenses et dans
+l'accès aux ressources au sein du ménage, en ignorant donc les
+dynamiques de pouvoir et les inégalités qui peuvent exister.
 
 ```{r, eval = F}
 menages <- readRDS("Data_output/menages.Rds")
@@ -3187,51 +3196,48 @@ couples <- indiv %>%
 
 ```
 
-Ces questions ne sont pas l'objet de l'enquête budget de famille. Cette
-enquête se situe dans la longue lignée des enquêtes ouvrières
+Ces questions ne sont pas l'objet de l'enquête Budget de famille. Cette
+enquête s'inscrit dans la longue lignée des enquêtes ouvrières
 [@herpin2008]. Au XIXème siècle, des réformateurs sociaux, des
-hygiénistes, comme des communistes, commencent à s’intéresser aux
-conditions de vie des familles ouvrières [@lesenqu]. Édouard Ducpétiaux
+hygiénistes, ainsi que des communistes, commencent à s'intéresser aux
+conditions de vie des familles ouvrières [\@lesenqu]. Édouard Ducpétiaux
 (1804-1868) inventorie les budgets de 199 ouvriers dans différentes
-régions belges [@Ducpétiaux, 1855]. En France, la tradition d'enquête
-sur les budgets familiaux est surtout monographique [@leplay1874 ;
-@halbwachs]. Ces enquête connaissent une certaine postérité et sont
+régions belges [\@Ducpétiaux, 1855]. En France, la tradition d'enquête
+sur les budgets familiaux est surtout monographique [\@leplay1874 ;
+\@halbwachs]. Ces enquêtes connaissent une certaine postérité et sont
 produites et utilisées, jusque dans les années 1950, par les
-réfromateurs sociaux pour décrire la pauvreté des ménages ouvriers
-[@desrosières2003]. Avec la mise en place de l'enquête Budget de
-famille, la perspective change à nouveau. Cette enquête, effectuée tous
-les cinq ans depuis 1979, elle est d'abord conçue pour répondre à des
-questions macroéconomiques de comptabilité nationale. En fournissant une
-estimation de consommation moyenne très détaillée de biens et de
-service, elle est à l'origine des pondérations de l'instrument de mesure
-de l'inflation : l'indice des prix à la consommation[^1]. Elle est
+réformateurs sociaux pour décrire la pauvreté des ménages ouvriers
+[\@desrosières2003].Avec la mise en place de l'enquête Budget de
+famille, la perspective change à nouveau. Effectuée tous les cinq ans
+depuis 1979, elle est d'abord conçue pour répondre à des questions
+macroéconomiques de comptabilité nationale. En fournissant une
+estimation de la consommation moyenne très détaillée de biens et de
+services, elle est à l'origine des pondérations de l'instrument de
+mesure de l'inflation : l'indice des prix à la consommation. Elle est
 également utilisée par les comptes nationaux pour le calcul des indices
 des prix catégoriels et, en confrontant les données de l'enquête aux
-données agrégées, pour rendre plus robuste la mesure de la consommation.
-Les utilisations de l'enquête dans une perspective microéconomique sont
-plus tardifs à l'INSEE. Le récent développement des modèles de
-micro-simulation a permis la simulation de l'effet des variations des
-taux d'impôts indirects sur la consommation des différentes catégories
-de ménages [@bourguignon2022]. Pour autant, ces approches
-micro-économiques restent à l'échelle du ménage. Elles s'inscrivent dans
-la théorie économique du ménage, qui suppose, qu'il soit composé ou non
-de plusieurs individus, que le comportement économique du ménage est
-assimilable à celui d'un individu unique [@donni2011]. En conséquence,
-les revenus individuels sont considérés comme communs et les dépenses
-également partagées [@bessière2016]. Dès lors, seule la composition du
-ménage importe, pour pouvoir appliquer des échelles d'équivalences et
-rendre ainsi comparables des ménages composés différemment. En effet,
-dans l'enquête budget de familles les dépenses et les consommations ne
-sont pas individualisées. En d'autres termes, on ne sait pas l'argent de
-qui est dépensé au bénéficie de qui. Ainsi, les études statistiques
-portants sur la répartition des dépenses et la différenciation des
-consommations en bien et services au sein des familles sont peu
-nombreuses.
+données agrégées, pour rendre plus robuste la mesure de la
+consommation.Les utilisations de l'enquête dans une perspective
+microéconomique sont plus tardives à l'INSEE. Le récent développement
+des modèles de micro-simulation a permis la simulation de l'effet des
+variations des taux d'impôts indirects sur la consommation des
+différentes catégories de ménages [\@bourguignon2022]. Pour autant, ces
+approches microéconomiques restent à l'échelle du ménage. Elles
+s'inscrivent dans la théorie économique du ménage, qui suppose que,
+qu'il soit composé ou non de plusieurs individus, le comportement
+économique du ménage est assimilable à celui d'un individu unique
+[\@donni2011]. En conséquence, les revenus individuels sont considérés
+comme communs et les dépenses également partagées [\@bessière2016]. Dès
+lors, seule la composition du ménage importe, pour pouvoir appliquer des
+échelles d'équivalences et rendre ainsi comparables des ménages composés
+différemment. En effet, dans l'enquête Budget de famille, les dépenses
+et les consommations ne sont pas individualisées. En d'autres termes, on
+ne sait pas l'argent de qui est dépensé au bénéfice de qui. Ainsi, les
+études statistiques portant sur la répartition des dépenses et la
+différenciation des consommations en biens et services au sein des
+familles sont peu nombreuses.
 
-[^1]: L'indice des prix à la consommation est calculé à partir d'un
-    panier fixe de biens et service, dont les poids relatifs sont
-    déterminés par la part qu'ils occupent dans les dépenses des
-    ménages.
+**orthographe gpt ici**
 
 Lorsqu'on compare les postes de consommation les plus importants, les
 ménages à la configuration familiale recomposée et traditionnelle
@@ -3260,7 +3266,7 @@ budget des ménages formés par au moins un individu adulte âgé de 25 à 65
 ans. Les dépenses de transports constituent en effet en moyenne 16% du
 budget des couples, qu'ils vivent ou non avec des enfants et seulement
 12% du budget des individus célibataires, avec ou sans enfants à charge.
-Il s'agit probablement là d'un effet du lieu de résidence[^2], puisque
+Il s'agit probablement là d'un effet du lieu de résidence[^1], puisque
 les familles monoparentales et les célibataires sont sur-représentés
 dans les ménages vivant dans les grandes agglomérations (**Tableau
 XX**). Le fait de résider dans des espaces urbains rend alors moins
@@ -3276,7 +3282,7 @@ transports et aux biens et services divers relativement au logement est
 caractéristique des ménages les plus aisés et les différencie des
 ménages les plus pauvres [@demoly2020].
 
-[^2]: Il faut en réalité différencier les dépenses effectuées en lien
+[^1]: Il faut en réalité différencier les dépenses effectuées en lien
     avec la possession d'un véhicule et ceux qui relèvent des services
     de transports dont font partie les transports en commun. Ainsi les
     couples consacrent en effet en moyenne 6% de leur budget à l'achat
@@ -3359,7 +3365,7 @@ l’unité statistique du ménage, un "cache-sexe" de la théorie économique
 entre hommes et femmes et sur conduit à sous-estimer la pauvreté en
 France.
 
-### Saisir les arrangements monétaires familiaux dans l'enquête Budgets de famille
+### Saisir les arrangements économiques familiaux dans l'enquête Budgets de famille
 
 Dès lors qu'on ne considère pas le ménage comme une unité budgétaire au
 sein de laquelle tous les individus dépensent et consomment de manière
@@ -3369,7 +3375,7 @@ sein de laquelle tous les individus dépensent et consomment de manière
 terrains et travaux] des conjoints peuvent produire des rapport à
 l'argent qui ne sont pas nécessairement réconciliables. Ainsi
 l'organisation monétaire domestique fait l'objet d'arrangements
-familiaux [@bessière2022]. Ainsi, si l'on veut résumé en une question le
+familiaux [@bessière2022]. Si l'on veut résumer en une question le
 problème ainsi posé, on peut s'interroger de la manière suivante "Qui
 dépense l'agent de qui au bénéficie de qui ?". Pour interroger les
 arrangements monétaires se déployant au sein des ménages on peut donc
@@ -3478,36 +3484,34 @@ revenus détaillés (revenus d'activité, du patrimoine, de remplacement et
 de transferts) sont disponibles à l'échelle individuelle ou à celle du
 ménage et parfois aux deux. Certaines dépenses sont renseignées à
 l'échelle individuelle et se rapportent à l'individu qui les a effectué
-(et renseigné dans son carnet), d'autre sont agrgées ou estimées et sont
-donc renseignées à l'échelle du ménage. Le montant consacré à chaque
-poste de consommation (détaillé au niveau 5 de la nomenclature) est
-n'est disponible qu'au niveau du ménage. De ce fait, le jeu de données
-de l'enquête contient plusieurs tableaux pour lesquelles l'unité
-d’observation est soit le ménage, soit l'individu. De ce fait, on ne
-peux pas répondre directement à la question de "Qui dépense l'agent de
-qui au bénéficie de qui ?". Nous avons choisit de questionner le
-caractère "commun" du budget en analysant les liens entre revenus et
-types de consommations. On cherche ainsi à saisir le marquage social des
-revenus au sein des couples en fonction du genre et du statut parental
-des membres qui les composent. Partant, il est donc possible de
-questionner la transpositions des inégalités de revenus en inégalités de
-consommations au sein des ménages.
+(et renseigné dans son carnet), d'autre sont agrégées ou estimées et
+sont donc renseignées à l'échelle du ménage. Le montant consacré à
+chaque poste de consommation (détaillé au niveau 5 de la nomenclature)
+est n'est disponible qu'au niveau du ménage. De ce fait, le jeu de
+données de l'enquête contient plusieurs tableaux pour lesquelles l'unité
+d’observation est soit le ménage, soit l'individu. Partant, on ne peux
+pas répondre directement à la question de "Qui dépense l'agent de qui au
+bénéficie de qui ?". Nous avons choisit de questionner le caractère
+"commun" du budget en analysant les liens entre revenus et types de
+consommations. On cherche ainsi à saisir le "marquage social"
+[@zelizer2005] des revenus au sein des couples en fonction du genre et
+du statut parental des membres qui les composent.
 
 ## Des "causes communes" aux périmètres plus limités
 
 On l'a vu, la notion de budget commun, liée à la catégorie statistique
-du "ménage", est un concept pratique qui s'inscrit dans la production de
-la statistique d’État, plus qu’un concept sociologique. La mise en
-commun des ressources, le partage des dépenses et l'équité des
-consommation ainsi supposés s'apparentent d'avantage aux *logiques de
-maisonnées [@weber2002]* qui se déploient dans les groupes familiaux, et
-qui ne correspondent pas forcément au contour du ménage. Nous proposons
-donc de discuter l'effectivité du budget commun en questionnant les
-périmètres des "causes communes"[@gollac2003] dans les familles
-recomposées par rapport aux autres couples avec enfants. Les "causes
-communes" mobilisent l'ensemble de la maisonnée dans un procéssus de
-coopération productive. Elles sont, par exemple, la préservation d'une
-maison ou d'une entreprise familiale, ou la prise en charge de personnes
+du "ménage", est un concept ancré dans la production de la statistique
+d’État, plus qu’un concept sociologique. La mise en commun des
+ressources, le partage des dépenses et l'équité des consommation ainsi
+supposés s'apparentent d'avantage aux *logiques de maisonnées
+[@weber2002]* qui se déploient dans les groupes familiaux, et qui ne
+correspondent pas forcément au contour du ménage. Nous proposons donc de
+discuter l'effectivité du budget commun en questionnant les périmètres
+des "causes communes"[@gollac2003] dans les familles recomposées par
+rapport aux autres couples avec enfants. Les "causes communes"
+mobilisent l'ensemble de la maisonnée dans un processus de coopération
+productive. Elles sont, par exemple, la préservation d'une maison ou
+d'une entreprise familiale, ou la prise en charge de personnes
 dépendantes. En ce sens, élever des enfants constituent sans doute la
 "cause commune" la plus ordinaire de toute, et qui justifie alors la
 mise en commun partielle de ressources [@roy2005]. Les logiques de
@@ -3549,7 +3553,7 @@ consommations selon les méthodes classiques employés par les travaux sur
 le sujet [@phipps1998; @roy2006]. Il s'agit de modéliser la sensibilité
 de différents types de consommation à l'augmentation des revenus féminin
 et masculins. Pour chaque type de consommation, agrégé au niveau 2 de la
-nomenclature, nous effectuons donc une régression linéaire censurée[^3]
+nomenclature, nous effectuons donc une régression linéaire censurée[^2]
 sur le montant qui y est consacré dans laquelle nous introduisons deux
 termes d'interaction : entre le revenu féminin et le type de
 configuration familiale d'une part et entre le revenu masculin et le
@@ -3565,7 +3569,7 @@ position sociale au niveau du ménage plutôt qu'un nombre plus important
 de variables au niveau individuel compte tenu des effectifs relativement
 faibles dont nous disposons.
 
-[^3]: Il s'agit d'un modèle de régression de Tobit, adapté aux variables
+[^2]: Il s'agit d'un modèle de régression de Tobit, adapté aux variables
     continues pour lesquelles la valeur 0 est sur-représentée et dont la
     distribution suit une courbe de Gauss
 
@@ -4173,26 +4177,480 @@ dans les familles traditionnelles, qui est liée, aux statut parentaux
 asymétriques qu'ils occupent dans ces familles. Sans la "cause commune"
 que représente les enfants communs au couple, les beaux-parents sans
 enfants, et en particulier les beaux-pères semblent moins contribuer que
-les pères à certains postes budgétaires. Partant, il semble que la
-cohabitation ne suffise pas à construire systematiquement des liens de
-parenté pratique, ceux-ci semblent rester en partie subordonnés à des
-liens de parenté établits par le droit civil. L'analyse, même indirecte,
-des pratiques de consommation dans les familles recomposées tend à
-nuancer discours des enquétés d’Agnès Martial [-@martial2003]. Ils
-tendent plutôt à confirmer ceux qui ressortent des entretiens réalisés
-avec des parents d'enfants en résidence alternée par @brunet2008 qui
-décrivent plutôt des beau-parents, majoritairement des beau-pères, peu
-engagés financièrement, en dehors de l'alimentation, dans l'entretien
-des enfants de leur conjoint-e. Les autrices de l'enquête explique cette
+les pères à certains postes budgétaires. Ces résultats tendent à
+confirmer ceux qui ressortent des entretiens réalisés avec des parents
+d'enfants en résidence alternée par @brunet2008 qui décrivent plutôt des
+beau-parents, majoritairement des beau-pères, peu engagés
+financièrement, en dehors de l'alimentation, dans l'entretien des
+enfants de leur conjoint-e. Les autrices de l'enquête explique cette
 absence de contribution par le rôle que la résidence alternée confère à
 l'autre parent et qui ne laisserait pas de "place" aux beaux-parents.
 Pourtant, même en cas de résidence principale fixée chez un seul des
 parents, le maintien des liens avec le parent non gardien reste plutôt
 fréquent puisqu'en 2005 seuls 13% des enfants mineurs qui vivaient sans
-leur père ne le voyaient jamais [@reigner2013]. **\*\*Ainsi, la majorité
-des recompositions familiales semblent se faire sur un modèle
-intermédiaire entre la substitution du beau-parent à l'autre parent et
-un modèle de pérennité, dans lequel \*\***
+leur père ne le voyaient jamais [@reigner2013].
+
+## Des mères et des belles-mères au travail domestique
+
+Ainsi, si les beaux-parents contribuent financièrement moins à
+l'entretien des enfants de leur conjoint-e que ne le feraient des
+parents, cela ne signifie pas pour autant qu'aucune forme de parenté
+pratique ne se construit entre beaux-parents et beaux-enfants. La notion
+de parenté pratique, telle que définie par Florence Weber, dépasse
+largement les simples transferts financiers pour englober une variété de
+pratiques sociales, économiques et affectives qui structurent la vie
+quotidienne des familles. Florence [@weber2013] souligne que la parenté
+pratique se manifeste par des échanges de services, des soutiens
+émotionnels et des interactions quotidiennes qui cimentent les relations
+familiales. Par exemple, les soins apportés aux enfants,
+l'accompagnement des personnes âgées, l'aide apportée lors d’évènements
+importants de la vie ou même les simples actes de solidarité entre
+membres de la famille sont autant de manifestations de la parenté
+pratique. En ce sens, la dimension matérielle de la parenté ne peut être
+réduite à de simple transferts financiers. Ainsi, les arrangements
+économiques au sein des familles ne doivent pas être envisagé comme
+purement monétaires. Comme le souligne [@Bessières], ces arrangements
+englobent un ensemble de pratiques et de contributions qui vont bien
+au-delà des simples transferts financiers. Ils incluent notamment les
+tâches ménagères, les soins aux enfants, les services rendu entre membre
+de la famille, tels que la garde d'enfants ou l'aide aux travaux
+ménagers.
+
+\begin{encadre}{Le travail domestique et parental dans l'enquête Budget de famille, 2017}
+
+Dans l'enquête Budget de famille (2017), un module portant sur les
+activités domestique est prévu. L'individu répondant aux question de
+l'enquêteur ou l'enquêtrice est interrogé sur la participation des
+différents membres du ménage au travail domestique et parental la
+semaine précédant l'entretient. La période d’observation est donc la
+même que celles des dépenses. Les variables issues de ces réponses sont
+ainsi renseignées dans la table de données sur les dépenses
+individuelles. En revanche ce module de question n'est posé qu'à la
+moitié des ménages, sélectionnes au hasard, réduisant ainsi la taille de
+l’échantillon sur lequel nous travaillons dans cette partie. De plus,
+pour une raison que nous ignorons et qui n'est pas explicitée dans la
+documentation de l'enquête, parmi les ménages ayant des enfants
+cohabitant, les items relatifs au travail parental (aide scolaire aux
+enfants et habillage des enfants) ont un nombre très élevé de valeurs
+manquantes. Ceci explique pourquoi les p-valeurs calculées sur les tests
+du $Chi^2$ sont en général plus élevées. Enfin les questions portent sur
+le fait d'avoir effectuer ou non certaines taches et non sur le volume
+horaires consacré à ces taches. Une mesure précise de la répartition du
+temps de travail domestique n'est donc pas possible.
+
+\end{encadre}
+
+### Un partage des taches domestiques et parentales entre homme et femme plus équitable
+
+Le tableau ci-dessous présente le taux de participation des hommes et
+des femmes au travail domestique et parental la semaine ayant précédé
+l'entretien. Il distinguent différentes activités domestiques en
+déclinant différentes taches.
+
+```{r, results = "asis"}
+load("Resultats/tab_Wdom_typefam_sexe.Rdata")
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T,
+                 caption = "Implication dans le travail domestique et parental en fonction de la configuration familiale et du sexe") %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  pack_rows(group_label = "Activité effectuée la semaine de l'enquête (en %)",
+            1, 10) %>%
+  #column_spec(c(1), width = "2cm") %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ, 
+                       lecture = "47% des hommes vivants en famille traditionelle ont fait du bricolage la semaine de l'enquête.")
+
+
+```
+
+En ce qui concerne la plus part des taches domestique et parentales, les
+femmes vivants en familles traditionnelles et recomposées apparaissent
+impliquées dans des proportions similaires. Le variations significatives
+d'implications des femmes dans le travail domestique et parental
+tiennent en général à la situation de monoparentalité par rapport à la
+vie en couple. Les femmes vivant en famille recomposée apparaissent
+cependant légèrement mais significativement moins impliquées dans le
+repassage (elles sont seulement 49% a avoir repasser des vêtements la
+semaine de l'enquête contre 57% des femmes vivant en famille
+traditionnelle et 54% des femmes vivants en famille recomposée). En
+revanche les hommes vivants en familles recomposées apparaissent plus
+impliqués dans certaines tâches que ceux vivants en famille
+traditionnelles. Ils sont en effet plus nombreux à avoir fait du
+repassage (13% contre 9,4%), des courses (70% contre 63%) ou du ménage
+(54% contre 44%). La participation féminine sur ces taches ne diffère
+pas significativement entre familles recomposées et familles
+traditionnelles. Il semblent donc que les couples formant des ménages
+recomposées soient plus égalitaires : les hommes y sont légèrement plus
+engagé dans la prise en charge du travail domestique. Ces résultats
+confirmes ceux obsrevés par @domingo2009 et @solaz2021 à partir de
+l’enquête Etudes des relations familiales e intergénérationelles (ERFI).
+On peut se demander si l'effet observé n'est pas lié au statut parental.
+D'une part, la mobilisation légèrement plus forte des hommes sur le
+travail domestique pourrait être liée aux pères qui ont des enfants
+issus d'une précédente union et qui, ayant probablement connu une
+période de monoparentalité avant leur remise en couple ont du assurer
+eux même, au moins en partie, le travail domestique et parental lié au
+fait d'élever seul ses enfants. D'autre part, les belles-mères sans
+enfants sont largement sous-représentées parmi les femmes vivant en
+famille recomposées, on ne peut donc pas exclure qu'elles soient moins
+mobilisées que les mères. Le tableau ci-dessous présente la part de
+parents vivants en avec au moins un de leurs enfant ayant effectué des
+taches de travail domestique et parentales durant la semaine de
+l'enquête.
+
+```{r, results='asis'}
+
+load("Resultats/tab_Wdom_parents.Rdata")
+
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T, longtable = T,
+                 caption = "Travail domestique et parental des parents en fonction de la configuration familiale") %>%
+  kable_styling(
+    #full_width = T,
+    latex_options = c("hold_position", "repeat_header"),
+    font_size = 7) %>%
+  pack_rows(group_label = "Activité effectuée la semaine de l'enquête (en %)", 
+            1, 10) %>%
+  column_spec(1, width = "3cm") %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ, 
+                       lecture = "76% des parents vivants en famille traditionelle ont fait les courses au moins une fois durant la semaine de l'enquête.")
+
+
+```
+
+Pour la majorité des taches, la proportion de parent vivant en famille
+recomposée ayant effectué cette tache au moins une fois au cours de la
+semaine de l’enquête apparaît similaire à celle des parents vivants en
+familles traditionnelle, alors qu'elle apparaît plus importante dans les
+familles monoparentales. Cela tend à faire penser que la remise en
+couple cohabitant permet, pour les parents célibataires, de partager
+avec une autre personne une partie au moins des taches domestiques.
+Cependant, ils sont significativement (p \< 0,001) plus nombreux avoir
+fait les courses et le ménage au moins une fois la semaine de l'enquête
+: 83% ont fait les courses contre 76% dans les familles traditionnelles
+et 74% on fait le ménage contre 67% dans les familles traditionnelles.
+Ils sont aussi légèrement et moins significativement plus nombreux à
+avoir fait la cuisine du quotidien et à avoir aider les enfants (hors
+aide scolaire, c'est-à-dire habillage, change, bain à manger) que dans
+les familles traditionnelles, alors même que les enfants y sont en
+moyenne plus âgés. Or ces taches sont aussi celles qui sont le plus
+chronophages : en 2010, la cuisine représentait en moyenne 40 minutes
+par jour, le ménage 35 minutes, les courses 30 minutes, le soin et
+l'éducation des enfants 26 minutes par jours [@brousse2015]. Ainsi les
+parents semblent assurer une part légèrement plus importante du travail
+domestique lorsqu'ils sont en couple avec une personne n'ayant pas
+d'enfants.
+
+### La mise au travail domestique des belles-mères
+
+Or, comme nous l'avons déjà souligné a plusieurs reprises, les
+situations parentales au sein des familles recomposées recoupent des
+positions dans les rapports sociaux de sexe. Le tableau suivant présente
+la participation aux différentes taches des parents et des beaux-parents
+en fonction de leur sexe dans les familles recomposées. Les effectifs
+étant très faibles, en particulier pour les belles-mères, les
+pourcentages ne sont donc pas interprétables en tant que tels, ils ne
+sont ici donnés qu'à titre indicatifs pour faciliter la lecture des
+résultats.
+
+```{r, results='asis'}
+
+load("Resultats/tab_Wdom_PBP_sexe.Rdata")
+
+tab$tableau %>%
+  as_kable_extra(digits = 1, booktabs = T, longtable = T,
+                 caption = "Travail domestique et parental en fonction du statut parental et du sexe") %>%
+  kable_styling(
+    # full_width = T,
+    latex_options = c("hold_position", "repeat_header"),
+    font_size = 7) %>%
+  pack_rows(group_label = "Activité effectuée la semaine de l'enquête (en %)", 
+            1, 10) %>%
+  column_spec(1, width = "3cm") %>%
+  #row_spec(0, angle = -45) %>%
+  add_kablesource_note(N = tab$n, 
+                       champ = tab$champ, 
+                       lecture = "57% des beaux-pères sans enfants ont fait la vaisselle au moins une fois au cours de la semaine de l'enquête.")
+
+
+
+```
+
+On peut ainsi observer un écart, le plus souvent significatif, entre
+hommes et femmes quelque soit le statut parental pour la majorité des
+taches domestiques et parentales. Sur les principaux postes de travail
+domestique (courses, cuisine du quotidien, ménage et vaisselle), a
+statut parental égal, les femmes sont systématiquement plus nombreuses
+que les hommes à avoir effectué ces taches au cours de la semaine
+précédant l'enquête (à exception de la vaisselle pour les beaux-parents
+sans enfants). Les taches féminines restent ainsi des taches féminines
+dans les familles recomposées : a statut parental égal, le linge (saisir
+par l'item repassage), est significativement et systématiquement plus
+féminin que masculin. A l'inverse les taches masculines restent des
+taches masculines dans les familles recomposées : le bricolage est
+significativement et systématiquement une tache davantage effectuée par
+les hommes que par les femmes. Enfin, les belles-mères semblent
+effectuer autant que les mères, les taches parentales et domestiques qui
+constituent le gros du travail domestiques (habillage des enfants,
+courses, cuisine du quotidien). A l'inverse, les beaux-pères semblent
+effectuer un peu moins souvent ces taches que les pères notamment en ce
+qui concerne l'habillage des enfants et courses.
+
+La prise en charge du travail domestique dans les familles recomposées,
+semblent rejouer les dynamiques de genre observées dans les familles à
+la configuration traditionnelle. En général, on estiment que les femmes
+consacrent en moyenne deux fois plus d'heures au travail domestique que
+les hommes [@ref]. Ainsi, les familles recomposées ne semble pas y faire
+exception. Alors que les hommes apparaissent généralement peu mobilisés,
+les belle-mères, assurent plus souvent les taches domestiques et
+parentales, presque autant que les mères. Ces résultats tendent a
+confirment ceux produit par @buisson2023. [developper] La cohabitation
+avec des enfants même sans lien de parenté légal et biologique semble
+pousser les femmes, plus que les hommes à prendre en charge gratuitement
+le travail domestique effectué dans le cadre de la famille. Ainsi, les
+femmes sans enfants mais cohabitants avec ceux de leur conjoint semblent
+se trouver dans une situation assez similaires aux mères de familles.
+Ces résultats permettent, de dénaturaliser la prise en charge du travail
+domestique par les femmes. Dès l'enfance, les filles sont en effet
+socialisées à prendre en charge des taches de A ce titre le cas des
+belles-mères illustre un processus de mise au travail reproductif. En
+suivant Paola Tabet [@tabet], le groupe social des femmes est le fruit
+d'une construction sociale qui définit ce groupe comme celui des
+individus privés de d'accès aux outils et utilisé en tant que moyen de
+(re)production, dans un processus d'assignation au travail reproductif.
+Ce ne sont ainsi pas les capacités physiologiques ou biologiques des
+individus qui détermine leur appartenance au groupes sociaux de sexe,
+mais bien leur place dans le processus de reproduction. Il serait donc
+intéressant de compléter ces résultats par un travail échographiques qui
+permettait sans doute de mettre au jour les condition de possibilité et
+de consentement à la mise au travail reproductif de ces belles-mères.
+
+### Recourir au marché pour le travail reproductif : une affaire de père
+
+Ces mécanismes ne jouent pas de manière uniforme selon les classes
+sociales. Le tableau ci-dessous présente les résultats d'une régression
+linéaire de Tobit sur les dépenses par enfant pour la garde d'enfant
+effectuées par le ménage. Le niveau de vie mensuel a un coefficient de
+10, montrant qu'une augmentation de 100 euros du niveau de vie mensuel
+se traduit par une augmentation de 10 euros des dépenses de garde
+d'enfant, ce qui est significatif.
+
+```{r depensesgarde, results='asis'}
+
+load("Resultats/reg_DepGardeEnfants.Rdata")
+tab$tableau %>% 
+  as_kable_extra(caption = "Regression sur les dépenses de garde d'enfant du ménage", digits = 1, booktabs = T) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  add_kablesource_note(champ = tab$champ, 
+                       N = tab$n, 
+                       lecture = " ")
+```
+
+La taille de la fratrie affiche un coefficient de 220, suggérant que
+chaque enfant supplémentaire augmente les dépenses de 220 euros, une
+relation hautement significative. En revanche, l'âge moyen des enfants
+du ménage a un coefficient de -62, indiquant une diminution de 62 euros
+par année supplémentaire de l'âge moyen des enfants, également
+significatif.
+
+Pour les fractions de classe, les classes moyennes supérieures (C3)
+servent de modalité de référence. Comparées à cette modalité, les
+classes populaires précaires (C6) présentent un coefficient de -1499,
+mais cette relation n'est pas statistiquement significative. Les classes
+populaires urbaines (C5) ont un coefficient de -381, ce qui est
+significatif et montre une diminution des dépenses. Les petits
+indépendants (C4) affichent un coefficient de -192, sans signification
+statistique, tandis que les petits-moyens (C1) ont un coefficient de
+-409, proche de la signification. Les classes supérieures du pôle public
+(C2) et du pôle privé (C7) ont des coefficients de 346 et 781
+respectivement, indiquant des augmentations significatives des dépenses.
+Les classes supérieures du pôle privé dépensent significativement plus
+que celles du pôle public.
+
+Pour les types de ménage et le sexe, les mères et pères en couple
+servent de modalité de référence. Les mères célibataires montrent une
+tendance à dépenser plus avec un coefficient de 314, proche de la
+signification statistique, tandis que les pères célibataires ont un
+coefficient de 354, ce qui est significatif. Les mères en couple ont un
+coefficient de -267, sans signification statistique, tandis que les
+pères en couple présentent un coefficient de 905, indiquant une
+augmentation significative des dépenses. Les pères célibataires et les
+pères en couple dépensent plus significativement que les mères
+célibataires et les mères en couple respectivement.
+
+En résumé, les résultats soulignent l'impact significatif du niveau de
+vie, de la taille de la fratrie, de l'âge des enfants, des différentes
+classes sociales et des configurations familiales sur les dépenses de
+garde d'enfant par ménage. Les différences entre les coefficients des
+différentes modalités de ces variables offrent une vision détaillée de
+la façon dont chaque facteur contribue aux variations des dépenses de
+garde d'enfant. Comparés à la modalité de référence, les coefficients
+révèlent des variations significatives entre les classes sociales et les
+types de ménage, en particulier pour les classes supérieures du pôle
+privé et les pères célibataires ou en couple, qui dépensent
+significativement plus pour la garde d'enfant.
+
+**Conclusion**
+
+Partant, il semble que la cohabitation ne suffise pas à construire
+systématiquement des liens de parenté pratique, ceux-ci semblent rester
+en partie subordonnés à des liens de parenté établit par le droit civil.
+L'analyse, même indirecte, des pratiques de consommation dans les
+familles recomposées tend à nuancer discours des enquêtés d’Agnès
+Martial [-@martial2003].**\*\*Ainsi, la majorité des recompositions
+familiales semblent se faire sur un modèle intermédiaire entre la
+substitution du beau-parent à l'autre parent et un modèle de pérennité,
+dans lequel \*\***
+
+Conclusion/transition : formes de continuité, d'un point de vue
+économique, entre monoparentalité et recompositions familiales
+
+Limites des résultats : - plutôt des trace que des trucs démontré,
+invite a faire des ethnographies sur le sujet - Effectifs trop faible
+pour croiser avec la position sociale, ce qui est dommage, parce que
+c'est des rapport à l'argent différents : est ce que lorsque les les
+budgets sont plus contraint, on a aussi une mise en commun plus
+importante, ou au contraire est ce que chaque conjoint fait plus
+attention à son argent
+
+# Chapitre 4. Des belles mères au travail reproductif
+
+## Ouvrir la boite noire du ménage : au commencement était le travail domestique
+
+### Point historique général
+
+"rendre la mesure du travail" chenu
+
+"gestion du temps des hommes et des femmes actives"
+
+Historiquement, la statistique publique s'est plutôt orientée vers la
+production de données permettant le calcul de grands agrégats
+macroéconomiques, tels que le PIB, le chômage ou l'inflation. Les
+premières tentatives de quantification du travail domestique n'y font
+pas exception : elles sont orienté vers le calcul de la production
+non-marchande. L'enquête "Emploi du temps" de l'INSEE, introduite pour
+la première fois en 1966-1967 et régulièrement mise à jour depuis, est
+l'une des principales sources de données quantifiant le temps consacré
+aux tâches domestiques non rémunérées.
+
+Cette quantification a suscité des débats sur la manière dont les
+catégories de la statistique publique peuvent capturer la complexité du
+travail domestique. Danièle Kergoat, à travers ses travaux sur la
+division sexuelle du travail, a montré que les tâches domestiques sont
+souvent sous-évaluées dans les enquêtes statistiques traditionnelles en
+raison de biais genrés (Kergoat, 1982). Ces biais sont également abordés
+par Christine Delphy, qui critique la sous-estimation systématique du
+travail domestique dans l'économie traditionnelle, plaidant pour une
+prise en compte plus complète de ces activités (Delphy, 1970).
+
+Les comptes satellites du travail domestique, développés à partir des
+années 1990 par l'INSEE, ont cherché à remédier à cette sous-estimation
+en valorisant monétairement ces tâches. Cependant, ce processus a
+lui-même été critiqué pour sa tendance à réduire la diversité des
+pratiques domestiques à des équivalents monétaires, une critique portée
+notamment par Florence Jany-Catrice (2001) et Jean Gadrey (1996). Ces
+critiques s'inscrivent dans un débat plus large sur la nature de ce qui
+peut être mesuré et sur les implications de la quantification pour la
+reconnaissance sociale des activités domestiques.
+
+La question de la distribution genrée du travail domestique a également
+été centralisée dans les enquêtes de l'INSEE. Les recherches de Florence
+Maillochon (2002) ont révélé que, malgré l'évolution des normes de
+genre, les femmes continuent de porter une charge disproportionnée des
+tâches domestiques, une réalité que les statistiques ont contribué à
+mettre en lumière mais aussi à stabiliser par leur manière de structurer
+les catégories de mesure.
+
+Enfin, il est important de noter que la quantification du travail
+domestique en France a été influencée par des comparaisons
+internationales. Les travaux de Nancy Folbre (2006) ont souligné comment
+différents pays ont développé des approches variées pour mesurer le
+travail non rémunéré, chacune reflétant des priorités politiques et
+culturelles distinctes. Cela montre que les choix méthodologiques faits
+dans les enquêtes françaises ne sont pas neutres, mais répondent à des
+conventions sociales spécifiques, comme l'a démontré Alain Desrosières
+dans ses analyses sur l’histoire des statistiques (Desrosières, 2008).
+
+En somme, les efforts pour quantifier le travail domestique en France, à
+travers des enquêtes comme celles de l'INSEE, sont révélateurs des
+tensions entre la nécessité de reconnaître le travail invisible et les
+limites des outils statistiques pour capturer la complexité des
+pratiques domestiques. La sociologie de la quantification nous aide à
+comprendre ces enjeux, tout en nous invitant à une réflexion critique
+sur les catégories que nous utilisons pour mesurer la réalité sociale.
+
+Les enquête Emploi du Temps font figures de pionnières de ce point de
+vu. Leur ancêtre, l'enquete Budget-Temps, conduite pour la première fois
+par l'INED en 1948 se donnait pour objectif de savoir ce que la
+formation d'un enfant "coûte à la société en heures de travail"
+[@Fouquet et Charraud, 1989, p. 54]. A ce moment, seules les femmes
+mariées sont interrogées, ce qui exclue de fait toute analyse sur la
+répartition de la charge de travail domestique au sein de la famille.
+Cependant, ces premiers enquêtes, entre préoccupation pour la natalité
+et la pénurie, posent les bases d'une réflexion sur la reproduction de
+la force de travail. Avec la mise en place des enquêtes emploi du temps
+telles qu'on les connait aujourd'hui, en
+
+À travers la collecte minutieuse de données via des journaux de bord, où
+les participants consignaient leurs activités heure par heure, souvent
+sur une période d'une semaine, ces enquêtes ont permis de rendre visible
+l'invisible.
+
+Le travail domestique, longtemps relégué dans l'ombre des statistiques
+économiques traditionnelles, a commencé à attirer l'attention pour
+plusieurs raisons. Le mouvement féministe des années 1970 a joué un rôle
+crucial en soulignant l'invisibilité et la non-reconnaissance du travail
+domestique, majoritairement effectué par des femmes. Ces activités, bien
+que non rémunérées, contribuent de manière essentielle au bien-être
+familial et social. Parallèlement, l'économie du bien-être a
+progressivement reconnu que les tâches domestiques, telles que la
+cuisine, le nettoyage et la garde des enfants, soutiennent la
+main-d'œuvre rémunérée et constituent une part significative de
+l'économie globale.
+
+Dans les décennies suivantes, les enquêtes emploi du temps ont été
+intégrées dans les programmes réguliers des instituts de statistiques de
+nombreux pays. Cette intégration a permis de quantifier le travail
+domestique, proposant ainsi des mesures pour son inclusion dans des
+indicateurs économiques tels que le PIB. De plus, ces enquêtes ont
+révélé des tendances sociétales majeures, comme l'augmentation du temps
+consacré aux loisirs, la participation croissante des femmes au marché
+du travail, et les changements dans la structure et la dynamique des
+ménages.
+
+Les résultats des enquêtes emploi du temps et l'attention accrue portée
+au travail domestique ont eu des impacts significatifs sur plusieurs
+plans. Les données collectées ont alimenté les politiques publiques
+visant à promouvoir l'égalité des genres, comme les congés parentaux et
+les services de garde d'enfants subventionnés. Elles ont également servi
+la recherche académique, permettant d'étudier les relations entre le
+travail rémunéré et non rémunéré, la santé mentale et physique, et la
+satisfaction de vie. En outre, la reconnaissance de la valeur du travail
+domestique a engendré des débats sur la rémunération et la protection
+sociale des travailleurs domestiques.
+
+L'intérêt croissant de la statistique publique pour les dynamiques des
+ménages, à travers les enquêtes emploi du temps et l'évaluation du
+travail domestique, représente une avancée significative vers une
+compréhension plus holistique de l'économie et de la société. Cette
+démarche a permis de mieux apprécier la contribution des activités non
+rémunérées, informant ainsi des politiques visant à améliorer le
+bien-être et l'égalité au sein des ménages. En reconnaissant
+l'importance du travail domestique, la statistique publique a contribué
+à une vision plus inclusive et équilibrée de l'économie.
+
+# Chapitre 5. Inégalités dans le ménage et niveau de vie. L’État face aux remises en couples des parents isolés.
+
+Partant, il est donc possible de questionner la transpositions des
+inégalités de revenus en inégalités de consommations au sein des
+ménages.
 
 ## Des inégalités de revenus aux inégalités de consommations
 
@@ -4485,6 +4943,98 @@ principalement les femmes qui subissent les effets de la baisse des
 montant versés librement par les ex-conjoint-e après la remise en
 couple.
 
+### S'occuper des dépenses courantes : une affaire de mères
+
+L'enquête budget de famille ne permet pas de savoir directement qui
+s'occupe des dépenses courantes. En revanche, on peut utiliser les
+informations se rapportant à la personne qui à répondu aux questions de
+l'enqueteur-ice pour le ménage. En effet, d'après les informations de
+collecte disponible pour enquête, "*la personne à interroger au sein
+d’un ménage est celle ayant la meilleure connaissance des dépenses*"
+c'est-à-dire "*la personne du ménage réalisant la majeure partie des
+dépenses et qui, à ce titre, est donc la plus à même à répondre aux
+questions*". Ainsi, en analysant la position au sein du ménage du ou de
+la répondant-e, on peut interroger la prise en charge de la gestion du
+budget et de l'économie domestique. On observe ainsi des résultats
+convergents avec la littérature : dans 54% des couples, les individus
+répondants à enquête sont des femmes. En particulier, on observe des
+variations de classes : alors que dans les fractions de classes les plus
+populaires, ce sont très majoritairement les femmes qui sont répondantes
+(57% dans les classes populaires célibataires et urbaines [C3], et 58%
+chez les petits-moyens [C1]), au sein des classes moyennes et
+supérieures [C4] et de la bourgeoisie culturelle [C2], cette proportion
+est plus modérée (53%). La gestion de l'économie domestique par les
+femmes de classes populaire constitue un "pouvoir paradoxal"
+[@perrinheredia], qui leur donne à la fois la possibilité de choisir ce
+qui est acheté et leur assigne des responsabilités faisant pleinement
+partie du travail domestique effectué gratuitement dans les familles.
+Enfin, au sein de la bourgeoisie économique [C7], les individus
+répondants sont majoritairement des hommes (51%). Chez les riches,
+l'argent apparait plus souvent, comme une affaire d'homme
+[@herlingiret].
+
+Le fait de vivre avec des enfants semble également jouer : chez les
+couples sans enfants, les individus répondants sont dans 50% des cas des
+hommes, alors que chez les couples avec enfants, cette proportion tombe
+à 43%. Plus encore, la configuration familiale semble jouer d'avantage :
+chez les familles recomposées 60% des personnes répondantes sont des
+répondantes. Chez les familles recomposées où seule la femme a des
+enfants, cette proportion monte à 70% et tombe à 32% dans les familles
+où seul l'homme à des enfants. On semble donc observer un double effet
+du sexe et du statut parental sur le fait d'effecturer la majorité des
+dépenses courantes pour le ménage. Le tableau suivant présente les
+résultats d'une régression logistique sur le sexe de la personne
+répondant au questionnaire parmi les ménages formés par des couples de
+sexe différents, qu'ils aient ou non des enfants. On modélise ainsi la
+probabilité que l'individu répondant soit une femme. Les coefficients
+estimés par le modèle sont présentés sou la forme de rapports de cotes
+(OR) pour chaque caractéristique.
+
+```{r}
+load("Resultats/reg_SexeRep.Rdata")
+tab$tableau %>%
+  as_kable_extra(caption = "Regression le fait que le répondant à l'enquête soi une femme", 
+                 digits = 1, booktabs = T) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down", "repeat_header"),
+    font_size = 7) %>%
+  add_kablesource_note(champ = tab$champ, 
+                       N = tab$n, 
+                       lecture = "Le fait d'appartenir aux classes populaires célibatiares et urbaines [C6], plutôt quaux classes moyennes supérieures [C4], fait augmenter, toutes choses égales par ailleurs, la probabilité que l'individu répondant à l’enquête soit un femme de 20%.")
+```
+
+Le niveau de vie n'est pas un facteur significativement déterminant du
+sexe de la personne répondant aux questions des enqueteur-ice-s. A la
+différence, l'appartenance de classe montre des variations intéressantes
+lorsqu'elle est comparée aux classes moyennes supérieures [C4], qui
+servent de modalité de référence. Ainsi, le fait d'appartenir aux
+petits-moyens [C1], plutôt qu'aux classes moyennes supérieures [C4],
+fait augmenter, toutes choses égales par ailleurs, la probabilité que
+l'individu répondant à l’enquête soit un femme de 33%. A l'inverse le
+fait d'appartenir à la bourgeoisie économique [C7] fait baisser la
+probabilité que l'individu répondant à l’enquête soit une femme.
+
+Le fait de vivre avec des enfants tend bien à renforcer la prise en
+charge des dépenses par les femmes, puisque pour un couple de sexe
+différent, le fait qu'aucun des membres n'ait d'enfant, fait baisser la
+probabilité que la femme prenne en charge la majorité des dépenses de
+29%, par rapport aux couples où les deux ont des enfants. Mais c'est
+d’avantage le statut parental des individus qui importe : le fait que
+seule la mère ait des enfants, fait augmenter, à niveau de vie et
+position sociale du ménage identique, la probabilité qu'elle soit la
+personnes prenant en charge la majorité des dépenses de 69%, par rapport
+aux couples ou les deux membres ont des enfants. A l'inverse, le fait
+que seul l'homme ait des enfants, fait baisser, toutes choses égales par
+ailleurs, la probabilité que ce soit sa conjointe qui prennent en charge
+la majorité des dépenses de 67%. Ainsi, dans les familles recomposées si
+ce sont plus souvent les femmes qui s'occupent des dépenses du ménages,
+c'est parce que ce sont le plus souvent elles les mères. En particulier,
+on observe que les belles-mères sans enfants ne prennent pas plus en
+charge que les beaux-pères sans enfants cette gestion de l'argent
+domestique. C'est seulement lorsque les deux conjoint-e ont des enfants
+que ce sont plus clairement les femmes qui s'occupent des dépenses du
+ménage.
+
 ### Des inégalités de consommation à l’intérieur des ménages
 
 Pris ensemble, les inégalités de revenus entre hommes et femmes, en
@@ -4498,7 +5048,7 @@ produits, spécifiques aux enfants, même s'il n'est pas possible de
 savoir à quels enfants ils bénéficient. Il s'agit des dépenses de garde
 d'enfants, d'habillement, des frais scolaires, des jouets, de
 l'équipement spécifique et de l'alimentation spécifique. Dans l'enquête
-budgets de familles en 2011, ces dépenses représentaient 13,6% du budget
+budget de familles en 2011, ces dépenses représentaient 13,6% du budget
 des ménages avec au moins un enfant de moins de 16 ans [@Hotte].
 Cependant, dans le fichier de production et de recherche (FPR) de 2017
 sur lequel nous avons travaillé, les postes de dépenses ont été agrégés
@@ -4615,412 +5165,233 @@ niveau de vie, appartenance de classe, taille de la fratrie, âge moyen
 des enfants égaux, un enfant dans une famille recomposée sans enfants
 commun consomme moins de vêtements par ans qu'un enfant de famille
 traditionnelle. En même temps, les dépenses chaussures et vêtements par
-adulte apparaissent sifnificativement (au seuil de confiance de 90%)
-plus élevés dans les familles recmposées que dans les familles
-traditionnelles. On obdépenses de vêtements consacrées à chaque enfant
+adulte apparaissent significativement (au seuil de confiance de 90%)
+plus élevés dans les familles recomposées que dans les familles
+traditionnelles. Les dépenses de vêtements consacrées à chaque enfant
 dans les familles recomposées sans enfants commun au couple ne sont
-ainsi pas liées à des dépenses de vêtement globalement plus faibles. A
-niveau de vie du ménage et âge égal, les enfants issus d'une union
-précédente vivants en famille recomposées semblent donc faire l'objet de
-moins de dépenses en matière de vêtements et chaussures que les enfants
-vivants en famille traditionnelle.
+ainsi pas liées à des dépenses de vêtement globalement plus faibles dans
+ces fmailles. Toutes choses égales par ailleurs, on dépense d'avantage
+pour les vêtements des adultes et moins pour les vêtement des enfants,
+dans les fammilles recomposées sans enfants communs que dans les
+familles traditionnelle et moins pour les vêtements des enfants.
 
-Une des limites importantes de ce résultats tient au fait que les
-vêtements pour enfants ne sont pas seulement échangeables aux sein d'une
-fratrie, ils peuvent être donnés entre parents
+Les vêtements ne représentent certes qu'une petite part de la
+consommation d'un ménage, et il ne saurait à eux seuls mesurer le niveau
+de vie de celui-ci. Cependant, les différences obsrevées dans
+l'allocation du budget consacré aux vêtements entre enfants et adultes
+dans les familles recomposées sans enfants communs et famille
+traditionnelle met en évidence des inégalités de consommation entre
+enfants et adultes plus importantes dans les familles recomposées que
+dans les familles traditionnelles. Une des limites importantes de ce
+résultat, tient au fait que les vêtements pour enfants ne sont pas
+seulement échangeables aux sein d'une fratrie, ils peuvent être donnés
+entre parents. Ainsi, peut-être les familles recomposées ont-elles un
+réseau mobilisable pour ce type de dons plus important que les familles
+traditionelles. Pour autant, au vu de la plus grande séparation des
+budgets dans les familles recomposées que dans les familles
+traditionnelles, il semble plutôt probable que la consommation de bien
+individuels pour les enfants d'un des conjoints dépendent d'avantage des
+revenus de son parent que des revenus du ménage dans son ensemble.
 
 [conclusion]
 
 synthèse des résultats
 
-Limites des résultats : - plutôt des trace que des trucs démontré,
-invite a faire des éthnographies sur le sujet - Effectifs trop faible
-pour croiser avec la position sociale, ce qui est dommage, parce que
-c'est des rapport à l'argent différents : est ce que lorsque les les
-budgets sont plus contraint, on a aussi une mise en commun plus
-importante, ou au contraire est ce que chaque conjoint fait plus
-attention à son argent
+## Le niveau de vie, critère d'ouverture ou de fermeture des droits
 
-# Chapitre 4. Des belles mères au travail reproductif
+expliquer à quel point c'est central dans les politiques de
+redistribution, cf "France STratégie, le couple contribue-t-il encore à
+réduire les ingalités"
 
-Ainsi, si les beaux-parents contribuent financièrement moins à
-l'entretien des enfants de leur conjoint que ne le feraient des parents,
-cela ne signifie pas pour autant qu'aucune forme de parenté pratique ne
-se construit entre beaux-parents et beaux-enfants. La notion de parenté
-pratique, telle que définie par Florence Weber, dépasse largement les
-simples transferts financiers pour englober une variété de pratiques
-sociales, économiques et affectives qui structurent la vie quotidienne
-des familles. Weber (2002) souligne que la parenté pratique se manifeste
-par des échanges de services, des soutiens émotionnels et des
-interactions quotidiennes qui cimentent les relations familiales. Par
-exemple, les soins apportés aux enfants, l'accompagnement des personnes
-âgées, l'aide apportée lors d’évènements importants de la vie ou même
-les simples actes de solidarité entre membres de la famille sont autant
-de manifestations de la parenté pratique. En ce sens, la dimension
-matérielle de la parenté ne peut être réduite à de simple transferts
-financiers. Ainsi, les arrangements économiques au sein des familles ne
-doivent pas être envisagé comme purement monétaires. Comme le souligne
-[@Bessières], ces arrangements englobent un ensemble de pratiques et de
-contributions qui vont bien au-delà des simples transferts financiers.
-Ils incluent notamment les tâches ménagères, les soins aux enfants, les
-services rendu entre membre de la famille, tels que la garde d'enfants
-ou l'aide aux travaux ménagers.
+### dans les familles recomposées
 
-## Ouvrir la boite noire du ménage : au commencement était le travail domestique
+Au delà de l'indicateur de position sociale, le niveau de vie permet de
+quantifier des inégalités économiques entre individus ou encore
+d'analyser la consommation. Il est donc un indicateur central en
+sciences sociales. Le calcul du niveau de vie est également au fondement
+des dispositifs de redistribution. Les travaux s’intéressant au devenir
+des familles monoparentales après la séparation mettent en évidence une
+augmentation du niveau de vie avec la remise en couple. C’est par
+exemple le cas d’un dossier réalisé par Abbas et Garbinti, dans le
+Portrait social 2019 de l’INSEE qui dans lequel la remise en couple est
+qualifiée de « déterminant majeur de la convergence des niveaux de vie
+vers leurs niveaux d’origine » [@abbas2019, p. 104], en particulier pour
+les mères, après la chute brutale lors de la séparation. Pour autant,
+nombreux sont les angles morts de ce type de calcul.
 
-Historiquement, la statistique publique s'est plutôt orienté vers la
-production de données permettant le calcul de grands agrégats
-macroéconomiques, tels que le PIB, le chômage ou l'inflation. A partir
-du milieu du 20e siècle, le tournant microéconomique l'importance des
-dynamiques internes des ménages. Cette évolution a permis de dévoiler la
-complexité des activités non rémunérées et leur rôle crucial dans le
-fonctionnement de la société.
+Calculé comme le quotient du revenu disponible d'un ménage sur le nombre
+d'unités de consommation de celui-ci, il permet de rendre comparable des
+ménages composées différemment. Pour cela, il s'appuie sur des échelles
+d'équivalence, qui attribuent un coefficient à chaque personne
+supplémentaire en fonction de ses caractéristiques propre. Ce
+coefficient correspond ainsi à la proportion de revenu supplémentaire
+que le ménage doit gagner pour cet individu, afin de bénéficier du même
+niveau de vie qu’une personne seule.
 
-Les enquête Emploi du Temps font figures de pionnières de ce point de
-vu. Leur ancêtre, l'enquete Budget-Temps, conduite pour la première fois
-par l'INED en 1948 se donnait pour objectif de savoir ce que la
-formation d'un enfant "coûte à la société en heures de travail"
-[@Fouquet et Charraud, 1989, p. 54]. A ce moment, seules les femmes
-mariées sont interrogées, ce qui exclue de fait toute analyse sur la
-répartition de la charge de travail domestique au sein de la famille.
-Cependant, ces premiers enquêtes, entre préoccupation pour la natalité
-et la pénurie, posent les bases d'une réflexion sur la reproduction de
-la force de travail. Avec la mise en place des enquêtes emploi du temps
-telles qu'on les connait aujourd'hui, en
+Comment c'est mesuré ces échelles d'équivalences.
 
-À travers la collecte minutieuse de données via des journaux de bord, où
-les participants consignaient leurs activités heure par heure, souvent
-sur une période d'une semaine, ces enquêtes ont permis de rendre visible
-l'invisible.
+L'Insee utilise généralement l'échelle dite de "l'OCDE modifiée" mais
+les administrations sociales et le fisc ont également leurs propres
+échelles d'équivalences parfois même spécifiques à chaque préstation
+sociale.
 
-Le travail domestique, longtemps relégué dans l'ombre des statistiques
-économiques traditionnelles, a commencé à attirer l'attention pour
-plusieurs raisons. Le mouvement féministe des années 1970 a joué un rôle
-crucial en soulignant l'invisibilité et la non-reconnaissance du travail
-domestique, majoritairement effectué par des femmes. Ces activités, bien
-que non rémunérées, contribuent de manière essentielle au bien-être
-familial et social. Parallèlement, l'économie du bien-être a
-progressivement reconnu que les tâches domestiques, telles que la
-cuisine, le nettoyage et la garde des enfants, soutiennent la
-main-d'œuvre rémunérée et constituent une part significative de
-l'économie globale.
+```{r}
+echellesEquivalences <- NULL
+```
 
-Dans les décennies suivantes, les enquêtes emploi du temps ont été
-intégrées dans les programmes réguliers des instituts de statistiques de
-nombreux pays. Cette intégration a permis de quantifier le travail
-domestique, proposant ainsi des mesures pour son inclusion dans des
-indicateurs économiques tels que le PIB. De plus, ces enquêtes ont
-révélé des tendances sociétales majeures, comme l'augmentation du temps
-consacré aux loisirs, la participation croissante des femmes au marché
-du travail, et les changements dans la structure et la dynamique des
-ménages.
+\*\* INSERER tableau des échelles d'équivalences \*\*
 
-Les résultats des enquêtes emploi du temps et l'attention accrue portée
-au travail domestique ont eu des impacts significatifs sur plusieurs
-plans. Les données collectées ont alimenté les politiques publiques
-visant à promouvoir l'égalité des genres, comme les congés parentaux et
-les services de garde d'enfants subventionnés. Elles ont également servi
-la recherche académique, permettant d'étudier les relations entre le
-travail rémunéré et non rémunéré, la santé mentale et physique, et la
-satisfaction de vie. En outre, la reconnaissance de la valeur du travail
-domestique a engendré des débats sur la rémunération et la protection
-sociale des travailleurs domestiques.
+"Certains biens peuvent être considérés comme des biens collectifs au
+sein du ménage [4] [4] Un bien est dit « collectif » si sa consommation
+est non…. En conséquence, l’arrivée de nouveaux membres dans le ménage
+n’entraîne pas de nouvelles dépenses de consommation de ce bien. Sa
+consommation est source d’économies d’échelle. Le chauffage peut être
+qualifié de bien collectif. À l’opposé, la consommation de biens
+individuels, caractérisée par l’exclusion d’usage et la rivalité (par
+exemple les aliments), est proportionnelle à la taille du ménage. Entre
+ces deux catégories de biens se trouvent des biens mixtes dont la
+consommation peut être non rivale mais caractérisée par l’exclusion
+d’usage (le loisir par exemple) et d’autres pour lesquels la
+consommation est rivale mais l’usage est non exclusif (comme une
+baignoire). La plupart des biens occupent une position intermédiaire. Le
+vêtement peut être considéré comme un bien individuel, mais il peut se
+rapprocher d’un bien collectif lorsque les vêtements s’échangent entre
+les membres du ménage (notamment au sein de la fratrie). Il existe
+d’autres formes d’économies d’échelle lorsqu’un ménage de grande taille
+bénéficie de tarifs plus avantageux grâce à des achats en quantité
+importante ou de tarifs sociaux (carte famille nombreuse par exemple).
+Des économies peuvent également être dégagées concernant le travail
+domestique dans la mesure où un ménage de grande taille dispose
+potentiellement de davantage de temps libre : le temps consacré aux
+tâches domestiques (ménage, cuisine…) ne croît pas proportionnellement
+avec la taille de celui-ci. Gardes, Sayadi et Starzec [2013] montrent
+que les économies d’échelle réalisées dans un ménage en termes de
+travail domestique sont plus importantes que celles associées aux
+dépenses monétaires. À partir de données anglaises, Couprie et Ferrant
+[2015] ont montré que deux personnes vivant seules séparément ont besoin
+de 2 h 15 supplémentaires par jour pour atteindre le même niveau
+d’utilité qu’elles auraient eu si elles vivaient en couple. L’ampleur de
+ce type d’économies d’échelle dépend de la configuration du ménage, en
+particulier elles sont potentiellement moindres dans le cas d’un foyer
+monoparental que dans celui d’un couple. Dans certains cas, la charge
+d’une personne dépendante (nourrisson, enfant non scolarisé, personne
+âgée) intensifie les charges domestiques, ce qui engendre alors des
+déséconomies d’échelle : la naissance d’un enfant accroît la charge de
+travail domestique, et ce surcroît de travail repose sur les femmes, ce
+qui accentue le déséquilibre dans le partage des tâches domestiques et
+familiales (Pailhé et Solaz [2010] ; Régnier-Loilier et Hiron [2010]).
+Les échelles d’équivalence ne prennent pas en compte les coûts indirects
+liés à un moindre investissement dans la vie professionnelle et/ou au
+retrait partiel ou total de l’activité professionnelle de l’un des
+parents (Thévenon [2009]). Or ces coûts de renoncement à la carrière
+sont importants et sont supportés essentiellement par les femmes, ce qui
+pèse sur l’égalité des sexes (Meurs, Paihlé et Ponthieux [2010])."
 
-L'intérêt croissant de la statistique publique pour les dynamiques des
-ménages, à travers les enquêtes emploi du temps et l'évaluation du
-travail domestique, représente une avancée significative vers une
-compréhension plus holistique de l'économie et de la société. Cette
-démarche a permis de mieux apprécier la contribution des activités non
-rémunérées, informant ainsi des politiques visant à améliorer le
-bien-être et l'égalité au sein des ménages. En reconnaissant
-l'importance du travail domestique, la statistique publique a contribué
-à une vision plus inclusive et équilibrée de l'économie.
+> revue de littérature sur le calcul du niveau de vie
+
+Des limites nombreuses, évolutions de la structure des budgets, donc
+économies d'échelles qui bougent aussi (exemple du logement)
+
+comparaisons internationales qui ne prennent pas en compte le niveau de
+démarchandisation (services publics, redistrib en "nature", ex dépenses
+de santé France vs USA)
+
+La question des limites du ménage
 
 ```{=tex}
-\begin{encadre}{Le travail domestique dans l'enquête Budget de famille (2017)}
+\begin{encadre}{Estimer les niveau de vie}
 
+Revue de littérature sur l'estimation des niveau de vie [voir sociologie de la consommation et des budgets ouvriers].
 
-Dans l'enquête Budget de famille (2017), un module portant sur les activités domestique est prévu. L'individu répondant aux question de l'enquêteur ou l'enquêtrice est interrogé sur la participation des différents membres du ménage au travail domestique et parental la semaine précédant l'entretient. La période d’observation est donc la même que celles des dépenses. Les variables issues de ces réponses sont ainsi renseignées dans la table de données sur les dépenses individuelles. En revanche ce module de question n'est posé qu'à la moitié des ménages, séléctionnés au hasard, réduisant ainsi la taille de l’échantillon sur lequel nous travaillons dans cette partie. De plus, pour une raison que nous ignorons et qui n'est pas explicitée dans la documentation de l'enquête, parmi les ménages ayant des enfants cohabitant, les items relatifs au travail parental (aide scolaire aux enfants et habillage des enfants) ont un nombre très élevé de valeurs manquantes. Ceci explique pourquoi les p-valeurs calculées sur les tests du $Chi^2$ sont en général plus élevées. 
+Dans l'enquête BDF 2017, trois variables subjectives permettent d'approcher des estimations du niveau de vie dans les familles.
 
 \end{encadre}
 ```
-## S'occuper des dépenses courantes : une affaire de mères
+Expliciter la méthode utiliser et la vérification des conditions.
 
-Le tableau présente les résultats d'une régression logistique sur le
-sexe du répondant au questionnaire, celui qui se désigne comme
-connaissant le mieux le budget du ménage parmi les ménages formés par
-des couples, qu'ils aient ou non des enfants. Les coefficients rapportés
-incluent les rapports de cotes (OR) et les intervalles de confiance à
-95% (IC) pour chaque caractéristique, ainsi que les p-valeurs pour
-évaluer la signification statistique des résultats.
+La régression logistique ordinale est une méthode statistique utilisée
+pour prédire la probabilité de résultats ordonnés en fonction de
+plusieurs variables indépendantes. Dans cette analyse, nous avons étudié
+le niveau ressenti d'aisance budgétaire, une variable ordinale, en
+fonction de diverses caractéristiques socio-économiques et
+démographiques.
 
-[sexrep]
+```{r AISEreg}
 
-Le niveau de vie (NVIE) a un OR de 1,00, indiquant qu'il n'a pas
-d'impact significatif sur le sexe du répondant, avec une p-valeur de
-0,12. Cela signifie que le niveau de vie n'est pas un facteur
-déterminant pour savoir si le répondant est un homme ou une femme.
-
-Les différentes classes sociales montrent des variations intéressantes
-lorsqu'elles sont comparées aux classes moyennes supérieures (C3), qui
-servent de modalité de référence. Les classes populaires précaires (C6)
-ont un OR de 0,84, mais ce résultat n'est pas significatif (p=0,11). Les
-classes populaires urbaines (C5) ont un OR de 1,22, suggérant une
-probabilité plus élevée que le répondant soit une femme, avec un
-résultat significatif (p=0,018). Les petits indépendants (C4) montrent
-un OR de 1,16, mais ce résultat n'est pas significatif (p=0,24). Les
-petits-moyens (C1) ont un OR de 1,35, indiquant une probabilité
-significativement plus élevée que le répondant soit une femme
-(p\<0,001). Les classes supérieures du pôle public (C2) n'ont pas de
-différence significative avec la modalité de référence, avec un OR de
-1,03 et une p-valeur de 0,80. Enfin, les classes supérieures du pôle
-privé (C7) ont un OR de 0,79, indiquant une probabilité
-significativement plus faible que le répondant soit une femme (p=0,015).
-
-Pour ce qui est du type de ménage et du sexe, les modalités comparées
-sont "Homme et femme en couple". Une mère en couple a un OR de 1,60,
-suggérant une probabilité significativement plus élevée qu'une femme
-soit le répondant (p=0,005). En revanche, un père en couple a un OR de
-0,46, indiquant une probabilité significativement plus faible qu'une
-femme soit le répondant (p=0,002). Les ménages monoparentaux ne sont pas
-représentés, étant donné que le champ d'étude se concentre sur les
-ménages formés par des couples.
-
-En conclusion, les résultats montrent que certaines classes sociales
-influencent significativement la probabilité que le répondant au
-questionnaire soit une femme. Les classes populaires urbaines et les
-petits-moyens sont plus susceptibles d'avoir une femme comme répondant,
-tandis que les classes supérieures du pôle privé et les configurations
-de père en couple sont moins susceptibles d'avoir une femme comme
-répondant. Le niveau de vie, quant à lui, n'a pas d'impact significatif
-sur le sexe du répondant.
-
-## Prise en charge du travail domestique
-
-### Une charge de travail domestique a priori mieux répartie entre hommes et femmes
-
-Cadolle
-
-Le tableau ci-dessous le taux de participations des hommes et des femmes
-au travail domestique et parental la semaine ayant précédé l'entretien.
-Il distinguent différentes activités domestiques en déclinant
-différentes taches.
-
-```{r, results = "asis"}
-load("Resultats/tab_Wdom_typefam_sexe.Rdata")
-tab$tableau %>%
-  as_kable_extra(digits = 1, booktabs = T, longtable = T,
-                 caption = "Implication dans le travail domestique et parental en fonction de la configuration familiale et du sexe") %>%
-  kable_styling(
-    latex_options = c("hold_position", "scale_down", "repeat_header"),
-    font_size = 7) %>%
-  pack_rows(group_label = "Activité effectuée la semaine de l'enquête (en %)",
-            1, 10) %>%
-  column_spec(1, width = "3cm") %>%
-  #row_spec(0, angle = -45) %>%
-  add_kablesource_note(N = tab$n, 
-                       champ = tab$champ, 
-                       lecture = "47% des hommes vivants en famille traditionelle ont fait du bricolage la semaine de l'enquête.")
-
-
-```
-
-En ce qui concerne la plus part des taches domestique et parentales, les
-femmes vivants en familles traditionnelles et recomposées apparaissent
-impliquées dans des proportions similaires. Le variations significatives
-d'implications des femmes dans le travail domestique et parental
-tiennent en général à la situation de monoparentalité par rapport à la
-vie en couple. Les femmes vivant en famille recomposée apparaissent
-cependant légèrement mais significativement moins impliquées dans le
-repassage (elles sont seulement 49% a avoir repasser des vêtements la
-semaine de l'enquête contre 57% des femmes vivant en famille
-traditionnelle et 54% des femmes vivants en famille recomposée). En
-revanche les hommes vivants en familles recomposées apparaissent plus
-impliqués dans certaines tâches que ceux vivants en famille
-traditionnelles. Ils sont en effet plus nombreux à avoir fait du
-repassage (13% contre 9,4%), des courses (70% contre 63%) ou du ménage
-(54% contre 44%). La participation féminine sur ces taches ne diffère
-pas significativement entre familles recomposées et familles
-traditionnelles. Il semblent donc que les couples formant des ménages
-recomposées soient plus égalitaires : les hommes y sont légèrement plus
-engagé dans la prise en charge du travail domestique.
-
-On peut ainsi se demander si l'effet observé n'est pas lié au statut
-parental. D'une part, la mobilisation légèrement plus forte des hommes
-sur le travail domestique pourrait être lié aux pères qui ont des
-enfants issus d'une précédante union et qui, ayant probablement connu
-une période de monoparentalité avant leur remise en couple ont du
-assurer eux même, au moins en partie, le travail domestique et parental
-lié au fait d'élever seul ses enfants. D'autre part, les belles-mères
-sans enfants sont largement sous-représentées parmi les femmes vivant en
-famille recomposées, on ne peut donc pas exclure qu'elles soient moins
-mobilisées que les mères.
-
-### [Les parents en font + que dans le familles nucléaires mais moins que dans les familles monoparentales]
-
-Le tableau ci-dessous présente la part de parents vivant en avec au
-moins un de leurs enfant ayant effectué des taches de travail domestique
-et parental durant la semaine de l'enquête.
-
-```{r, results='asis'}
-
-load("Resultats/tab_Wdom_parents.Rdata")
+load("Resultats/Reg_aisance.Rdata") 
 
 tab$tableau %>%
-  as_kable_extra(digits = 1, booktabs = T, longtable = T,
-                 caption = "Travail domestique et parental des parents en fonction de la configuration familiale") %>%
-  kable_styling(
-    #full_width = T,
-    latex_options = c("hold_position", "repeat_header"),
-    font_size = 7) %>%
-  pack_rows(group_label = "Activité effectuée la semaine de l'enquête (en %)", 
-            1, 10) %>%
-  column_spec(1, width = "3cm") %>%
-  #row_spec(0, angle = -45) %>%
-  add_kablesource_note(N = tab$n, 
-                       champ = tab$champ, 
-                       lecture = "76% des parents vivants en famille traditionelle ont fait les courses au moins une fois durant la semaine de l'enquête.")
-
+  as_kable_extra(booktabs = TRUE)
 
 ```
 
-Sur la majorité des taches, la prise en charge du travail domestique par
-les parents vivants en famille recomposée apparaît similaire à celle des
-parents vivants en familles traditionnelle. Cependant, ils sont
-significativement (p \< 0,001) plus nombreux à prendre avoir fait les
-courses et le ménage au moins une fois la semaine de l'enquête : 83% ont
-fait les courses contre 76% dans les familles traditionnelles et 74% on
-fait le ménage contre 67% dans les familles traditionnelles. Ils sont
-aussi légèrement et moins significativement plus nombreux à avoir aider
-les enfants (hors aide scolaire, c'est-à-dire habillage, change, bain à
-manger) que dans les familles traditionnelle, alors même que les enfants
-y sont en moyenne plus âgés.
+Les résultats montrent que le niveau de vie du ménage a un impact
+positif et significatif sur le sentiment d'aisance budgétaire, avec un
+odds ratio (OR) de 1,09 et un intervalle de confiance à 95% (IC) de 1,08
+à 1,10 (p \< 0,001). Cela signifie qu'une augmentation du niveau de vie
+du ménage est associée à une légère augmentation du sentiment d'aisance
+budgétaire.
 
-### La mise au travail domestique des belles-mères
+Les différentes classes socio-économiques présentent également des
+différences significatives. Les personnes appartenant aux classes
+populaires précaires (C6) ont un OR de 1,52 (IC 95% : 1,28 - 1,80 ; p \<
+0,001), ce qui indique qu'elles ressentent une aisance budgétaire
+supérieure par rapport à la catégorie de référence. Les classes
+populaires urbaines (C5) affichent un OR de 2,92 (IC 95% : 2,35 - 3,63 ;
+p \< 0,001), montrant une aisance budgétaire encore plus marquée. Les
+petits indépendants (C4) et les petits-moyens (C1) ressentent également
+une aisance budgétaire plus élevée, avec des OR respectifs de 2,06 (IC
+95% : 1,72 - 2,47 ; p \< 0,001) et 3,77 (IC 95% : 3,12 - 4,55 ; p \<
+0,001). Les classes moyennes supérieures (C3) et les classes supérieures
+du pôle public (C2) ont un sentiment d'aisance budgétaire encore plus
+significatif, avec des OR de 5,15 (IC 95% : 3,93 - 6,76 ; p \< 0,001) et
+4,70 (IC 95% : 3,45 - 6,41 ; p \< 0,001) respectivement. À l'inverse,
+les classes supérieures du pôle privé (C7) présentent un OR de 0,62 (IC
+95% : 0,46 - 0,83 ; p = 0,002), indiquant une aisance budgétaire
+inférieure.
 
-Le tableau suivant présente la participation aux différentes taches des
-parents et des beaux-parents en fonction de leur sexe dans les familles
-recomposées. Les effectifs étant très faibles, en particulier pour les
-belles-mères et les pères, les pourcentages ne sont donc pas
-interprétables en tant que tels, ils ne sont ici donnés qu'à titre
-indicatifs pour faciliter la lecture des résultats.
+Le nombre d'enfants dans le ménage n'a pas d'effet significatif sur le
+sentiment d'aisance budgétaire, avec un OR de 1,01 (IC 95% : 1,00 - 1,03
+; p = 0,12). Cela suggère que cette variable n'influence pas de manière
+notable l'aisance budgétaire ressentie. En revanche, l'âge des enfants
+dans le ménage a un effet très légèrement significatif sur l'aisance
+budgétaire, avec un OR de 1,01 (IC 95% : 1,00 - 1,02 ; p = 0,03). Bien
+que cet effet soit faible, il indique que l'augmentation de l'âge des
+enfants est associée à une légère augmentation du sentiment d'aisance
+budgétaire.
 
-```{r, results='asis'}
+Le type de ménage et le sexe montrent des différences notables dans
+l'aisance budgétaire ressentie. Les mères célibataires ressentent une
+aisance budgétaire significativement inférieure, avec un OR de 0,58 (IC
+95% : 0,51 - 0,66 ; p \< 0,001). Les pères célibataires présentent
+également une aisance budgétaire inférieure, avec un OR de 0,77 (IC 95%
+: 0,61 - 0,97 ; p = 0,026). Les mères en couple ont une aisance
+budgétaire légèrement inférieure, avec un OR de 0,78 (IC 95% : 0,60 -
+1,00 ; p = 0,054), mais ce résultat est à la limite de la
+significativité. En revanche, les pères en couple ressentent une aisance
+budgétaire supérieure, avec un OR de 1,58 (IC 95% : 1,09 - 2,29 ; p =
+0,016).
 
-load("Resultats/tab_Wdom_PBP_sexe.Rdata")
+En conclusion, cette analyse révèle que le niveau de vie du ménage et
+l'appartenance à différentes classes socio-économiques sont des facteurs
+significatifs influençant le sentiment d'aisance budgétaire. Les
+configurations familiales, notamment le type de ménage et le sexe,
+jouent également un rôle important. Le nombre d'enfants dans le ménage
+n'a pas d'effet significatif, tandis que l'âge des enfants a un impact
+marginalement significatif. Ces résultats mettent en lumière les
+inégalités économiques et sociales ressenties par différentes catégories
+de la population.
 
-tab$tableau %>%
-  as_kable_extra(digits = 1, booktabs = T, longtable = T,
-                 caption = "Travail domestique et parental en fonction du statut parental et du sexe") %>%
-  kable_styling(
-    # full_width = T,
-    latex_options = c("hold_position", "repeat_header"),
-    font_size = 7) %>%
-  column_spec(1, width = "3cm") %>%
-  #row_spec(0, angle = -45) %>%
-  add_kablesource_note(N = tab$n, 
-                       champ = tab$champ)
+-   Couple parental, parent célibataire ou nouvelle union, des effets
+    différenciés sur le niveau de vie ressenti
 
-```
+-   Les mères de familles recomposées estiment leur niveau vie plus
+    faible
 
-**On peut ainsi observer un écart, le plus souvent significatif, entre hommes et femmes quelque soit le statut parental pour la majorité des taches domestiques et parentales. Sur les principaux postes de travail domestiques (courses, cuisine du quotidien, ménage et vaisselle), a statut parental égal, les femmes sont systèmatiquement plus nombreuses que les hommes à avoir effectué ces taches au cours de la semaine précédant l'enquête (à l’exception de la vaisselle pour les beaux-parents sans enfants). Les taches féminines restent ainsi des taches féminines dans les familles recomposées : a statut parental égal, le linge (saisir par l'item repassage), est significativement et systématiquement plus féminin que masculin. A l'inverse les taches masculines restent des taches masculines dans les familles recomposées : le bricolage est significativement et systématiquement une tache d’avantage effectuée par les hommes que par les femmes.**
+-   Les pères de famille recomposées estiment leur niveau de vie plus
+    élevé
 
-:   
-
-:   
-
-    Les taches féminines restent féminines dans les familles recomposées
-
-    :   environ 90% des femmes, qu'elles soient et mères ou belles-mères
-        ont fait au moins une fois les courses, le ménage ou la cuisine
-        du quotidien durant la semaine qui précède l'enquête, contre 74%
-        des pères et 68% des beaux-pères pour les courses , 52% des
-        pères et 54% des beaux-pères pour le ménage et 57% des pères et
-        55% des beaux-pères pour la cuisine du quotidien.
-
-:   
-
-Les beaux-pères prennent visiblement moins en charge le travail
-domestique que les pères.
-
--   discussion tabet
-
-## Substitution travail domestique des belles-mères à des services marchands dans lorsque les pères sont les plus riches
-
-Ces mécanismes ne jouent pas de manière uniforme selon les classes
-sociales. Le tableau présente les résultats d'une régression linéaire de
-Tobit sur les dépenses par enfant pour la garde d'enfant effectuées par
-le ménage. L'intercept est de -2296, indiquant une réduction
-significative des dépenses de garde d'enfant sans la prise en compte des
-autres variables. Le niveau de vie mensuel a un coefficient de 10,
-montrant qu'une augmentation de 100 euros du niveau de vie mensuel se
-traduit par une augmentation de 10 euros des dépenses de garde d'enfant,
-ce qui est significatif.
-
-```{r depensesgarde, results='asis'}
-
-load("Resultats/reg_DepGardeEnfants.Rdata")
-tab$tableau %>% 
-  as_kable_extra(caption = "Regression sur les dépenses de garde d'enfant du ménage", digits = 1, booktabs = T) %>%
-  kable_styling(
-    latex_options = c("hold_position", "scale_down", "repeat_header"),
-    font_size = 7) %>%
-  add_kablesource_note(champ = tab$champ, 
-                       N = tab$n, 
-                       lecture = " ")
-```
-
-La taille de la fratrie affiche un coefficient de 220, suggérant que
-chaque enfant supplémentaire augmente les dépenses de 220 euros, une
-relation hautement significative. En revanche, l'âge moyen des enfants
-du ménage a un coefficient de -62, indiquant une diminution de 62 euros
-par année supplémentaire de l'âge moyen des enfants, également
-significatif.
-
-Pour les fractions de classe, les classes moyennes supérieures (C3)
-servent de modalité de référence. Comparées à cette modalité, les
-classes populaires précaires (C6) présentent un coefficient de -1499,
-mais cette relation n'est pas statistiquement significative. Les classes
-populaires urbaines (C5) ont un coefficient de -381, ce qui est
-significatif et montre une diminution des dépenses. Les petits
-indépendants (C4) affichent un coefficient de -192, sans signification
-statistique, tandis que les petits-moyens (C1) ont un coefficient de
--409, proche de la signification. Les classes supérieures du pôle public
-(C2) et du pôle privé (C7) ont des coefficients de 346 et 781
-respectivement, indiquant des augmentations significatives des dépenses.
-Les classes supérieures du pôle privé dépensent significativement plus
-que celles du pôle public.
-
-Pour les types de ménage et le sexe, les mères et pères en couple
-servent de modalité de référence. Les mères célibataires montrent une
-tendance à dépenser plus avec un coefficient de 314, proche de la
-signification statistique, tandis que les pères célibataires ont un
-coefficient de 354, ce qui est significatif. Les mères en couple ont un
-coefficient de -267, sans signification statistique, tandis que les
-pères en couple présentent un coefficient de 905, indiquant une
-augmentation significative des dépenses. Les pères célibataires et les
-pères en couple dépensent plus significativement que les mères
-célibataires et les mères en couple respectivement.
-
-En résumé, les résultats soulignent l'impact significatif du niveau de
-vie, de la taille de la fratrie, de l'âge des enfants, des différentes
-classes sociales et des configurations familiales sur les dépenses de
-garde d'enfant par ménage. Les différences entre les coefficients des
-différentes modalités de ces variables offrent une vision détaillée de
-la façon dont chaque facteur contribue aux variations des dépenses de
-garde d'enfant. Comparés à la modalité de référence, les coefficients
-révèlent des variations significatives entre les classes sociales et les
-types de ménage, en particulier pour les classes supérieures du pôle
-privé et les pères célibataires ou en couple, qui dépensent
-significativement plus pour la garde d'enfant.
-
-## Conclusion/transition : formes de continuité, d'un point de vue économique, entre monoparentalité et recompositions familiales
-
-# Chapitre 5. L'Etat face aux remises en couples des parents isolés
-
-## ??
-
-### Des remises en couple encadrées par l'Etat ?
+## Des remises en couple encadrées par l'Etat ?
 
 Judiciarisées, les divorces et les séparations impliquants des enfants
 semblent davantage encadrées par les institutions que les remises en
@@ -6296,201 +6667,7 @@ En cas d'absence de remise de la reconnaissance conjointe mentionnée au même a
 
 \end{encadre}
 ```
-## Le niveau de vie, critère d'ouverture ou de fermeture des droits
-
-expliquer à quel point c'est central dans les politiques de
-redistribution, cf "France STratégie, le couple contribue-t-il encore à
-réduire les ingalités"
-
-### dans les familles recomposées
-
-Au delà de l'indicateur de position sociale, le niveau de vie permet de
-quantifier des inégalités économiques entre individus ou encore
-d'analyser la consommation. Il est donc un indicateur central en
-sciences sociales. Le calcul du niveau de vie est également au fondement
-des dispositifs de redistribution. Les travaux s’intéressant au devenir
-des familles monoparentales après la séparation mettent en évidence une
-augmentation du niveau de vie avec la remise en couple. C’est par
-exemple le cas d’un dossier réalisé par Abbas et Garbinti, dans le
-Portrait social 2019 de l’INSEE qui dans lequel la remise en couple est
-qualifiée de « déterminant majeur de la convergence des niveaux de vie
-vers leurs niveaux d’origine » [@abbas2019, p. 104], en particulier pour
-les mères, après la chute brutale lors de la séparation. Pour autant,
-nombreux sont les angles morts de ce type de calcul.
-
-Calculé comme le quotient du revenu disponible d'un ménage sur le nombre
-d'unités de consommation de celui-ci, il permet de rendre comparable des
-ménages composées différemment. Pour cela, il s'appuie sur des échelles
-d'équivalence, qui attribuent un coefficient à chaque personne
-supplémentaire en fonction de ses caractéristiques propre. Ce
-coefficient correspond ainsi à la proportion de revenu supplémentaire
-que le ménage doit gagner pour cet individu, afin de bénéficier du même
-niveau de vie qu’une personne seule.
-
-Comment c'est mesuré ces échelles d'équivalences.
-
-L'Insee utilise généralement l'échelle dite de "l'OCDE modifiée" mais
-les administrations sociales et le fisc ont également leurs propres
-échelles d'équivalences parfois même spécifiques à chaque préstation
-sociale.
-
-```{r}
-echellesEquivalences <- NULL
-```
-
-\*\* INSERER tableau des échelles d'équivalences \*\*
-
-"Certains biens peuvent être considérés comme des biens collectifs au
-sein du ménage [4] [4] Un bien est dit « collectif » si sa consommation
-est non…. En conséquence, l’arrivée de nouveaux membres dans le ménage
-n’entraîne pas de nouvelles dépenses de consommation de ce bien. Sa
-consommation est source d’économies d’échelle. Le chauffage peut être
-qualifié de bien collectif. À l’opposé, la consommation de biens
-individuels, caractérisée par l’exclusion d’usage et la rivalité (par
-exemple les aliments), est proportionnelle à la taille du ménage. Entre
-ces deux catégories de biens se trouvent des biens mixtes dont la
-consommation peut être non rivale mais caractérisée par l’exclusion
-d’usage (le loisir par exemple) et d’autres pour lesquels la
-consommation est rivale mais l’usage est non exclusif (comme une
-baignoire). La plupart des biens occupent une position intermédiaire. Le
-vêtement peut être considéré comme un bien individuel, mais il peut se
-rapprocher d’un bien collectif lorsque les vêtements s’échangent entre
-les membres du ménage (notamment au sein de la fratrie). Il existe
-d’autres formes d’économies d’échelle lorsqu’un ménage de grande taille
-bénéficie de tarifs plus avantageux grâce à des achats en quantité
-importante ou de tarifs sociaux (carte famille nombreuse par exemple).
-Des économies peuvent également être dégagées concernant le travail
-domestique dans la mesure où un ménage de grande taille dispose
-potentiellement de davantage de temps libre : le temps consacré aux
-tâches domestiques (ménage, cuisine…) ne croît pas proportionnellement
-avec la taille de celui-ci. Gardes, Sayadi et Starzec [2013] montrent
-que les économies d’échelle réalisées dans un ménage en termes de
-travail domestique sont plus importantes que celles associées aux
-dépenses monétaires. À partir de données anglaises, Couprie et Ferrant
-[2015] ont montré que deux personnes vivant seules séparément ont besoin
-de 2 h 15 supplémentaires par jour pour atteindre le même niveau
-d’utilité qu’elles auraient eu si elles vivaient en couple. L’ampleur de
-ce type d’économies d’échelle dépend de la configuration du ménage, en
-particulier elles sont potentiellement moindres dans le cas d’un foyer
-monoparental que dans celui d’un couple. Dans certains cas, la charge
-d’une personne dépendante (nourrisson, enfant non scolarisé, personne
-âgée) intensifie les charges domestiques, ce qui engendre alors des
-déséconomies d’échelle : la naissance d’un enfant accroît la charge de
-travail domestique, et ce surcroît de travail repose sur les femmes, ce
-qui accentue le déséquilibre dans le partage des tâches domestiques et
-familiales (Pailhé et Solaz [2010] ; Régnier-Loilier et Hiron [2010]).
-Les échelles d’équivalence ne prennent pas en compte les coûts indirects
-liés à un moindre investissement dans la vie professionnelle et/ou au
-retrait partiel ou total de l’activité professionnelle de l’un des
-parents (Thévenon [2009]). Or ces coûts de renoncement à la carrière
-sont importants et sont supportés essentiellement par les femmes, ce qui
-pèse sur l’égalité des sexes (Meurs, Paihlé et Ponthieux [2010])."
-
-> revue de littérature sur le calcul du niveau de vie
-
-Des limites nombreuses, évolutions de la structure des budgets, donc
-économies d'échelles qui bougent aussi (exemple du logement)
-
-comparaisons internationales qui ne prennent pas en compte le niveau de
-démarchandisation (services publics, redistrib en "nature", ex dépenses
-de santé France vs USA)
-
-La question des limites du ménage
-
-```{=tex}
-\begin{encadre}{Estimer les niveau de vie}
-
-Revue de littérature sur l'estimation des niveau de vie [voir sociologie de la consommation et des budgets ouvriers].
-
-Dans l'enquête BDF 2017, trois variables subjectives permettent d'approcher des estimations du niveau de vie dans les familles.
-
-\end{encadre}
-```
-Expliciter la méthode utiliser et la vérification des conditions.
-
-La régression logistique ordinale est une méthode statistique utilisée
-pour prédire la probabilité de résultats ordonnés en fonction de
-plusieurs variables indépendantes. Dans cette analyse, nous avons étudié
-le niveau ressenti d'aisance budgétaire, une variable ordinale, en
-fonction de diverses caractéristiques socio-économiques et
-démographiques.
-
-```{r AISEreg}
-
-load("Resultats/Reg_aisance.Rdata") 
-
-tab$tableau %>%
-  as_kable_extra(booktabs = TRUE)
-
-```
-
-Les résultats montrent que le niveau de vie du ménage a un impact
-positif et significatif sur le sentiment d'aisance budgétaire, avec un
-odds ratio (OR) de 1,09 et un intervalle de confiance à 95% (IC) de 1,08
-à 1,10 (p \< 0,001). Cela signifie qu'une augmentation du niveau de vie
-du ménage est associée à une légère augmentation du sentiment d'aisance
-budgétaire.
-
-Les différentes classes socio-économiques présentent également des
-différences significatives. Les personnes appartenant aux classes
-populaires précaires (C6) ont un OR de 1,52 (IC 95% : 1,28 - 1,80 ; p \<
-0,001), ce qui indique qu'elles ressentent une aisance budgétaire
-supérieure par rapport à la catégorie de référence. Les classes
-populaires urbaines (C5) affichent un OR de 2,92 (IC 95% : 2,35 - 3,63 ;
-p \< 0,001), montrant une aisance budgétaire encore plus marquée. Les
-petits indépendants (C4) et les petits-moyens (C1) ressentent également
-une aisance budgétaire plus élevée, avec des OR respectifs de 2,06 (IC
-95% : 1,72 - 2,47 ; p \< 0,001) et 3,77 (IC 95% : 3,12 - 4,55 ; p \<
-0,001). Les classes moyennes supérieures (C3) et les classes supérieures
-du pôle public (C2) ont un sentiment d'aisance budgétaire encore plus
-significatif, avec des OR de 5,15 (IC 95% : 3,93 - 6,76 ; p \< 0,001) et
-4,70 (IC 95% : 3,45 - 6,41 ; p \< 0,001) respectivement. À l'inverse,
-les classes supérieures du pôle privé (C7) présentent un OR de 0,62 (IC
-95% : 0,46 - 0,83 ; p = 0,002), indiquant une aisance budgétaire
-inférieure.
-
-Le nombre d'enfants dans le ménage n'a pas d'effet significatif sur le
-sentiment d'aisance budgétaire, avec un OR de 1,01 (IC 95% : 1,00 - 1,03
-; p = 0,12). Cela suggère que cette variable n'influence pas de manière
-notable l'aisance budgétaire ressentie. En revanche, l'âge des enfants
-dans le ménage a un effet très légèrement significatif sur l'aisance
-budgétaire, avec un OR de 1,01 (IC 95% : 1,00 - 1,02 ; p = 0,03). Bien
-que cet effet soit faible, il indique que l'augmentation de l'âge des
-enfants est associée à une légère augmentation du sentiment d'aisance
-budgétaire.
-
-Le type de ménage et le sexe montrent des différences notables dans
-l'aisance budgétaire ressentie. Les mères célibataires ressentent une
-aisance budgétaire significativement inférieure, avec un OR de 0,58 (IC
-95% : 0,51 - 0,66 ; p \< 0,001). Les pères célibataires présentent
-également une aisance budgétaire inférieure, avec un OR de 0,77 (IC 95%
-: 0,61 - 0,97 ; p = 0,026). Les mères en couple ont une aisance
-budgétaire légèrement inférieure, avec un OR de 0,78 (IC 95% : 0,60 -
-1,00 ; p = 0,054), mais ce résultat est à la limite de la
-significativité. En revanche, les pères en couple ressentent une aisance
-budgétaire supérieure, avec un OR de 1,58 (IC 95% : 1,09 - 2,29 ; p =
-0,016).
-
-En conclusion, cette analyse révèle que le niveau de vie du ménage et
-l'appartenance à différentes classes socio-économiques sont des facteurs
-significatifs influençant le sentiment d'aisance budgétaire. Les
-configurations familiales, notamment le type de ménage et le sexe,
-jouent également un rôle important. Le nombre d'enfants dans le ménage
-n'a pas d'effet significatif, tandis que l'âge des enfants a un impact
-marginalement significatif. Ces résultats mettent en lumière les
-inégalités économiques et sociales ressenties par différentes catégories
-de la population.
-
--   Couple parental, parent célibataire ou nouvelle union, des effets
-    différenciés sur le niveau de vie ressenti
-
--   Les mères de familles recomposées estiment leur niveau vie plus
-    faible
-
--   Les pères de famille recomposées estiment leur niveau de vie plus
-    élevé
-
-## Des revenus de transferts réduits pour les parents remis en couple
+### Des revenus de transferts réduits pour les parents remis en couple
 
 Le graphique présenté illustre la composition du revenu disponible en
 fonction de différents types de ménages. Chaque barre verticale

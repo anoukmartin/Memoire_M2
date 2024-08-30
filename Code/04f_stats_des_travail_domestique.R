@@ -32,15 +32,24 @@ travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
                                      "Cuisine de récéption")
 
 names(dep_ind)[-1] <- travail_domestique
-
+levels(familles$n_TYPMEN_new)
 # Données sur les individus  
 parents <- readRDS("Data_output/parents.Rds") %>%
   filter(n_IdentIndiv %in% c(familles$n_IdentIndiv_F, familles$n_IdentIndiv_H)) %>%
   left_join(familles %>%
-              select(IDENT_MEN, n_TYPMEN_new), 
+              mutate(var = case_when(
+                n_TYPMEN_new == "Traditionelle" ~ "Mère et père en couple traditionnel", 
+                n_TYPMEN_new == "Recomposée" & n_TYPMEN_sexe == "Mère et père en couple" ~ "Mère et père en couple recomposé", 
+                n_TYPMEN_new == "Recomposée" & n_TYPMEN_sexe == "Mère en couple" ~ "Mère en couple recomposé", 
+                n_TYPMEN_new == "Recomposée" & n_TYPMEN_sexe == "Père en couple" ~ "Père en couple recomposé", 
+                n_TYPMEN_new == "Autre" ~ "Autre",
+                TRUE ~ n_TYPMEN_sexe),) %>%
+              select(IDENT_MEN, n_TYPMEN_new, var), 
             by = "IDENT_MEN") %>%
   left_join(dep_ind, by = "n_IdentIndiv") 
 # Modules sur le W domestique qui n'est posé qu'à la moitiée de l'échantillon de ménage, (FA de numéro pairs, mais on a pas cet identifiant, donc on )
+freq(parents$n_TYPMEN_new)
+freq(parents$var)
 parents <- parents %>%
   filter(eval(parse(text = paste0("`", 
                                   travail_domestique, 
@@ -155,7 +164,7 @@ data2 <- parents %>%
     !n_EnfantsMen | is.na(n_EnfantsMen) ~ "Adulte sans enfants"
   )) %>%
   filter(n_EnfantsMen == "Parent") %>%
-  mutate(n_TYPMEN_new  = n_TYPMEN_new %>% droplevels())
+  mutate(n_TYPMEN_new  = n_TYPMEN_new %>% as.factor() %>%droplevels())
 
 data2$PONDIND <- data2$PONDIND/mean(data2$PONDIND)
 
@@ -170,12 +179,12 @@ tab <- data2 %>%
                                   Effectifs ~ "{N_unweighted}"),
                    value = list(everything() ~ "Oui", 
                                 Effectifs ~ "1")) %>%
-  add_overall(last = T) %>%
-  add_p() %>%
-  add_stat_label(label = list(all_dichotomous() ~ "", 
-                              Effectifs ~ "(non-pondérés)")) %>%
   modify_header(all_stat_cols() ~ "**{level}**\n({style_percent(p)}%)", 
-                label ~ "") 
+                label ~ "") %>%
+  add_overall(last = T, col_label = "**Ensemble**") %>%
+  add_p() %>%
+  add_stat_label(label = list(all_dichotomous() ~ " %", 
+                              Effectifs ~ "(non-pondérés)")) 
 
 
 tab
@@ -184,6 +193,60 @@ list.files("Resultats")
 saveTableau(tableau = tab,
             type = "tab", 
             label = "Wdom_parents", 
+            description = "Travail domestique des parent en fonction de la configuration familiale du ménage", 
+            champ = "Parents agés de 25 à 65 ans ou en couple avec un adulte agé de 25 à 65 ans, formant des ménages ordinaires et vivant avec au moins un de leurs enfants", 
+            ponderation = T,
+            n = tab$N)
+
+## Tableau prent dans les différentes configurations parentales 
+
+freq(data$variables$n_EnfantsMen)
+table(data$variables$n_EnfantsMen, data$variables$n_TYPMEN_new, useNA = "ifany")
+
+data2 <- parents %>%
+  mutate(n_ParentTypFam = case_when(
+    n_TYPMEN_new == "Traditionelle" ~ "Parent en famille traditionelle", 
+    n_TYPMEN_new == "Monoparentale" ~ "Parent en famille monoparentale",
+    n_TYPMEN_new == "Recomposée" & n_EnfantsMen ~ "Parent en famille recomposée", 
+    n_TYPMEN_new == "Recomposée" & !n_EnfantsMen ~ "Beau-parent sans enfants en famille recomposée")) %>%
+  mutate(n_EnfantsMen = case_when(
+    n_EnfantsMen ~ "Parent", 
+    !n_EnfantsMen | is.na(n_EnfantsMen) ~ "Adulte sans enfants"
+  )) %>%
+  filter(n_EnfantsMen == "Parent") %>%
+  #filter(n_TYPMEN_new != "Autre") %>%
+  mutate(var  = var %>% as.factor() %>%droplevels())
+
+data2$PONDIND <- data2$PONDIND/mean(data2$PONDIND)
+
+tab <- data2 %>%
+  filter(SEXE == "2") %>%
+  filter(str_detect(var, "mère") | str_detect(var, "Mère") ) %>%
+  mutate(var = droplevels(var)) %>%
+  as_survey_design(weights = PONDIND) %>%
+  mutate(Effectifs = "1") %>%
+  tbl_svysummary(by = var, 
+                 include = c(travail_domestique, "Effectifs"),
+                 missing = "no", 
+                 type = list(everything() ~ "dichotomous"), 
+                 statistic= list(travail_domestique ~ "{p}", 
+                                 Effectifs ~ "{N_unweighted}"),
+                 value = list(everything() ~ "Oui", 
+                              Effectifs ~ "1")) %>%
+  modify_header(all_stat_cols() ~ "**{level}**\n({style_percent(p)}%)", 
+                label ~ "") %>%
+  add_overall(last = T, col_label = "**Ensemble**") %>%
+  add_p() %>%
+  add_stat_label(label = list(all_dichotomous() ~ " %", 
+                              Effectifs ~ "(non-pondérés)")) 
+
+
+tab
+
+list.files("Resultats")
+saveTableau(tableau = tab,
+            type = "tab", 
+            label = "Wdom_parentsconfig", 
             description = "Travail domestique des parent en fonction de la configuration familiale du ménage", 
             champ = "Parentx agés de 25 à 65 ans ou en couple avec un adulte agé de 25 à 65 ans, formant des ménages ordinaires et vivant avec au moins un de leurs enfants", 
             ponderation = T,
@@ -334,10 +397,10 @@ tab3 <- tbl_merge(list(tab1, tab2, margev),
           tab_spanner = c(paste0("**Parents** (", f_parents$Prop[2], "%)"), 
                           paste0("**Beaux-parents** (", f_bp$Prop[2], "%)"), 
                           NA))
-
+tab3
 ### Enregistrement ####
 list.files("Resultats")
-saveTableau(tableau = tab, 
+saveTableau(tableau = tab3, 
             type = "tab", 
             label = "Wdom_PBP_sexe", 
             description = "Travail domestique réalisé en fonction du statut parental et du sexe", 
@@ -727,5 +790,53 @@ saveTableau(tableau = tab,
             n = nrow(data_recomp))
 
 
+# INEGALITE LW######################
+
+familles <- readRDS("Data_output/familles_parents.Rds")
+familles$`Cuisine du quotidien_F`
+familles <- familles %>%
+  mutate(Cuisine_ineg = `Cuisine du quotidien_F` - `Cuisine du quotidien_H`, 
+         Vaisselle_ineg = `Vaisselle_F` - `Vaisselle_H`, 
+         Courses_ineg = `Courses_F` - `Courses_H`, 
+         AideEnfant_ineg = `Autre aide des enfants_F` - `Autre aide des enfants_H`)
+summary(familles$Cuisine_ineg)
+summary(familles$Courses_ineg)
+summary(familles$Vaisselle_ineg)
+summary(familles$AideEnfant_ineg)
+summary(familles$`Autre aide des enfants_F`)
 
 
+library(gridExtra)
+
+data <- familles %>%
+  filter(!is.na(couple)) %>%
+  mutate(n_TYPMEN_new = droplevels(n_TYPMEN_new), 
+         n_TYPMEN_sexe= droplevels(n_TYPMEN_sexe))
+
+# Créer les graphiques
+plot_cuisine <- ggplot(data, aes(x = n_TYPMEN_sexe, y = Cuisine_ineg, weight = PONDMEN)) +
+  geom_bar(stat = "summary") +
+  labs(title = "Cuisine", x = "Configuration familiale", y = "Inégalité") +
+  theme_memoire()
+plot_cuisine
+
+plot_vaisselle <- ggplot(data, aes(x = n_TYPMEN_sexe, y = Vaisselle_ineg, weight = PONDMEN)) +
+  geom_bar(stat = "summary", fun = "mean", aes(fill = n_TYPMEN_sexe)) +
+  labs(title = "Vaisselle", x = "Configuration familiale", y = "Inégalité") +
+  theme_minimal()
+plot_vaisselle
+
+plot_courses <- ggplot(data, aes(x = n_TYPMEN_sexe, y = Courses_ineg, weight = PONDMEN)) +
+  geom_bar(stat = "summary", aes(fill = n_TYPMEN_sexe)) +
+  labs(title = "Vaisselle", x = "Configuration familiale", y = "Inégalité") +
+  theme_minimal()
+plot_courses
+
+plot_aideenfant <- ggplot(data, aes(x = n_TYPMEN_sexe, y = AideEnfant_ineg, weight = PONDMEN)) +
+  geom_bar(stat = "summary", aes(fill = n_TYPMEN_sexe)) +
+  labs(title = "Vaisselle", x = "Configuration familiale", y = "Inégalité") +
+  theme_minimal()
+plot_aideenfant
+
+# Afficher côte à côte
+grid.arrange(plot_cuisine, plot_vaisselle, ncol = 2)

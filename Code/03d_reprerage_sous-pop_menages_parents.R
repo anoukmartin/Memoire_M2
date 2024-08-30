@@ -28,6 +28,77 @@ freq(indiv$ADULTE)
 freq(indiv$TYPEMPLOI)
 freq(indiv$ETAMATRI)
 
+# on ajoute les variables de travail domestqiue 
+# NB de fois
+travail_domestique <- c("AIDEENFANT", "BRICOLAGE", "CHANGEENFANT", 
+                        "COURSES", "CUISINEA", "CUISINEB", "MENAGE", 
+                        "JARDINAGE", "REPASSAGE", "VAISSELLE")
+
+
+
+travail_domestique <- paste0("NB", travail_domestique)
+
+dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
+  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", 
+                  NewVarName = "n_IdentIndiv") %>%
+  select(n_IdentIndiv, all_of(travail_domestique))
+
+travail_domestique <- travail_domestique %>%
+  str_remove("NB") %>%
+  str_to_sentence()
+travail_domestique
+travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
+                                     "Autre aide des enfants", 
+                                     "Cuisine du quotidien", 
+                                     "Cuisine de récéption")
+
+names(dep_ind)[-1] <- travail_domestique
+dep_ind[dep_ind == 9] <- NA_integer_
+dep_ind[dep_ind == 8] <- NA_integer_
+
+# A fait ou non 
+travail_domestique <- c("AIDEENFANT", "BRICOLAGE", "CHANGEENFANT", 
+                       "COURSES", "CUISINEA", "CUISINEB", "MENAGE", 
+                       "JARDINAGE", "REPASSAGE", "VAISSELLE")
+
+dep_ind2 <- readRDS("Data_output/DepIndiv.Rds") %>%
+  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", 
+                  NewVarName = "n_IdentIndiv") %>%
+  select(n_IdentIndiv, all_of(travail_domestique)) %>%
+  mutate_at(.vars = vars(travail_domestique), 
+            .funs = function(x){
+              x %>%
+                fct_recode(
+                  NULL = "", 
+                  "Oui" = "1", 
+                  "Non" = "2", 
+                  NULL = "8", 
+                  NULL = "9") %>%
+                as.character()
+            })
+
+travail_domestique <- travail_domestique %>%
+  str_to_sentence() 
+travail_domestique
+travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
+                                     "Autre aide des enfants", 
+                                     "Cuisine du quotidien", 
+                                     "Cuisine de récéption")
+
+names(dep_ind2)[-1] <- paste0("I_", travail_domestique)
+dep_ind <- left_join(dep_ind2, dep_ind)
+k <- travail_domestique[3]
+for(k in travail_domestique){
+  dep_ind[, k][
+    (dep_ind[[paste0("I_", k)]] == "Non" 
+     & !is.na(dep_ind[[paste0("I_", k)]]) 
+     & (dep_ind[[k]] == 9 | is.na(dep_ind[k])))
+  ] <- 0
+}
+
+
+indiv <- left_join(indiv, dep_ind)
+
 femmes <- indiv %>% 
   filter(SEXE == "2") 
   # rename(n_IdentFemme = n_IdentIndiv, 
@@ -378,6 +449,7 @@ if(any(str_detect(list.files("Data_output"), "familles_FractionClasse.Rds"))){
   
 
 saveRDS(menagesHF2, file = "Data_output/familles_parents.Rds")
+saveRDS(infosBDF, file = "Data_output/infosBDF.Rds")
 
 rm(celibf, celibh, couplesgay, coupleshet, coupleslesb, dup, dupli, familles, femmes, 
    hommes, indiv, menagesHF, menagesHF2, miss, dep_men, enfantsMenage, enfantsMenage_moins13ans, infosBDF, list_beauxenfantsHD, list_enfantsHD, list_enfantsHDremisencouple, fraction)
