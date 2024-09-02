@@ -47,7 +47,7 @@ data <- familles %>%
   mutate(n_REVENUS_F = n_REVENUS_F/12000) %>%
   mutate(n_REVENUS_H = n_REVENUS_H/12000) %>%
   mutate(REVDISP = REVDISP/12000) %>%
-  mutate(Vetements_enfants = Vetements_enfants/n_NEnfantsMenage13) %>%
+  mutate(Vetements_enfants2 = Vetements_enfants/n_NEnfantsMenage13) %>%
   mutate(n_TYPFAM = n_TYPMEN_new) %>%
   mutate(n_TYPFAM = case_when(
     n_TYPFAM == "Recomposée" & n_NEnfantsCouple_F >=1 ~ "Recomposée avec enfants communs", 
@@ -66,13 +66,16 @@ var_label(data$n_TYPMEN_sexe) <- "Configuration familiale du ménage"
 var_label(data$n_FractionClasse) <- "Position sociale du ménage"
 var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants du ménage"
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
-
+var_label(data$n_AgeEnfantsMenage13) <- "Age moyen des enfants de moins de 13 ans du ménage"
+var_label(data$n_NEnfantsMenage13) <- "Nombre d'enfants de moins de 13 ans dans le ménage"
 data$n_FractionClasse <- relevel(data$n_FractionClasse,  "Classes moyennes superieures [C4]")
 var_label(data$n_FractionClasse) <- "Fraction de classe"
 
 # mutate(n_FractionClasse = n_FractionClasse %>% relevel("Classes moyennes salariées [C8]"))
 
+
 summary(data$Vetements_enfants)
+summary(data$Vetements_enfants2)
 summary(data$Vetements_femme)
 summary(data$Vetements_homme)
 summary(data$n_NFraterie)
@@ -102,22 +105,29 @@ summary(data$PONDMEN)
 
 
 data$Vetements_enfants
+
+
 data <- data %>%
   filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
   mutate(n_TYPFAM = droplevels(n_TYPFAM)) 
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
-  group_by(n_TYPMEN_new, DNIVIE2) %>%
+  group_by(n_TYPMEN_new) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
   summarise(mean_wtd = wtd.mean(Vetements_enfants, weights = PONDMEN))
-  
+tab
+tab <- data %>%
+  group_by(n_TYPMEN_new) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_enfants2, weights = PONDMEN))
+
 tab %>%
   pivot_wider(id_cols = DNIVIE2, 
               names_from = n_TYPMEN_new, 
               values_from = mean_wtd)
               
 
-reg <- survreg(Surv(Vetements_enfants+1, Vetements_enfants+1>1, type='left') ~ NIVIE +  n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+reg <- survreg(Surv(Vetements_enfants2+1, Vetements_enfants2+1>1, type='left') ~ NIVIE +  n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
                data=data, 
                weights = data$PONDMEN, 
                #subset = !is.na(Vetements_enfants),
@@ -263,15 +273,20 @@ data <- data %>%
     !is.na(couple) ~ 2+n_NEnfantsplus13, 
     is.na(couple) ~ 1+n_NEnfantsplus13))
 data$n_NAdultes
-data$Vetements_adultes <- data$Vetements_adultes/data$n_NAdultes
+data$Vetements_adultes2 <- data$Vetements_adultes/data$n_NAdultes
+
 data <- data %>%
   filter(n_NEnfantsMenage13 > 0 & !is.na(n_NEnfantsMenage13)) %>%
   mutate(n_TYPFAM = droplevels(n_TYPFAM)) 
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
-  group_by(n_TYPMEN_new, DNIVIE2) %>%
+  group_by(n_TYPMEN_new) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
   summarise(mean_wtd = wtd.mean(Vetements_adultes, weights = PONDMEN))
+tab <- data %>%
+  group_by(n_TYPMEN_new) %>%
+  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
+  summarise(mean_wtd = wtd.mean(Vetements_adultes2, weights = PONDMEN))
 
 tab %>%
   pivot_wider(id_cols = DNIVIE2, 
@@ -279,7 +294,7 @@ tab %>%
               values_from = mean_wtd)
 
 
-reg <- survreg(Surv(Vetements_adultes+1, Vetements_adultes+1>1, type='left') ~ NIVIE + n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
+reg <- survreg(Surv(Vetements_adultes2+1, Vetements_adultes2+1>1, type='left') ~ NIVIE + n_NFraterie +  n_AgeEnfantsMenage + n_FractionClasse + n_TYPFAM,
                data=data, 
                weights = data$PONDMEN, 
                #subset = !is.na(Vetements_enfants),
@@ -343,7 +358,11 @@ data$NIVIESquare <- data$NIVIE*data$NIVIE
 var_label(data$NIVIESquare) <- "Niveau de vie mensuel au carré (en centaine d'euros)"
 data$n_AgeEnfantsMenageSquare <- data$n_AgeEnfantsMenage*data$n_AgeEnfantsMenage
 data$DEPPER2_D <- data$DEPPER2_D/data$n_NEnfantsMenage13
-
+data <- data %>%
+  mutate(DEPPER2_D2 = case_when(
+    DEPPER2_D>0 & !is.na(DEPPER2_D) ~ 1, 
+    DEPPER2_D==0 | is.na(DEPPER2_D) ~ 0
+  ))
 tab <- data %>%
   group_by(n_TYPMEN_sexe, DNIVIE2) %>%
   #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
@@ -357,15 +376,16 @@ tab %>%
 
 data$DEPPER2_D
 data$n_REVENUS_F
+var_label(data$n_TYPMEN_sexe) <- "Configuration familiale et parentale"
 # Regresion Garde d'enfants
-reg <- survreg(Surv(DEPPER2_D+1, DEPPER2_D+1>1, type='left') ~ NIVIE + n_NFraterie + n_AgeEnfantsMenage + n_FractionClasse + n_TYPMEN_sexe,
+reg <- survreg(Surv(DEPPER2_D+1, DEPPER2_D+1>1, type='left') ~ NIVIE + n_NEnfantsMenage13+ n_AgeEnfantsMenage13 + n_FractionClasse + n_TYPMEN_sexe,
                data=data, 
                weights = data$PONDMEN, 
                dist='gaussian')
 
-
-tblreg <- tbl_regression(reg, intercept = T) |>
-  add_glance_source_note() 
+tblreg <- tbl_regression(reg, intercept = T, exponentiate = T) |>
+  add_glance_source_note() %>%
+  add_significance_stars(thresholds = c(0.001, 0.01, 0.05, 0.1), hide_ci = F, hide_se = T, hide_p = F)
 
 tblreg
 

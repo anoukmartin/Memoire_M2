@@ -6,7 +6,7 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 
 menages <- readRDS("Data_output/menages.Rds") %>%
-  select(IDENT_MEN, AISE, NIVIE, SEXEREP) %>%
+  select(IDENT_MEN, AISE, NIVIE, SEXEREP, NIVEAU) %>%
   rec_SEXE(Var = "SEXEREP")
 menages$SEXEREP
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
@@ -52,11 +52,14 @@ dic_fam<- look_for(familles)
 
 ## Construction base de donnée sur laquelle on va travailler ###################
 names(familles)
-
+freq(familles$NIVEAU)
 data <- familles |>
   mutate(AISE = if_else(AISE %in% c("", "8", "9"), NA, AISE) %>%
            as.factor() %>%
            fct_relevel("5", "4", "3", "2", "1")) %>%
+  mutate(NIVEAU = if_else(NIVEAU %in% c("", "8", "9"), NA, NIVEAU) %>%
+           as.factor() %>%
+           fct_relevel("6", "5", "4", "3", "2", "1")) %>%
   mutate(n_NEnfantsMenage = if_else(is.na(n_NEnfantsMenage), 0, n_NEnfantsMenage)) %>%
   mutate(n_NEnfantsMenage13 = if_else(is.na(n_NEnfantsMenage13), 0, n_NEnfantsMenage13)) %>%
   #mutate(n_NEnfantsMenage = n_NEnfantsMenage - n_NEnfantsMenage13) %>%
@@ -73,7 +76,6 @@ freq(data$n_NEnfantsHD)
   #                      "Mère célibataire", "Père célibataire", "Couple sans enfant",
   #                      "Femme seule", "Homme seul", "Autre type de ménage (ménage complexe)"))
 
-drop
 data <- data %>%
   subset(!(n_TYPMEN_sexe %in% c("Homme et femme en couple", "Homme célibataire", "Femme célibataire"))) %>%
   mutate(n_TYPMEN_sexe = droplevels(n_TYPMEN_sexe)) %>%
@@ -81,7 +83,6 @@ data <- data %>%
 class(data$NIVIE)
 freq(data$n_TYPMEN_sexe)
 
-## Régression pondérée #########################################################
 
 library(ordinal)
 
@@ -91,6 +92,10 @@ var_label(data$n_FractionClasse) <- "Fraction de classe"
 var_label(data$n_NEnfantsMenage) <- "Nombre d'enfants"
 var_label(data$n_AgeEnfantsMenage) <- "Age moyen des enfants"
 var_label(data$n_TYPMEN_sexe) <- "Configuration parentale"
+var_label(data$SEXEREP) <- "Sexe du répondant à l'enquête"
+
+
+## Régression pondérée #########################################################
 summary(data$NIVIE)
 plot(data$AISE, data$NIVIE)
 freq(data$n_TYPMEN_sexe)
@@ -101,14 +106,16 @@ plot(data$n_FractionClasse, data$AISE)
 data$NIVIEsq <- data$NIVIE*data$NIVIE
 data$AISE
 names(data)
+data$SEXEREP
+reg <- clm(AISE ~ NIVIE + n_FractionClasse + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPMEN_sexe + SEXEREP,
+                  data = data, 
+                  weights = PONDFAM)
 
 
-
-reg <- clm(AISE ~ NIVIE + n_FractionClasse + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPMEN_sexe,
-           data = data, 
-           weights = PONDFAM)
 #step(reg)
 summary(reg)
+
+
 freq(data$n_NEnfantsMenage)
 freq(data$n_TYPMEN_sexe)
 tblreg3 <- tbl_regression(reg, intercept = F, exponentiate = T)
@@ -123,6 +130,41 @@ saveTableau(tblreg3,
             ponderation = TRUE, 
             n = reg$n)
             
+
+## Régression pondérée #########################################################
+summary(data$NIVEAU)
+plot(data$NIVEAU, data$NIVIE)
+freq(data$n_TYPMEN_sexe)
+chisq.test(data$NIVEAU, data$n_TYPMEN_sexe)
+plot(data$NIVEAU, data$n_AgeEnfantsMenage)
+freq(data$n_FractionClasse)
+plot(data$n_FractionClasse, data$NIVEAU)
+data$NIVIEsq <- data$NIVIE*data$NIVIE
+data$NIVEAU
+names(data)
+data$SEXEREP
+reg <- clm(NIVEAU ~ NIVIE + n_FractionClasse + n_NEnfantsMenage + n_AgeEnfantsMenage + n_TYPMEN_sexe + SEXEREP,
+           data = data, 
+           weights = PONDFAM)
+
+
+#step(reg)
+summary(reg)
+
+
+freq(data$n_NEnfantsMenage)
+freq(data$n_TYPMEN_sexe)
+tblreg3 <- tbl_regression(reg, intercept = F, exponentiate = T)
+tblreg3 
+
+## Enregistrement des résultats ################################################
+saveTableau(tblreg3, 
+            type = "Reg",
+            label = "niveau", 
+            description = "Regression sur le niveau de vie estimé ressentie", 
+            champ = paste0(infosBDF$champ, " déclarant au moins un enfant à charge"), 
+            ponderation = TRUE, 
+            n = reg$n)
 
 
 

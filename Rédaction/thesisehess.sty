@@ -31,6 +31,9 @@ fontupper=\footnotesize,
 fontlower=\footnotesize,
 title=Encadré n°~\thetcbcounter : #2,#1}
 
+\usepackage{newunicodechar}
+\newunicodechar{·}{\kern-.25em\textperiodcentered\kern-.25em}
+
 \RequirePackage[french]{babel}
 \addto\captionsfrench{\def\tablename{Tableau}}
 
