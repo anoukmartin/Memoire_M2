@@ -10,7 +10,7 @@ familles <- readRDS("Data_output/familles_parents.Rds") %>%
   )) %>%
   mutate(n_TYPFAM = n_TYPFAM %>%
            as.factor() %>%
-           fct_relevel(c("Traditionelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe")))
+           fct_relevel(c("Traditionnelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe")))
 
 ## DOnnées sur des ménages à ajouter ###########################################
 menages <- readRDS("Data_output/menages.Rds")
@@ -296,7 +296,7 @@ summary(data0$EPARGNE)
 summary(data0$Alimentation)
 
 data0 <- data0 %>%
-  filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
+  filter(n_TYPMEN_new %in% c("Traditionnelle", "Recomposée")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels(), 
          n_TYPFAM = n_TYPFAM %>% droplevels(), 
          n_FractionClasse = n_FractionClasse %>% fct_relevel(
@@ -423,8 +423,8 @@ tab2 <- results$EPARGNE %>%
   tbl_regression() %>%
   add_significance_stars(hide_ci = F, hide_se = T)
 
-tab3 <- tbl_merge(list(tab1, tab2)) %>%
-  as_kable_extra(caption = "Regression sur le montant de consommation et d'épargne annuel", 
+tab3 <- tab1 %>%
+  as_kable_extra(caption = "Regression sur le montant de la consommation annuelle", 
                  digits = 1, booktabs = T, format = "latex") %>%
   kable_styling(
     latex_options = c("hold_position", "repeat_header"),
@@ -605,7 +605,7 @@ data0 <- familles %>%
 
 freq(data0$STALOG)
 data0 <- data0 %>%
-  filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
+  filter(n_TYPMEN_new %in% c("Traditionnelle", "Recomposée")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels(), 
          n_TYPFAM = n_TYPFAM %>% droplevels())
 var_label(data0$n_REVENUS_F) <- "Revenu féminin"

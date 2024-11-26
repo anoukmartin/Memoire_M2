@@ -16,7 +16,7 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_PATRIMOINE(Var = "n_PATRIMOINE", "n_PATRIMOINEcut") %>%
   rec_NAIS7() %>%
   rec_ETAMATRI() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, ETAMATRI, starts_with("n_"))
+  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, COUPLE, PACS, ETAMATRI, starts_with("n_"))
 
 freq(indiv$CS12)
 freq(indiv$DIP7)
@@ -363,14 +363,14 @@ menagesHF <- menagesHF %>%
   mutate(n_TYPMEN_new = case_when(
     #!ADULTE_C ~ "Autre",
     TYPMEN5 == "Couple avec au moins un enfant" & RECOMP  ~ "Recomposée", 
-    TYPMEN5 == "Couple avec au moins un enfant" & TRAD  ~ "Traditionelle", 
+    TYPMEN5 == "Couple avec au moins un enfant" & TRAD  ~ "Traditionnelle", 
     TYPMEN5 == "Famille monoparentale" & MONOP ~ "Monoparentale", 
     TYPMEN5 == "Couple sans enfant" ~ "Couple sans enfant",
     TYPMEN5 == "Personne seule" ~ "Personne seule",
     TRUE ~ "Autre")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>%
            fct_relevel(
-             "Couple sans enfant", "Traditionelle", "Recomposée", "Monoparentale",
+             "Couple sans enfant", "Traditionnelle", "Recomposée", "Monoparentale",
              "Personne seule", "Autre"
            ))
 summary(menagesHF$AG_F[menagesHF$n_TYPMEN_new != "Autre"])

@@ -291,7 +291,7 @@ enfantTous <- enfantTous %>%
   # Configuration familiale principale : configuration familiale du ménage ou l'enfant réside
   mutate(
     n_configFamEnfantsP = case_when(
-      n_ResidParents == "Enfant résidant chez ses deux parents" ~ "Configuration traditionelle", 
+      n_ResidParents == "Enfant résidant chez ses deux parents" ~ "Configuration traditionnelle", 
       (n_ResidParents == "Enfant résidant chez sa mère" & is.na(n_situationMere)) 
       | (n_ResidParents == "Enfant résidant chez son père" & is.na(n_situationPere)) ~ "Configuration monoparentale ou recomposée", 
       (n_ResidParents == "Enfant résidant chez sa mère" & n_situationMere == "En couple avec une autre personne") 
@@ -301,7 +301,7 @@ enfantTous <- enfantTous %>%
       n_ResidParents == "Enfant résidant hors domicile(s) des parents" ~ "Non cohabitant avec ses parents")) %>%
   mutate(
     n_configFamEnfantsPSexe = case_when(
-      (n_ResidParents == "Enfant résidant chez ses deux parents") ~ "Configuration traditionelle", 
+      (n_ResidParents == "Enfant résidant chez ses deux parents") ~ "Configuration traditionnelle", 
       (n_ResidParents == "Enfant résidant chez sa mère" & is.na(n_situationMere)) ~ "Configuration monoparentale ou recomposée maternelle",
       (n_ResidParents == "Enfant résidant chez son père" & is.na(n_situationPere)) ~ "Configuration monoparentale ou recomposée paternelle", 
       (n_ResidParents == "Enfant résidant chez sa mère" & n_situationMere == "En couple avec une autre personne") ~ "Configuration recomposée maternelle",
@@ -319,7 +319,7 @@ enfantTous <- enfantTous %>%
       (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "Célibataire ou en couple non-cohabitant") 
       | (n_ResidParents == "Enfant résidant chez son père" & n_situationMere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale", 
       n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
-        (n_situationPere == "En couple avec l'autre parent" | n_situationMere == "En couple avec l'autre parent") ~ "Configuration traditionelle", 
+        (n_situationPere == "En couple avec l'autre parent" | n_situationMere == "En couple avec l'autre parent") ~ "Configuration traditionnelle", 
       n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
         ((n_situationPere == "Célibataire ou en couple non-cohabitant" & n_situationMere == "Célibataire ou en couple non-cohabitant")
          |(n_situationPere == "Célibataire ou en couple non-cohabitant" & is.na(n_situationMere))
@@ -345,7 +345,7 @@ enfantTous <- enfantTous %>%
       (n_ResidParents == "Enfant résidant chez sa mère" & n_situationPere == "Célibataire ou en couple non-cohabitant")  ~ "Configuration monoparentale paternelle", 
       (n_ResidParents == "Enfant résidant chez son père" & n_situationMere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale maternelle", 
       (n_ResidParents == "Enfant résidant hors domicile(s) des parents" & 
-        (n_situationPere == "En couple avec l'autre parent" | n_situationMere == "En couple avec l'autre parent")) ~ "Configuration traditionelle", 
+        (n_situationPere == "En couple avec l'autre parent" | n_situationMere == "En couple avec l'autre parent")) ~ "Configuration traditionnelle", 
       (n_ResidParents == "Enfant résidant hors domicile(s) des parents" 
        & n_situationPere == "Célibataire ou en couple non-cohabitant" 
        & n_situationMere == "Célibataire ou en couple non-cohabitant") ~ "Configuration monoparentale maternelle et paternelle", 

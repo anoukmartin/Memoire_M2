@@ -73,7 +73,7 @@ configSynthese[
 # Pour ceux qui sont tard, on ajoute qu'il y des enfants de la 
 # nouvelle union
 configSynthese[
-  configSynthese$n_config == 1 & configSynthese$`Configuration traditionelle`,
+  configSynthese$n_config == 1 & configSynthese$`Configuration traditionnelle`,
   "n_enfantNewUnion"
 ] <- 1
 
@@ -90,7 +90,7 @@ configSynthese[
 configSynthese[
   configSynthese$n_config == 2 
   & configSynthese$`Configuration recomposée maternelle` 
-  & configSynthese$`Configuration traditionelle`,
+  & configSynthese$`Configuration traditionnelle`,
   c("n_configFam", "n_enfantNewUnion")
 ] <- list("Configuration recomposée maternelle", 1)
 
@@ -98,7 +98,7 @@ configSynthese[
 configSynthese[
   configSynthese$n_config == 2 
   & configSynthese$`Configuration recomposée paternelle` 
-  & configSynthese$`Configuration traditionelle`,
+  & configSynthese$`Configuration traditionnelle`,
   c("n_configFam", "n_enfantNewUnion")
 ] <- list("Configuration recomposée paternelle", 1)
 
@@ -108,7 +108,7 @@ configSynthese[
 configSynthese[
   configSynthese$n_config == 3 
   & configSynthese$`Configuration recomposée paternelle` 
-  & configSynthese$`Configuration traditionelle`
+  & configSynthese$`Configuration traditionnelle`
   & configSynthese$`Configuration recomposée maternelle`,
   c("n_configFam", "n_enfantNewUnion")
 ] <- list("Configuration recomposée maternelle et paternelle", 1)
@@ -164,13 +164,13 @@ configSynthese <- configSynthese %>%
   mutate(
     n_genreFam = case_when(
       n_configFam %in% c("Configuration complexe") ~ NA, 
-      n_configFam %in% c("Configuration traditionelle") ~ "Les deux",
+      n_configFam %in% c("Configuration traditionnelle") ~ "Les deux",
       n_configFam %in% c("Configuration monoparentale maternelle", "Configuration recomposée maternelle") ~ "Femme", 
       n_configFam %in% c("Configuration monoparentale paternelle", "Configuration recomposée paternelle") ~ "Homme", 
       n_configFam == "Configuration recomposée maternelle et paternelle" ~ "Les deux"),
     n_config = case_when(
       n_configFam == "Configuration complexe" ~ "Complexe",
-      n_configFam == "Configuration traditionelle" ~ "Traditionelle",
+      n_configFam == "Configuration traditionnelle" ~ "Traditionnelle",
       n_configFam %in% c("Configuration monoparentale maternelle", "Configuration monoparentale paternelle") ~ "Monoparentale", 
       n_configFam %in% c("Configuration recomposée maternelle", "Configuration recomposée paternelle", "Configuration recomposée maternelle et paternelle") ~ "Recomposée"))
 
@@ -209,7 +209,7 @@ enfantsHD <- enfantsTous %>%
   filter(n_statutResid == "Enfant résidant hors domicile" & 
            n_configFamEnfantsS %in% c("Configuration monoparentale", 
                                       "Configuration recomposée", 
-                                      "Configuration traditionelle")) %>%
+                                      "Configuration traditionnelle")) %>%
   mutate(n_IdentMenage = str_sub(n_IdentIndiv, 1, 5)) %>%
   mutate(n_NOI = str_sub(n_IdentIndiv, 6, 7))
 
@@ -285,7 +285,7 @@ configSynthese[
 # Pour ceux qui sont tard, on ajoute qu'il y des enfants de la 
 # nouvelle union
 configSynthese[
-  configSynthese$n_config == 1 & configSynthese$`Configuration traditionelle`,
+  configSynthese$n_config == 1 & configSynthese$`Configuration traditionnelle`,
   "n_enfantNewUnionHD"
 ] <- 1
 
@@ -302,7 +302,7 @@ configSynthese[
 configSynthese[
   configSynthese$n_config == 2 
   & configSynthese$`Configuration recomposée maternelle` 
-  & configSynthese$`Configuration traditionelle`,
+  & configSynthese$`Configuration traditionnelle`,
   c("n_configFamTemp", "n_enfantNewUnionHD")
 ] <- list("Configuration recomposée maternelle", 1)
 
@@ -310,7 +310,7 @@ configSynthese[
 configSynthese[
   configSynthese$n_config == 2 
   & configSynthese$`Configuration recomposée paternelle` 
-  & configSynthese$`Configuration traditionelle`,
+  & configSynthese$`Configuration traditionnelle`,
   c("n_configFamTemp", "n_enfantNewUnionHD")
 ] <- list("Configuration recomposée paternelle", 1)
 
@@ -320,7 +320,7 @@ configSynthese[
 configSynthese[
   configSynthese$n_config == 3 
   & configSynthese$`Configuration recomposée paternelle` 
-  & configSynthese$`Configuration traditionelle`
+  & configSynthese$`Configuration traditionnelle`
   & configSynthese$`Configuration recomposée maternelle`,
   c("n_configFamTemp", "n_enfantNewUnionHD")
 ] <- list("Configuration recomposée maternelle et paternelle", 1)
@@ -360,13 +360,13 @@ configSynthese <- configSynthese %>%
   mutate(
     n_genreFamTemp = case_when(
       n_configFamTemp %in% c("Configuration complexe") ~ NA, 
-      n_configFamTemp %in% c("Configuration traditionelle") ~ "Les deux",
+      n_configFamTemp %in% c("Configuration traditionnelle") ~ "Les deux",
       n_configFamTemp %in% c("Configuration monoparentale maternelle", "Configuration recomposée maternelle") ~ "Femme", 
       n_configFamTemp %in% c("Configuration monoparentale paternelle", "Configuration recomposée paternelle") ~ "Homme", 
       n_configFamTemp == "Configuration recomposée maternelle et paternelle" ~ "Les deux"),
     n_configTemp = case_when(
       n_configFamTemp == "Configuration complexe" ~ "Complexe",
-      n_configFamTemp == "Configuration traditionelle" ~ "Traditionelle",
+      n_configFamTemp == "Configuration traditionnelle" ~ "Traditionnelle",
       n_configFamTemp %in% c("Configuration monoparentale maternelle", "Configuration monoparentale paternelle") ~ "Monoparentale", 
       n_configFamTemp %in% c("Configuration recomposée maternelle", "Configuration recomposée paternelle", "Configuration recomposée maternelle et paternelle") ~ "Recomposée"))
 
@@ -414,7 +414,7 @@ names(familles)
 names(famillesTemp)
 famillesToutes <- menages %>%
   left_join(familles[, c("IDENT_MEN", 
-                         "Configuration traditionelle", 
+                         "Configuration traditionnelle", 
                          "Configuration recomposée maternelle", 
                          "Configuration monoparentale maternelle", 
                          "Configuration monoparentale paternelle", 
@@ -448,8 +448,8 @@ famillesToutes <- famillesToutes %>%
   mutate(
     n_configSynth = case_when(
       n_configTemp == "Monoparentale" & is.na(n_config) ~ "Temporairement monoparentale", 
-      n_configTemp == "Recomposée" & (is.na(n_config) | n_config == "Traditionelle") ~ "Temporairement recomposée", 
-      n_configTemp == "Traditionelle" & is.na(n_config) ~ "Temporairement traditionelle", 
+      n_configTemp == "Recomposée" & (is.na(n_config) | n_config == "Traditionnelle") ~ "Temporairement recomposée", 
+      n_configTemp == "Traditionnelle" & is.na(n_config) ~ "Temporairement traditionnelle", 
       TRUE ~ n_config), 
     n_genreFamSynth = case_when(
       !is.na(n_config) ~ n_genreFam, 

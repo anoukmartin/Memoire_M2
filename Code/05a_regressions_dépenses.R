@@ -56,7 +56,7 @@ data <- familles %>%
   )) %>%
   mutate(n_TYPFAM = n_TYPFAM %>%
            as.factor() %>%
-           fct_relevel(c("Traditionelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe"))) 
+           fct_relevel(c("Traditionnelle", "Monoparentale", "Recomposée sans enfants communs", "Recomposée avec enfants communs", "Complexe"))) 
 
 data$n_NFraterie <- rowSums(data[ c("n_NEnfantsMenage", "n_NEnfantsHD")], na.rm = T)
 

@@ -4,7 +4,7 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 couples <- readRDS("Data_output/familles_parents.Rds")
 
 couples %>%
-  filter(n_TYPMEN_new %in% c("Couple sans enfant", "Traditionelle", "Recomposée")) %>%
+  filter(n_TYPMEN_new %in% c("Couple sans enfant", "Traditionnelle", "Recomposée")) %>%
   mutate(PONDMEN = PONDMEN/mean(couples$PONDMEN),
          n_TYPMEN_new = droplevels(n_TYPMEN_new)) %>%
   as_survey_design(weights = PONDMEN) %>%

@@ -19,7 +19,7 @@ adultes <- indiv %>%
   mutate(n_StatutEnfants = case_when(
     n_RemisEnCoupleEnfantsMen & n_NEnfantsCouple>0 ~ "Précédante et actuelle", 
     n_RemisEnCoupleEnfantsMen | n_config == "Monoparentale" ~ "Précédante", 
-    n_NEnfantsCouple>0 | n_config == "Traditionelle" ~ "Actuelle", 
+    n_NEnfantsCouple>0 | n_config == "Traditionnelle" ~ "Actuelle", 
     TRUE ~ "Sans enfants")) %>%
   rec_NENFANTS("n_NEnfantsMen") %>%
   rec_NENFANTS("n_NBeauxEnfantsMen") %>%
@@ -294,7 +294,7 @@ dat3 <- adultes %>%
     n_StatutEnfants == "Sans enfants" & n_EnfantsHD == "Sans enfant" ~ "Sans enfants", 
     n_StatutEnfants == "Avec enfant(s)" & n_EnfantsHD == "Sans enfant" ~ "Avec enfant(s) cohabitants",
     n_StatutEnfants == "Sans enfants" & n_EnfantsHD == "Avec enfant(s)" ~ "Avec enfant(s) non-cohabitants", 
-    n_StatutEnfants == "Avec enfant(s)" & n_EnfantsHD == "Avec enfant(s)" ~ "Avec enfant(s) cohabitants et non-cohabitants"))
+    n_StatutEnfants == "Avec enfant(s)" & n_EnfantsHD == "Avec enfant(s)" ~ "Avec enfant(s) cohabitants et non-cohabitants")) 
 
 freq(dat3$var)
 
@@ -322,17 +322,20 @@ gg <- dat$variables %>%
   filter(n_StatutParent != "Parent sans beaux-enfants")  %>%
   mutate(SEXE = fct_recode(SEXE, 
     "Belle-mère (33%)" = "F", 
-    "Beau-père (67%)" = "H")) %>%
+    "Beau-père (67%)" = "H"), 
+    n_StatutEnfants = fct_recode(n_StatutEnfants,
+      "Précédante\net actuelle" = "Précédante et actuelle", 
+      "Sans\nenfant" = "Sans enfants")) %>%
   #mutate(n_StatutEnfants = fct_rev(n_StatutEnfants))
   ggplot() +
   aes(x = SEXE, fill = n_StatutEnfants, weight = PONDIND) +
   geom_bar(position = "fill") +
   geom_text(aes(by = SEXE), 
-            size = 2.5,
+            size = 3,
             stat = "prop", position = position_fill(.5)) +
   xlab("") +
   ylab("Proportion") +
-  labs(fill = "Enfants issus de l'union") +
+  labs(fill = "Enfants issus\nde l'union") +
   coord_flip() +
   scale_y_continuous(labels = scales::percent) + 
   scale_fill_brewer(palette = "BrBG") + 

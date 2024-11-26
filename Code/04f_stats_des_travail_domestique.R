@@ -38,7 +38,7 @@ parents <- readRDS("Data_output/parents.Rds") %>%
   filter(n_IdentIndiv %in% c(familles$n_IdentIndiv_F, familles$n_IdentIndiv_H)) %>%
   left_join(familles %>%
               mutate(var = case_when(
-                n_TYPMEN_new == "Traditionelle" ~ "Mère et père en couple traditionnel", 
+                n_TYPMEN_new == "Traditionnelle" ~ "Mère et père en couple traditionnel", 
                 n_TYPMEN_new == "Recomposée" & n_TYPMEN_sexe == "Mère et père en couple" ~ "Mère et père en couple recomposé", 
                 n_TYPMEN_new == "Recomposée" & n_TYPMEN_sexe == "Mère en couple" ~ "Mère en couple recomposé", 
                 n_TYPMEN_new == "Recomposée" & n_TYPMEN_sexe == "Père en couple" ~ "Père en couple recomposé", 
@@ -76,7 +76,7 @@ freq(parents$`Aide scolaire aux enfants`)
 
 #levels(tab$n_BeauxEnfantsMen) <- c("Parent fam rec", "Beau-Parent", "Parent fam trad")
 data <- parents %>%
-  filter(n_TYPMEN_new %in% c("Monoparentale", "Traditionelle", "Recomposée")) %>%
+  filter(n_TYPMEN_new %in% c("Monoparentale", "Traditionnelle", "Recomposée")) %>%
   mutate(n_BeauxEnfantsMen = case_when(
     is.na(n_BeauxEnfantsHD) ~ "Parent fam trad", 
     n_BeauxEnfantsMen ~ "Beau parent", 
@@ -155,7 +155,7 @@ table(data$variables$n_EnfantsMen, data$variables$n_TYPMEN_new, useNA = "ifany")
 
 data2 <- parents %>%
   mutate(n_ParentTypFam = case_when(
-    n_TYPMEN_new == "Traditionelle" ~ "Parent en famille traditionelle", 
+    n_TYPMEN_new == "Traditionnelle" ~ "Parent en famille traditionnelle", 
     n_TYPMEN_new == "Monoparentale" ~ "Parent en famille monoparentale",
     n_TYPMEN_new == "Recomposée" & n_EnfantsMen ~ "Parent en famille recomposée", 
     n_TYPMEN_new == "Recomposée" & !n_EnfantsMen ~ "Beau-parent sans enfants en famille recomposée")) %>%
@@ -205,7 +205,7 @@ table(data$variables$n_EnfantsMen, data$variables$n_TYPMEN_new, useNA = "ifany")
 
 data2 <- parents %>%
   mutate(n_ParentTypFam = case_when(
-    n_TYPMEN_new == "Traditionelle" ~ "Parent en famille traditionelle", 
+    n_TYPMEN_new == "Traditionnelle" ~ "Parent en famille traditionnelle", 
     n_TYPMEN_new == "Monoparentale" ~ "Parent en famille monoparentale",
     n_TYPMEN_new == "Recomposée" & n_EnfantsMen ~ "Parent en famille recomposée", 
     n_TYPMEN_new == "Recomposée" & !n_EnfantsMen ~ "Beau-parent sans enfants en famille recomposée")) %>%
@@ -420,7 +420,7 @@ data0 <- parents
 freq(data0$n_TYPMEN_new)
 data0 <- data0 %>%
   rec_SEXE() %>%
-  filter(n_TYPMEN_new %in% c("Traditionelle", "Recomposée")) %>%
+  filter(n_TYPMEN_new %in% c("Traditionnelle", "Recomposée")) %>%
   mutate(n_TYPMEN_new = n_TYPMEN_new %>% droplevels()) %>%
   mutate_at(.vars = travail_domestique, 
             .funs = function(x){
@@ -625,7 +625,7 @@ table(data$variables$n_EnfantsMen, data$variables$n_TYPMEN_new, useNA = "ifany")
 
 data2 <- parents %>%
   mutate(n_ParentTypFam = case_when(
-    n_TYPMEN_new == "Traditionelle" ~ "Parent en famille traditionelle", 
+    n_TYPMEN_new == "Traditionnelle" ~ "Parent en famille traditionnelle", 
     n_TYPMEN_new == "Monoparentale" ~ "Parent en famille monoparentale",
     n_TYPMEN_new == "Recomposée" & n_EnfantsMen ~ "Parent en famille recomposée", 
     n_TYPMEN_new == "Recomposée" & !n_EnfantsMen ~ "Beau-parent sans enfants en famille recomposée")) %>%
