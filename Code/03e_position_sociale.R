@@ -1,4 +1,8 @@
 
+library(GDAtools)
+library(cluster)
+
+library(kableExtra)
 
 infosBDF <<- readRDS("Data_output/infosBDF.Rds")
 
@@ -34,10 +38,9 @@ familles <- familles %>%
 
 summary(familles$n_RevenusContribF)
 freq(familles$n_RevenusContribF)
-familles$DNIVIE2
-
+freq(familles$NIVIEcut)
 d_acm <- familles %>% 
-  rename(DNIVIE = "DNIVIE2") %>%
+  #rename(DNIVIE = "DNIVIE2") %>%
   select( 
     #starts_with("n_RevenusContribF"),
     #starts_with("n_PATRIMOINEcut"),
@@ -46,7 +49,7 @@ d_acm <- familles %>%
     #starts_with("TYPEMPLOI"),
     #starts_with("NAIS7"),
     #NENFANTS, TYPMEN,
-    DNIVIE, 
+    NIVIEcut, 
     #NIVIEcut,
     TAU, TYPLOG, STALOG, PATRIB)  %>%
   select(-ends_with("2")) %>%
@@ -172,30 +175,30 @@ inertie[1:20] %>%
   diff()
 
 # sauts d'inertie à 7
-typo <- cutree(arbre,7)
+typo <- cutree(arbre, 8)
 
 typo %>% freq
 
-
-# On intègre le résultat dans les données
-typo <- typo %>% as_factor() %>%
-  fct_recode(
-    "Bourgeoisie économique [C7]" = "7", #OK
-    "Classes populaires précaires [C3]" = "3", #OK
-    "Petits indépendants [C5]" = "5", #OK
-    "Bourgeoisie culturelle [C2]" = "2", #OK
-    "Classes moyennes superieures [C4]" = "4",
-    "Petits-moyens [C1]" = "1",
-    "Classes populaires célibataires et urbaines [C6]" = "6") %>%
-  fct_relevel(
-    "Classes populaires précaires [C3]", 
-    "Classes populaires célibataires et urbaines [C6]",
-    "Petits indépendants [C5]", 
-    "Petits-moyens [C1]", 
-    "Classes moyennes superieures [C4]",
-    "Bourgeoisie culturelle [C2]", 
-    "Bourgeoisie économique [C7]"
-  )
+# 
+# # On intègre le résultat dans les données
+# typo <- typo %>% as_factor() %>%
+#   fct_recode(
+#     "Bourgeoisie économique [C7]" = "7", #OK
+#     "Classes populaires précaires [C3]" = "3", #OK
+#     "Petits indépendants [C5]" = "5", #OK
+#     "Bourgeoisie culturelle [C2]" = "2", #OK
+#     "Classes moyennes superieures [C4]" = "4",
+#     "Petits-moyens [C1]" = "1",
+#     "Classes populaires célibataires et urbaines [C6]" = "6") %>%
+#   fct_relevel(
+#     "Classes populaires précaires [C3]", 
+#     "Classes populaires célibataires et urbaines [C6]",
+#     "Petits indépendants [C5]", 
+#     "Petits-moyens [C1]", 
+#     "Classes moyennes superieures [C4]",
+#     "Bourgeoisie culturelle [C2]", 
+#     "Bourgeoisie économique [C7]"
+#   )
 
 
 freq(typo)
@@ -259,6 +262,7 @@ tab <- joli_tableau(data = d_acm2, by = "typo", vars_quali = names(d_acm2), weig
                     tableau_titre = "Structure des clusters (variables actives)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
                    champ = "ménages ordinaires formés par des adultes (25-65 ans). (n = 12 355)", 
                    lecture = "blabla")
+
 tab <- tab %>%
   column_spec(1, "2in") %>%
   column_spec(2, "0.7in") %>%
@@ -526,7 +530,7 @@ tabcontrib <- lapply(1:acmstop, function(dim){
     # add_header_above(c(" " = 3, 
     #                    "Coordonées" = 8, 
     #                    "Contribution" = 8), bold = TRUE) %>%
-    footnote(general = paste0(c("Source :", infosBDF$nom, ", ", infosBDF$vague)), 
+    footnote(general = paste0(c("Source :", infosBDF$nom, ", ", infosBDF$vague), collapse = ""), 
              escape = F)
   
   return(tab)
