@@ -1,7 +1,8 @@
 ################################################################################- 
 #########################  REPERAGE SOUS-POP  ##################################
 ################################################################################- 
-
+library(gtsummary)
+library(questionr)
 # On adopte une approche par les enfants, parce que c'est ce qui est usuel dans 
 # dans la quantification du nombre de familles recomposées
 age_limite <- 25
@@ -155,11 +156,13 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 # - ne pas etre en couple cohabitant et ne pas avoir soi même d'enfant 
 names(enfHD)
 enfantHD <- enfHD %>%
-  mutate(AG = infosBDF$vague - HODAN) %>% # Calcul de l'age au 31 décembre
+  mutate(AG = ANNEE_BDF - HODAN) %>% # Calcul de l'age au 31 décembre
   filter(HODENF == 0 & HODMAT != "1") %>%
   filter(AG < age_limite) %>%
   var_IDENTIFIANT(IdentIndiv = "NUMORDRE", IdentMenage = "IDENT_MEN", NewVarName = "n_IdentIndiv")
 names(enfantHD)
+
+
 
 ## 2.2. Les parents de ces enfants ##############################################
 
@@ -206,6 +209,8 @@ temp <- enfantHD %>%
     HODCO == "3" & !is.na(n_IdentMere) ~ "Enfant résidant chez son père", 
     HODCO != "3" ~ "Enfant résidant hors domicile(s) des parents"))
 head(temp)
+
+parents$n_IdentParent[duplicated(parents$n_IdentParent)]
 
 ## 2.3. Situation conjugale des parents de enfants ############################# 
 enfantHD <- enfantHD %>%

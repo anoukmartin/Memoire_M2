@@ -13,10 +13,11 @@ menages <- readRDS("Data_output/menages.Rds")
 
 
 # Les enfants du ménage ######################################################## 
+enfantsTous$n_IdentIndiv
 enfantsD <- enfantsTous %>%
   filter(n_statutResid == "Enfant du ménage (au sens du TCM)") %>%
-  mutate(n_IdentMenage = str_sub(n_IdentIndiv, 1, 5)) %>%
-  mutate(n_NOI = str_sub(n_IdentIndiv, 6, 7)) 
+  mutate(n_IdentMenage = str_sub(n_IdentIndiv, 1, 8)) %>%
+  mutate(n_NOI = str_sub(n_IdentIndiv, 9, 10)) 
 
 # tableau des configuration
 config <- enfantsD %>%
@@ -210,8 +211,8 @@ enfantsHD <- enfantsTous %>%
            n_configFamEnfantsS %in% c("Configuration monoparentale", 
                                       "Configuration recomposée", 
                                       "Configuration traditionnelle")) %>%
-  mutate(n_IdentMenage = str_sub(n_IdentIndiv, 1, 5)) %>%
-  mutate(n_NOI = str_sub(n_IdentIndiv, 6, 7))
+  mutate(n_IdentMenage = str_sub(n_IdentIndiv, 1, 8)) %>%
+  mutate(n_NOI = str_sub(n_IdentIndiv, 9, 10))
 
 # tableau des configuration
 config <- enfantsHD %>%
@@ -399,7 +400,8 @@ tab <- readRDS("Data_output/enfantsHorsDom.Rds") %>%
   pivot_wider(id_cols = "IDENT_MEN", names_from = "n_NPARENTS", names_prefix = "n_", values_from = "value", values_fill = "0")
 
 sitEnfHD <- left_join(sitEnfHD, tab)
-
+menages$IDENT_MEN
+config$n_IdentMenage
 famillesTemp <- menages %>%
   left_join(config, by = c("IDENT_MEN" = "n_IdentMenage")) %>%
   left_join(configSynthese,  by = c("IDENT_MEN" = "n_IdentMenage")) %>%
