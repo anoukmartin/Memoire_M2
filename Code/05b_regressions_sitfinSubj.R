@@ -97,6 +97,7 @@ var_label(data$SEXEREP) <- "Sexe du répondant à l'enquête"
 
 ## Régression pondérée #########################################################
 summary(data$NIVIE)
+hist(as.numeric(data$AISE))
 plot(data$AISE, data$NIVIE)
 freq(data$n_TYPMEN_sexe)
 chisq.test(data$AISE, data$n_TYPMEN_sexe)

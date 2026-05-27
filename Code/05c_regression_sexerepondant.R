@@ -20,8 +20,8 @@ data <- familles %>%
     SEXEREP = case_when(
       SEXEREP == "Femme" ~ 1, 
       SEXEREP == "Homme" ~ 0),
-    NIVIE = NIVIE/1200, 
-    n_FractionClasse = relevel(n_FractionClasse, "Classes moyennes superieures [C4]")) %>%
+    NIVIE = NIVIE/1200) %>%
+    #n_FractionClasse = relevel(n_FractionClasse, "Classes moyennes superieures [C4]")) %>%
   filter(hetero == "Hetero") %>%
   mutate(n_TYPMEN_new = droplevels(n_TYPMEN_new), 
          n_TYPMEN_sexe = droplevels(n_TYPMEN_sexe))
@@ -37,7 +37,7 @@ data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
   mutate(Ensemble = "1") %>%
   as_survey_design(weights = PONDMEN) %>%
-  tbl_svysummary(include = c("DNIVIE2", "n_FractionClasse", "n_TYPMEN_new", "n_TYPMEN_sexe", "SEXEREP", "Ensemble"), 
+  tbl_svysummary(include = c("NIVIE", "n_FractionClasse", "n_TYPMEN_new", "n_TYPMEN_sexe", "SEXEREP", "Ensemble"), 
                  by = SEXEREP, 
                  percent = "row")  %>%
   add_p()

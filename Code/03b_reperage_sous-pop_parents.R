@@ -14,11 +14,42 @@ indiv <- readRDS("Data_output/indiv.Rds") %>%
   var_IDENTIFIANT(NewVarName = "n_IdentConjoint", 
                   IdentMenage = "IDENT_MEN", 
                   IdentIndiv = "CONJOINT")
+freq(indiv$COUPLE)
+
+
+## Information sur le conjoint ##################################################
+
+## Sexe du conjoint ----
+
+conj <- indiv %>%
+  filter(n_IdentIndiv %in% unique(indiv$n_IdentConjoint)) %>%
+  select(n_IdentConjoint = n_IdentIndiv, n_SEXE_conj = SEXE) 
+
+indiv <- left_join(indiv, conj)
+freq(indiv$SEXE)
+freq(indiv$n_SEXE_conj)
+
+str(indiv[, c("SEXE", "COUPLE", "n_SEXE_conj")])
+
+## Variable statut conjugal genrée ----
+indiv <- indiv %>%
+  mutate(n_statutConjugalSexe = case_when(
+         SEXE == "1" & COUPLE %in% c("2", "3") ~ "Homme célibataire", 
+         SEXE == "2" & COUPLE %in% c("2", "3") ~ "Femme célibataire",
+         SEXE == "1" & COUPLE == "1" & n_SEXE_conj == "1" ~ "Homme en couple avec un homme",
+         SEXE == "2" & COUPLE == "1" & n_SEXE_conj == "1" ~ "Femme en couple avec un homme",
+         SEXE == "2" & COUPLE == "1" & n_SEXE_conj == "2" ~ "Femme en couple avec une femme",
+         SEXE == "1" & COUPLE == "1" & n_SEXE_conj == "2" ~ "Homme en couple avec une femme"))
+
+freq(indiv$n_statutConjugalSexe)
+
+## Variables d'infos sur les enfants (enfants du ménage ou hors domicile, beaux-enfants...) ###########
 
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds") 
 
 list_parents <- unique(c(enfantsMenage$n_IdentMere, 
                        enfantsMenage$n_IdentPere))
+
 list_parents <- list_parents[!is.na(list_parents)]
 
 list_beauparents <- c(
@@ -358,6 +389,36 @@ infos_enfants <- bind_rows(infos_enfantsMen, infos_enfantsHD, infos_enfantsMen2,
 indiv <- left_join(indiv, infos_enfants, 
                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
 
+
+# statut parental agrégé (tous les individus)
+freq(indiv$COUPLE)
+freq(indiv$n_RemisEnCoupleEnfantsMen)
+indiv$n_statutConjugalSexe
+
+indiv <- indiv %>%
+  mutate(n_StatutParentalMenage = case_when(
+    SEXE == "1" & n_EnfantsMen & n_BeauxEnfantsMen ~ "Beau-père avec enfant(s)", 
+    SEXE == "1" & !n_EnfantsMen & n_BeauxEnfantsMen ~ "Beau-père sans enfant",
+    SEXE == "1" & n_EnfantsMen & COUPLE %in% c("3", "2") ~ "Homme célibataire sans enfant", 
+    SEXE == "1" & n_EnfantsMen & COUPLE %in% c("3", "2") ~ "Père célibataire", 
+    SEXE == "1" & !n_EnfantsMen & COUPLE == "1" ~ "Homme en couple sans enfant",
+    SEXE == "1" & n_EnfantsMen & COUPLE == "1" & n_RemisEnCoupleEnfantsMen ~ "Père en couple avec une personne sans enfant", 
+    SEXE == "1" & n_EnfantsMen & COUPLE == "1" & !n_RemisEnCoupleEnfantsMen ~ "Père en couple parental",
+    SEXE == "2" & n_EnfantsMen & n_BeauxEnfantsMen ~ "Belle-mère avec enfant(s)", 
+    SEXE == "2" & !n_EnfantsMen & n_BeauxEnfantsMen ~ "Belle-mère sans enfant",
+    SEXE == "2" & !n_EnfantsMen & COUPLE %in% c("3", "2") ~ "Femme célibataire sans enfant", 
+    SEXE == "2" & n_EnfantsMen & COUPLE %in% c("3", "2") ~ "Mère célibataire", 
+    SEXE == "2" & !n_EnfantsMen & COUPLE == "1" ~ "Femme en couple sans enfant",
+    SEXE == "2" & n_EnfantsMen & COUPLE == "1" & n_RemisEnCoupleEnfantsMen ~ "Mère en couple avec une personne sans enfant", 
+    SEXE == "2" & n_EnfantsMen & COUPLE == "1" & !n_RemisEnCoupleEnfantsMen ~ "Mère en couple parental"
+  ))
+freq(indiv$n_StatutParentalMenage)
+
+
+
+tab <- as.data.frame(table(indiv$n_statutConjugalSexe, indiv$n_EnfantsMen, indiv$n_BeauxEnfantsMen, indiv$n_RemisEnCoupleEnfantsMen, useNA = "ifany")) %>%
+  filter(Freq > 0)
+names(tab) <- c("n_statutConjugalSexe", "n_EnfantsMen", "n_BeauxEnfantsMen", "n_EnfantsAutUnionMen")
 
 # revenus 
 revenus <- indiv %>%

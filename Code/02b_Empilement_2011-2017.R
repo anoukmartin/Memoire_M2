@@ -1,9 +1,9 @@
 # Empiler 2011 et 2017 : 
 
 
-library(haven)
-library(dplyr)
-library(purrr)
+# library(haven)
+# library(dplyr)
+# library(purrr)
 
 path_2017 <- "Data_input/BDF_2017/sas"
 path_2011 <- "Data_input/BDF_2011/sas"
@@ -132,5 +132,5 @@ process_file <- function(file_2017) {
 }
 
 
-process_file(file_2017 = files_2017[17])
+process_file(file_2017 = files_2017[16])
 walk(files_2017[c(8, 10, 11:14, 16:19)], process_file)

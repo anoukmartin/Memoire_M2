@@ -1,7 +1,9 @@
 ################################################################################-
 ##################  Tests régression dépenses ##################################
 ################################################################################-
-
+library(haven)
+library(labelled)
+library(survival)
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
 
@@ -36,8 +38,7 @@ conso2$NIVIE <- menages$NIVIE
 conso2$NENFANTS2 <- menages$NENFANTS
 conso2$REVDISP <- menages$REVDISP
 conso2$COEFUC <- menages$COEFFUC
-names(data)
-data$n_NEnfantsCouple_F
+
 
 data <- familles %>%   
   left_join(conso2, by = "IDENT_MEN") %>%
@@ -410,6 +411,8 @@ saveTableau(tableau = tblreg,
 
 enfants <- readRDS("Data_output/enfantsDuMenage.Rds")
 depind <- readRDS("Data_output/DepIndiv.Rds")
+
+depind$MVETEMENTS_D
 
 tab <- look_for(depind) %>%
   filter(str_detect(label, "Montant")) %>% 

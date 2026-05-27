@@ -16,7 +16,7 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_PATRIMOINE(Var = "n_PATRIMOINE", "n_PATRIMOINEcut") %>%
   rec_NAIS7() %>%
   rec_ETAMATRI() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, COUPLE, PACS, ETAMATRI, starts_with("n_"))
+  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, COUPLE, PACS, ETAMATRI, starts_with("n_")) 
 
 freq(indiv$CS12)
 freq(indiv$DIP7)
@@ -27,6 +27,8 @@ freq(indiv$NAIS7)
 freq(indiv$ADULTE)
 freq(indiv$TYPEMPLOI)
 freq(indiv$ETAMATRI)
+
+
 
 # on ajoute les variables de travail domestqiue 
 # NB de fois

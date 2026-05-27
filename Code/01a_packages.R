@@ -1,7 +1,7 @@
 
 # Git et gestion du coffre aws
-library(git2r)
-library(aws.s3)
+#library(git2r)
+#library(aws.s3)
 
 # Packages Rmd 
 library(rmarkdown)
@@ -138,7 +138,7 @@ add_kablesource_note <- function(kbl_object,
 
 # Mise en forme graphiques
 library(ggplot2)
-library(ggmosaic)
+#library(ggmosaic)
 library("RColorBrewer")
 library(wesanderson)
 library(ggthemes)
@@ -177,5 +177,6 @@ library(GGally)
 library(Cairo)
 library(ggrepel)
 
+library(janitor)
 
 

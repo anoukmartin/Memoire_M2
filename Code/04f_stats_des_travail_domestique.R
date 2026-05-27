@@ -25,6 +25,7 @@ dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
   var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", 
                   NewVarName = "n_IdentIndiv") %>%
   select(n_IdentIndiv, all_of(travail_domestique))
+
 travail_domestique <- str_to_sentence(travail_domestique)
 travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
                                      "Habillage des enfants", 
@@ -55,7 +56,7 @@ parents <- parents %>%
                                   travail_domestique, 
                                   "` != ''", 
                                   collapse = " | ")))) %>%
-  mutate_at(.vars = vars(travail_domestique), 
+  mutate_at(.vars = vars(all_of(travail_domestique)), 
             .funs = function(x){
               x %>%
                 fct_recode(
