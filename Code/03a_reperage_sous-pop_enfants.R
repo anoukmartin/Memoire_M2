@@ -122,12 +122,13 @@ enfants <- enfants %>%
     n_IdentConjointPere != n_IdentMere ~ "Beau-parent", 
     !is.na(n_IdentConjointPere) & is.na(n_IdentMere) ~ "Beau-parent",
     n_IdentConjointPere == n_IdentMere ~ "Parent",
-    is.na(n_IdentConjointPere) ~ NA_character_)) %>%
+    is.na(n_IdentConjointPere) ~ "Pas de conjoint")) %>%
   mutate(n_ConjMere = case_when(
     n_IdentConjointMere != n_IdentPere ~ "Beau-parent", 
     !is.na(n_IdentConjointMere) & is.na(n_IdentPere) ~ "Beau-parent", 
     n_IdentConjointMere == n_IdentPere ~ "Parent", 
-    is.na(n_IdentConjointMere) ~ NA_character_))
+    is.na(n_IdentConjointMere) ~ "Pas de conjoint"))  
+  
 freq(enfants$n_ConjMere)
 freq(enfants$n_ConjPere)
 table(enfants$n_ConjMere, enfants$n_ConjPere, useNA = "ifany")

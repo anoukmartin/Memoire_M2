@@ -81,6 +81,16 @@ process_file <- function(file_2017) {
       df_2017[[v]] <- as.character(df_2017[[v]])
     }
   }
+  # Revalorisation des variables contenant des montants en 2011 ###################
+  IPC2017 <- 84.45 # source insee
+  IPC2011 <- 80.97 # source insee
+  coef_ipc <-  IPC2017/IPC2011
+  vars_rev <- names(df_2011)[str_detect(names(df_2011), "^REV")]
+  df_2011$REV
+  
+  
+  
+  
   
   # Au cas par cas : 
   if(str_detect(file_2017, "MENAGE")) {
@@ -107,6 +117,9 @@ process_file <- function(file_2017) {
   # summary(df_2017$NIVIE)
   # plot(df_2017$REVDISP, df_2017$NIVIE)
   # plot(df_2011$REVDISP, df_2011$NIVIE)
+  
+  
+  
   }
   
   
@@ -134,3 +147,5 @@ process_file <- function(file_2017) {
 
 process_file(file_2017 = files_2017[16])
 walk(files_2017[c(8, 10, 11:14, 16:19)], process_file)
+
+

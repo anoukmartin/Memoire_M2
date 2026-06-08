@@ -27,7 +27,7 @@ config <- list(
   base_url = "https://sdrive.cnrs.fr/remote.php/dav/files/1426185",
   
   # Dossier distant contenant les données
-  remote_path = "BDF",
+  remote_path = "Thèse/Progédo/BDF_2017",
   
   # Fichiers SAS à récupérer
   sas_files = c(
@@ -114,8 +114,7 @@ for (i in seq_along(config$sas_files)) {
   remote_url <- paste0(
     config$base_url,
     "/",
-    config$remote_path,
-    "/",
+    config$remote_path, "/Donnees_SAS/",
     config$sas_files[i]
   )
   
@@ -132,6 +131,7 @@ for (i in seq_along(config$sas_files)) {
   )
 }
 
+
 ################################################################################
 # Téléchargement documentation #################################################
 ################################################################################
@@ -141,8 +141,7 @@ for (i in seq_along(config$doc_files)) {
   remote_url <- paste0(
     config$base_url,
     "/",
-    config$remote_path,
-    "/",
+    config$remote_path, "/Documentation/",
     config$doc_files[i]
   )
   
@@ -159,135 +158,7 @@ for (i in seq_along(config$doc_files)) {
   )
 }
 
-################################################################################
-# Import dans l'environnement ##################################################
-################################################################################
 
-## Tables info individuelles ###################################################
 
-### Table des ménages ##########################################################
 
-menages <- read_sas("Data_input/sas/menages.sas7bdat")
 
-names(menages) <- str_to_upper(names(menages))
-
-summary(menages$PONDMEN)
-
-menages$PONDMEN <- menages$PONDMEN / mean(menages$PONDMEN)
-
-summary(menages$PONDMEN)
-
-saveData(menages, "menages")
-
-################################################################################
-
-### Table des individus ########################################################
-
-indiv <- read_sas("Data_input/sas/individu.sas7bdat")
-
-names(indiv) <- str_to_upper(names(indiv))
-
-# Correction TYPEMPLOI
-indiv[indiv$TRAVAIL == "1" & indiv$TYPEMPLOI == "", ]$TYPEMPLOI <- "7"
-
-# Pondérations
-indiv <- left_join(
-  indiv,
-  menages[, c("IDENT_MEN", "PONDMEN")]
-)
-
-summary(indiv$PONDMEN)
-
-indiv$PONDIND <- indiv$PONDMEN / mean(indiv$PONDMEN)
-
-summary(indiv$PONDIND)
-
-saveData(indiv, "indiv")
-
-################################################################################
-
-### Table enfants hors ménage ##################################################
-
-enfHD <- read_sas("Data_input/sas/enfantHD.sas7bdat")
-
-names(enfHD) <- str_to_upper(names(enfHD))
-
-enfHD <- left_join(
-  enfHD,
-  menages[, c("IDENT_MEN", "PONDMEN")]
-)
-
-summary(enfHD$PONDMEN)
-
-enfHD$PONDIND <- enfHD$PONDMEN / mean(enfHD$PONDMEN)
-
-summary(enfHD$PONDIND)
-
-saveData(enfHD, "enfHD")
-
-################################################################################
-# Tables budgets ###############################################################
-################################################################################
-
-### Dépenses ménages ###########################################################
-
-DepMenages <- read_sas(
-  "Data_input/sas/depenses_menages.sas7bdat"
-)
-
-names(DepMenages) <- str_to_upper(names(DepMenages))
-
-saveData(DepMenages, "DepMenages")
-
-################################################################################
-
-### Dépenses individus #########################################################
-
-DepIndiv <- read_sas(
-  "Data_input/sas/depenses_individus.sas7bdat"
-)
-
-names(DepIndiv) <- str_to_upper(names(DepIndiv))
-
-saveData(DepIndiv, "DepIndiv")
-
-################################################################################
-
-### Consommation ###############################################################
-
-conso <- read_sas(
-  "Data_input/sas/consommation.sas7bdat"
-)
-
-names(conso) <- str_to_upper(names(conso))
-
-saveData(conso, "conso")
-
-################################################################################
-# Métadonnées ##################################################################
-################################################################################
-
-infosBDF <- NULL
-
-infosBDF$des <- "Métadonnées de l'enquête budget de famille"
-infosBDF$nom <- "Budget de famille"
-infosBDF$champ <- "ménages ordinaires résidant en France"
-infosBDF$vague <- 2017
-
-saveData(infosBDF, label = "infosBDF")
-
-################################################################################
-# Nettoyage ####################################################################
-################################################################################
-
-rm(
-  enfHD,
-  indiv,
-  menages,
-  DepIndiv,
-  DepMenages,
-  conso,
-  infosBDF
-)
-
-log_message("Importation terminée avec succès")

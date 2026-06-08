@@ -2,6 +2,7 @@
 # Git et gestion du coffre aws
 #library(git2r)
 #library(aws.s3)
+library(httr)
 
 # Packages Rmd 
 library(rmarkdown)
@@ -179,4 +180,6 @@ library(ggrepel)
 
 library(janitor)
 
+
+library(haven)
 

@@ -26,6 +26,9 @@ names(familles)
 
 freq(familles$hetero)
 
+summary(familles$n_REVENUS_H)
+summary(familles$n_REVENUS_F)
+
 familles <- familles %>%
   #filter(is.na(hetero) | hetero == "Hetero") %>%
   mutate(

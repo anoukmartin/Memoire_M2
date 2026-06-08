@@ -605,6 +605,36 @@ rec_TYPEMPLOI <- function(data, Var = "TYPEMPLOI", NewVar = FALSE) {
   return(data)
 }
 
+revalo_M2011 <- function(data, Var = "NIVIE", NewVar = paste0(Var, "_revalo"), 
+                         IPC2017 = 84.45, IPC2011 = 80.97) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = case_when(
+      ANNEE_BDF == 2011 ~ temp*(IPC2017/IPC2011),
+      ANNEE_BDF == 2017 ~ temp
+    )
+           )
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+test <- data %>%
+  revalo_M2011("NIVIE") %>%
+  revalo_M2011("REVDISP") %>%
+  revalo_M2011("MVETEMENTS_D")
+summary(test$NIVIE)
+summary(test$NIVIE_revalo)
+summary(test$REVDISP)
+summary(test$REVDISP_revalo)
+summary(test$MVETEMENTS_D)
+summary(test$MVETEMENTS_D_revalo)
 
 ## Tableau croisé, khi2 et résidus #############################################
 
