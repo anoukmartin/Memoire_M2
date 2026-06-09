@@ -24,7 +24,8 @@ indiv$ENFANT # Variable au sens du TCM (critère du budget commun en plus)
 tbl_cross(indiv, ENFANT, ENFRP) # On regarde si elles se recoupent 
 temp <- indiv %>%
   filter(ENFANT == "2" & ENFRP == "1")
-# Donc on a trois individus assez âgés qui sont considérés comme enfant au sens 
+summary(temp$AG)
+# Donc on a 19 individus assez âgés qui sont considérés comme enfant au sens 
 # du RP mais pas du TCM, de toutes façon on va mettre un age limite pour être 
 # considéré comme enfant, car on peut faire l'hypothèse que un enfant est à 
 # charge économique d'au moins un adulte, ce qui va dans le sens de prendre le 
@@ -77,6 +78,7 @@ freq(indiv$CONJOINT)
 indiv$CONJOINT <- indiv$CONJOINT %>%
   str_trim()%>%
   as.numeric()
+
 
 parents <- indiv %>%
   var_IDENTIFIANT(IdentIndiv = "NOI", 
@@ -133,9 +135,42 @@ freq(enfants$n_ConjMere)
 freq(enfants$n_ConjPere)
 table(enfants$n_ConjMere, enfants$n_ConjPere, useNA = "ifany")
 
+# On met les identifiant des beaux-parents 
+parents
+beauxparentslist <- unique(c(enfants$n_IdentConjointPere[enfants$n_ConjPere == "Beau-parent"], 
+                  enfants$n_IdentConjointMere[enfants$n_ConjMere == "Beau-parent"]))
+beauxparents <- parents %>%
+  filter(n_IdentParent %in% beauxparentslist) %>%
+  mutate(n_sexeBeauParent = case_when(SEXE == "1" ~ "Beau-père", 
+                                      SEXE == "2" ~ "Belle-mère"),
+         n_IdentBelleMere = case_when(SEXE == "2" ~ n_IdentParent), 
+         n_IdentBeauPere = case_when(SEXE == "1" ~ n_IdentParent)
+         )
+  
+
+enfants <- enfants %>%
+  mutate(n_IdentBeauParent = case_when(
+    is.na(n_IdentConjointPere) & is.na(n_IdentConjointMere) ~ NA,
+    is.na(n_IdentConjointPere) & n_ConjMere == "Beau-parent" ~ n_IdentConjointMere, 
+    is.na(n_IdentConjointMere) & n_ConjPere == "Beau-parent" ~ n_IdentConjointPere, 
+    n_ConjMere == "Beau-parent" & n_ConjPere == "Beau-parent" ~ paste0(n_IdentConjointMere, "/", n_IdentConjointPere),
+    TRUE ~ NA))
+
+enfants$n_IdentBeauParent
+
+
+enfants <- enfants %>%
+  left_join(beauxparents %>%
+              select(n_IdentParent, n_sexeBeauParent, n_IdentBelleMere, n_IdentBeauPere) %>%
+              rename(n_IdentBeauParent = n_IdentParent))
+  
+enfants$n_IdentBelleMere
+
 # On centre la variable de pondération 
 enfants$PONDIND <- enfants$PONDMEN/mean(enfants$PONDMEN)
 summary(enfants$PONDIND)
+
+
 
 saveData(enfants, label = "enfantsDuMenage")
 
@@ -238,6 +273,43 @@ enfantHD <- enfantHD %>%
 freq(enfantHD$n_ConjMere)
 freq(enfantHD$n_ConjPere)
 table(enfantHD$n_ConjMere, enfantHD$n_ConjPere, useNA = "ifany")
+
+
+# On met les identifiant des beaux-parents 
+parents
+beauxparentslist <- unique(c(enfantHD$n_IdentConjointPere[enfantHD$n_ConjPere == "Beau-parent"], 
+                             enfantHD$n_IdentConjointMere[enfantHD$n_ConjMere == "Beau-parent"]))
+beauxparents <- parents %>%
+  filter(n_IdentParent %in% beauxparentslist) %>%
+  mutate(n_sexeBeauParent = case_when(SEXE == "1" ~ "Beau-père", 
+                                      SEXE == "2" ~ "Belle-mère"),
+         n_IdentBelleMere = case_when(SEXE == "2" ~ n_IdentParent), 
+         n_IdentBeauPere = case_when(SEXE == "1" ~ n_IdentParent)
+  )
+
+
+enfantHD <- enfantHD %>%
+  mutate(n_IdentBeauParent = case_when(
+    is.na(n_IdentConjointPere) & is.na(n_IdentConjointMere) ~ NA,
+    is.na(n_IdentConjointPere) & n_ConjMere == "Beau-parent" ~ n_IdentConjointMere, 
+    is.na(n_IdentConjointMere) & n_ConjPere == "Beau-parent" ~ n_IdentConjointPere, 
+    n_ConjMere == "Beau-parent" & n_ConjPere == "Beau-parent" ~ paste0(n_IdentConjointMere, "/", n_IdentConjointPere),
+    TRUE ~ NA))
+
+enfantHD$n_IdentBeauParent
+
+
+enfantHD <- enfantHD %>%
+  left_join(beauxparents %>%
+              select(n_IdentParent, n_sexeBeauParent, n_IdentBelleMere, n_IdentBeauPere) %>%
+              rename(n_IdentBeauParent = n_IdentParent))
+
+enfantHD$n_IdentBelleMere
+
+# On centre la variable de pondération 
+enfantHD$PONDIND <- enfantHD$PONDMEN/mean(enfantHD$PONDMEN)
+summary(enfants$PONDIND)
+
 
 saveData(enfantHD, "enfantsHorsDom")
 

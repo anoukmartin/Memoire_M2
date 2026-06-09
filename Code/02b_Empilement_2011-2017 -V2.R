@@ -59,7 +59,7 @@ process_file <- function(file_2017) {
     
     return(NULL)
   }
-  
+ 
   # ------------------------------------------------------------------
   # Lecture
   # ------------------------------------------------------------------
@@ -178,52 +178,83 @@ process_file <- function(file_2017) {
   }
   
   add_log("")
+  log_txt
   
   # ------------------------------------------------------------------
   # Gestion des modalités 98 ou 99 des variables quantis et quali
   # ------------------------------------------------------------------
+# exemple 
+  # dat <- df_2011
+  # v <- names(dat)[10]
+  
   
   add_log("## Gestion des faux NA (98 ou 99) ")
+
+  datasets <- list(df_2011 = df_2011, df_2017 = df_2017)
   
-  for(dat in c(df_2011, df_2017)){
-  #v <- "MENS"
-  for(v in names(dat)){
-    add_log(paste0("### ", v, " : ", class(dat[[v]])))
-    if(is.character(dat[[v]])){
-      m <- max(unique(str_length(unique(dat[[v]]))), na.rm = T)
-      if(m == 1){
-        add_log(paste0(length(dat[[v]][dat[[v]] == "8"]), " : '8' -> NA(R)"))
-        dat[[v]][dat[[v]] == "8"] <- tagged_na("R")
-        add_log(paste0(length(dat[[v]][dat[[v]] == "9"]), " : '9' -> NA(N)"))
-        dat[[v]][dat[[v]] == "9"] <- tagged_na("N")
+  for (nm in names(datasets)) {
+    
+    dat <- datasets[[nm]]
+    
+    add_log("### ", nm)
+
+    for(v in names(dat)){
+      
+      x <- dat[[v]]
+      
+      # --------------------------
+      # CHARACTER
+      # --------------------------
+      if(is.character(x)){
         
-      } else {
-        add_log(paste0(length(dat[[v]][dat[[v]] == "98"]), " : '98' -> NA(R)"))
-        dat[[v]][dat[[v]] == "98"] <- tagged_na("R")
-        add_log(paste0(length(dat[[v]][dat[[v]] == "99"]), " : '99' -> NA(N)"))
-        dat[[v]][dat[[v]] == "99"] <- tagged_na("N")
-      }
-    }
-    if(is.numeric(dat[[v]])){
-      u <- unique(dat[[v]])
-      if(any(!is.na(u))){
-      m <- max(u, na.rm = T)
-      if(str_ends(as.character(m), "99")){
-        add_log(paste0(length(dat[[v]][!is.na(dat[[v]]) & dat[[v]] == m-1]), " : ", m-1, " -> NA(R)"))
-        dat[[v]][!is.na(dat[[v]]) & dat[[v]] == m-1] <- tagged_na("R")
-        add_log(paste0(length(dat[[v]][!is.na(dat[[v]]) & dat[[v]] == m]), " : ", m, " -> NA(N)"))
-        dat[[v]][!is.na(dat[[v]]) & dat[[v]] == m]  <- tagged_na("N")
+        n98 <- sum(x == "98", na.rm = TRUE)
+        n99 <- sum(x == "99", na.rm = TRUE)
+        
+        if(n98 > 0){
+          x[x == "98"] <- NA
+          log(v, " : 98 -> NA (", n98, ")")
         }
-      if(str_ends(as.character(m), "98")){
-        add_log(paste0(length(dat[[v]][!is.na(dat[[v]]) & dat[[v]] == m]), " : ", m, " -> NA(R)"))
-        dat[[v]][!is.na(dat[[v]]) & dat[[v]] == m] <- tagged_na("R")
-      } 
+        
+        if(n99 > 0){
+          x[x == "99"] <- NA
+          log(v, " : 99 -> NA (", n99, ")")
+        }
+        
+        dat[[v]] <- x
+      }
+      
+      # --------------------------
+      # NUMERIC
+      # --------------------------
+      if(is.numeric(x)){
+        m <- max(x, na.rm = T)
+        if(m >=10){
+        NAvals <- c(paste0(rep("9", str_length(as.character(m))), collapse = ""), 
+                    paste0(c(rep("9", str_length(m)-2), "89"), collapse = ""))
+        NAvals <- as.numeric(NAvals)
+        if(any(x %in% c(NAvals))){
+        # on prend uniquement les codes plausibles 98/99 
+        n98 <- sum(x == NAvals[2], na.rm = TRUE)
+        n99 <- sum(x == NAvals[1], na.rm = TRUE)
+        
+        if(n98 > 0){
+          x[x == NAvals[2]] <- NA
+          log(v, " : 98 -> NA (", n98, ")")
+        }
+        
+        if(n99 > 0){
+          x[x == NAvals[1]] <- NA
+          log(v, " : 99 -> NA (", n99, ")")
+        }
+        }
+        dat[[v]] <- x
+      }
       }
     }
+    
+    assign(nm, dat, envir = .GlobalEnv)
   }
-  }
-  
-  
+      
   
   
   # ------------------------------------------------------------------
@@ -313,7 +344,7 @@ process_file <- function(file_2017) {
     
     add_log("")
   }
-  
+  log_txt
   # ------------------------------------------------------------------
   # Traitements spécifiques à la table
   # ------------------------------------------------------------------

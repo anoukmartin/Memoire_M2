@@ -12,7 +12,7 @@ dir.create(path_out)
 
 files_2017 <- list.files(path_2017, pattern = "\\.sas7bdat$", full.names = TRUE)
 
-file_2017 <- files_2017[17]
+file_2017 <- files_2017[12]
 
 process_file <- function(file_2017) {
   
@@ -85,14 +85,79 @@ process_file <- function(file_2017) {
   IPC2017 <- 84.45 # source insee
   IPC2011 <- 80.97 # source insee
   coef_ipc <-  IPC2017/IPC2011
-  vars_rev <- names(df_2011)[str_detect(names(df_2011), "^REV")]
-  df_2011$REV
+  labels_2011 <- sapply(df_2011, function(x) attr(x, "label"))
+  
+  labels_clean <- tolower(
+    ifelse(is.na(labels_2011), "", labels_2011)
+  )
+  
+  vars_revalo <- names(df_2011)[
+    sapply(df_2011, is.numeric) &
+      (
+        str_detect(names(df_2011), "^REV") |
+          str_detect(labels_clean, "montant")
+      ) &
+      !str_detect(labels_clean, "en tranche")
+  ]
+  
+  vars_revalo <- vars_revalo[
+    sapply(df_2011[vars_revalo], is.numeric)
+  ]
+  
+  
+  
+  summaries_before <- lapply(
+    df_2011[vars_revalo],
+    summary
+  )
+  
+  df_2011 <- df_2011 %>%
+    mutate(
+      across(
+        all_of(vars_revalo),
+        ~ round(.x * coef_ipc, 0)
+      )
+    )
+  
+  summaries_after <- lapply(
+    df_2011[vars_revalo],
+    summary
+  )
+  
+  
+  message(
+    "## Variables revalorisées (montant de 2011 × IPC2017/IPC2011) :\n\n",
+    paste(
+      sapply(vars_revalo, function(v) {
+        
+        paste0(
+         "### ", v, " : ", labels_2011[v], "\n",
+          "Avant : ",
+          paste(
+            names(summaries_before[[v]]),
+            round(summaries_before[[v]], 2),
+            collapse = " | "
+          ),
+          "\n",
+          "Après : ",
+          paste(
+            names(summaries_after[[v]]),
+            round(summaries_after[[v]], 2),
+            collapse = " | "
+          ),
+          "\n"
+        )
+        
+      }),
+      collapse = "\n"
+    )
+  )
   
   
   
   
   
-  # Au cas par cas : 
+  # Au cas par cas : ##########################################################
   if(str_detect(file_2017, "MENAGE")) {
     # on doit récupéré le montant de la taxe d'habitation de l'impot sur le revenu dans les dépenses du ménage
     

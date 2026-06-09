@@ -107,23 +107,11 @@ indiv <- left_join(indiv, infos_enfantsMenage,
 
 #infos sur les beau-enfants
 infos_enfantsMenage <- enfantsMenage %>%
-  filter(n_ConjMere == "Beau-parent") %>%
-  pivot_longer(cols = c("n_IdentConjointMere"), 
-               values_to = "n_IdentBeauParent",
-               values_drop_na = T) %>%
-  group_by(n_IdentBeauParent)%>%
+  filter(!is.na(n_IdentBeauParent)) %>%
+  group_by(n_IdentBeauParent) %>%
   summarise(n_NBeauxEnfantsMen = n(), 
             n_AgeBeauxEnfantsMen = mean(AG))
-infos_enfantsMenage2 <- enfantsMenage %>%
-  filter(n_ConjPere == "Beau-parent") %>%
-  pivot_longer(cols = c("n_IdentConjointPere"), 
-               values_to = "n_IdentBeauParent",
-               values_drop_na = T) %>%
-  group_by(n_IdentBeauParent)%>%
-  summarise(n_NBeauxEnfantsMen = n(), 
-            n_AgeBeauxEnfantsMen = mean(AG))
-infos_enfantsMenage <- bind_rows(infos_enfantsMenage, infos_enfantsMenage2)
-
+  
 indiv <- left_join(indiv, infos_enfantsMenage, 
                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
 
