@@ -412,8 +412,24 @@ str(nb_beaux_parents)
 freq(nb_beaux_parents$NBEAUX_PARENTS)
 unique(nb_beaux_parents$SEXE_BEAUPARENT)
 
+nb_beaux_parents <- nb_beaux_parents %>%
+  mutate(
+    SEXE_BEAUPARENT = map_chr(SEXE_BEAUPARENT, \(x) {
+      
+      x <- sort(na.omit(x))
+      
+      case_when(
+        identical(x, c("1", "2")) ~ "Vit avec un beau-père et une belle-mère",
+        identical(x, "2") ~ "Vit avec une belle-mère",
+        identical(x, "1") ~ "Vit avec un beau-père",
+        length(x) == 0 ~ NA,
+        TRUE ~ NA_character_
+      )
+      
+    })
+  )
 
-
+freq(nb_beaux_parents$SEXE_BEAUPARENT)
 
 # ####################NBEAUX_PARENTS# ###############################################################
 # # 5. FRATRIES
@@ -762,11 +778,13 @@ indiv_fam <- indiv %>%
 #
 ###############################################################
 for (var in c("NPARENTS",
+              "SEXE_PARENT",
               "NENFANTS",
               "NCONJOINT",
               "NBEAUX_ENFANTS",
               "NBEAUX_ENFANTS_CONJOINT",
               "NBEAUX_PARENTS",
+              "SEXE_BEAUPARENT", 
               "N_FRERES_SOEURS_TOUS",
               "N_DEMI_FRERES_SOEURS",
               "N_QUASI_FRERES_SOEURS")) {
