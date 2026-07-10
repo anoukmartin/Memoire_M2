@@ -16,10 +16,11 @@ indiv <- readRDS("Data_output/indiv.Rds") %>%
                   IdentIndiv = "CONJOINT")
 freq(indiv$COUPLE)
 
+################################################################################
+## 1. Informations sur le conjoint ##################################################
+################################################################################
 
-## Information sur le conjoint ##################################################
-
-## Sexe du conjoint ----
+### Sexe du conjoint ----
 
 conj <- indiv %>%
   filter(n_IdentIndiv %in% unique(indiv$n_IdentConjoint)) %>%
@@ -31,7 +32,7 @@ freq(indiv$n_SEXE_conj)
 
 str(indiv[, c("SEXE", "COUPLE", "n_SEXE_conj")])
 
-## Variable statut conjugal genrée ----
+### Variable statut conjugal genrée ----
 indiv <- indiv %>%
   mutate(n_statutConjugalSexe = case_when(
          SEXE == "1" & COUPLE %in% c("2", "3") ~ "Homme célibataire", 
@@ -43,7 +44,9 @@ indiv <- indiv %>%
 
 freq(indiv$n_statutConjugalSexe)
 
-## Variables d'infos sur les enfants (enfants du ménage ou hors domicile, beaux-enfants...) ###########
+################################################################################
+## 2.Variables d'infos sur les enfants (enfants du ménage) #####################
+################################################################################
 
 enfantsMenage <- readRDS("Data_output/enfantsDuMenage.Rds") 
 
@@ -52,15 +55,9 @@ list_parents <- unique(c(enfantsMenage$n_IdentMere,
 
 list_parents <- list_parents[!is.na(list_parents)]
 
-list_beauparents <- c(
-  enfantsMenage[
-    enfantsMenage$n_ConjPere == "Beau-parent"
-    & !is.na(enfantsMenage$n_ConjPere), ]$n_IdentConjointPere,
-  enfantsMenage[
-    enfantsMenage$n_ConjMere == "Beau-parent"
-    & !is.na(enfantsMenage$n_ConjMere), ]$n_IdentConjointMere
-  ) %>%
-  unique()
+list_beauparents <- unique(c(enfantsMenage$n_IdentBeauParents))
+list_beauparents <- list_beauparents[!is.na(list_beauparents)]
+
 
 list_parentremisencouple <-  c(
   enfantsMenage[
@@ -162,25 +159,23 @@ infos_enfantsMenage <- bind_rows(infos_enfantsMenage, infos_enfantsMenage2)
 indiv <- left_join(indiv, infos_enfantsMenage, 
                    by = c("n_IdentIndiv" = "n_IdentParent"))
 
-
-# ensuite on ajoute les données sur les enfants hors domicile : 
+################################################################################
+## 3. Enfants hors domiciles ###################################################
+################################################################################
+#Include ---- 
 
 enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds") 
 
-list_enfantsHD <- unique(c(enfantsHD$n_IdentMere, 
-                           enfantsHD$n_IdentPere))
-list_enfantsHD  <- list_enfantsHD[!is.na(list_enfantsHD)]
+list_parents <- unique(c(enfantsHD$n_IdentMere, 
+                         enfantsHD$n_IdentPere))
 
-list_beauxenfantsHD <- c(
-  c(enfantsHD[
-    enfantsHD$n_ConjPere == "Beau-parent"
-    & !is.na(enfantsHD$n_ConjPere), ]$n_IdentConjointPere) %>% unique(),
-  c(enfantsHD[
-    enfantsHD$n_ConjMere == "Beau-parent"
-    & !is.na(enfantsHD$n_ConjMere), ]$n_IdentConjointMere) %>% unique()
-) 
+list_parents <- list_parents[!is.na(list_parents)]
 
-list_enfantsHDremisencouple <- c(
+list_parents <- unique(c(enfantsHD$n_IdentBeauParent))
+list_beauparents <- list_beauparents[!is.na(list_beauparents)]
+
+
+list_parentremisencouple <-  c(
   enfantsHD[
     enfantsHD$n_ConjPere == "Beau-parent"
     & !is.na(enfantsHD$n_ConjPere), ]$n_IdentPere,
@@ -190,20 +185,20 @@ list_enfantsHDremisencouple <- c(
 ) %>%
   unique()
 
-
 indiv <- indiv %>%
   mutate(n_EnfantsHD = case_when(
-    n_IdentIndiv %in% list_enfantsHD ~ TRUE, 
-    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
+    n_IdentIndiv %in% list_parents ~ TRUE, 
+    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) 
+    & !(n_IdentIndiv %in% enfantsHD$n_IdentIndiv) ~ FALSE, 
     TRUE ~ NA)) %>%
   mutate(n_BeauxEnfantsHD = case_when(
-    n_IdentIndiv %in% list_beauxenfantsHD ~ TRUE, 
-    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
+    n_IdentIndiv %in% list_beauparents ~ TRUE, 
+    IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsHD$n_IdentIndiv) ~ FALSE, 
     TRUE ~ NA)) %>%
   mutate(n_RemisEnCoupleEnfantsHD = case_when(
-    n_IdentIndiv %in% list_enfantsHDremisencouple ~ TRUE, 
+    n_IdentIndiv %in% list_parentremisencouple ~ TRUE, 
     IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) 
-    & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) & n_EnfantsHD ~ FALSE, 
+    & !(n_IdentIndiv %in% enfantsHD$n_IdentIndiv) & n_EnfantsHD ~ FALSE, 
     TRUE ~ NA))
 
 freq(indiv$n_EnfantsHD)
@@ -219,32 +214,19 @@ infos_enfantsHD <- enfantsHD %>%
   group_by(n_IdentParent)%>%
   summarise(n_NEnfantsHD = n(), 
             n_AgeEnfantsHD = mean(AG))
-
+infos_enfantsHD  
 indiv <- left_join(indiv, infos_enfantsHD, 
                    by = c("n_IdentIndiv" = "n_IdentParent"))
 
 #infos sur les beau-enfants
 infos_enfantsHD <- enfantsHD %>%
-  filter(n_ConjMere == "Beau-parent") %>%
-  pivot_longer(cols = c("n_IdentConjointMere"), 
-               values_to = "n_IdentBeauParent",
-               values_drop_na = T) %>%
-  group_by(n_IdentBeauParent)%>%
+  filter(!is.na(n_IdentBeauParent)) %>%
+  group_by(n_IdentBeauParent) %>%
   summarise(n_NBeauxEnfantsHD = n(), 
             n_AgeBeauxEnfantsHD = mean(AG))
-infos_enfantsHD2 <- enfantsHD %>%
-  filter(n_ConjPere == "Beau-parent") %>%
-  pivot_longer(cols = c("n_IdentConjointPere"), 
-               values_to = "n_IdentBeauParent",
-               values_drop_na = T) %>%
-  group_by(n_IdentBeauParent)%>%
-  summarise(n_NBeauxEnfantsHD = n(), 
-            n_AgeBeauxEnfantsHD = mean(AG))
-infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
 
 indiv <- left_join(indiv, infos_enfantsHD, 
                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
-
 
 #infos enfants du couple 
 infos_enfantsHD <- enfantsHD %>%
@@ -293,11 +275,141 @@ infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
 indiv <- left_join(indiv, infos_enfantsHD, 
                    by = c("n_IdentIndiv" = "n_IdentParent"))
 
+# Include ----
+# enfantsHD <- readRDS("Data_output/enfantsHorsDom.Rds") 
+# 
+# list_enfantsHD <- unique(c(enfantsHD$n_IdentMere, 
+#                            enfantsHD$n_IdentPere))
+# list_enfantsHD  <- list_enfantsHD[!is.na(list_enfantsHD)]
+# 
+# list_beauxenfantsHD <- c(
+#   c(enfantsHD[
+#     enfantsHD$n_ConjPere == "Beau-parent"
+#     & !is.na(enfantsHD$n_ConjPere), ]$n_IdentConjointPere) %>% unique(),
+#   c(enfantsHD[
+#     enfantsHD$n_ConjMere == "Beau-parent"
+#     & !is.na(enfantsHD$n_ConjMere), ]$n_IdentConjointMere) %>% unique()
+# ) 
+# 
+# list_enfantsHDremisencouple <- c(
+#   enfantsHD[
+#     enfantsHD$n_ConjPere == "Beau-parent"
+#     & !is.na(enfantsHD$n_ConjPere), ]$n_IdentPere,
+#   enfantsHD[
+#     enfantsHD$n_ConjMere == "Beau-parent"
+#     & !is.na(enfantsHD$n_ConjMere), ]$n_IdentMere
+# ) %>%
+#   unique()
+# 
+# 
+# indiv <- indiv %>%
+#   mutate(n_EnfantsHD = case_when(
+#     n_IdentIndiv %in% list_enfantsHD ~ TRUE, 
+#     IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
+#     TRUE ~ NA)) %>%
+#   mutate(n_BeauxEnfantsHD = case_when(
+#     n_IdentIndiv %in% list_beauxenfantsHD ~ TRUE, 
+#     IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) ~ FALSE, 
+#     TRUE ~ NA)) %>%
+#   mutate(n_RemisEnCoupleEnfantsHD = case_when(
+#     n_IdentIndiv %in% list_enfantsHDremisencouple ~ TRUE, 
+#     IDENT_MEN %in% unique(enfantsHD$IDENT_MEN) 
+#     & !(n_IdentIndiv %in% enfantsMenage$n_IdentIndiv) & n_EnfantsHD ~ FALSE, 
+#     TRUE ~ NA))
+# 
+# freq(indiv$n_EnfantsHD)
+# freq(indiv$n_BeauxEnfantsHD)
+# freq(indiv$n_RemisEnCoupleEnfantsHD)
+# 
+# 
+# #infos sur les enfants 
+# infos_enfantsHD <- enfantsHD %>%
+#   pivot_longer(cols = c("n_IdentMere", "n_IdentPere"), 
+#                values_to = "n_IdentParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentParent)%>%
+#   summarise(n_NEnfantsHD = n(), 
+#             n_AgeEnfantsHD = mean(AG))
+# 
+# indiv <- left_join(indiv, infos_enfantsHD, 
+#                    by = c("n_IdentIndiv" = "n_IdentParent"))
+# 
+# #infos sur les beau-enfants
+# infos_enfantsHD <- enfantsHD %>%
+#   filter(n_ConjMere == "Beau-parent") %>%
+#   pivot_longer(cols = c("n_IdentConjointMere"), 
+#                values_to = "n_IdentBeauParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentBeauParent)%>%
+#   summarise(n_NBeauxEnfantsHD = n(), 
+#             n_AgeBeauxEnfantsHD = mean(AG))
+# infos_enfantsHD2 <- enfantsHD %>%
+#   filter(n_ConjPere == "Beau-parent") %>%
+#   pivot_longer(cols = c("n_IdentConjointPere"), 
+#                values_to = "n_IdentBeauParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentBeauParent)%>%
+#   summarise(n_NBeauxEnfantsHD = n(), 
+#             n_AgeBeauxEnfantsHD = mean(AG))
+# infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
+# 
+# indiv <- left_join(indiv, infos_enfantsHD, 
+#                    by = c("n_IdentIndiv" = "n_IdentBeauParent"))
+# 
+# 
+# #infos enfants du couple 
+# infos_enfantsHD <- enfantsHD %>%
+#   filter(n_ConjMere == "Parent") %>%
+#   pivot_longer(cols = c("n_IdentMere"), 
+#                values_to = "n_IdentParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentParent)%>%
+#   summarise(n_NEnfantsCoupleHD = n(), 
+#             n_AgeEnfantsCoupleHD = mean(AG))
+# infos_enfantsHD2 <- enfantsHD %>%
+#   filter(n_ConjPere == "Parent") %>%
+#   pivot_longer(cols = c("n_IdentPere"), 
+#                values_to = "n_IdentParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentParent)%>%
+#   summarise(n_NEnfantsCoupleHD = n(), 
+#             n_AgeEnfantsCoupleHD = mean(AG))
+# 
+# infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
+# 
+# indiv <- left_join(indiv, infos_enfantsHD, 
+#                    by = c("n_IdentIndiv" = "n_IdentParent"))
+# 
+# 
+# #infos enfants d'union précédantes 
+# infos_enfantsHD <- enfantsHD %>%
+#   filter(n_ConjMere != "Parent" | is.na(n_ConjMere)) %>%
+#   pivot_longer(cols = c("n_IdentMere"), 
+#                values_to = "n_IdentParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentParent)%>%
+#   summarise(n_NEnfantsUnionAntHD = n(), 
+#             n_AgeEnfantsUnionAntHD = mean(AG))
+# infos_enfantsHD2 <- enfantsHD %>%
+#   filter(n_ConjPere != "Parent" | is.na(n_ConjPere))  %>%
+#   pivot_longer(cols = c("n_IdentPere"), 
+#                values_to = "n_IdentParent",
+#                values_drop_na = T) %>%
+#   group_by(n_IdentParent)%>%
+#   summarise(n_NEnfantsUnionAntHD = n(), 
+#             n_AgeEnfantsUnionAntHD = mean(AG))
+# 
+# infos_enfantsHD <- bind_rows(infos_enfantsHD, infos_enfantsHD2)
+# 
+# indiv <- left_join(indiv, infos_enfantsHD, 
+#                    by = c("n_IdentIndiv" = "n_IdentParent"))
+# 
+# 
 
 
-
-
-# Des variables communes pour les enfants hors et dans le ménage 
+################################################################################
+## 4.  Des variables communes pour les enfants hors et dans le ménage ##########
+################################################################################
 
 indiv <- indiv %>%
   mutate(n_EnfantsTous = case_when(
@@ -380,7 +492,8 @@ indiv <- left_join(indiv, infos_enfants,
 
 # statut parental agrégé (tous les individus)
 freq(indiv$COUPLE)
-freq(indiv$n_RemisEnCoupleEnfantsMen)
+freq(indiv$n_BeauxEnfantsMen)
+freq(indiv$n_EnfantsMen)
 indiv$n_statutConjugalSexe
 
 indiv <- indiv %>%

@@ -1,8 +1,8 @@
 
 
 
-path_2017 <- "Data_input/BDF_2017/sas"
-path_2011 <- "Data_input/BDF_2011/sas"
+path_2017 <- "Data_input/BDF_2017"
+path_2011 <- "Data_input/BDF_2011"
 path_out  <- "Data_input/BDF_bind"
 dir.create(path_out)
 
@@ -17,7 +17,7 @@ dir.create(
 
 files_2017 <- list.files(path_2017, pattern = "\\.sas7bdat$", full.names = TRUE)
 
-file_2017 <- files_2017[12]
+file_2017 <- files_2017[8]
 
 process_file <- function(file_2017) {
   
@@ -212,12 +212,12 @@ process_file <- function(file_2017) {
         
         if(n98 > 0){
           x[x == "98"] <- NA
-          log(v, " : 98 -> NA (", n98, ")")
+          add_log(v, " : 98 -> NA (", n98, ")")
         }
         
         if(n99 > 0){
           x[x == "99"] <- NA
-          log(v, " : 99 -> NA (", n99, ")")
+          add_log(v, " : 99 -> NA (", n99, ")")
         }
         
         dat[[v]] <- x
@@ -230,21 +230,21 @@ process_file <- function(file_2017) {
         m <- max(x, na.rm = T)
         if(m >=10){
         NAvals <- c(paste0(rep("9", str_length(as.character(m))), collapse = ""), 
-                    paste0(c(rep("9", str_length(m)-2), "89"), collapse = ""))
+                    paste0(c(rep("9", str_length(m)-2), "98"), collapse = ""))
         NAvals <- as.numeric(NAvals)
         if(any(x %in% c(NAvals))){
-        # on prend uniquement les codes plausibles 98/99 
+        # on prend uniquement les codes plausibles 89/99 
         n98 <- sum(x == NAvals[2], na.rm = TRUE)
         n99 <- sum(x == NAvals[1], na.rm = TRUE)
         
         if(n98 > 0){
           x[x == NAvals[2]] <- NA
-          log(v, " : 98 -> NA (", n98, ")")
+          add_log(v, " : 98 -> NA (", n98, ")")
         }
         
         if(n99 > 0){
           x[x == NAvals[1]] <- NA
-          log(v, " : 99 -> NA (", n99, ")")
+          add_log(v, " : 99 -> NA (", n99, ")")
         }
         }
         dat[[v]] <- x
@@ -252,7 +252,7 @@ process_file <- function(file_2017) {
       }
     }
     
-    assign(nm, dat, envir = .GlobalEnv)
+    assign(nm, dat)
   }
       
   
@@ -278,7 +278,7 @@ process_file <- function(file_2017) {
   vars_revalo <- names(df_2011)[
     sapply(df_2011, is.numeric) &
       (
-        str_detect(names(df_2011), "^REV") |
+        str_detect(names(df_2011), "^REV|^C0|^C1|^CTOT") |
           str_detect(labels_clean, "montant")
       ) &
       !str_detect(labels_clean, "tranche")
@@ -314,6 +314,10 @@ process_file <- function(file_2017) {
     df_2011[vars_revalo],
     summary
   )
+  summaries_2017 <- lapply(
+    df_2017 %>% select(any_of(vars_revalo)),
+    summary
+  )
   
   for(v in vars_revalo){
     
@@ -325,7 +329,7 @@ process_file <- function(file_2017) {
     )
     
     add_log(
-      "Avant : ",
+      "2011 avant revalo : ",
       paste(
         names(summaries_before[[v]]),
         round(summaries_before[[v]], 2),
@@ -334,13 +338,26 @@ process_file <- function(file_2017) {
     )
     
     add_log(
-      "Après : ",
+      "2011 après revalo : ",
       paste(
         names(summaries_after[[v]]),
         round(summaries_after[[v]], 2),
         collapse = " | "
       )
     )
+    
+    if(v %in% names(df_2017)){
+    add_log(
+      "2017 (sans revalo) : ",
+      paste(
+        names(summaries_2017[[v]]),
+        round(summaries_2017[[v]], 2),
+        collapse = " | "
+      )
+      
+    )} else {
+      add_log(
+      "2017 (sans revalo) : Variable absente")}
     
     add_log("")
   }
@@ -387,18 +404,28 @@ process_file <- function(file_2017) {
   # ------------------------------------------------------------------
   # Empilement
   # ------------------------------------------------------------------
-  
+
   df_2017 <- df_2017 %>%
     mutate(
       annee_BDF = 2017,
       IDENT_MEN = paste0("17_", IDENT_MEN)
     )
+  if("IDENT_IND" %in% names(df_2017)) {
+    df_2017 <- df_2017 %>%
+      mutate(
+        IDENT_IND = paste0("17_", IDENT_IND))
+  }
   
   df_2011 <- df_2011 %>%
     mutate(
       annee_BDF = 2011,
       IDENT_MEN = paste0("11_", IDENT_MEN)
     )
+  if("IDENT_IND" %in% names(df_2011)) {
+    df_2011 <- df_2011 %>%
+      mutate(
+        IDENT_IND = paste0("11_", IDENT_IND))
+  }
   
   df_final <- bind_rows(df_2011, df_2017)
   df_final <- copy_labels(df_2017, df_final)
@@ -449,5 +476,5 @@ process_file <- function(file_2017) {
 }
 
 
-process_file(file_2017 = files_2017[16])
+process_file(file_2017 = files_2017[14])
 walk(files_2017[c(8, 10, 11:14, 16:19)], process_file)
