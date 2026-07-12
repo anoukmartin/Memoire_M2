@@ -1,7 +1,10 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
+names(indiv)
+indiv$NENFANTS
 
-indiv <- readRDS("Data_output/parents.Rds") %>%
+indiv <- readRDS("Data_output/data_recode/indiv.Rds") %>%
+  #filter(ENFANT == "2") %>%
   #filter(NONENFANT) %>%
   rec_DIP(Var = "DIP14", NewVar = "DIPL") %>%
   rec_CSP6(Var = "CS24", NewVar = "CS6") %>%
@@ -9,22 +12,37 @@ indiv <- readRDS("Data_output/parents.Rds") %>%
   rec_DIP7(Var = "DIP14", NewVar = "DIP7") %>%
   rec_AG6() %>%
   rec_TYPEMPLOI() %>%
-  rec_NENFANTS(Var = "n_NEnfantsMen") %>%
-  rec_NENFANTS(Var = "n_NEnfantsHD") %>%
-  rec_NENFANTS(Var = "n_NEnfantsTous") %>%
-  rec_REVENUS(Var = "n_REVENUS", "n_REVENUScut") %>%
-  rec_PATRIMOINE(Var = "n_PATRIMOINE", "n_PATRIMOINEcut") %>%
+  rec_NENFANTS(Var = "NENFANTS") %>%
+  rec_NENFANTS(Var = "NBEAUX_ENFANTS") %>%
+  # rec_NENFANTS(Var = "n_NEnfantsMen") %>%
+  # rec_NENFANTS(Var = "n_NEnfantsHD") %>%
+  # rec_NENFANTS(Var = "n_NEnfantsTous") %>%
+  mutate(n_REVENUS_indiv = rowSums(
+    pick(RETRAITES, starts_with("REV"), CHOMAGE, SALAIRES),
+    na.rm = TRUE
+  ))%>%
+  mutate(n_PATRIMOINE_indiv = rowSums(
+    pick(starts_with("PATF")),
+    na.rm = TRUE
+  )) %>%
+  rec_REVENUS(Var = "n_REVENUS_indiv", "n_REVENUS_indiv_cut") %>%
+  rec_PATRIMOINE(Var = "n_PATRIMOINE_indiv", "n_PATRIMOINE_indiv_cut") %>%
   rec_NAIS7() %>%
+  rec_NATIO7() %>%
   rec_ETAMATRI() %>%
-  select(IDENT_MEN, n_IdentIndiv, n_IdentConjoint, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, COUPLE, PACS, ETAMATRI, starts_with("n_")) 
+  select(IDENT_MEN, NOI, CONJOINT, SEXE, DIP7, n_PATRIMOINEcut, CS12, AG6, AG, n_REVENUScut, NAIS7, ADULTE, SITUA, TYPEMPLOI, COUPLE, PACS, ETAMATRI, starts_with("n_")) 
 
+summary(indiv$n_REVENUS_indiv)
+summary(indiv$n_PATRIMOINE_indiv)
+freq(indiv$DIP14)
+freq(indiv$DIPL)
 freq(indiv$CS12)
 freq(indiv$DIP7)
-freq(indiv$n_REVENUScut)
+freq(indiv$n_REVENUS_indiv_cut)
 freq(indiv$AG6)
-freq(indiv$n_NEnfantsHD)
+freq(indiv$NENFANTS)
 freq(indiv$NAIS7)
-freq(indiv$ADULTE)
+#freq(indiv$ADULTE)
 freq(indiv$TYPEMPLOI)
 freq(indiv$ETAMATRI)
 
@@ -41,9 +59,8 @@ travail_domestique <- c("AIDEENFANT", "BRICOLAGE", "CHANGEENFANT",
 travail_domestique <- paste0("NB", travail_domestique)
 
 dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
-  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", 
-                  NewVarName = "n_IdentIndiv") %>%
-  select(n_IdentIndiv, all_of(travail_domestique))
+  mutate(NOI = if_else(str_length(str_trim(NOI)) == 1, str_glue("0{str_trim(NOI)}"), str_trim(NOI))) %>%
+  select(IDENT_MEN, NOI, all_of(travail_domestique))
 
 travail_domestique <- travail_domestique %>%
   str_remove("NB") %>%
@@ -54,7 +71,7 @@ travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
                                      "Cuisine du quotidien", 
                                      "Cuisine de récéption")
 
-names(dep_ind)[-1] <- travail_domestique
+names(dep_ind)[-c(1,2)] <- travail_domestique
 dep_ind[dep_ind == 9] <- NA_integer_
 dep_ind[dep_ind == 8] <- NA_integer_
 
@@ -64,9 +81,8 @@ travail_domestique <- c("AIDEENFANT", "BRICOLAGE", "CHANGEENFANT",
                        "JARDINAGE", "REPASSAGE", "VAISSELLE")
 
 dep_ind2 <- readRDS("Data_output/DepIndiv.Rds") %>%
-  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", 
-                  NewVarName = "n_IdentIndiv") %>%
-  select(n_IdentIndiv, all_of(travail_domestique)) %>%
+  mutate(NOI = if_else(str_length(str_trim(NOI)) == 1, str_glue("0{str_trim(NOI)}"), str_trim(NOI))) %>%
+  select(IDENT_MEN, NOI, all_of(travail_domestique)) %>%
   mutate_at(.vars = vars(travail_domestique), 
             .funs = function(x){
               x %>%
@@ -87,7 +103,7 @@ travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
                                      "Cuisine du quotidien", 
                                      "Cuisine de récéption")
 
-names(dep_ind2)[-1] <- paste0("I_", travail_domestique)
+names(dep_ind2)[-c(1,2)] <- paste0("I_", travail_domestique)
 dep_ind <- left_join(dep_ind2, dep_ind)
 k <- travail_domestique[3]
 for(k in travail_domestique){
@@ -98,6 +114,7 @@ for(k in travail_domestique){
   ] <- 0
 }
 
+indiv$NOI
 
 indiv <- left_join(indiv, dep_ind)
 

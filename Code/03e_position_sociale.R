@@ -6,8 +6,8 @@ library(kableExtra)
 
 infosBDF <<- readRDS("Data_output/infosBDF.Rds")
 
-familles <- readRDS("Data_output/familles_parents.Rds")
-
+familles <- readRDS("Data_output/data_familles_parents.Rds")
+familles <- readRDS("Data_output/data_recode/menages.Rds")
 
 
 # library(factoextra)
@@ -24,7 +24,7 @@ familles <- readRDS("Data_output/familles_parents.Rds")
 
 names(familles)
 
-freq(familles$hetero)
+freq(familles$COU)
 
 summary(familles$n_REVENUS_H)
 summary(familles$n_REVENUS_F)

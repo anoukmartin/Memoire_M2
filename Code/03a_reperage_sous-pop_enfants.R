@@ -16,7 +16,7 @@ age_limite <- 25
 indiv <- readRDS("Data_output/indiv.Rds")
 names(indiv)
 indiv$IDENT_IND
-
+colnames(indiv)
 ## 1.1 Les enfants : au sens du TCM et - de 25 ans #############################
 # On définit qui est considéré comme des enfants 
 indiv$ENFRP # Variable enfant au sens du recensement

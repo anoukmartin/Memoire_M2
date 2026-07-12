@@ -287,6 +287,7 @@ rec_DIP <- function(data, Var, NewVar = FALSE) {
     mutate(temp = fct_recode(temp,
       NULL = "",
       "Bac+5 et plus" = "10",
+      "Bac+5 et plus" = "11",
       "Bac+5 et plus" = "12",
       "Bac+5 et plus" = "20",
       "Bac+1 à Bac+3" = "30",
@@ -317,7 +318,7 @@ rec_DIP7 <- function(data, Var = "DIP14", NewVar = FALSE) {
   data <- data %>%
     mutate(temp = fct_collapse(temp,
                              NULL = "",
-                             "Doctorat, ingénieur, grande école" = c("10", "12"),
+                             "Doctorat, ingénieur, grande école" = c("10", "12", "11"),
                              "Master, bac+6" = c("20"),
                              "Licence, BTS, DUT, santé social " = c("33", "31", "30"),                       "Baccalauréat" = c("44","43", "42", "41"),
                              "CAP ou BEP" = c("50"),
@@ -409,6 +410,7 @@ rec_STALOG <- function(data, Var = "STALOG", NewVar = FALSE) {
   }
   return(data)
 }
+
 
 rec_REVENUS <- function(data, Var = "DIP14", NewVar = FALSE) {
   data$temp <- NULL
