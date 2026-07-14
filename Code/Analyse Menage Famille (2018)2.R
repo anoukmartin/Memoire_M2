@@ -39,16 +39,21 @@ rm(anomalie)
 ###############################.
 ## Variables socio démo individuelles ####
 ###########################################.
+freq(indiv$SITUA)
+freq(indiv$STATUT)
 
 indiv_socdem <- indiv %>%
   #filter(ENFANT == "2") %>%
   #filter(NONENFANT) %>%
+  #rec_EXPART(Var = "EXPART") %>%
+  rec_SITUA(Var = "SITUA") %>%
   rec_DIP(Var = "DIP14", NewVar = "DIPL") %>%
   rec_CSP6(Var = "CS24", NewVar = "CS6") %>%
   rec_CSP12(Var = "CS42", NewVar = "CS12") %>%
   rec_DIP7(Var = "DIP14", NewVar = "DIP7") %>%
   rec_AG6() %>%
   rec_TYPEMPLOI() %>%
+  rec_STATUT() %>%
   # rec_NENFANTS(Var = "n_NEnfantsMen") %>%
   # rec_NENFANTS(Var = "n_NEnfantsHD") %>%
   # rec_NENFANTS(Var = "n_NEnfantsTous") %>%
@@ -73,13 +78,15 @@ indiv_socdem <- indiv %>%
   rec_ETAMATRI() %>%
   mutate(IMMIGR = case_when(
     NATIO7 != "Française de naissance" & !(NAIS7 %in% c("France métropolitaine", "DOM-TOM")) ~ "Immigré(e)", 
+    NATIO7 != "Française de naissance" & (NAIS7 %in% c("France métropolitaine", "DOM-TOM")) ~ "Né(e) en France d'une autre nationalité (naturalisé ou non)",
     NATIO7 == "Française de naissance" & (NAIS7 %in% c("DOM-TOM")) ~ "Né(e) français(e) né(e) dans les DOM-TOM", NATIO7 == "Française de naissance" & (NAIS7 %in% c("France métropolitaine")) ~ "Né(e) français(e) né(e) en France hexagonale", 
-    NATIO7 == "Française de naissance" & !(NAIS7 %in% c("France métropolitaine", "DOM-TOM")) ~ "Né(e) français(e) né(e) à l'étarnger"))
+    NATIO7 == "Française de naissance" & !(NAIS7 %in% c("France métropolitaine", "DOM-TOM")) ~ "Né(e) français(e) né(e) à l'étranger"))
     
-    
+indiv_socdem  
     
 freq(indiv_socdem$IMMIGR)
-
+freq(indiv_socdem$SITUA)
+table(indiv_socdem$SITUA, indiv_socdem$TYPEMPLOI)
 
 # Tris a plat 
 hist(indiv$AGE)
@@ -113,7 +120,7 @@ freq(indiv_socdem$DIP7MERE)
 
 variables_socdem <- c(
   "SEXE",
-  "AGE",
+  "AGE", 
   "AG6",
   "ETAMATRI",
   "COUPLE",
@@ -123,6 +130,8 @@ variables_socdem <- c(
   "CS6",
   "CS12",
   "TYPEMPLOI",
+  "SITUA",
+  "STATUT",
   "n_REVENUS_indiv",
   "n_PATRIMOINE_indiv",
   "n_REVENUS_indiv_cut",
@@ -133,13 +142,12 @@ variables_socdem <- c(
 )
 
 
-
 ##############################
 # 1. Passage du TCM en format long
 ##############################
 
 # Chaque individu devient une ligne par relation avec un autre membre du ménage
-liens_long <- indiv %>%
+liens_long <- indiv_socdem %>%
   select(
     IDENT_MEN,
     IDENT_IND,
@@ -151,11 +159,12 @@ liens_long <- indiv %>%
     CONJOINT,
     COUPLE, 
     SEXE,
+    IMMIGR,
     starts_with("LIEN_")
   ) %>%
-  left_join(indiv %>% 
-              select(IDENT_MEN, NOI, SEXE) %>%
-              rename(SEXE_CONJOINT = SEXE),
+  left_join(indiv_socdem %>% 
+              select(IDENT_MEN, NOI, SEXE, IMMIGR) %>%
+              rename(SEXE_CONJOINT = SEXE, IMMIGR_CONJOINT = IMMIGR),
             by = c("IDENT_MEN", "CONJOINT" = "NOI")) %>%
   
   pivot_longer(
@@ -212,7 +221,9 @@ couples <- liens_long %>%
     NOI,
     CONJOINT, 
     SEXE, 
-    SEXE_CONJOINT
+    SEXE_CONJOINT, 
+    IMMIGR, 
+    IMMIGR_CONJOINT
   ) %>%
   # left_join(indiv_socdem %>%
   #             select(IDENT_MEN, NOI, any_of(variables_socdem)), 
@@ -232,9 +243,12 @@ couples <- liens_long %>%
     SEXE == SEXE_CONJOINT & SEXE == "1" ~ "Homme en couple avec un homme", 
     SEXE == SEXE_CONJOINT & SEXE == "2" ~ "Femme en couple avec un femme")) 
 
+
+
 str(couples)
 freq(couples$COUPLE_SEXE)
 freq(couples$COUPLE_SEXE_DET)
+table(couples$IMMIGR, couples$IMMIGR_CONJOINT)
 
 
 
@@ -343,6 +357,7 @@ nb_parents <- nb_parents %>%
 str(nb_parents)
 freq(nb_parents$NPARENTS)
 freq(nb_parents$SEXE_PARENT)
+
 #--------------------------------------------------------------
 # Nombre d'enfants
 #--------------------------------------------------------------
@@ -1414,9 +1429,89 @@ menages_from_indiv <- left_join(menages_from_indiv, menages_from_indiv2, by = "I
 #####################################
 
 names(adultes)
+ref <- menages %>%
+  select(IDENT_MEN, PREF) 
+  # pivot_longer(cols = c("PREF", "PCONJ"), 
+  #              names_to = "REF",
+  #              values_to = "NOI") 
+
+adultes
+ref <- pad_2digits(ref, "PREF") 
+ref
+adultesref <- inner_join(adultes, ref, by = c("IDENT_MEN", "NOI" = "PREF"))
+
+adultesref <- adultesref %>%
+  mutate(
+    MENAGE_RAPPORT_IMMIGR = case_when(
+      
+      # Immigré seul ou deux immigrés
+      IMMIGR == "Immigré(e)" &
+        (IMMIGR_CONJOINT == "Immigré(e)" | is.na(IMMIGR_CONJOINT)) ~
+        "Immigré-e-s",
+      
+      # Couple mixte avec un immigré
+      (xor(IMMIGR == "Immigré(e)",
+          IMMIGR_CONJOINT == "Immigré(e)") &
+        !is.na(IMMIGR_CONJOINT) ) 
+      | (IMMIGR == "Né(e) en France d'une autre nationalité (naturalisé ou non)" |
+           IMMIGR_CONJOINT == "Né(e) en France d'une autre nationalité (naturalisé ou non)")
+      ~"Couple mixte avec un-e immigré-e et personnes nées en France d'une autre nationalité",
+      
+      # DOM
+      (IMMIGR == "Né(e) français(e) né(e) dans les DOM-TOM" |
+         IMMIGR_CONJOINT == "Né(e) français(e) né(e) dans les DOM-TOM") ~
+        "Français-es né-e-s dans les DOM",
+      
+      # Français né à l'étranger
+      (IMMIGR == "Né(e) français(e) né(e) à l'étranger" |
+         IMMIGR_CONJOINT == "Né(e) français(e) né(e) à l'étranger") ~
+        "Français-es né-e-s à l'étranger",
+      
+      # France hexagonale
+      IMMIGR == "Né(e) français(e) né(e) en France hexagonale" &
+        (IMMIGR_CONJOINT == "Né(e) français(e) né(e) en France hexagonale" |
+           is.na(IMMIGR_CONJOINT)) ~
+        "Français-es né-e-s en France hexagonale",
+      
+      TRUE ~ NA_character_
+    ), 
+    
+    MENAGE_RAPPORT_IMMIGR = factor(
+      MENAGE_RAPPORT_IMMIGR ,
+      levels = c(
+        "Français-es né-e-s en France hexagonale",
+        "Français-es né-e-s dans les DOM",
+        "Français-es né-e-s à l'étranger",
+        "Couple mixte avec un-e immigré-e et personnes nées en France d'une autre nationalité",
+        "Immigré-e-s"
+      )
+    )
+  )
+  
+
+ano <- adultesref %>%
+  filter(is.na(MENAGE_RAPPORT_IMMIGR))
+
+freq(adultesref$MENAGE_RAPPORT_IMMIGR)
+
+# Rapport au public / privé 
+table(adultesref$STATUT, adultesref$STATUT_CONJOINT)
+public <- c("Salarié-e de l'Etat", "Salarié-e d'une collectivité locale, des HLM ou des hôpitaux publics")
+
+adultesref <- adultesref %>%
+  mutate(
+    MENAGE_PUBLICPRIVE = case_when(
+      STATUT %in% public | STATUT_CONJOINT %in% public ~ "Au moins une personne travaille dans le public", 
+      !is.na(STATUT) | !is.na(STATUT) ~ "Personne ne travaille dans le public", 
+      TRUE ~ NA_character_))
+freq(adultesref$MENAGE_PUBLICPRIVE)
+freq(adultesref$STATUT)
+freq(adultesref$STATUT_CONJOINT)
+
+# Variables socio-démo genrées 
 menages_from_indiv3 <- reduce(
     variables_socdem,
-    .init = adultes,
+    .init = adultesref,
     .f = \(df, v) {
       mutate(
         df,
@@ -1436,44 +1531,53 @@ menages_from_indiv3 <- reduce(
     }
   )
 
+
 tab <- table(menages_from_indiv3$COUPLE_SEXE, menages_from_indiv3$SEXE_H, menages_from_indiv3$SEXE_F, useNA = "ifany") %>%
   as.data.frame()
-# Pour les personnes qui vivent en couple de meme sexe, tirage au sort du memebre dont les caractéristiques socio-démo sont codées _H dans les couples de femmes ou _F dans les couples d'hommes
+# Pour les personnes qui vivent en couple de meme sexe, si la presonne de référence est un homme alors sont conjoint est en "_F", si la personne de ref est une femme alors sa conjointe est "_H"
+
+anomalies<- menages_from_indiv3 %>%
+    filter(IDENT_MEN %in% menages_from_indiv3$IDENT_MEN[duplicated(menages_from_indiv3$IDENT_MEN)]) 
+# Normal car on a qu'une seule personne de référence par ménage
+
+# Revenus individuels
+freq(menages_from_indiv3$n_REVENUS_indiv_cut_F)
+freq(menages_from_indiv3$n_REVENUS_indiv_cut_H)
 
 menages_from_indiv3 <- menages_from_indiv3 %>%
-  select(IDENT_MEN, NOI, ends_with("_H"), ends_with("_F")) %>%
-  group_by(IDENT_MEN) %>%
-  summarise(
-    across(
-      ends_with("_H") | ends_with("_F"),
-      ~ {
-        x <- unique(na.omit(.x))
-        if (length(x) == 0) NA else list(x)
-      }
-    ),
-    .groups = "drop"
-  )
-################
-### TU ES LA ### 
-################
+  mutate(
+    n_RevenusContribF = case_when(
+      n_REVENUS_indiv_cut_F == "Sans revenus" & n_REVENUS_indiv_cut_H == "Sans revenus" ~ 50, 
+      n_REVENUS_indiv_cut_F == "Sans revenus" & !is.na(n_REVENUS_indiv_H) ~ 0, 
+      n_REVENUS_indiv_cut_H == "Sans revenus" & !is.na(n_REVENUS_indiv_F) ~ 100,
+      !is.na(n_REVENUS_indiv_F)&!is.na(n_REVENUS_indiv_H) ~ 
+        (n_REVENUS_indiv_F/(n_REVENUS_indiv_F+n_REVENUS_indiv_H))*100))
+summary(menages_from_indiv3$n_RevenusContribF)
 
-# unique(menages_from_indiv3$ETAMATRI_H)
-# 
-# menages_from_indiv3 <- menages_from_indiv3 %>%
-#   filter(IDENT_MEN %in% menages_from_indiv3$IDENT_MEN[duplicated(menages_from_indiv3$IDENT_MEN)]) %>% 
-#   mutate(value = 1) %>%
-#   #pivot_wider(names_from = TDM8_agreg, id_cols = IDENT_MEN, values_fill = 0) %>%
-#   left_join(menages %>%
-#               select(IDENT_MEN, NCOUPLES, NPERS, NENFANTS, TYPMEN5) %>%
-#               rec_TYPMEN5())
-# 
-# freq(anomalies$TYPMEN5) # toute les anomalies sont lié a des ménages complexes (souvent + de deux familles dedans)
-# 
+# Epargne et placements individuels 
+freq(menages_from_indiv3$n_PATRIMOINE_indiv_cut_F)
+freq(menages_from_indiv3$n_PATRIMOINE_indiv_cut_H)
+menages_from_indiv3 <- menages_from_indiv3 %>%
+  mutate(
+    n_EpargnePartF = case_when(
+      n_PATRIMOINE_indiv_cut_F == "Sans économies" & n_PATRIMOINE_indiv_cut_H == "Sans économies" ~ 50, 
+      n_PATRIMOINE_indiv_cut_F == "Sans économies" & !is.na(n_PATRIMOINE_indiv_H) ~ 0, 
+      n_PATRIMOINE_indiv_cut_H == "Sans économies" & !is.na(n_PATRIMOINE_indiv_F) ~ 100,
+      !is.na(n_PATRIMOINE_indiv_F)&!is.na(n_PATRIMOINE_indiv_H) ~ (n_PATRIMOINE_indiv_F/(n_PATRIMOINE_indiv_F+n_PATRIMOINE_indiv_H))*100))
+summary(menages_from_indiv3$n_EpargnePartF)
+
+menages_from_indiv <- left_join(menages_from_indiv, 
+                                menages_from_indiv3 %>%
+                                  select(IDENT_MEN, ends_with("_H"), ends_with("_F"), 
+                                         n_RevenusContribF, n_EpargnePartF, MENAGE_RAPPORT_IMMIGR)) 
 
 
 
 
+######################################
 ### TAF : Type agregée de famille ####
+######################################
+
 menages_from_indiv$TAF <- menages_from_indiv$TDM8 |>
   fct_recode(
     "Famille recomposée (avec enfant(s) du couple)" = "Couple avec enfant(s) du couple, et avec au moins un enfant d'un seul des deux membres du couple",

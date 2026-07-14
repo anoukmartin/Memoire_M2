@@ -10,7 +10,6 @@
 
 
 #' Enregistrer un tableau de données avec toutes les infos nécessaires 
-#'
 #' @param tableau 
 #' @param label 
 #' @param description 
@@ -586,6 +585,52 @@ rec_NAIS7 <- function(data, Var = "NAIS7", NewVar = FALSE) {
   return(data)
 }
 
+
+rec_NATIO7 <- function(data, Var = "NATIO7", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(temp,
+                               NULL = "",
+                               "Française de naissance" = c("1"),
+                               "Française par naturalisation, mariage, déclaration ou option à sa majorité" = c("2"),
+                               "Nationalité de l'Union européenne des 15 (sauf France)" = c("3"),    
+                               "Nationalité des pays entrés en 2004 dans l'Union européenne" = c("4"),
+                               "Algérienne, marocaine ou tunisienne" = c("5"),
+                               "Nationalité d'Afrique (sauf Maghreb)" = c("6"),
+                               "Autre nationalité ou apatride" = c("7")) %>%
+             fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+rec_EXPART <- function(data, Var = "EXPART", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = c("", "8", "9"),
+      "Travail à temps partiel" = c("1"),
+      "Travail à temps complet" = c("2"),
+      TRUE ~ NA) %>%
+        fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
 rec_TYPEMPLOI <- function(data, Var = "TYPEMPLOI", NewVar = FALSE) {
   data$temp <- NULL
   data[, "temp"] <- data[, Var]
@@ -607,6 +652,85 @@ rec_TYPEMPLOI <- function(data, Var = "TYPEMPLOI", NewVar = FALSE) {
   return(data)
 }
 
+rec_SITUA <- function(data, Var = "SITUA", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = c("", "8", "9"),
+      "Occupe un emploi (y compris apprentissage et stage)" = c("1", "2"),
+      "Etudiant-e, élève, en formation ou en stage non rémunéré" = c("3"),
+      "Chômeur-euse (inscrit-e ou non à l'ANPE/Pole Emploi)" = c("4"), 
+      "Retraité-e ou retiré-e des affaires ou en préretraite" = c("5"),
+      "Femme ou homme au foyer" = c("6"), 
+      "Autre situation (personne handicapée…)" = c("7"),
+      ) %>%
+        fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+rec_STATUT <- function(data, Var = "STATUT", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = c("", "8", "9"),
+      "Salarié-e de l'Etat" = c("1"),
+      "Salarié-e d'une collectivité locale, des HLM ou des hôpitaux publics" = c("2"),
+      "Salarié-e d'une entreprise, d'un artisan, d'une association" = c("3"), 
+      "Salarié-e chez un particulier" = c("4"),
+      "Il/elle aide un membre de sa famille dans son travail sans être rémunéré-e" = c("5"), 
+      "Chef-fe d'entreprise salarié-e, PDG, gérant-e minoritaire, associé-e
+" = c("6"),
+      " Indépendant-e ou à son compte" = c("7")
+    ) %>%
+      fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+
+rec_TYPVOIS <- function(data, Var = "TYPVOIS", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = fct_collapse(
+      temp,
+      NULL = c("", "8", "9"),
+      "Maisons dispersées, hors agglomération" = c("1"),
+      "Maisons en lotissement, en quartier pavillonnaire ou en ville" = c("2"),
+      "Immeubles en ville (autres que cité ou grand ensemble)" = c("3"), 
+      "Immeubles en cité ou grand ensemble" = c("4"),
+      "Habitat mixte : à la fois immeubles et maisons" = c("5")
+    ) %>%
+      fct_recode(NULL = "NULL"))
+  if(isFALSE(NewVar)){
+    data[, Var] <- data[, "temp"]
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
+
+
 revalo_M2011 <- function(data, Var = "NIVIE", NewVar = paste0(Var, "_revalo"), 
                          IPC2017 = 84.45, IPC2011 = 80.97) {
   data$temp <- NULL
@@ -627,16 +751,37 @@ revalo_M2011 <- function(data, Var = "NIVIE", NewVar = paste0(Var, "_revalo"),
   return(data)
 }
 
-test <- data %>%
-  revalo_M2011("NIVIE") %>%
-  revalo_M2011("REVDISP") %>%
-  revalo_M2011("MVETEMENTS_D")
-summary(test$NIVIE)
-summary(test$NIVIE_revalo)
-summary(test$REVDISP)
-summary(test$REVDISP_revalo)
-summary(test$MVETEMENTS_D)
-summary(test$MVETEMENTS_D_revalo)
+
+# pour les indentifiant qui on été convertis en numéric
+
+pad_2digits <- function(data, vars) {
+  data %>%
+    mutate(
+      across(
+        all_of(vars),
+        ~ {
+          x <- str_trim(as.character(.x))
+          if_else(
+            str_length(x) == 1,
+            paste0("0", x),
+            x
+          )
+        }
+      )
+    )
+}
+
+
+# test <- data %>%
+#   revalo_M2011("NIVIE") %>%
+#   revalo_M2011("REVDISP") %>%
+#   revalo_M2011("MVETEMENTS_D")
+# summary(test$NIVIE)
+# summary(test$NIVIE_revalo)
+# summary(test$REVDISP)
+# summary(test$REVDISP_revalo)
+# summary(test$MVETEMENTS_D)
+# summary(test$MVETEMENTS_D_revalo)
 
 ## Tableau croisé, khi2 et résidus #############################################
 
@@ -774,11 +919,11 @@ joli_tableau <- function(data,
   
   tableau_beau <- tableau %>%
     kbl(digits = 1, booktabs = T, longtable = TRUE,
-        format = "latex",
+        #format = "latex",
         col.names = linebreak(names(tableau), align = "c"),
         caption = tableau_titre) %>%
     kable_styling(
-      font_size = 7,
+      font_size = 9,
       latex_options = c("hold_position", "scale_down", "repeat_header")) %>%
     pack_rows(index=group) 
   n <- length(unique(data[, by] %>% unlist()))
@@ -786,23 +931,24 @@ joli_tableau <- function(data,
     tableau_beau <- tableau_beau %>%
       column_spec(k, 
                   color = case_when(
-                    cleanresidus[, k] >= 2 ~ palette[1],
-                    cleanresidus[, k] <= -2 ~ palette[2], 
+                    cleanresidus[[k]] >= 2 ~ palette[1],
+                    cleanresidus[[k]] <= -2 ~ palette[2], 
                     TRUE ~ palette[3]), 
                   bold = case_when(
-                    cleanresidus[, k] >= 2 ~ T,
-                    cleanresidus[, k] <= -2 ~ T, 
+                    cleanresidus[[k]] >= 2 ~ T,
+                    cleanresidus[[k]] <= -2 ~ T, 
                     TRUE ~ F))
   }
   tableau_beau <- tableau_beau %>%
    # add_header_above(c(" " = 1, by = n, " " = 1), bold = TRUE) %>%
-    footnote(general = c("Test du khi2 : p = pvalue, \\\\textcolor[HTML]{91bfdb}{bleu} = résidu < 2, \\\\textcolor[HTML]{fc8d59}{rouge} = résidu > 2", 
+    kableExtra::footnote(general = c("Test du khi2 : p = pvalue, \\\\textcolor[HTML]{91bfdb}{bleu} = résidu < 2, \\\\textcolor[HTML]{fc8d59}{rouge} = résidu > 2", 
                          paste0("Source : ", source),
                          paste0("Champ : ", champ), 
                          paste0("Lecture : ", lecture)),
              escape = F)
   return(tableau_beau)
 }
+
   
   
 

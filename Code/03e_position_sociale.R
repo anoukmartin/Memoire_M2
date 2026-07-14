@@ -6,8 +6,103 @@ library(kableExtra)
 
 infosBDF <<- readRDS("Data_output/infosBDF.Rds")
 
-familles <- readRDS("Data_output/data_familles_parents.Rds")
+
+
+#familles <- readRDS("Data_output/data_familles_parents.Rds")
 familles <- readRDS("Data_output/data_recode/menages.Rds")
+
+familles$TDM8
+familles$AGPR
+
+library(dplyr)
+library(ggplot2)
+
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+familles <- familles %>%
+  mutate(TDM8 = as.factor(TDM8)) %>%
+  mutate(TDM8_SEXE = as.factor(TDM8_SEXE)) %>%
+  mutate(MENAGE_RAPPORT_IMMIGR = as.factor(MENAGE_RAPPORT_IMMIGR)) %>%
+  mutate(MENAGE_PUBLICPRIVE = as.factor(MENAGE_PUBLICPRIVE)) %>%
+  mutate(n_Diffage_HF = AGE_H - AGE_F)
+
+
+
+levels(familles$TDM8) <- sapply(levels(familles$TDM8),function(x){  insert_line_breaks(x, 30)}, USE.NAMES = F)
+
+
+  
+
+
+age_min <- 21
+age_max <- 60
+
+
+
+familles %>%
+  filter(!is.na(AGEPR), !is.na(TDM8)) %>%
+  count(AGEPR , TDM8) %>%
+  group_by(AGEPR) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = AGEPR, y = n, fill = TDM8)) +
+  geom_area(position = "stack") +
+  #scale_y_continuous(labels = scales::percent) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    x = "Âge de la personne de référence du ménage",
+    y = "Répartition des types de ménage",
+    fill = "Type de ménage"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold")
+  ) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  geom_vline(aes(xintercept = age_min)) + 
+  geom_vline(aes(xintercept = age_max)) 
+
+familles %>%
+  filter(!is.na(AGEPR), !is.na(TDM8)) %>%
+  count(AGEPR , TDM8) %>%
+  group_by(AGEPR) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = AGEPR, y = prop, fill = TDM8)) +
+  geom_area(position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    x = "Âge de la personne de référence du ménage",
+    y = "Répartition des types de ménage",
+    fill = "Type de ménage"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold")
+  ) +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  geom_vline(aes(xintercept = age_min)) + 
+  geom_vline(aes(xintercept = age_max)) 
+
+
+  
+familles <- familles %>%
+  filter(AGEPR %in% age_min:age_max | AGECJ %in% age_min:age_max)
+
+summary(familles$n_Diffage_HF)
+familles <- familles %>%
+  mutate(n_Diffage_HF_cut = case_when(
+    COUPLE_SEXE == "Couple de sexes différents" & n_Diffage_HF < -2 ~ "Femme plus agée que l'homme (+ de 2 ans d'écart)", 
+    COUPLE_SEXE == "Couple de sexes différents" & n_Diffage_HF < 2 ~ "Conjoints du même age (+- 2 ans d'écart)", 
+    COUPLE_SEXE == "Couple de sexes différents" & n_Diffage_HF < 7 ~ "Homme plus agé que la femme (- de 7 ans d'écart)", 
+    COUPLE_SEXE == "Couple de sexes différents" & n_Diffage_HF >= 7  ~ "Homme plus agé que la femme (+ de 7 ans d'écart)")
+  ) %>%
+  mutate(n_Diffage_HF_cut = as.factor(n_Diffage_HF_cut))
+freq(familles$n_Diffage_HF_cut)         
+familles$COUPLE_SEXE       
+         
 
 
 # library(factoextra)
@@ -24,33 +119,68 @@ familles <- readRDS("Data_output/data_recode/menages.Rds")
 
 names(familles)
 
-freq(familles$COU)
 
-summary(familles$n_REVENUS_H)
-summary(familles$n_REVENUS_F)
+summary(familles$n_REVENUS_indiv_H)
+summary(familles$n_REVENUS_indiv_F)
 
-familles <- familles %>%
-  #filter(is.na(hetero) | hetero == "Hetero") %>%
-  mutate(
-    n_RevenusContribF = case_when(
-      n_REVENUScut_F == "Sans revenus" & n_REVENUScut_F == "Sans revenus" ~ 50, 
-      n_REVENUScut_F == "Sans revenus" & !is.na(n_REVENUS_H) ~ 0, 
-      n_REVENUScut_H == "Sans revenus" & !is.na(n_REVENUS_F) ~ 100,
-      !is.na(n_REVENUS_F)&!is.na(n_REVENUS_H) ~ (n_REVENUS_F/(n_REVENUS_F+n_REVENUS_H))*100)) %>%
-  rec_PROP(Var = "n_RevenusContribF")
-
+dep_men <- readRDS("Data_output/DepMenages.Rds")
+ 
 summary(familles$n_RevenusContribF)
 freq(familles$n_RevenusContribF)
+summary(familles$NIVIE)
+
+familles <- familles %>%
+  rec_PROP("n_RevenusContribF") %>%
+  left_join(dep_men %>%
+              select(IDENT_MEN, STALOG)) %>%
+  rec_TYPMEN5() %>%
+  rec_TYPMEN(Var = "TYPMEN15", "TYPMEN") %>%
+  rec_REVENUS(Var = "NIVIE", NewVar = "NIVIEcut") %>%
+  rec_REVENUS(Var = "REVSOC", "REVSOCcut") %>%
+  rec_NENFANTS(Var = "NENFANTS")  %>%
+  rec_TAU() %>%
+  rec_STALOG() %>%
+  rec_TYPLOG() %>%
+  rec_PATRIB() %>%
+  rec_TYPVOIS()
+
+# Variables numériques
+summary(familles$n_RevenusContribF)
+summary(familles$NIVIE)
+summary(familles$REVSOC)
+
+# Variables recodées
+freq(familles$TYPVOIS)
+freq(familles$n_RevenusContribF)
+freq(familles$STALOG)
+freq(familles$TYPMEN5)
+freq(familles$TYPMEN)
 freq(familles$NIVIEcut)
+freq(familles$REVSOCcut)
+freq(familles$NENFANTS)
+freq(familles$TAU)
+freq(familles$TYPLOG)
+freq(familles$PATRIB)
+freq(familles$MENAGE_RAPPORT_IMMIGR)
+freq(familles$MENAGE_PUBLICPRIVE)
+freq(familles$n_Diffage_HF_cut)
+
 d_acm <- familles %>% 
   #rename(DNIVIE = "DNIVIE2") %>%
   select( 
+    #starts_with("n_REVENUS_indiv"),
     #starts_with("n_RevenusContribF"),
     #starts_with("n_PATRIMOINEcut"),
-    starts_with("CS12"), 
-    starts_with("DIP7"), 
-    #starts_with("TYPEMPLOI"),
-    #starts_with("NAIS7"),
+    starts_with("CS12_"), 
+    starts_with("DIP7_"), 
+    starts_with("TYPEMPLOI_"),
+    starts_with("SITUA_"),
+    MENAGE_RAPPORT_IMMIGR,
+    MENAGE_PUBLICPRIVE, 
+    COUPLE_SEXE, 
+    n_Diffage_HF_cut,
+    TYPVOIS, 
+    #starts_with("IMMIGR"),
     #NENFANTS, TYPMEN,
     NIVIEcut, 
     #NIVIEcut,
@@ -65,14 +195,15 @@ lapply(d_acm, freq)
 # Vaiables supplémentaires 
 
 d_acm_sup <- familles %>%
-  select(starts_with("NAIS7"), 
-         starts_with("AG6"),
-         starts_with("TYPEMPLOI"),
+  select(starts_with("NAIS7_"), 
+         starts_with("NATIO7_"), 
+         starts_with("AG6_"),
          n_RevenusContribF,
-         NENFANTS, TYPMEN,
-         n_TYPMEN_new) %>%
-  mutate(n_TYPMEN_new = n_TYPMEN_new %>% as.factor())
+         NENFANTS, TYPMEN, TDM8, TDM8_SEXE, TAF) %>%
+  mutate(TDM8 = as.factor(TDM8), 
+         TDM8_SEXE = as.factor(TDM8_SEXE))
 
+lapply(d_acm_sup, class)
 
 # On met la variable de poids à l'echelle 
 summary(familles$PONDMEN)
@@ -110,10 +241,14 @@ liste_moda <- getindexcat(as.data.frame(d_acm))
 liste_moda
 
 index_modasup <- which(str_ends(liste_moda, ".NA")
-                       | str_ends(liste_moda, ".Retraité-e")) # numéros d'index des modalités "vide"
+                       | str_ends(liste_moda, ".Retraité-e") 
+                       | str_ends(liste_moda, ".Retraité-e ou retiré-e des affaires ou en préretraite")
+                       | str_ends(liste_moda, ".Etudiant-e, élève, en formation ou en stage non rémunéré") 
+                       | str_ends(liste_moda, ".Autre inactif-ve"))
+# numéros d'index des modalités "vide"
 index_modasup
 liste_moda[index_modasup]
-
+freq(familles$SITUA_F)
 
 # Réalisation de l'ACM spé ----
 
@@ -121,6 +256,7 @@ acm_spe <- speMCA(as.data.frame(d_acm),
                   excl = index_modasup,
                   ncp = 43,
                   row.w = poidsACMspe)
+
 
 # plot.speMCA(acm_spe, type="v", axes=c(1,2), cex = 0.1)
 # plot.speMCA(acm_spe, type="v", axes=c(3,4))
@@ -130,6 +266,8 @@ acm_spe <- speMCA(as.data.frame(d_acm),
 
 # données sur les variables supplémentaires
 acm_sup <- supvars(acm_spe, d_acm_sup)
+#explor(acm_spe)
+
 
 barplot(acm_spe$eig$rate[1:20])
 
@@ -144,7 +282,7 @@ sum(acm_spe$eig$rate[1:acmstop])
 
 # Pour avoir les données pour les variables suplémentaires
 #acm_spe_varssup <- supvars(acm_spe, vars_sup)
-
+library(explor)
 #explor::explor(acm_spe)
 coord <- acm_sup$coord
 
@@ -158,6 +296,7 @@ arbre <- hclust(md, method = "ward.D2") # agrégation critère de ward
 dend <- as.dendrogram(arbre)
 
 plot(dend)
+
 plot(dend, main = "Clusters",
      horiz = TRUE, leaflab = "none",
      xlim = c(78, 30))
@@ -178,30 +317,30 @@ inertie[1:20] %>%
   diff()
 
 # sauts d'inertie à 7
-typo <- cutree(arbre, 8)
+typo <- cutree(arbre, 6)
 
 typo %>% freq
 
 # 
-# # On intègre le résultat dans les données
-# typo <- typo %>% as_factor() %>%
-#   fct_recode(
-#     "Bourgeoisie économique [C7]" = "7", #OK
-#     "Classes populaires précaires [C3]" = "3", #OK
-#     "Petits indépendants [C5]" = "5", #OK
-#     "Bourgeoisie culturelle [C2]" = "2", #OK
-#     "Classes moyennes superieures [C4]" = "4",
-#     "Petits-moyens [C1]" = "1",
-#     "Classes populaires célibataires et urbaines [C6]" = "6") %>%
-#   fct_relevel(
-#     "Classes populaires précaires [C3]", 
-#     "Classes populaires célibataires et urbaines [C6]",
-#     "Petits indépendants [C5]", 
-#     "Petits-moyens [C1]", 
-#     "Classes moyennes superieures [C4]",
-#     "Bourgeoisie culturelle [C2]", 
-#     "Bourgeoisie économique [C7]"
-#   )
+# On intègre le résultat dans les données
+typo <- typo %>% as_factor() %>%
+  fct_recode(
+    "Classes superieures à dominante économique/privé [C6]" = "6", #OK
+    "'Petits-moyens' [C3]" = "3", #OK
+    "Classes populaires précaires [C5]" = "5", #OK
+    "Classes populaires immigrées urbaines [C2]" = "2", #OK
+    "Classes moyennes-superieures du public [C4]" = "4",
+    "Petits indépendants et salariés subalternes du rural  [C1]" = "1") %>%
+  fct_relevel(
+    "Classes populaires précaires [C5]",  #OK
+    "Classes populaires immigrées urbaines [C2]",  #OK
+    "Petits indépendants et salariés subalternes du rural  [C1]",
+    "'Petits-moyens' [C3]",
+    "Classes moyennes-superieures du public [C4]",
+    "Classes superieures à dominante économique/privé [C6]")
+    
+    
+   
 
 
 freq(typo)
@@ -274,14 +413,13 @@ tab <- tab %>%
   column_spec(5, "0.7in") %>%
   column_spec(6, "0.7in") %>%
   column_spec(7, "0.7in") %>%
-  column_spec(8, "0.7in") %>%
-  column_spec(9, "0.7in") 
+  column_spec(8, "0.7in")  
 
 saveTableau(tab, type = "tab", label = "clusters_composition_act", 
             description = "composition sociale des clusters",
             ponderation = T, 
-            n = "12355",
-            champ = "Menages formés par des adultes (25-65 ans)")
+            n = nrow(familles),
+            champ = paste0("Menages formés par individus agés de ", age_min, " à ", age_max, " ans."))
 
 ### tableau des variables supplémentaires 
 
@@ -304,15 +442,13 @@ tab <- tab %>%
   column_spec(5, "0.7in") %>%
   column_spec(6, "0.7in") %>%
   column_spec(7, "0.7in") %>%
-  column_spec(8, "0.7in") %>%
-  column_spec(9, "0.7in") 
+  column_spec(8, "0.7in") 
 
 saveTableau(tab, type = "tab", label = "clusters_composition_sup", 
             description = "composition sociale des clusters",
             ponderation = T, 
-            n = "12355",
-            champ = "Menages formés par des adultes (25-65 ans)")
-
+            n = nrow(familles),
+            champ = paste0("Menages formés par individus agés de ", age_min, " à ", age_max, " ans."))
 
 
 
@@ -397,9 +533,9 @@ gg <- ggplot(tab2) +
   geom_text_repel(aes(label = cluster),
                   direction="x", vjust = -2,
                   max.overlaps=10000) +
-  facet_wrap(dimLabel ~., ncol = 1, scales="free") +
-  geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
-  geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
+  facet_wrap(dimLabel ~., ncol = 1, scales="free") #+
+  # geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
+  # geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
 gg
 
 saveTableau(gg, type = "plot", label = "culsters_position",
@@ -557,10 +693,19 @@ freq(familles$n_FractionClasse)
 
 
 
-saveRDS(familles, "Data_output/familles_parents.Rds")
+saveRDS(familles, "Data_output/data_recode/menages_ageminmax.Rds")
+
 saveRDS(familles %>% 
           select(IDENT_MEN, n_FractionClasse), 
-        "Data_output/familles_FractionClasse.Rds")
+        "Data_output/data_recode/IDENT_MEN_FractionClasse.Rds")
+
+indiv_in_menagesAge <- readRDS("Data_output/data_recode/indiv.Rds") %>%
+  filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
+  left_join(familles %>%
+              select(IDENT_MEN, n_FractionClasse))
+
+saveRDS(indiv_in_menagesAge, 
+        "Data_output/data_recode/indiv_in_menagesAge.Rds")
 
 # du ménage 
 rm(acm_spe, acm_sup, arbre, contributions, coordonnees, cos2, d_acm, d_acm_sup, d_acm2, d_cah, dend, familles, frequences, gg, infosBDF, resultats_actives, tab, tab2, tab2_summary, tabcontrib, variances, vtest, index_modasup, inertie, liste_moda, md, poidsACMspe, seuil, typo)
