@@ -11,20 +11,26 @@
 # 
 
 
-# dONN2ES SUR LES COUPLES 
-familles <- readRDS("Data_output/familles_parents.Rds") 
-  #filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale"))
-dim(familles)
-
+# Données travail domestiqye 
 # Données ur le travail domestique
 travail_domestique <- c("AIDEENFANT", "BRICOLAGE", "CHANGEENFANT", 
                         "COURSES", "CUISINEA", "CUISINEB", "MENAGE", 
                         "JARDINAGE", "REPASSAGE", "VAISSELLE")
 
 dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
-  var_IDENTIFIANT(IdentIndiv = "NOI", IdentMenage = "IDENT_MEN", 
-                  NewVarName = "n_IdentIndiv") %>%
-  select(n_IdentIndiv, all_of(travail_domestique))
+  select(IDENT_MEN, NOI, all_of(travail_domestique)) %>%
+  mutate(
+    across(
+      .cols = all_of(travail_domestique),
+      ~ case_when(
+        .x == 1 ~ TRUE,
+        .x == 2 ~ FALSE,
+        TRUE ~ NA
+      )
+    )
+  )
+
+dep_ind <- pad_2digits(dep_ind, "NOI")
 
 travail_domestique <- str_to_sentence(travail_domestique)
 travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
@@ -32,8 +38,44 @@ travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
                                      "Cuisine du quotidien", 
                                      "Cuisine de récéption")
 
-names(dep_ind)[-1] <- travail_domestique
-levels(familles$n_TYPMEN_new)
+names(dep_ind)[-c(1, 2)] <- travail_domestique
+names(dep_ind)
+ 
+# Données individuelles
+indiv <- readRDS(file = "Data_output/data_recode/indiv_in_menagesAge.Rds") %>%
+  left_join(dep_ind, by = c("IDENT_MEN", "NOI"))
+
+adultes <- indiv %>%
+  filter(ENFANT == "2")
+
+
+tbl_summary(
+  data = adultes %>%
+    filter(SEXE == "2"), 
+  include = c(MOCO_DET_SEXE, all_of(travail_domestique)),
+  by = MOCO_DET_SEXE, 
+  missing = "no"
+)
+
+tbl_summary(
+  data = adultes %>%
+    filter(SEXE == "1"), 
+  include = c(MOCO_DET_SEXE, all_of(travail_domestique)),
+  by = MOCO_DET_SEXE, 
+  missing = "no"
+)
+
+
+
+
+
+# dONN2ES SUR LES COUPLES 
+familles <- readRDS("Data_output/data_recode/menages_ageminmax.Rds") 
+  #filter(TYPMEN5 %in% c("Couple avec au moins un enfant", "Famille monoparentale"))
+dim(familles)
+
+
+
 # Données sur les individus  
 parents <- readRDS("Data_output/parents.Rds") %>%
   filter(n_IdentIndiv %in% c(familles$n_IdentIndiv_F, familles$n_IdentIndiv_H)) %>%
