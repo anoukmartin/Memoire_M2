@@ -297,11 +297,11 @@ dend <- as.dendrogram(arbre)
 
 plot(dend)
 
-plot(dend, main = "Clusters",
-     horiz = TRUE, leaflab = "none",
-     xlim = c(78, 30))
-text(x = 20, y = 0, "blabla")
-#text(x, y, labels)
+# plot(dend, main = "Clusters",
+#      horiz = TRUE, leaflab = "none",
+#      xlim = c(78, 30))
+# text(x = 20, y = 0, "blabla")
+# #text(x, y, labels)
 
 
 inertie <- sort(arbre$height, decreasing = TRUE)
@@ -320,6 +320,7 @@ inertie[1:20] %>%
 typo <- cutree(arbre, 6)
 
 typo %>% freq
+
 
 # 
 # On intègre le résultat dans les données
@@ -624,7 +625,6 @@ resultats_actives <- frequences %>%
 
 # Tableau des contrib #########################################################
 
-
 sum(variances$`% de variance`[1:acmstop])
 
 tabcontrib <- lapply(1:acmstop, function(dim){
@@ -702,7 +702,7 @@ saveRDS(familles %>%
 indiv_in_menagesAge <- readRDS("Data_output/data_recode/indiv.Rds") %>%
   filter(IDENT_MEN %in% familles$IDENT_MEN) %>%
   left_join(familles %>%
-              select(IDENT_MEN, n_FractionClasse))
+              select(IDENT_MEN, n_FractionClasse, NIVIE))
 
 saveRDS(indiv_in_menagesAge, 
         "Data_output/data_recode/indiv_in_menagesAge.Rds")
