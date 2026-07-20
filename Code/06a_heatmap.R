@@ -1,23 +1,29 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-couples <- readRDS("Data_output/familles_parents.Rds")
+couples <- readRDS("Data_output/data_recode/menages.Rds")
+freq(couples$TAF)
+couples$NENFANTS
 
 couples %>%
-  filter(n_TYPMEN_new %in% c("Couple sans enfant", "Traditionnelle", "Recomposée")) %>%
+  filter(!is.na(COUPLE_SEXE)) %>%
+  # filter(TAF %in% c("Couple sans enfant", "Famille recomposée (sans enfants du couple)",
+  #                   "Famille traditionnelle", "Famille recomposée (avec enfant(s) du couple)")) %>%
   mutate(PONDMEN = PONDMEN/mean(couples$PONDMEN),
-         n_TYPMEN_new = droplevels(n_TYPMEN_new)) %>%
+         TAF = droplevels(TAF)) %>%
   as_survey_design(weights = PONDMEN) %>%
   tbl_svysummary(
-  by = n_TYPMEN_new, 
-  include = c("n_TYPMEN_new", "hetero")
+  by = TAF, 
+  percent = "row",
+  include = c("TAF", "COUPLE_SEXE")
 ) %>%
   add_overall()
+
 couples$n_TYPMEN_new
 
 
-coupleshet <- readRDS("Data_output/familles_parents.Rds") %>%
-  filter(hetero == "Hetero") %>%
+coupleshet <- readRDS("Data_output/data_recode/menages_ageminmax.Rds") %>%
+  filter(COUPLE_SEXE == "Couple de sexes différents") %>%
   mutate(
   #DIP7_F = DIP7_F %>%
   #   fct_recode(
@@ -104,7 +110,7 @@ gg
 
 ## Familles recomposées ########################################################
 couples <- coupleshet %>%
-  filter(n_TYPMEN_new == "Recomposée")
+  filter(str_starts(TAF, "Famille recomposée"))
 
 tabcouples <- wtd.table(couples[[paste0(VAR, "_H")]], couples[[paste0(VAR, "_F")]], weights = couples$PONDMEN)
 tabcouplesh <- lprop(tabcouples, total = T)
@@ -143,6 +149,7 @@ gg
 
 ## Couples avec enfants  #######################################################
 
+coupleshet$TAF
 couples <- coupleshet %>%
   filter(TYPMEN5 == "Couple avec au moins un enfant")
 

@@ -114,7 +114,6 @@ data <- data %>%
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
 tab <- data %>%
   group_by(n_TYPMEN_new) %>%
-  #mutate(Vetements_enfants = if_else(is.na(Vetements_enfants), 0, Vetements_enfants)) %>%
   summarise(mean_wtd = wtd.mean(Vetements_enfants, weights = PONDMEN))
 tab
 tab <- data %>%
