@@ -8,6 +8,7 @@ infosBDF <- readRDS("Data_output/infosBDF.Rds")
 menages <- readRDS("Data_output/menages.Rds") %>%
   select(IDENT_MEN, AISE, NIVIE, SEXEREP, NIVEAU) %>%
   rec_SEXE(Var = "SEXEREP")
+
 menages$SEXEREP
 familles <- readRDS("Data_output/familles_parents.Rds") %>%
   left_join(menages, 
@@ -55,19 +56,70 @@ dic_fam<- look_for(familles)
 familles <- readRDS("Data_output/data_recode/menages_ageminmax.Rds")
 names(familles)
 freq(familles$NIVEAU)
+freq(familles$AISE)
 familles <- familles |>
   mutate(AISE = if_else(AISE %in% c("", "8", "9"), NA, AISE) %>%
            as.factor() %>%
            fct_relevel("5", "4", "3", "2", "1")) %>%
+  mutate(AISE2 = case_when(
+    AISE %in% c("5", "4") ~ "3", 
+    AISE == "3" ~ "2", 
+    AISE %in% c("2", "1") ~ "1") %>%
+           as.factor() %>%
+           fct_relevel("3", "2", "1")) %>%
   mutate(NIVEAU = if_else(NIVEAU %in% c("", "8", "9"), NA, NIVEAU) %>%
            as.factor() %>%
            fct_relevel("6", "5", "4", "3", "2", "1")) %>%
-  mutate(NIVIE = NIVIE/1200) 
+  mutate(NIVIE = NIVIE/1200)
   
 freq(familles$AISE)
+freq(familles$AISE2)
 freq(familles$NIVEAU)
 
-familles$REPONDANT
+
+
+
+
+# Qui es le répondant #####
+repondants <- readRDS("Data_output/data_recode/indiv_in_menagesAge.Rds") %>% 
+  filter(ENFANT == "2") %>%
+  mutate(REPONDANT = if_else(NOI == "01", T, F)) %>%
+  filter(REPONDANT == T) %>%
+  rec_SEXE() %>%
+  mutate(NIVIE = NIVIE/1200)%>%
+  mutate(MOCO_DET_SEXE = MOCO_DET_SEXE %>% as.factor() %>% droplevels(),
+         MOCO_DET = MOCO_DET %>% as.factor() %>% droplevels()) %>%
+  left_join(familles %>%
+              select(IDENT_MEN, NIVEAU, AISE, AISE2, NPERS), by = "IDENT_MEN") 
+data <- repondants
+
+
+data <- data %>%
+  mutate(
+    n_FractionClasse = fct_relevel(
+      n_FractionClasse,
+      "'Petits-moyens' [C3]"
+    ),
+    TDM8_SEXE = fct_relevel(
+      TDM8_SEXE,
+      "Couple avec uniquement enfant(s) du couple"
+    ), 
+    MOCO_DET_SEXE = fct_relevel(
+      MOCO_DET_SEXE,
+      "Femme d’une famille traditionnelle"
+    )
+  )
+indiv$MOCO_DET_SEXE
+library(ordinal)
+reg <- clm(AISE ~ NIVIE + n_FractionClasse + AGE + NENFANTS + MOCO_DET_SEXE,
+           data = data, 
+           weights = PONDIND)
+summary(reg)
+
+nominal_test(reg)
+
+tbl_regression(reg, exponentiate = T) %>%
+  bold_p(t = 0.1)
 
 #mutate(n_NEnfantsMenage = n_NEnfantsMenage - n_NEnfantsMenage13) %>%
  # mutate(n_NEnfantsHD = if_else(is.na(n_NEnfantsHD), 0, n_NEnfantsHD)) %>%

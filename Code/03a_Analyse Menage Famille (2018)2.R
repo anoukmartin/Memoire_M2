@@ -197,9 +197,32 @@ liens_long <- indiv_socdem %>%
 
 head(liens_long, 15)
 
-test <- indiv %>%
-  group_by(IDENT_MEN)%>%
-  summarise(NBS = unique(BS))
+
+
+### Enfants hors domicile ####################################
+
+enfantsHD <- readRDS("Data_output/enfHD.Rds")
+enfantsHD <- pad_2digits(enfantsHD, "NUMORDRE")
+
+names(enfantsHD)
+freq(enfantsHD$HODLN01)
+# Chaque individu devient une ligne par relation avec un autre membre du ménage
+liens_long_hd <- enfantsHD %>%
+  select(
+    IDENT_MEN,
+    NOI_ENFANTHORSDOM = NUMORDRE,
+    starts_with("HODLN")
+  ) %>%
+  pivot_longer(
+    cols = starts_with("HODLN"),
+    names_to = "NOIPARENT_MENAGE",
+    values_to = "ENFANT_DE"
+  ) %>%
+  mutate(NOIPARENT_MENAGE = str_remove(NOIPARENT_MENAGE, "HODLN")) %>%
+  filter(ENFANT_DE == 1)
+
+
+head(liens_long_hd, 15)
 
 
 
@@ -358,9 +381,26 @@ str(nb_parents)
 freq(nb_parents$NPARENTS)
 freq(nb_parents$SEXE_PARENT)
 
-#--------------------------------------------------------------
-# Nombre d'enfants
-#--------------------------------------------------------------
+
+# -------------------------------------------------------------.
+# Nombre de parent dans le ménage des enfant hors domicile ----
+# -------------------------------------------------------------.
+
+nb_parents_menageHD <- liens_long_hd %>%
+  group_by(
+    IDENT_MEN,
+    NOI_ENFANTHORSDOM
+  ) %>%
+  summarise(
+    NPARENTS_MENAGEHD = n_distinct(NOIPARENT_MENAGE),
+    PARENTS_MENAGE = paste0(NOIPARENT_MENAGE, collapse = ";"),
+    .groups="drop"
+  )
+  
+
+#--------------------------------------------------------------.
+# Nombre d'enfants ----
+#--------------------------------------------------------------.
 
 nb_enfants <- enfants %>%
   
@@ -381,6 +421,31 @@ nb_enfants <- enfants %>%
 
 str(nb_enfants)
 freq(nb_enfants$NENFANTS)
+
+# -------------------------------------------------------------.
+# Nombre d'enfant hors domicile ----
+# -------------------------------------------------------------.
+
+nb_enfants_horsdom <- liens_long_hd %>%
+  
+  group_by(
+    IDENT_MEN,
+    NOIPARENT_MENAGE
+  ) %>%
+  
+  summarise(
+    NENFANTS_HORSDOM = n_distinct(NOI_ENFANTHORSDOM),
+    .groups="drop"
+  ) %>%
+  
+  rename(
+    NOI = NOIPARENT_MENAGE
+  )
+
+
+str(nb_enfants_horsdom)
+freq(nb_enfants_horsdom$NENFANTS_HORSDOM)
+
 
 
 #--------------------------------------------------------------
@@ -425,7 +490,7 @@ nb_freres_soeurs <- freres_soeurs %>%
 
 
 str(nb_freres_soeurs)
-freq(nb_freres_soeurs$N_FRERESSOEURS_delca)
+
 
 
 ###############################################################
@@ -523,6 +588,98 @@ nb_enfants_communs <- enfants_communs %>%
 
 str(nb_enfants_communs)
 freq(nb_enfants_communs$NENFANTS_COMMUNS)
+
+
+
+###############################################################
+# 3b. BEAUX-ENFANTS HORS DOMICILE ####
+###############################################################
+#
+# Enfants du conjoint vivant hors domicile qui ne sont pas mes enfants
+#
+###############################################################
+
+
+enfantsHD_conjoint <- couples %>%
+  
+  left_join(
+    liens_long_hd %>%
+      select(-ENFANT_DE),
+    by=c(
+      "IDENT_MEN",
+      "CONJOINT"="NOIPARENT_MENAGE"
+    )
+  ) %>%
+  filter(!is.na(NOI_ENFANTHORSDOM))
+
+enfantsHD_propres <- liens_long_hd %>%
+  select(-ENFANT_DE) %>%
+  rename(
+    NOI=NOIPARENT_MENAGE
+  ) %>%
+  filter(!is.na(NOI_ENFANTHORSDOM))
+
+str(enfantsHD_propres)
+freq(enfantsHD_propres$NOI_ENFANTHORSDOM)
+
+beaux_enfantsHD <- enfantsHD_conjoint %>%
+  anti_join(
+    enfantsHD_propres,
+    by=c(
+      "IDENT_MEN",
+      "NOI",
+      "NOI_ENFANTHORSDOM"
+    ) 
+  ) 
+str(beaux_enfantsHD)
+freq(beaux_enfantsHD$NOI_ENFANTHORSDOM)
+freq(beaux_enfantsHD$COUPLE_SEXE)
+
+nb_beaux_enfantsHD <- beaux_enfantsHD %>%
+  group_by(
+    IDENT_MEN,
+    NOI
+  ) %>%
+  
+  summarise(
+    NBEAUX_ENFANTS_HORSDOM =
+      n_distinct(NOI_ENFANTHORSDOM),
+    .groups="drop"
+  )
+
+str(nb_beaux_enfantsHD)
+freq(nb_beaux_enfantsHD$NBEAUX_ENFANTS_HORSDOM)
+
+
+## Enfants communs au couple
+
+enfantsHD_communs <- enfantsHD_conjoint %>%
+  inner_join(
+    enfantsHD_propres,
+    by=c(
+      "IDENT_MEN",
+      "NOI",
+      "NOI_ENFANTHORSDOM"
+    ) 
+  ) 
+str(enfantsHD_communs)
+freq(enfantsHD_communs$NOI_ENFANTHORSDOM)
+freq(enfantsHD_communs$COUPLE_SEXE)
+
+nb_enfantsHD_communs <- enfantsHD_communs %>%
+  group_by(
+    IDENT_MEN,
+    NOI
+  ) %>%
+  
+  summarise(
+    NENFANTS_COMMUNS_HORSDOM =
+      n_distinct(NOI_ENFANTHORSDOM),
+    .groups="drop"
+  )
+
+str(nb_enfantsHD_communs)
+freq(nb_enfantsHD_communs$NENFANTS_COMMUNS_HORSDOM)
 
 ###############################################################
 # 4. BEAUX-PARENTS
@@ -696,19 +853,19 @@ parents_communs <- paires_fratrie %>%
 ###############################################################
 
 
-freres_soeurs <- parents_communs
 
-
+head(freres_soeurs)
+parents_communs
 nb_freres_soeurs <- bind_rows(
 
-  freres_soeurs %>%
+  parents_communs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT1,
       AUTRE=ENFANT2
     ),
 
-  freres_soeurs %>%
+  parents_communs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT2,
@@ -731,6 +888,36 @@ nb_freres_soeurs <- bind_rows(
 freq(nb_freres_soeurs$N_FRERES_SOEURS_TOUS)
 
 
+enfants2 <- indiv %>%
+  filter(ENFANT == "1") %>%
+  group_by(IDENT_MEN) %>%
+  arrange(desc(AGE), .by_group = TRUE) %>%
+  mutate(RANG_ENFANT = row_number()) %>%
+  mutate(
+    RANG_ENFANT = row_number(),
+    POSITION_FRATERIE = case_when(
+      n() == 1 ~ "Enfant unique",
+      row_number() == 1 ~ "Aîné-e",
+      row_number() == n() ~ "Benjamin-e",
+      TRUE ~ "Cadet-te"
+    )
+  ) %>%
+  ungroup() %>%
+  group_by(IDENT_MEN, SEXE) %>%
+  arrange(desc(AGE), .by_group = TRUE) %>%
+  mutate(RANG_ENFANT_SEXE = row_number()) %>%
+  ungroup()
+  
+
+freq(enfants2$RANG_ENFANT)
+freq(enfants2$POSITION_FRATERIE)
+freq(enfants2$RANG_ENFANT_SEXE)
+
+nb_freres_soeurs <- nb_freres_soeurs %>%
+  left_join(enfants2 %>% 
+              select(IDENT_MEN, NOI, RANG_ENFANT, RANG_ENFANT_SEXE, POSITION_FRATERIE))
+
+freq(nb_freres_soeurs$RANG_ENFANT)
 
 # ###############################################################
 # # 7. FRERES / SOEURS GERMAINS
@@ -890,7 +1077,14 @@ indiv_fam <- indiv %>%
     by=c(
       "IDENT_MEN",
       "NOI"
-    )
+    ))%>%
+  left_join(
+    nb_enfants_horsdom,
+    by=c(
+      "IDENT_MEN",
+      "NOI"
+    ) 
+    
   ) %>%
   
   left_join(
@@ -925,6 +1119,31 @@ indiv_fam <- indiv %>%
   left_join(
     nb_beaux_enfants %>%
       rename("NBEAUX_ENFANTS_CONJOINT" = "NBEAUX_ENFANTS"),
+    by=c(
+      "IDENT_MEN",
+      "CONJOINT" = "NOI"
+    )
+  ) %>%
+  
+  left_join(
+    nb_beaux_enfantsHD,
+    by=c(
+      "IDENT_MEN",
+      "NOI"
+    )
+  ) %>%
+  
+  left_join(
+    nb_enfantsHD_communs,
+    by=c(
+      "IDENT_MEN",
+      "NOI"
+    )
+  ) %>%
+  
+  left_join(
+    nb_beaux_enfantsHD %>%
+      rename("NBEAUX_ENFANTS_HORSDOM_CONJOINT" = "NBEAUX_ENFANTS_HORSDOM"),
     by=c(
       "IDENT_MEN",
       "CONJOINT" = "NOI"
@@ -1604,20 +1823,20 @@ menages <- menages %>%
 names(menages)
 
 
-indiv_fam <- indiv_fam %>%
+indiv_fam_enrichie <- indiv_fam_enrichie %>%
   left_join(menages_from_indiv %>% select(-COUPLE_SEXE), by = "IDENT_MEN")
-freq(indiv_fam$TDM8)
-freq(indiv_fam$TDM8_SEXE)
-freq(indiv_fam$TAF)
+freq(indiv_fam_enrichie$TDM8)
+freq(indiv_fam_enrichie$TDM8_SEXE)
+freq(indiv_fam_enrichie$TAF)
 
-tab <- table(indiv_fam$TAF, indiv_fam$MOCO_DET) %>%
+tab <- table(indiv_fam_enrichie$TAF, indiv_fam_enrichie$MOCO_DET) %>%
   data.frame()
 
-tbl_summary(indiv_fam, 
+tbl_summary(indiv_fam_enrichie, 
             include = c("MOCO_DET_ADU", "MOCO_DET_ENF", "TAF"), 
             by = "TAF", 
             percent = "row")
-tbl_summary(indiv_fam, 
+tbl_summary(indiv_fam_enrichie, 
             include = c("MOCO_DET_ADU", "COUPLE_SEXE"), 
             by = "COUPLE_SEXE", 
             percent = "row")
@@ -1627,8 +1846,9 @@ tbl_summary(menages,
             by = "APART", 
             percent = "row")
 
-indiv$PER2E
+
+
 
 dir.create("Data_output/data_recode")
-saveRDS(indiv_fam, "Data_output/data_recode/indiv.Rds")
+saveRDS(indiv_fam_enrichie, "Data_output/data_recode/indiv.Rds")
 saveRDS(menages, "Data_output/data_recode/menages.Rds")
