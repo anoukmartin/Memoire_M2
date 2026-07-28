@@ -44,27 +44,31 @@ var_label(familles$n_NEnfantsHD) <- "Enfants vivants hors domicile"
 names(familles)
 
 conso <- readRDS("Data_output/conso.Rds")
-dic_conso <- look_for(conso)
-menages <- readRDS("Data_output/menages.Rds")
+familles <- readRDS("Data_output/data_recode/menages_ageminmax.Rds")
+
 data <- left_join(familles, conso[, c("IDENT_MEN", "CTOT")])
-data <- left_join(data, 
-                  menages %>%
-                    select(NIVIE, IDENT_MEN, 
-                           REVDISP, REVTOT))
+
 data <- data %>%
-  mutate(REVTOT = REVTOT/100, 
-         CTOT = CTOT/100, 
-         REVDISP = REVDISP/100, 
-         NIVIE/100)
+  mutate(REVTOT = REVTOT/12, 
+         CTOT = CTOT/12, 
+         REVDISP = REVDISP/12, 
+         NIVIE = NIVIE/1200, 
+         n_REVENUS_indiv_F = n_REVENUS_indiv_F/1200, 
+         n_REVENUS_indiv_H = n_REVENUS_indiv_H/1200) %>%
+  filter(!is.na(CTOT) & !is.na(REVDISP)) %>%
+  filter(COUPLE_SEXE == "Couple de sexes différents") %>%
+  mutate(TDM8_SEXE = fct_relevel(TDM8_SEXE, "Couple avec uniquement enfant(s) du couple"))
 
-  filter(!is.na(CTOT) & !is.na(REVDISP) 
-         & !is.na(n_ParentsMenage)
-         & !is.na(n_EnfantsHD)) %>%
-  filter(n_ParentsMenage != "Sans enfants")
+var_label(data$REVTOT) <- "Revenus totaux mensuels"
+var_label(data$CTOT) <- "Consommation totale mensuelle"
+var_label(data$REVDISP) <- "Revenus disponible mensuelle"
+var_label(data$n_REVENUS_indiv_H) <- "Revenus masculin mensuel (en centaine)"
+var_label(data$n_REVENUS_indiv_F) <- "Revenus féminin mensuel (en centaine)"
+var_label(data$TDM8_SEXE) <- "Configuration du ménage"
+var_label(data$NENFANTS) <- "Nombre d'enfants dans le ménage"
+var_label(data$n_FractionClasse) <- "Position sociale du ménage"
 
-var_label(data$REVTOT) <- "Revenus totaux (en milliers d'euros)"
-var_label(data$CTOT) <- "Consommation totale (en milliers d'euros)"
-var_label(data$REVDISP) <- "Revenus disponible (en milliers d'euros)"
+
 
 data <- data %>%
   mutate(PONDFAM = PONDMEN/mean(data$PONDMEN)) # On centre la variable de pondération
@@ -73,15 +77,24 @@ data <- data %>%
 
 summary(data$REVTOT)
 plot(data$CTOT, data$REVTOT)
-chisq.test(data$CTOT, data$n_TYPMEN_sexe)
+chisq.test(data$CTOT, data$TDM8_SEXE)
 chisq.test(data$CTOT, data$n_EnfantsHD)
-
-reg <- lm(CTOT ~ NIVIE + n_TYPMEN_sexe,
+boxplot(data$CTOT)
+reg <- lm(log(CTOT) ~ n_FractionClasse + NENFANTS + TDM8_SEXE*n_REVENUS_indiv_H + TDM8_SEXE*n_REVENUS_indiv_F,
           data = data, 
           weights = PONDFAM)
+summary(reg)
 
-tblreg1 <- tbl_regression(reg, intercept = T)
+tblreg1 <- tbl_regression(reg, intercept = T) %>%
+  add_glance_source_note()  |>
+  bold_p(t = 0.1) %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+  
 tblreg1
+
 
 ## Enregistrement des résultats ################################################
 saveTableau(tblreg3, 

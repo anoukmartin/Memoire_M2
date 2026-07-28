@@ -220,8 +220,9 @@ liens_long_hd <- enfantsHD %>%
   ) %>%
   mutate(NOIPARENT_MENAGE = str_remove(NOIPARENT_MENAGE, "HODLN")) %>%
   filter(ENFANT_DE == 1)
+ 
 
-
+enfantsHD$ANNEE_BDF
 head(liens_long_hd, 15)
 
 
@@ -313,7 +314,9 @@ enfants <- liens_long %>%
     PARENT = NOI,
     SEXE_PARENT = SEXE,
     ENFANT = NOI_XX
-  )
+  ) %>%
+  left_join(indiv %>% 
+              select(IDENT_MEN, ENFANT = NOI, AGE_ENFANT = AGE))
 
 str(enfants)
 
@@ -403,6 +406,7 @@ nb_parents_menageHD <- liens_long_hd %>%
 #--------------------------------------------------------------.
 
 nb_enfants <- enfants %>%
+
   
   group_by(
     IDENT_MEN,
@@ -411,6 +415,7 @@ nb_enfants <- enfants %>%
   
   summarise(
     NENFANTS = n_distinct(ENFANT),
+    AGE_ENFANTS_MOYEN = mean(AGE_ENFANT),
     .groups="drop"
   ) %>%
   
@@ -425,9 +430,11 @@ freq(nb_enfants$NENFANTS)
 # -------------------------------------------------------------.
 # Nombre d'enfant hors domicile ----
 # -------------------------------------------------------------.
-
+enfantsHD$ANNEE_BDF
 nb_enfants_horsdom <- liens_long_hd %>%
-  
+  left_join(enfantsHD %>%
+              mutate(AGE_ENFANT = ANNEE_BDF - HODAN) %>%
+              select(IDENT_MEN, NOI_ENFANTHORSDOM = NUMORDRE, SEXE_ENFANT = HODSEX, AGE_ENFANT)) %>%
   group_by(
     IDENT_MEN,
     NOIPARENT_MENAGE
@@ -435,6 +442,7 @@ nb_enfants_horsdom <- liens_long_hd %>%
   
   summarise(
     NENFANTS_HORSDOM = n_distinct(NOI_ENFANTHORSDOM),
+    AGE_ENFANTS_HORSDOM_MOYEN = mean(AGE_ENFANT),
     .groups="drop"
   ) %>%
   
@@ -888,36 +896,9 @@ nb_freres_soeurs <- bind_rows(
 freq(nb_freres_soeurs$N_FRERES_SOEURS_TOUS)
 
 
-enfants2 <- indiv %>%
-  filter(ENFANT == "1") %>%
-  group_by(IDENT_MEN) %>%
-  arrange(desc(AGE), .by_group = TRUE) %>%
-  mutate(RANG_ENFANT = row_number()) %>%
-  mutate(
-    RANG_ENFANT = row_number(),
-    POSITION_FRATERIE = case_when(
-      n() == 1 ~ "Enfant unique",
-      row_number() == 1 ~ "Aîné-e",
-      row_number() == n() ~ "Benjamin-e",
-      TRUE ~ "Cadet-te"
-    )
-  ) %>%
-  ungroup() %>%
-  group_by(IDENT_MEN, SEXE) %>%
-  arrange(desc(AGE), .by_group = TRUE) %>%
-  mutate(RANG_ENFANT_SEXE = row_number()) %>%
-  ungroup()
-  
+nb_freres_soeurs <- nb_freres_soeurs 
 
-freq(enfants2$RANG_ENFANT)
-freq(enfants2$POSITION_FRATERIE)
-freq(enfants2$RANG_ENFANT_SEXE)
 
-nb_freres_soeurs <- nb_freres_soeurs %>%
-  left_join(enfants2 %>% 
-              select(IDENT_MEN, NOI, RANG_ENFANT, RANG_ENFANT_SEXE, POSITION_FRATERIE))
-
-freq(nb_freres_soeurs$RANG_ENFANT)
 
 # ###############################################################
 # # 7. FRERES / SOEURS GERMAINS
@@ -1056,6 +1037,36 @@ nb_quasi_freres_soeurs <- bind_rows(
 str(nb_quasi_freres_soeurs)
 freq(nb_quasi_freres_soeurs$N_QUASI_FRERES_SOEURS)
 
+###############################################################.
+# Position dans l'adelphie ####
+###############################################################.
+
+enfants2 <- indiv %>%
+  filter(ENFANT == "1") %>%
+  group_by(IDENT_MEN) %>%
+  arrange(desc(AGE), .by_group = TRUE) %>%
+  mutate(RANG_ENFANT = row_number()) %>%
+  mutate(
+    RANG_ENFANT = row_number(),
+    POSITION_FRATERIE = case_when(
+      n() == 1 ~ "Enfant unique",
+      n() > 1 & row_number() == 1 ~ "Aîné-e",
+      n() > 1 & row_number() == n() ~ "Benjamin-e",
+      n() > 1  ~ "Cadet-te"
+    )
+  ) %>%
+  ungroup() %>%
+  group_by(IDENT_MEN, SEXE) %>%
+  arrange(desc(AGE), .by_group = TRUE) %>%
+  mutate(RANG_ENFANT_SEXE = row_number()) %>%
+  ungroup()
+
+
+freq(enfants2$RANG_ENFANT)
+freq(enfants2$POSITION_FRATERIE)
+freq(enfants2$RANG_ENFANT_SEXE)
+
+
 ###############################################################
 # 9. ASSEMBLAGE FINAL DANS INDIV
 ###############################################################
@@ -1181,6 +1192,13 @@ indiv_fam <- indiv %>%
       "NOI"
     )
   ) %>%
+  left_join(
+    enfants2 %>%
+      select(IDENT_MEN, NOI, RANG_ENFANT, RANG_ENFANT_SEXE, POSITION_FRATERIE),
+    by=c(
+                "IDENT_MEN",
+                "NOI"
+              )) %>%
   
   mutate(
     
@@ -1831,11 +1849,17 @@ freq(indiv_fam_enrichie$TAF)
 
 tab <- table(indiv_fam_enrichie$TAF, indiv_fam_enrichie$MOCO_DET) %>%
   data.frame()
+indiv_fam_enrichie %>%
+  as_survey_design(weights = PONDIND, 
+                   ids = IDENT_MEN) %>%
+  tbl_svysummary(
+            include = c("MOCO_DET_ENF", "MOCO_DET_ADU",  "ANNEE_BDF"), 
+            by = "ANNEE_BDF", 
+            percent = "column") %>%
+  add_overall(last = T)
 
-tbl_summary(indiv_fam_enrichie, 
-            include = c("MOCO_DET_ADU", "MOCO_DET_ENF", "TAF"), 
-            by = "TAF", 
-            percent = "row")
+
+
 tbl_summary(indiv_fam_enrichie, 
             include = c("MOCO_DET_ADU", "COUPLE_SEXE"), 
             by = "COUPLE_SEXE", 
@@ -1846,8 +1870,8 @@ tbl_summary(menages,
             by = "APART", 
             percent = "row")
 
-
-
+freq(enfants2$POSITION_FRATERIE)
+freq(indiv_fam_enrichie$POSITION_FRATERIE)
 
 dir.create("Data_output/data_recode")
 saveRDS(indiv_fam_enrichie, "Data_output/data_recode/indiv.Rds")

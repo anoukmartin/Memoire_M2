@@ -13,9 +13,10 @@
 
 # Données travail domestiqye 
 # Données ur le travail domestique
-travail_domestique <- c("AIDEENFANT", "BRICOLAGE", "CHANGEENFANT", 
-                        "COURSES", "CUISINEA", "CUISINEB", "MENAGE", 
-                        "JARDINAGE", "REPASSAGE", "VAISSELLE")
+travail_domestique <- c("COURSES", "REPASSAGE", "VAISSELLE", "MENAGE",
+                        "CUISINEA", "CUISINEB", 
+                        "BRICOLAGE", "JARDINAGE", 
+                        "AIDEENFANT", "CHANGEENFANT")
 
 dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
   select(IDENT_MEN, NOI, all_of(travail_domestique)) %>%
@@ -33,22 +34,83 @@ dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
 dep_ind <- pad_2digits(dep_ind, "NOI")
 
 travail_domestique <- str_to_sentence(travail_domestique)
-travail_domestique[c(1,3, 5,6)] <- c("Aide scolaire aux enfants",
-                                     "Habillage des enfants", 
+travail_domestique[c(9,10, 5,6)] <- c("Aide scolaire aux enfants",
+                                     "Soin/aide aux enfants", 
                                      "Cuisine du quotidien", 
                                      "Cuisine de récéption")
-
+travail_menager <- travail_domestique[-c(9, 10)]
+travail_parental <- travail_domestique[c(9, 10)]
 names(dep_ind)[-c(1, 2)] <- travail_domestique
 names(dep_ind)
  
 # Données individuelles
 indiv <- readRDS(file = "Data_output/data_recode/indiv_in_menagesAge.Rds") %>%
-  left_join(dep_ind, by = c("IDENT_MEN", "NOI"))
+  left_join(dep_ind, by = c("IDENT_MEN", "NOI")) %>%
+  filter(TAF != "Autre ménage (complexe)")
+
+
+# Tous les adultes 
+adultes <- indiv %>%
+  filter(ENFANT == "2") %>%
+  filter(if_any(all_of(travail_domestique), ~ !is.na(.)))
+
+adultes$`Cuisine de récéption`
+
+data_long <- adultes %>%
+  rec_SEXE() %>%
+  pivot_longer(
+    cols = travail_menager,
+    names_to = "variable",
+    values_to = "reponse"
+  ) %>%
+  count(SEXE, MOCO_DET, variable, reponse, wt = PONDIND) %>%
+  group_by(SEXE, MOCO_DET, variable) %>%
+  mutate(
+    N = sum(n),
+    pourcentage = n / N * 100
+  ) %>%
+  ungroup() %>%
+  filter(reponse == TRUE)
+
+
+ggplot(data_long, aes(x = variable, y = pourcentage, fill = MOCO_DET, 
+                      labels = round(pourcentage, 0))) +
+  geom_col(position = "dodge", color = "black") +
+  #geom_text(position = position_dodge()) +
+  labs(
+    x = NULL,
+    y = "Pourcentage ayant effectué l'activité dans le ménage",
+    fill = "Position dans le ménage"
+  ) +
+  theme_minimal() + 
+  facet_wrap(facets = ~ SEXE) + 
+  coord_flip() + 
+  scale_fill_brewer(palette = "Paired") +
+  theme_tufte() + 
+  theme(legend.position = "bottom", legend.box = "horizontal", legend.title = element_blank())
+
+
+
+
 
 
 # Femmes 
-femmes <- indiv %>%
-  filter(ENFANT == "2" & SEXE == "2")
+femmes <- adultes %>%
+  filter(SEXE == "2") %>%
+  mutate(MOCO_DET = MOCO_DET %>%
+           str_replace("Adulte ", "Femme.../...") %>%
+           str_replace("\\(", "/") %>%
+           str_remove("\\)")) %>%
+  mutate(MOCO_DET = MOCO_DET %>% as.factor()) %>%
+  mutate(TDM8_SEXE = TDM8_SEXE %>%
+           str_replace("\\, ", ".../..."))|>
+  mutate(TDM8_SEXE = TDM8_SEXE %>% as.factor()) %>%
+  mutate(Effectifs = T) %>%
+  mutate(TAF2 = if_else(
+    str_detect(TAF, "recomposée"), 
+    "Famille recomposée", 
+    TAF
+  ))
 
 library(survey)
 summary(femmes$PONDIND)
@@ -59,42 +121,159 @@ femmes_svy <- svydesign(
   weights = ~PONDIND
   
 )
-
-
 tbl_svysummary(
-  data = femmes_svy, 
-  include = c(MOCO_DET_SEXE, all_of(travail_domestique)),
-  by = MOCO_DET_SEXE, 
+  femmes_svy, 
+  include = c(TAF2, all_of(travail_menager), Effectifs), 
+  by = TAF2, 
   missing = "no",
-  statistic = list(all_continuous() ~ "{median} ({p25}, {p75})", all_categorical() ~
-                     "{p}% ({n_unweighted})")
-) %>%
-  add_p()
+  statistic = list(all_of(travail_menager) ~ "{p}%", 
+                   Effectifs ~ "{n_unweighted}")) %>%
+  add_overall(last = T) %>%
+  add_p() %>%
+  bold_p(t = 0.1)
 
+tab <- tbl_svysummary(
+  data = femmes_svy, 
+  include = c(TDM8_SEXE, all_of(travail_menager), Effectifs),
+  by = TDM8_SEXE, 
+  missing = "no",
+  statistic = list(all_of(travail_menager) ~ "{p}%", 
+                   Effectifs ~ "{n_unweighted}")) %>%
+  add_overall(last = T) %>%
+  add_p() %>%
+  bold_p(t = 0.1)
+
+tab
+tab$table_styling$spanning_header
+tab$table_styling$spanning_header
+tab$table_body$p.value
+tabprint <- tab$table_body %>%
+  mutate(p.value = if_else(p.value < 0.001, 
+                           "< 0,001", 
+                           round(p.value, 3) %>%
+                             as.character() %>%
+                             str_replace("\\.", ","))
+  ) |>
+  select(label, starts_with("stat_"), `p.value`)
+
+names(tabprint) <- c("Tâche", levels(femmes$TDM8_SEXE), "Ensemble", "p.value")
+
+tabprint |>
+  flextable() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit() |>
+  separate_header(split = "/") |>
+  bold(part = "header") |>
+  bold(j = c(1, 9)) |> 
+  hline(part = "header") |> 
+  vline(j = c(1, 12, 13)) |>
+  hline(i = 8)
+
+tabprint
 
 
 # Hommes
-hommes <- indiv %>%
-  filter(ENFANT == "2" & SEXE == "1")
+hommes <- adultes %>%
+  filter(SEXE == "1") %>%
+  mutate(MOCO_DET = MOCO_DET %>%
+           str_replace("Adulte ", "Homme.../...") %>%
+           str_replace("\\(", "/") %>%
+           str_remove("\\)")) %>%
+  mutate(MOCO_DET = MOCO_DET %>% as.factor()) %>%
+  mutate(TDM8_SEXE = TDM8_SEXE %>%
+           str_replace("\\, ", ".../..."))|>
+  mutate(TDM8_SEXE = TDM8_SEXE %>% as.factor()) %>%
+  mutate(Effectifs = T) %>%
+  mutate(TAF2 = if_else(
+    str_detect(TAF, "recomposée"), 
+    "Famille recomposée", 
+    TAF
+  ))
 
+library(survey)
 summary(hommes$PONDIND)
 hommes$PONDIND <- hommes$PONDIND/mean(hommes$PONDIND)
 hommes_svy <- svydesign(
   data = hommes, 
   ids = ~IDENT_MEN, 
   weights = ~PONDIND
+  
 )
-
 tbl_svysummary(
-  data = hommes_svy, 
-  include = c(MOCO_DET_SEXE, all_of(travail_domestique)),
-  by = MOCO_DET_SEXE, 
+  hommes_svy, 
+  include = c(TAF2, all_of(travail_menager), Effectifs), 
+  by = TAF2, 
   missing = "no",
-  statistic = list(all_continuous() ~ "{median} ({p25}, {p75})", all_categorical() ~
-                     "{p}% ({n_unweighted})")
-) %>%
-  add_p()
+  statistic = list(all_of(travail_menager) ~ "{p}%", 
+                   Effectifs ~ "{n_unweighted}")) %>%
+  add_overall(last = T) %>%
+  add_p() %>%
+  bold_p(t = 0.1)
 
+tabm <- hommes %>%
+  as_survey_design(ids = IDENT_MEN, 
+                   weights = PONDIND) %>%
+  tbl_svysummary(
+  include = c(MOCO_DET, all_of(travail_menager), Effectifs),
+  by = MOCO_DET, 
+  missing = "no",
+  statistic = list(all_of(travail_menager) ~ "{p}%", 
+                   Effectifs ~ "{n_unweighted}")) %>%
+  add_overall(last = T) %>%
+  add_p() %>%
+  bold_p(t = 0.1)
+
+tabm
+
+tabp <- hommes %>%
+  filter(!str_detect(MOCO_DET, "sans enfant")) %>%
+  mutate(MOCO_DET = MOCO_DET %>% droplevels()) %>%
+  as_survey_design(ids = IDENT_MEN, 
+                   weights = PONDIND) %>%
+  tbl_svysummary(
+    include = c(MOCO_DET, all_of(travail_parental), Effectifs),
+    by = MOCO_DET, 
+    missing = "no",
+    statistic = list(all_of(travail_parental) ~ "{p}%", 
+                     Effectifs ~ "{n_unweighted}")) %>%
+  add_overall(last = T) %>%
+  add_p() %>%
+  bold_p(t = 0.1)
+
+tabp
+
+
+
+tab$table_styling$spanning_header
+tab$table_styling$spanning_header
+tab$table_body$p.value
+tabprint <- tab$table_body %>%
+  mutate(p.value = if_else(p.value < 0.001, 
+                           "< 0,001", 
+                           round(p.value, 3) %>%
+                             as.character() %>%
+                             str_replace("\\.", ","))
+  ) |>
+  select(label, starts_with("stat_"), `p.value`)
+
+names(tabprint) <- c("Tâche", levels(hommes$MOCO_DET), "Ensemble", "p.value")
+tabprint
+tabprint[c(9:10), c(2,3)] <- "/"
+
+tabprint |>
+  flextable() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit() |>
+  separate_header(split = "/") |>
+  bold(part = "header") |>
+  bold(j = c(1, 9)) |> 
+  hline(part = "header") |> 
+  vline(j = c(1, 8,9)) |>
+  hline(i = c(8, 10)) 
+
+tabprint
 
 
 # 

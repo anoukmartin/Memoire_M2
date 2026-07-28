@@ -13,9 +13,6 @@ familles <- readRDS("Data_output/data_recode/menages_ageminmax.Rds") %>%
 
 data <- familles %>%
   mutate(
-    SEXEREP = case_when(
-      SEXEREP == "Femme" ~ 1, 
-      SEXEREP == "Homme" ~ 0),
     NIVIE = NIVIE/1200) %>%
   filter(TDM8_SEXE != "Autre ménage (complexe)")%>%
   filter(COUPLE_SEXE == "Couple de sexes différents")%>%
@@ -23,21 +20,59 @@ data <- familles %>%
          TDM8_SEXE = droplevels(TDM8_SEXE)) 
 
 var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
-var_label(data$n_FractionClasse) <- "Fraction de classe"
+var_label(data$n_FractionClasse) <- "Position sociale du ménage"
 var_label(data$TDM8_SEXE) <- "Configuration parentale"
 var_label(data$TDM8) <- "Configuration familiale"
-var_label(data$DNIVIE2) <- "Décile de niveau de vie"
+#var_label(data$DNIVIE2) <- "Décile de niveau de vie"
+
 
 data$PONDMEN <- data$PONDMEN/mean(data$PONDMEN)
+iorder(data$TDM8_SEXE)
+dataplot <- data 
+levels(dataplot$TDM8_SEXE) <- sapply(levels(dataplot$TDM8_SEXE), 
+                                     function(x) {insert_line_breaks(x, 35)})
+
+dataplot %>%   
+ggplot() +
+  aes(x = TDM8_SEXE, fill = SEXEREP, by = TDM8_SEXE, weight = PONDMEN,
+      label = scales::percent(after_stat(prop), accuracy = 1)) +
+  geom_bar(position = "fill", color = "black") +
+  geom_text(
+    stat = "prop", 
+    position = position_fill(.5)
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    #title = titre,
+    x = NULL,
+    y = "Pourcentage",
+  ) +
+  coord_flip() +
+  scale_fill_manual(values = c("#fdb863", "#b2abd2"))  +
+  theme_tufte()+
+  theme(legend.position = "bottom", legend.box = "horizontal", legend.title = element_blank())
+
 
 tab <- data %>%
   mutate(Ensemble = T) %>%
+  mutate(SEXEREP = case_when(
+    SEXEREP == "0" ~ "Homme", 
+    SEXEREP == "1" ~ "Femme"
+  )) %>%
+  filter(TDM8_SEXE != "Autre ménage (complexe)")%>%
+  filter(COUPLE_SEXE == "Couple de sexes différents")%>%
   as_survey_design(weights = PONDMEN) %>%
-  tbl_svysummary(include = c("NIVIE", "n_FractionClasse", "TDM8_SEXE", "SEXEREP", "Ensemble"), 
+  tbl_svysummary(include = c("NIVIE", "n_FractionClasse", "n_RevenusContribF", "NENFANTS", "TDM8_SEXE", "SEXEREP", "Ensemble"), 
                  by = SEXEREP, 
                  percent = "row")  %>%
-  add_p()
+  add_p() |> 
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+
 tab
+
 
 saveTableau(tab, type = "tab", 
             label = "desSexeRep",
@@ -49,8 +84,6 @@ saveTableau(tab, type = "tab",
 
 tab <- data %>%
   mutate(Ensemble = "1") %>%
-  filter(TDM8_SEXE != "Autre ménage (complexe)")%>%
-  filter(COUPLE_SEXE == "Couple de sexes différents")%>%
   as_survey_design(weights = PONDMEN) %>%
   tbl_svysummary(include = c("NIVIE", "n_FractionClasse",  "n_RevenusContribF", "Ensemble"), 
                  by = n_RevenusContribF, 
@@ -79,23 +112,42 @@ data <- data %>%
     )
   )
 freq(data$n_RevenusContribF)
+
+ageenfants <- indiv %>%
+  filter(ENFANT == "1") %>%
+  group_by(IDENT_MEN) %>%
+  summarise(AGE_ENFANTS_MENAGE_MOYEN = mean(AGE, na.rm = TRUE))
+
+data <- left_join(data, ageenfants)
+freq(data$NENFANTS)
+data <- data %>%
+  mutate(ENFANTS_MENAGE = case_when(
+    NENFANTS == "Aucun" ~ F, 
+    TRUE ~ T
+  ))
 reg <- glm(
-  formula = SEXEREP ~ NIVIE + n_FractionClasse + n_RevenusContribF + TDM8_SEXE ,
+  formula = SEXEREP ~ NIVIE + n_FractionClasse + TDM8_SEXE, 
   data = data,
   weights = PONDMEN,
   family = "quasibinomial"
 )
 
+
 summary(reg)
 
-agemax
+
 tblreg <- tbl_regression(reg, exponentiate = T, 
                          label = list(NIVIE ~ "Niveau de vie mensuel (en centaine d'euros)", 
-                                      n_FractionClasse ~ "Fraction de classe", 
+                                      n_FractionClasse ~ "Position sociale du ménage", 
                                       TDM8_SEXE~ "Configuration parentale du couple")) %>%
   bold_p(t = 0.1)%>%
   bold_labels() %>%
-  add_glance_source_note()
+  add_glance_source_note() |> 
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+
 tblreg
 
 saveTableau(tblreg, type = "reg", 

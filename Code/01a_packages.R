@@ -148,7 +148,7 @@ theme_set(theme_minimal())
 
 #theme_set(theme(base_family = "Times New Roman"))
 theme_memoire <- function(base_size = 14) {
-  ggthemes::theme_tufte(base_size = base_size) %+replace%
+  ggthemes::theme_tufte(base_size = base_size, base_family = "Garamond") %+replace%
     theme(
       # L'ensemble de la figure
       plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,5,0), hjust = 0),
