@@ -130,7 +130,7 @@ freq(familles$n_RevenusContribF)
 summary(familles$NIVIE)
 
 familles <- familles %>%
-  rec_PROP("n_RevenusContribF") %>%
+  rec_PROP("n_RevenusContribF", NewVar = "n_RevenusContribF_cut") %>%
   left_join(dep_men %>%
               select(IDENT_MEN, STALOG)) %>%
   rec_TYPMEN5() %>%
@@ -151,7 +151,7 @@ summary(familles$REVSOC)
 
 # Variables recodées
 freq(familles$TYPVOIS)
-freq(familles$n_RevenusContribF)
+freq(familles$n_RevenusContribF_cut)
 freq(familles$STALOG)
 freq(familles$TYPMEN5)
 freq(familles$TYPMEN)
@@ -198,7 +198,7 @@ d_acm_sup <- familles %>%
   select(starts_with("NAIS7_"), 
          starts_with("NATIO7_"), 
          starts_with("AG6_"),
-         n_RevenusContribF,
+         n_RevenusContribF_cut,
          NENFANTS, TYPMEN, TDM8, TDM8_SEXE, TAF) %>%
   mutate(TDM8 = as.factor(TDM8), 
          TDM8_SEXE = as.factor(TDM8_SEXE))

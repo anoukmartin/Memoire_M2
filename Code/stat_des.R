@@ -198,7 +198,14 @@ adultes <- indiv %>%
         NBEAUX_ENFANTS  = if_else(NBEAUX_ENFANTS > 0, "Oui", "Non"), 
         NBEAUX_ENFANTS_HORSDOM  = case_when(
           NBEAUX_ENFANTS_HORSDOM > 0 ~"Oui", 
-          TRUE ~"Non")) %>%
+          TRUE ~"Non"), 
+        NENFANTS_PROPRES_TOUS = case_when(
+          NENFANTS_PROPRES == "Oui" | NENFANTS_PROPRES_HORSDOM == "Oui" ~ "Oui", 
+          TRUE ~ "Non"
+        ), 
+        NENFANTS_COMMUNS_TOUS = case_when(
+          NENFANTS_COMMUNS == "Oui" | NENFANTS_COMMUNS_HORSDOM == "Oui" ~ "Oui", 
+          TRUE ~ "Non")) %>%
   mutate(MOCO_DET = MOCO_DET %>%
            str_remove("Adulte d’une famille recomposée") %>%
            str_remove_all("\\(|\\)") %>% str_trim() %>% str_to_sentence(), 
@@ -225,21 +232,57 @@ familles %>%
 
 adultes %>%
   as_survey_design(weights = PONDIND, ids = IDENT_MEN) %>%
-  tbl_svysummary(include = c(SEXE, NENFANTS_PROPRES, NENFANTS_COMMUNS, NENFANTS_PROPRES_HORSDOM, NENFANTS_COMMUNS_HORSDOM, NBEAUX_ENFANTS, NBEAUX_ENFANTS_HORSDOM), by = SEXE) %>%
+  tbl_svysummary(include = c(SEXE, NENFANTS_PROPRES, NENFANTS_COMMUNS, NENFANTS_PROPRES_HORSDOM, NENFANTS_COMMUNS_HORSDOM, NBEAUX_ENFANTS, NBEAUX_ENFANTS_HORSDOM, NENFANTS_PROPRES_TOUS, NENFANTS_COMMUNS_TOUS), by = SEXE) %>%
   add_overall(last = T)
 
-ggplot(adultes) +
-  aes(x = NENFANTS_PROPRES, fill = NENFANTS_COMMUNS, by = NENFANTS_PROPRES, weight = PONDIND, 
+adultes$NBEAUX_ENFANTS
+
+adultes <- adultes %>%
+  mutate(STAT_PARENTAL = case_when(
+    NENFANTS_PROPRES == "Oui" & NBEAUX_ENFANTS == "Oui" ~ "Beau-parent et parent",
+    NENFANTS_PROPRES == "Non" & NBEAUX_ENFANTS == "Oui" ~ "Beau-parent sans enfant(s)", 
+    NENFANTS_PROPRES == "Oui" & NBEAUX_ENFANTS == "Non"  ~ "Parent sans beaux-enfants"
+  ))
+adultes$STAT_PARENTAL <- sapply(adultes$STAT_PARENTAL, function(x){insert_line_breaks(x, 30)})
+
+adultes %>%
+  ggplot() +
+  aes(x = SEXE, fill = STAT_PARENTAL, by = SEXE, weight = PONDIND, 
       label = scales::percent(after_stat(prop), accuracy = 1)) +
   geom_bar(position = "stack", color = "black") +
   geom_text(
     stat = "prop", 
     position = position_stack(.5)
   ) +
+  scale_y_continuous(labels = scales::percent_format(scale = 0.1)) +
+  labs(
+    #title = titre,
+    x = "Sexe",
+    y = "Pourcentage",
+    fill = "Lien(s) avec les enfants issus d'union(s)\nprécédante(s) vivants dans le ménage"
+  ) +
+  coord_flip() +
+  #facet_wrap(facet = ~SEXE, nrow = 2, ncol = 1) +
+  scale_fill_brewer(palette = "Accent")  +
+  theme_tufte()+
+  theme(legend.position = "bottom", legend.box = "horizontal")
+
+
+
+
+adultes %>%
+  ggplot() +
+  aes(x = STAT_PARENTAL, fill = NENFANTS_COMMUNS, by = STAT_PARENTAL, weight = PONDIND, 
+      label = scales::percent(after_stat(prop), accuracy = 1)) +
+  geom_bar(position = "fill", color = "black") +
+  geom_text(
+    stat = "prop", 
+    position = position_fill(.5)
+  ) +
  scale_y_continuous(labels = scales::percent) +
   labs(
     #title = titre,
-    x = "Enfant(s) issu(s) d'une union précédante",
+    x = "(Beaux)-enfants issus d'unions précédantes",
     y = "Pourcentage",
     fill = "Enfant(s) issu(s) de l'union actuelle"
   ) +
@@ -269,7 +312,15 @@ ggplot(adultes) +
   scale_fill_manual(values = c("#dfc27d", "#80cdc1"))  +
   theme_tufte()+
   theme(legend.position = "bottom", legend.box = "horizontal", legend.title = element_blank())
+
+
+
+
 adultes$NENFANTS_PROPRES_HORSDOM
+
+
+
+
 
 enfantsp_hd <- adultes %>%
   ungroup() %>%
@@ -309,15 +360,16 @@ data_plot <- familles %>%
            fct_infreq(w = PONDMEN))
 levels(data_plot$TDM8_SEXE) <- sapply(levels(data_plot$TDM8_SEXE), 
                                       function(x) {insert_line_breaks(x, 20)})
+
                                       
 ggplot(data_plot) + 
   aes(x = TDM8_SEXE, fill = ENFANTS_PROPRES_HORSDOM_COUPLE, by = TDM8_SEXE,
       weight = PONDMEN, 
       label = scales::percent(after_stat(prop), accuracy = 1)) +
-  geom_bar(position = "stack", color = "black") +
+  geom_bar(position = "fill", color = "black") +
   geom_text(
     stat = "prop", 
-    position = position_stack(.5),
+    position = position_fill(.5),
     size = 3
   ) +
   #scale_y_continuous(labels = scales::percent_format(scale = 0.1)) +

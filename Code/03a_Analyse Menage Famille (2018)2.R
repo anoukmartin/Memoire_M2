@@ -1747,7 +1747,7 @@ freq(adultesref$STATUT_CONJOINT)
 
 # Variables socio-démo genrées 
 menages_from_indiv3 <- reduce(
-    variables_socdem,
+    c("NOI", variables_socdem),
     .init = adultesref,
     .f = \(df, v) {
       mutate(
@@ -1876,3 +1876,4 @@ freq(indiv_fam_enrichie$POSITION_FRATERIE)
 dir.create("Data_output/data_recode")
 saveRDS(indiv_fam_enrichie, "Data_output/data_recode/indiv.Rds")
 saveRDS(menages, "Data_output/data_recode/menages.Rds")
+

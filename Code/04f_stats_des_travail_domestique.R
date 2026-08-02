@@ -52,14 +52,15 @@ indiv <- readRDS(file = "Data_output/data_recode/indiv_in_menagesAge.Rds") %>%
 # Tous les adultes 
 adultes <- indiv %>%
   filter(ENFANT == "2") %>%
-  filter(if_any(all_of(travail_domestique), ~ !is.na(.)))
+  filter(if_any(all_of(travail_parental), ~ !is.na(.)))
 
 adultes$`Cuisine de récéption`
-
+freq(adultes$TAF)
 data_long <- adultes %>%
+  filter(!str_detect(TAF, " sans enfant"))%>%
   rec_SEXE() %>%
   pivot_longer(
-    cols = travail_menager,
+    cols = travail_parental,
     names_to = "variable",
     values_to = "reponse"
   ) %>%
@@ -72,19 +73,21 @@ data_long <- adultes %>%
   ungroup() %>%
   filter(reponse == TRUE)
 
+data_long$MOCO_DET <- as.factor(data_long$MOCO_DET)
+levels(data_long$MOCO_DET) <- sapply(levels(data_long$MOCO_DET), 
+                                      function(x) {insert_line_breaks(x, 30)})
 
-ggplot(data_long, aes(x = variable, y = pourcentage, fill = MOCO_DET, 
-                      labels = round(pourcentage, 0))) +
+ggplot(data_long, aes(x = variable, y = pourcentage, fill = MOCO_DET 
+                      )) +
   geom_col(position = "dodge", color = "black") +
-  #geom_text(position = position_dodge()) +
+  geom_text(aes(label = round(pourcentage, 0)), position = position_dodge(width = 0.9)) +
   labs(
     x = NULL,
-    y = "Pourcentage ayant effectué l'activité dans le ménage",
+    y = "Pourcentage ayant effectué l'activité\nla semaine qui précède l'enquête",
     fill = "Position dans le ménage"
   ) +
   theme_minimal() + 
-  facet_wrap(facets = ~ SEXE) + 
-  coord_flip() + 
+  facet_wrap(facets = ~ SEXE, nrow = 2) + 
   scale_fill_brewer(palette = "Paired") +
   theme_tufte() + 
   theme(legend.position = "bottom", legend.box = "horizontal", legend.title = element_blank())
@@ -275,9 +278,266 @@ tabprint |>
 
 tabprint
 
+###############################################################################.
+# ANALYSE NIVEAU MENAGE ####
+###############################################################################.
 
-# 
-# 
+travail_domestique <- c("COURSES", "REPASSAGE", "VAISSELLE", "MENAGE",
+                        "CUISINEA", "CUISINEB", 
+                        "BRICOLAGE", "JARDINAGE", 
+                        "AIDEENFANT", "CHANGEENFANT") 
+
+
+
+dep_ind <- readRDS("Data_output/DepIndiv.Rds") %>%
+  select(IDENT_MEN, NOI, all_of(travail_domestique), all_of(paste0("NB", travail_domestique)))
+dep_ind[dep_ind == ""] <- NA
+dep_ind <- dep_ind %>%
+  filter(if_any(all_of(travail_domestique), ~ !is.na(.)))
+probs <- freq(dep_ind$NBCOURSES)
+
+
+for (var in travail_domestique) {
+  nb_var <- paste0("NB", var)
+  
+  dep_ind <- dep_ind %>%
+    mutate(
+      !!nb_var := case_when(
+        .data[[nb_var]] %in% c("8", "9") ~ NA,
+        TRUE ~ .data[[nb_var]]))
+ 
+  probs <- freq(dep_ind[[nb_var]])
+  probs <- c(probs$val/100)[1:7]
+  
+  dep_ind <- dep_ind %>%
+    mutate(
+      !!nb_var := case_when(
+        is.na(.data[[nb_var]]) & .data[[var]] == "2" ~ 0,
+        is.na(.data[[nb_var]]) & .data[[var]] == "1" 
+        ~ sample(
+            1:7,
+            size = 1,
+            prob = probs
+          ),
+        TRUE ~ .data[[nb_var]]
+      )
+    )
+}
+
+summary(dep_ind$NBCOURSES)
+summary(dep_ind$NBCHANGEENFANT)
+
+names(dep_ind)
+dep_ind <- pad_2digits(dep_ind, "NOI")
+
+dep_ind <- dep_ind %>%
+  select(-all_of(travail_domestique))
+
+travail_domestique <- travail_domestique %>%
+  str_to_sentence()
+travail_domestique[c(9,10, 5,6)] <- c("Aide scolaire aux enfants",
+                                      "Soin/aide aux enfants", 
+                                      "Cuisine du quotidien", 
+                                      "Cuisine de récéption") 
+travail_domestique
+travail_menager <- travail_domestique[-c(9, 10)]
+travail_parental <- travail_domestique[c(9, 10)]
+names(dep_ind)[-c(1, 2)] <- travail_domestique
+names(dep_ind)
+dep_ind
+
+familles <- readRDS("Data_output/data_recode/menages_ageminmax.Rds") 
+familles <-  familles %>%
+  filter(IDENT_MEN %in% dep_ind$IDENT_MEN) %>%
+  filter(COUPLE_SEXE == "Couple de sexes différents") %>%
+  left_join(dep_ind %>%
+              rename_with(~ paste0(.x, "_F"), -c(IDENT_MEN)),
+            by = join_by(IDENT_MEN, NOI_F)) %>%
+  left_join(dep_ind %>%
+              rename_with(~ paste0(.x, "_H"), -c(IDENT_MEN)),
+            by = join_by(IDENT_MEN, NOI_H)) 
+
+
+freq(familles$`Cuisine du quotidien_H`)
+freq(familles$`Cuisine du quotidien_F`)
+
+for (var in travail_domestique) {
+  
+  var_F <- paste0(var, "_F")
+  var_H <- paste0(var, "_H")
+  var_couple <- paste0(var, "_couple_n")
+  var_couple2 <- paste0(var, "_couple")
+  
+  familles <- familles %>%
+    mutate(
+      !!var_couple := case_when(
+        is.na(.data[[var_F]]) & is.na(.data[[var_H]]) ~ NA_real_,
+        is.na(.data[[var_H]]) ~ .data[[var_F]],
+        is.na(.data[[var_F]]) ~ -.data[[var_H]],
+        TRUE ~ .data[[var_F]] - .data[[var_H]]
+      )
+    )
+  familles <- familles %>%
+    mutate(
+      !!var_couple2 := case_when(
+        .data[[var_couple]] == 0 ~ "égale",
+        .data[[var_couple]] > 0 ~ "féminine",
+        .data[[var_couple]] < 0 ~ "masculine")
+      )
+    
+}
+
+
+familles <- familles %>%
+  filter(str_detect(TDM8_SEXE, "Couple")) %>%
+  #group_by(TAF) %>%
+  mutate(TDM8_SEXE = TDM8_SEXE %>% 
+           droplevels() %>%
+           fct_relevel(
+             "Couple sans enfant", "Couple avec uniquement enfant(s) du couple",
+             "Couple sans enfant du couple, et avec au moins un enfant de la mère",
+             "Couple sans enfant du couple, et avec au moins un enfant du père",
+             "Couple sans enfant du couple, et avec au moins un enfant de chacun des membres du couple",
+             "Couple avec enfant(s) du couple, et avec au moins un enfant de la mère",
+             "Couple avec enfant(s) du couple, et avec au moins un enfant du père",
+             "Couple avec enfant(s) du couple, et avec au moins un enfant de chacun des membres du couple"
+           )) 
+
+
+tab <- familles %>%
+  mutate(Effectifs = T) %>%
+  as_survey_design(weights = PONDMEN) %>%
+  tbl_svysummary(
+    include = c("TDM8_SEXE", paste0(travail_domestique, "_couple"), Effectifs), 
+    by = TDM8_SEXE, 
+    missing = "no",
+    statistic = list(paste0(travail_domestique, "_couple") ~ "{p}%", 
+                     Effectifs ~ "{n_unweighted}")) %>%
+  add_overall(last = T) %>%
+  add_p()
+tab
+
+tabprint <- tab$table_body %>%
+  mutate(p.value = if_else(p.value < 0.001, 
+                           "< 0,001", 
+                           round(p.value, 3) %>%
+                             as.character() %>%
+                             str_replace("\\.", ","))
+  ) |>
+  select(label, starts_with("stat_"), `p.value`) %>%
+  mutate(label = str_remove(label, "_couple"))
+
+names(tabprint)
+
+names(tabprint) <- c("Tâche (répartition homme-femme)", 
+                     levels(familles$TDM8_SEXE) %>%
+                       str_replace(",", "/"),
+                       "Ensemble", "p.value")
+tabprint
+#tabprint[c(9:10), c(2,3)] <- "/"
+
+
+
+ft <- tabprint |>
+  flextable() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit() |>
+  separate_header(split = "/") |>
+  bold(part = "header") |>
+  align((1:40)[-seq(1, 40, 4)], j = 1, align = "right") |>
+  hline(part = "header") |>
+  vline(j = c(1, 9, 10)) |>
+  hline(i = c(seq(1, 39, 4), 40)) |>
+  bold(i = c(seq(1, 39, 4), 41))
+
+ft
+doc <- read_docx() |>
+  body_add_flextable(ft)
+
+print(doc, target = "tableau.docx")
+
+
+## Plot ####
+plot_data <- familles %>%
+  pivot_longer(
+    cols = paste0(travail_domestique, "_couple"),
+    names_to = "tache",
+    values_to = "repartition"
+  ) %>%
+  as_survey_design(weights = PONDMEN) %>%
+  filter(!is.na(repartition)) %>%
+  group_by(tache, TDM8_SEXE, repartition) %>%
+  summarise(p = survey_mean(vartype = NULL)) %>%
+  ungroup() %>%
+  mutate(
+    tache = stringr::str_remove(tache, "_couple")
+  ) %>%
+  mutate(repartition = as.factor(repartition) %>%
+           fct_relevel("féminine", "égale", "masculine"))
+freq(plot_data$tache)
+
+
+levels(plot_data$TDM8_SEXE) <- sapply(
+  levels(plot_data$TDM8_SEXE), 
+  function(x) {insert_line_breaks(x, 25)}
+)
+
+ggplot(plot_data %>%
+         filter(!str_detect(TDM8_SEXE, "chacun")) %>%
+         filter(tache == "Soin/aide aux enfants") %>%
+         filter(TDM8_SEXE != "Couple sans enfant"),
+       aes(TDM8_SEXE, p, fill = repartition)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = paste0(round(p*100, 0), "%")), 
+            position = position_fill(.5))+
+  facet_wrap(~tache) +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  scale_fill_brewer(palette = "Spectral")
+
+ 
+ggplot(plot_data %>%
+         filter(!str_detect(TDM8_SEXE, "chacun")) %>%
+         filter(tache == "Aide scolaire aux enfants") %>%
+         filter(TDM8_SEXE != "Couple sans enfant"),
+       aes(TDM8_SEXE, p, fill = repartition)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = paste0(round(p*100, 0), "%")), 
+            position = position_fill(.5))+
+  facet_wrap(~tache) +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  scale_fill_brewer(palette = "Spectral")
+
+
+ggplot(plot_data %>%
+         filter(!str_detect(TDM8_SEXE, "chacun")) %>%
+         filter(tache %in% travail_menager)) +
+       aes(TDM8_SEXE, p, fill = repartition) +
+  geom_col(color = "black") +
+  geom_text(aes(label = paste0(round(p*100, 0), "%")), 
+            position = position_fill(.5))+
+  facet_wrap(~tache) +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  facet_wrap(~tache) +
+  scale_fill_brewer(palette = "Spectral")
+
+ggplot(plot_data %>%
+         filter(!str_detect(TDM8_SEXE, "chacun")) %>%
+         filter(tache == "Menage")) +
+  aes(TDM8_SEXE, p, fill = repartition) +
+  geom_col(color = "black") +
+  geom_text(aes(label = paste0(round(p*100, 0), "%")), 
+            position = position_fill(.5))+
+  facet_wrap(~tache) +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  #facet_wrap(~tache) +
+  scale_fill_brewer(palette = "Spectral")
+
+
 # tbl_summary(
 #   data = adultes %>%
 #     filter(SEXE == "2"), 
