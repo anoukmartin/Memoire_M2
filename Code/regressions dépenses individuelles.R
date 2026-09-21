@@ -11,7 +11,7 @@ indiv <- readRDS("Data_output/data_recode/indiv_in_menagesAge.Rds")
 
 # Dépenses individuelles
 dep_ind <- readRDS("Data_output/DepIndiv.Rds") |>
-  pad_2digits("NOI")
+  pad_2digits("NOI") 
 
 freq(dep_ind$NOI)
 
@@ -27,8 +27,8 @@ indiv <- indiv |>
             na.rm = TRUE
           )
         )
-      ) %>%
-      select(IDENT_MEN, NOI, MVETEMENTS_D, MLOISIRCUL_D, MREPET_D, MCOIFFUR_D)
+      ) |>
+      select(IDENT_MEN, NOI, VAG, MVETEMENTS_D, MLOISIRCUL_D, MREPET_D, MCOIFFUR_D)
   )
 summary(indiv$MVETEMENTS_D)
 freq.na(indiv$MVETEMENTS_D)
@@ -99,6 +99,7 @@ data <- enfants |>
   filter(!is.na(MVETEMENTS_D)) |>
   
   # Mise à l'échelle des variables monétaires
+  rec_TYPOLOG() %>%
   mutate(
     NIVIE = NIVIE / 1200,
     n_REVENUS_indiv_H = n_REVENUS_indiv_H / 1200,
@@ -106,7 +107,8 @@ data <- enfants |>
     n_REVENUS_indiv_PERE = n_REVENUS_indiv_PERE / 1200,
     n_REVENUS_indiv_MERE = n_REVENUS_indiv_MERE / 1200,
     n_REVENUS_indiv_BEAUPARENT = n_REVENUS_indiv_BEAUPARENT / 1200,
-    REVDISP = REVDISP/1200
+    REVDISP = REVDISP/1200,
+    ANNEE_BDF = as.factor(ANNEE_BDF)
   ) |>
   mutate(SEXE = case_when(
     SEXE == "1" ~ "Masculin", 
@@ -207,7 +209,11 @@ data <- enfants |>
       relevel(AGE_categories, ref = "Enfant [7;11["), 
     POSITION_FRATERIE = 
       as.factor(POSITION_FRATERIE) %>%
-      relevel(POSITION_FRATERIE, ref = "Aîné-e")) 
+      relevel(POSITION_FRATERIE, ref = "Aîné-e"), 
+    TYPOLOG = 
+      as.factor(TYPOLOG) %>%
+      relevel(TYPOLOG, ref = "Toute l'année ou presque")) 
+
 
 ################################################################################.
 # 5. Modèle principal ----
@@ -279,7 +285,7 @@ tableau <- tableau %>%
 
 
 
-tableau %>%
+tab <- tableau %>%
   pivot_wider(id_cols = n_FractionClasse, 
               names_from = MOCO_DET, 
               values_from = moyenne)  |>
@@ -294,10 +300,29 @@ tableau %>%
   font(fontname = "Garamond", part = "all") |>
   fontsize(size = 10, part = "all") |>
   align(align = "center", part = "all", j = 2:6) |>
-  autofit()
+  autofit() |> 
+  width(j = 1, width = 2) |>
+  width(j = 2:6, width = 1.0)
+
+tab
 
 head(tableau)
 names(tableau)
+
+# Print word : 
+library(officer)
+
+doc <- read_docx()
+
+doc <- doc |>
+  body_add_flextable(
+    tab
+  )
+
+doc
+
+
+
 # GG plot 
 
 library(ggplot2)
@@ -337,6 +362,23 @@ ggplot(tableau,
     text = element_text(family = "Garamond")
   )
 
+#### MODELES #####
+
+var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaine d'euros)"
+var_label(data$n_FractionClasse) <- "Position sociale du ménage"
+var_label(data$MOCO_DET) <- "Situation familiale"
+var_label(data$ANNEE_BDF) <- "Année d'enquête"
+var_label(data$POSITION_FRATERIE) <- "Place dans l'adelphie"
+var_label(data$SEXE) <- "Sexe"
+var_label(data$RANG_ENFANT_SEXE) <- "Rang sexué dans l'adelphie"
+var_label(data$AGE_categories) <- "Age"
+var_label(data$TYPOLOG) <- "Temporalité de présence"
+
+data <- data %>%
+  mutate(VAG = str_glue("V{VAG}") %>% 
+           as.character())
+freq(data$VAG)
+var_label(data$VAG) <- "Vague"
 # linéaire 
 modele <- lm(
   MVETEMENTS_D ~
@@ -348,7 +390,6 @@ modele <- lm(
   weights = PONDIND,
   data = data
 )
-library(fixest)
 
 
 modele <- lm(
@@ -357,59 +398,43 @@ modele <- lm(
     POSITION_FRATERIE +
     SEXE + RANG_ENFANT_SEXE +
     AGE_categories +
-    MOCO_DET,
+    TYPOLOG +
+    MOCO_DET + 
+    ANNEE_BDF + 
+    VAG:ANNEE_BDF,
   
   weights = PONDIND,
   #cluster = IDENT_MEN,
   data = data
 )
 
-modele_fix <- feols(
-  log(MVETEMENTS_D +1) ~
-    NIVIE + n_FractionClasse +
-    POSITION_FRATERIE +
-    SEXE + RANG_ENFANT_SEXE +
-    AGE_categories +
-    MOCO_DET,
-
-  weights = ~PONDIND,
-  cluster = ~IDENT_MEN,
-  data = data
-)
 
 
 
 summary(modele)
-summary(modele_fix)
 
-tbl_regression(modele)|> 
-  add_glance_table()  |>
+
+reg <- tbl_regression(modele, conf.int = F)|> 
+  add_glance_source_note()  |>
   bold_p(t = 0.1) %>%
   as_flex_table() |>
   font(fontname = "Garamond", part = "all") |>
   fontsize(size = 10, part = "all") |>
   autofit()
+reg
 
-library(officer)
-
-doc <- read_docx()
 
 doc <- doc |>
+  body_add_break() |>
   body_add_flextable(
-    tbl_regression(modele) |>
-      add_glance_source_note() |>
-      bold_p(t = 0.1) |>
-      as_flex_table() |>
-      font(fontname = "Garamond", part = "all") |>
-      fontsize(size = 10, part = "all") |>
+    reg |>
       border_remove() |>
       hline_top(border = fp_border(width = 1)) |>
       hline_bottom(border = fp_border(width = 1)) |>
       autofit()
   )
 
-print(doc, target = "Resultats/resultats_regression-depenses_vetements_enfants.docx")
-  
+
 # add_significance_stars(
 #     thresholds = c(.001, .01, .05, .10),
 #     hide_ci = FALSE,
@@ -417,7 +442,7 @@ print(doc, target = "Resultats/resultats_regression-depenses_vetements_enfants.d
 #     hide_p = FALSE
 #   )
 
-plot(modele)
+# plot(modele)
 
 ################################################################################.
 # 6. Test de robustesse : exclusion du 1 % supérieur des dépenses ----
@@ -428,12 +453,14 @@ quantile(data$MVETEMENTS_D, .99)
 modele_log_sans_top <- lm(
   
   log(MVETEMENTS_D + 1) ~
-    n_FractionClasse +
-    SEXE +
+    NIVIE + n_FractionClasse +
+    POSITION_FRATERIE +
+    SEXE + RANG_ENFANT_SEXE +
     AGE_categories +
-    N_FRERES_SOEURS_TOUS +
-    RANG_ENFANT +
-    NIVIE*MOCO_DET,
+    TYPOLOG +
+    MOCO_DET + 
+    ANNEE_BDF + 
+    VAG:ANNEE_BDF,
   weights = PONDIND,
   
   data = subset(
@@ -451,90 +478,6 @@ tbl_regression(modele_log_sans_top) %>%
 
 
 
-################################################################################.
-# 7. Variante : prise en compte du statut légal des enfants ----
-################################################################################.
-
-# On remplace MOCO_DET par MOCO_DET_SEXE afin de distinguer
-# les enfants du père, de la mère ou du couple.
-
-modele <- lm(
-  log(MVETEMENTS_D + 1) ~
-    
-    n_FractionClasse +
-    SEXE +
-    AGE_categories +
-    N_FRERES_SOEURS_TOUS +
-    RANG_ENFANT +
-    NIVIE*MOCO_DET_SEXE,
-  
-  weights = PONDIND,
-  data = data
-)
-
-tbl_regression(modele) |>
-  add_glance_source_note() |>
-  bold_p(t = 0.10) 
-
-
-################################################################################.
-# 8. Les revenus des adultes expliquent-ils les dépenses ? ####
-################################################################################.
-
-## Revenus des hommes et des femmes
-
-modele <- lm(
-  log(MVETEMENTS_D + 1) ~
-    NIVIE +
-    n_FractionClasse +
-    SEXE +
-    AGE +
-    N_FRERES_SOEURS_TOUS +
-    RANG_ENFANT +
-    n_REVENUS_indiv_F +
-    n_REVENUS_indiv_H,
-  
-  weights = PONDIND,
-  data = data
-)
-
-
-
-## Revenus du père et de la mère
-
-modele <- lm(
-  log(MVETEMENTS_D + 1) ~
-    NIVIE +
-    n_FractionClasse +
-    SEXE +
-    AGE +
-    N_FRERES_SOEURS_TOUS +
-    RANG_ENFANT +
-    n_REVENUS_indiv_MERE +
-    n_REVENUS_indiv_PERE,
-  
-  weights = PONDIND,
-  data = data
-)
-
-
-## Interactions avec la configuration familiale
-
-modele <- lm(
-  log(MVETEMENTS_D + 1) ~
-    NIVIE +
-    n_FractionClasse +
-    SEXE +
-    AGE +
-    N_FRERES_SOEURS_TOUS +
-    RANG_ENFANT +
-    TDM8_SEXE:n_REVENUS_indiv_F +
-    TDM8_SEXE:n_REVENUS_indiv_H,
-  
-  weights = PONDIND,
-  data = data
-)
-
 
 
 ################################################################################.
@@ -548,16 +491,22 @@ data_recomp <- data |>
            relevel("Enfant du couple dans une famille recomposée"))
 
 freq(data_recomp$MOCO_DET)
+freq(data_recomp$TYPOLOG)
 
-# Dans les familles recomposées, on cherche à déterminer
-# si les dépenses sont davantage associées au revenu
-# du parent biologique ou de celui du beau-parent.
-
-data_recomp2 <- data_recomp %>%
+data_recomp2 <- data %>%
   group_by(IDENT_MEN) %>%
   filter(n_distinct(MOCO_DET, na.rm = TRUE) > 1) %>%
-  ungroup()
+  mutate(MOCO_DET = MOCO_DET %>%
+           as.character() %>%
+           str_remove_all(" de la famille recomposée") %>% 
+           str_remove_all(" dans une famille recomposée") %>% 
+           as.factor()) %>%
+  mutate(MOCO_DET = MOCO_DET %>%
+           relevel("Enfant du couple"))
 
+
+freq(data_recomp2$MOCO_DET)
+var_label(data_recomp2$MOCO_DET) <- "Position dans la famille"
 modele <- feols(
   
   log(MVETEMENTS_D + 1) ~
@@ -565,6 +514,7 @@ modele <- feols(
     AGE_categories +
     POSITION_FRATERIE +
     RANG_ENFANT_SEXE +
+    TYPOLOG + 
     MOCO_DET |  
     
     IDENT_MEN,
@@ -574,7 +524,7 @@ modele <- feols(
   data = data_recomp2
 )
 
-tbl_regression(modele) |>
+reg2 <- tbl_regression(modele, conf.int = F) |>
   bold_p(t = .10) |>
   bold_labels() |>
   #italicize_levels() |>
@@ -584,7 +534,20 @@ tbl_regression(modele) |>
   fontsize(size = 10, part = "all") |>
   autofit()
 
+reg2
 
+
+doc <- doc |>
+  body_add_break() |>
+  body_add_flextable(
+    reg2 |>
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+
+print(doc, target = "Resultats/resultats_regression-depenses_vetements_enfants.docx")
 
 summary(modele)
 summary(data_recomp$N_FRERES_SOEURS_TOUS)
@@ -613,30 +576,36 @@ svymean(
 )
 
 # Enfants hors familles recomposées
-data_notrecomp2 <- data %>%
-  filter(!(IDENT_IND %in% data_recomp2$IDENT_IND)) %>%
+# data_notrecomp2 <- data %>%
+#   filter(!(IDENT_IND %in% data_recomp2$IDENT_IND)) %>%
+#   group_by(IDENT_MEN) %>%
+#   filter(n() >1) %>%
+#   ungroup()
+
+
+data_not_recomp2 <- data %>%
   group_by(IDENT_MEN) %>%
-  filter(n() >1) %>%
+  filter(n() > 1) %>%
+  filter(n_distinct(MOCO_DET, na.rm = TRUE) == 1) %>%
   ungroup()
 
 
 modele <- feols(
-  
   log(MVETEMENTS_D + 1) ~
     SEXE +
     AGE_categories +
     POSITION_FRATERIE +
     RANG_ENFANT_SEXE +
-    MOCO_DET_SEXE |  
+    TYPOLOG |  
     
     IDENT_MEN,
   
   weights = ~PONDIND,
   cluster = ~IDENT_MEN,
-  data = data_notrecomp2
+  data = data_not_recomp2
 )
 
-tbl_regression(modele) |>
+reg3 <- tbl_regression(modele, conf.int = F) |>
   bold_p(t = .10) |>
   bold_labels() |>
   #italicize_levels() |>
@@ -646,283 +615,16 @@ tbl_regression(modele) |>
   fontsize(size = 10, part = "all") |>
   autofit()
 
-
-
-############################################.
-# DEPENSES DES ADULTES #####################
-############################################.
-################################################################################
-# 2. Sélection de la population étudiée ----
-################################################################################
-
-# Restriction aux enfants
-adultes <- indiv |>
-  filter(ENFANT == "2") 
-
-################################################################################
-# 3. Exploration de la variable dépendante ----
-################################################################################
-
-summary(adultes$AGE)
-
-summary(adultes$MVETEMENTS_D)
-boxplot(adultes$MVETEMENTS_D)
-
-# Environ 35 % des dépenses sont manquantes
-freq.na(adultes$MVETEMENTS_D)
-freq.na(adultes$MLOISIRCUL_D)
-
-# Une valeur extrêmement élevée (17 520 €) apparaît comme un outlier.
-# Elle est remplacée par NA afin qu'elle ne domine pas l'estimation.
-adultes$MVETEMENTS_D[
-  adultes$MVETEMENTS_D == 7692.0
-] <- NA
-adultes$MVETEMENTS_D[
-  adultes$MVETEMENTS_D == 6633.0
-] <- NA
-
-
-# Distribution brute
-plot(density(adultes$MVETEMENTS_D, na.rm = TRUE))
-
-# Distribution après transformation logarithmique
-ggplot(adultes) +
-  geom_density(aes(x = log(MVETEMENTS_D + 1)))
-
-# Importance des dépenses nulles
-freq(adultes$MVETEMENTS_D == 0)
-mean(enfants$MVETEMENTS_D, na.rm = TRUE)
-
-################################################################################
-# 4. Préparation des données pour les régressions ----
-################################################################################
-freq(adultes$TAF)
-
-data <- adultes |>
-  filter(TAF != "Autre ménage (complexe)") |>
-  
-  # Suppression des observations sans variable dépendante
-  filter(!is.na(MVETEMENTS_D)) |>
-  
-  # Mise à l'échelle des variables monétaires
-  mutate(
-    NIVIE = NIVIE / 1200,
-    n_REVENUS_indiv = n_REVENUS_indiv/1200,
-    n_REVENUS_indiv_H = n_REVENUS_indiv_H / 1200,
-    n_REVENUS_indiv_F = n_REVENUS_indiv_F / 1200,
-    # n_REVENUS_indiv_PERE = n_REVENUS_indiv_PERE / 1200,
-    # n_REVENUS_indiv_MERE = n_REVENUS_indiv_MERE / 1200,
-    # n_REVENUS_indiv_BEAUPARENT = n_REVENUS_indiv_BEAUPARENT / 1200,
-    REVDISP = REVDISP/1200
-  ) |>
-  mutate(SEXE = case_when(
-    SEXE == "1" ~ "Masculin", 
-    SEXE == "2" ~ "Féminin"
-  )) |>
-  # Définition des modalités de référence
-  mutate(
-    
-    n_FractionClasse =
-      fct_relevel(n_FractionClasse, "'Petits-moyens' [C3]"),
-    
-    TDM8_SEXE =
-      fct_relevel(
-        TDM8_SEXE,
-        "Couple avec uniquement enfant(s) du couple"
-      ) |> droplevels(),
-    
-    TDM8 =
-      fct_relevel(
-        TDM8,
-        "Couple avec uniquement enfant(s) du couple"
-      ) |> droplevels(),
-    
-    TAF =
-      fct_relevel(
-        TAF,
-        "Famille traditionnelle"
-      ) |> droplevels(),
-    
-    MOCO_DET_SEXE =
-      fct_relevel(
-        MOCO_DET_SEXE,
-        "Homme d’une famille traditionnelle"
-      ) |> droplevels(),
-    
-    MOCO_DET =
-      fct_relevel(
-        MOCO_DET,
-        "Adulte célibataire et sans enfant"
-      ) |> droplevels()
-  )
-  #rec_NENFANTS(Var = "N_FRERES_SOEURS_TOUS")|>
-  # Construction des classes d'âge
-
-################################################################################
-# 5. Modèle principal ----
-################################################################################
-
-# tris a plat 
-
-design <- data %>%
-  as_survey_design(
-    ids = IDENT_MEN,
-    weights = PONDIND
-  )
-
-modalites <- unique(na.omit(data$MOCO_DET))
-
-resultats <- map_dfr(modalites, function(modalite) {
-  
-  # Sous-échantillon
-  design_sous <- subset(
-    design,
-    TAF == modalite
-  )
-  
-  # Moyenne pondérée
-  moyenne <- svymean(
-    ~MVETEMENTS_D,
-    design = design_sous,
-    na.rm = TRUE
-  )
-  
-  # Quantiles pondérés
-  quantiles <- svyquantile(
-    ~MVETEMENTS_D,
-    design = design_sous,
-    quantiles = c(0.25, 0.50, 0.75),
-    na.rm = TRUE,
-    ci = FALSE
-  )
-  
-  tibble(
-    TAF = modalite,
-    moyenne = as.numeric(coef(moyenne)),
-    Q1 = as.numeric(quantiles[[1]][1]),
-    mediane = as.numeric(quantiles[[1]][2]),
-    Q3 = as.numeric(quantiles[[1]][3])
-  )
-})
-
-# linéaire 
-modele <- lm(
-  log(MVETEMENTS_D + 1) ~
-    n_FractionClasse + AGE + NENFANTS + NIVIE +
-    MOCO_DET+n_REVENUS_indiv,
-  weights = PONDIND,
-  data = data
-)
-summary(modele)
-
-tbl_regression(modele)|> 
-  add_glance_source_note()  |>
-  bold_p(t = 0.1) %>%
-  as_flex_table() |>
-  font(fontname = "Garamond", part = "all") |>
-  fontsize(size = 10, part = "all") |>
-  autofit()
-
-
-modeleh <- lm(
-  log(MVETEMENTS_D + 1) ~
-    n_FractionClasse+ AGE + NENFANTS + MOCO_DET + NIVIE +
-    MOCO_DET:n_REVENUS_indiv,
-  weights = PONDIND,
-  data = data,
-  subset = SEXE == "Masculin"
-)
-summary(modeleh)
-
-tbl_regression(modeleh)|> 
-  add_glance_source_note()  |>
-  bold_p(t = 0.1) %>%
-  as_flex_table() |>
-  font(fontname = "Garamond", part = "all") |>
-  fontsize(size = 10, part = "all") |>
-  autofit()
-
-modelef <- lm(
-  log(MVETEMENTS_D + 1) ~
-    n_FractionClasse+ AGE + NENFANTS + MOCO_DET + NIVIE +
-    MOCO_DET:n_REVENUS_indiv,
-  weights = PONDIND,
-  data = data,
-  subset = SEXE == "Féminin"
-)
-summary(modelef)
-
-tbl_regression(modelef)|> 
-  add_glance_source_note()  |>
-  bold_p(t = 0.1) %>%
-  as_flex_table() |>
-  font(fontname = "Garamond", part = "all") |>
-  fontsize(size = 10, part = "all") |>
-  autofit()
-
-
-
-
-
-
-
-
-
-library(officer)
-doc <- read_docx()
+reg3
 
 doc <- doc |>
+  body_add_break() |>
   body_add_flextable(
-    tbl_regression(modele) |>
-      add_glance_source_note() |>
-      bold_p(t = 0.1) |>
-      as_flex_table() |>
-      font(fontname = "Garamond", part = "all") |>
-      fontsize(size = 10, part = "all") |>
+    reg3 |>
       border_remove() |>
       hline_top(border = fp_border(width = 1)) |>
       hline_bottom(border = fp_border(width = 1)) |>
       autofit()
   )
 
-print(doc, target = "resultats_regression.docx")
-
-# add_significance_stars(
-#     thresholds = c(.001, .01, .05, .10),
-#     hide_ci = FALSE,
-#     hide_se = TRUE,
-#     hide_p = FALSE
-#   )
-
-plot(modele)
-
-################################################################################
-# 6. Test de robustesse : exclusion du 1 % supérieur des dépenses ----
-################################################################################
-
-quantile(data$MVETEMENTS_D, .99)
-
-modele_log_sans_top <- lm(
-  
-  log(MVETEMENTS_D + 1) ~
-    n_FractionClasse +
-    SEXE +
-    AGE_categories +
-    N_FRERES_SOEURS_TOUS +
-    RANG_ENFANT +
-    NIVIE*MOCO_DET,
-  weights = PONDIND,
-  
-  data = subset(
-    data,
-    MVETEMENTS_D <= quantile(data$MVETEMENTS_D, .99)
-  )
-)
-
-tbl_regression(modele_log_sans_top) %>%
-  bold_p(t = 0.1) %>%
-  add_glance_source_note()
-
-# Les coefficients d'intérêt restent très proches :
-# les résultats semblent peu sensibles aux très fortes dépenses.
-
+print(doc, target = "Resultats/resultats_regression-depenses_vetements_enfants.docx")

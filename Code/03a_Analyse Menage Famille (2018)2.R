@@ -18,6 +18,7 @@ indiv <- pad_2digits(
 
 
 
+
 indiv[indiv == ""] <- NA
 freq(indiv$NOI)
 freq(indiv$CONJOINT)
@@ -1383,7 +1384,18 @@ indiv_fam <- indiv_fam %>%
     ENFANT == "1" ~ MOCO_DET_ENF_SEXE,
     ENFANT == "2" ~ MOCO_DET_ADU_SEXE))
  
-    
+
+# ok
+
+indiv_fam <- indiv_fam %>%
+  mutate(
+    MOCO_DET_ENF = enc2utf8(MOCO_DET_ENF),
+    MOCO_DET_ADU = enc2utf8(MOCO_DET_ADU),
+    MOCO_DET = enc2utf8(MOCO_DET), 
+    COUPLE_SEXE = enc2utf8(COUPLE_SEXE), 
+    SEXE_PARENT = enc2utf8(SEXE_PARENT)
+  )
+
     
 freq(indiv_fam$MOCO_DET)
 freq(indiv_fam$MOCO_DET_ADU_SEXE)
@@ -1594,6 +1606,7 @@ anomalies <- menages_from_indiv %>%
               select(IDENT_MEN, NCOUPLES, NPERS, NENFANTS, TYPMEN5) %>%
               rec_TYPMEN5())
 freq(anomalies$TYPMEN5) # toute les anomalies sont lié a des ménages complexes (souvent + de deux familles dedans)
+length(unique(anomalies$IDENT_MEN))
 
 menages_from_indiv <- adultes %>%
   group_by(IDENT_MEN) %>%
@@ -1840,28 +1853,48 @@ menages <- menages %>%
   left_join(menages_from_indiv, by = "IDENT_MEN")
 names(menages)
 
-
 indiv_fam_enrichie <- indiv_fam_enrichie %>%
-  left_join(menages_from_indiv %>% select(-COUPLE_SEXE), by = "IDENT_MEN")
+  left_join(menages_from_indiv %>% select(-COUPLE_SEXE), by = "IDENT_MEN") 
 freq(indiv_fam_enrichie$TDM8)
 freq(indiv_fam_enrichie$TDM8_SEXE)
 freq(indiv_fam_enrichie$TAF)
 
 tab <- table(indiv_fam_enrichie$TAF, indiv_fam_enrichie$MOCO_DET) %>%
   data.frame()
+
+indiv_fam_enrichie %>%
+  tbl_summary(
+    include = c("MOCO_DET",  "ANNEE_BDF"), 
+    by = "ANNEE_BDF", 
+    percent = "column") %>%
+  add_overall(last = T)
+
+
 indiv_fam_enrichie %>%
   as_survey_design(weights = PONDIND, 
                    ids = IDENT_MEN) %>%
   tbl_svysummary(
-            include = c("MOCO_DET_ENF", "MOCO_DET_ADU",  "ANNEE_BDF"), 
+            include = c("MOCO_DET",  "ANNEE_BDF"), 
             by = "ANNEE_BDF", 
             percent = "column") %>%
   add_overall(last = T)
+indiv_fam_enrichie$TYPOLOG
+
+indiv_fam_enrichie %>%
+  as_survey_design(weights = PONDIND, 
+                   ids = IDENT_MEN) %>%
+  tbl_svysummary(
+    include = c("MOCO_DET_ENF", "SEXE_PARENT", "TYPOLOG", "DOLOG"), 
+    by = "SEXE_PARENT", 
+    percent = "column") %>%
+  add_overall(last = T)
 
 
-
-tbl_summary(indiv_fam_enrichie, 
-            include = c("MOCO_DET_ADU", "COUPLE_SEXE"), 
+tbl_summary(indiv_fam_enrichie %>%
+              mutate(TAF2 = TAF %>%
+                       str_remove_all(" (sans enfant du couple)") %>%
+                       str_remove_all(" (sans enfant du couple)")), 
+            include = c("MOCO_DET_ADU", "TAF", "TAF2", "COUPLE_SEXE"), 
             by = "COUPLE_SEXE", 
             percent = "row")
 
@@ -1876,4 +1909,90 @@ freq(indiv_fam_enrichie$POSITION_FRATERIE)
 dir.create("Data_output/data_recode")
 saveRDS(indiv_fam_enrichie, "Data_output/data_recode/indiv.Rds")
 saveRDS(menages, "Data_output/data_recode/menages.Rds")
+
+
+# Sorties pour les annexes 
+doc <- read_docx()
+
+tab <- indiv_fam_enrichie %>%
+  filter(ENFANT == "1") %>%
+  mutate(Effectifs = T) %>%
+  as_survey_design(weights = PONDIND) %>%
+  tbl_svysummary(
+    include = c("MOCO_DET", "MOCO_DET_SEXE",  "ANNEE_BDF", "Effectifs"), 
+    statistic = list(all_categorical() ~ "{p}", 
+                     Effectifs ~ "{n_unweighted}"),
+    by = "ANNEE_BDF", 
+    percent = "column") %>%
+  add_overall(last = T) %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+
+tab
+doc <- doc %>%
+  body_add_flextable(
+    tab |> 
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+
+# adultes
+tab <- indiv_fam_enrichie %>%
+  filter(ENFANT == "2") %>%
+  mutate(Effectifs = T) %>%
+  as_survey_design(weights = PONDIND) %>%
+  tbl_svysummary(
+    include = c("MOCO_DET", "MOCO_DET_SEXE",  "ANNEE_BDF", "Effectifs"), 
+    statistic = list(all_categorical() ~ "{p}", 
+                     Effectifs ~ "{n_unweighted}"),
+    by = "ANNEE_BDF", 
+    percent = "column") %>%
+  add_overall(last = T) %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+tab
+doc <- doc %>%
+  body_add_break() |> 
+  body_add_flextable(
+    tab |> 
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+
+
+# menages
+tab <- menages %>%
+  mutate(Effectifs = T) %>%
+  as_survey_design(weights = PONDMEN) %>%
+  tbl_svysummary(
+    include = c("TDM8", "TDM8_SEXE",  "ANNEE_BDF", "Effectifs"), 
+    statistic = list(all_categorical() ~ "{p}", 
+                     Effectifs ~ "{n_unweighted}"),
+    by = "ANNEE_BDF", 
+    percent = "column") %>%
+  add_overall(last = T) %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+tab
+
+doc <- doc %>%
+  body_add_break() |> 
+  body_add_flextable(
+    tab |> 
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+print(doc, target = "Resultats/resultats_AMF_indiv-menages.docx")
 

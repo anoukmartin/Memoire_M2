@@ -35,7 +35,7 @@ dep_ind <- pad_2digits(dep_ind, "NOI")
 
 travail_domestique <- str_to_sentence(travail_domestique)
 travail_domestique[c(9,10, 5,6)] <- c("Aide scolaire aux enfants",
-                                     "Soin/aide aux enfants", 
+                                     "Soin/aide corporelle aux enfants", 
                                      "Cuisine du quotidien", 
                                      "Cuisine de récéption")
 travail_menager <- travail_domestique[-c(9, 10)]
@@ -380,7 +380,7 @@ for (var in travail_domestique) {
   familles <- familles %>%
     mutate(
       !!var_couple2 := case_when(
-        .data[[var_couple]] == 0 ~ "égale",
+        .data[[var_couple]] == 0 ~ "identique",
         .data[[var_couple]] > 0 ~ "féminine",
         .data[[var_couple]] < 0 ~ "masculine")
       )
@@ -474,7 +474,18 @@ plot_data <- familles %>%
     tache = stringr::str_remove(tache, "_couple")
   ) %>%
   mutate(repartition = as.factor(repartition) %>%
-           fct_relevel("féminine", "égale", "masculine"))
+           fct_relevel("féminine", "identique", "masculine")) %>%
+  mutate(TDM8_enfantcouple = case_when(
+    str_detect(TDM8_SEXE, "Couple sans enfant") ~ "Couple sans enfant commun", 
+    TRUE ~ "Couple avec enfant(s) commun(s)"
+  ), 
+  TDM8_enfantpropre = case_when(
+    str_detect(TDM8_SEXE, "chacun des membres du couple") ~ "enfant(s) des deux membres du couple", 
+    str_detect(TDM8_SEXE, "mère") ~ "un ou des enfant(s) de la mère",
+    str_detect(TDM8_SEXE, "père") ~ "un ou des enfant(s) du père",
+    TRUE ~ "sans enfant d'autre union"))
+freq(dataplot$TDM8_enfantcouple)
+freq(dataplot$TDM8_enfantpropre)
 freq(plot_data$tache)
 
 
@@ -489,12 +500,15 @@ ggplot(plot_data %>%
          filter(TDM8_SEXE != "Couple sans enfant"),
        aes(TDM8_SEXE, p, fill = repartition)) +
   geom_col(color = "black") +
-  geom_text(aes(label = paste0(round(p*100, 0), "%")), 
-            position = position_fill(.5))+
-  facet_wrap(~tache) +
+  geom_text(aes(label = paste0(round(p*100, 1), "%")), 
+            position = position_fill(.5)) +
   scale_y_continuous(labels = scales::percent) +
   coord_flip() +
-  scale_fill_brewer(palette = "Spectral")
+  labs(x = NULL, y = "Pourcentage", fill = "Répartition dans le couple") + 
+  scale_fill_grey(start = 0.5, end = 0.9) +
+  theme_tufte() + 
+  theme(legend.position = "bottom")
+  
 
  
 ggplot(plot_data %>%
@@ -503,12 +517,15 @@ ggplot(plot_data %>%
          filter(TDM8_SEXE != "Couple sans enfant"),
        aes(TDM8_SEXE, p, fill = repartition)) +
   geom_col(color = "black") +
-  geom_text(aes(label = paste0(round(p*100, 0), "%")), 
+  geom_text(aes(label = paste0(round(p*100, 1), "%")), 
             position = position_fill(.5))+
-  facet_wrap(~tache) +
+  #facet_wrap(~tache) +
   scale_y_continuous(labels = scales::percent) +
   coord_flip() +
-  scale_fill_brewer(palette = "Spectral")
+  labs(x = NULL, y = "Pourcentage", fill = "Répartition dans le couple") + 
+  scale_fill_grey(start = 0.5, end = 0.9) +
+  theme_tufte() + 
+  theme(legend.position = "bottom")
 
 
 ggplot(plot_data %>%
@@ -521,8 +538,11 @@ ggplot(plot_data %>%
   facet_wrap(~tache) +
   scale_y_continuous(labels = scales::percent) +
   coord_flip() +
-  facet_wrap(~tache) +
-  scale_fill_brewer(palette = "Spectral")
+  facet_wrap(~tache, ncol = 2) +
+  labs(x = NULL, y = "Pourcentage", fill = "Répartition dans le couple") + 
+  scale_fill_grey(start = 0.5, end = 0.9) +
+  theme_tufte() + 
+  theme(legend.position = "bottom")
 
 ggplot(plot_data %>%
          filter(!str_detect(TDM8_SEXE, "chacun")) %>%
@@ -531,11 +551,109 @@ ggplot(plot_data %>%
   geom_col(color = "black") +
   geom_text(aes(label = paste0(round(p*100, 0), "%")), 
             position = position_fill(.5))+
-  facet_wrap(~tache) +
+  #facet_wrap(~tache) +
   scale_y_continuous(labels = scales::percent) +
   coord_flip() +
-  #facet_wrap(~tache) +
-  scale_fill_brewer(palette = "Spectral")
+  labs(x = NULL, y = "Pourcentage", fill = "Répartition dans le couple") + 
+  scale_fill_grey(start = 0.5, end = 0.9) +
+  theme_tufte() + 
+  theme(legend.position = "bottom")
+
+freq(familles$TAF)
+famillesrecomp$Vaisselle_couple_n
+## Familles reecomp ACM travail domestique 
+famillesrecomp <- familles %>%
+  filter(str_detect(TAF, "Famille recomposée"))
+
+d_acm <- famillesrecomp %>% 
+  #rename(DNIVIE = "DNIVIE2") %>%
+  select(
+    ends_with("couple_n"), 
+    "SEXEREP")  %>%
+  mutate_all(factor)
+names(d_acm)
+
+
+lapply(d_acm, freq)
+
+# Vaiables supplémentaires 
+
+d_acm_sup <- famillesrecomp %>%
+  select(n_RevenusContribF_cut,
+         NENFANTS, TYPMEN, TDM8, TDM8_SEXE, TAF) %>%
+  mutate(TDM8 = as.factor(TDM8), 
+         TDM8_SEXE = as.factor(TDM8_SEXE))
+
+lapply(d_acm_sup, class)
+
+# On met la variable de poids à l'echelle 
+summary(famillesrecomp$PONDMEN)
+d_acm$poids <- famillesrecomp$PONDMEN/mean(famillesrecomp$PONDMEN)
+
+poidsACMspe <- d_acm$poids
+
+d_acm <- d_acm %>% select(-poids)
+
+
+d_acm <- d_acm %>% 
+  mutate_if(is.factor,
+            as.numeric)
+
+
+liste_moda <- getindexcat(as.data.frame(d_acm))
+liste_moda
+
+index_modasup <- which(str_ends(liste_moda, ".NA"))
+
+
+
+# numéros d'index des modalités "vide"
+index_modasup
+liste_moda[index_modasup]
+freq(familles$SITUA_F)
+
+# Réalisation de l'ACM spé ----
+
+acm_spe <- speMCA(as.data.frame(d_acm), 
+                  excl = index_modasup,
+                  row.w = poidsACMspe)
+
+acm_spe <- PCA(as.data.frame(d_acm), 
+               excl = index_modasup,
+               row.w = poidsACMspe)
+library(explor)
+explor(acm_spe)
+
+class(acm_spe)
+class(acm_sup)
+
+acm_sup <- speMCA_varsup(acm_spe, d_acm_sup %>%
+                           as.data.frame())
+explor()
+
+library(ggplot2)
+
+# Coordonnées des individus sur les axes 1 et 2
+coord_ind <- as.data.frame(acm_spe$ind$coord)
+names(coord_ind)
+# Ajouter la variable illustrative
+coord_ind <- cbind(coord_ind, d_acm_sup)
+insert_line_breaks()
+d_acm_sup$TDM8_SEXE
+ggplot(coord_ind, aes(x = Dim.1, y = Dim.2, colour = TDM8_SEXE)) +
+  geom_point(alpha = 0.5, size = 1.5) +
+  stat_ellipse(
+    aes(group = TDM8_SEXE),
+    linewidth = 0.8,
+    level = 0.50
+  ) +
+  theme_minimal() +
+  labs(
+    x = "Axe 1",
+    y = "Axe 2",
+    colour = "Sexe"
+  ) +
+  coord_equal()
 
 
 # tbl_summary(

@@ -4,51 +4,6 @@
 
 infosBDF <- readRDS("Data_output/infosBDF.Rds")
 
-
-menages <- readRDS("Data_output/menages.Rds") %>%
-  select(IDENT_MEN, AISE, NIVIE, SEXEREP, NIVEAU) %>%
-  rec_SEXE(Var = "SEXEREP")
-
-menages$SEXEREP
-familles <- readRDS("Data_output/familles_parents.Rds") %>%
-  left_join(menages, 
-            by = "IDENT_MEN") 
-
-
-dic_fam<- look_for(familles)
-# 
-# # Recodages sur familles 
-# familles <- familles |> 
-#   mutate(
-#     n_configSynth = n_configSynth |> 
-#       factor(levels = unique(familles$n_configSynth)) |> 
-#       fct_infreq(w = familles$PONDMEN), 
-#     n_configFam = n_configFam |> 
-#       factor(levels = unique(familles$n_configFam)) |> 
-#       fct_infreq(w = familles$PONDMEN), 
-#     n_configFamTemp = n_configFamTemp |> 
-#       factor(levels = unique(familles$n_configFamTemp)) |> 
-#       fct_infreq(w = familles$PONDMEN),  
-#     n_ParentsMenage = n_ParentsMenage |>
-#       factor(levels = unique(familles$n_ParentsMenage)) |> 
-#       fct_infreq(w = familles$PONDMEN), 
-#     n_ParentsHorsDom = n_ParentsHorsDom  |>
-#       factor(levels = unique(familles$n_ParentsHorsDom )) |> 
-#       fct_infreq(w = familles$PONDMEN), 
-#     n_EnfantsHD = case_when(n_NEnfantsHD >= 1 ~ 1, 
-#                             TRUE ~0),
-#     NIVIE = labelled(as.numeric(NIVIE)/1000, 
-#                      label = "Niveau de vie du ménage (en miliers d'euros)"))
-# 
-# var_label(familles$n_configSynth) <- "Configuration familiale" 
-# var_label(familles$n_configFam) <- "Configuration familiale"
-# var_label(familles$n_configFamTemp) <- "Configuration familiale temporaire"
-# var_label(familles$n_configFamSynth) <- "Configuration familiale"
-# var_label(familles$n_ParentsMenage) <- "Parents des enfants du ménage"
-# var_label(familles$n_ParentsHorsDom) <- "Parents des enfants vivants hors domicile"
-# var_label(familles$n_NEnfantsHD) <- "Enfants vivants hors domicile"
-# var_label(familles$n_configMen) <- "Configuration"
-
 # 1.1. Régression sur l'aisance budgétaire ressentie ###################
 
 ## Construction base de donnée sur laquelle on va travailler ###################
@@ -85,7 +40,11 @@ repondants <- readRDS("Data_output/data_recode/indiv_in_menagesAge.Rds") %>%
   filter(ENFANT == "2") %>%
   mutate(REPONDANT = if_else(NOI == "01", T, F)) %>%
   filter(REPONDANT == T) %>%
+  mutate(ANNEE_BDF = as.factor(ANNEE_BDF)) %>%
   rec_SEXE() %>%
+  mutate(NENFANTS_HORSDOM = if_else(
+    is.na(NENFANTS_HORSDOM), 0, 
+    NENFANTS_HORSDOM)) %>%
   mutate(NIVIE = NIVIE/1200)%>%
   mutate(MOCO_DET_SEXE = MOCO_DET_SEXE %>% as.factor() %>% droplevels(),
          MOCO_DET = MOCO_DET %>% as.factor() %>% droplevels()) %>%
@@ -104,22 +63,106 @@ data <- data %>%
       TDM8_SEXE,
       "Couple avec uniquement enfant(s) du couple"
     ), 
+    MOCO_DET = fct_relevel(
+      MOCO_DET,
+      "Adulte d’une famille traditionnelle"
+    ),
     MOCO_DET_SEXE = fct_relevel(
       MOCO_DET_SEXE,
       "Femme d’une famille traditionnelle"
     )
   )
-indiv$MOCO_DET_SEXE
+
+var_label(data$ANNEE_BDF) <- "Vague d'enquête"
+var_label(data$NIVIE) <- "Niveau de vie mensuel (en centaines d'euros)"
+var_label(data$n_FractionClasse) <- "Position sociale du ménage"
+var_label(data$AGE) <- "Age"
+var_label(data$NENFANTS) <- "Nombre d'enfants vivants dans le ménage"
+var_label(data$NENFANTS_HORSDOM) <- "Nombre d'enfants vivants hors domicile"
+var_label(data$SEXE) <- "Sexe"
+var_label(data$MOCO_DET) <- "Position dans la famille"
+var_label(data$MOCO_DET_SEXE) <- "Position dans la famille"
 library(ordinal)
-reg <- clm(AISE ~ NIVIE + n_FractionClasse + AGE + NENFANTS + MOCO_DET_SEXE,
+
+# Explication de l'aisance budgétaire par le seul niveau de vie : 
+
+
+
+reg <- clm(AISE ~ ANNEE_BDF + NIVIE + n_FractionClasse + AGE + NENFANTS + NENFANTS_HORSDOM + MOCO_DET*SEXE,
            data = data, 
            weights = PONDIND)
 summary(reg)
 
 nominal_test(reg)
 
-tbl_regression(reg, exponentiate = T) %>%
-  bold_p(t = 0.1)
+tblreg <- tbl_regression(reg, exponentiate = T,
+               conf.int = F,
+               add_pairwise_contrasts = F,
+               pairwise_variables = c("MOCO_DET_SEXE")) %>%
+  bold_p(t = 0.1) %>% 
+  add_glance_source_note() %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+
+tblreg
+doc <-
+  read_docx() %>%
+  body_add_flextable(
+    tblreg |> 
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+
+
+### NIVEAU
+reg <- clm(NIVEAU ~ ANNEE_BDF + NIVIE + n_FractionClasse + AGE + NENFANTS + NENFANTS_HORSDOM + MOCO_DET*SEXE,
+           data = data, 
+           weights = PONDIND)
+summary(reg)
+
+nominal_test(reg)
+
+tblreg <- tbl_regression(reg, exponentiate = T,
+                         conf.int = F,
+                         add_pairwise_contrasts = F,
+                         pairwise_variables = c("MOCO_DET_SEXE")) %>%
+  bold_p(t = 0.1) %>% 
+  add_glance_source_note() %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+
+tblreg
+
+doc <- doc |>
+  body_add_break() |>
+  body_add_flextable(
+    tblreg |> 
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+
+print(doc, target = "Resultats/resultats_regression_situ_fin_subj.docx")
+
+
+
+
+
+
+
+reg |> 
+  ggstats::ggcoef_model(
+    exponentiate = TRUE,
+    add_pairwise_contrasts = TRUE,
+    pairwise_variables = c("MOCO_DET_SEXE")
+  )
 
 #mutate(n_NEnfantsMenage = n_NEnfantsMenage - n_NEnfantsMenage13) %>%
  # mutate(n_NEnfantsHD = if_else(is.na(n_NEnfantsHD), 0, n_NEnfantsHD)) %>%

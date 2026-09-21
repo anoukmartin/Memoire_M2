@@ -730,6 +730,26 @@ rec_TYPVOIS <- function(data, Var = "TYPVOIS", NewVar = FALSE) {
 }
 
 
+rec_TYPOLOG <- function(data, Var = "TYPOLOG", NewVar = FALSE) {
+  data$temp <- NULL
+  data[, "temp"] <- data[, Var]
+  data$temp
+  data <- data %>%
+    mutate(temp = case_when(
+      TYPOLOG == "1" ~ "Toute l'année ou presque", 
+      TYPOLOG == "2" ~ "Plutôt les week-ends ou les vacances", 
+      TYPOLOG == "3" ~ "Plutôt en semaine", 
+      TYPOLOG == "4" ~ "Quelques mois dans l'année",
+      TYPOLOG == "5" ~ "Plus rarement"))
+  if(isFALSE(NewVar)){
+    data$TYPOLOG <- data$temp 
+    data$temp <- NULL
+  } else { 
+    names(data)[names(data) == "temp"] <- NewVar
+  }
+  return(data)
+}
+
 
 revalo_M2011 <- function(data, Var = "NIVIE", NewVar = paste0(Var, "_revalo"), 
                          IPC2017 = 84.45, IPC2011 = 80.97) {
@@ -939,13 +959,13 @@ joli_tableau <- function(data,
                     cleanresidus[[k]] <= -2 ~ T, 
                     TRUE ~ F))
   }
-  tableau_beau <- tableau_beau %>%
-   # add_header_above(c(" " = 1, by = n, " " = 1), bold = TRUE) %>%
-    kableExtra::footnote(general = c("Test du khi2 : p = pvalue, \\\\textcolor[HTML]{91bfdb}{bleu} = résidu < 2, \\\\textcolor[HTML]{fc8d59}{rouge} = résidu > 2", 
-                         paste0("Source : ", source),
-                         paste0("Champ : ", champ), 
-                         paste0("Lecture : ", lecture)),
-             escape = F)
+  # tableau_beau <- tableau_beau %>%
+  #  # add_header_above(c(" " = 1, by = n, " " = 1), bold = TRUE) %>%
+  #   kableExtra::footnote(general = c("Test du khi2 : p = pvalue, \\\\textcolor[HTML]{91bfdb}{bleu} = résidu < 2, \\\\textcolor[HTML]{fc8d59}{rouge} = résidu > 2", 
+  #                        paste0("Source : ", source),
+  #                        paste0("Champ : ", champ), 
+  #                        paste0("Lecture : ", lecture)),
+  #            escape = F)
   return(tableau_beau)
 }
 
@@ -989,3 +1009,4 @@ insert_line_breaks <- function(text, max_length = 160) {
 # Exemple d'utilisation
 texte <- "Ceci est un exemple de texte assez long pour démontrer comment la fonction peut insérer des retours à la ligne tous les 120 caractères sans couper les mots. Chaque mot sera maintenu intact, et les retours à la ligne seront ajoutés de manière appropriée."
 cat(insert_line_breaks(texte))
+

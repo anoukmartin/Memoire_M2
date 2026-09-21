@@ -248,7 +248,7 @@ adultes$STAT_PARENTAL <- sapply(adultes$STAT_PARENTAL, function(x){insert_line_b
 adultes %>%
   ggplot() +
   aes(x = SEXE, fill = STAT_PARENTAL, by = SEXE, weight = PONDIND, 
-      label = scales::percent(after_stat(prop), accuracy = 1)) +
+      label = scales::percent(after_stat(prop), accuracy = 0.1)) +
   geom_bar(position = "stack", color = "black") +
   geom_text(
     stat = "prop", 
@@ -257,13 +257,13 @@ adultes %>%
   scale_y_continuous(labels = scales::percent_format(scale = 0.1)) +
   labs(
     #title = titre,
-    x = "Sexe",
+    x = NULL,
     y = "Pourcentage",
     fill = "Lien(s) avec les enfants issus d'union(s)\nprécédante(s) vivants dans le ménage"
   ) +
   coord_flip() +
   #facet_wrap(facet = ~SEXE, nrow = 2, ncol = 1) +
-  scale_fill_brewer(palette = "Accent")  +
+  scale_fill_grey(start = 0.4, end = 0.9) +
   theme_tufte()+
   theme(legend.position = "bottom", legend.box = "horizontal")
 
@@ -288,7 +288,7 @@ adultes %>%
   ) +
   coord_flip() +
   facet_wrap(facet = ~SEXE, nrow = 2, ncol = 1) +
-  scale_fill_manual(values = c("#dfc27d", "#80cdc1"))  +
+  scale_fill_grey(start = 0.4)  +
   theme_tufte()+
   theme(legend.position = "bottom", legend.box = "horizontal")
 
@@ -313,8 +313,20 @@ ggplot(adultes) +
   theme_tufte()+
   theme(legend.position = "bottom", legend.box = "horizontal", legend.title = element_blank())
 
+adultes %>%
+  filter(ENFANT == "2") %>%
+  mutate(ENFANTS_PROPRES = NENFANTS_PROPRES > 0) %>%
+  as_survey_design(weights = PONDIND) %>%
+  tbl_svysummary(include = c("MOCO_DET_SEXE", "TAF", "COUPLE_SEXE", "ENFANTS_PROPRES"), 
+                 by = "COUPLE_SEXE", 
+                 percent = "row")
 
-
+familles %>%
+  as_survey_design(weights = PONDMEN) %>%
+  tbl_svysummary(include = c( "TAF", "COUPLE_SEXE"), 
+                 by = "COUPLE_SEXE", 
+                 percent = "row")
+  
 
 adultes$NENFANTS_PROPRES_HORSDOM
 
@@ -383,3 +395,5 @@ ggplot(data_plot) +
  # coord_flip() +
   theme_tufte()+
   theme(legend.position = "bottom", legend.box = "horizontal")
+
+

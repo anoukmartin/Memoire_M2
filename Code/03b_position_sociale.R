@@ -65,19 +65,19 @@ familles %>%
 
 familles %>%
   filter(!is.na(AGEPR), !is.na(TDM8)) %>%
-  count(AGEPR , TDM8) %>%
+  count(AGEPR , TDM8, wt = PONDMEN) %>%
   group_by(AGEPR) %>%
   mutate(prop = n / sum(n)) %>%
   ggplot(aes(x = AGEPR, y = prop, fill = TDM8)) +
   geom_area(position = "fill") +
   scale_y_continuous(labels = scales::percent) +
-  scale_fill_brewer(palette = "Set2") +
+  scale_fill_grey() +
   labs(
     x = "Âge de la personne de référence du ménage",
     y = "Répartition des types de ménage",
     fill = "Type de ménage"
   ) +
-  theme_minimal() +
+  theme_tufte() +
   theme(
     legend.position = "bottom",
     legend.title = element_text(face = "bold")
@@ -110,6 +110,34 @@ familles$COUPLE_SEXE
 # library(data.table)
 # library("janitor")
 # library(ggrepel)
+doc <- read_docx()
+
+tab <- familles %>%
+  mutate(Effectifs = T) %>%
+  as_survey_design(weights = PONDMEN) %>%
+  tbl_svysummary(
+    include = c("TDM8", "TDM8_SEXE",  "ANNEE_BDF", "Effectifs"), 
+    statistic = list(all_categorical() ~ "{p}", 
+                     Effectifs ~ "{n_unweighted}"),
+    by = "ANNEE_BDF", 
+    percent = "column") %>%
+  add_overall(last = T) %>%
+  as_flex_table() |>
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
+tab
+
+doc <- doc %>%
+  body_add_break() |> 
+  body_add_flextable(
+    tab |> 
+      border_remove() |>
+      hline_top(border = fp_border(width = 1)) |>
+      hline_bottom(border = fp_border(width = 1)) |>
+      autofit()
+  )
+print(doc, target = "Resultats/resultats_menages_age.docx")
 
 
 
@@ -213,20 +241,6 @@ poidsACMspe <- d_acm$poids
 
 d_acm <- d_acm %>% select(-poids)
 
-# vars_sup <- pacsACM %>%
-#   mutate(nbNA = rowSums(is.na(pacsACM %>% 
-#                                 select("pacs_Q45_1":"pacs_Q30")))) %>%
-#   filter(nbNA <= 6) %>%
-#   select(all_of(var_ill)) %>%
-#   mutate_all(factor)
-# 
-# names(vars_sup) <- c("Sexe", "Age", "Nationalité", "Statut conjugal", "Activité", 
-#                      "Niveau de diplome", "Type d'entreprise", "Nature du contrat",
-#                      "Temps de travail", "Nombre d'enfants", "Logement", 
-#                      "Revenu", "CSP", 
-#                      "Type de ménage")
-
-
 # Sélection des modalités à mettre en supplémentaire ----
 
 # on remplace les NA par une modalité "vide"
@@ -277,6 +291,7 @@ acm_spe$eig$rate[1:20] %>% diff() %>% diff()
 
 acmstop <- 7
 sum(acm_spe$eig$rate[1:acmstop])
+
 
 # Variables illustratives pour l'ACM 
 
@@ -403,7 +418,7 @@ d_acm2 <- d_acm %>%
 nrow(d_acm2)
 tab <- joli_tableau(data = d_acm2, by = "typo", vars_quali = names(d_acm2), weigths = poidsACMspe, 
                     tableau_titre = "Structure des clusters (variables actives)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
-                   champ = "ménages ordinaires formés par des adultes (25-65 ans). (n = 12 355)", 
+                   champ = "ménages ordinaires formés par des adultes en ages de vivre avec des enfants.", 
                    lecture = "blabla")
 
 tab <- tab %>%
@@ -415,6 +430,13 @@ tab <- tab %>%
   column_spec(6, "0.7in") %>%
   column_spec(7, "0.7in") %>%
   column_spec(8, "0.7in")  
+class(tab)
+
+tab %>%
+  flextable()
+  font(fontname = "Garamond", part = "all") |>
+  fontsize(size = 10, part = "all") |>
+  autofit()
 
 saveTableau(tab, type = "tab", label = "clusters_composition_act", 
             description = "composition sociale des clusters",
