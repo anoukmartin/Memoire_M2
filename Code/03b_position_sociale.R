@@ -32,7 +32,7 @@ familles <- familles %>%
 levels(familles$TDM8) <- sapply(levels(familles$TDM8),function(x){  insert_line_breaks(x, 30)}, USE.NAMES = F)
 
 
-  
+
 
 
 age_min <- 21
@@ -87,7 +87,7 @@ familles %>%
   geom_vline(aes(xintercept = age_max)) 
 
 
-  
+
 familles <- familles %>%
   filter(AGEPR %in% age_min:age_max | AGECJ %in% age_min:age_max)
 
@@ -102,7 +102,7 @@ familles <- familles %>%
   mutate(n_Diffage_HF_cut = as.factor(n_Diffage_HF_cut))
 freq(familles$n_Diffage_HF_cut)         
 familles$COUPLE_SEXE       
-         
+
 
 
 # library(factoextra)
@@ -110,6 +110,8 @@ familles$COUPLE_SEXE
 # library(data.table)
 # library("janitor")
 # library(ggrepel)
+dir.create("Resultats")
+library(officer)
 doc <- read_docx()
 
 tab <- familles %>%
@@ -152,7 +154,7 @@ summary(familles$n_REVENUS_indiv_H)
 summary(familles$n_REVENUS_indiv_F)
 
 dep_men <- readRDS("Data_output/DepMenages.Rds")
- 
+
 summary(familles$n_RevenusContribF)
 freq(familles$n_RevenusContribF)
 summary(familles$NIVIE)
@@ -293,6 +295,32 @@ acmstop <- 7
 sum(acm_spe$eig$rate[1:acmstop])
 
 
+ggplot(
+  data.frame(
+    axe = factor(1:15),
+    inertie = acm_spe$eig$rate[1:15],
+    keep = c(rep(T, 7), rep(F, 15-7))
+  ),
+  aes(x = axe, y = inertie, fill = keep),
+  
+) +
+  geom_col() +
+  #geom_qq_line()+
+  geom_text(
+    aes(label = scales::label_number(
+      decimal.mark = ",",
+      accuracy = 0.1
+    )(inertie)),
+    vjust = -0.3
+  ) + 
+  labs(
+    x = "Dimension de l'ACM",
+    y = "Inertie (en %)"
+  ) +
+  scale_fill_grey(start = 0.8, end = 0.2) +
+  theme_tufte() +
+  theme(legend.position = "no")
+
 # Variables illustratives pour l'ACM 
 
 # Pour avoir les données pour les variables suplémentaires
@@ -307,16 +335,10 @@ d_cah <- acm_spe$ind$coord[, 1:acmstop]
 md <- daisy(d_cah, metric = "euclidean") # matrice de distances
 
 arbre <- hclust(md, method = "ward.D2") # agrégation critère de ward
-
+arbre
 dend <- as.dendrogram(arbre)
 
 plot(dend)
-
-# plot(dend, main = "Clusters",
-#      horiz = TRUE, leaflab = "none",
-#      xlim = c(78, 30))
-# text(x = 20, y = 0, "blabla")
-# #text(x, y, labels)
 
 
 inertie <- sort(arbre$height, decreasing = TRUE)
@@ -324,12 +346,152 @@ plot(inertie[1:20], type = "s", xlab = "Nombre de classes", ylab = "Inertie") %>
   grid
 
 plot(inertie[1:20] %>% 
-  diff() %>%
-  diff(), type = "b")
+       diff() %>%
+       diff(), type = "b")
 abline(h = 0)
 inertie[1:20] %>% 
   diff() %>%
   diff()
+
+library(ggplot2)
+library(guideR)
+library(scales)
+
+keep <- c(rep(T, 6), rep(F, 15-6))
+p<- arbre |>
+  guideR::plot_inertia_from_tree() &
+  ggthemes::theme_tufte() &
+  theme(panel.grid = element_line(linewidth = 0.3, colour = "grey90"))
+p
+class(p)
+summary(p)
+
+p[[1]] <- p[[1]] + 
+  aes(color = c(keep[2:15], F), group = 2) +
+  labs(y = "Inertie", 
+       x = "") +
+  scale_color_grey(start = 0.8, end = 0.4) +
+  theme(legend.position = "none")
+p[[1]]
+
+class(p[[2]])
+str(p[[2]])
+summary(p[[2]])
+p[[2]]$layers[[1]]$aes_params$fill <- NULL
+p[[2]]$layers[[1]]$mapping
+
+p[[2]] <- p[[2]] + 
+  aes(fill = keep) +
+  labs(y = "Perte d'inertie\nabsolue", 
+       x = "") +
+  scale_fill_grey(start = 0.8, end = 0.4) +
+  theme(legend.position = "none")
+p[[2]]
+summary(p[[2]])  
+
+summary(p[[3]])
+p[[3]]$layers[[1]]$aes_params$colour <- NULL
+p[[3]]$layers[[2]]$aes_params$colour <- NULL
+p[[3]]$layers[[1]]$mapping
+p[[3]] <- p[[3]] +
+  aes(color = c(keep[2:15], F), group = 1) +
+  labs(y = "Perte d'inertie\nrelative", 
+       x = "Nombre de clusters") +
+  scale_color_grey(start = 0.8, end = 0.4) +
+  theme(legend.position = "none")
+p[[3]]
+
+
+p
+
+inertie <- guideR::get_inertia_from_tree(arbre)[1:15, ]
+inertie$keep = c(rep(TRUE, 6), rep(FALSE, 9))
+inertie$classes <- factor(
+  paste0(0:14, " à ", 1:15),
+  levels = paste0(0:14, " à ", 1:15),
+  ordered = TRUE
+)
+
+ggplot(inertie, aes(x = classes, y = inertia, fill = keep)) +
+  geom_col() +
+  geom_text(
+    aes(label = label_number(
+      decimal.mark = ",",
+      accuracy = 1,
+    )(inertie$inertia)),
+    size = 3,
+    vjust = -0.3
+  ) +
+  labs(y = "Inertie") +
+  scale_fill_grey(start = 0.8, end = 0.2) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.12))
+  ) +
+  theme_tufte() +
+  theme(legend.position = "none")
+
+ggplot(inertie, aes(x = classes, y = absolute_loss, fill = keep)) +
+  geom_col() +
+  geom_text(
+    aes(label = label_number(
+      decimal.mark = ",",
+      accuracy = 1,
+    )(absolute_loss)),
+    size = 3,
+    vjust = 1
+  ) +
+  labs(y = "Perte d'inertie absolue") +
+  scale_fill_grey(start = 0.8, end = 0.2) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.12))
+  ) +
+  theme_tufte() +
+  theme(legend.position = "none")
+
+
+ggplot(inertie, aes(x = classes, y = relative_loss, fill = keep)) +
+  geom_col() +
+  geom_text(
+    aes(label = label_number(
+      decimal.mark = ",",
+      accuracy = 0.01,
+    )(relative_loss)),
+    size = 3,
+    vjust = 1
+  ) +
+  labs(y = "Perte d'inertie relative") +
+  scale_fill_grey(start = 0.8, end = 0.2) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.12))
+  ) +
+  theme_tufte() +
+  theme(legend.position = "none")
+
+
+
+
+
+
+inertie <- sort(arbre$height, decreasing = TRUE)
+
+df_inertie <- data.frame(
+  n_classes = length(arbre$height):1,
+  inertie = inertie
+)
+
+ggplot(df_inertie, aes(x = n_classes, y = inertie)) +
+  geom_step() +
+  geom_vline(xintercept = 6, linetype = "dashed", colour = "grey50") +
+  geom_point(data = subset(df_inertie, n_classes == 6)) +
+  scale_x_reverse(breaks = 1:20) +
+  scale_y_continuous(
+    labels = scales::label_number(decimal.mark = ",")
+  ) +
+  labs(
+    x = "Nombre de classes",
+    y = "Inertie"
+  ) +
+  theme_tufte()
 
 # sauts d'inertie à 7
 typo <- cutree(arbre, 6)
@@ -337,72 +499,155 @@ typo <- cutree(arbre, 6)
 typo %>% freq
 
 
+
 # 
 # On intègre le résultat dans les données
-typo <- typo %>% as_factor() %>%
+typo <- typo %>%
+  as_factor() %>%
   fct_recode(
-    "Classes superieures à dominante économique/privé [C6]" = "6", #OK
-    "'Petits-moyens' [C3]" = "3", #OK
-    "Classes populaires précaires [C5]" = "5", #OK
-    "Classes populaires immigrées urbaines [C2]" = "2", #OK
-    "Classes moyennes-superieures du public [C4]" = "4",
-    "Petits indépendants et salariés subalternes du rural  [C1]" = "1") %>%
+    "Classes supérieures : cadres du privé et professions libérales (13%) [C6]" = "6",
+    'Classes moyennes salariés : biactivité et accession à la porpiété (24%) [C3]' = "3",
+    "Classes populaires précaires et isolées (11%) [C5]" = "5",
+    "Classes populaires immigrées urbaines et mono-actives (7%) [C2]" = "2",
+    "Classes moyennes-supérieures urbaines : diplomées et salariées du public  (21%) [C4]" = "4",
+    "Classes populaires prériurbaines et rurales : petits indépendants et salariés non-qualifiés propriétaires (23%) [C1]" = "1"
+  ) %>%
   fct_relevel(
-    "Classes populaires précaires [C5]",  #OK
-    "Classes populaires immigrées urbaines [C2]",  #OK
-    "Petits indépendants et salariés subalternes du rural  [C1]",
-    "'Petits-moyens' [C3]",
-    "Classes moyennes-superieures du public [C4]",
-    "Classes superieures à dominante économique/privé [C6]")
-    
-    
-   
+    "Classes populaires précaires (11%) [C5]",
+    "Classes populaires immigrées urbaines (7%) [C2]",
+    "Petits indépendants et salariés subalternes du rural (23%) [C1]",
+    "'Petits-moyens' (24%) [C3]",
+    "Classes moyennes-supérieures du public (21%) [C4]",
+    "Classes supérieures à dominante économique/privé (13%) [C6]"
+  )
 
 
-freq(typo)
+temp <- data.frame(typo, poidsACMspe)
 
 
-# # test 
-# 
-# # Calculer le nombre d'individus par cluster
-# cluster_sizes <- table(typo)
-# 
-# # Calculer les pourcentages par cluster
-# cluster_percentages <- round(100 * cluster_sizes / sum(cluster_sizes), 2)
-# 
-# cut_height <- max(arbre$height[which(diff(cutree(arbre, k = 8)) != 0)])
-# 
-# # Dessiner le dendrogramme avec une coupe à 7 clusters
-# plot(arbre, labels = FALSE, hang = -1, main = "Dendrogramme coupé à 7 clusters")
-#      #ylim = c(45, max(arbre$height)))
-# rect.hclust(arbre, k = 7, cluster = typo)
-# i <- 6
-# arbre$merge
-# for(i in 1:7) {
-#   cluster_pos <- which(typo == levels(typo)[i])
-#   dat <- arbre$merge %>% as.data.frame() 
-#   mean_x <- mean(dat[cluster_pos, 1], na.rm = T)
-#   text(mean_x, 25, 
-#        labels = paste0(cluster_sizes[i], " (", cluster_percentages[i], "%)"), 
-#        col = "blue", cex = 0.5)
-# }
-# 
-# for(i in 1:7) {
-#   cluster_pos <- which(clusters == i)
-#   
-#   # Position moyenne des branches dans ce cluster
-#   mean_x <- mean(as.numeric(names(clusters)[cluster_pos]))
-#   
-#   # Ajout du texte avec le nombre et le pourcentage
-#   text(mean_x, 45, 
-#        labels = paste0(cluster_sizes[i], " (", cluster_percentages[i], "%)"), 
-#        col = "blue", pos = 3, cex = 0.8)
-# }
-# 
-# # Dessiner le dendrogramme avec une coupe à 7 clusters
-# plot(dend, labels = FALSE, hang = -1, main = "Dendrogramme avec coupe en 7 clusters")
-# rect.hclust(arbre, k = 7, border = 2:8)
-# 
+freq(temp$typo)
+
+temp %>%
+  group_by(typo) %>%
+  summarise(
+    n = sum(poidsACMspe, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    pct = n / sum(n) * 100
+  )
+
+# Dendrogram avec nom des clusters 
+
+library(dendextend)
+library(ggdendro)
+
+
+dend
+
+# Données nécessaires au ggplot
+dd <- dendro_data(dend, type = "rectangle")
+
+# Ordre des individus sur le dendrogramme
+ordre <- arbre$order
+
+# Correspondance position sur le dendrogramme -> cluster
+clusters <- data.frame(
+  pos = seq_along(ordre),
+  cluster = typo[ordre]
+)
+
+# Position centrale de chaque cluster
+positions_clusters <- clusters %>%
+  group_by(cluster) %>%
+  summarise(
+    y = mean(pos),
+    .groups = "drop"
+  )
+
+# Hauteur maximale de chaque cluster
+# (extrémité supérieure de la branche correspondant au cluster)
+hauteurs_clusters <- dd$segments %>%
+  filter(xend != x | yend != y) %>%
+  mutate(
+    cluster = sapply(x, function(x) {
+      # position de feuille la plus proche
+      clusters$cluster[which.min(abs(clusters$pos - x))]
+    })
+  ) %>%
+  group_by(cluster) %>%
+  summarise(
+    x = max(y, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Fusion des positions
+labels_clusters <- left_join(
+  positions_clusters,
+  hauteurs_clusters,
+  by = "cluster"
+)
+
+
+# Marge pour placer les labels légèrement à droite des branches
+marge <- max(dd$segments$y, na.rm = TRUE) * 0.03
+
+datadendplot <- dd$segments %>%
+  filter(y >= 40) %>%
+  mutate(yend = if_else(yend < 40, 40, yend))
+
+xcluster <-   datadendplot %>%
+  filter(yend == 40) %>%
+  select(x)
+labels_clusters <- labels_clusters %>%
+  arrange(y)
+labels_clusters$y2 <- xcluster$x
+labels_clusters$cluster <- sapply(as.character(labels_clusters$cluster), 
+                                  function(x){insert_line_breaks(x, 32)}) %>%
+  as.factor()
+
+# Dendrogramme
+ggplot() +
+  geom_segment(
+    data = datadendplot,
+    aes(
+      x = y,
+      y = x,
+      xend = yend,
+      yend = xend,
+      
+    ),
+    linewidth = 0.5,
+  ) +
+  scale_x_reverse(limits = c(10, 90)) +
+  geom_text(
+    data = labels_clusters,
+    aes(
+      x = 38,
+      y = y2,
+      label = cluster
+    ),
+    hjust = 0,
+    fontface = "bold",
+    size = 4) +
+  theme_tufte()+
+  #theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "none"
+    #plot.margin = margin(10, 100, 10, 10)
+  ) +
+  labs(
+    x = NULL,
+    y = NULL
+  )
+
+
 
 
 
@@ -418,8 +663,8 @@ d_acm2 <- d_acm %>%
 nrow(d_acm2)
 tab <- joli_tableau(data = d_acm2, by = "typo", vars_quali = names(d_acm2), weigths = poidsACMspe, 
                     tableau_titre = "Structure des clusters (variables actives)", source = paste0(infosBDF$nom, ", ", infosBDF$vague),
-                   champ = "ménages ordinaires formés par des adultes en ages de vivre avec des enfants.", 
-                   lecture = "blabla")
+                    champ = "ménages ordinaires formés par des adultes en ages de vivre avec des enfants.", 
+                    lecture = "blabla")
 
 tab <- tab %>%
   column_spec(1, "2in") %>%
@@ -431,9 +676,9 @@ tab <- tab %>%
   column_spec(7, "0.7in") %>%
   column_spec(8, "0.7in")  
 class(tab)
-
+tab
 tab %>%
-  flextable()
+  flextable() |>
   font(fontname = "Garamond", part = "all") |>
   fontsize(size = 10, part = "all") |>
   autofit()
@@ -477,33 +722,54 @@ saveTableau(tab, type = "tab", label = "clusters_composition_sup",
 
 # coordonées des cluster sur les axes ----
 
+
+
+
 d_cah <- as.data.frame(d_cah)
 d_cah$typo <- typo
 d_cah$pond <- poidsACMspe
 summary(poidsACMspe)
 
-tab <- d_cah %>%
-  as_survey_design(weights = pond) %>%
-  tbl_svysummary(by = typo, 
-                 statistic = all_continuous() ~ "{mean}") %>%
-  add_p()
-tab
-# les pvalues sont significatives 
+design <- d_cah %>%
+  as_survey_design(weights = pond)
 
-tab2 <- tab$table_body  %>%
-  filter(row_type == "level")%>%
-  filter(variable != "pond") %>%
-  select(variable, starts_with("stat_")) 
-tab2
-tab2 <- t(tab2) %>%
-  as.data.frame() 
-names(tab2) <- tab2[1, ]
-tab2 <- tab2[-1, ]
-tab2 <- tab2 %>%
-  mutate_all(.funs = function(x){str_replace_all(x, ",", ".")}) %>%
-  mutate_all(as.numeric) %>%
-  rownames_to_column(var = "cluster") %>%
-  mutate(cluster = str_replace(cluster, "stat_", "C")) 
+tab <- design %>%
+  group_by(typo) %>%
+  summarise(
+    across(
+      starts_with("Dim."),
+      list(
+        mean = ~survey_mean(.x, na.rm = TRUE),
+        sd   = ~survey_sd(.x, na.rm = TRUE)
+      )
+    )
+  )
+
+tab <- tab %>%
+  mutate(
+    across(
+      ends_with("_mean"),
+      ~abs(.x) / get(sub("_mean$", "_sd", cur_column())),
+      .names = "{.col}_pertinence"
+    )
+  )
+
+
+# 
+# tab <- d_cah %>%
+#   as_survey_design(weights = pond) %>%
+#   tbl_svysummary(by = typo, 
+#                  statistic = all_continuous2() ~ "{mean}") %>%
+#   add_p()
+# tab
+
+# les pvalues sont significatives 
+tab
+tab2 <- tab  %>%
+  select("typo", ends_with("_mean"))
+  
+levels(tab2$typo) <- sapply(levels(tab2$typo), function(x){insert_line_breaks(x, 21)})
+
 
 tab3 <- wtd.table(d_cah$typo, weights = d_cah$pond) %>%
   as.data.frame() %>%
@@ -511,15 +777,13 @@ tab3 <- wtd.table(d_cah$typo, weights = d_cah$pond) %>%
   rename(n = `...3`)
 
 tab3$Prop <- round((tab3$Freq/sum(tab3$Freq))*100,1)
-tab3 <- tab3 %>%
-  separate(Var1, into = c("name", "cluster"), sep = "\\[") %>%
-  mutate(cluster = str_remove_all(cluster, "]"))
+
 
 tab2 <-tab2 %>%
   pivot_longer(cols = starts_with("dim")) %>%
-  mutate(name = str_replace(name, "dim.", "Dim "))
+  mutate(name = str_replace(name, "dim.", "Dim ") %>% str_remove("_mean"))
 
-tab2$cluster
+tab2$typo
 tab2_summary <- tab2 %>%
   group_by(name) %>%
   summarise(m = min(value), 
@@ -530,21 +794,38 @@ tab2_summary <- tab2_summary %>%
 tab2 <- left_join(tab2, tab2_summary[, c(1,5)])
 tab2_summary
 
-tab2_summary$Mlabel <- c("Capitaux\nélevés",
-                         "Urbain",
-                         "Hauts\npatrimoines",
-                         "Couples\nbiactivité",
-                         "Faible\ncapital cult",
+tab2$dimLabel <- paste0(tab2$dimLabel, 
+                        c(" : Capital économique et propriété immobilière", 
+                          " : Capital culturel et scolaire et localisation résidentielle", 
+                          " : Indépendance professionnelle et salariat intermédiaire", 
+                          " : Classes populaires : Immigration, salariat masculin et organisation domestique", 
+                          " : Précarité économique", 
+                          " : Fractions supérieures : privé vs public", 
+                          " : Qualifications et différenciation sexuée des trajectoires professionnelles"))
+
+
+tab2_summary$Mlabel <- c("Elevé",
+                         "Elevé",
+                         "Cadres du privés et\nindépendants fortunés",
+                         "Ouvriers issus de l'immigration",
+                         "Secteur privé et indépendants",
                          "Privé",
                          "Indépendant-e-s")
 
-tab2_summary$mlabel <- c("Capitaux\nfaibles",
-                         "Rural",
-                         "Faibles\npatrimoines",
-                         "Femmes\ncélibataires",
-                         "Fort\ncapital cult", 
+tab2_summary$mlabel <- c("Capital économique faible",
+                         "Capital culturel faible",
+                         "Professions intérmédiaires du public",
+                         "Petits indépendants pauvres ruraux",
+                         "Cadres du public", 
                          "Public",
                          "Salarié-e-s")
+library(ggh4x)
+
+# Limites symétriques autour de 0 pour chaque facette
+lims <- lapply(split(tab2$value, tab2$dimLabel), function(x) {
+  m <- max(abs(x), na.rm = TRUE)
+  c(-m, m)
+})
 
 gg <- ggplot(tab2) +
   theme_void() +
@@ -553,13 +834,23 @@ gg <- ggplot(tab2) +
   annotate("point", x = 0, y = 1, shape = 3, col = "grey", size = 3) +
   annotate("text", x = 0, y = 1, label = "0", vjust = 2, size = 3, col = "grey") +
   geom_point() +
-  geom_text_repel(aes(label = cluster),
+  geom_text_repel(aes(label = typo),
+                  size = 3,
                   direction="x", vjust = -2,
                   max.overlaps=10000) +
-  facet_wrap(dimLabel ~., ncol = 1, scales="free") #+
-  # geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
-  # geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
+  facet_wrap(dimLabel ~ ., ncol = 1, scales = "free_x") +
+  facetted_pos_scales(
+    x = lapply(names(lims), function(nm) {
+      scale_x_continuous(limits = lims[[nm]])
+    })
+  ) +
+  theme(
+    strip.text = element_text(size = 11)
+  )
+# geom_label(data = tab2_summary, aes(x = m-(0.15*(M-m)), y = 1, label = mlabel), size = 3) +
+# geom_label(data = tab2_summary, aes(x = M+(0.15*(M-m)), y = 1, label = Mlabel), size = 3)
 gg
+
 
 saveTableau(gg, type = "plot", label = "culsters_position",
             description = "positions des cluster sur les différentes dimentions de l'ACM",
@@ -567,7 +858,7 @@ saveTableau(gg, type = "plot", label = "culsters_position",
             n = "?",
             champ = "adultes (25-70 ans) vivant en ménage ordinaire")
 
- 
+
 # Description statistique des axes ----
 
 variances <- as.data.frame(acm_spe$eig$rate[1:15]) %>% 
@@ -695,7 +986,7 @@ tabcontrib <- lapply(1:acmstop, function(dim){
              escape = F)
   
   return(tab)
-  }
+}
 )
 
 tabcontrib[[2]]

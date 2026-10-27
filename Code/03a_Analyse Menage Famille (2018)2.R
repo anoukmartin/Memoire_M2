@@ -1,7 +1,7 @@
 ##############################.
 # 0. Packages
 ##############################.
-
+library(officer)
 library(dplyr)
 library(tidyr)
 
@@ -82,9 +82,9 @@ indiv_socdem <- indiv %>%
     NATIO7 != "Française de naissance" & (NAIS7 %in% c("France métropolitaine", "DOM-TOM")) ~ "Né(e) en France d'une autre nationalité (naturalisé ou non)",
     NATIO7 == "Française de naissance" & (NAIS7 %in% c("DOM-TOM")) ~ "Né(e) français(e) né(e) dans les DOM-TOM", NATIO7 == "Française de naissance" & (NAIS7 %in% c("France métropolitaine")) ~ "Né(e) français(e) né(e) en France hexagonale", 
     NATIO7 == "Française de naissance" & !(NAIS7 %in% c("France métropolitaine", "DOM-TOM")) ~ "Né(e) français(e) né(e) à l'étranger"))
-    
+
 indiv_socdem  
-    
+
 freq(indiv_socdem$IMMIGR)
 freq(indiv_socdem$SITUA)
 table(indiv_socdem$SITUA, indiv_socdem$TYPEMPLOI)
@@ -221,7 +221,7 @@ liens_long_hd <- enfantsHD %>%
   ) %>%
   mutate(NOIPARENT_MENAGE = str_remove(NOIPARENT_MENAGE, "HODLN")) %>%
   filter(ENFANT_DE == 1)
- 
+
 
 enfantsHD$ANNEE_BDF
 head(liens_long_hd, 15)
@@ -400,14 +400,14 @@ nb_parents_menageHD <- liens_long_hd %>%
     PARENTS_MENAGE = paste0(NOIPARENT_MENAGE, collapse = ";"),
     .groups="drop"
   )
-  
+
 
 #--------------------------------------------------------------.
 # Nombre d'enfants ----
 #--------------------------------------------------------------.
 
 nb_enfants <- enfants %>%
-
+  
   
   group_by(
     IDENT_MEN,
@@ -796,13 +796,13 @@ freq(nb_beaux_parents$SEXE_BEAUPARENT)
 # ###############################################################
 # parents_beauxparents <- parents %>% left_join(beaux_parents)
 paires_fratrie <- parents %>%
-
+  
   select(
     IDENT_MEN,
     ENFANT1=ENFANT,
     PARENT1=PARENT
   ) %>%
-
+  
   inner_join(
     parents %>%
       select(
@@ -812,22 +812,22 @@ paires_fratrie <- parents %>%
       ),
     by="IDENT_MEN"
   ) %>%
-
+  
   filter(
     ENFANT1 != ENFANT2
   )
 
 
 parents_communs <- paires_fratrie %>%
-
+  
   group_by(
     IDENT_MEN,
     ENFANT1,
     ENFANT2
   ) %>%
-
+  
   summarise(
-
+    
     NPARENTS_COMMUNS_MENAGE =
       n_distinct(
         intersect(
@@ -835,9 +835,9 @@ parents_communs <- paires_fratrie %>%
           PARENT2
         )
       ),
-
+    
     .groups="drop"
-
+    
   ) %>%
   left_join(nb_beaux_parents %>%
               rename(NBEAUX_PARENTS_ENFANT1 = NBEAUX_PARENTS, 
@@ -853,7 +853,7 @@ parents_communs <- paires_fratrie %>%
                      SEXE_PARENT_ENFANT2 = SEXE_PARENT), by = c("IDENT_MEN", "ENFANT2" = "NOI")) %>%
   mutate()
 
- 
+
 # freq(parents_communs$NPARENTS_COMMUNS_MENAGE)
 # # On a bcp d'enfant qui ont un seul parent en commun mais prbablement lié aux familles monoparentales
 # 
@@ -866,28 +866,28 @@ parents_communs <- paires_fratrie %>%
 head(freres_soeurs)
 parents_communs
 nb_freres_soeurs <- bind_rows(
-
+  
   parents_communs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT1,
       AUTRE=ENFANT2
     ),
-
+  
   parents_communs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT2,
       AUTRE=ENFANT1
     )
-
+  
 ) %>%
-
+  
   group_by(
     IDENT_MEN,
     NOI
   ) %>%
-
+  
   summarise(
     N_FRERES_SOEURS_TOUS =
       n_distinct(AUTRE),
@@ -957,28 +957,28 @@ demi_freres_soeurs <- parents_communs %>%
 
 
 nb_demi_freres_soeurs <- bind_rows(
-
+  
   demi_freres_soeurs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT1,
       AUTRE=ENFANT2
     ),
-
+  
   demi_freres_soeurs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT2,
       AUTRE=ENFANT1
     )
-
+  
 ) %>%
-
+  
   group_by(
     IDENT_MEN,
     NOI
   ) %>%
-
+  
   summarise(
     N_DEMI_FRERES_SOEURS =
       n_distinct(AUTRE),
@@ -1006,28 +1006,28 @@ quasi_freres_soeurs <- parents_communs %>%
 
 
 nb_quasi_freres_soeurs <- bind_rows(
-
+  
   quasi_freres_soeurs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT1,
       AUTRE=ENFANT2
     ),
-
+  
   quasi_freres_soeurs %>%
     select(
       IDENT_MEN,
       NOI=ENFANT2,
       AUTRE=ENFANT1
     )
-
+  
 ) %>%
-
+  
   group_by(
     IDENT_MEN,
     NOI
   ) %>%
-
+  
   summarise(
     N_QUASI_FRERES_SOEURS =
       n_distinct(AUTRE),
@@ -1082,7 +1082,7 @@ indiv_fam <- indiv %>%
       "NOI"
     )
   ) %>%
-
+  
   
   left_join(
     nb_enfants,
@@ -1110,7 +1110,7 @@ indiv_fam <- indiv %>%
     couples %>%
       select(IDENT_MEN, NOI, COUPLE_SEXE, COUPLE_SEXE_DET), 
     by = c("IDENT_MEN", "NOI")
-      
+    
   ) %>%
   
   left_join(
@@ -1161,7 +1161,7 @@ indiv_fam <- indiv %>%
       "CONJOINT" = "NOI"
     )
   ) %>%
-
+  
   left_join(
     nb_beaux_parents,
     by=c(
@@ -1197,9 +1197,9 @@ indiv_fam <- indiv %>%
     enfants2 %>%
       select(IDENT_MEN, NOI, RANG_ENFANT, RANG_ENFANT_SEXE, POSITION_FRATERIE),
     by=c(
-                "IDENT_MEN",
-                "NOI"
-              )) %>%
+      "IDENT_MEN",
+      "NOI"
+    )) %>%
   
   mutate(
     
@@ -1250,7 +1250,7 @@ for (var in c("NPARENTS",
 }
 
 
-  
+
 
 ###############################################################
 # 6. MOCO_DET
@@ -1295,20 +1295,24 @@ freq(indiv_fam$MOCO_DET_ENF)
 indiv_fam$SEXE_PARENT
 table(indiv_fam$SEXE_PARENT, indiv_fam$MOCO_DET_ENF)
 
+# Correction manuelles (cf anomalies plus bas)
+indiv_fam[indiv_fam$IDENT_IND == "17_03277103", "MOCO_DET_ENF"] <- "Enfant du couple dans une famille recomposée"
+indiv_fam[indiv_fam$IDENT_IND == "17_06675104", "MOCO_DET_ENF"] <- "Enfant du couple dans une famille recomposée"
+
 indiv_fam <- indiv_fam %>%
-      mutate(
-      MOCO_DET_ENF_SEXE = case_when(
-        MOCO_DET_ENF == "Enfant d’une famille traditionnelle" ~ MOCO_DET_ENF,
-        MOCO_DET_ENF == "Enfant d’une famille monoparentale"
-        & SEXE_PARENT == "Vit avec sa mère" ~ "Enfant d’une mère célibataire",
-        MOCO_DET_ENF == "Enfant d’une famille monoparentale"
-        & SEXE_PARENT == "Vit avec son père" ~ "Enfant d’un père célibataire",
-        MOCO_DET_ENF == "Enfant du couple dans une famille recomposée" ~ MOCO_DET_ENF,
-        MOCO_DET_ENF == "Enfant d’un seul des adultes de la famille recomposée" 
-        & SEXE_PARENT == "Vit avec sa mère" ~ "Enfant de la mère de famille recomposée", 
-        MOCO_DET_ENF == "Enfant d’un seul des adultes de la famille recomposée" 
-        & SEXE_PARENT == "Vit avec son père" ~ "Enfant du père de famille recomposée",
-        ENFANT == "1" ~ "Enfant sans parent dans la famille"))
+  mutate(
+    MOCO_DET_ENF_SEXE = case_when(
+      MOCO_DET_ENF == "Enfant d’une famille traditionnelle" ~ MOCO_DET_ENF,
+      MOCO_DET_ENF == "Enfant d’une famille monoparentale"
+      & SEXE_PARENT == "Vit avec sa mère" ~ "Enfant d’une mère célibataire",
+      MOCO_DET_ENF == "Enfant d’une famille monoparentale"
+      & SEXE_PARENT == "Vit avec son père" ~ "Enfant d’un père célibataire",
+      MOCO_DET_ENF == "Enfant du couple dans une famille recomposée" ~ MOCO_DET_ENF,
+      MOCO_DET_ENF == "Enfant d’un seul des adultes de la famille recomposée" 
+      & SEXE_PARENT == "Vit avec sa mère" ~ "Enfant de la mère de famille recomposée", 
+      MOCO_DET_ENF == "Enfant d’un seul des adultes de la famille recomposée" 
+      & SEXE_PARENT == "Vit avec son père" ~ "Enfant du père de famille recomposée",
+      ENFANT == "1" ~ "Enfant sans parent dans la famille"))
 
 
 freq(indiv_fam$MOCO_DET_ENF_SEXE)
@@ -1318,60 +1322,63 @@ freq(indiv_fam$MOCO_DET_ENF_SEXE)
 indiv_fam <- indiv_fam %>%
   
   mutate(
-      #--------------------------------------------------------------
-      # ADULTES
-      #--------------------------------------------------------------
+    #--------------------------------------------------------------
+    # ADULTES
+    #--------------------------------------------------------------
+    
+    MOCO_DET_ADU = case_when(
+      ENFANT == "2" &
+        NCONJOINT==1 &
+        NENFANTS==0 &
+        NBEAUX_ENFANTS== 0
+      ~"Adulte d'un couple sans enfant",
       
-  MOCO_DET_ADU = case_when(
-    ENFANT == "2" &
-      NCONJOINT==1 &
-      NENFANTS==0 &
-      NBEAUX_ENFANTS== 0
-    ~"Adulte d'un couple sans enfant",
-    
-    ENFANT == "2" &
-      NCONJOINT==0 &
-      NENFANTS==0 
-    ~"Adulte célibataire et sans enfant", 
-    
-    ENFANT == "2" &
-      NCONJOINT==0 &
-      NENFANTS>0
-    ~"Adulte d’une famille monoparentale",
-    
-    ENFANT == "2"&
-      NCONJOINT==1 &
-      NENFANTS>0 &
-      NBEAUX_ENFANTS>0 
-      ~"Adulte d’une famille recomposée (beau-parent avec enfants)",
-    
-    ENFANT == "2"&
-      NCONJOINT==1 &
-      NENFANTS==0 &
-      NBEAUX_ENFANTS>0 
-      ~"Adulte d’une famille recomposée (beau-parent sans enfants)",
-    
-    ENFANT == "2"&
-      NCONJOINT==1 &
-      NENFANTS>0 &
-      NBEAUX_ENFANTS==0 &
-      NBEAUX_ENFANTS_CONJOINT > 0
-      ~"Adulte d’une famille recomposée (parent sans beaux-enfants)",
-    
-    
-    ENFANT == "2" &
+      ENFANT == "2" &
+        NCONJOINT==0 &
+        NENFANTS==0 
+      ~"Adulte célibataire et sans enfant", 
+      
+      ENFANT == "2" &
+        NCONJOINT==0 &
+        NENFANTS>0
+      ~"Adulte d’une famille monoparentale",
+      
+      ENFANT == "2"&
         NCONJOINT==1 &
         NENFANTS>0 &
-      NBEAUX_ENFANTS==0 &
-      NBEAUX_ENFANTS_CONJOINT == 0
+        NBEAUX_ENFANTS>0 
+      ~"Adulte d’une famille recomposée (beau-parent avec enfants)",
+      
+      ENFANT == "2"&
+        NCONJOINT==1 &
+        NENFANTS==0 &
+        NBEAUX_ENFANTS>0 
+      ~"Adulte d’une famille recomposée (beau-parent sans enfants)",
+      
+      ENFANT == "2"&
+        NCONJOINT==1 &
+        NENFANTS>0 &
+        NBEAUX_ENFANTS==0 &
+        NBEAUX_ENFANTS_CONJOINT > 0
+      ~"Adulte d’une famille recomposée (parent sans beaux-enfants)",
+      
+      
+      ENFANT == "2" &
+        NCONJOINT==1 &
+        NENFANTS>0 &
+        NBEAUX_ENFANTS==0 &
+        NBEAUX_ENFANTS_CONJOINT == 0
       ~"Adulte d’une famille traditionnelle", 
-    
-    ENFANT == "2" & 
-      NCONJOINT==0 &
-      NENFANTS==0 &
-      NPARENTS==0 ~ "Autre adulte sans lien familial direct dans le ménage"))
+      
+      ENFANT == "2" & 
+        NCONJOINT==0 &
+        NENFANTS==0 &
+        NPARENTS==0 ~ "Autre adulte sans lien familial direct dans le ménage"))
 
 freq(indiv_fam$MOCO_DET_ADU)
+
+# Correction manuelles (cf anomalies voir plus bas)
+indiv_fam[indiv_fam$IDENT_IND == "17_03050101", c("MOCO_DET_ADU")] <- "Adulte d’une famille recomposée (parent sans beaux-enfants)"
 
 indiv_fam <- indiv_fam %>%
   mutate(MOCO_DET_ADU_SEXE = case_when(
@@ -1383,7 +1390,7 @@ indiv_fam <- indiv_fam %>%
   mutate(MOCO_DET_SEXE = case_when(
     ENFANT == "1" ~ MOCO_DET_ENF_SEXE,
     ENFANT == "2" ~ MOCO_DET_ADU_SEXE))
- 
+
 
 # ok
 
@@ -1396,7 +1403,7 @@ indiv_fam <- indiv_fam %>%
     SEXE_PARENT = enc2utf8(SEXE_PARENT)
   )
 
-    
+
 freq(indiv_fam$MOCO_DET)
 freq(indiv_fam$MOCO_DET_ADU_SEXE)
 freq(indiv_fam$MOCO_DET_SEXE)
@@ -1578,7 +1585,7 @@ adultes <- adultes %>%
       & SEXE_CONJOINT == 2
       & NENFANTS_COMMUNS > 0 & NBEAUX_ENFANTS_CONJOINT == 0
       ~ "Couple avec enfant(s) du couple, et avec au moins un enfant de la mère",
-    
+      
       
       MOCO_DET_SEXE %in% c(
         "Femme d’une famille recomposée (beau-parent avec enfants)",
@@ -1590,7 +1597,9 @@ adultes <- adultes %>%
       TRUE ~ "Autre type de configuration"
     )
   )
-  
+
+
+
 anomalies <- adultes %>%
   filter(TDM8_SEXE == "Autre type de configuration")
 
@@ -1611,7 +1620,7 @@ length(unique(anomalies$IDENT_MEN))
 menages_from_indiv <- adultes %>%
   group_by(IDENT_MEN) %>%
   summarise(TDM8_SEXE = list(unique(TDM8_SEXE)), 
-             TDM8 = list(unique(TDM8)))
+            TDM8 = list(unique(TDM8)))
 menages_from_indiv[menages_from_indiv$IDENT_MEN %in% anomalies$IDENT_MEN, ]$TDM8 <- list("Autre ménage (complexe)")
 menages_from_indiv[menages_from_indiv$IDENT_MEN %in% anomalies$IDENT_MEN, ]$TDM8_SEXE <- list("Autre ménage (complexe)")
 
@@ -1681,9 +1690,9 @@ menages_from_indiv <- left_join(menages_from_indiv, menages_from_indiv2, by = "I
 names(adultes)
 ref <- menages %>%
   select(IDENT_MEN, PREF) 
-  # pivot_longer(cols = c("PREF", "PCONJ"), 
-  #              names_to = "REF",
-  #              values_to = "NOI") 
+# pivot_longer(cols = c("PREF", "PCONJ"), 
+#              names_to = "REF",
+#              values_to = "NOI") 
 
 adultes
 ref <- pad_2digits(ref, "PREF") 
@@ -1701,8 +1710,8 @@ adultesref <- adultesref %>%
       
       # Couple mixte avec un immigré
       (xor(IMMIGR == "Immigré(e)",
-          IMMIGR_CONJOINT == "Immigré(e)") &
-        !is.na(IMMIGR_CONJOINT) ) 
+           IMMIGR_CONJOINT == "Immigré(e)") &
+         !is.na(IMMIGR_CONJOINT) ) 
       | (IMMIGR == "Né(e) en France d'une autre nationalité (naturalisé ou non)" |
            IMMIGR_CONJOINT == "Né(e) en France d'une autre nationalité (naturalisé ou non)")
       ~"Couple mixte avec un-e immigré-e et personnes nées en France d'une autre nationalité",
@@ -1737,7 +1746,7 @@ adultesref <- adultesref %>%
       )
     )
   )
-  
+
 
 ano <- adultesref %>%
   filter(is.na(MENAGE_RAPPORT_IMMIGR))
@@ -1760,26 +1769,26 @@ freq(adultesref$STATUT_CONJOINT)
 
 # Variables socio-démo genrées 
 menages_from_indiv3 <- reduce(
-    c("NOI", variables_socdem),
-    .init = adultesref,
-    .f = \(df, v) {
-      mutate(
-        df,
-        !!paste0(v, "_H") :=
-          if_else(
-            SEXE == "1",
-            .data[[v]],
-            .data[[paste0(v, "_CONJOINT")]]
-          ),
-        !!paste0(v, "_F") :=
-          if_else(
-            SEXE == "2",
-            .data[[v]],
-            .data[[paste0(v, "_CONJOINT")]]
-          )
-      )
-    }
-  )
+  c("NOI", variables_socdem),
+  .init = adultesref,
+  .f = \(df, v) {
+    mutate(
+      df,
+      !!paste0(v, "_H") :=
+        if_else(
+          SEXE == "1",
+          .data[[v]],
+          .data[[paste0(v, "_CONJOINT")]]
+        ),
+      !!paste0(v, "_F") :=
+        if_else(
+          SEXE == "2",
+          .data[[v]],
+          .data[[paste0(v, "_CONJOINT")]]
+        )
+    )
+  }
+)
 
 
 tab <- table(menages_from_indiv3$COUPLE_SEXE, menages_from_indiv3$SEXE_H, menages_from_indiv3$SEXE_F, useNA = "ifany") %>%
@@ -1787,7 +1796,7 @@ tab <- table(menages_from_indiv3$COUPLE_SEXE, menages_from_indiv3$SEXE_H, menage
 # Pour les personnes qui vivent en couple de meme sexe, si la presonne de référence est un homme alors sont conjoint est en "_F", si la personne de ref est une femme alors sa conjointe est "_H"
 
 anomalies<- menages_from_indiv3 %>%
-    filter(IDENT_MEN %in% menages_from_indiv3$IDENT_MEN[duplicated(menages_from_indiv3$IDENT_MEN)]) 
+  filter(IDENT_MEN %in% menages_from_indiv3$IDENT_MEN[duplicated(menages_from_indiv3$IDENT_MEN)]) 
 # Normal car on a qu'une seule personne de référence par ménage
 
 # Revenus individuels
@@ -1859,52 +1868,106 @@ freq(indiv_fam_enrichie$TDM8)
 freq(indiv_fam_enrichie$TDM8_SEXE)
 freq(indiv_fam_enrichie$TAF)
 
-tab <- table(indiv_fam_enrichie$TAF, indiv_fam_enrichie$MOCO_DET) %>%
-  data.frame()
 
-indiv_fam_enrichie %>%
-  tbl_summary(
-    include = c("MOCO_DET",  "ANNEE_BDF"), 
-    by = "ANNEE_BDF", 
-    percent = "column") %>%
-  add_overall(last = T)
+# Anomlies entre la situation familiale codé a partir du MOCO_DET des adultes et le MOCO_DET des enfants
+ano <- indiv_fam_enrichie %>%
+  filter((str_detect(TAF, "recomposée") & str_detect(MOCO_DET, "traditionnelle")) |
+           str_detect(TAF, "traditionnelle") & str_detect(MOCO_DET, "recomposée"))
+freq(indiv_fam_enrichie$TAF)
+freq(indiv_fam_enrichie$MOCO_DET)
+freq(indiv_fam_enrichie$MOCO_DET_SEXE)
+
+# 3 cas : 
+# 1 ) 
+ano1 <- indiv_fam_enrichie %>%
+  filter(IDENT_MEN %in% ano$IDENT_MEN[1])
+ano1$MOCO_DET # > en réalité recomposition familaile mais données manquantes pour le conjoint donc on corrige plus haut 
+ano1$IDENT_IND
+#2) 
+ano2 <- indiv_fam_enrichie %>%
+  filter(IDENT_MEN %in% ano$IDENT_MEN[2])
+ano2$MOCO_DET # > deux demi-adelphes sont manquant dans les données indiv du ménage, donc l'enfait du couple apparait comme enfant d'une famille traditionelle
+#on va corriger plus haut également 
+ano2$IDENT_IND
+#3)
+ano3 <- indiv_fam_enrichie %>%
+  filter(IDENT_MEN %in% ano$IDENT_MEN[3])
+ano3$MOCO_DET # > un demi-adelphes est manquant dans les données indiv du ménage, donc l'enfait du couple apparait comme enfant d'une famille traditionelle
+#on va corriger plus haut également 
+ano3$IDENT_IND
+
+# Ajouts sur MOCO_DET de l'existance d'enfant du couple ou pas
+
+tab <- table(indiv_fam_enrichie$TAF, indiv_fam_enrichie$MOCO_DET_SEXE) %>%
+  data.frame() %>%
+  filter(Freq > 0) %>%
+  filter(Var1 != "Autre ménage (complexe)") %>%
+  mutate(MOCO_DET_SEXE2 = case_when(
+    Var1 == "Famille recomposée (avec enfant(s) du couple)" ~ str_glue("{Var2} (avec enfant(s) du couple)"), 
+    Var1 =="Famille recomposée (sans enfant du couple)" ~ str_glue("{Var2}  (sans enfant du couple)"), 
+    TRUE ~ str_glue("{Var2}")
+  )) %>%
+  select(-Freq)
 
 
-indiv_fam_enrichie %>%
-  as_survey_design(weights = PONDIND, 
-                   ids = IDENT_MEN) %>%
-  tbl_svysummary(
-            include = c("MOCO_DET",  "ANNEE_BDF"), 
-            by = "ANNEE_BDF", 
-            percent = "column") %>%
-  add_overall(last = T)
-indiv_fam_enrichie$TYPOLOG
+indiv_fam_enrichie <- indiv_fam_enrichie %>%
+  mutate(MOCO_DET2 = case_when(
+    TAF == "Autre ménage (complexe)" ~ NA, 
+    TAF == "Famille recomposée (avec enfant(s) du couple)" ~ str_glue("{MOCO_DET} (avec enfant(s) du couple)"), 
+    TAF =="Famille recomposée (sans enfant du couple)" ~ str_glue("{MOCO_DET}  (sans enfant du couple)"), 
+    TRUE ~ str_glue("{MOCO_DET}"))) %>%
+  mutate(MOCO_DET_SEXE2 = case_when(
+    TAF == "Autre ménage (complexe)" ~ NA, 
+    TAF == "Famille recomposée (avec enfant(s) du couple)" ~ str_glue("{MOCO_DET_SEXE} (avec enfant(s) du couple)"), 
+    TAF =="Famille recomposée (sans enfant du couple)" ~ str_glue("{MOCO_DET_SEXE}  (sans enfant du couple)"), 
+    TRUE ~ str_glue("{MOCO_DET_SEXE}")))
 
-indiv_fam_enrichie %>%
-  as_survey_design(weights = PONDIND, 
-                   ids = IDENT_MEN) %>%
-  tbl_svysummary(
-    include = c("MOCO_DET_ENF", "SEXE_PARENT", "TYPOLOG", "DOLOG"), 
-    by = "SEXE_PARENT", 
-    percent = "column") %>%
-  add_overall(last = T)
+# 
+# indiv_fam_enrichie %>%
+#   tbl_summary(
+#     include = c("MOCO_DET",  "ANNEE_BDF"), 
+#     by = "ANNEE_BDF", 
+#     percent = "column") %>%
+#   add_overall(last = T)
+# 
+# 
+# indiv_fam_enrichie %>%
+#   as_survey_design(weights = PONDIND, 
+#                    ids = IDENT_MEN) %>%
+#   tbl_svysummary(
+#             include = c("MOCO_DET",  "ANNEE_BDF"), 
+#             by = "ANNEE_BDF", 
+#             percent = "column") %>%
+#   add_overall(last = T)
+# indiv_fam_enrichie$TYPOLOG
+# 
+# indiv_fam_enrichie %>%
+#   as_survey_design(weights = PONDIND, 
+#                    ids = IDENT_MEN) %>%
+#   tbl_svysummary(
+#     include = c("MOCO_DET_ENF", "SEXE_PARENT", "TYPOLOG", "DOLOG"), 
+#     by = "SEXE_PARENT", 
+#     percent = "column") %>%
+#   add_overall(last = T)
+# 
+# 
+# tbl_summary(indiv_fam_enrichie %>%
+#               mutate(TAF2 = TAF %>%
+#                        str_remove_all(" (sans enfant du couple)") %>%
+#                        str_remove_all(" (sans enfant du couple)")), 
+#             include = c("MOCO_DET_ADU", "TAF", "TAF2", "COUPLE_SEXE"), 
+#             by = "COUPLE_SEXE", 
+#             percent = "row")
+# 
+# tbl_summary(menages, 
+#             include = c("TAF", "TDM8_SEXE", "APART"), 
+#             by = "APART", 
+#             percent = "row")
+# 
+# freq(enfants2$POSITION_FRATERIE)
+# freq(indiv_fam_enrichie$POSITION_FRATERIE)
 
 
-tbl_summary(indiv_fam_enrichie %>%
-              mutate(TAF2 = TAF %>%
-                       str_remove_all(" (sans enfant du couple)") %>%
-                       str_remove_all(" (sans enfant du couple)")), 
-            include = c("MOCO_DET_ADU", "TAF", "TAF2", "COUPLE_SEXE"), 
-            by = "COUPLE_SEXE", 
-            percent = "row")
-
-tbl_summary(menages, 
-            include = c("TAF", "TDM8_SEXE", "APART"), 
-            by = "APART", 
-            percent = "row")
-
-freq(enfants2$POSITION_FRATERIE)
-freq(indiv_fam_enrichie$POSITION_FRATERIE)
 
 dir.create("Data_output/data_recode")
 saveRDS(indiv_fam_enrichie, "Data_output/data_recode/indiv.Rds")
@@ -1919,7 +1982,7 @@ tab <- indiv_fam_enrichie %>%
   mutate(Effectifs = T) %>%
   as_survey_design(weights = PONDIND) %>%
   tbl_svysummary(
-    include = c("MOCO_DET", "MOCO_DET_SEXE",  "ANNEE_BDF", "Effectifs"), 
+    include = c("MOCO_DET", "MOCO_DET_SEXE", "MOCO_DET_SEXE2", "ANNEE_BDF", "Effectifs"), 
     statistic = list(all_categorical() ~ "{p}", 
                      Effectifs ~ "{n_unweighted}"),
     by = "ANNEE_BDF", 
@@ -1946,7 +2009,7 @@ tab <- indiv_fam_enrichie %>%
   mutate(Effectifs = T) %>%
   as_survey_design(weights = PONDIND) %>%
   tbl_svysummary(
-    include = c("MOCO_DET", "MOCO_DET_SEXE",  "ANNEE_BDF", "Effectifs"), 
+    include = c("MOCO_DET", "MOCO_DET_SEXE", "MOCO_DET_SEXE2", "ANNEE_BDF", "Effectifs"), 
     statistic = list(all_categorical() ~ "{p}", 
                      Effectifs ~ "{n_unweighted}"),
     by = "ANNEE_BDF", 
@@ -1994,5 +2057,6 @@ doc <- doc %>%
       hline_bottom(border = fp_border(width = 1)) |>
       autofit()
   )
+dir.create("Resultats")
 print(doc, target = "Resultats/resultats_AMF_indiv-menages.docx")
 

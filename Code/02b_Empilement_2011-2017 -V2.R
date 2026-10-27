@@ -17,7 +17,7 @@ dir.create(
 
 files_2017 <- list.files(path_2017, pattern = "\\.sas7bdat$", full.names = TRUE)
 
-file_2017 <- files_2017[8]
+file_2017 <- files_2017[13]
 
 process_file <- function(file_2017) {
   
@@ -239,12 +239,12 @@ process_file <- function(file_2017) {
         
         if(n98 > 0){
           x[x == NAvals[2]] <- NA
-          add_log(v, " : 98 -> NA (", n98, ")")
+          add_log(v, " : ", NAvals[2], " -> NA (", n98, ")")
         }
         
         if(n99 > 0){
           x[x == NAvals[1]] <- NA
-          add_log(v, " : 99 -> NA (", n99, ")")
+          add_log(v, " : ", NAvals[1], " -> NA (", n99, ")")
         }
         }
         dat[[v]] <- x
@@ -255,8 +255,6 @@ process_file <- function(file_2017) {
     assign(nm, dat)
   }
       
-  
-  
   # ------------------------------------------------------------------
   # Revalorisation IPC
   # ------------------------------------------------------------------
@@ -277,11 +275,17 @@ process_file <- function(file_2017) {
   
   vars_revalo <- names(df_2011)[
     sapply(df_2011, is.numeric) &
+      sapply(df_2011, function(x) !setequal(na.omit(sort(unique(x))), c(0, 1))) &
+      sapply(df_2011, function(x) !setequal(na.omit(sort(unique(x))), 1:12)) &
+      
       (
         str_detect(names(df_2011), "^REV|^C0|^C1|^CTOT") |
           str_detect(labels_clean, "montant")
       ) &
-      !str_detect(labels_clean, "tranche")
+      !str_detect(labels_clean, "tranche") &
+      !str_detect(labels_clean, "Nombre de mois")
+    
+    
   ]
   
   add_log("## Revalorisation IPC")
@@ -476,5 +480,6 @@ process_file <- function(file_2017) {
 }
 
 
-process_file(file_2017 = files_2017[14])
+process_file(file_2017 = files_2017[12])
+
 walk(files_2017[c(8, 10, 11:14, 16:19)], process_file)
